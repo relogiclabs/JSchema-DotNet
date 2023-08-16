@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AssemblyName>RelogicLabs.JsonSchema</AssemblyName>
+        <Company>RelogicLabs</Company>
+        <RootNamespace/>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Antlr4.Runtime.Standard" Version="4.13.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="docs\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Remove="docs\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="docs\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="RelogicLabs.JsonSchema.Tests"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AssemblyAttribute Include="System.CLSCompliantAttribute">
+            <_Parameter1>true</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+</Project>
