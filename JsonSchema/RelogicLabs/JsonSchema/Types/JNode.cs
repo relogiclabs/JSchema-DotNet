@@ -32,8 +32,8 @@ public abstract class JNode
     /// </summary>
     /// <param name="node">The node to compare with the current node.</param>
     /// <returns>
-    /// <see langword="true"/> if the specified node matches with the current node;
-    /// otherwise, <see langword="false"/>
+    /// <c>true</c> if the specified node matches with the current node;
+    /// otherwise, <c>false</c>.
     /// </returns>
     public abstract bool Match(JNode node);
     
@@ -44,12 +44,12 @@ public abstract class JNode
     public abstract string ToJson();
 
     /// <summary>
-    /// Returns an abbreviated version of the string returns from <see cref="ToJson"/>
-    /// of the specified length <see cref="MessageFormatter.OutlineLength"/> and replaces some
-    /// part of string with ellipses to conform the length; otherwise, returns the original string
-    /// without ellipses.
+    /// Returns an abbreviated version of the string obtained from the <see cref="ToJson"/>
+    /// method of the specified length from <see cref="MessageFormatter.OutlineLength"/>
+    /// and replaces a portion of the string with ellipses to match the specified length;
+    /// otherwise, returns the string unmodified.
     /// </summary>
-    /// <returns>An abbreviated version of the <see cref="ToJson"/> string</returns>
+    /// <returns>An abbreviated version of the <see cref="ToJson"/> string.</returns>
     public virtual string ToOutline() 
         => ToJson().ToOutline(Context.MessageFormatter.OutlineLength);
 
