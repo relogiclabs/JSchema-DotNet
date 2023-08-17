@@ -1,0 +1,7 @@
+/.idea/*
+/JsonSchema/bin/*
+/JsonSchema/obj/*
+/JsonSchema/.vscode/*
+/JsonSchema.Tests/bin/*
+/JsonSchema.Tests/obj/*
+/JsonSchema.Tests/.vscode/*
