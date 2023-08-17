@@ -4,5 +4,4 @@
 /JsonSchema/.vscode/*
 /JsonSchema.Tests/bin/*
 /JsonSchema.Tests/obj/*
-/JsonSchema.Tests/doc/*
 /JsonSchema.Tests/.vscode/*

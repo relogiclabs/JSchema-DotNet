@@ -20,7 +20,6 @@ public class JDouble : JNumber, IJsonFloat, IPragmaValue<double>
             new ErrorDetail(DUBL01, ValueMismatch),
             ExpectedDetail.AsValueMismatch(this),
             ActualDetail.AsValueMismatch(other)));
-        
     }
 
     public override bool Equals(object? obj)

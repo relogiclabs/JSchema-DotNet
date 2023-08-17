@@ -235,7 +235,6 @@ public class StringTests
                 "key3": "008801737048177"
             }
             """;
-        JsonSchema.IsValid(schema, json);
-        //JsonAssert.IsValid(schema, json);
+        JsonAssert.IsValid(schema, json);
     }
 }

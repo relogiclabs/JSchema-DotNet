@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from /home/zahid/Projects/JsonAssert2/JsonSchema/RelogicLabs/JsonSchema/Grammar/JsonLexer.g4 by ANTLR 4.13.0
 
 // Unreachable code detected
 #pragma warning disable 0162

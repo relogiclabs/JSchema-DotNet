@@ -43,6 +43,7 @@ internal static class CollectionExtension
         foreach(T item in enumeration) action(item);
     }
     
+    // Use only if necessary to eagerly check every item
     public static bool ForEachTrue(this IEnumerable<bool> enumeration)
     {
         var result = true;

@@ -5,8 +5,9 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
-        <RootNamespace />
         <AssemblyName>RelogicLabs.JsonSchema.Tests</AssemblyName>
+        <Company>Relogic Labs</Company>
+        <RootNamespace/>
     </PropertyGroup>
 
     <ItemGroup>

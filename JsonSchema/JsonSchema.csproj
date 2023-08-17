@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AssemblyName>RelogicLabs.JsonSchema</AssemblyName>
-        <Company>RelogicLabs</Company>
+        <Company>Relogic Labs</Company>
         <RootNamespace/>
     </PropertyGroup>
 
