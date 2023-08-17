@@ -1,8 +1,8 @@
 # A New JSON Schema
-A JSON schema is crucial for making communication, interoperability, validation, testing, documentation, and specification seamless. All of this combined contributes to better maintenance and evolution of web services.
+JSON, short for JavaScript Object Notation, is one of the most widely used data exchange formats that are both user-friendly and machine-readable. A JSON Schema is crucial for making communication, interoperability, validation, testing, documentation, and specification seamless. All of this combined contributes to better maintenance and evolution of data-driven applications and systems.
 
 ## Design Goals
-The traditional standard JSON schema rigorously follows the conventional JSON structure, which unfortunately comes at the expense of simplicity, conciseness, and readability. Our goal is to develop a new JSON schema that promotes these essential aspects that were previously missing.
+The traditional standard JSON Schema rigorously follows the conventional JSON structure, which unfortunately comes at the expense of simplicity, conciseness, and readability. Our goal is to develop a new JSON Schema that promotes these essential aspects that were previously missing.
 
 This new schema is simple, lucid, easy to grasp, and doesn't require much prior knowledge to understand it. It also offers a shallow learning curve for both reading and writing. Furthermore, its inherent extensibility simplifies the process of integrating new constraints and functionalities to meet the diverse requirements of modern web services.
 
@@ -35,7 +35,7 @@ Let's explore an example of our schema for a typical JSON API response containin
     }
 }
 ```
-In the above example, two types of constraint or rule descriptors are used: constraint functions (also known as validation functions, such as `@range(1, 10000)`) and constraint data types (also known as validation data types, such as `#integer`). All constraint functions begin with the `@` symbol, while all constraint data types start with `#`. C-style comments are also permitted in the schema. Please note that `address` can be `null` (eg. an optional input for users) and if it is `null` then no constraints of `address` are applicable. The following JSON is one of the examples which can successfully validate against the above schema. To start your journey with the JSON validation library, please consult the documentation available <a href="/articles/intro.html">here</a>.
+In the above example, two types of constraint or rule descriptors are used: constraint functions (also known as validation functions, such as `@range(1, 10000)`) and constraint data types (also known as validation data types, such as `#integer`). All constraint functions begin with the `@` symbol, while all constraint data types start with `#`. C-style comments are also permitted in the schema. Please note that `address` can be `null` (eg. an optional input for users) and if it is `null` then no constraints of `address` are applicable. The following JSON is one of the examples which can successfully validate against the above schema. To start your journey with the JSON validation library, please consult the documentation available <a href="https://relogiclabs.github.io/JsonSchema-DotNet/articles/intro.html">here</a>.
 ```json
 {
     "user": {
@@ -59,7 +59,7 @@ In the above example, two types of constraint or rule descriptors are used: cons
 }
 ```
 ## Extended Example
-The next example represents an expanded version of the previous one, which brings more complexity. To effectively construct such schemas with multiple layers of nested structures, it's beneficial to have a fundamental understanding of this schema format. While the syntax may seem difficult at first, it becomes straightforward once you have a basic understanding of it. For more detailed information, reference documentation is available <a href="/api/index.html">here</a>.
+The next example represents an expanded version of the previous one, which brings more complexity. To effectively construct such schemas with multiple layers of nested structures, it's beneficial to have a fundamental understanding of this schema format. While the syntax may seem difficult at first, it becomes straightforward once you have a basic understanding of it. For more detailed information, reference documentation is available <a href="https://relogiclabs.github.io/JsonSchema-DotNet/api/index.html">here</a>.
 ```cpp
 %title: "Extended User Profile Dashboard API Response"
 %version: 2.0.0
@@ -214,4 +214,4 @@ The subsequent JSON sample is an illustrative example that successfully validate
     }
 }
 ```
-For more information about the schema syntax format and library functionalities, please refer to the reference documentation <a href="/api/index.html">here</a>.
+For more information about the schema syntax format and library functionalities, please refer to the reference documentation <a href="https://relogiclabs.github.io/JsonSchema-DotNet/api/index.html">here</a>.
