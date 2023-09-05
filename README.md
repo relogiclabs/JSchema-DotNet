@@ -59,7 +59,7 @@ In the above example, two types of constraint or rule descriptors are used: cons
 }
 ```
 ## Extended Example
-The next example represents an expanded version of the previous one, which brings more complexity. To effectively construct such schemas with multiple layers of nested structures, it's beneficial to have a fundamental understanding of this schema format. While the syntax may seem difficult at first, it becomes straightforward once you have a basic understanding of it. For more detailed information, reference documentation is available [here](https://relogiclabs.github.io/JsonSchema-DotNet/api/index.html).
+The next example represents an expanded version of the previous one, which brings more complexity. To effectively construct such schemas with multiple layers of nested structures, it's beneficial to have a fundamental understanding of this schema format. While the syntax may seem difficult at first, it becomes straightforward once you have a basic understanding of it. For more detailed information, reference documentation is available [here](https://relogiclabs.github.io/JsonSchema-DotNet/articles/intro.html).
 ```cpp
 %title: "Extended User Profile Dashboard API Response"
 %version: 2.0.0
