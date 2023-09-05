@@ -283,7 +283,7 @@ internal partial class SchemaParserBaseVisitor<Result> : AbstractParseTreeVisito
 	/// <return>The visitor result.</return>
 	public virtual Result VisitPrimitiveNull([NotNull] SchemaParser.PrimitiveNullContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by the <c>PrimitiveUnknown</c>
+	/// Visit a parse tree produced by the <c>PrimitiveUndefined</c>
 	/// labeled alternative in <see cref="SchemaParser.primitive"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
@@ -292,6 +292,6 @@ internal partial class SchemaParserBaseVisitor<Result> : AbstractParseTreeVisito
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitPrimitiveUnknown([NotNull] SchemaParser.PrimitiveUnknownContext context) { return VisitChildren(context); }
+	public virtual Result VisitPrimitiveUndefined([NotNull] SchemaParser.PrimitiveUndefinedContext context) { return VisitChildren(context); }
 }
 } // namespace RelogicLabs.JsonSchema.Antlr
