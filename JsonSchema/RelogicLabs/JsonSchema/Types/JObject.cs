@@ -38,13 +38,13 @@ public class JObject : JBranch, IJsonType<JObject>, IJsonComposite
                         ExpectedDetail.AsPropertyNotFound(thisProp),
                         ActualDetail.AsPropertyNotFound(node, thisProp)));
         }
-        if(unresolved.Count > 0 && !Runtime.IgnoreUnknownProperties)
+        if(unresolved.Count > 0 && !Runtime.IgnoreUndefinedProperties)
         {
             var property = other.Properties[unresolved.First()];
             return FailWith(new JsonSchemaException(
-                new ErrorDetail(PROP06, UnknownPropertyFound),
-                ExpectedDetail.AsUnknownProperty(this, property),
-                ActualDetail.AsUnknownProperty(property)));
+                new ErrorDetail(PROP06, UndefinedPropertyFound),
+                ExpectedDetail.AsUndefinedProperty(this, property),
+                ActualDetail.AsUndefinedProperty(property)));
         }
         return result;
     }

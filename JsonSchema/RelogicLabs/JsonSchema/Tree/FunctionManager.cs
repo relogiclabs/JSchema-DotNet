@@ -8,13 +8,13 @@ using static RelogicLabs.JsonSchema.Message.ErrorCode;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
-internal class FunctionHelper
+internal class FunctionManager
 {
     private readonly HashSet<string> _includes = new();
     private readonly Dictionary<FunctionKey, List<MethodPointer>> _functions = new();
     private readonly RuntimeContext _runtime;
 
-    public FunctionHelper(RuntimeContext runtime) => _runtime = runtime;
+    public FunctionManager(RuntimeContext runtime) => _runtime = runtime;
 
     public void AddFunctions(string className, Context? context = null)
     {
@@ -36,7 +36,7 @@ internal class FunctionHelper
         try
         {
             var functions = ExtractMethods(subclass, instance);
-            _functions.AddRange(functions);
+            _functions.Merge(functions);
         }
         catch(InvalidFunctionException ex)
         {
@@ -95,13 +95,13 @@ internal class FunctionHelper
         return parameters.Count;
     }
 
-    private bool IsMatch(ParameterInfo parameter, JNode argument) 
+    private static bool IsMatch(ParameterInfo parameter, JNode argument) 
         => parameter.ParameterType.IsInstanceOfType(argument);
     
-    private bool IsParams(ParameterInfo parameter) 
+    private static bool IsParams(ParameterInfo parameter) 
         => parameter.IsDefined(typeof(ParamArrayAttribute), false);
 
-    private object? ProcessParams(ParameterInfo parameter, IList<JNode> arguments)
+    private static object? ProcessParams(ParameterInfo parameter, IList<JNode> arguments)
     {
         Type? elementType = parameter.ParameterType.GetElementType();
         if(elementType == null) throw new InvalidOperationException();
@@ -115,7 +115,7 @@ internal class FunctionHelper
         return _arguments;
     }
     
-    public bool InvokeFunction(JFunction function, JNode node)
+    public bool InvokeFunction(JFunction function, JNode target)
     {
         var methods = GetMethods(function);
         string? mismatchMessage = null;
@@ -125,14 +125,14 @@ internal class FunctionHelper
             var _arguments = function.Arguments;
             var schemaArgs = MatchSchemaArguments(_parameters, _arguments);
             if(schemaArgs == null) continue;
-            if(!IsMatch(_parameters[0], node))
+            if(!IsMatch(_parameters[0], target))
             {
                 mismatchMessage = $"Function {function.ToOutline()} is applicable on {
                     _parameters[0].ParameterType.Name} but applied on {
-                        node.GetType().Name} of {node}";
+                        target.GetType().Name} of {target}";
                 continue;
             }
-            return method.Invoke(function, JoinArguments(node, schemaArgs));
+            return method.Invoke(function, JoinArguments(target, schemaArgs));
         }
         if(mismatchMessage != null) return FailWith(new FunctionMismatchException(
             MessageFormatter.FormatForSchema(FUNC03, mismatchMessage, function.Context)));

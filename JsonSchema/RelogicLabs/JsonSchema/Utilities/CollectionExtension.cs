@@ -14,14 +14,14 @@ internal static class CollectionExtension
         return collection.Any()? $"{prefix}{result}{suffix}" : string.Empty;
     }
 
-    public static void AddRange<TKey, TValue>(this IDictionary<TKey, List<TValue>> source, 
-        IDictionary<TKey, List<TValue>> collection)
+    public static void Merge<TKey, TValue>(this IDictionary<TKey, List<TValue>> source, 
+        IDictionary<TKey, List<TValue>> dictionary)
     {
-        foreach(var element in collection)
+        foreach(var element in dictionary)
         {
             source.TryGetValue(element.Key, out List<TValue>? value);
-            if(value == default) value = collection[element.Key];
-            else value.AddRange(collection[element.Key]);
+            if(value == default) value = dictionary[element.Key];
+            else value.AddRange(dictionary[element.Key]);
             source.Add(element.Key, value);
         }
     }
@@ -55,7 +55,7 @@ internal static class CollectionExtension
         this IEnumerable<JProperty> source) => new(source);
 
     public static ReadOnlySet<T> AsReadOnly<T>(this ISet<T> set) 
-        => new ReadOnlySet<T>(set);
+        => new(set);
     
     public static IEnumerable<string> ToJson(this IEnumerable<JNode> source) 
         => source.Select(s => s.ToJson());

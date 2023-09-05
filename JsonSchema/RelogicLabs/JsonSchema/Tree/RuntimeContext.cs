@@ -7,7 +7,7 @@ namespace RelogicLabs.JsonSchema.Tree;
 
 public class RuntimeContext
 {
-    private readonly FunctionHelper _functionHelper;
+    private readonly FunctionManager _functionManager;
     
     internal MessageFormatter MessageFormatter { get; set; }
     public bool ThrowException { get; set; }
@@ -15,8 +15,8 @@ public class RuntimeContext
     public Dictionary<JAlias, JValidator> Definitions { get; }
     public Queue<Exception> ErrorQueue { get; }
     
-    public bool IgnoreUnknownProperties 
-        => GetPragmaValue<bool>(nameof(IgnoreUnknownProperties));
+    public bool IgnoreUndefinedProperties 
+        => GetPragmaValue<bool>(nameof(IgnoreUndefinedProperties));
     public double FloatingPointTolerance 
         => GetPragmaValue<double>(nameof(FloatingPointTolerance));
     public bool IgnoreObjectPropertyOrder 
@@ -24,7 +24,7 @@ public class RuntimeContext
 
     internal RuntimeContext(MessageFormatter messageFormatter, bool throwException)
     {
-        _functionHelper = new FunctionHelper(this);
+        _functionManager = new FunctionManager(this);
         MessageFormatter = messageFormatter;
         ThrowException = throwException;
         Pragmas = new Dictionary<string, JPragma>();
@@ -34,10 +34,10 @@ public class RuntimeContext
     
     private T GetPragmaValue<T>(string name)
     {
-        var pragmaItem = PragmaPreset.From(name);
-        Pragmas.TryGetValue(pragmaItem!.Name, out var pragma);
-        if(pragma == null) return ((PragmaDescriptor<T>) pragmaItem).DefaultValue;
-        return ((IPragmaValue<T>) pragma.Value).Value;
+        var entry = PragmaDescriptor.From(name);
+        Pragmas.TryGetValue(entry!.Name, out var pragma);
+        return pragma == null ? ((PragmaProfile<T>) entry).DefaultValue 
+            : ((IPragmaValue<T>) pragma.Value).Value;
     }
     
     public JPragma AddPragma(JPragma pragma)
@@ -56,10 +56,10 @@ public class RuntimeContext
     }
 
     public void AddFunctions(string className, Context? context = null) 
-        => _functionHelper.AddFunctions(className, context);
+        => _functionManager.AddFunctions(className, context);
 
-    public bool InvokeFunction(JFunction function, JNode node)
-        => _functionHelper.InvokeFunction(function, node);
+    public bool InvokeFunction(JFunction function, JNode target)
+        => _functionManager.InvokeFunction(function, target);
 
     public JDefinition AddDefinition(JDefinition definition)
     {

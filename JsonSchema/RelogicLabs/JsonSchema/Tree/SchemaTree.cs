@@ -13,10 +13,10 @@ public class SchemaTree
     {
         SchemaLexer schemaLexer = new(CharStreams.fromString(input));
         schemaLexer.RemoveErrorListeners();
-        schemaLexer.AddErrorListener(LexerErrorListener.SchemaListener);
+        schemaLexer.AddErrorListener(LexerErrorListener.Schema);
         SchemaParser schemaParser = new(new CommonTokenStream(schemaLexer));
         schemaParser.RemoveErrorListeners();
-        schemaParser.AddErrorListener(ParserErrorListener.SchemaListener);
+        schemaParser.AddErrorListener(ParserErrorListener.Schema);
         Root = (JRoot) new SchemaTreeVisitor(context).Visit(schemaParser.schema());
     }
 }

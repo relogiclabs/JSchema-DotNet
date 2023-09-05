@@ -76,7 +76,7 @@ internal class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
         var nodeContext = new Context(context, _context);
         var pragmaName = context.IDENTIFIER().GetText();
         var pragmaValue = (JPrimitive) Visit(context.primitive());
-        PragmaPreset? descriptor = PragmaPreset.From(pragmaName);
+        PragmaDescriptor? descriptor = PragmaDescriptor.From(pragmaName);
         if(descriptor == null) throw new PragmaNotFoundException(MessageFormatter
             .FormatForSchema(PRAG01, $"Invalid pragma {pragmaName.DoubleQuote()} with value {
                 pragmaValue.ToOutline()} found", nodeContext));
@@ -237,8 +237,8 @@ internal class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
         => new JNull(_relations) { Context = new Context(context, _context) }
             .Initialize();
 
-    public override JNode VisitPrimitiveUnknown(SchemaParser.PrimitiveUnknownContext context)
-        => new JUnknown(_relations) { Context = new Context(context, _context) }
+    public override JNode VisitPrimitiveUndefined(SchemaParser.PrimitiveUndefinedContext context)
+        => new JUndefined(_relations) { Context = new Context(context, _context) }
             .Initialize();
 
     public override JNode Visit(IParseTree? tree) 

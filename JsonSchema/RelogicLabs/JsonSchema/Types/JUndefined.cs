@@ -1,10 +1,10 @@
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JUnknown : JPrimitive
+public class JUndefined : JPrimitive
 {
-    public const string UnknownMarker = "!";
+    public const string UndefinedMarker = "!";
     
-    internal JUnknown(IDictionary<JNode, JNode> relations) : base(relations) { }
+    internal JUndefined(IDictionary<JNode, JNode> relations) : base(relations) { }
     public override bool Match(JNode node) => true;
 
     public override bool Equals(object? obj)
@@ -15,6 +15,6 @@ public class JUnknown : JPrimitive
     }
 
     public override int GetHashCode() => base.GetHashCode();
-    public override string ToJson() => UnknownMarker;
+    public override string ToJson() => UndefinedMarker;
     public override string ToString() => ToJson();
 }
