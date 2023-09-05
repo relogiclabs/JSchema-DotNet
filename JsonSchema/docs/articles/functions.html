@@ -1,0 +1,328 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Constraint Functions | Json Schema </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Constraint Functions | Json Schema ">
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/docs/articles/functions.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="Json Schema">
+            Json Schema
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+
+<style>
+pre code { font-size: 1.3em; }
+table th:first-of-type { min-width: 140px; }
+</style>
+<h1 id="constraint-functions">Constraint Functions</h1>
+<p>This document serves as a brief overview, providing key insights into the built-in constraint functions that are part of the core schema. These functions significantly extend the scope of data and structural validation, going beyond the limits of basic data type restrictions. These functions are designed to enhance the effectiveness of schema validation, ensuring the accuracy, consistency, integrity, and compliance of the JSON data to the schema.</p>
+<p>The notation below outlines the typical structure of constraint or validation functions applicable to JSON elements or values. In this notation, <code>Target</code> comprises two components: the target type, which specifies the JSON value type under consideration, and the target name, which identifies the specific JSON value to which the validation or constraint function applies. The <code>Constraint-Function</code> refers to the name of the function responsible for the validation.</p>
+<pre><code class="lang-yaml">Target - Constraint-Function[(Parameter-Set)]
+</code></pre>
+<p>The <code>Parameter-Set</code> contains the parameters that control the validation process provided by the constraint function on the target JSON value. Please note that the <code>Parameter-Set</code> including the opening and closing parentheses are optional. The ellipsis or three dots <code>...</code> after a parameter type indicates  it can accept any number of arguments of that type. When using multiple validation functions, each function validates the target JSON value, and the overall validation succeeds only when every function independently deems the target JSON value as valid.</p>
+<h2 id="function-details">Function Details</h2>
+<p>Below, you will find a detailed explanation of the syntax and useful applications of each function, allowing you to gain a clear understanding of their usage.</p>
+<h3 id="string-length">String Length</h3>
+<pre><code class="lang-stylus">#string target - @length(#integer number)
+</code></pre>
+<p>Validates that the <code>target</code> string has the length specified by the <code>number</code>. If the length of the <code>target</code> string does not match the value specified by <code>number</code>, a validation error will generate.</p>
+<pre><code class="lang-stylus">#string target - @length(#integer minimum, #integer maximum)
+</code></pre>
+<p>Validates that the length of the target string satisfies the range requirement specified by the parameters. It checks that the length of the target string is equal to or greater than the <code>minimum</code> length specified and simultaneously less than or equal to the <code>maximum</code> length specified. If not, a validation error will generate.</p>
+<p>If either the parameter values for <code>minimum</code> or <code>maximum</code> are unspecified or undefined, the <code>undefined</code> symbol <code>!</code> can be used in place of either of these parameters. The following examples illustrate the various use cases of the <code>@length</code> function of the two variations described above, for the target data type string:</p>
+<table>
+<thead>
+<tr>
+<th>Ues Cases</th>
+<th>Valid Values</th>
+<th>Invalid Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@length(4)</code></td>
+<td><code>&quot;ABCD&quot;</code></td>
+<td><code>&quot;AB&quot;</code>, <code>&quot;ABCDE&quot;</code></td>
+</tr>
+<tr>
+<td><code>@length(2, 4)</code></td>
+<td><code>&quot;AB&quot;</code>, <code>&quot;ABC&quot;</code>, <code>&quot;ABCD&quot;</code></td>
+<td><code>&quot;&quot;</code>, <code>&quot;A&quot;</code>, <code>&quot;ABCDE&quot;</code></td>
+</tr>
+<tr>
+<td><code>@length(2, !)</code></td>
+<td><code>&quot;AB&quot;</code>, <code>&quot;ABCDEFGH&quot;</code></td>
+<td><code>&quot;&quot;</code>, <code>&quot;A&quot;</code></td>
+</tr>
+<tr>
+<td><code>@length(!, 4)</code></td>
+<td><code>&quot;&quot;</code>, <code>&quot;A&quot;</code>, <code>&quot;ABC&quot;</code>, <code>&quot;ABCD&quot;</code></td>
+<td><code>&quot;ABCDE&quot;</code> <code>&quot;ABCDEFGHI&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="array-length">Array Length</h3>
+<pre><code class="lang-stylus">#array target - @length(#integer number)
+</code></pre>
+<p>Validates that the <code>target</code> array has the length specified by the <code>number</code>. If the length of the <code>target</code> array does not match the value specified by <code>number</code>, a validation error will generate.</p>
+<pre><code class="lang-stylus">#array target - @length(#integer minimum, #integer maximum)
+</code></pre>
+<p>Validates that the length of the target array satisfies the range requirement specified by the parameters. It checks that the length of the target array is equal to or greater than the <code>minimum</code> length specified and simultaneously less than or equal to the <code>maximum</code> length specified. If not, a validation error will generate.</p>
+<p>If either the parameter values for <code>minimum</code> or <code>maximum</code> are unspecified or undefined, the <code>undefined</code> symbol <code>!</code> can be used in place of either of these parameters. The following examples illustrate the various use cases of the <code>@length</code> function of the two variations described above, for the target data type array:</p>
+<table>
+<thead>
+<tr>
+<th>Ues Cases</th>
+<th>Valid Values</th>
+<th>Invalid Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@length(4)</code></td>
+<td><code>[1, 2, 3, 4]</code></td>
+<td><code>[1, 2, 3]</code>, <code>[1, 2, 3, 4, 5]</code></td>
+</tr>
+<tr>
+<td><code>@length(2, 4)</code></td>
+<td><code>[1, 2]</code>, <code>[1, 2, 3]</code>, <code>[1, 2, 3, 4]</code></td>
+<td><code>[]</code>, <code>[1]</code>, <code>[1, 2, 3, 4, 5]</code></td>
+</tr>
+<tr>
+<td><code>@length(2, !)</code></td>
+<td><code>[1, 2]</code>, <code>[1, 2, 3, 4, 5]</code></td>
+<td><code>[]</code>, <code>[1]</code></td>
+</tr>
+<tr>
+<td><code>@length(!, 4)</code></td>
+<td><code>[]</code>, <code>[1, 2]</code>, <code>[1, 2, 3, 4]</code></td>
+<td><code>[1, 2, 3, 4, 5]</code>, <code>[1, 2, 3, 4, 5, 6]</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="object-length--size">Object Length / Size</h3>
+<pre><code class="lang-stylus">#object target - @length(#integer number)
+</code></pre>
+<p>Validates that the <code>target</code> object has the length or size specified by the <code>number</code>. If the length of the <code>target</code> object does not match the value specified by <code>number</code>, a validation error will generate.</p>
+<pre><code class="lang-stylus">#object target - @length(#integer minimum, #integer maximum)
+</code></pre>
+<p>Validates that the length or size of the target object satisfies the range requirement specified by the parameters. It checks that the length of the target object is equal to or greater than the <code>minimum</code> length specified and simultaneously less than or equal to the <code>maximum</code> length specified. If not, a validation error will generate.</p>
+<p>If either the parameter values for <code>minimum</code> or <code>maximum</code> are unspecified or undefined, the <code>undefined</code> symbol <code>!</code> can be used in place of either of these parameters. The following examples illustrate the various use cases of the <code>@length</code> function of the two variations described above, for the target data type object:</p>
+<table>
+<thead>
+<tr>
+<th>Ues Cases</th>
+<th>Valid Values</th>
+<th>Invalid Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@length(4)</code></td>
+<td><code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3, &quot;k4&quot;:4}</code></td>
+<td><code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3}</code>, <code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3, &quot;k4&quot;:4, &quot;k5&quot;:5}</code></td>
+</tr>
+<tr>
+<td><code>@length(2, 4)</code></td>
+<td><code>{&quot;k1&quot;:1, &quot;k2&quot;:2}</code>, <code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3, &quot;k4&quot;:4}</code></td>
+<td><code>{}</code>, <code>{&quot;k1&quot;:1}</code>, <code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3, &quot;k4&quot;:4, &quot;k5&quot;:5}</code></td>
+</tr>
+<tr>
+<td><code>@length(2, !)</code></td>
+<td><code>{&quot;k1&quot;:1, &quot;k2&quot;:2}</code>, <code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3, &quot;k4&quot;:4, &quot;k5&quot;:5}</code></td>
+<td><code>{}</code>, <code>{&quot;k1&quot;:1}</code></td>
+</tr>
+<tr>
+<td><code>@length(!, 4)</code></td>
+<td><code>{}</code>, <code>{&quot;k1&quot;:1, &quot;k2&quot;:2}</code>, <code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3, &quot;k4&quot;:4}</code></td>
+<td><code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3, &quot;k4&quot;:4, &quot;k5&quot;:5}</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="number-range">Number Range</h3>
+<pre><code class="lang-stylus">#number target - @range(#number minimum, #number maximum)
+</code></pre>
+<p>Validates that the <code>target</code> number satisfies the range requirement specified by the parameters. It checks that the <code>target</code> number is equal to or greater than the <code>minimum</code> number specified and simultaneously less than or equal to the <code>maximum</code> number specified. If not, a validation error will generate.</p>
+<p>If either the parameter values for <code>minimum</code> or <code>maximum</code> are unspecified or undefined, the <code>undefined</code> symbol <code>!</code> can be used in place of either of these parameters. The following examples illustrate the various use cases of the <code>@range</code> function of the two variations described above, for the target data type number:</p>
+<table>
+<thead>
+<tr>
+<th>Ues Cases</th>
+<th>Valid Values</th>
+<th>Invalid Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@range(2, 4)</code></td>
+<td><code>2</code>, <code>3</code>, <code>4</code></td>
+<td><code>0</code>, <code>1</code>, <code>-100</code>, <code>100</code></td>
+</tr>
+<tr>
+<td><code>@range(2, !)</code></td>
+<td><code>2</code>, <code>3</code>, <code>4</code>, <code>100</code></td>
+<td><code>0</code>, <code>1</code>, <code>-100</code></td>
+</tr>
+<tr>
+<td><code>@range(!, 4)</code></td>
+<td><code>0</code>, <code>1</code>, <code>4</code>, <code>-100</code></td>
+<td><code>5</code>, <code>10</code>, <code>100</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="string-enum">String Enum</h3>
+<pre><code class="lang-stylus">#string target - @enum(#string... items)
+</code></pre>
+<p>Validates that the <code>target</code> string is equal to one of the strings specified by the <code>items</code> parameter. If not, a validation error will generate.</p>
+<h3 id="number-enum">Number Enum</h3>
+<pre><code class="lang-stylus">#number target - @enum(#number... items)
+</code></pre>
+<p>Validates that the <code>target</code> number is equal to one of the numbers specified by the <code>items</code> parameter. If not, a validation error will generate.</p>
+<h3 id="array-elements">Array Elements</h3>
+<pre><code class="lang-stylus">#array target - @elements(#any... items)
+</code></pre>
+<p>Validates that the <code>target</code> array contains every JSON value specified by the <code>items</code> parameter. If not, it generates a validation error.</p>
+<h3 id="object-keys">Object Keys</h3>
+<pre><code class="lang-stylus">#object target - @keys(#string... items)
+</code></pre>
+<p>Validates that all the strings specified in the <code>items</code> parameter are present as keys in the <code>target</code> object. If any of them is missing, a validation error is generated.</p>
+<h3 id="object-values">Object Values</h3>
+<pre><code class="lang-stylus">#object target - @values(#any... items)
+</code></pre>
+<p>Validates that all the JSON values specified in the <code>items</code> parameter are present as values in the <code>target</code> object. If any of them is missing, a validation error is generated.</p>
+<h3 id="string-regular-expression-regex">String Regular Expression (Regex)</h3>
+<pre><code class="lang-stylus">#string target - @regex(#string pattern)
+</code></pre>
+<p>Validates that the <code>target</code> string matches the regular expression pattern specified by the <code>pattern</code> parameter. The regular expression engine used here supports standard syntax from both POSIX (IEEE Portable Operating System Interface) Extended Regular Expressions and Perl-Compatible Regular Expressions (PCRE). For more details, please refer to <a href="https://www.regular-expressions.info/posix.html">POSIX Regular Expressions</a>.</p>
+<h3 id="email-address">Email Address</h3>
+<pre><code class="lang-stylus">#string target - @email
+</code></pre>
+<p>Validates whether the <code>target</code> string represents a valid email address. It follows the SMTP protocol RFC 5322 specification for mailbox address format to identify a valid email address. In addition to conforming to this standard, it recognizes all widely used email address formats to ensure compatibility with various systems and user requirements.</p>
+<h3 id="url--uri-address">URL &amp; URI Address</h3>
+<pre><code class="lang-stylus">#string target - @url(#string scheme)
+</code></pre>
+<p>Validates whether the <code>target</code> string is a valid URL (Uniform Resource Locator) or URI (Uniform Resource Identifier) with a specific scheme provided by the <code>scheme</code> parameter. It follows the RFC 3986 URI Generic Syntax to determine the validity of the URL or URI. In addition to conforming to this standard, it recognizes all widely used URL and URI address formats, ensuring compatibility with a wide range of systems and user requirements.</p>
+<pre><code class="lang-stylus">#string target - @url
+</code></pre>
+<p>Validates whether the <code>target</code> string is a valid URL or URI with <code>HTTP</code> and <code>HTTPS</code> scheme. For more information please check the function <code>#string target - @url(#string scheme)</code>.</p>
+<h3 id="phone-number">Phone Number</h3>
+<pre><code class="lang-stylus">#string target - @phone
+</code></pre>
+<p>Validates whether the <code>target</code> string is a valid phone number. It follows the ITU-T E.163 and E.164 telephone number notation to determine the validity of the phone number. In addition to conforming to this standard, it recognizes all widely used national and international phone number formats, ensuring compatibility with a wide range of systems and user requirements.</p>
+<h3 id="date-and-time">Date and Time</h3>
+<pre><code class="lang-stylus">#string target - @date(pattern)
+</code></pre>
+<p>Validates that the <code>target</code> string matches the date and time pattern specified by the <code>pattern</code> parameter. It fully supports the ISO 8601 date and time format. Beyond this standard, it also allows custom date and time formats, ensuring compatibility with various systems and meeting diverse users and businesses requirements.</p>
+<h3 id="number-positive">Number Positive</h3>
+<pre><code class="lang-stylus">#number target - @positive
+</code></pre>
+<p>Validates that the <code>target</code> number is positive. If the <code>target</code> number is zero or negative, it generates a validation error.</p>
+<h3 id="number-negative">Number Negative</h3>
+<pre><code class="lang-stylus">#number target - @negative
+</code></pre>
+<p>Validates that the <code>target</code> number is negative. If the <code>target</code> number is zero or positive, it generates a validation error.</p>
+<h3 id="string-not-empty">String Not Empty</h3>
+<pre><code class="lang-stylus">#string target - @nonempty
+</code></pre>
+<p>Validates that the <code>target</code> string is not empty. If the <code>target</code> string is empty, it generates a validation error.</p>
+<h3 id="array-not-empty">Array Not Empty</h3>
+<pre><code class="lang-stylus">#array target - @nonempty
+</code></pre>
+<p>Validates that the <code>target</code> array is not empty. If the <code>target</code> array is empty, it generates a validation error.</p>
+<h3 id="object-not-empty">Object Not Empty</h3>
+<pre><code class="lang-stylus">#object target - @nonempty
+</code></pre>
+<p>Validates that the <code>target</code> object is not empty. If the <code>target</code> object is empty, it generates a validation error.</p>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/docs/articles/functions.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <div style="display:flex;justify-content:space-between"><span style="text-align:left"><a href="https://www.relogiclabs.com"><img src="/JsonSchema-DotNet/images/relogiclabs.svg" alt="Relogic Labs"></a></span><span style="text-align:right">&copy; 2023 Relogic Labs</span></div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

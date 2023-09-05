@@ -8,7 +8,7 @@ namespace RelogicLabs.JsonSchema.Utilities;
 // But create additional dependency
 public static class DebugUtils
 {
-    public static bool DebugPrint = true;
+    public static bool DebugPrint = false;
     
     internal static void Print(SchemaTree schemaTree, JsonTree jsonTree)
     {
