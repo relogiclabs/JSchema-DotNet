@@ -80,5 +80,5 @@ primitive
     | FLOAT         # PrimitiveFloat
     | DOUBLE        # PrimitiveDouble
     | NULL          # PrimitiveNull
-    | UNKNOWN       # PrimitiveUnknown
+    | UNDEFINED     # PrimitiveUndefined
     ;

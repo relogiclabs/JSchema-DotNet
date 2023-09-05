@@ -24,7 +24,7 @@ RBRACKET: ']';
 LPAREN: '(';
 RPAREN: ')';
 OPTIONAL: '?';
-UNKNOWN: '!';
+UNDEFINED: '!';
 
 // Identifiers
 IDENTIFIER: BASE_IDENTIFIER ('.' BASE_IDENTIFIER)*;
