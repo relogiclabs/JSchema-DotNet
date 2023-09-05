@@ -6,7 +6,7 @@ using static System.Environment;
 namespace RelogicLabs.JsonSchema.Message;
 
 // Exception Message Formatter
-internal abstract class MessageFormatter
+public abstract class MessageFormatter
 {
     private const string SchemaBaseException = "Schema Input [{0}]: {1}";
     private const string JsonBaseException = "Json Input [{0}]: {1}";
@@ -39,7 +39,7 @@ internal abstract class MessageFormatter
     public required string Header { get; init; }
     public required string Expected { get; init; }
     public required string Actual { get; init; }
-    public int OutlineLength { get; init; } = 200;
+    public int OutlineLength { get; set; } = 200;
 
 
     private class SchemaValidationFormatter : MessageFormatter

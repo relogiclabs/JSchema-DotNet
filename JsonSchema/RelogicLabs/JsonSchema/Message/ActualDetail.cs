@@ -21,7 +21,7 @@ public class ActualDetail : CommonDetail<ActualDetail>
     internal static ActualDetail AsPropertyNotFound(JNode node, JProperty property) 
         => new(node.Context, $"not found property key \"{property.Key}\"");
     
-    internal static ActualDetail AsUnknownProperty(JProperty property)
+    internal static ActualDetail AsUndefinedProperty(JProperty property)
         => new(property.Context, $"property found {{{property.ToOutline()}}}");
     
     internal static ActualDetail AsArrayElementNotFound(JArray array, int index)
