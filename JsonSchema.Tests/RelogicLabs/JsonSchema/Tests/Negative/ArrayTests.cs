@@ -165,4 +165,28 @@ public class ArrayTests
         Assert.AreEqual(JPRS01, exception.ErrorCode);
         Console.WriteLine(exception);
     }
+    
+    [TestMethod]
+    public void When_EmptyArrayInObject_ExceptionThrown()
+    {
+        var schema =
+            """
+            {
+                "key1": @nonempty #array,
+                "key2": @nonempty
+            }
+            """;
+        var json =
+            """
+            {
+                "key1": [],
+                "key2": []
+            }
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(NEMT02, exception.ErrorCode);
+        Console.WriteLine(exception);
+    }
 }

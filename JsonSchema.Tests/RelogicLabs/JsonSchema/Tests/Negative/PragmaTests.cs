@@ -7,11 +7,11 @@ namespace RelogicLabs.JsonSchema.Tests.Negative;
 public class PragmaTests
 {
     [TestMethod]
-    public void When_UnknownPropertyOfObject_ExceptionThrown()
+    public void When_UndefinedPropertyOfObject_ExceptionThrown()
     {
         var schema =
             """
-            %pragma IgnoreUnknownProperties: false
+            %pragma IgnoreUndefinedProperties: false
             %schema:
             {
                 "key1": #integer
@@ -33,11 +33,11 @@ public class PragmaTests
     }
     
     [TestMethod]
-    public void When_InvalidUnknownPropertyValueMissing_ExceptionThrown()
+    public void When_InvalidUndefinedPropertyValueMissing_ExceptionThrown()
     {
         var schema =
             """
-            %pragma IgnoreUnknownProperties:
+            %pragma IgnoreUndefinedProperties:
             %schema:
             {
                 "key1": #integer
@@ -59,11 +59,11 @@ public class PragmaTests
     }
     
     [TestMethod]
-    public void When_IgnoreUnknownPropertiesInCorrect_ExceptionThrown()
+    public void When_IgnoreUndefinedPropertiesMalformed_ExceptionThrown()
     {
         var schema =
             """
-            %pragma IgnoreUnknownProperty: true
+            %pragma IgnoreUndefinedProperty: true
             %schema:
             {
                 "key1": #integer
@@ -85,11 +85,11 @@ public class PragmaTests
     }
     
     [TestMethod]
-    public void When_InvalidUnknownPropertyValue_ExceptionThrown()
+    public void When_InvalidUndefinedPropertyValue_ExceptionThrown()
     {
         var schema =
             """
-            %pragma IgnoreUnknownProperties: 1
+            %pragma IgnoreUndefinedProperties: 1
             %schema:
             {
                 "key1": #integer
@@ -171,8 +171,8 @@ public class PragmaTests
     {
         var schema =
             """
-            %pragma IgnoreUnknownProperties: false
-            %pragma IgnoreUnknownProperties: false
+            %pragma IgnoreUndefinedProperties: false
+            %pragma IgnoreUndefinedProperties: false
             
             %schema:
             {

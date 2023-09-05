@@ -7,7 +7,7 @@
         <IsPackable>false</IsPackable>
         <AssemblyName>RelogicLabs.JsonSchema.Tests</AssemblyName>
         <Company>Relogic Labs</Company>
-        <RootNamespace/>
+        <RootNamespace />
     </PropertyGroup>
 
     <ItemGroup>

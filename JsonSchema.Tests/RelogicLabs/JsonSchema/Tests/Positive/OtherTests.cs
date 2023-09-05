@@ -28,7 +28,7 @@ public class OtherTests
     }
     
     [TestMethod]
-    public void When_DataTypeUnknown_ValidTrue()
+    public void When_DataTypeUndefined_ValidTrue()
     {
         var schema = "!";
         var json = "1000";

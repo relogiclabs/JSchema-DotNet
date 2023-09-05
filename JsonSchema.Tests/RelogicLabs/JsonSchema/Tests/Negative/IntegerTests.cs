@@ -186,7 +186,7 @@ public class IntegerTests
     }
     
     [TestMethod]
-    public void When_NestedRangeWithUnknownAndWrongIntegerInArray_ExceptionThrown()
+    public void When_NestedRangeWithUndefinedAndWrongIntegerInArray_ExceptionThrown()
     {
         var schema =
             """

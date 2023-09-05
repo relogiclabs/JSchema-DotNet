@@ -12,7 +12,7 @@ public class AggregatedTests
         %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
                   RelogicLabs.JsonSchema.Tests
         
-        %pragma IgnoreUnknownProperties: true
+        %pragma IgnoreUndefinedProperties: true
         
         %define $component1: {
             "key11": @regex("[a-z]+") #string,
@@ -162,7 +162,7 @@ public class AggregatedTests
         %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
                   RelogicLabs.JsonSchema.Tests
         
-        %pragma IgnoreUnknownProperties: true
+        %pragma IgnoreUndefinedProperties: true
         
         %define $post: {
             "id": @range(1, 1000) #integer,

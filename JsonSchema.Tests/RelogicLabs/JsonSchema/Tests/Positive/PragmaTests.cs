@@ -4,11 +4,11 @@ namespace RelogicLabs.JsonSchema.Tests.Positive;
 public class PragmaTests
 {
     [TestMethod]
-    public void When_UnknownPropertyInObject_ValidTrue()
+    public void When_UndefinedPropertyInObject_ValidTrue()
     {
         var schema =
             """
-            %pragma IgnoreUnknownProperties: true
+            %pragma IgnoreUndefinedProperties: true
             %schema:
             {
                 "key1": #integer
