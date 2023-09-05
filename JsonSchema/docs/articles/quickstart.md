@@ -90,7 +90,7 @@ public class SampleSchema
     }
 }
 ```
-For more information about the schema syntax format and library functionalities, please refer to the reference documentation <a href="/JsonSchema-DotNet/api/index.html">here</a>.
+For more information about the schema syntax format and library functionalities, please refer to the reference documentation [here](/JsonSchema-DotNet/api/index.html).
 
 ## Create Some Validation Errors
 Let's intentionally introduce a few errors by modifying the previous JSON document and then examine the validation results. To begin, we'll alter the `id` within the `user` object to a string type and observe the outcome. Additionally, we'll modify the `username` by inserting a space into its value, thus creating an invalid `username`. Below is the revised JSON representation, now containing these purposeful errors.

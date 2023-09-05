@@ -98,7 +98,7 @@ public class IntegerTests
     }
     
     [TestMethod]
-    public void When_NestedRangeWithUnknownIntegerInObject_ValidTrue()
+    public void When_NestedRangeWithUndefinedIntegerInObject_ValidTrue()
     {
         var schema =
             """
@@ -116,7 +116,7 @@ public class IntegerTests
     }
     
     [TestMethod]
-    public void When_NestedRangeWithUnknownIntegerInArray_ValidTrue()
+    public void When_NestedRangeWithUndefinedIntegerInArray_ValidTrue()
     {
         var schema =
             """

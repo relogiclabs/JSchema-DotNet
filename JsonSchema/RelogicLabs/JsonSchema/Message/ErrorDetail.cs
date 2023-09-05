@@ -8,7 +8,7 @@ public class ErrorDetail
     internal const string InvalidNestedFunction = "Invalid nested function operation";
     internal const string PropertyNotFound = "Mandatory property not found";
     internal const string ArrayElementNotFound = "Mandatory array element not found";
-    internal const string UnknownPropertyFound = "Unknown property found";
+    internal const string UndefinedPropertyFound = "Undefined property found";
     internal const string PropertyKeyMismatch = "Property key mismatch";
     internal const string PropertyValueMismatch = "Property value mismatch";
     internal const string DataTypeMismatch = "Data type mismatch";

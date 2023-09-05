@@ -1,2 +1,2 @@
 # API Documentation
-The API documentation is auto-generated from both source code and source code comments. For broader understandings, exploring the source code itself often reveals even more valuable insights and details. To access and explore the source code, please visit the GitHub repository <a href="https://github.com/relogiclabs/JsonSchema-DotNet">here</a>.
+The API documentation is auto-generated from both source code and source code comments. For broader understandings, exploring the source code itself often reveals even more valuable insights and details. To access and explore the source code, please visit the GitHub repository [here](https://github.com/relogiclabs/JsonSchema-DotNet).

@@ -21,7 +21,7 @@ public class ExpectedDetail : CommonDetail<ExpectedDetail>
     internal static ExpectedDetail AsPropertyNotFound(JProperty property) 
         => new(property, $"property schema ({property.ToOutline()})");
 
-    internal static ExpectedDetail AsUnknownProperty(JObject @object, JProperty property)
+    internal static ExpectedDetail AsUndefinedProperty(JObject @object, JProperty property)
         => new(@object, $"no property with key {property.Key.DoubleQuote()}");
 
     internal static ExpectedDetail AsDataTypeMismatch(JDataType dataType) 

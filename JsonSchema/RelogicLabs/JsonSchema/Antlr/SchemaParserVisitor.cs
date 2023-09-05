@@ -184,11 +184,11 @@ internal interface ISchemaParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitPrimitiveNull([NotNull] SchemaParser.PrimitiveNullContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>PrimitiveUnknown</c>
+	/// Visit a parse tree produced by the <c>PrimitiveUndefined</c>
 	/// labeled alternative in <see cref="SchemaParser.primitive"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitPrimitiveUnknown([NotNull] SchemaParser.PrimitiveUnknownContext context);
+	Result VisitPrimitiveUndefined([NotNull] SchemaParser.PrimitiveUndefinedContext context);
 }
 } // namespace RelogicLabs.JsonSchema.Antlr

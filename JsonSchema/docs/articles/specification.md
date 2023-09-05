@@ -150,12 +150,12 @@ elements
 primitive
     string
     number
-    unknown
+    undefined
     'true'
     'false'
     'null'
 
-unknown
+undefined
     '!'
 
 identifier
@@ -252,4 +252,4 @@ one-to-nine
     '1' . '9'
 
 ```
-To explore more about McKeeman form grammar notation and standard JSON document grammar in McKeeman form notation, please visit <a href="https://www.json.org">this page</a>. The resource offers valuable information regarding JSON specification and implementations in different programming languages.
+To explore more about McKeeman form grammar notation and standard JSON document grammar in McKeeman form notation, please visit [this page](https://www.json.org). The resource offers valuable information regarding JSON specification and implementations in different programming languages.

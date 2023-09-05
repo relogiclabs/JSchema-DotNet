@@ -1,15 +1,16 @@
 using Antlr4.Runtime;
+using RelogicLabs.JsonSchema.Date;
 using RelogicLabs.JsonSchema.Tree;
 
 namespace RelogicLabs.JsonSchema.Utilities;
 
 // External logging library may consider
 // But create additional dependency
-internal static class DebugUtils
+public static class DebugUtils
 {
     public static bool DebugPrint = false;
     
-    public static void Print(SchemaTree schemaTree, JsonTree jsonTree)
+    internal static void Print(SchemaTree schemaTree, JsonTree jsonTree)
     {
         if(!DebugPrint) return;
         Console.WriteLine("Schema Interpretation:");
@@ -20,10 +21,16 @@ internal static class DebugUtils
         Console.WriteLine("---");
     }
 
-    public static void Print(IRecognizer recognizer)
+    internal static void Print(IRecognizer recognizer)
     {
         if(!DebugPrint) return;
         IList<string> stack = ((Parser) recognizer).GetRuleInvocationStack();
         Console.Error.WriteLine($"Rule Stack: {stack.Reverse().ToString(" > ")}");
+    }
+
+    internal static void Print(DateContext dateContext)
+    {
+        if(!DebugPrint) return;
+        Console.WriteLine($"Date Parsed: {dateContext}");
     }
 }

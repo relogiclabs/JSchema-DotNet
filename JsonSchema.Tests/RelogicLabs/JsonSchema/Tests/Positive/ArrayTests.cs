@@ -147,7 +147,7 @@ public class ArrayTests
     }
     
     [TestMethod]
-    public void When_NestedLengthWithUnknownArrayInObject_ValidTrue()
+    public void When_NestedLengthWithUndefinedArrayInObject_ValidTrue()
     {
         var schema =
             """
@@ -165,7 +165,7 @@ public class ArrayTests
     }
     
     [TestMethod]
-    public void When_NestedLengthWithUnknownArrayInArray_ValidTrue()
+    public void When_NestedLengthWithUndefinedArrayInArray_ValidTrue()
     {
         var schema =
             """
@@ -174,6 +174,26 @@ public class ArrayTests
         var json =
             """
             [[1, 2, 3], [10, 20, 30, 40], [100, 200, 300, 400, 500]]
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
+    
+    [TestMethod]
+    public void When_NonEmptyArrayInObject_ValidTrue()
+    {
+        var schema =
+            """
+            {
+                "key1": @nonempty #array,
+                "key2": @nonempty #array
+            }
+            """;
+        var json =
+            """
+            {
+                "key1": [10, 20, 30],
+                "key2": ["val1", "val2"]
+            }
             """;
         JsonAssert.IsValid(schema, json);
     }

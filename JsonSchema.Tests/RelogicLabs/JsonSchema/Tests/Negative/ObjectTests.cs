@@ -275,4 +275,116 @@ public class ObjectTests
         Assert.AreEqual(PROP04, exception.ErrorCode);
         Console.WriteLine(exception);
     }
+    
+    [TestMethod]
+    public void When_EmptyObjectInArray_ExceptionThrown()
+    {
+        var schema =
+            """
+            [
+                @nonempty #object,
+                @nonempty #object
+            ]
+            """;
+        var json =
+            """
+            [
+                { },
+                { "key1": ["val1", "val2"] }
+            ]
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(NEMT03, exception.ErrorCode);
+        Console.WriteLine(exception);
+    }
+    
+    [TestMethod]
+    public void When_WrongLengthOfObjectInArray1_ExceptionThrown()
+    {
+        var schema =
+            """
+            [
+                @length(1) #object
+            ]
+            """;
+        var json =
+            """
+            [
+                { "key1": 10, "key2": 20 }
+            ]
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(OLEN01, exception.ErrorCode);
+        Console.WriteLine(exception);
+    }
+    
+    [TestMethod]
+    public void When_WrongLengthOfObjectInArray2_ExceptionThrown()
+    {
+        var schema =
+            """
+            [
+                @length(1, 4) #object
+            ]
+            """;
+        var json =
+            """
+            [
+                { }
+            ]
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(OLEN02, exception.ErrorCode);
+        Console.WriteLine(exception);
+    }
+    
+    [TestMethod]
+    public void When_WrongLengthOfObjectInArray3_ExceptionThrown()
+    {
+        var schema =
+            """
+            [
+                @length(!, 4) #object
+            ]
+            """;
+        var json =
+            """
+            [
+                { "key1": 10, "key2": 20, "key3": 30, "key4": 40, "key5": 50 }
+            ]
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(OLEN05, exception.ErrorCode);
+        Console.WriteLine(exception);
+    }
+    
+    [TestMethod]
+    public void When_WrongLengthOfObjectInArray4_ExceptionThrown()
+    {
+        var schema =
+            """
+            [
+                @length(2, !) #object
+            ]
+            """;
+        var json =
+            """
+            [
+                { "key1": 10 }
+            ]
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(OLEN04, exception.ErrorCode);
+        Console.WriteLine(exception);
+    }
 }

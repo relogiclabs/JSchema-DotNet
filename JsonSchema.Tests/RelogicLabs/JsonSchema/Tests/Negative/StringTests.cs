@@ -151,7 +151,7 @@ public class StringTests
     }
 
     [TestMethod]
-    public void When_NestedWrongLengthWithUnknownStringInObject_ExceptionThrown()
+    public void When_NestedWrongLengthWithUndefinedStringInObject_ExceptionThrown()
     {
         var schema =
             """
@@ -173,7 +173,7 @@ public class StringTests
     }
 
     [TestMethod]
-    public void When_NestedWrongLengthWithUnknownStringInArray_ExceptionThrown()
+    public void When_NestedWrongLengthWithUndefinedStringInArray_ExceptionThrown()
     {
         var schema =
             """
@@ -332,6 +332,30 @@ public class StringTests
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(PHON01, exception.ErrorCode);
+        Console.WriteLine(exception);
+    }
+    
+    [TestMethod]
+    public void When_EmptyStringInObject_ExceptionThrown()
+    {
+        var schema =
+            """
+            {
+                "key1": @nonempty #string,
+                "key2": @nonempty #string #null
+            }
+            """;
+        var json =
+            """
+            {
+                "key1": "",
+                "key2": null
+            }
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(NEMT01, exception.ErrorCode);
         Console.WriteLine(exception);
     }
 }

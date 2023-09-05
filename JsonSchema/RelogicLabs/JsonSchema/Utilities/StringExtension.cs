@@ -1,4 +1,5 @@
 using System.Text;
+using RelogicLabs.JsonSchema.Types;
 
 namespace RelogicLabs.JsonSchema.Utilities;
 
@@ -12,6 +13,9 @@ internal static class StringExtension
 
     public static string DoubleQuote(this string source)
         => $"\"{source}\"";
+    
+    public static string DoubleQuote(this JString source)
+        => $"\"{source.Value}\"";
     
     public static string ToUpperFirstLetter(this string source) 
         => source[..1].ToUpper() + source[1..];

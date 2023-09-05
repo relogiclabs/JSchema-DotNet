@@ -174,4 +174,51 @@ public class ObjectTests
             """;
         JsonAssert.IsValid(schema, json);
     }
+    
+    [TestMethod]
+    public void When_NonEmptyObjectInArray_ValidTrue()
+    {
+        var schema =
+            """
+            [
+                @nonempty #object,
+                @nonempty #object
+            ]
+            """;
+        var json =
+            """
+            [
+                { "key1": 10 },
+                { "key2": ["val1", "val2"] }
+            ]
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
+    
+    [TestMethod]
+    public void When_LengthOfObjectInArray_ValidTrue()
+    {
+        var schema =
+            """
+            [
+                @length(1) #object,
+                @length(1, 5) #object,
+                @length(1, 5) #object,
+                @length(!, 5) #object,
+                @length(2, !) #object
+            ]
+            """;
+        var json =
+            """
+            [
+                { "key1": 10 },
+                { "key1": 10 },
+                { "key1": 10, "key2": 20, "key3": 30, "key4": 40, "key5": 50 },
+                { },
+                { "key1": 10, "key2": 20, "key3": 30 },
+                { "key1": 10, "key2": 20, "key3": 30 }
+            ]
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
 }

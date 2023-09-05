@@ -107,7 +107,7 @@ public class StringTests
     }
     
     [TestMethod]
-    public void When_NestedLengthWithUnknownStringInObject_ValidTrue()
+    public void When_NestedLengthWithUndefinedStringInObject_ValidTrue()
     {
         var schema =
             """
@@ -125,7 +125,7 @@ public class StringTests
     }
     
     [TestMethod]
-    public void When_NestedLengthWithUnknownStringInArray_ValidTrue()
+    public void When_NestedLengthWithUndefinedStringInArray_ValidTrue()
     {
         var schema =
             """
@@ -233,6 +233,26 @@ public class StringTests
                 "key1": "01737048177",
                 "key2": "+8801737048177",
                 "key3": "008801737048177"
+            }
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
+    
+    [TestMethod]
+    public void When_NonEmptyStringInObject_ValidTrue()
+    {
+        var schema =
+            """
+            {
+                "key1": @nonempty #string,
+                "key2": @nonempty #string
+            }
+            """;
+        var json =
+            """
+            {
+                "key1": "A",
+                "key2": "This is a test string"
             }
             """;
         JsonAssert.IsValid(schema, json);

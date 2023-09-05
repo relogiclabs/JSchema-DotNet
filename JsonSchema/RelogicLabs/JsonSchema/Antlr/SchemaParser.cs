@@ -37,7 +37,7 @@ internal partial class SchemaParser : Parser {
 	public const int
 		TITLE=1, VERSION=2, INCLUDE=3, PRAGMA=4, DEFINE=5, SCHEMA=6, TRUE=7, FALSE=8, 
 		NULL=9, COLON=10, COMMA=11, STAR=12, LBRACE=13, RBRACE=14, LBRACKET=15, 
-		RBRACKET=16, LPAREN=17, RPAREN=18, OPTIONAL=19, UNKNOWN=20, IDENTIFIER=21, 
+		RBRACKET=16, LPAREN=17, RPAREN=18, OPTIONAL=19, UNDEFINED=20, IDENTIFIER=21, 
 		ALIAS=22, DATATYPE=23, FUNCTION=24, STRING=25, INTEGER=26, FLOAT=27, DOUBLE=28, 
 		MULTILINE_COMMENT=29, LINE_COMMENT=30, WHITE_SPACE=31, COLON1=32, VERSION_NUMBER1=33, 
 		WHITE_SPACE1=34, MULTILINE_COMMENT1=35, LINE_COMMENT1=36;
@@ -61,10 +61,10 @@ internal partial class SchemaParser : Parser {
 	private static readonly string[] _SymbolicNames = {
 		null, "TITLE", "VERSION", "INCLUDE", "PRAGMA", "DEFINE", "SCHEMA", "TRUE", 
 		"FALSE", "NULL", "COLON", "COMMA", "STAR", "LBRACE", "RBRACE", "LBRACKET", 
-		"RBRACKET", "LPAREN", "RPAREN", "OPTIONAL", "UNKNOWN", "IDENTIFIER", "ALIAS", 
-		"DATATYPE", "FUNCTION", "STRING", "INTEGER", "FLOAT", "DOUBLE", "MULTILINE_COMMENT", 
-		"LINE_COMMENT", "WHITE_SPACE", "COLON1", "VERSION_NUMBER1", "WHITE_SPACE1", 
-		"MULTILINE_COMMENT1", "LINE_COMMENT1"
+		"RBRACKET", "LPAREN", "RPAREN", "OPTIONAL", "UNDEFINED", "IDENTIFIER", 
+		"ALIAS", "DATATYPE", "FUNCTION", "STRING", "INTEGER", "FLOAT", "DOUBLE", 
+		"MULTILINE_COMMENT", "LINE_COMMENT", "WHITE_SPACE", "COLON1", "VERSION_NUMBER1", 
+		"WHITE_SPACE1", "MULTILINE_COMMENT1", "LINE_COMMENT1"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -266,7 +266,7 @@ internal partial class SchemaParser : Parser {
 			case NULL:
 			case LBRACE:
 			case LBRACKET:
-			case UNKNOWN:
+			case UNDEFINED:
 			case ALIAS:
 			case DATATYPE:
 			case FUNCTION:
@@ -668,7 +668,7 @@ internal partial class SchemaParser : Parser {
 			case NULL:
 			case LBRACE:
 			case LBRACKET:
-			case UNKNOWN:
+			case UNDEFINED:
 			case STRING:
 			case INTEGER:
 			case FLOAT:
@@ -837,7 +837,7 @@ internal partial class SchemaParser : Parser {
 			case NULL:
 			case LBRACE:
 			case LBRACKET:
-			case UNKNOWN:
+			case UNDEFINED:
 			case DATATYPE:
 			case FUNCTION:
 			case STRING:
@@ -906,7 +906,7 @@ internal partial class SchemaParser : Parser {
 			case TRUE:
 			case FALSE:
 			case NULL:
-			case UNKNOWN:
+			case UNDEFINED:
 			case STRING:
 			case INTEGER:
 			case FLOAT:
@@ -1354,13 +1354,13 @@ internal partial class SchemaParser : Parser {
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class PrimitiveUnknownContext : PrimitiveContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode UNKNOWN() { return GetToken(SchemaParser.UNKNOWN, 0); }
-		public PrimitiveUnknownContext(PrimitiveContext context) { CopyFrom(context); }
+	public partial class PrimitiveUndefinedContext : PrimitiveContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode UNDEFINED() { return GetToken(SchemaParser.UNDEFINED, 0); }
+		public PrimitiveUndefinedContext(PrimitiveContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPrimitiveUnknown(this);
+			if (typedVisitor != null) return typedVisitor.VisitPrimitiveUndefined(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -1469,12 +1469,12 @@ internal partial class SchemaParser : Parser {
 				Match(NULL);
 				}
 				break;
-			case UNKNOWN:
-				_localctx = new PrimitiveUnknownContext(_localctx);
+			case UNDEFINED:
+				_localctx = new PrimitiveUndefinedContext(_localctx);
 				EnterOuterAlt(_localctx, 8);
 				{
 				State = 217;
-				Match(UNKNOWN);
+				Match(UNDEFINED);
 				}
 				break;
 			default:

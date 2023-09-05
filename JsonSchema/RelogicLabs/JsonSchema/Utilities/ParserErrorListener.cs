@@ -7,8 +7,8 @@ namespace RelogicLabs.JsonSchema.Utilities;
 internal abstract class ParserErrorListener : IAntlrErrorListener<IToken>
 {
     
-    public static readonly ParserErrorListener SchemaListener = new SchemaParserErrorListener();
-    public static readonly ParserErrorListener JsonListener = new JsonParserErrorListener();
+    public static readonly ParserErrorListener Schema = new SchemaParserErrorListener();
+    public static readonly ParserErrorListener Json = new JsonParserErrorListener();
 
     protected abstract CommonException CreateException(string message, Exception? innerException);
     protected abstract string GetMessageFormat();

@@ -13,10 +13,10 @@ public class JsonTree
     {
         JsonLexer jsonLexer = new(CharStreams.fromString(input));
         jsonLexer.RemoveErrorListeners();
-        jsonLexer.AddErrorListener(LexerErrorListener.JsonListener);
+        jsonLexer.AddErrorListener(LexerErrorListener.Json);
         JsonParser jsonParser = new(new CommonTokenStream(jsonLexer));
         jsonParser.RemoveErrorListeners();
-        jsonParser.AddErrorListener(ParserErrorListener.JsonListener);
+        jsonParser.AddErrorListener(ParserErrorListener.Json);
         Root = (JRoot) new JsonTreeVisitor(context).Visit(jsonParser.json());
     }
 }
