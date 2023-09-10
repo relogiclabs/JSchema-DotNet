@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Getting Started | Json Schema </title>
+      <title>Build from Source Code | Json Schema </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Getting Started | Json Schema ">
+      <meta name="title" content="Build from Source Code | Json Schema ">
       
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
@@ -15,7 +15,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/docs/articles/quickstart.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/docs/articles/sourcebuild.md/#L1">
   </head>
 
   <script type="module">
@@ -76,17 +76,24 @@
         </div>
 
         <article data-uid="">
-<h1 id="getting-started">Getting Started</h1>
+<h1 id="build-from-source-code">Build from Source Code</h1>
 
-<p>This guide will walk you through the essential steps to quickly get up and running with New JSON Schema library. It is also assumes a modest familiarity with the .NET SDK and .NET CLI (command-line interface) toolchain including basic familiarity with NuGet packages. Additionally, it considers a certain level of knowledge in C# language.</p>
-<h2 id="nuget-library-package">NuGet Library Package</h2>
-<p>To get started, launch your preferred IDE (such as Visual Studio, JetBrains Rider, or VS Code) and open the C# project where you intend to include this library package. Within your IDE, navigate to the NuGet package manager and search for the package by the name 'RelogicLabs.JsonSchema'. Subsequently, proceed to add or install the package to your project. Alternatively, you have the option to utilize the .NET CLI by executing the following command to include the package within your project:</p>
-<pre><code class="lang-shell">dotnet add package RelogicLabs.JsonSchema --version 1.1.0
+<p>This comprehensive guide illustrates the procedures for retrieving source code from a GitHub repository, compiling the project source code into a library, and seamlessly integrating the compiled library into your project. Within this document, we will navigate through these steps, presenting them clearly and straightforwardly.</p>
+<h2 id="build-the-library">Build the Library</h2>
+<p>To get started, clone the project from the following URL using your preferred Git client (command line or GUI). You can open a terminal and enter the following Git clone command as shown below:</p>
+<pre><code class="lang-shell">git clone https://github.com/relogiclabs/JsonSchema-DotNet.git
 </code></pre>
-<p>To verify the successful integration of the library into your project, you may manually inspect your project file, typically named <code>.csproj</code>, using a text editor, and search for the following XML snippet within the file:</p>
+<p>Next, use .NET build command <code>dotnet build</code> to build the project and Retrieve the DLL file, <code>RelogicLabs.JsonSchema.dll</code> from the <code>bin</code> folder.</p>
+<h2 id="add-the-library-to-your-project">Add the Library to Your Project</h2>
+<p>To integrate the library with your project, you can create a <code>libs</code> folder within your project directory and place the retrieved DLL file into the designated folder. Alternatively, if your IDE supports adding references, you can conveniently select the DLL from the <code>libs</code> folder. Alternatively, you can manually modify your project file <code>.csproj</code> using a text editor and include the following XML snippet:</p>
 <pre><code class="lang-xml">&lt;ItemGroup&gt;
-    &lt;PackageReference Include=&quot;RelogicLabs.JsonSchema&quot; Version=&quot;1.1.0&quot; /&gt;
+    &lt;Reference Include=&quot;RelogicLabs.JsonSchema&quot;&gt;
+    &lt;HintPath&gt;libs\RelogicLabs.JsonSchema.dll&lt;/HintPath&gt;
+    &lt;/Reference&gt;
 &lt;/ItemGroup&gt;
+</code></pre>
+<p>Additionally, this project has a dependency on ANTLR runtime, which you can integrate by executing the following command:</p>
+<pre><code class="lang-shell">dotnet add package Antlr4.Runtime.Standard --version 4.13.0
 </code></pre>
 <h2 id="write-a-sample-to-test">Write a Sample to Test</h2>
 <p>With the necessary components in place, you are now prepared to create a sample schema and validate a corresponding JSON against the schema. The subsequent example presents a C# class featuring a method designed for validating a sample JSON based on a provided schema.</p>
@@ -196,7 +203,7 @@ Schema (Line: 4:0) Json (Line: 1:0) [VALD01]: Validation Failed. Value {&quot;us
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/docs/articles/quickstart.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/docs/articles/sourcebuild.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

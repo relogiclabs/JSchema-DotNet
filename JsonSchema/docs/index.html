@@ -81,7 +81,7 @@
 <p>A JSON Schema is crucial for making communication, interoperability, validation, testing, documentation, and specification seamless. All of this combined contributes to better maintenance and evolution of data-driven applications and systems. For a comprehensive overview of the roles and uses of JSON Schema in modern web applications, we invite you to explore our dedicated post available <a href="https://www.relogiclabs.com/2023/01/the-roles-of-json-schema.html">here</a>.</p>
 <h2 id="design-goals">Design Goals</h2>
 <p>The traditional standard JSON Schema rigorously follows the conventional JSON structure, which unfortunately comes at the expense of simplicity, conciseness, and readability. Our goal is to develop a new JSON Schema that promotes these essential aspects that were previously missing.</p>
-<p>This new schema is simple, lucid, easy to grasp, and doesn't require much prior knowledge to understand it. It also offers a shallow learning curve for both reading and writing. Additionally, its simplicity and conciseness allow us and machines to read and process more efficiently. Furthermore, its inherent extensibility simplifies the process of integrating new constraints and functionalities to meet the diverse requirements of modern web services.</p>
+<p>This new schema is simple, lucid, easy to grasp, and doesn't require much prior knowledge to understand it. It also offers a shallow learning curve for both reading and writing. Additionally, its simplicity and conciseness allow us and machines to read-write more efficiently. Moreover, a large set of constraint data types and functions within the core schema facilitates the precise definition of JSON documents, significantly reducing the potential for communication gaps among collaborators. Furthermore, its inherent extensibility simplifies the process of integrating new constraints and functionalities to meet the diverse requirements of modern web services.</p>
 <h2 id="basic-example">Basic Example</h2>
 <p>Let's explore an example of our schema for a typical JSON API response containing information about a user profile or account. The schema is very self-explanatory and thus almost no prior knowledge is required to understand the schema and the JSON responses specified by this schema.</p>
 <pre><code class="lang-stylus">%title: &quot;User Profile Response&quot;
@@ -95,9 +95,11 @@
         /*currently only one role is allowed by system*/
         &quot;role&quot;: &quot;user&quot; #string,
         &quot;isActive&quot;: #boolean, //user account current status
+        &quot;registeredAt&quot;: #time,
         &quot;profile&quot;: {
             &quot;firstName&quot;: @regex(&quot;[A-Za-z ]{3,50}&quot;) #string,
             &quot;lastName&quot;: @regex(&quot;[A-Za-z ]{3,50}&quot;) #string,
+            &quot;dateOfBirth&quot;: #date,
             &quot;age&quot;: @range(18, 130) #integer,
             &quot;email&quot;: @email #string,
             &quot;pictureURL&quot;: @url #string,
@@ -117,9 +119,11 @@
         &quot;username&quot;: &quot;johndoe&quot;,
         &quot;role&quot;: &quot;user&quot;,
         &quot;isActive&quot;: true,
+        &quot;registeredAt&quot;: &quot;2023-09-06T15:10:30.639Z&quot;,
         &quot;profile&quot;: {
             &quot;firstName&quot;: &quot;John&quot;,
             &quot;lastName&quot;: &quot;Doe&quot;,
+            &quot;dateOfBirth&quot;: &quot;1993-06-17&quot;,
             &quot;age&quot;: 30,
             &quot;email&quot;: &quot;john.doe@example.com&quot;,
             &quot;pictureURL&quot;: &quot;https://example.com/picture.jpg&quot;,
@@ -133,7 +137,7 @@
 }
 </code></pre>
 <h2 id="extended-example">Extended Example</h2>
-<p>The next example represents an expanded version of the previous one, which brings more complexity. To effectively construct such schemas with multiple layers of nested structures, it's beneficial to have a fundamental understanding of this schema format. While the syntax may seem difficult at first, it becomes straightforward once you have a basic understanding of it. For more detailed information, reference documentation is available <a href="/JsonSchema-DotNet/api/index.html">here</a>.</p>
+<p>The next example represents an expanded version of the previous one, which brings more complexity. To effectively construct such schemas with multiple layers of nested structures, it's beneficial to have a fundamental understanding of this schema format. While the syntax may seem difficult at first, it becomes straightforward once you have a basic understanding of it. For more detailed information, reference documentation is available <a href="/JsonSchema-DotNet/articles/intro.html">here</a>.</p>
 <pre><code class="lang-stylus">%title: &quot;Extended User Profile Dashboard API Response&quot;
 %version: 2.0.0
 %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
@@ -173,9 +177,11 @@
         /*currently only one role is allowed by system*/
         &quot;role&quot;: &quot;user&quot; #string,
         &quot;isActive&quot;: #boolean, //user account current status
+        &quot;registeredAt&quot;: #time,
         &quot;profile&quot;: {
             &quot;firstName&quot;: @regex(&quot;[A-Za-z]{3,50}&quot;) #string,
             &quot;lastName&quot;: @regex(&quot;[A-Za-z]{3,50}&quot;) #string,
+            &quot;dateOfBirth&quot;: @date(&quot;DD-MM-YYYY&quot;) #string,
             &quot;age&quot;: @range(18, 128) #integer,
             &quot;email&quot;: @email #string,
             &quot;pictureURL&quot;: @url #string,
@@ -207,9 +213,11 @@
         &quot;username&quot;: &quot;johndoe&quot;,
         &quot;role&quot;: &quot;user&quot;,
         &quot;isActive&quot;: true,
+        &quot;registeredAt&quot;: &quot;2023-09-06T15:10:30.639Z&quot;,
         &quot;profile&quot;: {
             &quot;firstName&quot;: &quot;John&quot;,
             &quot;lastName&quot;: &quot;Doe&quot;,
+            &quot;dateOfBirth&quot;: &quot;17-06-1993&quot;,
             &quot;age&quot;: 30,
             &quot;email&quot;: &quot;john.doe@example.com&quot;,
             &quot;pictureURL&quot;: &quot;https://example.com/picture.jpg&quot;,
@@ -307,7 +315,7 @@
     <footer class="border-top">
       <div class="container-xxl">
         <div class="flex-fill">
-          <div style="display:flex;justify-content:space-between"><span style="text-align:left"><a href="https://www.relogiclabs.com"><img src="/JsonSchema-DotNet/images/relogiclabs.svg" alt="Relogic Labs"></a></span><span style="text-align:right">&copy; 2023 Relogic Labs</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="text-align:left"><a href="https://www.relogiclabs.com"><img src="/JsonSchema-DotNet/images/relogiclabs.svg" alt="Relogic Labs"></a></span><span style="text-align:right">&copy; Relogic Labs. All rights reserved.</span></div>
         </div>
       </div>
     </footer>

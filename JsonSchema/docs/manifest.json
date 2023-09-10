@@ -43,10 +43,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.DateLexerException.yml",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.DateLexerException.html"
+          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException.html"
         }
       },
       "version": ""
@@ -123,10 +123,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.InvalidDateException.yml",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.InvalidDateException.html"
+          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.html"
         }
       },
       "version": ""
@@ -826,6 +826,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "articles/datetime.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/datetime.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "articles/functions.md",
       "output": {
         ".html": {
@@ -850,6 +860,16 @@
       "output": {
         ".html": {
           "relative_path": "articles/quickstart.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/sourcebuild.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/sourcebuild.html"
         }
       },
       "version": ""

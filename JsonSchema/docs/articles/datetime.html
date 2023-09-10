@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Date and Time Patterns | Json Schema </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Date and Time Patterns | Json Schema ">
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/docs/articles/datetime.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="Json Schema">
+            Json Schema
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="date-and-time-patterns">Date and Time Patterns</h1>
+
+<p>Dates and times are fundamental data types used in a wide range of data exchange scenarios. This schema offers a comprehensive set of tools for managing dates and times, including pattern-based formatting to meet the unique requirements of various systems and applications. Simultaneously, it incorporates validation processes to ensure compliance with the schema.</p>
+<p>Date and time formats are defined using date and time pattern strings. Within these pattern strings, unquoted letters ranging from 'A' to 'Z' and 'a' to 'z' serve as placeholders representing various components of a date or time string. To prevent their interpretation as patterns, text can be enclosed in single quotes ('). Additionally, two consecutive single quotes ('') are used to represent a literal single quote within the string. Any characters outside of these uppercase and lowercase letters, as well as the text enclosed in single quotes, are not interpreted and are matched against the input string during validation.</p>
+<p>Below, you will find a list of pattern letters and strings that are defined for date and time patterns. Please note that any characters within the 'A' to 'Z' and 'a' to 'z' range are reserved and should not be directly included in the pattern string.</p>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G</td>
+<td>Era period designator</td>
+<td>AD</td>
+</tr>
+<tr>
+<td>YYYY</td>
+<td>Four digit year number</td>
+<td>1970</td>
+</tr>
+<tr>
+<td>YY</td>
+<td>Two digit year number</td>
+<td>70</td>
+</tr>
+<tr>
+<td>MM</td>
+<td>Month number in year (2 digit form)</td>
+<td>01</td>
+</tr>
+<tr>
+<td>MMMM</td>
+<td>Full name of month</td>
+<td>January</td>
+</tr>
+<tr>
+<td>MMM</td>
+<td>Short name of month</td>
+<td>Jan</td>
+</tr>
+<tr>
+<td>M</td>
+<td>Month number in year (1-2 digit form)</td>
+<td>1, 01</td>
+</tr>
+<tr>
+<td>DDDD</td>
+<td>Full name of day in week</td>
+<td>Monday</td>
+</tr>
+<tr>
+<td>DDD</td>
+<td>Short name of day in week</td>
+<td>Mon</td>
+</tr>
+<tr>
+<td>DD</td>
+<td>Day in month (2 digit form)</td>
+<td>01</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Day in month (1-2 digit form)</td>
+<td>1, 01</td>
+</tr>
+<tr>
+<td>t</td>
+<td>AM/PM designator</td>
+<td>AM, PM</td>
+</tr>
+<tr>
+<td>hh</td>
+<td>Hour in day (2 digit form)</td>
+<td>01, 12</td>
+</tr>
+<tr>
+<td>h</td>
+<td>Hour in day (1-2 digit form)</td>
+<td>1, 01</td>
+</tr>
+<tr>
+<td>mm</td>
+<td>Minute in hour (2 digit form)</td>
+<td>01, 20</td>
+</tr>
+<tr>
+<td>m</td>
+<td>Minute in hour (1-2 digit form)</td>
+<td>1, 01</td>
+</tr>
+<tr>
+<td>ss</td>
+<td>Second in minute (2 digit form)</td>
+<td>1, 01</td>
+</tr>
+<tr>
+<td>s</td>
+<td>Second in minute (1-2 digit form)</td>
+<td>1, 01</td>
+</tr>
+<tr>
+<td>f</td>
+<td>Tenths of a second</td>
+<td>1</td>
+</tr>
+<tr>
+<td>ff</td>
+<td>Hundredths of a second</td>
+<td>11</td>
+</tr>
+<tr>
+<td>fff</td>
+<td>Milliseconds of a second</td>
+<td>111</td>
+</tr>
+<tr>
+<td>ffff</td>
+<td>Ten thousandths of a second</td>
+<td>1111</td>
+</tr>
+<tr>
+<td>fffff</td>
+<td>Hundred thousandths of a second</td>
+<td>11111</td>
+</tr>
+<tr>
+<td>ffffff</td>
+<td>Millionths of a second</td>
+<td>111111</td>
+</tr>
+<tr>
+<td>F</td>
+<td>Fraction of a second upto 6 digits</td>
+<td>1, 111</td>
+</tr>
+</tbody>
+</table>
+<p>The pattern components listed above can be combined to create comprehensive and customized date and time patterns to accommodate all system and user requirements. The following table illustrates some examples of how different date-time pattern components can be combined.</p>
+<table>
+<thead>
+<tr>
+<th>Combined Pattern</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>YYYY-MM-DD</td>
+<td>2023-09-01</td>
+</tr>
+<tr>
+<td>YYYY-MM-DD'T'hh:mm:ss.fffZZ</td>
+<td>2023-09-01T14:35:10.123+06:00</td>
+</tr>
+<tr>
+<td>MMMM DD, YYYY G</td>
+<td>January 01, 1980 AD</td>
+</tr>
+<tr>
+<td>DDDD, D MMMM YYYY</td>
+<td>Tuesday, 11 July 2023</td>
+</tr>
+<tr>
+<td>YYYY.MM.DD hh.mm.ss t</td>
+<td>1980.11.21 10.30.50 pm</td>
+</tr>
+<tr>
+<td>DDD, D MMM YY hh:mm:ss ZZ</td>
+<td>Sun, 4 Jul 99 12:08:56 -06:00</td>
+</tr>
+<tr>
+<td>hh:mm:ss t ZZ</td>
+<td>03:11:30 AM +06:00</td>
+</tr>
+</tbody>
+</table>
+<p>The first pattern in the table above adheres to the ISO 8601 date format and is used to validate the <code>#date</code> data type within the schema. The second pattern in the table follows the ISO 8601 format for date and time, validating the <code>#time</code> data type in the schema. Instead of explicitly specifying these patterns in the <code>@date</code> or <code>@time</code> functions, a more concise approach is to directly utilize the <code>#date</code> or <code>#time</code> type within the schema.</p>
+<p>When the AM/PM designator is included in the date and time pattern, the presence of any hour format specifier indicates that the time is in the 12-hour clock format. Conversely, when the AM/PM designator is omitted, the presence of any hour format specifier indicates that the time is in the 24-hour clock format.</p>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/docs/articles/datetime.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <div style="display:flex;justify-content:space-between"><span style="text-align:left"><a href="https://www.relogiclabs.com"><img src="/JsonSchema-DotNet/images/relogiclabs.svg" alt="Relogic Labs"></a></span><span style="text-align:right">&copy; Relogic Labs. All rights reserved.</span></div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
