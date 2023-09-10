@@ -76,25 +76,17 @@
         </div>
 
         <article data-uid="">
-
-<p>New JSON Schema is a practical tool for defining and validating the structure of JSON documents. It allows you to specify the expected format, data types, and constraints of JSON data. This guide will help you get started with the New JSON Schema.</p>
 <h1 id="getting-started">Getting Started</h1>
-<p>This guide will walk you through the essential steps to quickly get up and running with New JSON Schema library. It is also assume that you are familiar with .NET SDK and C# programming language. You can use a prebuilt library and skip the build library section.</p>
-<h2 id="build-the-library">Build the Library</h2>
-<p>To get started, clone the project from the following URL using your preferred Git client (command line or GUI). You can open a terminal and enter the following Git clone command as shown below:</p>
-<pre><code class="lang-shell">git clone https://github.com/relogiclabs/JsonSchema-DotNet.git
+
+<p>This guide will walk you through the essential steps to quickly get up and running with New JSON Schema library. It is also assumes a modest familiarity with the .NET SDK and .NET CLI (command-line interface) toolchain including basic familiarity with NuGet packages. Additionally, it considers a certain level of knowledge in C# language.</p>
+<h2 id="nuget-library-package">NuGet Library Package</h2>
+<p>To get started, launch your preferred IDE (such as Visual Studio, JetBrains Rider, or VS Code) and open the C# project where you intend to include this library package. Within your IDE, navigate to the NuGet package manager and search for the package by the name 'RelogicLabs.JsonSchema'. Subsequently, proceed to add or install the package to your project. Alternatively, you have the option to utilize the .NET CLI by executing the following command to include the package within your project:</p>
+<pre><code class="lang-shell">dotnet add package RelogicLabs.JsonSchema --version 1.1.0
 </code></pre>
-<p>Next, use .NET build command <code>dotnet build</code> to build the project and Retrieve the DLL file, <code>RelogicLabs.JsonSchema.dll</code> from the <code>bin</code> folder.</p>
-<h2 id="add-the-library-to-your-project">Add the Library to Your Project</h2>
-<p>To integrate the library with your project, you can create a <code>libs</code> folder within your project directory and place the retrieved DLL file (or any prebuilt DLL file) into the designated folder. Alternatively, if your IDE supports adding references, you can conveniently select the DLL from the <code>libs</code> folder. Alternatively, you can manually modify your project file <code>.csproj</code> using a text editor and include the following XML snippet:</p>
+<p>To verify the successful integration of the library into your project, you may manually inspect your project file, typically named <code>.csproj</code>, using a text editor, and search for the following XML snippet within the file:</p>
 <pre><code class="lang-xml">&lt;ItemGroup&gt;
-    &lt;Reference Include=&quot;RelogicLabs.JsonSchema&quot;&gt;
-    &lt;HintPath&gt;libs\RelogicLabs.JsonSchema.dll&lt;/HintPath&gt;
-    &lt;/Reference&gt;
+    &lt;PackageReference Include=&quot;RelogicLabs.JsonSchema&quot; Version=&quot;1.1.0&quot; /&gt;
 &lt;/ItemGroup&gt;
-</code></pre>
-<p>Additionally, this project has a dependency on ANTLR runtime, which you can integrate by executing the following command:</p>
-<pre><code class="lang-shell">dotnet add package Antlr4.Runtime.Standard --version 4.13.0
 </code></pre>
 <h2 id="write-a-sample-to-test">Write a Sample to Test</h2>
 <p>With the necessary components in place, you are now prepared to create a sample schema and validate a corresponding JSON against the schema. The subsequent example presents a C# class featuring a method designed for validating a sample JSON based on a provided schema.</p>
@@ -221,7 +213,7 @@ Schema (Line: 4:0) Json (Line: 1:0) [VALD01]: Validation Failed. Value {&quot;us
     <footer class="border-top">
       <div class="container-xxl">
         <div class="flex-fill">
-          <div style="display:flex;justify-content:space-between"><span style="text-align:left"><a href="https://www.relogiclabs.com"><img src="/JsonSchema-DotNet/images/relogiclabs.svg" alt="Relogic Labs"></a></span><span style="text-align:right">&copy; 2023 Relogic Labs</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="text-align:left"><a href="https://www.relogiclabs.com"><img src="/JsonSchema-DotNet/images/relogiclabs.svg" alt="Relogic Labs"></a></span><span style="text-align:right">&copy; Relogic Labs. All rights reserved.</span></div>
         </div>
       </div>
     </footer>

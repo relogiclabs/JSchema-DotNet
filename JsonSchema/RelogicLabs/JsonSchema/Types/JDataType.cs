@@ -81,7 +81,7 @@ public class JDataType : JBranch, INestedMode
         return JsonType == other.JsonType;
     }
 
-    internal bool IsMatchNull() => !Nested && JsonType == JsonType.Null;
+    internal bool IsMatchNull() => !Nested && JsonType == JsonType.NULL;
     public bool IsApplicable(JNode node) => !Nested || node is IJsonComposite;
     public override int GetHashCode() => JsonType.GetHashCode();
     public override string ToJson()

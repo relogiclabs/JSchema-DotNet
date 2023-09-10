@@ -2,7 +2,7 @@ namespace RelogicLabs.JsonSchema.Types;
 
 public abstract class JNumber : JPrimitive, IJsonType<JNumber>
 {
-    public virtual JsonType Type => JsonType.Number;
+    public virtual JsonType Type => JsonType.NUMBER;
     internal JNumber(IDictionary<JNode, JNode> relations) : base(relations) { }
     protected abstract double ToDouble();
 

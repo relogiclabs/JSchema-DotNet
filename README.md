@@ -4,7 +4,7 @@ A JSON Schema is crucial for making communication, interoperability, validation,
 ## Design Goals
 The traditional standard JSON Schema rigorously follows the conventional JSON structure, which unfortunately comes at the expense of simplicity, conciseness, and readability. Our goal is to develop a new JSON Schema that promotes these essential aspects that were previously missing.
 
-This new schema is simple, lucid, easy to grasp, and doesn't require much prior knowledge to understand it. It also offers a shallow learning curve for both reading and writing. Additionally, its simplicity and conciseness allow us and machines to read and process more efficiently. Furthermore, its inherent extensibility simplifies the process of integrating new constraints and functionalities to meet the diverse requirements of modern web services.
+This new schema is simple, lucid, easy to grasp, and doesn't require much prior knowledge to understand it. It also offers a shallow learning curve for both reading and writing. Additionally, its simplicity and conciseness allow us and machines to read-write more efficiently. Moreover, a large set of constraint data types and functions within the core schema facilitates the precise definition of JSON documents, significantly reducing the potential for communication gaps among collaborators. Furthermore, its inherent extensibility simplifies the process of integrating new constraints and functionalities to meet the diverse requirements of modern web services.
 
 ## Basic Example
 Let's explore an example of our schema for a typical JSON API response containing information about a user profile or account. The schema is very self-explanatory and thus almost no prior knowledge is required to understand the schema and the JSON responses specified by this schema.
@@ -20,9 +20,11 @@ Let's explore an example of our schema for a typical JSON API response containin
         /*currently only one role is allowed by system*/
         "role": "user" #string,
         "isActive": #boolean, //user account current status
+        "registeredAt": #time,
         "profile": {
             "firstName": @regex("[A-Za-z ]{3,50}") #string,
             "lastName": @regex("[A-Za-z ]{3,50}") #string,
+            "dateOfBirth": #date,
             "age": @range(18, 130) #integer,
             "email": @email #string,
             "pictureURL": @url #string,
@@ -43,9 +45,11 @@ In the above example, two types of constraint or rule descriptors are used: cons
         "username": "johndoe",
         "role": "user",
         "isActive": true,
+        "registeredAt": "2023-09-06T15:10:30.639Z",
         "profile": {
             "firstName": "John",
             "lastName": "Doe",
+            "dateOfBirth": "1993-06-17",
             "age": 30,
             "email": "john.doe@example.com",
             "pictureURL": "https://example.com/picture.jpg",
@@ -100,9 +104,11 @@ The next example represents an expanded version of the previous one, which bring
         /*currently only one role is allowed by system*/
         "role": "user" #string,
         "isActive": #boolean, //user account current status
+        "registeredAt": #time,
         "profile": {
             "firstName": @regex("[A-Za-z]{3,50}") #string,
             "lastName": @regex("[A-Za-z]{3,50}") #string,
+            "dateOfBirth": @date("DD-MM-YYYY") #string,
             "age": @range(18, 128) #integer,
             "email": @email #string,
             "pictureURL": @url #string,
@@ -135,9 +141,11 @@ The subsequent JSON sample is an illustrative example that successfully validate
         "username": "johndoe",
         "role": "user",
         "isActive": true,
+        "registeredAt": "2023-09-06T15:10:30.639Z",
         "profile": {
             "firstName": "John",
             "lastName": "Doe",
+            "dateOfBirth": "17-06-1993",
             "age": 30,
             "email": "john.doe@example.com",
             "pictureURL": "https://example.com/picture.jpg",

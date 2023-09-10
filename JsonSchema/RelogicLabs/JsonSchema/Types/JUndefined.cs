@@ -14,7 +14,7 @@ public class JUndefined : JPrimitive
         return obj.GetType() == this.GetType();
     }
 
-    public override int GetHashCode() => base.GetHashCode();
+    public override int GetHashCode() => UndefinedMarker.GetHashCode();
     public override string ToJson() => UndefinedMarker;
     public override string ToString() => ToJson();
 }

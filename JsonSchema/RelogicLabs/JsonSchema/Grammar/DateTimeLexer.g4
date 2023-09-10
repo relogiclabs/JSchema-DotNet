@@ -1,4 +1,4 @@
-lexer grammar DateLexer;
+lexer grammar DateTimeLexer;
 
 ERA : 'G';
 

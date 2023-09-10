@@ -76,24 +76,28 @@
         </div>
 
         <article data-uid="">
-<h1 id="constraint-data-types">Constraint Data Types</h1>
 
+<style>
+pre code { font-size: 1.3em; }
+</style>
+<h1 id="constraint-data-types">Constraint Data Types</h1>
 <p>Data types play a pivotal role in validating JSON data for compliance with the schema. Essentially, data types determine the kind of data that a JSON element or value can contain. This mechanism serves as a fundamental process in maintaining the accuracy, consistency, and integrity of JSON document and its structure throughout the system, where data quality and reliability are vital.</p>
-<p>In the schema document, data types are denoted by the <code>#</code> prefix. Here is an outline of all data types, including their subtypes, used in the schema document to validate a JSON document. When using multiple data types for validation, it indicates that the JSON value is considered valid if it complies with any of the specified alternative data types.</p>
+<p>In the schema document, data types are denoted by the <code>#</code> prefix. Here is an outline of all data types, including their subtypes, used in the schema document to validate a JSON document. When using multiple data types for validation, it indicates that the JSON value is considered valid if it complies with any of the specified alternative data types. All of these data types and their subtypes offer the flexibility of selecting the most appropriate type based on requirements.</p>
 <pre><code class="lang-stylus">#any
-  ┬
-  ├ #object
-  ├ #array
-  ├ #string
-  │   ┬
-  │   └ #date
-  ├ #number
-  │   ┬
-  │   ├ #integer
-  │   ├ #float
-  │   └ #double  
-  ├ #boolean
-  └ #null
+ ┬
+ ├ #object
+ ├ #array
+ ├ #string
+ │  ┬
+ │  ├ #date
+ │  └ #time
+ ├ #number
+ │  ┬
+ │  ├ #integer
+ │  ├ #float
+ │  └ #double  
+ ├ #boolean
+ └ #null
 </code></pre>
 <h3 id="the-any-data-type">The Any Data Type</h3>
 <p>This data type accepts any valid JSON value that conforms to the JSON standard. It is the least restrictive data type and serves as the parent type for all other data types defined in this schema, each of which imposes more specific constraints. Here is the <a href="https://www.json.org">specification</a> of JSON document containing rules of all valid JSON values. Following is the syntax for specifying this data type:</p>
@@ -111,9 +115,13 @@
 <p>This is one of the most commonly used data types in a JSON document, designed to accept any JSON string as specified by the JSON standard. The syntax for specifying this data type is as follows:</p>
 <pre><code class="lang-stylus">#string
 </code></pre>
-<h3 id="the-date-time-data-type">The Date-Time Data Type</h3>
-<p>The date-time data type accepts only a type of string which represent a date-time specified by ISO 8601 standard. It is a subtype of string data type and thus formatted as per the JSON string specification. Here is the ISO 8601 standard <a href="https://www.iso.org/iso-8601-date-and-time-format.html">document</a>, which contains detailed explanations. The syntax for specifying this data type is as follows:</p>
+<h3 id="the-date-data-type">The Date Data Type</h3>
+<p>The date data type accepts only a type of string which represent a date specified by ISO 8601 standard (date part only). It is a subtype of string data type and thus formatted as per the JSON string specification. Detailed explanations of the ISO 8601 standard can be found in this <a href="https://www.iso.org/iso-8601-date-and-time-format.html">document</a>. Furthermore, you can refer to this <a href="/JsonSchema-DotNet/articles/datetime.html">document</a> for a detailed description of the date pattern associated with this data type. To define this data type in schema, use the following syntax:</p>
 <pre><code class="lang-stylus">#date
+</code></pre>
+<h3 id="the-time-data-type">The Time Data Type</h3>
+<p>The time data type only accepts strings representing date-time (including both date and time), in accordance with the ISO 8601 standard. Similar to the date data type, it is a subtype of string data type and thus formatted as per the JSON string specification. Here is the ISO 8601 standard <a href="https://www.iso.org/iso-8601-date-and-time-format.html">document</a>, which contains detailed explanations. Furthermore, you can refer to this <a href="/JsonSchema-DotNet/articles/datetime.html">document</a> for a detailed description of the date-time pattern associated with this data type. To define this data type in schema, use the following syntax:</p>
+<pre><code class="lang-stylus">#time
 </code></pre>
 <h3 id="the-number-data-type">The Number Data Type</h3>
 <p>The number data type serves as the parent data type for all numeric types accommodated by the schema, including integer, floating-point, and exponent-based numbers. It accepts any JSON numerical value in accordance with the JSON standard. The syntax for specifying the number type is as follows:</p>
@@ -128,7 +136,7 @@
 <pre><code class="lang-stylus">#float
 </code></pre>
 <h3 id="the-double-data-type">The Double Data Type</h3>
-<p>The double data type, as a subtype of the number data type, exclusively accepts numbers with exponents. It can either be an integral number with an exponent or a floating-point number with an exponent. This constraint distinguishes it from other number formats and makes it particularly useful for handling large numbers with exponents. All of these number data types offer the flexibility of selecting the most appropriate type based on usage requirements. To specify the double type in a schema, use the following syntax:</p>
+<p>The double data type, as a subtype of the number data type, exclusively accepts numbers with exponents. It can either be an integral number with an exponent or a floating-point number with an exponent. This constraint distinguishes it from other number formats and makes it particularly useful for handling large numbers with exponents. To specify the double type in a schema, use the following syntax:</p>
 <pre><code class="lang-stylus">#double
 </code></pre>
 <h3 id="the-boolean-data-type">The Boolean Data Type</h3>
@@ -159,7 +167,7 @@
     <footer class="border-top">
       <div class="container-xxl">
         <div class="flex-fill">
-          <div style="display:flex;justify-content:space-between"><span style="text-align:left"><a href="https://www.relogiclabs.com"><img src="/JsonSchema-DotNet/images/relogiclabs.svg" alt="Relogic Labs"></a></span><span style="text-align:right">&copy; 2023 Relogic Labs</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="text-align:left"><a href="https://www.relogiclabs.com"><img src="/JsonSchema-DotNet/images/relogiclabs.svg" alt="Relogic Labs"></a></span><span style="text-align:right">&copy; Relogic Labs. All rights reserved.</span></div>
         </div>
       </div>
     </footer>

@@ -1,27 +1,16 @@
-New JSON Schema is a practical tool for defining and validating the structure of JSON documents. It allows you to specify the expected format, data types, and constraints of JSON data. This guide will help you get started with the New JSON Schema.
-
 # Getting Started
-This guide will walk you through the essential steps to quickly get up and running with New JSON Schema library. It is also assume that you are familiar with .NET SDK and C# programming language. You can use a prebuilt library and skip the build library section.
+This guide will walk you through the essential steps to quickly get up and running with New JSON Schema library. It is also assumes a modest familiarity with the .NET SDK and .NET CLI (command-line interface) toolchain including basic familiarity with NuGet packages. Additionally, it considers a certain level of knowledge in C# language.
 
-## Build the Library
-To get started, clone the project from the following URL using your preferred Git client (command line or GUI). You can open a terminal and enter the following Git clone command as shown below:
+## NuGet Library Package
+To get started, launch your preferred IDE (such as Visual Studio, JetBrains Rider, or VS Code) and open the C# project where you intend to include this library package. Within your IDE, navigate to the NuGet package manager and search for the package by the name 'RelogicLabs.JsonSchema'. Subsequently, proceed to add or install the package to your project. Alternatively, you have the option to utilize the .NET CLI by executing the following command to include the package within your project:
 ```shell
-git clone https://github.com/relogiclabs/JsonSchema-DotNet.git
+dotnet add package RelogicLabs.JsonSchema --version 1.1.0
 ```
-Next, use .NET build command `dotnet build` to build the project and Retrieve the DLL file, `RelogicLabs.JsonSchema.dll` from the `bin` folder.
-
-## Add the Library to Your Project
-To integrate the library with your project, you can create a `libs` folder within your project directory and place the retrieved DLL file (or any prebuilt DLL file) into the designated folder. Alternatively, if your IDE supports adding references, you can conveniently select the DLL from the `libs` folder. Alternatively, you can manually modify your project file `.csproj` using a text editor and include the following XML snippet:
+To verify the successful integration of the library into your project, you may manually inspect your project file, typically named `.csproj`, using a text editor, and search for the following XML snippet within the file:
 ```xml
 <ItemGroup>
-    <Reference Include="RelogicLabs.JsonSchema">
-    <HintPath>libs\RelogicLabs.JsonSchema.dll</HintPath>
-    </Reference>
+    <PackageReference Include="RelogicLabs.JsonSchema" Version="1.1.0" />
 </ItemGroup>
-```
-Additionally, this project has a dependency on ANTLR runtime, which you can integrate by executing the following command:
-```shell
-dotnet add package Antlr4.Runtime.Standard --version 4.13.0
 ```
 ## Write a Sample to Test
 With the necessary components in place, you are now prepared to create a sample schema and validate a corresponding JSON against the schema. The subsequent example presents a C# class featuring a method designed for validating a sample JSON based on a provided schema.

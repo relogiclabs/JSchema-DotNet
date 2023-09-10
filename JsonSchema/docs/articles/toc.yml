@@ -8,3 +8,7 @@
   href: datatypes.md
 - name: Functions
   href: functions.md
+- name: Date and Time
+  href: datetime.md
+- name: Source Build
+  href: sourcebuild.md

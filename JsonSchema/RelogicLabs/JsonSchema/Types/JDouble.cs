@@ -8,7 +8,7 @@ namespace RelogicLabs.JsonSchema.Types;
 public class JDouble : JNumber, IJsonFloat, IPragmaValue<double>
 {
     public required double Value { get; init; }
-    public override JsonType Type => JsonType.Decimal;
+    public override JsonType Type => JsonType.DOUBLE;
     
     internal JDouble(IDictionary<JNode, JNode> relations) : base(relations) { }
     public override bool Match(JNode node)

@@ -1,5 +1,5 @@
 using Antlr4.Runtime;
-using RelogicLabs.JsonSchema.Date;
+using RelogicLabs.JsonSchema.Time;
 using RelogicLabs.JsonSchema.Tree;
 
 namespace RelogicLabs.JsonSchema.Utilities;
@@ -28,9 +28,9 @@ public static class DebugUtils
         Console.Error.WriteLine($"Rule Stack: {stack.Reverse().ToString(" > ")}");
     }
 
-    internal static void Print(DateContext dateContext)
+    internal static void Print(DateTimeContext context)
     {
         if(!DebugPrint) return;
-        Console.WriteLine($"Date Parsed: {dateContext}");
+        Console.WriteLine($"DateTime Interpretation: {context}");
     }
 }

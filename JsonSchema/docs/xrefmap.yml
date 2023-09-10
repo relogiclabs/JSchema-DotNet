@@ -173,40 +173,40 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Exceptions.CommonException.ErrorCode
   nameWithType: CommonException.ErrorCode
-- uid: RelogicLabs.JsonSchema.Exceptions.DateLexerException
-  name: DateLexerException
-  href: api/RelogicLabs.JsonSchema.Exceptions.DateLexerException.html
-  commentId: T:RelogicLabs.JsonSchema.Exceptions.DateLexerException
-  fullName: RelogicLabs.JsonSchema.Exceptions.DateLexerException
-  nameWithType: DateLexerException
-- uid: RelogicLabs.JsonSchema.Exceptions.DateLexerException.#ctor(System.String,System.String,System.Exception)
-  name: DateLexerException(string, string, Exception?)
-  href: api/RelogicLabs.JsonSchema.Exceptions.DateLexerException.html#RelogicLabs_JsonSchema_Exceptions_DateLexerException__ctor_System_String_System_String_System_Exception_
-  commentId: M:RelogicLabs.JsonSchema.Exceptions.DateLexerException.#ctor(System.String,System.String,System.Exception)
+- uid: RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException
+  name: DateTimeLexerException
+  href: api/RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException.html
+  commentId: T:RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException
+  fullName: RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException
+  nameWithType: DateTimeLexerException
+- uid: RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException.#ctor(System.String,System.String,System.Exception)
+  name: DateTimeLexerException(string, string, Exception?)
+  href: api/RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException.html#RelogicLabs_JsonSchema_Exceptions_DateTimeLexerException__ctor_System_String_System_String_System_Exception_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException.#ctor(System.String,System.String,System.Exception)
   name.vb: New(String, String, Exception)
-  fullName: RelogicLabs.JsonSchema.Exceptions.DateLexerException.DateLexerException(string, string, System.Exception?)
-  fullName.vb: RelogicLabs.JsonSchema.Exceptions.DateLexerException.New(String, String, System.Exception)
-  nameWithType: DateLexerException.DateLexerException(string, string, Exception?)
-  nameWithType.vb: DateLexerException.New(String, String, Exception)
-- uid: RelogicLabs.JsonSchema.Exceptions.DateLexerException.#ctor(System.String,System.String)
-  name: DateLexerException(string, string)
-  href: api/RelogicLabs.JsonSchema.Exceptions.DateLexerException.html#RelogicLabs_JsonSchema_Exceptions_DateLexerException__ctor_System_String_System_String_
-  commentId: M:RelogicLabs.JsonSchema.Exceptions.DateLexerException.#ctor(System.String,System.String)
+  fullName: RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException.DateTimeLexerException(string, string, System.Exception?)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException.New(String, String, System.Exception)
+  nameWithType: DateTimeLexerException.DateTimeLexerException(string, string, Exception?)
+  nameWithType.vb: DateTimeLexerException.New(String, String, Exception)
+- uid: RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException.#ctor(System.String,System.String)
+  name: DateTimeLexerException(string, string)
+  href: api/RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException.html#RelogicLabs_JsonSchema_Exceptions_DateTimeLexerException__ctor_System_String_System_String_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException.#ctor(System.String,System.String)
   name.vb: New(String, String)
-  fullName: RelogicLabs.JsonSchema.Exceptions.DateLexerException.DateLexerException(string, string)
-  fullName.vb: RelogicLabs.JsonSchema.Exceptions.DateLexerException.New(String, String)
-  nameWithType: DateLexerException.DateLexerException(string, string)
-  nameWithType.vb: DateLexerException.New(String, String)
-- uid: RelogicLabs.JsonSchema.Exceptions.DateLexerException.#ctor*
-  name: DateLexerException
-  href: api/RelogicLabs.JsonSchema.Exceptions.DateLexerException.html#RelogicLabs_JsonSchema_Exceptions_DateLexerException__ctor_
-  commentId: Overload:RelogicLabs.JsonSchema.Exceptions.DateLexerException.#ctor
+  fullName: RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException.DateTimeLexerException(string, string)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException.New(String, String)
+  nameWithType: DateTimeLexerException.DateTimeLexerException(string, string)
+  nameWithType.vb: DateTimeLexerException.New(String, String)
+- uid: RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException.#ctor*
+  name: DateTimeLexerException
+  href: api/RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException.html#RelogicLabs_JsonSchema_Exceptions_DateTimeLexerException__ctor_
+  commentId: Overload:RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException.#ctor
   isSpec: "True"
   name.vb: New
-  fullName: RelogicLabs.JsonSchema.Exceptions.DateLexerException.DateLexerException
-  fullName.vb: RelogicLabs.JsonSchema.Exceptions.DateLexerException.New
-  nameWithType: DateLexerException.DateLexerException
-  nameWithType.vb: DateLexerException.New
+  fullName: RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException.DateTimeLexerException
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException.New
+  nameWithType: DateTimeLexerException.DateTimeLexerException
+  nameWithType.vb: DateTimeLexerException.New
 - uid: RelogicLabs.JsonSchema.Exceptions.DefinitionNotFoundException
   name: DefinitionNotFoundException
   href: api/RelogicLabs.JsonSchema.Exceptions.DefinitionNotFoundException.html
@@ -499,58 +499,58 @@ references:
   fullName.vb: RelogicLabs.JsonSchema.Exceptions.FunctionNotFoundException.New
   nameWithType: FunctionNotFoundException.FunctionNotFoundException
   nameWithType.vb: FunctionNotFoundException.New
-- uid: RelogicLabs.JsonSchema.Exceptions.InvalidDateException
-  name: InvalidDateException
-  href: api/RelogicLabs.JsonSchema.Exceptions.InvalidDateException.html
-  commentId: T:RelogicLabs.JsonSchema.Exceptions.InvalidDateException
-  fullName: RelogicLabs.JsonSchema.Exceptions.InvalidDateException
-  nameWithType: InvalidDateException
-- uid: RelogicLabs.JsonSchema.Exceptions.InvalidDateException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
-  name: InvalidDateException(ErrorDetail, Exception?)
-  href: api/RelogicLabs.JsonSchema.Exceptions.InvalidDateException.html#RelogicLabs_JsonSchema_Exceptions_InvalidDateException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_System_Exception_
-  commentId: M:RelogicLabs.JsonSchema.Exceptions.InvalidDateException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+- uid: RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException
+  name: InvalidDateTimeException
+  href: api/RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.html
+  commentId: T:RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException
+  fullName: RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException
+  nameWithType: InvalidDateTimeException
+- uid: RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name: InvalidDateTimeException(ErrorDetail, Exception?)
+  href: api/RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.html#RelogicLabs_JsonSchema_Exceptions_InvalidDateTimeException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_System_Exception_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
   name.vb: New(ErrorDetail, Exception)
-  fullName: RelogicLabs.JsonSchema.Exceptions.InvalidDateException.InvalidDateException(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception?)
-  fullName.vb: RelogicLabs.JsonSchema.Exceptions.InvalidDateException.New(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception)
-  nameWithType: InvalidDateException.InvalidDateException(ErrorDetail, Exception?)
-  nameWithType.vb: InvalidDateException.New(ErrorDetail, Exception)
-- uid: RelogicLabs.JsonSchema.Exceptions.InvalidDateException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail)
-  name: InvalidDateException(ErrorDetail)
-  href: api/RelogicLabs.JsonSchema.Exceptions.InvalidDateException.html#RelogicLabs_JsonSchema_Exceptions_InvalidDateException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_
-  commentId: M:RelogicLabs.JsonSchema.Exceptions.InvalidDateException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail)
+  fullName: RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.InvalidDateTimeException(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception?)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.New(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception)
+  nameWithType: InvalidDateTimeException.InvalidDateTimeException(ErrorDetail, Exception?)
+  nameWithType.vb: InvalidDateTimeException.New(ErrorDetail, Exception)
+- uid: RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail)
+  name: InvalidDateTimeException(ErrorDetail)
+  href: api/RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.html#RelogicLabs_JsonSchema_Exceptions_InvalidDateTimeException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail)
   name.vb: New(ErrorDetail)
-  fullName: RelogicLabs.JsonSchema.Exceptions.InvalidDateException.InvalidDateException(RelogicLabs.JsonSchema.Message.ErrorDetail)
-  fullName.vb: RelogicLabs.JsonSchema.Exceptions.InvalidDateException.New(RelogicLabs.JsonSchema.Message.ErrorDetail)
-  nameWithType: InvalidDateException.InvalidDateException(ErrorDetail)
-  nameWithType.vb: InvalidDateException.New(ErrorDetail)
-- uid: RelogicLabs.JsonSchema.Exceptions.InvalidDateException.#ctor(System.String,System.String,System.Exception)
-  name: InvalidDateException(string, string, Exception?)
-  href: api/RelogicLabs.JsonSchema.Exceptions.InvalidDateException.html#RelogicLabs_JsonSchema_Exceptions_InvalidDateException__ctor_System_String_System_String_System_Exception_
-  commentId: M:RelogicLabs.JsonSchema.Exceptions.InvalidDateException.#ctor(System.String,System.String,System.Exception)
+  fullName: RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.InvalidDateTimeException(RelogicLabs.JsonSchema.Message.ErrorDetail)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.New(RelogicLabs.JsonSchema.Message.ErrorDetail)
+  nameWithType: InvalidDateTimeException.InvalidDateTimeException(ErrorDetail)
+  nameWithType.vb: InvalidDateTimeException.New(ErrorDetail)
+- uid: RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.#ctor(System.String,System.String,System.Exception)
+  name: InvalidDateTimeException(string, string, Exception?)
+  href: api/RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.html#RelogicLabs_JsonSchema_Exceptions_InvalidDateTimeException__ctor_System_String_System_String_System_Exception_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.#ctor(System.String,System.String,System.Exception)
   name.vb: New(String, String, Exception)
-  fullName: RelogicLabs.JsonSchema.Exceptions.InvalidDateException.InvalidDateException(string, string, System.Exception?)
-  fullName.vb: RelogicLabs.JsonSchema.Exceptions.InvalidDateException.New(String, String, System.Exception)
-  nameWithType: InvalidDateException.InvalidDateException(string, string, Exception?)
-  nameWithType.vb: InvalidDateException.New(String, String, Exception)
-- uid: RelogicLabs.JsonSchema.Exceptions.InvalidDateException.#ctor(System.String,System.String)
-  name: InvalidDateException(string, string)
-  href: api/RelogicLabs.JsonSchema.Exceptions.InvalidDateException.html#RelogicLabs_JsonSchema_Exceptions_InvalidDateException__ctor_System_String_System_String_
-  commentId: M:RelogicLabs.JsonSchema.Exceptions.InvalidDateException.#ctor(System.String,System.String)
+  fullName: RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.InvalidDateTimeException(string, string, System.Exception?)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.New(String, String, System.Exception)
+  nameWithType: InvalidDateTimeException.InvalidDateTimeException(string, string, Exception?)
+  nameWithType.vb: InvalidDateTimeException.New(String, String, Exception)
+- uid: RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.#ctor(System.String,System.String)
+  name: InvalidDateTimeException(string, string)
+  href: api/RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.html#RelogicLabs_JsonSchema_Exceptions_InvalidDateTimeException__ctor_System_String_System_String_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.#ctor(System.String,System.String)
   name.vb: New(String, String)
-  fullName: RelogicLabs.JsonSchema.Exceptions.InvalidDateException.InvalidDateException(string, string)
-  fullName.vb: RelogicLabs.JsonSchema.Exceptions.InvalidDateException.New(String, String)
-  nameWithType: InvalidDateException.InvalidDateException(string, string)
-  nameWithType.vb: InvalidDateException.New(String, String)
-- uid: RelogicLabs.JsonSchema.Exceptions.InvalidDateException.#ctor*
-  name: InvalidDateException
-  href: api/RelogicLabs.JsonSchema.Exceptions.InvalidDateException.html#RelogicLabs_JsonSchema_Exceptions_InvalidDateException__ctor_
-  commentId: Overload:RelogicLabs.JsonSchema.Exceptions.InvalidDateException.#ctor
+  fullName: RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.InvalidDateTimeException(string, string)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.New(String, String)
+  nameWithType: InvalidDateTimeException.InvalidDateTimeException(string, string)
+  nameWithType.vb: InvalidDateTimeException.New(String, String)
+- uid: RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.#ctor*
+  name: InvalidDateTimeException
+  href: api/RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.html#RelogicLabs_JsonSchema_Exceptions_InvalidDateTimeException__ctor_
+  commentId: Overload:RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.#ctor
   isSpec: "True"
   name.vb: New
-  fullName: RelogicLabs.JsonSchema.Exceptions.InvalidDateException.InvalidDateException
-  fullName.vb: RelogicLabs.JsonSchema.Exceptions.InvalidDateException.New
-  nameWithType: InvalidDateException.InvalidDateException
-  nameWithType.vb: InvalidDateException.New
+  fullName: RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.InvalidDateTimeException
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.New
+  nameWithType: InvalidDateTimeException.InvalidDateTimeException
+  nameWithType.vb: InvalidDateTimeException.New
 - uid: RelogicLabs.JsonSchema.Exceptions.InvalidFunctionException
   name: InvalidFunctionException
   href: api/RelogicLabs.JsonSchema.Exceptions.InvalidFunctionException.html
@@ -1214,6 +1214,19 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Functions.CoreFunctions.Regex
   nameWithType: CoreFunctions.Regex
+- uid: RelogicLabs.JsonSchema.Functions.CoreFunctions.Time(RelogicLabs.JsonSchema.Types.JString,RelogicLabs.JsonSchema.Types.JString)
+  name: Time(JString, JString)
+  href: api/RelogicLabs.JsonSchema.Functions.CoreFunctions.html#RelogicLabs_JsonSchema_Functions_CoreFunctions_Time_RelogicLabs_JsonSchema_Types_JString_RelogicLabs_JsonSchema_Types_JString_
+  commentId: M:RelogicLabs.JsonSchema.Functions.CoreFunctions.Time(RelogicLabs.JsonSchema.Types.JString,RelogicLabs.JsonSchema.Types.JString)
+  fullName: RelogicLabs.JsonSchema.Functions.CoreFunctions.Time(RelogicLabs.JsonSchema.Types.JString, RelogicLabs.JsonSchema.Types.JString)
+  nameWithType: CoreFunctions.Time(JString, JString)
+- uid: RelogicLabs.JsonSchema.Functions.CoreFunctions.Time*
+  name: Time
+  href: api/RelogicLabs.JsonSchema.Functions.CoreFunctions.html#RelogicLabs_JsonSchema_Functions_CoreFunctions_Time_
+  commentId: Overload:RelogicLabs.JsonSchema.Functions.CoreFunctions.Time
+  isSpec: "True"
+  fullName: RelogicLabs.JsonSchema.Functions.CoreFunctions.Time
+  nameWithType: CoreFunctions.Time
 - uid: RelogicLabs.JsonSchema.Functions.CoreFunctions.Url(RelogicLabs.JsonSchema.Types.JString,RelogicLabs.JsonSchema.Types.JString)
   name: Url(JString, JString)
   href: api/RelogicLabs.JsonSchema.Functions.CoreFunctions.html#RelogicLabs_JsonSchema_Functions_CoreFunctions_Url_RelogicLabs_JsonSchema_Types_JString_RelogicLabs_JsonSchema_Types_JString_
@@ -4283,42 +4296,42 @@ references:
   commentId: T:RelogicLabs.JsonSchema.Types.JsonType
   fullName: RelogicLabs.JsonSchema.Types.JsonType
   nameWithType: JsonType
-- uid: RelogicLabs.JsonSchema.Types.JsonType.Any
-  name: Any
-  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_Any
-  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.Any
-  fullName: RelogicLabs.JsonSchema.Types.JsonType.Any
-  nameWithType: JsonType.Any
-- uid: RelogicLabs.JsonSchema.Types.JsonType.Array
-  name: Array
-  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_Array
-  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.Array
-  fullName: RelogicLabs.JsonSchema.Types.JsonType.Array
-  nameWithType: JsonType.Array
-- uid: RelogicLabs.JsonSchema.Types.JsonType.Boolean
-  name: Boolean
-  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_Boolean
-  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.Boolean
-  fullName: RelogicLabs.JsonSchema.Types.JsonType.Boolean
-  nameWithType: JsonType.Boolean
-- uid: RelogicLabs.JsonSchema.Types.JsonType.Date
-  name: Date
-  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_Date
-  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.Date
-  fullName: RelogicLabs.JsonSchema.Types.JsonType.Date
-  nameWithType: JsonType.Date
-- uid: RelogicLabs.JsonSchema.Types.JsonType.Decimal
-  name: Decimal
-  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_Decimal
-  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.Decimal
-  fullName: RelogicLabs.JsonSchema.Types.JsonType.Decimal
-  nameWithType: JsonType.Decimal
-- uid: RelogicLabs.JsonSchema.Types.JsonType.Float
-  name: Float
-  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_Float
-  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.Float
-  fullName: RelogicLabs.JsonSchema.Types.JsonType.Float
-  nameWithType: JsonType.Float
+- uid: RelogicLabs.JsonSchema.Types.JsonType.ANY
+  name: ANY
+  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_ANY
+  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.ANY
+  fullName: RelogicLabs.JsonSchema.Types.JsonType.ANY
+  nameWithType: JsonType.ANY
+- uid: RelogicLabs.JsonSchema.Types.JsonType.ARRAY
+  name: ARRAY
+  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_ARRAY
+  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.ARRAY
+  fullName: RelogicLabs.JsonSchema.Types.JsonType.ARRAY
+  nameWithType: JsonType.ARRAY
+- uid: RelogicLabs.JsonSchema.Types.JsonType.BOOLEAN
+  name: BOOLEAN
+  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_BOOLEAN
+  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.BOOLEAN
+  fullName: RelogicLabs.JsonSchema.Types.JsonType.BOOLEAN
+  nameWithType: JsonType.BOOLEAN
+- uid: RelogicLabs.JsonSchema.Types.JsonType.DATE
+  name: DATE
+  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_DATE
+  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.DATE
+  fullName: RelogicLabs.JsonSchema.Types.JsonType.DATE
+  nameWithType: JsonType.DATE
+- uid: RelogicLabs.JsonSchema.Types.JsonType.DOUBLE
+  name: DOUBLE
+  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_DOUBLE
+  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.DOUBLE
+  fullName: RelogicLabs.JsonSchema.Types.JsonType.DOUBLE
+  nameWithType: JsonType.DOUBLE
+- uid: RelogicLabs.JsonSchema.Types.JsonType.FLOAT
+  name: FLOAT
+  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_FLOAT
+  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.FLOAT
+  fullName: RelogicLabs.JsonSchema.Types.JsonType.FLOAT
+  nameWithType: JsonType.FLOAT
 - uid: RelogicLabs.JsonSchema.Types.JsonType.From(System.String)
   name: From(string)
   href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_From_System_String_
@@ -4335,12 +4348,12 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Types.JsonType.From
   nameWithType: JsonType.From
-- uid: RelogicLabs.JsonSchema.Types.JsonType.Integer
-  name: Integer
-  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_Integer
-  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.Integer
-  fullName: RelogicLabs.JsonSchema.Types.JsonType.Integer
-  nameWithType: JsonType.Integer
+- uid: RelogicLabs.JsonSchema.Types.JsonType.INTEGER
+  name: INTEGER
+  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_INTEGER
+  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.INTEGER
+  fullName: RelogicLabs.JsonSchema.Types.JsonType.INTEGER
+  nameWithType: JsonType.INTEGER
 - uid: RelogicLabs.JsonSchema.Types.JsonType.Match(RelogicLabs.JsonSchema.Types.JNode)
   name: Match(JNode)
   href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_Match_RelogicLabs_JsonSchema_Types_JNode_
@@ -4367,30 +4380,36 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Types.JsonType.Name
   nameWithType: JsonType.Name
-- uid: RelogicLabs.JsonSchema.Types.JsonType.Null
-  name: "Null"
-  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_Null
-  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.Null
-  fullName: RelogicLabs.JsonSchema.Types.JsonType.Null
-  nameWithType: JsonType.Null
-- uid: RelogicLabs.JsonSchema.Types.JsonType.Number
-  name: Number
-  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_Number
-  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.Number
-  fullName: RelogicLabs.JsonSchema.Types.JsonType.Number
-  nameWithType: JsonType.Number
-- uid: RelogicLabs.JsonSchema.Types.JsonType.Object
-  name: Object
-  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_Object
-  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.Object
-  fullName: RelogicLabs.JsonSchema.Types.JsonType.Object
-  nameWithType: JsonType.Object
-- uid: RelogicLabs.JsonSchema.Types.JsonType.String
-  name: String
-  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_String
-  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.String
-  fullName: RelogicLabs.JsonSchema.Types.JsonType.String
-  nameWithType: JsonType.String
+- uid: RelogicLabs.JsonSchema.Types.JsonType.NULL
+  name: "NULL"
+  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_NULL
+  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.NULL
+  fullName: RelogicLabs.JsonSchema.Types.JsonType.NULL
+  nameWithType: JsonType.NULL
+- uid: RelogicLabs.JsonSchema.Types.JsonType.NUMBER
+  name: NUMBER
+  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_NUMBER
+  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.NUMBER
+  fullName: RelogicLabs.JsonSchema.Types.JsonType.NUMBER
+  nameWithType: JsonType.NUMBER
+- uid: RelogicLabs.JsonSchema.Types.JsonType.OBJECT
+  name: OBJECT
+  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_OBJECT
+  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.OBJECT
+  fullName: RelogicLabs.JsonSchema.Types.JsonType.OBJECT
+  nameWithType: JsonType.OBJECT
+- uid: RelogicLabs.JsonSchema.Types.JsonType.STRING
+  name: STRING
+  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_STRING
+  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.STRING
+  fullName: RelogicLabs.JsonSchema.Types.JsonType.STRING
+  nameWithType: JsonType.STRING
+- uid: RelogicLabs.JsonSchema.Types.JsonType.TIME
+  name: TIME
+  href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_TIME
+  commentId: F:RelogicLabs.JsonSchema.Types.JsonType.TIME
+  fullName: RelogicLabs.JsonSchema.Types.JsonType.TIME
+  nameWithType: JsonType.TIME
 - uid: RelogicLabs.JsonSchema.Types.JsonType.ToString
   name: ToString()
   href: api/RelogicLabs.JsonSchema.Types.JsonType.html#RelogicLabs_JsonSchema_Types_JsonType_ToString

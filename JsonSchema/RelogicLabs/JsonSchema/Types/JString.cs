@@ -8,7 +8,7 @@ namespace RelogicLabs.JsonSchema.Types;
 
 public class JString : JPrimitive, IJsonType<JString>, IPragmaValue<string>
 {
-    public JsonType Type => JsonType.String;
+    public JsonType Type => JsonType.STRING;
     public required string Value { get; init; }
     
     internal JString(IDictionary<JNode, JNode> relations) : base(relations) { }

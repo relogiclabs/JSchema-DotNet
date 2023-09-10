@@ -1,13 +1,21 @@
 namespace RelogicLabs.JsonSchema.Tests.Positive;
 
 [TestClass]
-public class DateTests
+public class DateTimeTests
 {
     
     [TestMethod]
     public void When_DataTypeDate_ValidTrue()
     {
         var schema = "#date";
+        var json = "\"2023-09-01\"";
+        JsonAssert.IsValid(schema, json);
+    }
+    
+    [TestMethod]
+    public void When_DataTypeTime_ValidTrue()
+    {
+        var schema = "#time";
         var json = "\"2023-09-01T14:35:10.123+06:00\"";
         JsonAssert.IsValid(schema, json);
     }
@@ -21,6 +29,28 @@ public class DateTests
                 "key1": #date,
                 "key2": #date,
                 "key3": #date
+            }
+            """;
+        var json =
+            """
+            {
+                "key1": "1950-12-31",
+                "key2": "0001-01-01",
+                "key3": "1600-02-29"
+            }
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
+    
+    [TestMethod]
+    public void When_DataTypeTimeInObject_ValidTrue()
+    {
+        var schema =
+            """
+            {
+                "key1": #time,
+                "key2": #time,
+                "key3": #time
             }
             """;
         var json =
@@ -43,7 +73,21 @@ public class DateTests
             """;
         var json =
             """
-            ["4444-12-31T11:40:10.000+06:30", "1000-01-31T23:59:59.999Z"]
+            ["0001-01-01", "9999-12-31"]
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
+    
+    [TestMethod]
+    public void When_DataTypeTimeInArray_ValidTrue()
+    {
+        var schema =
+            """
+            [#time, #time]
+            """;
+        var json =
+            """
+            ["0001-01-01T00:00:00.000Z", "9999-12-31T23:59:59.999+12:59"]
             """;
         JsonAssert.IsValid(schema, json);
     }
@@ -54,6 +98,20 @@ public class DateTests
         var schema =
             """
             #date*
+            """;
+        var json =
+            """
+            ["9999-12-31", "0011-06-30"]
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
+    
+    [TestMethod]
+    public void When_NestedDataTypeTimeInArray_ValidTrue()
+    {
+        var schema =
+            """
+            #time*
             """;
         var json =
             """
@@ -68,6 +126,23 @@ public class DateTests
         var schema =
             """
             #date*
+            """;
+        var json =
+            """
+            {
+                "key1": "9999-12-31",
+                "key2": "0011-06-30"
+            }
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
+    
+    [TestMethod]
+    public void When_NestedDataTypeTimeInObject_ValidTrue()
+    {
+        var schema =
+            """
+            #time*
             """;
         var json =
             """
@@ -121,7 +196,7 @@ public class DateTests
             {
                 "key1": @date("MMMM DD, YYYY") #string,
                 "key2": @date("YYYY-MMM-DD"),
-                "key3": @date("DDDD, MMMM D, YY") #string,
+                "key3": @date("DDDD, D MMM YY") #string,
                 "key4": @date("DD-MMM-YYYY G"),
                 "key5": @date("DDD D MMM, YY G") #string,
                 "key6": @date("DDDD MMMM DD, YYYY"),
@@ -133,7 +208,7 @@ public class DateTests
             {
                 "key1": "January 01, 1985",
                 "key2": "2034-Dec-31",
-                "key3": "Tuesday, July 11, 23",
+                "key3": "Tuesday, 11 Jul 23",
                 "key4": "10-apr-2020 AD",
                 "key5": "tue 2 apr, 30 ad",
                 "key6": "Tuesday January 01, 1985",
@@ -144,28 +219,28 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_DateFunctionWithHourMinuteSecondInObject_ValidTrue()
+    public void When_TimeFunctionWithHourMinuteSecondInObject_ValidTrue()
     {
         var schema =
             """
             {
-                "key1": @date("hh:mm:ss") #string,
-                "key2": @date("h:m:s"),
-                "key3": @date("hh:mm:ss t") #string,
-                "key4": @date("h:m:s t"),
-                "key5": @date("hh:mm:ss.fff"),
-                "key6": @date("hh:mm:ss.F"),
-                "key7": @date("hh") #string,
-                "key8": @date("hh:mm")
+                "key1": @time("hh:mm:ss") #string,
+                "key2": @time("h:m:s"),
+                "key3": @time("hh:mm:ss t") #string,
+                "key4": @time("h:m:s t"),
+                "key5": @time("hh:mm:ss.fff"),
+                "key6": @time("hh:mm:ss.F"),
+                "key7": @time("hh") #string,
+                "key8": @time("hh:mm")
             }
             """;
         var json =
             """
             {
                 "key1": "11:11:11",
-                "key2": "1:10:59",
+                "key2": "01:1:59",
                 "key3": "12:59:59 AM",
-                "key4": "1:2:30 pm",
+                "key4": "1:02:3 pm",
                 "key5": "23:59:59.999",
                 "key6": "00:00:00.9999",
                 "key7": "21",
@@ -176,31 +251,33 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_DateFunctionWithUtcOffsetInObject_ValidTrue()
+    public void When_TimeFunctionWithUtcOffsetInObject_ValidTrue()
     {
         var schema =
             """
             {
-                "key1": @date("hh:mm:ss Z") #string,
-                "key2": @date("hh:mm:ss ZZ"),
-                "key3": @date("hh:mm:ss ZZZ") #string,
-                "key4": @date("h:m:s ZZ")
+                "key1": @time("hh:mm:ss Z") #string,
+                "key2": @time("hh:mm:ss t ZZ"),
+                "key3": @time("hh:mm:ss ZZZ") #string,
+                "key4": @time("h:m:s ZZ"),
+                "key5": @time("h:m:s t ZZ")
             }
             """;
         var json =
             """
             {
                 "key1": "11:11:59 +06",
-                "key2": "12:59:00 -06:30",
+                "key2": "12:59:00 AM -06:30",
                 "key3": "12:00:59 -0630",
-                "key4": "23:59:59 Z"
+                "key4": "23:59:59 Z",
+                "key5": "1:59:59 PM Z"
             }
             """;
         JsonAssert.IsValid(schema, json);
     }
     
     [TestMethod]
-    public void When_DateFunctionWithPartialDateTimeInObject_ValidTrue()
+    public void When_DateFunctionWithPartialDateInObject_ValidTrue()
     {
         var schema =
             """
@@ -209,41 +286,43 @@ public class DateTests
                 "key2": @date("YY-M-D h:m:s Z"),
                 "key3": @date("D") #string,
                 "key4": @date("MM"),
-                "key5": @date("hh"),
-                "key6": @date("m") #string,
-                "key7": @date("ss") #string,
-                "key8": @date("YY") #string
+                "key5": @date("YY") #string
             }
             """;
         var json =
             """
             {
                 "key1": "31-12-2020 23:59:59.999 +06:00",
-                "key2": "34-1-3 5:8:10 +02",
+                "key2": "34-1-3 05:8:10 +02",
                 "key3": "31",
                 "key4": "12",
-                "key5": "23",
-                "key6": "59",
-                "key7": "00",
-                "key8": "24"
+                "key5": "24"
             }
             """;
         JsonAssert.IsValid(schema, json);
     }
     
     [TestMethod]
-    public void When_NestedDateFunctionInObject_ValidTrue()
+    public void When_TimeFunctionWithPartialTimeInObject_ValidTrue()
     {
         var schema =
             """
-            @date*("DD-MM-YYYY") #string*
+            {
+                "key1": @time("DD-MM-YYYY hh:mm:ss.fff ZZ"),
+                "key2": @time("YY-M-D h:m:s Z"),
+                "key3": @time("hh") #string,
+                "key4": @time("m"),
+                "key5": @time("ss") #string
+            }
             """;
         var json =
             """
             {
-                "key1": "01-01-1900",
-                "key2": "31-07-0001",
-                "key3": "29-02-2024"
+                "key1": "31-12-2020 23:59:59.999 +06:00",
+                "key2": "34-1-3 05:8:10 +02",
+                "key3": "23",
+                "key4": "59",
+                "key5": "00"
             }
             """;
         JsonAssert.IsValid(schema, json);
@@ -263,6 +342,60 @@ public class DateTests
                 "31-07-0001",
                 "29-02-2024"
             ]
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
+    
+    [TestMethod]
+    public void When_NestedDateFunctionInObject_ValidTrue()
+    {
+        var schema =
+            """
+            @date*("DD-MM-YYYY hh:mm:ss") #string*
+            """;
+        var json =
+            """
+            {
+                "key1": "01-01-1900 00:00:00",
+                "key2": "31-07-0001 23:59:59",
+                "key3": "29-02-2024 10:12:22"
+            }
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
+    
+    [TestMethod]
+    public void When_NestedTimeFunctionInArray_ValidTrue()
+    {
+        var schema =
+            """
+            @time*("hh:mm:ss") #string*
+            """;
+        var json =
+            """
+            [
+                "00:00:00",
+                "23:59:59",
+                "01:02:03"
+            ]
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
+    
+    [TestMethod]
+    public void When_NestedTimeFunctionInObject_ValidTrue()
+    {
+        var schema =
+            """
+            @time*("DD-MM-YYYY hh:mm:ss") #string*
+            """;
+        var json =
+            """
+            {
+                "key1": "01-01-1900 00:00:00",
+                "key2": "31-07-0001 23:59:59",
+                "key3": "29-02-2024 10:12:22"
+            }
             """;
         JsonAssert.IsValid(schema, json);
     }

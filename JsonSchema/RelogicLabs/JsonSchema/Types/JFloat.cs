@@ -8,7 +8,7 @@ namespace RelogicLabs.JsonSchema.Types;
 public class JFloat : JNumber, IJsonFloat, IPragmaValue<double>
 {
     public required double Value { get; init; }
-    public override JsonType Type => JsonType.Float;
+    public override JsonType Type => JsonType.FLOAT;
     
     internal JFloat(IDictionary<JNode, JNode> relations) : base(relations) { }
     

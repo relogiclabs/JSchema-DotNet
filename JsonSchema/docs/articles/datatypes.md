@@ -1,24 +1,28 @@
+<style>
+pre code { font-size: 1.3em; }
+</style>
 
 # Constraint Data Types
 Data types play a pivotal role in validating JSON data for compliance with the schema. Essentially, data types determine the kind of data that a JSON element or value can contain. This mechanism serves as a fundamental process in maintaining the accuracy, consistency, and integrity of JSON document and its structure throughout the system, where data quality and reliability are vital.
 
-In the schema document, data types are denoted by the `#` prefix. Here is an outline of all data types, including their subtypes, used in the schema document to validate a JSON document. When using multiple data types for validation, it indicates that the JSON value is considered valid if it complies with any of the specified alternative data types.
+In the schema document, data types are denoted by the `#` prefix. Here is an outline of all data types, including their subtypes, used in the schema document to validate a JSON document. When using multiple data types for validation, it indicates that the JSON value is considered valid if it complies with any of the specified alternative data types. All of these data types and their subtypes offer the flexibility of selecting the most appropriate type based on requirements.
 
 ```stylus
 #any
-  ┬
-  ├ #object
-  ├ #array
-  ├ #string
-  │   ┬
-  │   └ #date
-  ├ #number
-  │   ┬
-  │   ├ #integer
-  │   ├ #float
-  │   └ #double  
-  ├ #boolean
-  └ #null
+ ┬
+ ├ #object
+ ├ #array
+ ├ #string
+ │  ┬
+ │  ├ #date
+ │  └ #time
+ ├ #number
+ │  ┬
+ │  ├ #integer
+ │  ├ #float
+ │  └ #double  
+ ├ #boolean
+ └ #null
 ```
 
 ### The Any Data Type
@@ -45,10 +49,16 @@ This is one of the most commonly used data types in a JSON document, designed to
 #string
 ```
 
-### The Date-Time Data Type
-The date-time data type accepts only a type of string which represent a date-time specified by ISO 8601 standard. It is a subtype of string data type and thus formatted as per the JSON string specification. Here is the ISO 8601 standard [document](https://www.iso.org/iso-8601-date-and-time-format.html), which contains detailed explanations. The syntax for specifying this data type is as follows:
+### The Date Data Type
+The date data type accepts only a type of string which represent a date specified by ISO 8601 standard (date part only). It is a subtype of string data type and thus formatted as per the JSON string specification. Detailed explanations of the ISO 8601 standard can be found in this [document](https://www.iso.org/iso-8601-date-and-time-format.html). Furthermore, you can refer to this [document](/JsonSchema-DotNet/articles/datetime.html) for a detailed description of the date pattern associated with this data type. To define this data type in schema, use the following syntax:
 ```stylus
 #date
+```
+
+### The Time Data Type
+The time data type only accepts strings representing date-time (including both date and time), in accordance with the ISO 8601 standard. Similar to the date data type, it is a subtype of string data type and thus formatted as per the JSON string specification. Here is the ISO 8601 standard [document](https://www.iso.org/iso-8601-date-and-time-format.html), which contains detailed explanations. Furthermore, you can refer to this [document](/JsonSchema-DotNet/articles/datetime.html) for a detailed description of the date-time pattern associated with this data type. To define this data type in schema, use the following syntax:
+```stylus
+#time
 ```
 
 ### The Number Data Type
@@ -70,7 +80,7 @@ The float data type is also a subtype of the number data type that only accepts 
 ```
 
 ### The Double Data Type
-The double data type, as a subtype of the number data type, exclusively accepts numbers with exponents. It can either be an integral number with an exponent or a floating-point number with an exponent. This constraint distinguishes it from other number formats and makes it particularly useful for handling large numbers with exponents. All of these number data types offer the flexibility of selecting the most appropriate type based on usage requirements. To specify the double type in a schema, use the following syntax:
+The double data type, as a subtype of the number data type, exclusively accepts numbers with exponents. It can either be an integral number with an exponent or a floating-point number with an exponent. This constraint distinguishes it from other number formats and makes it particularly useful for handling large numbers with exponents. To specify the double type in a schema, use the following syntax:
 ```stylus
 #double
 ```

@@ -4,13 +4,13 @@ using static RelogicLabs.JsonSchema.Message.ErrorCode;
 namespace RelogicLabs.JsonSchema.Tests.Negative;
 
 [TestClass]
-public class DateTests
+public class DateTimeTests
 {
     [TestMethod]
     public void When_JsonNotDate_ExceptionThrown()
     {
         var schema = "#date";
-        var json = "\"This is a string\"";
+        var json = "\"This is not a valid date\"";
         
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
@@ -20,7 +20,20 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_DateFormatIncorrect_ExceptionThrown()
+    public void When_JsonNotTime_ExceptionThrown()
+    {
+        var schema = "#time";
+        var json = "\"This is not a valid time\"";
+        
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(DTYP02, exception.ErrorCode);
+        Console.WriteLine(exception);
+    }
+    
+    [TestMethod]
+    public void When_DateInputWrong_ExceptionThrown()
     {
         var schema = """ @date("DD-MM-YY") """;
         var json = """ "99-09-01" """;
@@ -32,7 +45,19 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_DayOutOfRange_ExceptionThrown()
+    public void When_TimeInputWrong_ExceptionThrown()
+    {
+        var schema = """ @time("hh:mm:ss t") """;
+        var json = """ "13:10:10 PM" """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(DHUR03, exception.ErrorCode);
+        Console.WriteLine(exception);
+    }
+    
+    [TestMethod]
+    public void When_DateDayOutOfRange_ExceptionThrown()
     {
         var schema = """ @date("DD-MM-YYYY") """;
         var json = """ "29-02-1939" """;
@@ -44,7 +69,7 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_DayOutOfRange2_ExceptionThrown()
+    public void When_DateDayOutOfRange2_ExceptionThrown()
     {
         var schema = """ @date("DD-MM-YYYY") """;
         var json = """ "32-12-1939" """;
@@ -56,7 +81,7 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidMonthFullNameFormat_ExceptionThrown()
+    public void When_InvalidDateMonthFullName_ExceptionThrown()
     {
         var schema = """ @date("MMMM DD, YYYY G") """;
         var json = """ "Septembar 01, 1939 AD" """;
@@ -68,7 +93,7 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidMonthShortNameFormat_ExceptionThrown()
+    public void When_InvalidDateMonthShortName_ExceptionThrown()
     {
         var schema = """ @date("MMM DD, YYYY G") """;
         var json = """ "Sap 01, 1939 AD" """;
@@ -80,7 +105,7 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidMonthNumberFormat_ExceptionThrown()
+    public void When_InvalidDateMonthNumber_ExceptionThrown()
     {
         var schema = """ @date("MM-DD, YYYY G") """;
         var json = """ "Sep-01, 1939 AD" """;
@@ -92,7 +117,7 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidMonthNumberRange_ExceptionThrown()
+    public void When_InvalidDateMonthNumberRange_ExceptionThrown()
     {
         var schema = """ @date("MM-DD, YYYY G") """;
         var json = """ "13-01, 1939 AD" """;
@@ -104,7 +129,7 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidWeekdayFormat_ExceptionThrown()
+    public void When_InvalidDateWeekdayInput_ExceptionThrown()
     {
         var schema = """ @date("DDD, MMM DD, YYYY G") """;
         var json = """ "Fry, Sep 01, 1939 AD" """;
@@ -116,7 +141,7 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_ConflictingInfoInInput_ExceptionThrown()
+    public void When_ConflictingDateInfoInInput_ExceptionThrown()
     {
         var schema = """ @date("MMMM, DD-MM-YYYY") """;
         var json = """ "January, 01-12-1939" """;
@@ -128,7 +153,19 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidWeekday_ExceptionThrown()
+    public void When_ConflictingTimeInfoInInput_ExceptionThrown()
+    {
+        var schema = """ @time("hh, hh:mm:ss") """;
+        var json = """ "12, 11:10:12" """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(DCNF01, exception.ErrorCode);
+        Console.WriteLine(exception);
+    }
+    
+    [TestMethod]
+    public void When_InvalidDateWeekday_ExceptionThrown()
     {
         var schema = """ @date("DDD, MMM DD, YYYY G") """;
         var json = """ "Sat, Sep 01, 1939 AD" """;
@@ -140,7 +177,7 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidYearFormat_ExceptionThrown()
+    public void When_InvalidDateYearInput_ExceptionThrown()
     {
         var schema = """ @date("DD-MM-YY") """;
         var json = """ "01-09-Twenty" """;
@@ -152,7 +189,7 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidYearFormat2_ExceptionThrown()
+    public void When_InvalidDateYearInput2_ExceptionThrown()
     {
         var schema = """ @date("DD-MM-YYYY") """;
         var json = """ "01-09-0000" """;
@@ -164,7 +201,7 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidYearFormat3_ExceptionThrown()
+    public void When_InvalidDateYearInput3_ExceptionThrown()
     {
         var schema = """ @date("DD-MM-YY") """;
         var json = """ "01-09-1939" """;
@@ -176,7 +213,7 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidEraFormat_ExceptionThrown()
+    public void When_InvalidDateEraInput_ExceptionThrown()
     {
         var schema = """ @date("DD-MM-YYYY G") """;
         var json = """ "02-12-1939 AA" """;
@@ -188,9 +225,9 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidDateTextMissing_ExceptionThrown()
+    public void When_InvalidTimeTextMissing_ExceptionThrown()
     {
-        var schema = """ @date("DD-MM-YYYY 'Time' hh:mm:ss") """;
+        var schema = """ @time("DD-MM-YYYY 'Time' hh:mm:ss") """;
         var json = """ "01-11-1939 10:00:00" """;
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
@@ -200,9 +237,9 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidHourFormat_ExceptionThrown()
+    public void When_InvalidTimeHourInput_ExceptionThrown()
     {
-        var schema = """ @date("hh:mm:ss") """;
+        var schema = """ @time("hh:mm:ss") """;
         var json = """ "Twelve:00:00" """;
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
@@ -212,9 +249,9 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidHourRange_ExceptionThrown()
+    public void When_InvalidTimeHourRange_ExceptionThrown()
     {
-        var schema = """ @date("hh:mm:ss") """;
+        var schema = """ @time("hh:mm:ss") """;
         var json = """ "24:00:00" """;
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
@@ -224,9 +261,9 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidMinuteFormat_ExceptionThrown()
+    public void When_InvalidTimeMinuteInput_ExceptionThrown()
     {
-        var schema = """ @date("hh:mm:ss") """;
+        var schema = """ @time("hh:mm:ss") """;
         var json = """ "23:one:00" """;
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
@@ -236,9 +273,9 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidMinuteRange_ExceptionThrown()
+    public void When_InvalidTimeMinuteRange_ExceptionThrown()
     {
-        var schema = """ @date("hh:mm:ss") """;
+        var schema = """ @time("hh:mm:ss") """;
         var json = """ "23:60:00" """;
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
@@ -248,9 +285,9 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidSecondFormat_ExceptionThrown()
+    public void When_InvalidTimeSecondInput_ExceptionThrown()
     {
-        var schema = """ @date("hh:mm:ss") """;
+        var schema = """ @time("hh:mm:ss") """;
         var json = """ "23:59:Three" """;
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
@@ -260,9 +297,9 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidSecondRange_ExceptionThrown()
+    public void When_InvalidTimeSecondRange_ExceptionThrown()
     {
-        var schema = """ @date("hh:mm:ss") """;
+        var schema = """ @time("hh:mm:ss") """;
         var json = """ "23:59:60" """;
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
@@ -272,9 +309,9 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidSecondFractionFormat_ExceptionThrown()
+    public void When_InvalidTimeSecondFraction_ExceptionThrown()
     {
-        var schema = """ @date("hh:mm:ss.fff") """;
+        var schema = """ @time("hh:mm:ss.fff") """;
         var json = """ "23:59:00.11" """;
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
@@ -284,19 +321,19 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidHourFormatWithExtra0_ExceptionThrown()
+    public void When_InvalidTimeNoHourInput_ExceptionThrown()
     {
-        var schema = """ @date("h:m:s") """;
-        var json = """ "01:3:8" """;
+        var schema = """ @time("h:m:s") """;
+        var json = """ ":3:8" """;
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DSYM01, exception.ErrorCode);
+        Assert.AreEqual(DHUR02, exception.ErrorCode);
         Console.WriteLine(exception);
     }
     
     [TestMethod]
-    public void When_InvalidTimeFormat_ExceptionThrown()
+    public void When_InvalidTimeInput_ExceptionThrown()
     {
         var schema = """ @date("hh mm ss") """;
         var json = """ "01:10:08" """;
@@ -308,9 +345,9 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidAmPmFormat_ExceptionThrown()
+    public void When_InvalidTimeAmPmInput_ExceptionThrown()
     {
-        var schema = """ @date("hh:mm:ss t") """;
+        var schema = """ @time("hh:mm:ss t") """;
         var json = """ "12:00:00 AD" """;
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
@@ -320,9 +357,9 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_Invalid12HourFormat_ExceptionThrown()
+    public void When_InvalidTime12HourInput_ExceptionThrown()
     {
-        var schema = """ @date("hh:mm:ss t") """;
+        var schema = """ @time("hh:mm:ss t") """;
         var json = """ "13:00:00 AM" """;
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
@@ -332,9 +369,21 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidUTCOffsetFormat_ExceptionThrown()
+    public void When_InvalidTimeAmPmMissing_ExceptionThrown()
     {
-        var schema = """ @date("hh:mm:ss Z") """;
+        var schema = """ @time("hh:mm:sst") """;
+        var json = """ "11:11:11" """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(DTAP01, exception.ErrorCode);
+        Console.WriteLine(exception);
+    }
+    
+    [TestMethod]
+    public void When_InvalidTimeUTCOffsetInput_ExceptionThrown()
+    {
+        var schema = """ @time("hh:mm:ss Z") """;
         var json = """ "11:00:00 Six" """;
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
@@ -344,9 +393,9 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidUTCOffsetHourRange_ExceptionThrown()
+    public void When_InvalidTimeUTCOffsetHourRange_ExceptionThrown()
     {
-        var schema = """ @date("hh:mm:ss Z") """;
+        var schema = """ @time("hh:mm:ss Z") """;
         var json = """ "11:00:00 +14" """;
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
@@ -356,9 +405,9 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidUTCOffsetMinuteRange_ExceptionThrown()
+    public void When_InvalidTimeUTCOffsetMinuteRange_ExceptionThrown()
     {
-        var schema = """ @date("hh:mm:ss ZZ") """;
+        var schema = """ @time("hh:mm:ss ZZ") """;
         var json = """ "11:00:00 +10:60" """;
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
@@ -368,9 +417,22 @@ public class DateTests
     }
     
     [TestMethod]
-    public void When_InvalidPatternCauseLexerError_ExceptionThrown()
+    public void When_InvalidDatePatternCauseLexerError_ExceptionThrown()
     {
         var schema = """ @date("ABCD") """;
+        var json = "\"23-09-01T14:35:10.555\"";
+        
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(DLEX01, exception.ErrorCode);
+        Console.WriteLine(exception);
+    }
+    
+    [TestMethod]
+    public void When_InvalidTimePatternCauseLexerError_ExceptionThrown()
+    {
+        var schema = """ @time("ABCD") """;
         var json = "\"23-09-01T14:35:10.555\"";
         
         JsonSchema.IsValid(schema, json);

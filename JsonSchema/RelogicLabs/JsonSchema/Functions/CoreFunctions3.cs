@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-using RelogicLabs.JsonSchema.Date;
+using RelogicLabs.JsonSchema.Time;
 using RelogicLabs.JsonSchema.Exceptions;
 using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Types;
@@ -118,27 +118,35 @@ public partial class CoreFunctions
         return true;
     }
 
-    public bool Date(JString target, JString pattern)
+    public bool Date(JString target, JString pattern) 
+        => DateTime(target, pattern, DateTimeType.DATE_TYPE);
+
+    public bool Time(JString target, JString pattern) 
+        => DateTime(target, pattern, DateTimeType.TIME_TYPE);
+
+    private bool DateTime(JString target, JString pattern, DateTimeType type)
     {
         try
         {
-            var dateValidator = new DateValidator(pattern);
-            dateValidator.Validate(target);
+            var validator = new DateTimeValidator(pattern);
+            if(type == DateTimeType.DATE_TYPE) validator.ValidateDate(target);
+            else if(type == DateTimeType.TIME_TYPE) validator.ValidateTime(target);
+            else throw new ArgumentException($"Invalid {nameof(DateTimeType)} value");
             return true;
         }
-        catch(DateLexerException ex)
+        catch(DateTimeLexerException ex)
         {
             return FailWith(new JsonSchemaException(
                 new ErrorDetail(ex.ErrorCode, ex.Message),
-                new ExpectedDetail(Function, "a valid date-time pattern"),
+                new ExpectedDetail(Function, $"a valid {type} pattern"),
                 new ActualDetail(target, $"found {pattern.DoubleQuote()} that is invalid"), 
                 ex));
         }
-        catch(InvalidDateException ex)
+        catch(InvalidDateTimeException ex)
         {
             return FailWith(new JsonSchemaException(
                 new ErrorDetail(ex.ErrorCode, ex.Message),
-                new ExpectedDetail(Function, $"a valid date-time formatted as {pattern.DoubleQuote()}"),
+                new ExpectedDetail(Function, $"a valid {type} formatted as {pattern.DoubleQuote()}"),
                 new ActualDetail(target, $"found {target.DoubleQuote()} that is invalid or malformatted"), 
                 ex));
         }
