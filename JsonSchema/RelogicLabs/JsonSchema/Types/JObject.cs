@@ -10,7 +10,7 @@ namespace RelogicLabs.JsonSchema.Types;
 
 public class JObject : JBranch, IJsonType<JObject>, IJsonComposite
 {
-    public JsonType Type => JsonType.Object;
+    public JsonType Type => JsonType.OBJECT;
     public override IEnumerable<JNode> Children => Properties.Values;
     public required IJsonProperties Properties { get; init; }
 

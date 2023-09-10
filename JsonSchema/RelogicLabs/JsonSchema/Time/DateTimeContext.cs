@@ -3,16 +3,16 @@ using RelogicLabs.JsonSchema.Exceptions;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 using static System.DayOfWeek;
 
-namespace RelogicLabs.JsonSchema.Date;
+namespace RelogicLabs.JsonSchema.Time;
 
-internal class DateContext
+internal class DateTimeContext
 {
     private const int PIVOT_YEAR = 50;
     private static readonly int[] _DaysInMonth = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     private static readonly Dictionary<string, int> _Months = new();
     private static readonly Dictionary<string, DayOfWeek> _Weekdays = new();
 
-    static DateContext()
+    static DateTimeContext()
     {
         AddMonth("january", "jan", 1);
         AddMonth("february", "feb", 2);
@@ -62,6 +62,11 @@ internal class DateContext
     private int _fraction = _UNSET;
     private int _utcOffsetHour = _UNSET;
     private int _utcOffsetMinute = _UNSET;
+    
+    public DateTimeType Type { get; }
+
+    public DateTimeContext(DateTimeType type)
+        => Type = type;
 
     public void SetEra(string era)
     {
@@ -69,16 +74,16 @@ internal class DateContext
         {
             "BC" => 1,
             "AD" => 2,
-            _ => throw new InvalidDateException(DERA02, "Unknown era found")
+            _ => throw new InvalidDateTimeException(DERA02, $"Invalid {Type} era input")
         };
         SetField(ref _era, eraNum);
     }
     
-    public void SetYear(int year)
+    public void SetYear(int year, int digitNum)
     {
-        if(year is < 1 or > 9999) throw new InvalidDateException(DYAR03, 
-            "Invalid date year out of range");
-        year = year < 100 ? ToFourDigitYear(year) : year;
+        if(year is < 1 or > 9999) throw new InvalidDateTimeException(DYAR03, 
+            $"Invalid {Type} year out of range");
+        year = digitNum <= 2 ? ToFourDigitYear(year) : year;
         SetField(ref _year, year);
     }
     
@@ -90,8 +95,8 @@ internal class DateContext
     
     public void SetMonth(int month)
     {
-        if(month is < 1 or > 12) throw new InvalidDateException(DMON05, 
-            "Invalid date month out of range");
+        if(month is < 1 or > 12) throw new InvalidDateTimeException(DMON05, 
+            $"Invalid {Type} month out of range");
         SetField(ref _month, month);
     }
     
@@ -103,8 +108,8 @@ internal class DateContext
     
     public void SetDay(int day)
     {
-        if(day is < 1 or > 31) throw new InvalidDateException(DDAY04,
-            "Invalid date day out of range");
+        if(day is < 1 or > 31) throw new InvalidDateTimeException(DDAY04,
+            $"Invalid {Type} day out of range");
         SetField(ref _day, day);
     }
     
@@ -114,37 +119,37 @@ internal class DateContext
         {
             "am" => 1,
             "pm" => 2,
-            _ => throw new InvalidDateException(DTAP02, 
-                "Unknown time period found")
+            _ => throw new InvalidDateTimeException(DTAP02, 
+                $"Invalid {Type} hour AM/PM input")
         };
         if(_hour != _UNSET && _hour is < 1 or > 12)
-            throw new InvalidDateException(DHUR03, 
-                "Invalid date hour AM/PM out of range");
+            throw new InvalidDateTimeException(DHUR03, 
+                $"Invalid {Type} hour AM/PM out of range");
         SetField(ref _amPm, amPmNum);
     }
     
     public void SetHour(int hour)
     {
         if(_amPm != _UNSET && _hour is < 1 or > 12)
-            throw new InvalidDateException(DHUR04, 
-                "Invalid date hour AM/PM out of range");
+            throw new InvalidDateTimeException(DHUR04, 
+                $"Invalid {Type} hour AM/PM out of range");
         if(hour is < 0 or > 23)
-            throw new InvalidDateException(DHUR06,
-                "Invalid date hour out of range");
+            throw new InvalidDateTimeException(DHUR06,
+                $"Invalid {Type} hour out of range");
         SetField(ref _hour, hour);
     }
     
     public void SetMinute(int minute)
     {
-        if(minute is < 0 or > 59) throw new InvalidDateException(DMIN03,
-            "Invalid date minute out of range");
+        if(minute is < 0 or > 59) throw new InvalidDateTimeException(DMIN03,
+            $"Invalid {Type} minute out of range");
         SetField(ref _minute, minute);
     }
     
     public void SetSecond(int second)
     {
-        if(second is < 0 or > 59) throw new InvalidDateException(DSEC03,
-            "Invalid date second out of range");
+        if(second is < 0 or > 59) throw new InvalidDateTimeException(DSEC03,
+            $"Invalid {Type} second out of range");
         SetField(ref _second, second);
     }
     
@@ -152,27 +157,27 @@ internal class DateContext
 
     public void SetUtcOffset(int hour, int minute)
     {
-        if(hour is < -12 or > 12) throw new InvalidDateException(DUTC04,
-            "Invalid date UTC offset hour out of range");
-        if(minute is < 0 or > 59) throw new InvalidDateException(DUTC05,
-                "Invalid date UTC offset minute out of range");
+        if(hour is < -12 or > 12) throw new InvalidDateTimeException(DUTC04, 
+            $"Invalid {Type} UTC offset hour out of range");
+        if(minute is < 0 or > 59) throw new InvalidDateTimeException(DUTC05,
+            $"Invalid {Type} UTC offset minute out of range");
         SetField(ref _utcOffsetHour, hour);
         SetField(ref _utcOffsetMinute, minute);
     }
     
-    private static void SetField(ref int field, int value)
+    private void SetField(ref int field, int value)
     {
         if(field != _UNSET && field != value) 
-            throw new InvalidDateException(DCNF01, 
-                "Conflicting date segments");
+            throw new InvalidDateTimeException(DCNF01, 
+                $"Conflicting {Type} segments input");
         field = value;
     }
     
-    private static void SetField(ref DayOfWeek field, DayOfWeek value)
+    private void SetField(ref DayOfWeek field, DayOfWeek value)
     {
         if(field != (DayOfWeek) _UNSET && field != value) 
-            throw new InvalidDateException(DCNF02, 
-                "Conflicting date segments");
+            throw new InvalidDateTimeException(DCNF02, 
+                $"Conflicting {Type} segments input");
         field = value;
     }
 
@@ -188,27 +193,26 @@ internal class DateContext
             {
                 _DaysInMonth[2] = IsLeapYear(_year)? 29 : 28;
                 if(_day < 1 || _day > _DaysInMonth[_month])
-                    throw new InvalidDateException(DDAY03,
-                        "Invalid date day out of range");
+                    throw new InvalidDateTimeException(DDAY03,
+                        $"Invalid {Type} day out of range");
                 dateTime = new DateTime(_year, _month, _day);
                 if(_weekday != (DayOfWeek) _UNSET && dateTime.DayOfWeek != _weekday)
-                    throw new InvalidDateException(DWKD03, "Invalid date weekday");
+                    throw new InvalidDateTimeException(DWKD03, $"Invalid {Type} weekday input");
             }
 
             if(IsAllSet(_year, _month)) dateTime = new DateTime(_year, _month, 1);
             if(IsAllSet(_year)) dateTime = new DateTime(_year, 1, 1);
         }
-        catch(InvalidDateException) { throw; }
+        catch(InvalidDateTimeException) { throw; }
         catch(Exception ex)
         {
-            throw new InvalidDateException(DINV01,
-                "Invalid date year, month or day out of range", ex);
+            throw new InvalidDateTimeException(DINV01,
+                $"Invalid {Type} year, month or day out of range", ex);
         }
 
         if(IsAllSet(_hour, _amPm)) ConvertTo24Hour();
         if(_hour != _UNSET && _hour is < 0 or > 23)
-            throw new InvalidDateException(DHUR05,
-            "Invalid date hour out of range");
+            throw new InvalidDateTimeException(DHUR05, $"Invalid {Type} hour out of range");
     }
     
     private void ConvertTo24Hour()

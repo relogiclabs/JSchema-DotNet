@@ -1,38 +1,43 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <PackageId>RelogicLabs.JsonSchema</PackageId>
+        <Description>A simplified, concise, intuitive, and extensible JSON Schema</Description>
+        <Authors>Relogic Labs</Authors>
+        <Company>Relogic Labs</Company>
+        <Version>1.1.0</Version>
+        <PackageVersion>1.1.0</PackageVersion>
+        <AssemblyVersion>1.1.0</AssemblyVersion>
+        <PackageTags>JsonSchema;Schema;Validation;Json</PackageTags>
+        <Copyright>Copyright © Relogic Labs. All rights reserved.</Copyright>
+        <NeutralLanguage>en</NeutralLanguage>
+        <AssemblyName>RelogicLabs.JsonSchema</AssemblyName>
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <AssemblyName>RelogicLabs.JsonSchema</AssemblyName>
-        <Company>Relogic Labs</Company>
-        <RootNamespace/>
+        <RootNamespace>RelogicLabs</RootNamespace>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageIcon>icon.png</PackageIcon>
+        <PackageProjectUrl>https://www.relogiclabs.com/p/json-schema.html</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/relogiclabs/JsonSchema-DotNet.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryBranch>master</RepositoryBranch>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Antlr4.Runtime.Standard" Version="4.13.0"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Compile Remove="docs\**"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <EmbeddedResource Remove="docs\**"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Remove="docs\**"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <InternalsVisibleTo Include="RelogicLabs.JsonSchema.Tests"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <AssemblyAttribute Include="System.CLSCompliantAttribute">
             <_Parameter1>true</_Parameter1>
         </AssemblyAttribute>
+        <None Include="resources\icon.png" Pack="true" PackagePath="\"/>
+        <None Include="..\README.md" Pack="true" PackagePath="\"/>
+        <Compile Remove="docs\**"/>
+        <EmbeddedResource Remove="docs\**"/>
+        <None Remove="docs\**"/>
     </ItemGroup>
-
 </Project>

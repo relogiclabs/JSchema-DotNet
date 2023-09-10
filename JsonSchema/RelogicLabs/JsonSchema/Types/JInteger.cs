@@ -8,7 +8,7 @@ namespace RelogicLabs.JsonSchema.Types;
 public class JInteger : JNumber, IPragmaValue<long>
 {
     public required long Value { get; init; }
-    public override JsonType Type => JsonType.Integer;
+    public override JsonType Type => JsonType.INTEGER;
     
     internal JInteger(IDictionary<JNode, JNode> relations) : base(relations) { }
     

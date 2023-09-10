@@ -7,7 +7,7 @@ namespace RelogicLabs.JsonSchema.Types;
 
 public class JBoolean : JPrimitive, IJsonType<JBoolean>, IPragmaValue<bool>
 {
-    public JsonType Type => JsonType.Boolean;
+    public JsonType Type => JsonType.BOOLEAN;
     public required bool Value { get; init; }
     internal JBoolean(IDictionary<JNode, JNode> relations) : base(relations) { }
 

@@ -4,7 +4,7 @@ public class JNull : JPrimitive, IJsonType<JNull>
 {
     public const string NullMarker = "null";
     
-    public JsonType Type => JsonType.Null;
+    public JsonType Type => JsonType.NULL;
     internal JNull(IDictionary<JNode, JNode> relations) : base(relations) { }
     public override bool Match(JNode node) => CheckType<JNull>(node);
 
@@ -15,7 +15,7 @@ public class JNull : JPrimitive, IJsonType<JNull>
         return obj.GetType() == this.GetType();
     }
 
-    public override int GetHashCode() => base.GetHashCode();
+    public override int GetHashCode() => NullMarker.GetHashCode();
     public override string ToJson() => NullMarker;
     public override string ToString() => ToJson();
 }

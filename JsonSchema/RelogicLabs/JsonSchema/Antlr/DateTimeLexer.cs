@@ -27,7 +27,7 @@ using Antlr4.Runtime.Misc;
 using DFA = Antlr4.Runtime.Dfa.DFA;
 
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.13.0")]
-internal partial class DateLexer : Lexer {
+internal partial class DateTimeLexer : Lexer {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
@@ -56,10 +56,10 @@ internal partial class DateLexer : Lexer {
 	};
 
 
-	public DateLexer(ICharStream input)
+	public DateTimeLexer(ICharStream input)
 	: this(input, Console.Out, Console.Error) { }
 
-	public DateLexer(ICharStream input, TextWriter output, TextWriter errorOutput)
+	public DateTimeLexer(ICharStream input, TextWriter output, TextWriter errorOutput)
 	: base(input, output, errorOutput)
 	{
 		Interpreter = new LexerATNSimulator(this, _ATN, decisionToDFA, sharedContextCache);
@@ -91,7 +91,7 @@ internal partial class DateLexer : Lexer {
 		}
 	}
 
-	public override string GrammarFileName { get { return "DateLexer.g4"; } }
+	public override string GrammarFileName { get { return "DateTimeLexer.g4"; } }
 
 	public override string[] RuleNames { get { return ruleNames; } }
 
@@ -101,7 +101,7 @@ internal partial class DateLexer : Lexer {
 
 	public override int[] SerializedAtn { get { return _serializedATN; } }
 
-	static DateLexer() {
+	static DateTimeLexer() {
 		decisionToDFA = new DFA[_ATN.NumberOfDecisions];
 		for (int i = 0; i < _ATN.NumberOfDecisions; i++) {
 			decisionToDFA[i] = new DFA(_ATN.GetDecisionState(i), i);

@@ -4,17 +4,18 @@ using RelogicLabs.JsonSchema.Exceptions;
 using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Utilities;
 
-namespace RelogicLabs.JsonSchema.Date;
+namespace RelogicLabs.JsonSchema.Time;
 
-internal class DateValidator
+internal class DateTimeValidator
 {
-    public const string ISO_8601 = "YYYY-MM-DD'T'hh:mm:ss.fffZZ";
+    public const string ISO_8601_DATE = "YYYY-MM-DD";
+    public const string ISO_8601_TIME = "YYYY-MM-DD'T'hh:mm:ss.fffZZ";
 
     private static readonly Dictionary<string, SegmentProcessor> _Processors = new();
-    private readonly DateLexer _dateLexer;
+    private readonly DateTimeLexer _dateTimeLexer;
     private readonly IList<IToken> _lexerTokens;
 
-    static DateValidator()
+    static DateTimeValidator()
     {
         _Processors.Add("TEXT", SegmentProcessor.Text);
         _Processors.Add("SYMBOL", SegmentProcessor.Symbol);
@@ -48,40 +49,57 @@ internal class DateValidator
         _Processors.Add("UTC_OFFSET_TIME1", SegmentProcessor.UtcOffsetTime1);
         _Processors.Add("UTC_OFFSET_TIME2", SegmentProcessor.UtcOffsetTime2);
     }
-
-    public DateValidator(string pattern)
-    {
-        if(pattern == "ISO-8601") pattern = ISO_8601;
-        _dateLexer = new DateLexer(CharStreams.fromString(pattern));
-        _dateLexer.RemoveErrorListeners();
-        _dateLexer.AddErrorListener(LexerErrorListener.Date);
-        _lexerTokens = _dateLexer.GetAllTokens();
-    }
     
-    public void Validate(string input)
+    public DateTimeValidator(string pattern)
     {
-        var _dateContext = new DateContext();
-        _dateLexer.Reset();
+        _dateTimeLexer = new DateTimeLexer(CharStreams.fromString(pattern));
+        _dateTimeLexer.RemoveErrorListeners();
+        _dateTimeLexer.AddErrorListener(LexerErrorListener.DateTime);
+        _lexerTokens = _dateTimeLexer.GetAllTokens();
+    }
+
+    private void Validate(string input, DateTimeContext context)
+    {
         foreach(var token in _lexerTokens)
         {
-            var processor = _Processors[_dateLexer.Vocabulary.GetSymbolicName(token.Type)];
-            input = processor.Process(input, token, _dateContext);
+            var processor = _Processors[_dateTimeLexer.Vocabulary.GetSymbolicName(token.Type)];
+            input = processor.Process(input, token, context);
         }
-        if(input.Length != 0) throw new InvalidDateException(ErrorCode.DINV02, 
-            "Invalid date input format");
+        if(input.Length != 0) throw new InvalidDateTimeException(ErrorCode.DINV02, 
+            $"Invalid {context.Type} input format");
         
-        _dateContext.Validate();
-        DebugUtils.Print(_dateContext);
+        context.Validate();
+        DebugUtils.Print(context);
     }
+    
+    public void ValidateDate(string input) 
+        => Validate(input, new DateTimeContext(DateTimeType.DATE_TYPE));
 
-    public bool IsDate(string input)
+    public void ValidateTime(string input) 
+        => Validate(input, new DateTimeContext(DateTimeType.TIME_TYPE));
+
+    public bool IsValidDate(string input)
     {
         try
         {
-            Validate(input);
+            ValidateDate(input);
             return true;
         }
-        catch(InvalidDateException ex)
+        catch(InvalidDateTimeException ex)
+        {
+            Console.Error.WriteLine(ex);
+            return false;
+        }
+    }
+
+    public bool IsValidTime(string input)
+    {
+        try
+        {
+            ValidateTime(input);
+            return true;
+        }
+        catch(InvalidDateTimeException ex)
         {
             Console.Error.WriteLine(ex);
             return false;

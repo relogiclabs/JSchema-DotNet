@@ -8,7 +8,7 @@ namespace RelogicLabs.JsonSchema.Types;
 
 public class JArray : JBranch, IJsonType<JArray>, IJsonComposite
 {
-    public JsonType Type => JsonType.Array;
+    public JsonType Type => JsonType.ARRAY;
     public required IList<JNode> Elements { get; init; }
     public override IEnumerable<JNode> Children => Elements;
     
