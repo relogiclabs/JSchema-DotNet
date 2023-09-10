@@ -112,9 +112,11 @@ public class AggregatedTests
                 /*currently only one role is allowed by system*/
                 "role": "user" #string,
                 "isActive": #boolean, //user account current status
+                "registeredAt": #time,
                 "profile": {
                     "firstName": @regex("[A-Za-z ]{3,50}") #string,
                     "lastName": @regex("[A-Za-z ]{3,50}") #string,
+                    "dateOfBirth": #date,
                     "age": @range(18, 130) #integer,
                     "email": @email #string,
                     "pictureURL": @url #string,
@@ -134,9 +136,11 @@ public class AggregatedTests
                 "username": "johndoe",
                 "role": "user",
                 "isActive": true,
+                "registeredAt": "2023-09-06T15:10:30.639Z",
                 "profile": {
                     "firstName": "John",
                     "lastName": "Doe",
+                    "dateOfBirth": "1993-06-17",
                     "age": 30,
                     "email": "john.doe@example.com",
                     "pictureURL": "https://example.com/picture.jpg",
@@ -193,9 +197,11 @@ public class AggregatedTests
                 /*currently only one role is allowed by system*/
                 "role": "user" #string,
                 "isActive": #boolean, //user account current status
+                "registeredAt": #time,
                 "profile": {
                     "firstName": @regex("[A-Za-z]{3,50}") #string,
                     "lastName": @regex("[A-Za-z]{3,50}") #string,
+                    "dateOfBirth": @date("DD-MM-YYYY") #string,
                     "age": @range(18, 128) #integer,
                     "email": @email #string,
                     "pictureURL": @url #string,
@@ -227,9 +233,11 @@ public class AggregatedTests
                 "username": "johndoe",
                 "role": "user",
                 "isActive": true,
+                "registeredAt": "2023-09-06T15:10:30.639Z",
                 "profile": {
                     "firstName": "John",
                     "lastName": "Doe",
+                    "dateOfBirth": "17-06-1993",
                     "age": 30,
                     "email": "john.doe@example.com",
                     "pictureURL": "https://example.com/picture.jpg",
