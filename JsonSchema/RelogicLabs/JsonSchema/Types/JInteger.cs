@@ -8,10 +8,9 @@ namespace RelogicLabs.JsonSchema.Types;
 public class JInteger : JNumber, IPragmaValue<long>
 {
     public required long Value { get; init; }
-    public override JsonType Type => JsonType.INTEGER;
-    
+
     internal JInteger(IDictionary<JNode, JNode> relations) : base(relations) { }
-    
+
     public override bool Match(JNode node)
     {
         var other = CastType<JInteger>(node);
@@ -32,10 +31,10 @@ public class JInteger : JNumber, IPragmaValue<long>
         return Value == other.Value;
     }
 
+    public override JsonType Type => JsonType.INTEGER;
     public override int GetHashCode() => Value.GetHashCode();
     public static implicit operator long(JInteger integer) => integer.Value;
     public static implicit operator double(JInteger integer) => integer.Value;
     protected override double ToDouble() => Convert.ToDouble(Value);
-    public override string ToJson() => Value.ToString();
-    public override string ToString() => ToJson();
+    public override string ToString() => Value.ToString();
 }

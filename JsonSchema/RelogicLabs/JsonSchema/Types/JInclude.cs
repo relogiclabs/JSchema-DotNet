@@ -18,6 +18,5 @@ public class JInclude : JDirective
     }
 
     public override int GetHashCode() => ClassName.GetHashCode();
-    public override string ToJson() => $"{IncludeMarker} {ClassName}";
-    public override string ToString() => ToJson();
+    public override string ToString() => $"{IncludeMarker} {ClassName}";
 }

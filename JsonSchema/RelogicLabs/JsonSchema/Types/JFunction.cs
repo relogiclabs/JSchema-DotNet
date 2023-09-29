@@ -5,6 +5,7 @@ using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 using static RelogicLabs.JsonSchema.Message.ErrorDetail;
+using static RelogicLabs.JsonSchema.Types.INestedMode;
 
 namespace RelogicLabs.JsonSchema.Types;
 
@@ -20,12 +21,12 @@ public class JFunction : JBranch, INestedMode
     public override bool Match(JNode node)
     {
         if(!Nested) return InvokeFunction(node);
-        if(node is not IJsonComposite composite) return FailWith(
+        if(node is not JComposite composite) return FailWith(
             new JsonSchemaException(
                 new ErrorDetail(FUNC06, InvalidNestedFunction),
                 ExpectedDetail.AsInvalidFunction(this),
                 ActualDetail.AsInvalidFunction(node)));
-        IList<JNode> components = composite.ExtractComponents();
+        IList<JNode> components = composite.GetComponents();
         return components.Select(InvokeFunction).ForEachTrue();
     }
 
@@ -43,14 +44,13 @@ public class JFunction : JBranch, INestedMode
         }
     }
 
-    public bool IsApplicable(JNode node) => !Nested || node is IJsonComposite;
-    public override string ToJson()
+    public bool IsApplicable(JNode node) => !Nested || node is JComposite;
+    public override string ToString() => ToString(false);
+    public string ToString(bool baseForm)
     {
-        StringBuilder builder = new StringBuilder(Name);
-        if(Nested) builder.Append(INestedMode.NestedMarker);
-        builder.Append(Arguments.ToJson().ToString(", ", "(", ")"));
+        StringBuilder builder = new(Name);
+        if(Nested && !baseForm) builder.Append(NestedMarker);
+        builder.Append(Arguments.ToString(", ", "(", ")"));
         return builder.ToString();
     }
-
-    public override string ToString() => ToJson();
 }

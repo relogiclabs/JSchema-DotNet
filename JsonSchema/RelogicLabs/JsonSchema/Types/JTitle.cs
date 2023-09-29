@@ -6,5 +6,5 @@ public class JTitle : JDirective
     public required string Title { get; init; }
     internal JTitle(IDictionary<JNode, JNode> relations) : base(relations) { }
 
-    public override string ToJson() => $"{TitleMarker} {Title}";
+    public override string ToString() => $"{TitleMarker} {Title}";
 }

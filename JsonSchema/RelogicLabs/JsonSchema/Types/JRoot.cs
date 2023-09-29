@@ -30,6 +30,7 @@ public class JRoot : JNode
         AddNodesToList(Includes);
         AddNodesToList(Pragmas);
         AddNodesToList(Definitions);
+        AddNodeToList(Value);
         _children = list.AsReadOnly();
         return (JRoot) base.Initialize();
 
@@ -45,17 +46,21 @@ public class JRoot : JNode
         return Value.Match(other.Value);
     }
 
-    public override string ToJson()
+    public override string ToString()
     {
         StringBuilder builder = new();
-        builder.Append(Title?.ToJson().ToString(suffix: NewLine));
-        builder.Append(Version?.ToJson().ToString(suffix: NewLine));
-        builder.Append(Includes?.ToJson().ToString(NewLine, suffix: NewLine));
-        builder.Append(Pragmas?.ToJson().ToString(NewLine, suffix: NewLine));
-        builder.Append(Definitions?.ToJson().ToString(NewLine, suffix: NewLine));
-        builder.Append(Value.ToJson());
-        return builder.ToString();
+        AppendTo(builder, Title?.ToString());
+        AppendTo(builder, Version?.ToString());
+        AppendTo(builder, Includes?.ToString(NewLine));
+        AppendTo(builder, Pragmas?.ToString(NewLine));
+        AppendTo(builder, Definitions?.ToString(NewLine));
+        AppendTo(builder, Value.ToString());
+        return builder.ToString().Trim();
     }
-
-    public override string ToString() => ToJson();
+    
+    private void AppendTo(StringBuilder builder, string? text)
+    {
+        if(text is null || text.Length == 0) return;
+        builder.Append(text).Append(NewLine);
+    }
 }

@@ -28,12 +28,12 @@ public class JDataType : JBranch, INestedMode
     public override bool Match(JNode node)
     {
         if(!Nested) return JsonType.Match(node);
-        if(node is not IJsonComposite composite) return FailWith(
+        if(node is not JComposite composite) return FailWith(
             new JsonSchemaException(
-                new ErrorDetail(DTYP01, InvalidNestedDataType),
+                new ErrorDetail(DTYP02, InvalidNestedDataType),
                 ExpectedDetail.AsInvalidDataType(this),
                 ActualDetail.AsInvalidDataType(node)));
-        IList<JNode> components = composite.ExtractComponents();
+        IList<JNode> components = composite.GetComponents();
         return components.Select(MatchCurrent).AllTrue();
     }
 
@@ -52,20 +52,20 @@ public class JDataType : JBranch, INestedMode
     internal bool MatchForReport(JNode node)
     {
         if(!Nested && !JsonType.Match(node)) return FailWith(
-            new JsonSchemaException(new ErrorDetail(DTYP02, DataTypeMismatch),
+            new JsonSchemaException(new ErrorDetail(DTYP04, DataTypeMismatch),
             ExpectedDetail.AsDataTypeMismatch(this),
             ActualDetail.AsDataTypeMismatch(node)));
-        if(node is not IJsonComposite composite) return FailWith(
+        if(node is not JComposite composite) return FailWith(
             new JsonSchemaException(
-                new ErrorDetail(DTYP01, InvalidNestedDataType),
+                new ErrorDetail(DTYP05, InvalidNestedDataType),
                 ExpectedDetail.AsInvalidDataType(this),
                 ActualDetail.AsInvalidDataType(node)));
-        IList<JNode> components = composite.ExtractComponents();
+        IList<JNode> components = composite.GetComponents();
         bool result = true;
         foreach(var c in components)
         {
             if(!MatchCurrent(c)) result &= FailWith(new JsonSchemaException(
-                new ErrorDetail(DTYP02, DataTypeMismatch),
+                new ErrorDetail(DTYP06, DataTypeMismatch),
                 ExpectedDetail.AsDataTypeMismatch(this),
                 ActualDetail.AsDataTypeMismatch(c)));
         }
@@ -82,15 +82,14 @@ public class JDataType : JBranch, INestedMode
     }
 
     internal bool IsMatchNull() => !Nested && JsonType == JsonType.NULL;
-    public bool IsApplicable(JNode node) => !Nested || node is IJsonComposite;
+    public bool IsApplicable(JNode node) => !Nested || node is JComposite;
     public override int GetHashCode() => JsonType.GetHashCode();
-    public override string ToJson()
+    public override string ToString() => ToString(false);
+    public string ToString(bool baseForm)
     {
-        var builder = new StringBuilder(JsonType.ToString());
-        if(Nested) builder.Append(INestedMode.NestedMarker);
-        if(Alias != null) builder.Append($"({Alias.Name})");
+        StringBuilder builder = new(JsonType.ToString());
+        if(Nested && !baseForm) builder.Append(INestedMode.NestedMarker);
+        if(Alias != null  && !baseForm) builder.Append($"({Alias})");
         return builder.ToString();
     }
-
-    public override string ToString() => ToJson();
 }

@@ -10,6 +10,5 @@ public class JDefinition : JDirective
 
     internal JDefinition(IDictionary<JNode, JNode> relations) : base(relations) { }
     internal override JDefinition Initialize() => (JDefinition) base.Initialize();
-    public override string ToJson() => $"{DefineMarker} {Alias.Name} {Validator}";
-    public override string ToString() => ToJson();
+    public override string ToString() => $"{DefineMarker} {Alias} {Validator}";
 }

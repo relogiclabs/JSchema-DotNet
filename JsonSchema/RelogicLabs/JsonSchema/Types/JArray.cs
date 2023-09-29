@@ -6,12 +6,11 @@ using static RelogicLabs.JsonSchema.Message.ErrorDetail;
 
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JArray : JBranch, IJsonType<JArray>, IJsonComposite
+public class JArray : JComposite
 {
-    public JsonType Type => JsonType.ARRAY;
     public required IList<JNode> Elements { get; init; }
     public override IEnumerable<JNode> Children => Elements;
-    
+
     internal JArray(IDictionary<JNode, JNode> relations) : base(relations) { }
 
     public override bool Match(JNode node)
@@ -31,8 +30,8 @@ public class JArray : JBranch, IJsonType<JArray>, IJsonComposite
         }
         return result;
     }
-    
-    public IList<JNode> ExtractComponents() => Elements;
-    public override string ToJson() => $"[{Elements.ToJson().ToString(", ")}]";
-    public override string ToString() => ToJson();
+
+    public override JsonType Type => JsonType.ARRAY;
+    public override IList<JNode> GetComponents() => Elements;
+    public override string ToString() => Elements.ToString(", ", "[", "]");
 }

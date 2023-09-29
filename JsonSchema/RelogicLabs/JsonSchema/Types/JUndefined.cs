@@ -1,6 +1,6 @@
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JUndefined : JPrimitive
+public class JUndefined : JLeaf
 {
     public const string UndefinedMarker = "!";
     
@@ -15,6 +15,5 @@ public class JUndefined : JPrimitive
     }
 
     public override int GetHashCode() => UndefinedMarker.GetHashCode();
-    public override string ToJson() => UndefinedMarker;
-    public override string ToString() => ToJson();
+    public override string ToString() => UndefinedMarker;
 }
