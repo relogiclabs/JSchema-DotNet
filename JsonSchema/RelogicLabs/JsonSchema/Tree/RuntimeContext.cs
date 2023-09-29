@@ -13,7 +13,7 @@ public class RuntimeContext
     public bool ThrowException { get; set; }
     public Dictionary<string, JPragma> Pragmas { get; }
     public Dictionary<JAlias, JValidator> Definitions { get; }
-    public Queue<Exception> ErrorQueue { get; }
+    public Queue<Exception> Exceptions { get; }
     
     public bool IgnoreUndefinedProperties 
         => GetPragmaValue<bool>(nameof(IgnoreUndefinedProperties));
@@ -29,7 +29,7 @@ public class RuntimeContext
         ThrowException = throwException;
         Pragmas = new Dictionary<string, JPragma>();
         Definitions = new Dictionary<JAlias, JValidator>();
-        ErrorQueue = new Queue<Exception>();
+        Exceptions = new Queue<Exception>();
     }
     
     private T GetPragmaValue<T>(string name)
@@ -44,19 +44,19 @@ public class RuntimeContext
     {
         if(Pragmas.ContainsKey(pragma.Name)) 
             throw new DuplicatePragmaException(MessageFormatter.FormatForSchema(
-                PRAG03, $"Duplication found for {pragma.ToOutline()}", pragma.Context));
+                PRAG03, $"Duplication found for {pragma.GetOutline()}", pragma.Context));
         Pragmas.Add(pragma.Name, pragma);
         return pragma;
     }
 
-    public JInclude AddInclude(JInclude include)
+    public JInclude AddClass(JInclude include)
     {
-        AddFunctions(include.ClassName, include.Context);
+        AddClass(include.ClassName, include.Context);
         return include;
     }
 
-    public void AddFunctions(string className, Context? context = null) 
-        => _functionManager.AddFunctions(className, context);
+    public void AddClass(string className, Context? context = null) 
+        => _functionManager.AddClass(className, context);
 
     public bool InvokeFunction(JFunction function, JNode target)
         => _functionManager.InvokeFunction(function, target);
@@ -66,9 +66,19 @@ public class RuntimeContext
         if(Definitions.TryGetValue(definition.Alias, out var previous))
             throw new DuplicateDefinitionException(MessageFormatter.FormatForSchema(
                 DEFI01, $"Duplicate definition of {definition.Alias
-                } is found that already defined as {previous.ToOutline()}", 
+                } is found and already defined as {previous.GetOutline()}", 
                 definition.Context));
         Definitions.Add(definition.Alias, definition.Validator);
         return definition;
+    }
+    
+    internal bool AreEqual(double value1, double value2) 
+        => Math.Abs(value1 - value2) < FloatingPointTolerance;
+    
+    internal bool FailWith(Exception exception)
+    {
+        if(ThrowException) throw exception;
+        Exceptions.Enqueue(exception);
+        return false;
     }
 }

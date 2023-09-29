@@ -8,7 +8,7 @@
         <Version>1.1.0</Version>
         <PackageVersion>1.1.0</PackageVersion>
         <AssemblyVersion>1.1.0</AssemblyVersion>
-        <PackageTags>JsonSchema;Schema;Validation;Json</PackageTags>
+        <PackageTags>JsonSchema;Schema;Json;Validation;Assert;Test</PackageTags>
         <Copyright>Copyright © Relogic Labs. All rights reserved.</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
         <AssemblyName>RelogicLabs.JsonSchema</AssemblyName>

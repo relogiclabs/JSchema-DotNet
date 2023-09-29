@@ -1,18 +1,9 @@
-using System.Diagnostics.CodeAnalysis;
+using Antlr4.Runtime;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
-public class Location
+public record Location(int Line, int Column)
 {
-    public required int Line { get; init; }
-    public required int Column { get; init; }
-
-    [SetsRequiredMembers]
-    public Location(int line, int column)
-    {
-        Line = line;
-        Column = column;
-    }
-
+    public static Location From(IToken token) => new(token.Line, token.Column);
     public override string ToString() => $"{Line}:{Column}";
 }

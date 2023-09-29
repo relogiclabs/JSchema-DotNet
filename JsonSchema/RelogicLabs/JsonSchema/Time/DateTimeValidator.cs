@@ -87,7 +87,7 @@ internal class DateTimeValidator
         }
         catch(InvalidDateTimeException ex)
         {
-            Console.Error.WriteLine(ex);
+            DebugUtils.Print(ex);
             return false;
         }
     }
@@ -101,7 +101,7 @@ internal class DateTimeValidator
         }
         catch(InvalidDateTimeException ex)
         {
-            Console.Error.WriteLine(ex);
+            DebugUtils.Print(ex);
             return false;
         }
     }

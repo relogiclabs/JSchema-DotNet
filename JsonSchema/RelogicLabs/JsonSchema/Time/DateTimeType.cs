@@ -2,17 +2,11 @@ namespace RelogicLabs.JsonSchema.Time;
 
 internal class DateTimeType
 {
-    public static readonly DateTimeType DATE_TYPE = new(1, "date");
-    public static readonly DateTimeType TIME_TYPE = new(2, "time");
-
-    private int Id { get; }
+    public static readonly DateTimeType DATE_TYPE = new("date");
+    public static readonly DateTimeType TIME_TYPE = new("time");
+    
     private string Name { get; }
 
-    private DateTimeType(int id, string name)
-    {
-        Id = id;
-        Name = name;
-    }
-
+    private DateTimeType(string name) => Name = name;
     public override string ToString() => Name;
 }

@@ -17,11 +17,11 @@ public class JsonSchema
     /// Initializes a new instance of the <see cref="JsonSchema"/> class for the
     /// specified Schema string.
     /// </summary>
-    /// <param name="schema">A Schema string to compare.</param>
+    /// <param name="schema">A Schema string for validation or conformation.</param>
     public JsonSchema(string schema)
     {
         Runtime = new(MessageFormatter.SchemaValidation, false);
-        Exceptions = Runtime.ErrorQueue;
+        Exceptions = Runtime.Exceptions;
         SchemaTree = new(Runtime, schema);
     }
 
@@ -29,7 +29,7 @@ public class JsonSchema
     /// Indicates whether the input JSON string conforms to the Schema specified
     /// in the <see cref="JsonSchema"/> constructor.
     /// </summary>
-    /// <param name="json">The JSON to compare with Schema.</param>
+    /// <param name="json">The JSON string to conform or validate with Schema.</param>
     /// <returns><c>true</c> if the JSON string conforms to the Schema; otherwise,
     /// <c>false</c>.</returns>
     public bool IsValid(string json)
@@ -54,8 +54,8 @@ public class JsonSchema
     /// <summary>
     /// Indicates whether the input JSON string conforms to the given Schema string.
     /// </summary>
-    /// <param name="schema">The Schema string to compare.</param>
-    /// <param name="json">The JSON string to compare.</param>
+    /// <param name="schema">The Schema string to conform or validate.</param>
+    /// <param name="json">The JSON string to conform or validate.</param>
     /// <returns><c>true</c> if the JSON string conforms to the Schema; otherwise,
     /// <c>false</c>.</returns>
     public static bool IsValid(string schema, string json)

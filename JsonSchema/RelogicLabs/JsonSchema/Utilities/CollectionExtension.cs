@@ -1,28 +1,28 @@
+using RelogicLabs.JsonSchema.Collections;
 using RelogicLabs.JsonSchema.Types;
 
 namespace RelogicLabs.JsonSchema.Utilities;
 
 internal static class CollectionExtension
 {
-    public static string ToString(this IEnumerable<string> source, string separator,
+    public static string Join(this IEnumerable<string> source, string separator)
+        => string.Join(separator, source);
+
+    public static string ToString(this IEnumerable<JNode> source, string separator,
         string prefix = "", string suffix = "")
     {
-        IEnumerable<string> collection = source as string[] 
-                                         ?? source as IList<string> 
-                                         ?? source.ToArray();
-        var result = string.Join(separator, collection);
-        return collection.Any()? $"{prefix}{result}{suffix}" : string.Empty;
+        var result = string.Join(separator, source);
+        return $"{prefix}{result}{suffix}";
     }
 
-    public static void Merge<TKey, TValue>(this IDictionary<TKey, List<TValue>> source, 
-        IDictionary<TKey, List<TValue>> dictionary)
+    public static void Merge<TKey, TValue>(this IDictionary<TKey, List<TValue>> source,
+        IDictionary<TKey, List<TValue>> other)
     {
-        foreach(var element in dictionary)
+        foreach(var pair in other)
         {
-            source.TryGetValue(element.Key, out List<TValue>? value);
-            if(value == default) value = dictionary[element.Key];
-            else value.AddRange(dictionary[element.Key]);
-            source.Add(element.Key, value);
+            source.TryGetValue(pair.Key, out List<TValue>? values);
+            if(values == default) source.Add(pair.Key, other[pair.Key]);
+            else values.AddRange(other[pair.Key]);
         }
     }
 
@@ -34,15 +34,15 @@ internal static class CollectionExtension
         for(int i = index; i < limit; i++) range.Add(source[i]);
         return range;
     }
-    
-    public static IList<T> ToReadOnlyList<T>(this IEnumerable<T> source) 
+
+    public static IList<T> ToReadOnlyList<T>(this IEnumerable<T> source)
         => source.ToList().AsReadOnly();
-    
+
     public static void ForEach<T>(this IEnumerable<T> enumeration, Action<T> action)
     {
         foreach(T item in enumeration) action(item);
     }
-    
+
     // Use only if necessary to eagerly check every item
     public static bool ForEachTrue(this IEnumerable<bool> enumeration)
     {
@@ -51,18 +51,29 @@ internal static class CollectionExtension
         return result;
     }
 
-    public static Properties<JProperty, string, JNode> ToProperties(
-        this IEnumerable<JProperty> source) => new(source);
+    public static IIndexMap<string, JProperty> ToIndexMap(this IEnumerable<JProperty> source)
+        => new IndexHashMap<string, JProperty>(source);
 
-    public static ReadOnlySet<T> AsReadOnly<T>(this ISet<T> set) 
-        => new(set);
-    
-    public static IEnumerable<string> ToJson(this IEnumerable<JNode> source) 
-        => source.Select(s => s.ToJson());
-    
-    public static bool AllTrue(this IEnumerable<bool> source) 
+    public static bool AllTrue(this IEnumerable<bool> source)
         => source.All(i => i);
-    
-    public static bool AnyTrue(this IEnumerable<bool> source) 
+
+    public static bool AnyTrue(this IEnumerable<bool> source)
         => source.Any(i => i);
+
+    public static IEnumerable<string> ContainsKeys(
+        this IEnumerable<JProperty> source, params JString[] keys)
+    {
+        ISet<string> _keys = keys.Select(s => s.Value).ToHashSet();
+        source.ForEach(p => _keys.Remove(p.Key));
+        return _keys;
+    }
+
+    public static IEnumerable<JNode> ContainsValues(
+        this IEnumerable<JProperty> source, params JNode[] values)
+    {
+        // Here values should be distinct on parameter
+        ISet<JNode> _values = values.ToHashSet();
+        source.ForEach(p => _values.Remove(p.Value));
+        return _values;
+    }
 }
