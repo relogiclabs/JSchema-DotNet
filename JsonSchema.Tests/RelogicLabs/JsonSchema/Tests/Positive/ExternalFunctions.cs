@@ -9,16 +9,19 @@ namespace RelogicLabs.JsonSchema.Tests.Positive;
 public class ExternalFunctions : FunctionBase
 {
     public const string EVENFUNC01 = "EVENFUNC01";
-    
+
     public ExternalFunctions(RuntimeContext runtime) : base(runtime) { }
 
-    public bool Even(JNumber source)
+    public bool Even(JNumber target)
     {
-        bool result = source % 2 == 0;
+        bool result = target % 2 == 0;
         if(!result) FailWith(new JsonSchemaException(
             new ErrorDetail(EVENFUNC01, "Number is not even"),
-            new ExpectedDetail(source, "even number"),
-            new ActualDetail(source, $"number {source} is odd")));
+            new ExpectedDetail(target, "even number"),
+            new ActualDetail(target, $"number {target} is odd")));
         return true;
     }
+
+    public bool CanTest(JNumber target, JString str1, JBoolean bool1, params JNumber[] args)
+        => true;
 }

@@ -15,7 +15,7 @@ public class IntegerTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTYP02, exception.ErrorCode);
+        Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -28,7 +28,7 @@ public class IntegerTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(INTE01, exception.ErrorCode);
+        Assert.AreEqual(INTE01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -55,7 +55,7 @@ public class IntegerTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTYP02, exception.ErrorCode);
+        Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -74,7 +74,7 @@ public class IntegerTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTYP02, exception.ErrorCode);
+        Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -93,7 +93,7 @@ public class IntegerTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTYP02, exception.ErrorCode);
+        Assert.AreEqual(DTYP06, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -116,7 +116,7 @@ public class IntegerTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTYP02, exception.ErrorCode);
+        Assert.AreEqual(DTYP06, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -139,7 +139,7 @@ public class IntegerTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTYP02, exception.ErrorCode);
+        Assert.AreEqual(DTYP06, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -158,7 +158,7 @@ public class IntegerTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(FUNC06, exception.ErrorCode);
+        Assert.AreEqual(FUNC06, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -181,7 +181,7 @@ public class IntegerTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(RANG01, exception.ErrorCode);
+        Assert.AreEqual(RANG01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -200,7 +200,7 @@ public class IntegerTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(RANG04, exception.ErrorCode);
+        Assert.AreEqual(RANG04, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -219,7 +219,7 @@ public class IntegerTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(POSI01, exception.ErrorCode);
+        Assert.AreEqual(POSI01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -238,7 +238,7 @@ public class IntegerTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(NEGI01, exception.ErrorCode);
+        Assert.AreEqual(NEGI01, exception.Code);
         Console.WriteLine(exception);
     }
 }

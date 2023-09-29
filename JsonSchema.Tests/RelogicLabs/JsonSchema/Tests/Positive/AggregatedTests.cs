@@ -22,7 +22,7 @@ public class AggregatedTests
         }
         %define $component2: [@length(1, 10) #string, @url #string]
         /* if it is null do not check for nested function or data type*/
-        %define $component3: @range*(1, 100) #integer* #null
+        %define $component3: @range*(1, 100) #integer* #array #null
         %define $component4: @regex*("[A-Z]{3}") #string* ?
         
         %schema: {

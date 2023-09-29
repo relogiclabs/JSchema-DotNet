@@ -15,7 +15,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTYP02, exception.ErrorCode);
+        Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -28,7 +28,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTYP02, exception.ErrorCode);
+        Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -40,7 +40,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DDAY04, exception.ErrorCode);
+        Assert.AreEqual(DDAY04, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -52,7 +52,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DHUR03, exception.ErrorCode);
+        Assert.AreEqual(DHUR03, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -64,7 +64,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DDAY03, exception.ErrorCode);
+        Assert.AreEqual(DDAY03, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -76,7 +76,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DDAY04, exception.ErrorCode);
+        Assert.AreEqual(DDAY04, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -88,7 +88,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DMON01, exception.ErrorCode);
+        Assert.AreEqual(DMON01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -100,7 +100,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DMON02, exception.ErrorCode);
+        Assert.AreEqual(DMON02, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -112,7 +112,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DMON03, exception.ErrorCode);
+        Assert.AreEqual(DMON03, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -124,7 +124,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DMON05, exception.ErrorCode);
+        Assert.AreEqual(DMON05, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -136,7 +136,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DWKD02, exception.ErrorCode);
+        Assert.AreEqual(DWKD02, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -148,7 +148,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DCNF01, exception.ErrorCode);
+        Assert.AreEqual(DCNF01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -160,7 +160,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DCNF01, exception.ErrorCode);
+        Assert.AreEqual(DCNF01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -172,7 +172,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DWKD03, exception.ErrorCode);
+        Assert.AreEqual(DWKD03, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -184,7 +184,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DYAR02, exception.ErrorCode);
+        Assert.AreEqual(DYAR02, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -196,7 +196,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DYAR03, exception.ErrorCode);
+        Assert.AreEqual(DYAR03, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -208,7 +208,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DINV02, exception.ErrorCode);
+        Assert.AreEqual(DINV02, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -220,7 +220,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DERA01, exception.ErrorCode);
+        Assert.AreEqual(DERA01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -232,7 +232,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTXT01, exception.ErrorCode);
+        Assert.AreEqual(DTXT01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -244,7 +244,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DHUR01, exception.ErrorCode);
+        Assert.AreEqual(DHUR01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -256,7 +256,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DHUR06, exception.ErrorCode);
+        Assert.AreEqual(DHUR06, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -268,7 +268,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DMIN01, exception.ErrorCode);
+        Assert.AreEqual(DMIN01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -280,7 +280,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DMIN03, exception.ErrorCode);
+        Assert.AreEqual(DMIN03, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -292,7 +292,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DSEC01, exception.ErrorCode);
+        Assert.AreEqual(DSEC01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -304,7 +304,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DSEC03, exception.ErrorCode);
+        Assert.AreEqual(DSEC03, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -316,7 +316,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DFRC04, exception.ErrorCode);
+        Assert.AreEqual(DFRC04, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -328,7 +328,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DHUR02, exception.ErrorCode);
+        Assert.AreEqual(DHUR02, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -340,7 +340,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DWTS01, exception.ErrorCode);
+        Assert.AreEqual(DWTS01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -352,7 +352,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTAP01, exception.ErrorCode);
+        Assert.AreEqual(DTAP01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -364,7 +364,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DHUR03, exception.ErrorCode);
+        Assert.AreEqual(DHUR03, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -376,7 +376,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTAP01, exception.ErrorCode);
+        Assert.AreEqual(DTAP01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -388,7 +388,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DUTC01, exception.ErrorCode);
+        Assert.AreEqual(DUTC01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -400,7 +400,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DUTC04, exception.ErrorCode);
+        Assert.AreEqual(DUTC04, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -412,7 +412,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DUTC05, exception.ErrorCode);
+        Assert.AreEqual(DUTC05, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -425,7 +425,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DLEX01, exception.ErrorCode);
+        Assert.AreEqual(DLEX01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -438,7 +438,7 @@ public class DateTimeTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DLEX01, exception.ErrorCode);
+        Assert.AreEqual(DLEX01, exception.Code);
         Console.WriteLine(exception);
     }
 }

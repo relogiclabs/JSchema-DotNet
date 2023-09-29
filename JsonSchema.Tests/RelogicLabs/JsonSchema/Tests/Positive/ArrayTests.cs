@@ -101,9 +101,9 @@ public class ArrayTests
         var schema = 
             """
             [
-            @enum(5, 10, 15), 
-            @enum(100, 150, 200),
-            @enum("abc", "pqr", "xyz")
+                @enum(5, 10, 15), 
+                @enum(100, 150, 200),
+                @enum("abc", "pqr", "xyz")
             ] #array
             """;
         var json = """[10, 100, "xyz"]""";

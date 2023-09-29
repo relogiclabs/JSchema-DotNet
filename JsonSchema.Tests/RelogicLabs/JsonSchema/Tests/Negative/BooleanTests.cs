@@ -15,7 +15,7 @@ public class BooleanTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTYP02, exception.ErrorCode);
+        Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -28,7 +28,7 @@ public class BooleanTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(BOOL01, exception.ErrorCode);
+        Assert.AreEqual(BOOL01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -55,7 +55,7 @@ public class BooleanTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTYP02, exception.ErrorCode);
+        Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -74,7 +74,7 @@ public class BooleanTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTYP02, exception.ErrorCode);
+        Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -93,7 +93,7 @@ public class BooleanTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTYP02, exception.ErrorCode);
+        Assert.AreEqual(DTYP06, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -116,7 +116,7 @@ public class BooleanTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTYP02, exception.ErrorCode);
+        Assert.AreEqual(DTYP06, exception.Code);
         Console.WriteLine(exception);
     }
 }

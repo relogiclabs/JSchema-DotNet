@@ -27,7 +27,7 @@ public class ComponentTests
         //JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<DefinitionNotFoundException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DEFI02, exception.ErrorCode);
+        Assert.AreEqual(DEFI02, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -54,7 +54,7 @@ public class ComponentTests
         //JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<DuplicateDefinitionException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DEFI01, exception.ErrorCode);
+        Assert.AreEqual(DEFI01, exception.Code);
         Console.WriteLine(exception);
     }
 }

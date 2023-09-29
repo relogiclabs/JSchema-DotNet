@@ -15,7 +15,7 @@ public class StringTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTYP02, exception.ErrorCode);
+        Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -27,7 +27,7 @@ public class StringTests
             
         var exception = Assert.ThrowsException<SchemaLexerException>(
              () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(SLEX01, exception.ErrorCode);
+        Assert.AreEqual(SLEX01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -39,7 +39,7 @@ public class StringTests
 
         var exception = Assert.ThrowsException<JsonLexerException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(JLEX01, exception.ErrorCode);
+        Assert.AreEqual(JLEX01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -65,7 +65,7 @@ public class StringTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTYP02, exception.ErrorCode);
+        Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -84,7 +84,7 @@ public class StringTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTYP02, exception.ErrorCode);
+        Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
 
@@ -102,7 +102,7 @@ public class StringTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTYP02, exception.ErrorCode);
+        Assert.AreEqual(DTYP06, exception.Code);
         Console.WriteLine(exception);
     }
 
@@ -124,7 +124,7 @@ public class StringTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTYP02, exception.ErrorCode);
+        Assert.AreEqual(DTYP06, exception.Code);
         Console.WriteLine(exception);
     }
 
@@ -146,7 +146,7 @@ public class StringTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(SLEN03, exception.ErrorCode);
+        Assert.AreEqual(SLEN03, exception.Code);
         Console.WriteLine(exception);
     }
 
@@ -168,7 +168,7 @@ public class StringTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(SLEN04, exception.ErrorCode);
+        Assert.AreEqual(SLEN04, exception.Code);
         Console.WriteLine(exception);
     }
 
@@ -186,7 +186,7 @@ public class StringTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(SLEN05, exception.ErrorCode);
+        Assert.AreEqual(SLEN05, exception.Code);
         Console.WriteLine(exception);
     }
 
@@ -206,7 +206,7 @@ public class StringTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(REGX01, exception.ErrorCode);
+        Assert.AreEqual(REGX01, exception.Code);
         Console.WriteLine(exception);
     }
 
@@ -230,7 +230,7 @@ public class StringTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(ENUM01, exception.ErrorCode);
+        Assert.AreEqual(ENUM01, exception.Code);
         Console.WriteLine(exception);
     }
 
@@ -254,7 +254,7 @@ public class StringTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(EMAL01, exception.ErrorCode);
+        Assert.AreEqual(EMAL01, exception.Code);
         Console.WriteLine(exception);
     }
 
@@ -280,7 +280,7 @@ public class StringTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(URLA01, exception.ErrorCode);
+        Assert.AreEqual(URLA01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -305,7 +305,7 @@ public class StringTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(URLA04, exception.ErrorCode);
+        Assert.AreEqual(URLA04, exception.Code);
         Console.WriteLine(exception);
     }
 
@@ -331,7 +331,7 @@ public class StringTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(PHON01, exception.ErrorCode);
+        Assert.AreEqual(PHON01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -355,7 +355,7 @@ public class StringTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(NEMT01, exception.ErrorCode);
+        Assert.AreEqual(NEMT01, exception.Code);
         Console.WriteLine(exception);
     }
 }
