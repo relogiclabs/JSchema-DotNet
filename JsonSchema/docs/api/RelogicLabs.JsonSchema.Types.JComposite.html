@@ -2,10 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class JInclude
+      <title>Class JComposite
  | Json Schema </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class JInclude
+      <meta name="title" content="Class JComposite
  | Json Schema ">
       
       <link rel="icon" href="../images/favicon.ico">
@@ -17,7 +17,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JsonSchema-DotNet/new/develop/apiSpec/new?filename=RelogicLabs_JsonSchema_Types_JInclude.md&amp;value=---%0Auid%3A%20RelogicLabs.JsonSchema.Types.JInclude%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JsonSchema-DotNet/new/develop/apiSpec/new?filename=RelogicLabs_JsonSchema_Types_JComposite.md&amp;value=---%0Auid%3A%20RelogicLabs.JsonSchema.Types.JComposite%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
   </head>
 
   <script type="module">
@@ -77,13 +77,13 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="RelogicLabs.JsonSchema.Types.JInclude">
+        <article data-uid="RelogicLabs.JsonSchema.Types.JComposite">
 
 
 
-  <h1 id="RelogicLabs_JsonSchema_Types_JInclude" data-uid="RelogicLabs.JsonSchema.Types.JInclude" class="text-break">
-    Class JInclude
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JInclude.cs/#L3"><i class="bi bi-code-slash"></i></a>
+  <h1 id="RelogicLabs_JsonSchema_Types_JComposite" data-uid="RelogicLabs.JsonSchema.Types.JComposite" class="text-break">
+    Class JComposite
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JComposite.cs/#L3"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -95,7 +95,7 @@
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class JInclude : JDirective</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class JComposite : JBranch, IJsonType</code></pre>
   </div>
 
 
@@ -106,22 +106,29 @@
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
       <div><a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html">JNode</a></div>
-      <div><a class="xref" href="RelogicLabs.JsonSchema.Types.JDirective.html">JDirective</a></div>
-      <div><span class="xref">JInclude</span></div>
+      <div><a class="xref" href="RelogicLabs.JsonSchema.Types.JBranch.html">JBranch</a></div>
+      <div><span class="xref">JComposite</span></div>
     </dd>
   </dl>
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="RelogicLabs.JsonSchema.Types.IJsonType.html">IJsonType</a></div>
+    </dd>
+  </dl>
 
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="RelogicLabs.JsonSchema.Types.JArray.html">JArray</a></div>
+      <div><a class="xref" href="RelogicLabs.JsonSchema.Types.JObject.html">JObject</a></div>
+    </dd>
+  </dl>
 
   <dl class="typelist derived">
     <dt>Inherited Members</dt>
     <dd>
-    <div>
-      <a class="xref" href="RelogicLabs.JsonSchema.Types.JDirective.html#RelogicLabs_JsonSchema_Types_JDirective_Children">JDirective.Children</a>
-    </div>
-    <div>
-      <a class="xref" href="RelogicLabs.JsonSchema.Types.JDirective.html#RelogicLabs_JsonSchema_Types_JDirective_Match_RelogicLabs_JsonSchema_Types_JNode_">JDirective.Match(JNode)</a>
-    </div>
     <div>
       <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_Context">JNode.Context</a>
     </div>
@@ -129,10 +136,19 @@
       <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_Parent">JNode.Parent</a>
     </div>
     <div>
+      <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_Children">JNode.Children</a>
+    </div>
+    <div>
       <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_Parser">JNode.Parser</a>
     </div>
     <div>
       <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_Runtime">JNode.Runtime</a>
+    </div>
+    <div>
+      <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_Match_RelogicLabs_JsonSchema_Types_JNode_">JNode.Match(JNode)</a>
+    </div>
+    <div>
+      <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_ToString">JNode.ToString()</a>
     </div>
     <div>
       <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_GetOutline">JNode.GetOutline()</a>
@@ -144,7 +160,13 @@
       <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_CheckType__1_RelogicLabs_JsonSchema_Types_JNode_">JNode.CheckType&lt;T&gt;(JNode)</a>
     </div>
     <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
@@ -162,31 +184,32 @@
 
 
 
-  <h2 class="section" id="fields">Fields
+  <h2 class="section" id="constructors">Constructors
 </h2>
 
 
+  <a id="RelogicLabs_JsonSchema_Types_JComposite__ctor_" data-uid="RelogicLabs.JsonSchema.Types.JComposite.#ctor*"></a>
 
-  <h3 id="RelogicLabs_JsonSchema_Types_JInclude_IncludeMarker" data-uid="RelogicLabs.JsonSchema.Types.JInclude.IncludeMarker">
-  IncludeMarker
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JInclude.cs/#L5"><i class="bi bi-code-slash"></i></a>
+  <h3 id="RelogicLabs_JsonSchema_Types_JComposite__ctor_System_Collections_Generic_IDictionary_RelogicLabs_JsonSchema_Types_JNode_RelogicLabs_JsonSchema_Types_JNode__" data-uid="RelogicLabs.JsonSchema.Types.JComposite.#ctor(System.Collections.Generic.IDictionary{RelogicLabs.JsonSchema.Types.JNode,RelogicLabs.JsonSchema.Types.JNode})">
+  JComposite(IDictionary&lt;JNode, JNode&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JComposite.cs/#L5"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public const string IncludeMarker = &quot;%include&quot;</code></pre>
+    <pre><code class="lang-csharp hljs">protected JComposite(IDictionary&lt;JNode, JNode&gt; relations)</code></pre>
   </div>
 
-
-
-
-  <h4 class="section">Field Value</h4>
+  <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><code>relations</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html">JNode</a>, <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html">JNode</a>&gt;</dt>
     <dd></dd>
   </dl>
+
+
+
 
 
 
@@ -200,18 +223,18 @@
 </h2>
 
 
-  <a id="RelogicLabs_JsonSchema_Types_JInclude_ClassName_" data-uid="RelogicLabs.JsonSchema.Types.JInclude.ClassName*"></a>
+  <a id="RelogicLabs_JsonSchema_Types_JComposite_Node_" data-uid="RelogicLabs.JsonSchema.Types.JComposite.Node*"></a>
 
-  <h3 id="RelogicLabs_JsonSchema_Types_JInclude_ClassName" data-uid="RelogicLabs.JsonSchema.Types.JInclude.ClassName">
-  ClassName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JInclude.cs/#L6"><i class="bi bi-code-slash"></i></a>
+  <h3 id="RelogicLabs_JsonSchema_Types_JComposite_Node" data-uid="RelogicLabs.JsonSchema.Types.JComposite.Node">
+  Node
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JComposite.cs/#L8"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public required string ClassName { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">public JNode Node { get; }</code></pre>
   </div>
 
 
@@ -220,7 +243,38 @@
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html">JNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="RelogicLabs_JsonSchema_Types_JComposite_Type_" data-uid="RelogicLabs.JsonSchema.Types.JComposite.Type*"></a>
+
+  <h3 id="RelogicLabs_JsonSchema_Types_JComposite_Type" data-uid="RelogicLabs.JsonSchema.Types.JComposite.Type">
+  Type
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JComposite.cs/#L7"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual JsonType Type { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="RelogicLabs.JsonSchema.Types.JsonType.html">JsonType</a></dt>
     <dd></dd>
   </dl>
 
@@ -235,99 +289,25 @@
 </h2>
 
 
-  <a id="RelogicLabs_JsonSchema_Types_JInclude_Equals_" data-uid="RelogicLabs.JsonSchema.Types.JInclude.Equals*"></a>
+  <a id="RelogicLabs_JsonSchema_Types_JComposite_GetComponents_" data-uid="RelogicLabs.JsonSchema.Types.JComposite.GetComponents*"></a>
 
-  <h3 id="RelogicLabs_JsonSchema_Types_JInclude_Equals_System_Object_" data-uid="RelogicLabs.JsonSchema.Types.JInclude.Equals(System.Object)">
-  Equals(object?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JInclude.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  <h3 id="RelogicLabs_JsonSchema_Types_JComposite_GetComponents" data-uid="RelogicLabs.JsonSchema.Types.JComposite.GetComponents">
+  GetComponents()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JComposite.cs/#L6"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Determines whether the specified object is equal to the current object.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override bool Equals(object? obj)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
-    <dd><p>The object to compare with the current object.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the specified object  is equal to the current object; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="RelogicLabs_JsonSchema_Types_JInclude_GetHashCode_" data-uid="RelogicLabs.JsonSchema.Types.JInclude.GetHashCode*"></a>
-
-  <h3 id="RelogicLabs_JsonSchema_Types_JInclude_GetHashCode" data-uid="RelogicLabs.JsonSchema.Types.JInclude.GetHashCode">
-  GetHashCode()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JInclude.cs/#L20"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Serves as the default hash function.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract IList&lt;JNode&gt; GetComponents()</code></pre>
   </div>
 
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>A hash code for the current object.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="RelogicLabs_JsonSchema_Types_JInclude_ToString_" data-uid="RelogicLabs.JsonSchema.Types.JInclude.ToString*"></a>
-
-  <h3 id="RelogicLabs_JsonSchema_Types_JInclude_ToString" data-uid="RelogicLabs.JsonSchema.Types.JInclude.ToString">
-  ToString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JInclude.cs/#L21"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Returns a JSON string that represents the current object.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
-  </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>A JSON string that represents the current object.</p>
-</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html">JNode</a>&gt;</dt>
+    <dd></dd>
   </dl>
 
 
@@ -344,7 +324,7 @@
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JInclude.cs/#L3" class="edit-link">Edit this page</a>
+          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JComposite.cs/#L3" class="edit-link">Edit this page</a>
         </div>
 
         

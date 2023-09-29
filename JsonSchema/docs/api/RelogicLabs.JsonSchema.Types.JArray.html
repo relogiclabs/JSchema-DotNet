@@ -95,7 +95,7 @@
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class JArray : JBranch, IJsonType&lt;JArray&gt;, IJsonComposite</code></pre>
+    <pre><code class="lang-csharp hljs">public class JArray : JComposite, IJsonType</code></pre>
   </div>
 
 
@@ -107,6 +107,7 @@
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
       <div><a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html">JNode</a></div>
       <div><a class="xref" href="RelogicLabs.JsonSchema.Types.JBranch.html">JBranch</a></div>
+      <div><a class="xref" href="RelogicLabs.JsonSchema.Types.JComposite.html">JComposite</a></div>
       <div><span class="xref">JArray</span></div>
     </dd>
   </dl>
@@ -114,8 +115,7 @@
   <dl class="typelist implements">
     <dt>Implements</dt>
     <dd>
-      <div><a class="xref" href="RelogicLabs.JsonSchema.Types.IJsonType-1.html">IJsonType</a>&lt;<a class="xref" href="RelogicLabs.JsonSchema.Types.JArray.html">JArray</a>&gt;</div>
-      <div><a class="xref" href="RelogicLabs.JsonSchema.Types.IJsonComposite.html">IJsonComposite</a></div>
+      <div><a class="xref" href="RelogicLabs.JsonSchema.Types.IJsonType.html">IJsonType</a></div>
     </dd>
   </dl>
 
@@ -123,6 +123,9 @@
   <dl class="typelist derived">
     <dt>Inherited Members</dt>
     <dd>
+    <div>
+      <a class="xref" href="RelogicLabs.JsonSchema.Types.JComposite.html#RelogicLabs_JsonSchema_Types_JComposite_Node">JComposite.Node</a>
+    </div>
     <div>
       <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_Context">JNode.Context</a>
     </div>
@@ -136,7 +139,7 @@
       <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_Runtime">JNode.Runtime</a>
     </div>
     <div>
-      <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_ToOutline">JNode.ToOutline()</a>
+      <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_GetOutline">JNode.GetOutline()</a>
     </div>
     <div>
       <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_CastType__1_RelogicLabs_JsonSchema_Types_JNode_">JNode.CastType&lt;T&gt;(JNode)</a>
@@ -177,7 +180,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JArray_Children" data-uid="RelogicLabs.JsonSchema.Types.JArray.Children">
   Children
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JArray.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JArray.cs/#L12"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -208,7 +211,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JArray_Elements" data-uid="RelogicLabs.JsonSchema.Types.JArray.Elements">
   Elements
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JArray.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JArray.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -239,14 +242,14 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JArray_Type" data-uid="RelogicLabs.JsonSchema.Types.JArray.Type">
   Type
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JArray.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JArray.cs/#L34"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public JsonType Type { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public override JsonType Type { get; }</code></pre>
   </div>
 
 
@@ -270,10 +273,10 @@
 </h2>
 
 
-  <a id="RelogicLabs_JsonSchema_Types_JArray_ExtractComponents_" data-uid="RelogicLabs.JsonSchema.Types.JArray.ExtractComponents*"></a>
+  <a id="RelogicLabs_JsonSchema_Types_JArray_GetComponents_" data-uid="RelogicLabs.JsonSchema.Types.JArray.GetComponents*"></a>
 
-  <h3 id="RelogicLabs_JsonSchema_Types_JArray_ExtractComponents" data-uid="RelogicLabs.JsonSchema.Types.JArray.ExtractComponents">
-  ExtractComponents()
+  <h3 id="RelogicLabs_JsonSchema_Types_JArray_GetComponents" data-uid="RelogicLabs.JsonSchema.Types.JArray.GetComponents">
+  GetComponents()
   <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JArray.cs/#L35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -281,7 +284,7 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IList&lt;JNode&gt; ExtractComponents()</code></pre>
+    <pre><code class="lang-csharp hljs">public override IList&lt;JNode&gt; GetComponents()</code></pre>
   </div>
 
 
@@ -305,7 +308,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JArray_Match_RelogicLabs_JsonSchema_Types_JNode_" data-uid="RelogicLabs.JsonSchema.Types.JArray.Match(RelogicLabs.JsonSchema.Types.JNode)">
   Match(JNode)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JArray.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JArray.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Determines whether the specified node matches with the current node.</p>
@@ -341,47 +344,14 @@ otherwise, <code>false</code>.</p>
 
 
 
-  <a id="RelogicLabs_JsonSchema_Types_JArray_ToJson_" data-uid="RelogicLabs.JsonSchema.Types.JArray.ToJson*"></a>
-
-  <h3 id="RelogicLabs_JsonSchema_Types_JArray_ToJson" data-uid="RelogicLabs.JsonSchema.Types.JArray.ToJson">
-  ToJson()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JArray.cs/#L36"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Returns a JSON string that represents the current object.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override string ToJson()</code></pre>
-  </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>A JSON string that represents the current object.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
   <a id="RelogicLabs_JsonSchema_Types_JArray_ToString_" data-uid="RelogicLabs.JsonSchema.Types.JArray.ToString*"></a>
 
   <h3 id="RelogicLabs_JsonSchema_Types_JArray_ToString" data-uid="RelogicLabs.JsonSchema.Types.JArray.ToString">
   ToString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JArray.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JArray.cs/#L36"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Returns a string that represents the current object.</p>
+  <div class="markdown level1 summary"><p>Returns a JSON string that represents the current object.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -393,7 +363,7 @@ otherwise, <code>false</code>.</p>
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>A string that represents the current object.</p>
+    <dd><p>A JSON string that represents the current object.</p>
 </dd>
   </dl>
 

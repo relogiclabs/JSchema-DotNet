@@ -95,7 +95,7 @@
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class JNull : JPrimitive, IJsonType&lt;JNull&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class JNull : JPrimitive, IJsonType</code></pre>
   </div>
 
 
@@ -115,7 +115,7 @@
   <dl class="typelist implements">
     <dt>Implements</dt>
     <dd>
-      <div><a class="xref" href="RelogicLabs.JsonSchema.Types.IJsonType-1.html">IJsonType</a>&lt;<a class="xref" href="RelogicLabs.JsonSchema.Types.JNull.html">JNull</a>&gt;</div>
+      <div><a class="xref" href="RelogicLabs.JsonSchema.Types.IJsonType.html">IJsonType</a></div>
     </dd>
   </dl>
 
@@ -123,6 +123,9 @@
   <dl class="typelist derived">
     <dt>Inherited Members</dt>
     <dd>
+    <div>
+      <a class="xref" href="RelogicLabs.JsonSchema.Types.JPrimitive.html#RelogicLabs_JsonSchema_Types_JPrimitive_Node">JPrimitive.Node</a>
+    </div>
     <div>
       <a class="xref" href="RelogicLabs.JsonSchema.Types.JLeaf.html#RelogicLabs_JsonSchema_Types_JLeaf_Children">JLeaf.Children</a>
     </div>
@@ -139,7 +142,7 @@
       <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_Runtime">JNode.Runtime</a>
     </div>
     <div>
-      <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_ToOutline">JNode.ToOutline()</a>
+      <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_GetOutline">JNode.GetOutline()</a>
     </div>
     <div>
       <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_CastType__1_RelogicLabs_JsonSchema_Types_JNode_">JNode.CastType&lt;T&gt;(JNode)</a>
@@ -208,14 +211,14 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JNull_Type" data-uid="RelogicLabs.JsonSchema.Types.JNull.Type">
   Type
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JNull.cs/#L7"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JNull.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public JsonType Type { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public override JsonType Type { get; }</code></pre>
   </div>
 
 
@@ -243,7 +246,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JNull_Equals_System_Object_" data-uid="RelogicLabs.JsonSchema.Types.JNull.Equals(System.Object)">
   Equals(object?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JNull.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JNull.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Determines whether the specified object is equal to the current object.</p>
@@ -282,7 +285,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JNull_GetHashCode" data-uid="RelogicLabs.JsonSchema.Types.JNull.GetHashCode">
   GetHashCode()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JNull.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JNull.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Serves as the default hash function.</p>
@@ -315,7 +318,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JNull_Match_RelogicLabs_JsonSchema_Types_JNode_" data-uid="RelogicLabs.JsonSchema.Types.JNull.Match(RelogicLabs.JsonSchema.Types.JNode)">
   Match(JNode)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JNull.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JNull.cs/#L8"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Determines whether the specified node matches with the current node.</p>
@@ -351,47 +354,14 @@ otherwise, <code>false</code>.</p>
 
 
 
-  <a id="RelogicLabs_JsonSchema_Types_JNull_ToJson_" data-uid="RelogicLabs.JsonSchema.Types.JNull.ToJson*"></a>
-
-  <h3 id="RelogicLabs_JsonSchema_Types_JNull_ToJson" data-uid="RelogicLabs.JsonSchema.Types.JNull.ToJson">
-  ToJson()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JNull.cs/#L19"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Returns a JSON string that represents the current object.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override string ToJson()</code></pre>
-  </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>A JSON string that represents the current object.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
   <a id="RelogicLabs_JsonSchema_Types_JNull_ToString_" data-uid="RelogicLabs.JsonSchema.Types.JNull.ToString*"></a>
 
   <h3 id="RelogicLabs_JsonSchema_Types_JNull_ToString" data-uid="RelogicLabs.JsonSchema.Types.JNull.ToString">
   ToString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JNull.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JNull.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Returns a string that represents the current object.</p>
+  <div class="markdown level1 summary"><p>Returns a JSON string that represents the current object.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -403,7 +373,7 @@ otherwise, <code>false</code>.</p>
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>A string that represents the current object.</p>
+    <dd><p>A JSON string that represents the current object.</p>
 </dd>
   </dl>
 

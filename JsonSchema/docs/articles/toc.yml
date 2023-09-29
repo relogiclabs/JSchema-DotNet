@@ -2,6 +2,8 @@
   href: intro.md
 - name: Quick Start
   href: quickstart.md
+- name: Validation Syntax
+  href: validation.md
 - name: Specification
   href: specification.md
 - name: Data Types
