@@ -1,21 +1,19 @@
+using RelogicLabs.JsonSchema.Collections;
 using RelogicLabs.JsonSchema.Exceptions;
 using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 using static RelogicLabs.JsonSchema.Message.ErrorDetail;
-using IJsonProperties = RelogicLabs.JsonSchema.Utilities.IProperties<
-    RelogicLabs.JsonSchema.Types.JProperty, string, RelogicLabs.JsonSchema.Types.JNode>;
 
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JObject : JBranch, IJsonType<JObject>, IJsonComposite
+public class JObject : JComposite
 {
-    public JsonType Type => JsonType.OBJECT;
     public override IEnumerable<JNode> Children => Properties.Values;
-    public required IJsonProperties Properties { get; init; }
+    public required IIndexMap<string, JProperty> Properties { get; init; }
 
     internal JObject(IDictionary<JNode, JNode> relations) : base(relations) { }
-    
+
     public override bool Match(JNode node)
     {
         var other = CastType<JObject>(node);
@@ -25,7 +23,7 @@ public class JObject : JBranch, IJsonType<JObject>, IJsonComposite
         for(var i = 0; i < Properties.Count; i++)
         {
             var thisProp = Properties[i];
-            var otherProp = GetAssociatedProperty(other, i);
+            var otherProp = GetOtherProp(other, i);
             if(otherProp != null)
             {
                 result &= thisProp.Value.Match(other.Properties[thisProp.Key].Value);
@@ -40,39 +38,47 @@ public class JObject : JBranch, IJsonType<JObject>, IJsonComposite
         }
         if(unresolved.Count > 0 && !Runtime.IgnoreUndefinedProperties)
         {
-            var property = other.Properties[unresolved.First()];
-            return FailWith(new JsonSchemaException(
-                new ErrorDetail(PROP06, UndefinedPropertyFound),
-                ExpectedDetail.AsUndefinedProperty(this, property),
-                ActualDetail.AsUndefinedProperty(property)));
+            foreach(var key in unresolved)
+            {
+                var property = other.Properties[key];
+                result &= FailWith(new JsonSchemaException(
+                    new ErrorDetail(PROP06, UndefinedPropertyFound),
+                    ExpectedDetail.AsUndefinedProperty(this, property),
+                    ActualDetail.AsUndefinedProperty(property)));
+            }
         }
         return result;
     }
 
-    private JProperty? GetAssociatedProperty(JObject other, int index)
+    private JProperty? GetOtherProp(JObject other, int index)
     {
         var thisProp = Properties[index];
         JProperty? otherProp = null;
         if(!Runtime.IgnoreObjectPropertyOrder)
         {
-            var atAnyProp = GetPropertyAt(other.Properties, index);
-            if(atAnyProp != null && thisProp.Key == atAnyProp.Key) otherProp = atAnyProp;
+            var atProp = GetPropAt(other.Properties, index);
+            if(AreKeysEqual(atProp, thisProp)) otherProp = atProp;
             JProperty? existing = null;
             if(otherProp == null) other.Properties.TryGetValue(thisProp.Key, out existing);
             if(otherProp == null && existing != null)
                 FailWith(new JsonSchemaException(
                     new ErrorDetail(PROP07, PropertyOrderMismatch),
                     ExpectedDetail.AsPropertyOrderMismatch(thisProp),
-                    ActualDetail.AsPropertyOrderMismatch(atAnyProp ?? (JNode) other)));
+                    ActualDetail.AsPropertyOrderMismatch(atProp ?? (JNode) other)));
         }
         else other.Properties.TryGetValue(thisProp.Key, out otherProp);
         return otherProp;
     }
 
-    private JProperty? GetPropertyAt(IJsonProperties properties, int index) 
+    private static bool AreKeysEqual(JProperty? p1, JProperty? p2) {
+        if(p1 == null || p2 == null) return false;
+        return p1.Key == p2.Key;
+    }
+
+    private JProperty? GetPropAt(IIndexMap<string, JProperty> properties, int index)
         => index >= properties.Count ? null : properties[index];
 
-    public IList<JNode> ExtractComponents() => Properties.Select(p => p.Value)
+    public override IList<JNode> GetComponents() => Properties.Select(p => p.Value)
         .ToList().AsReadOnly();
 
     public override bool Equals(object? obj)
@@ -82,7 +88,7 @@ public class JObject : JBranch, IJsonType<JObject>, IJsonComposite
         if(obj.GetType() != this.GetType()) return false;
         var other = (JObject) obj;
         if(Properties.Count != other.Properties.Count) return false;
-        return Runtime.IgnoreObjectPropertyOrder? UnorderedEquals(other.Properties) 
+        return Runtime.IgnoreObjectPropertyOrder? UnorderedEquals(other.Properties)
             : OrderedEquals(other.Properties);
     }
 
@@ -100,7 +106,7 @@ public class JObject : JBranch, IJsonType<JObject>, IJsonComposite
         return true;
     }
 
+    public override JsonType Type => JsonType.OBJECT;
     public override int GetHashCode() => Properties.GetHashCode();
-    public override string ToJson() => $"{{{Properties.ToJson().ToString(", ")}}}";
-    public override string ToString() => ToJson();
+    public override string ToString() => Properties.ToString(", ", "{", "}");
 }
