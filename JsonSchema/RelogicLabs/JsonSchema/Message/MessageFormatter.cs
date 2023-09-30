@@ -14,41 +14,50 @@ public abstract class MessageFormatter
     private const string JsonParseException = "Json (Line: {0}) [{1}]: {2}";
     
     public static readonly MessageFormatter SchemaValidation
-        = new SchemaValidationFormatter
+        = new ValidationFormatter
         {
-            Header = "Schema (Line: {0}) Json (Line: {1}) [{2}]: {3}.",
+            Summary = "Schema (Line: {0}) Json (Line: {1}) [{2}]: {3}.",
             Expected = " {0} is expected",
             Actual = " but {0}."
         };
     public static readonly MessageFormatter SchemaAssertion
-        = new SchemaAssertionFormatter
+        = new AssertionFormatter
         {
-            Header = $"{{0}}: {{1}}{NewLine}",
+            Summary = $"{{0}}: {{1}}{NewLine}",
             Expected = $"Expected (Schema Line: {{0}}): {{1}}{NewLine}",
             Actual = $"Actual (Json Line: {{0}}): {{1}}{NewLine}"
         };
     
     public static readonly MessageFormatter JsonAssertion
-        = new JsonAssertionFormatter
+        = new AssertionFormatter
         {
-            Header = $"{{0}}: {{1}}{NewLine}",
+            Summary = $"{{0}}: {{1}}{NewLine}",
             Expected = $"Expected (Json Line: {{0}}): {{1}}{NewLine}",
             Actual = $"Actual (Json Line: {{0}}): {{1}}{NewLine}"
         };
 
-    public required string Header { get; init; }
+    public required string Summary { get; init; }
     public required string Expected { get; init; }
     public required string Actual { get; init; }
     public int OutlineLength { get; set; } = 200;
 
+    public string CreateOutline(string target)
+    {
+        int front = 2 * OutlineLength / 3;
+        int back = 1 * OutlineLength / 3;
+        if(front + back >= target.Length) return target;
+        StringBuilder builder = new();
+        return builder.Append(target[..front]).Append("...")
+            .Append(target[^back..]).ToString();
+    }
 
-    private class SchemaValidationFormatter : MessageFormatter
+    private class ValidationFormatter : MessageFormatter
     {
         internal override string Format(ErrorDetail error, ExpectedDetail expected, 
             ActualDetail actual)
         {
             return new StringBuilder()
-                .Append(string.Format(Header, expected.Location, 
+                .Append(string.Format(Summary, expected.Location, 
                     actual.Location, error.Code, error.Message))
                 .Append(string.Format(Expected, expected.Message.ToUpperFirstLetter()))
                 .Append(string.Format(Actual, actual.Message))
@@ -56,26 +65,13 @@ public abstract class MessageFormatter
         }
     }
     
-    private class SchemaAssertionFormatter : MessageFormatter
+    private class AssertionFormatter : MessageFormatter
     {
         internal override string Format(ErrorDetail error, ExpectedDetail expected, 
             ActualDetail actual)
         {
             return new StringBuilder()
-                .Append(string.Format(Header, error.Code, error.Message))
-                .Append(string.Format(Expected, expected.Location, expected.Message))
-                .Append(string.Format(Actual, actual.Location, actual.Message))
-                .ToString();
-        }
-    }
-
-    private class JsonAssertionFormatter : MessageFormatter
-    {
-        internal override string Format(ErrorDetail error, ExpectedDetail expected, 
-            ActualDetail actual)
-        {
-            return new StringBuilder()
-                .Append(string.Format(Header, error.Code, error.Message))
+                .Append(string.Format(Summary, error.Code, error.Message))
                 .Append(string.Format(Expected, expected.Location, expected.Message))
                 .Append(string.Format(Actual, actual.Location, actual.Message))
                 .ToString();
@@ -85,20 +81,23 @@ public abstract class MessageFormatter
     internal abstract string Format(ErrorDetail error, ExpectedDetail expected,
         ActualDetail actual);
 
-    internal static ErrorDetail FormatForSchema(string code, string message, 
-        Context? context = null) 
-        => context == null ? CreateDetail(code, SchemaBaseException, message)
-            : CreateDetail(code, SchemaParseException, message, context);
+    internal static ErrorDetail FormatForSchema(string code, string message, Context? context)
+        => FormatForSchema(code, message, context?.GetLocation());
+    
+    internal static ErrorDetail FormatForSchema(string code, string message, Location? location) 
+        => location == null ? CreateDetail(code, SchemaBaseException, message)
+            : CreateDetail(code, SchemaParseException, message, location);
 
-    internal static ErrorDetail FormatForJson(string code, string message, 
-        Context? context = null) 
-        => context == null ? CreateDetail(code, JsonBaseException, message)
-            : CreateDetail(code, JsonParseException, message, context);
+    internal static ErrorDetail FormatForJson(string code, string message, Context? context)
+        => FormatForJson(code, message, context?.GetLocation());
+    
+    internal static ErrorDetail FormatForJson(string code, string message, Location? location) 
+        => location == null ? CreateDetail(code, JsonBaseException, message)
+            : CreateDetail(code, JsonParseException, message, location);
 
     private static ErrorDetail CreateDetail(string code, string format, string message) 
         => new(code, string.Format(format, code, message));
 
     private static ErrorDetail CreateDetail(string code, string format, string message, 
-        Context context) => new(code, string.Format(format, context.GetLocation(), 
-            code, message));
+        Location location) => new(code, string.Format(format, location, code, message));
 }

@@ -18,6 +18,19 @@ public class FunctionTests
     }
     
     [TestMethod]
+    public void When_ExternalFunctionExecute2_ValidTrue()
+    {
+        var schema =
+            """
+            %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+                    RelogicLabs.JsonSchema.Tests
+            %schema: @canTest("test", true, 1, 2, 3) #integer
+            """;
+        var json = "10";
+        JsonAssert.IsValid(schema, json);
+    }
+    
+    [TestMethod]
     public void When_ExternalFunctionWithoutDataType_ValidTrue()
     {
         var schema =
@@ -27,7 +40,6 @@ public class FunctionTests
             %schema: @even
             """;
         var json = "10";
-        
         JsonAssert.IsValid(schema, json);
     }
     
@@ -51,7 +63,6 @@ public class FunctionTests
                 "key2": 12
             }
             """;
-        
         JsonAssert.IsValid(schema, json);
     }
     
@@ -68,7 +79,6 @@ public class FunctionTests
             ]
             """;
         var json = "[100, 200]";
-        
         JsonAssert.IsValid(schema, json);
     }
 }

@@ -1,3 +1,4 @@
+using RelogicLabs.JsonSchema.Collections;
 using RelogicLabs.JsonSchema.Exceptions;
 using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Utilities;
@@ -6,14 +7,14 @@ using static RelogicLabs.JsonSchema.Message.ErrorDetail;
 
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JProperty : JBranch, IProperty<string, JNode>
+public class JProperty : JBranch, IKeyer<string>
 {
     public required string Key { get; init; }
     public required JNode Value { get; init; }
-    
+
     internal JProperty(IDictionary<JNode, JNode> relations) : base(relations) { }
     public override IEnumerable<JNode> Children => new[] { Value };
-    
+
     public override bool Match(JNode node)
     {
         var other = CastType<JProperty>(node);
@@ -41,8 +42,18 @@ public class JProperty : JBranch, IProperty<string, JNode>
     }
 
     public override int GetHashCode() => HashCode.Combine(Key, Value);
-    public override string ToJson() => $"{Key.DoubleQuote()}: {Value.ToJson()}";
-    public override string ToString() => ToJson();
+    public override string ToString() => $"{Key.Quote()}: {Value}";
+    public string GetKey() => Key;
     public string GetPropertyKey() => Key;
     public JNode GetPropertyValue() => Value;
+
+    internal static IEnumerable<JProperty> CheckForDuplicate(IList<JProperty> properties, string errorCode)
+    {
+        var group = properties.GroupBy(p => p.Key).FirstOrDefault(g => g.Count() > 1);
+        if(group == default) return properties;
+        JProperty property = group.First();
+        throw new DuplicatePropertyKeyException(MessageFormatter.FormatForJson(
+            errorCode, $"Multiple key with name {property.Key.Quote()} found",
+            property.Context));
+    }
 }

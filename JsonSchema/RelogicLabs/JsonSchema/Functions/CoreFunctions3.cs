@@ -14,60 +14,60 @@ public partial class CoreFunctions
     {
         return items.Where(n => !target.Elements.Contains(n))
             .Select(FailWithNode).ForEachTrue();
-        
+
         bool FailWithNode(JNode node)
         {
-            return FailWith(new JsonSchemaException(new ErrorDetail(ELEM01,
-                    "Value is not an element of array"),
+            return FailWith(new JsonSchemaException(
+                new ErrorDetail(ELEM01, "Value is not an element of array"),
                 new ExpectedDetail(Function, $"array with value {node}"),
-                new ActualDetail(target, $"not found in {target.ToOutline()}")));
+                new ActualDetail(target, $"not found in {target.GetOutline()}")));
         }
     }
 
     public bool Keys(JObject target, params JString[] items)
     {
-        return items.Where(n => !target.Properties.ContainsKey(n))
+        return target.Properties.ContainsKeys(items)
             .Select(FailWithNode).ForEachTrue();
-        
-        bool FailWithNode(JNode node)
+
+        bool FailWithNode(string node)
         {
-            return FailWith(new JsonSchemaException(new ErrorDetail(KEYS01,
-                    "Object does not contain the key"),
-                new ExpectedDetail(Function, $"object with key {node}"),
-                new ActualDetail(target, $"does not contain in {target.ToOutline()}")));
+            return FailWith(new JsonSchemaException(
+                new ErrorDetail(KEYS01, "Object does not contain the key"),
+                new ExpectedDetail(Function, $"object with key {node.Quote()}"),
+                new ActualDetail(target, $"does not contain in {target.GetOutline()}")));
         }
     }
-    
+
     public bool Values(JObject target, params JNode[] items)
     {
-        return items.Where(n => !target.Properties.ContainsValue(n))
+        return target.Properties.ContainsValues(items)
             .Select(FailWithNode).ForEachTrue();
-        
+
         bool FailWithNode(JNode node)
         {
-            return FailWith(new JsonSchemaException(new ErrorDetail(VALU01,
-                    $"Object does not contain the value"),
+            return FailWith(new JsonSchemaException(
+                new ErrorDetail(VALU01, "Object does not contain the value"),
                 new ExpectedDetail(Function, $"object with value {node}"),
-                new ActualDetail(target, $"does not contain in {target.ToOutline()}")));
+                new ActualDetail(target, $"does not contain in {target.GetOutline()}")));
         }
     }
 
     public bool Regex(JString target, JString pattern)
     {
-        var regex = new Regex(((string) pattern).ToString("^", "$"));
+        var regex = new Regex(((string) pattern).Affix("^", "$"));
         bool result = regex.IsMatch(target);
-        if(!result) return FailWith(new JsonSchemaException(new ErrorDetail(REGX01,
-                $"Regex pattern does not match"),
+        if(!result) return FailWith(new JsonSchemaException(
+            new ErrorDetail(REGX01, "Regex pattern does not match"),
             new ExpectedDetail(Function, $"string of pattern {pattern}"),
-            new ActualDetail(target, $"found {target.ToOutline()} that mismatches with pattern")));
+            new ActualDetail(target, $"found {target.GetOutline()} that mismatches with pattern")));
         return true;
     }
 
     public bool Email(JString target)
     {
         var result = EmailRegex().IsMatch(target);
-        if(!result) return FailWith(new JsonSchemaException(new ErrorDetail(EMAL01,
-            "Invalid email address"),
+        if(!result) return FailWith(new JsonSchemaException(
+            new ErrorDetail(EMAL01, "Invalid email address"),
             new ExpectedDetail(Function, "a valid email address"),
             new ActualDetail(target, $"found {target} that is invalid")));
         return true;
@@ -83,13 +83,13 @@ public partial class CoreFunctions
             new ActualDetail(target, $"found {target} that is invalid")));
         result &= uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps;
         if(!result) return FailWith(new JsonSchemaException(
-            new ErrorDetail(URLA02, $"Invalid url address scheme"),
+            new ErrorDetail(URLA02, "Invalid url address scheme"),
             new ExpectedDetail(Function, "HTTP or HTTPS scheme"),
-            new ActualDetail(target, $"found {uriResult.Scheme.DoubleQuote()} from {
+            new ActualDetail(target, $"found {uriResult.Scheme.Quote()} from {
                 target} that has invalid scheme")));
         return true;
     }
-    
+
     public bool Url(JString target, JString scheme)
     {
         bool result = Uri.TryCreate(target, UriKind.Absolute, out Uri? uriResult);
@@ -101,16 +101,14 @@ public partial class CoreFunctions
         if(!result) return FailWith(new JsonSchemaException(
             new ErrorDetail(URLA04, "Mismatch url address scheme"),
             new ExpectedDetail(Function, $"scheme {scheme} for url address"),
-            new ActualDetail(target, $"found {uriResult.Scheme.DoubleQuote()} from {
+            new ActualDetail(target, $"found {uriResult.Scheme.Quote()} from {
                 target} that does not matched")));
         return true;
     }
 
     public bool Phone(JString target)
     {
-        // Based on ITU-T E.163 and E.164 (extended)
-        Regex phone = new Regex(@"^\+?[0-9\s-()]+$");
-        bool result = phone.IsMatch(target);
+        bool result = PhoneRegex().IsMatch(target);
         if(!result) return FailWith(new JsonSchemaException(
             new ErrorDetail(PHON01, "Invalid phone number format"),
             new ExpectedDetail(Function, "a valid phone number"),
@@ -118,10 +116,10 @@ public partial class CoreFunctions
         return true;
     }
 
-    public bool Date(JString target, JString pattern) 
+    public bool Date(JString target, JString pattern)
         => DateTime(target, pattern, DateTimeType.DATE_TYPE);
 
-    public bool Time(JString target, JString pattern) 
+    public bool Time(JString target, JString pattern)
         => DateTime(target, pattern, DateTimeType.TIME_TYPE);
 
     private bool DateTime(JString target, JString pattern, DateTimeType type)
@@ -137,22 +135,26 @@ public partial class CoreFunctions
         catch(DateTimeLexerException ex)
         {
             return FailWith(new JsonSchemaException(
-                new ErrorDetail(ex.ErrorCode, ex.Message),
+                new ErrorDetail(ex.Code, ex.Message),
                 new ExpectedDetail(Function, $"a valid {type} pattern"),
-                new ActualDetail(target, $"found {pattern.DoubleQuote()} that is invalid"), 
+                new ActualDetail(target, $"found {pattern} that is invalid"),
                 ex));
         }
         catch(InvalidDateTimeException ex)
         {
             return FailWith(new JsonSchemaException(
-                new ErrorDetail(ex.ErrorCode, ex.Message),
-                new ExpectedDetail(Function, $"a valid {type} formatted as {pattern.DoubleQuote()}"),
-                new ActualDetail(target, $"found {target.DoubleQuote()} that is invalid or malformatted"), 
+                new ErrorDetail(ex.Code, ex.Message),
+                new ExpectedDetail(Function, $"a valid {type} formatted as {pattern}"),
+                new ActualDetail(target, $"found {target} that is invalid or malformatted"),
                 ex));
         }
     }
-    
+
     // Based on SMTP protocol RFC 5322
-    [GeneratedRegex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")]
+    [GeneratedRegex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", RegexOptions.Compiled)]
     private static partial Regex EmailRegex();
+
+    // Based on ITU-T E.163 and E.164 (extended)
+    [GeneratedRegex(@"^\+?[0-9\s-()]+$", RegexOptions.Compiled)]
+    private static partial Regex PhoneRegex();
 }

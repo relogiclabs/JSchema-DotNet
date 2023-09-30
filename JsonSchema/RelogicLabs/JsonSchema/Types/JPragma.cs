@@ -22,6 +22,5 @@ public class JPragma : JDirective
 
     public override int GetHashCode() => HashCode.Combine(Name, Value);
     internal override JPragma Initialize() => (JPragma) base.Initialize();
-    public override string ToJson() => $"{PragmaMarker} {Name}: {Value}";
-    public override string ToString() => ToJson();
+    public override string ToString() => $"{PragmaMarker} {Name}: {Value}";
 }

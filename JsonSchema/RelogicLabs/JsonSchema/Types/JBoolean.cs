@@ -5,9 +5,8 @@ using static RelogicLabs.JsonSchema.Message.ErrorDetail;
 
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JBoolean : JPrimitive, IJsonType<JBoolean>, IPragmaValue<bool>
+public class JBoolean : JPrimitive, IPragmaValue<bool>
 {
-    public JsonType Type => JsonType.BOOLEAN;
     public required bool Value { get; init; }
     internal JBoolean(IDictionary<JNode, JNode> relations) : base(relations) { }
 
@@ -31,7 +30,7 @@ public class JBoolean : JPrimitive, IJsonType<JBoolean>, IPragmaValue<bool>
         return Value == other.Value;
     }
 
+    public override JsonType Type => JsonType.BOOLEAN;
     public override int GetHashCode() => Value.GetHashCode();
-    public override string ToJson() => Value.ToString().ToLower();
-    public override string ToString() => ToJson();
+    public override string ToString() => Value.ToString().ToLower();
 }

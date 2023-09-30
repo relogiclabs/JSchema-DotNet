@@ -6,11 +6,10 @@ using static RelogicLabs.JsonSchema.Message.ErrorDetail;
 
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JString : JPrimitive, IJsonType<JString>, IPragmaValue<string>
+public class JString : JPrimitive, IPragmaValue<string>
 {
-    public JsonType Type => JsonType.STRING;
     public required string Value { get; init; }
-    
+
     internal JString(IDictionary<JNode, JNode> relations) : base(relations) { }
     public override bool Match(JNode node)
     {
@@ -32,8 +31,8 @@ public class JString : JPrimitive, IJsonType<JString>, IPragmaValue<string>
         return Value == other.Value;
     }
 
+    public override JsonType Type => JsonType.STRING;
     public override int GetHashCode() => Value.GetHashCode();
     public static implicit operator string(JString @string) => @string.Value;
-    public override string ToJson() => Value.DoubleQuote();
-    public override string ToString() => ToJson();
+    public override string ToString() => Value.Quote();
 }

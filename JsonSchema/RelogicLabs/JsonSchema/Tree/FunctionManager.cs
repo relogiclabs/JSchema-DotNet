@@ -5,6 +5,7 @@ using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Types;
 using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
+using static RelogicLabs.JsonSchema.Tree.MethodPointer;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
@@ -16,22 +17,22 @@ internal class FunctionManager
 
     public FunctionManager(RuntimeContext runtime) => _runtime = runtime;
 
-    public void AddFunctions(string className, Context? context = null)
+    public void AddClass(string className, Context? context = null)
     {
         if(!_includes.Contains(className)) _includes.Add(className);
         else throw new DuplicateIncludeException(MessageFormatter.FormatForSchema(
             CLAS01, $"Class already included [{className}]", context));
-        
+
         var subclass = Type.GetType(className) ?? throw new ClassNotFoundException(
             MessageFormatter.FormatForSchema(CLAS02, $"Not found {className}", context));
-        
-        Type baseclass = typeof(FunctionBase);
+
+        var baseclass = typeof(FunctionBase);
         // if not FunctionBase's subclass
-        if(!baseclass.IsAssignableFrom(subclass)) 
+        if(!baseclass.IsAssignableFrom(subclass))
             throw new InvalidIncludeException(MessageFormatter
                 .FormatForSchema(CLAS03, $"{subclass.FullName} needs to inherit {
                     baseclass.FullName}", context));
-        
+
         FunctionBase instance = CreateInstance(subclass, context);
         try
         {
@@ -41,7 +42,7 @@ internal class FunctionManager
         catch(InvalidFunctionException ex)
         {
             throw new InvalidFunctionException(MessageFormatter
-                .FormatForSchema(ex.ErrorCode, ex.Message, context));
+                .FormatForSchema(ex.Code, ex.Message, context));
         }
     }
 
@@ -52,12 +53,18 @@ internal class FunctionManager
             var instance = (FunctionBase?) Activator.CreateInstance(type, _runtime);
             if(instance != null) return instance;
         }
-        catch(Exception ex)
-        {
-            throw CreateException(CLAS04, ex);
-        }
-        throw CreateException(CLAS05, null);
-        
+        catch(TargetInvocationException ex) { throw CreateException(CLAS04, ex); }
+        catch(MissingMethodException ex) { throw CreateException(CLAS05, ex); }
+        catch(MethodAccessException ex) { throw CreateException(CLAS06, ex); }
+        catch(MemberAccessException ex) { throw CreateException(CLAS07, ex); }
+        catch(TypeLoadException ex) { throw CreateException(CLAS08, ex); }
+        catch(FileNotFoundException ex) { throw CreateException(CLAS09, ex); }
+        catch(NotSupportedException ex) { throw CreateException(CLAS10, ex); }
+        catch(BadImageFormatException ex) { throw CreateException(CLAS11, ex); }
+        catch(FileLoadException ex) { throw CreateException(CLAS12, ex); }
+        catch(Exception ex) { throw CreateException(CLAS13, ex); }
+        throw CreateException(CLAS14, null);
+
         Exception CreateException(string code, Exception? ex)
         {
             return new ClassInstantiationException(MessageFormatter.FormatForSchema(
@@ -76,9 +83,9 @@ internal class FunctionManager
             if(baseclass == m.DeclaringType) continue;
             ParameterInfo[] parameters = m.GetParameters();
             if(m.ReturnType != typeof(bool)) throw new InvalidFunctionException(FUNC01,
-                $"Function [{m.GetMethodHeader()}] requires return type boolean");
+                $"Function [{m.GetSignature()}] requires return type boolean");
             if(parameters.Length < 1) throw new InvalidFunctionException(FUNC02,
-                $"Function [{m.GetMethodHeader()}] requires minimum one parameter");
+                $"Function [{m.GetSignature()}] requires minimum one parameter");
             var key = new FunctionKey(m, GetParameterCount(parameters));
             var value = new MethodPointer(instance, m, parameters);
             functions.TryGetValue(key, out var valueList);
@@ -88,18 +95,81 @@ internal class FunctionManager
         }
         return functions;
     }
-    
+
     private int GetParameterCount(ICollection<ParameterInfo> parameters)
     {
         foreach(var p in parameters) if(IsParams(p)) return -1;
         return parameters.Count;
     }
 
-    private static bool IsMatch(ParameterInfo parameter, JNode argument) 
+    private static bool IsMatch(ParameterInfo parameter, JNode argument)
         => parameter.ParameterType.IsInstanceOfType(argument);
-    
-    private static bool IsParams(ParameterInfo parameter) 
+
+    private static bool IsParams(ParameterInfo parameter)
         => parameter.IsDefined(typeof(ParamArrayAttribute), false);
+
+    public bool InvokeFunction(JFunction function, JNode target)
+    {
+        var methods = GetMethods(function);
+        string? mismatchMessage = null;
+        foreach(var method in methods)
+        {
+            var _parameters = method.Parameters;
+            var _arguments = function.Arguments;
+            var schemaArgs = ProcessArguments(_parameters, _arguments);
+            if(schemaArgs == null) continue;
+            if(!IsMatch(_parameters[0], target))
+            {
+                mismatchMessage = $"Function {function.GetOutline()} is applicable on {
+                    _parameters[0].ParameterType.Name} but applied on {
+                        target.GetType().Name} of {target}";
+                continue;
+            }
+            return method.Invoke(function, AddTarget(schemaArgs, target));
+        }
+        if(mismatchMessage != null) return FailWith(new FunctionMismatchException(
+            MessageFormatter.FormatForSchema(FUNC03, mismatchMessage, function.Context)));
+        return FailWith(new FunctionNotFoundException(MessageFormatter
+            .FormatForSchema(FUNC04, function.GetOutline(), function.Context)));
+    }
+
+    private List<object> AddTarget(IList<object> arguments, JNode target)
+    {
+        List<object> _arguments = new(1 + arguments.Count) { target };
+        _arguments.AddRange(arguments);
+        return _arguments;
+    }
+
+    private List<MethodPointer> GetMethods(JFunction function)
+    {
+        _functions.TryGetValue(new FunctionKey(function), out var methodPointers);
+        if(methodPointers == null)
+            _functions.TryGetValue(new FunctionKey(
+                function.Name, -1), out methodPointers);
+        if(methodPointers == null)
+            throw new FunctionNotFoundException(MessageFormatter
+                .FormatForSchema(FUNC05, $"Not found {function.GetOutline()}", function.Context));
+        return methodPointers;
+    }
+
+    private List<object>? ProcessArguments(IList<ParameterInfo> parameters, IList<JNode> arguments)
+    {
+        List<object> _arguments = new();
+        for(int i = 1; i < parameters.Count; i++)
+        {
+            if(IsParams(parameters[i]))
+            {
+                IList<JNode> _rest = arguments.GetRange(i - 1, arguments.Count - i + 1);
+                var args = ProcessParams(parameters[i], _rest);
+                if(args == null) return null;
+                _arguments.Add(args);
+                break;
+            }
+            if(!IsMatch(parameters[i], arguments[i - 1])) return null;
+            _arguments.Add(arguments[i - 1]);
+        }
+        return _arguments;
+    }
 
     private static object? ProcessParams(ParameterInfo parameter, IList<JNode> arguments)
     {
@@ -114,75 +184,7 @@ internal class FunctionManager
         }
         return _arguments;
     }
-    
-    public bool InvokeFunction(JFunction function, JNode target)
-    {
-        var methods = GetMethods(function);
-        string? mismatchMessage = null;
-        foreach(var method in methods)
-        {
-            var _parameters = method.Parameters;
-            var _arguments = function.Arguments;
-            var schemaArgs = MatchSchemaArguments(_parameters, _arguments);
-            if(schemaArgs == null) continue;
-            if(!IsMatch(_parameters[0], target))
-            {
-                mismatchMessage = $"Function {function.ToOutline()} is applicable on {
-                    _parameters[0].ParameterType.Name} but applied on {
-                        target.GetType().Name} of {target}";
-                continue;
-            }
-            return method.Invoke(function, JoinArguments(target, schemaArgs));
-        }
-        if(mismatchMessage != null) return FailWith(new FunctionMismatchException(
-            MessageFormatter.FormatForSchema(FUNC03, mismatchMessage, function.Context)));
-        return FailWith(new FunctionNotFoundException(MessageFormatter
-            .FormatForSchema(FUNC04, function.ToOutline(), function.Context)));
-    }
 
-    private List<object> JoinArguments(JNode node, IList<object> arguments)
-    {
-        List<object> _arguments = new(1 + arguments.Count) { node };
-        _arguments.AddRange(arguments);
-        return _arguments;
-    }
-
-    private List<MethodPointer> GetMethods(JFunction function)
-    {
-        _functions.TryGetValue(new FunctionKey(function), out var methodPointers);
-        if(methodPointers == null)
-            _functions.TryGetValue(new FunctionKey(
-                function.Name, -1), out methodPointers);
-        if(methodPointers == null)
-            throw new FunctionNotFoundException(MessageFormatter
-                .FormatForSchema(FUNC05, $"Not found {function.ToOutline()}", function.Context));
-        return methodPointers;
-    }
-
-    private List<object>? MatchSchemaArguments(IList<ParameterInfo> parameters, IList<JNode> arguments)
-    {
-        List<object> _arguments = new();
-        for(int i = 1; i < parameters.Count; i++)
-        {
-            if(IsParams(parameters[i]))
-            {
-                IList<JNode> _rest = arguments.GetRange(i - 1, arguments.Count - i + 1);
-                var args = ProcessParams(parameters[i], _rest);
-                if(args == null) return null;
-                _arguments.AddRange(arguments.GetRange(0, i - 1));
-                _arguments.Add(args);
-                break;
-            }
-            if(!IsMatch(parameters[i], arguments[i - 1])) return null;
-            _arguments.Add(arguments[i - 1]);
-        }
-        return _arguments;
-    }
-    
     private bool FailWith(Exception exception)
-    {
-        if(_runtime.ThrowException) throw exception;
-        _runtime.ErrorQueue.Enqueue(exception);
-        return false;
-    }
+        => _runtime.FailWith(exception);
 }

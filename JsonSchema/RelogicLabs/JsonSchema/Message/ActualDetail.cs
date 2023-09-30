@@ -5,7 +5,7 @@ using RelogicLabs.JsonSchema.Utilities;
 
 namespace RelogicLabs.JsonSchema.Message;
 
-public class ActualDetail : CommonDetail<ActualDetail>
+public class ActualDetail : ContextDetail
 {
     [SetsRequiredMembers]
     public ActualDetail(Context context, string message) 
@@ -16,27 +16,28 @@ public class ActualDetail : CommonDetail<ActualDetail>
         : base(node, message) { }
 
     internal static ActualDetail AsValueMismatch(JNode node)
-        => new(node.Context, node.ToOutline().ToString("found "));
+        => new(node, node.GetOutline().Affix("found "));
     
     internal static ActualDetail AsPropertyNotFound(JNode node, JProperty property) 
-        => new(node.Context, $"not found property key \"{property.Key}\"");
+        => new(node, $"not found property key \"{property.Key}\"");
     
     internal static ActualDetail AsUndefinedProperty(JProperty property)
-        => new(property.Context, $"property found {{{property.ToOutline()}}}");
+        => new(property, $"property found {{{property.GetOutline()}}}");
     
+    internal static ActualDetail AsDataTypeMismatch(JNode node) 
+        => new(node, $"found {GetTypeName(node)} inferred by {node.GetOutline()}");
+
     internal static ActualDetail AsArrayElementNotFound(JArray array, int index)
-        => new(array.Context, $"not found");
+        => new(array, "not found");
     
     internal static ActualDetail AsInvalidFunction(JNode node) 
-        => new(node, $"applied on non-composite type {GetType(node)}");
+        => new(node, $"applied on non-composite type {GetTypeName(node)}");
     
     internal static ActualDetail AsInvalidDataType(JNode node) 
-        => new(node, $"applied on non-composite type {GetType(node)}");
+        => new(node, $"applied on non-composite type {GetTypeName(node)}");
 
     internal static ActualDetail AsPropertyOrderMismatch(JNode node)
         => node is JProperty property
             ? new(property, $"key \"{property.Key}\" is found at position")
             : new(node, "key not found at position");
-
-    private static JsonType GetType(JNode node) => ((IJsonType<JNode>) node).Type;
 }

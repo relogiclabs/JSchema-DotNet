@@ -6,9 +6,9 @@ namespace RelogicLabs.JsonSchema.Tests.Negative;
 
 public class ExternalFunctions1
 {
-    public bool Odd(JNumber source)
+    public bool Odd(JNumber target)
     {
-        bool result = source % 2 != 0;
+        bool result = target % 2 != 0;
         if(!result) throw new Exception("Not an odd number");
         return true;
     }
@@ -18,9 +18,9 @@ public class ExternalFunctions2 : FunctionBase
 {
     public ExternalFunctions2(RuntimeContext runtime) : base(runtime) { }
     
-    public void Odd(JNumber source)
+    public void Odd(JNumber target)
     {
-        bool result = source % 2 != 0;
+        bool result = target % 2 != 0;
         if(!result) throw new Exception("Not an odd number");
     }
 }

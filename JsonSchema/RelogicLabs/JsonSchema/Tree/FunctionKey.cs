@@ -6,9 +6,14 @@ namespace RelogicLabs.JsonSchema.Tree;
 
 internal record FunctionKey(string FunctionName, int ParameterCount)
 {
-    public FunctionKey(JFunction function) 
+    public const char EscapedPrefix = '_';
+
+    public FunctionKey(JFunction function)
         : this(function.Name, function.Arguments.Count + 1) { }
 
-    public FunctionKey(MethodInfo methodInfo, int parameterCount) 
-        : this('@' + methodInfo.Name.ToLowerFirstLetter(), parameterCount) { }
+    public FunctionKey(MethodInfo methodInfo, int parameterCount)
+        : this(GetFunctionName(methodInfo), parameterCount) { }
+
+    private static string GetFunctionName(MethodInfo methodInfo)
+        => '@' + methodInfo.Name.TrimStart(EscapedPrefix).ToLowerFirstLetter();
 }

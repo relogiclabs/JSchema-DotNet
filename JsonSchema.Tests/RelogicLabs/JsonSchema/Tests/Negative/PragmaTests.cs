@@ -28,7 +28,7 @@ public class PragmaTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(PROP06, exception.ErrorCode);
+        Assert.AreEqual(PROP06, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -54,7 +54,7 @@ public class PragmaTests
         //JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<SchemaParserException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(SPRS01, exception.ErrorCode);
+        Assert.AreEqual(SPRS01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -80,7 +80,7 @@ public class PragmaTests
         //JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<PragmaNotFoundException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(PRAG01, exception.ErrorCode);
+        Assert.AreEqual(PRAG01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -106,7 +106,7 @@ public class PragmaTests
         //JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<InvalidPragmaValueException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(PRAG02, exception.ErrorCode);
+        Assert.AreEqual(PRAG02, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -135,7 +135,7 @@ public class PragmaTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(PROP07, exception.ErrorCode);
+        Assert.AreEqual(PROP07, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -162,7 +162,7 @@ public class PragmaTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(FLOT01, exception.ErrorCode);
+        Assert.AreEqual(FLOT01, exception.Code);
         Console.WriteLine(exception);
     }
     
@@ -190,7 +190,7 @@ public class PragmaTests
         //JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<DuplicatePragmaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(PRAG03, exception.ErrorCode);
+        Assert.AreEqual(PRAG03, exception.Code);
         Console.WriteLine(exception);
     }
 }

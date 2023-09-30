@@ -14,6 +14,15 @@ internal static class ErrorCode
     public const string CLAS03 = "CLAS03";
     public const string CLAS04 = "CLAS04";
     public const string CLAS05 = "CLAS05";
+    public const string CLAS06 = "CLAS06";
+    public const string CLAS07 = "CLAS07";
+    public const string CLAS08 = "CLAS08";
+    public const string CLAS09 = "CLAS09";
+    public const string CLAS10 = "CLAS10";
+    public const string CLAS11 = "CLAS11";
+    public const string CLAS12 = "CLAS12";
+    public const string CLAS13 = "CLAS13";
+    public const string CLAS14 = "CLAS14";
     public const string DCNF01 = "DCNF01";
     public const string DCNF02 = "DCNF02";
     public const string DDAY01 = "DDAY01";
@@ -59,6 +68,9 @@ internal static class ErrorCode
     public const string DTYP01 = "DTYP01";
     public const string DTYP02 = "DTYP02";
     public const string DTYP03 = "DTYP03";
+    public const string DTYP04 = "DTYP04";
+    public const string DTYP05 = "DTYP05";
+    public const string DTYP06 = "DTYP06";
     public const string DUBL01 = "DUBL01";
     public const string DUTC01 = "DUTC01";
     public const string DUTC02 = "DUTC02";

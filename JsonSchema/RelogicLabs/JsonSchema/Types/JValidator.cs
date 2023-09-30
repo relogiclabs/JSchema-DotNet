@@ -30,7 +30,7 @@ public class JValidator : JBranch
     public override bool Match(JNode node)
     {
         bool rValue = true;
-        var value = CastType<IJsonType<JNode>>(node);
+        var value = CastType<IJsonType>(node);
         if(value == null) return false;
         if(node is JNull && DataTypes.Select(d => d.IsMatchNull()).AnyTrue())
             return true;
@@ -50,22 +50,17 @@ public class JValidator : JBranch
     private bool MatchDataType(JNode node)
     {
         var list1 = DataTypes.Where(d => !d.Nested).Select(d => d.Match(node)).ToList();
-        var result1 = list1.AnyTrue();
+        var result1 = list1.AnyTrue() || list1.Count == 0;
         var list2 = DataTypes.Where(d => d.Nested && (d.IsApplicable(node) || !result1))
             .Select(d => d.Match(node)).ToList();
-        var result2 = list2.AnyTrue();
-        if(result1 || result2) return true;
-        result2 = result2 || list2.Count == 0;
-        result1 = result1 || list1.Count == 0;
+        var result2 = list2.AnyTrue() || list2.Count == 0;
         return result1 && result2;
     }
 
-    public override string ToJson() => (
-        $"{Value?.ToJson() ?? string.Empty}"
-        + $"{Functions.ToJson().ToString(" ", " ")}"
-        + $"{DataTypes.ToJson().ToString(" ", " ")}"
-        + $"{(Optional? OptionalMarker.ToString(" ") : string.Empty)}"
-        ).Trim();
-
-    public override string ToString() => ToJson();
+    public override string ToString() => (
+        $"{Value?.ToString() ?? string.Empty}"
+        + $"{Functions.ToString(" ", " ")}"
+        + $"{DataTypes.ToString(" ", " ")}"
+        + $"{(Optional? $" {OptionalMarker}" : string.Empty)}"
+    ).Trim();
 }

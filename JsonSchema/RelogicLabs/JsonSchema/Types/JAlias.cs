@@ -28,6 +28,5 @@ public class JAlias : JLeaf
     }
 
     public override int GetHashCode() => Name.GetHashCode();
-    public override string ToJson() => Name;
-    public override string ToString() => ToJson();
+    public override string ToString() => Name;
 }

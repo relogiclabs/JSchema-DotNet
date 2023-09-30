@@ -1,4 +1,9 @@
+using Antlr4.Runtime.Tree;
+using RelogicLabs.JsonSchema.Exceptions;
+using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Time;
+using RelogicLabs.JsonSchema.Tree;
+using static RelogicLabs.JsonSchema.Message.ErrorCode;
 
 namespace RelogicLabs.JsonSchema.Types;
 
@@ -19,12 +24,23 @@ public class JsonType
     public static readonly JsonType NUMBER = new("#number", typeof(JNumber));
     public static readonly JsonType DATE = new("#date", typeof(JString));
     public static readonly JsonType TIME = new("#time", typeof(JString));
-    public static readonly JsonType ANY = new("#any", typeof(IJsonType<>));
+    public static readonly JsonType ANY = new("#any", typeof(IJsonType));
     
     public string Name { get; }
     public Type Type { get; }
 
-    public static JsonType From(string name) => _DataTypes[name];
+
+    internal static JsonType From(ITerminalNode node) 
+        => From(node.GetText(), Location.From(node.Symbol));
+    
+    internal static JsonType From(string name, Location location)
+    {
+        var result = _DataTypes.TryGetValue(name, out var type);
+        if(!result) throw new InvalidDataTypeException(MessageFormatter.FormatForSchema(
+                DTYP01, $"Invalid data type {name}", location));
+        return type!;
+    }
+
     private JsonType(string name, Type type)
     {
         Name = name;

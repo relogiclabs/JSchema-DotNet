@@ -83,7 +83,7 @@
 
   <h1 id="RelogicLabs_JsonSchema_JsonAssert" data-uid="RelogicLabs.JsonSchema.JsonAssert" class="text-break">
     Class JsonAssert
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/JsonAssert.cs/#L7"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/JsonAssert.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -91,11 +91,12 @@
   <dl><dt>Assembly</dt><dd>RelogicLabs.JsonSchema.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>Provides assertion functionalities to validate JSON document against JSON Schema.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class JsonAssert</code></pre>
+    <pre><code class="lang-csharp hljs">public class JsonAssert</code></pre>
   </div>
 
 
@@ -142,6 +143,110 @@
 
 
 
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="RelogicLabs_JsonSchema_JsonAssert__ctor_" data-uid="RelogicLabs.JsonSchema.JsonAssert.#ctor*"></a>
+
+  <h3 id="RelogicLabs_JsonSchema_JsonAssert__ctor_System_String_" data-uid="RelogicLabs.JsonSchema.JsonAssert.#ctor(System.String)">
+  JsonAssert(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/JsonAssert.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="RelogicLabs.JsonSchema.JsonAssert.html">JsonAssert</a> class for the
+specified Schema string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public JsonAssert(string schema)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>schema</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>A Schema string for validation or conformation.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="RelogicLabs_JsonSchema_JsonAssert_Runtime_" data-uid="RelogicLabs.JsonSchema.JsonAssert.Runtime*"></a>
+
+  <h3 id="RelogicLabs_JsonSchema_JsonAssert_Runtime" data-uid="RelogicLabs.JsonSchema.JsonAssert.Runtime">
+  Runtime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/JsonAssert.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RuntimeContext Runtime { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="RelogicLabs.JsonSchema.Tree.RuntimeContext.html">RuntimeContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="RelogicLabs_JsonSchema_JsonAssert_SchemaTree_" data-uid="RelogicLabs.JsonSchema.JsonAssert.SchemaTree*"></a>
+
+  <h3 id="RelogicLabs_JsonSchema_JsonAssert_SchemaTree" data-uid="RelogicLabs.JsonSchema.JsonAssert.SchemaTree">
+  SchemaTree
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/JsonAssert.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SchemaTree SchemaTree { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="RelogicLabs.JsonSchema.Tree.SchemaTree.html">SchemaTree</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -150,7 +255,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_JsonAssert_AreEqual_System_String_System_String_" data-uid="RelogicLabs.JsonSchema.JsonAssert.AreEqual(System.String,System.String)">
   AreEqual(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/JsonAssert.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/JsonAssert.cs/#L63"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Tests if the provided JSON strings are logically equivalent, meaning their structural
@@ -186,9 +291,43 @@ an exception is thrown.</p>
 
   <a id="RelogicLabs_JsonSchema_JsonAssert_IsValid_" data-uid="RelogicLabs.JsonSchema.JsonAssert.IsValid*"></a>
 
+  <h3 id="RelogicLabs_JsonSchema_JsonAssert_IsValid_System_String_" data-uid="RelogicLabs.JsonSchema.JsonAssert.IsValid(System.String)">
+  IsValid(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/JsonAssert.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Tests whether the input JSON string conforms to the Schema specified
+in the <a class="xref" href="RelogicLabs.JsonSchema.JsonAssert.html">JsonAssert</a> constructor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void IsValid(string json)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>json</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The actual JSON to conform or validate.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="RelogicLabs_JsonSchema_JsonAssert_IsValid_" data-uid="RelogicLabs.JsonSchema.JsonAssert.IsValid*"></a>
+
   <h3 id="RelogicLabs_JsonSchema_JsonAssert_IsValid_System_String_System_String_" data-uid="RelogicLabs.JsonSchema.JsonAssert.IsValid(System.String,System.String)">
   IsValid(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/JsonAssert.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/JsonAssert.cs/#L46"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Tests whether the specified JSON string conforms to the given Schema string
@@ -203,10 +342,10 @@ and throws an exception if the JSON string does not conform to the Schema.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>schemaExpected</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>The expected Schema to compare.</p>
+    <dd><p>The expected Schema to conform or validate.</p>
 </dd>
     <dt><code>jsonActual</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>The actual JSON to compare.</p>
+    <dd><p>The actual JSON to conform or validate.</p>
 </dd>
   </dl>
 
@@ -225,7 +364,7 @@ and throws an exception if the JSON string does not conform to the Schema.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/JsonAssert.cs/#L7" class="edit-link">Edit this page</a>
+          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/JsonAssert.cs/#L10" class="edit-link">Edit this page</a>
         </div>
 
         

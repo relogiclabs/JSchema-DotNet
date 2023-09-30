@@ -21,7 +21,7 @@ internal abstract class ParserErrorListener : IAntlrErrorListener<IToken>
             message, innerException);
 
         protected override string GetMessageFormat() 
-            => $"Schema (Line {{0}}:{{1}}) [{SPRS01}]: {{2}} (error on {{3}})";
+            => $"Schema (Line {{0}}:{{1}}) [{SPRS01}]: {{2}} (error on '{{3}}')";
     }
     
     private class JsonParserErrorListener : ParserErrorListener
@@ -31,7 +31,7 @@ internal abstract class ParserErrorListener : IAntlrErrorListener<IToken>
             message, innerException);
 
         protected override string GetMessageFormat() 
-            => $"Json (Line {{0}}:{{1}}) [{JPRS01}]: {{2}} (error on {{3}})";
+            => $"Json (Line {{0}}:{{1}}) [{JPRS01}]: {{2}} (error on '{{3}}')";
     }
     
     public void SyntaxError(TextWriter output, IRecognizer recognizer, 

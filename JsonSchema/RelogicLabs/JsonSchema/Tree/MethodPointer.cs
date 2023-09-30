@@ -10,8 +10,8 @@ internal class MethodPointer
     public FunctionBase Instance { get; }
     public MethodInfo Method { get; }
     public IList<ParameterInfo> Parameters { get;}
-    
-    internal MethodPointer(FunctionBase instance, MethodInfo method, 
+
+    internal MethodPointer(FunctionBase instance, MethodInfo method,
         IEnumerable<ParameterInfo> parameters)
     {
         Instance = instance;

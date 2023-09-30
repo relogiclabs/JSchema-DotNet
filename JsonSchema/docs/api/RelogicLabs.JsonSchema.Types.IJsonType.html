@@ -2,10 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Interface IProperty&lt;TKey, TValue&gt;
+      <title>Interface IJsonType
  | Json Schema </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Interface IProperty&lt;TKey, TValue&gt;
+      <meta name="title" content="Interface IJsonType
  | Json Schema ">
       
       <link rel="icon" href="../images/favicon.ico">
@@ -17,7 +17,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JsonSchema-DotNet/new/develop/apiSpec/new?filename=RelogicLabs_JsonSchema_Utilities_IProperty_2.md&amp;value=---%0Auid%3A%20RelogicLabs.JsonSchema.Utilities.IProperty%602%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JsonSchema-DotNet/new/develop/apiSpec/new?filename=RelogicLabs_JsonSchema_Types_IJsonType.md&amp;value=---%0Auid%3A%20RelogicLabs.JsonSchema.Types.IJsonType%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
   </head>
 
   <script type="module">
@@ -77,17 +77,17 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="RelogicLabs.JsonSchema.Utilities.IProperty`2">
+        <article data-uid="RelogicLabs.JsonSchema.Types.IJsonType">
 
 
 
-  <h1 id="RelogicLabs_JsonSchema_Utilities_IProperty_2" data-uid="RelogicLabs.JsonSchema.Utilities.IProperty`2" class="text-break">
-    Interface IProperty&lt;TKey, TValue&gt;
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Utilities/IProperty.cs/#L3"><i class="bi bi-code-slash"></i></a>
+  <h1 id="RelogicLabs_JsonSchema_Types_IJsonType" data-uid="RelogicLabs.JsonSchema.Types.IJsonType" class="text-break">
+    Interface IJsonType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/IJsonType.cs/#L3"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="RelogicLabs.html">RelogicLabs</a>.<a class="xref" href="RelogicLabs.JsonSchema.html">JsonSchema</a>.<a class="xref" href="RelogicLabs.JsonSchema.Utilities.html">Utilities</a></dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="RelogicLabs.html">RelogicLabs</a>.<a class="xref" href="RelogicLabs.JsonSchema.html">JsonSchema</a>.<a class="xref" href="RelogicLabs.JsonSchema.Types.html">Types</a></dd></dl>
   <dl><dt>Assembly</dt><dd>RelogicLabs.JsonSchema.dll</dd></dl>
   </div>
 
@@ -95,18 +95,11 @@
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IProperty&lt;out TKey, out TValue&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IJsonType</code></pre>
   </div>
 
 
 
-  <h4 class="section">Type Parameters</h4>
-  <dl class="parameters">
-    <dt><code>TKey</code></dt>
-    <dd></dd>
-    <dt><code>TValue</code></dt>
-    <dd></dd>
-  </dl>
 
 
 
@@ -117,28 +110,31 @@
 
 
 
-  <h2 class="section" id="methods">Methods
+  <h2 class="section" id="properties">Properties
 </h2>
 
 
-  <a id="RelogicLabs_JsonSchema_Utilities_IProperty_2_GetPropertyKey_" data-uid="RelogicLabs.JsonSchema.Utilities.IProperty`2.GetPropertyKey*"></a>
+  <a id="RelogicLabs_JsonSchema_Types_IJsonType_Node_" data-uid="RelogicLabs.JsonSchema.Types.IJsonType.Node*"></a>
 
-  <h3 id="RelogicLabs_JsonSchema_Utilities_IProperty_2_GetPropertyKey" data-uid="RelogicLabs.JsonSchema.Utilities.IProperty`2.GetPropertyKey">
-  GetPropertyKey()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Utilities/IProperty.cs/#L5"><i class="bi bi-code-slash"></i></a>
+  <h3 id="RelogicLabs_JsonSchema_Types_IJsonType_Node" data-uid="RelogicLabs.JsonSchema.Types.IJsonType.Node">
+  Node
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/IJsonType.cs/#L6"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">TKey GetPropertyKey()</code></pre>
+    <pre><code class="lang-csharp hljs">JNode Node { get; }</code></pre>
   </div>
 
 
-  <h4 class="section">Returns</h4>
+
+
+
+  <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><span class="xref">TKey</span></dt>
+    <dt><a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html">JNode</a></dt>
     <dd></dd>
   </dl>
 
@@ -149,32 +145,29 @@
 
 
 
+  <a id="RelogicLabs_JsonSchema_Types_IJsonType_Type_" data-uid="RelogicLabs.JsonSchema.Types.IJsonType.Type*"></a>
 
-
-
-  <a id="RelogicLabs_JsonSchema_Utilities_IProperty_2_GetPropertyValue_" data-uid="RelogicLabs.JsonSchema.Utilities.IProperty`2.GetPropertyValue*"></a>
-
-  <h3 id="RelogicLabs_JsonSchema_Utilities_IProperty_2_GetPropertyValue" data-uid="RelogicLabs.JsonSchema.Utilities.IProperty`2.GetPropertyValue">
-  GetPropertyValue()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Utilities/IProperty.cs/#L6"><i class="bi bi-code-slash"></i></a>
+  <h3 id="RelogicLabs_JsonSchema_Types_IJsonType_Type" data-uid="RelogicLabs.JsonSchema.Types.IJsonType.Type">
+  Type
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/IJsonType.cs/#L5"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">TValue GetPropertyValue()</code></pre>
+    <pre><code class="lang-csharp hljs">JsonType Type { get; }</code></pre>
   </div>
 
 
-  <h4 class="section">Returns</h4>
+
+
+
+  <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><span class="xref">TValue</span></dt>
+    <dt><a class="xref" href="RelogicLabs.JsonSchema.Types.JsonType.html">JsonType</a></dt>
     <dd></dd>
   </dl>
-
-
-
 
 
 
@@ -187,7 +180,7 @@
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Utilities/IProperty.cs/#L3" class="edit-link">Edit this page</a>
+          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/IJsonType.cs/#L3" class="edit-link">Edit this page</a>
         </div>
 
         

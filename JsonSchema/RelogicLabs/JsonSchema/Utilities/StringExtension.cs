@@ -1,21 +1,11 @@
 using System.Text;
-using RelogicLabs.JsonSchema.Types;
 
 namespace RelogicLabs.JsonSchema.Utilities;
 
 internal static class StringExtension
 {
-    public static string Truncate(this string source, int length, string suffix = "...") 
-        => source.Length <= length? source : source[..(length - 1)] + suffix;
-
-    public static string ToString(this string source, string prefix = "", string suffix = "") 
+    public static string Affix(this string source, string prefix = "", string suffix = "") 
         => $"{prefix}{source}{suffix}";
-
-    public static string DoubleQuote(this string source)
-        => $"\"{source}\"";
-    
-    public static string DoubleQuote(this JString source)
-        => $"\"{source.Value}\"";
     
     public static string ToUpperFirstLetter(this string source) 
         => source[..1].ToUpper() + source[1..];
@@ -53,13 +43,6 @@ internal static class StringExtension
         return builder.ToString();
     }
     
-    public static string ToOutline(this string source, int outlineLength = 200)
-    {
-        int front = 2 * outlineLength / 3;
-        int back = 1 * outlineLength / 3;
-        if(front + back >= source.Length) return source;
-        StringBuilder builder = new();
-        return builder.Append(source[..front]).Append("...")
-            .Append(source[^back..]).ToString();
-    }
+    public static string Quote(this string source)
+        => $"\"{source}\"";
 }
