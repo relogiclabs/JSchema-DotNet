@@ -8,7 +8,7 @@ public class AggregatedTests
     {
         var schema = """
         %title: "Example Schema For Some Json HTTP Request or Response"
-        %version: 1.0.1
+        %version: 2023.09.11
         %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
                   RelogicLabs.JsonSchema.Tests
         
@@ -56,7 +56,7 @@ public class AggregatedTests
         """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_JsonAggregatedTest_ValidTrue()
     {
@@ -153,10 +153,10 @@ public class AggregatedTests
             }
         }
         """;
-        
+
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_ExtendedJsonSchemaAggregatedTest_ValidTrue()
     {
@@ -314,7 +314,7 @@ public class AggregatedTests
             }
         }
         """;
-        
+
         JsonAssert.IsValid(schema, json);
     }
 }
