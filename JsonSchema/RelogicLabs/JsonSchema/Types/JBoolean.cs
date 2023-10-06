@@ -32,5 +32,6 @@ public class JBoolean : JPrimitive, IPragmaValue<bool>
 
     public override JsonType Type => JsonType.BOOLEAN;
     public override int GetHashCode() => Value.GetHashCode();
+    public static implicit operator bool(JBoolean @bool) => @bool.Value;
     public override string ToString() => Value.ToString().ToLower();
 }
