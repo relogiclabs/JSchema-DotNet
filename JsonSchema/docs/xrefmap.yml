@@ -1608,6 +1608,44 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Functions.CoreFunctions.Length
   nameWithType: CoreFunctions.Length
+- uid: RelogicLabs.JsonSchema.Functions.CoreFunctions.Maximum(RelogicLabs.JsonSchema.Types.JNumber,RelogicLabs.JsonSchema.Types.JNumber,RelogicLabs.JsonSchema.Types.JBoolean)
+  name: Maximum(JNumber, JNumber, JBoolean)
+  href: api/RelogicLabs.JsonSchema.Functions.CoreFunctions.html#RelogicLabs_JsonSchema_Functions_CoreFunctions_Maximum_RelogicLabs_JsonSchema_Types_JNumber_RelogicLabs_JsonSchema_Types_JNumber_RelogicLabs_JsonSchema_Types_JBoolean_
+  commentId: M:RelogicLabs.JsonSchema.Functions.CoreFunctions.Maximum(RelogicLabs.JsonSchema.Types.JNumber,RelogicLabs.JsonSchema.Types.JNumber,RelogicLabs.JsonSchema.Types.JBoolean)
+  fullName: RelogicLabs.JsonSchema.Functions.CoreFunctions.Maximum(RelogicLabs.JsonSchema.Types.JNumber, RelogicLabs.JsonSchema.Types.JNumber, RelogicLabs.JsonSchema.Types.JBoolean)
+  nameWithType: CoreFunctions.Maximum(JNumber, JNumber, JBoolean)
+- uid: RelogicLabs.JsonSchema.Functions.CoreFunctions.Maximum(RelogicLabs.JsonSchema.Types.JNumber,RelogicLabs.JsonSchema.Types.JNumber)
+  name: Maximum(JNumber, JNumber)
+  href: api/RelogicLabs.JsonSchema.Functions.CoreFunctions.html#RelogicLabs_JsonSchema_Functions_CoreFunctions_Maximum_RelogicLabs_JsonSchema_Types_JNumber_RelogicLabs_JsonSchema_Types_JNumber_
+  commentId: M:RelogicLabs.JsonSchema.Functions.CoreFunctions.Maximum(RelogicLabs.JsonSchema.Types.JNumber,RelogicLabs.JsonSchema.Types.JNumber)
+  fullName: RelogicLabs.JsonSchema.Functions.CoreFunctions.Maximum(RelogicLabs.JsonSchema.Types.JNumber, RelogicLabs.JsonSchema.Types.JNumber)
+  nameWithType: CoreFunctions.Maximum(JNumber, JNumber)
+- uid: RelogicLabs.JsonSchema.Functions.CoreFunctions.Maximum*
+  name: Maximum
+  href: api/RelogicLabs.JsonSchema.Functions.CoreFunctions.html#RelogicLabs_JsonSchema_Functions_CoreFunctions_Maximum_
+  commentId: Overload:RelogicLabs.JsonSchema.Functions.CoreFunctions.Maximum
+  isSpec: "True"
+  fullName: RelogicLabs.JsonSchema.Functions.CoreFunctions.Maximum
+  nameWithType: CoreFunctions.Maximum
+- uid: RelogicLabs.JsonSchema.Functions.CoreFunctions.Minimum(RelogicLabs.JsonSchema.Types.JNumber,RelogicLabs.JsonSchema.Types.JNumber,RelogicLabs.JsonSchema.Types.JBoolean)
+  name: Minimum(JNumber, JNumber, JBoolean)
+  href: api/RelogicLabs.JsonSchema.Functions.CoreFunctions.html#RelogicLabs_JsonSchema_Functions_CoreFunctions_Minimum_RelogicLabs_JsonSchema_Types_JNumber_RelogicLabs_JsonSchema_Types_JNumber_RelogicLabs_JsonSchema_Types_JBoolean_
+  commentId: M:RelogicLabs.JsonSchema.Functions.CoreFunctions.Minimum(RelogicLabs.JsonSchema.Types.JNumber,RelogicLabs.JsonSchema.Types.JNumber,RelogicLabs.JsonSchema.Types.JBoolean)
+  fullName: RelogicLabs.JsonSchema.Functions.CoreFunctions.Minimum(RelogicLabs.JsonSchema.Types.JNumber, RelogicLabs.JsonSchema.Types.JNumber, RelogicLabs.JsonSchema.Types.JBoolean)
+  nameWithType: CoreFunctions.Minimum(JNumber, JNumber, JBoolean)
+- uid: RelogicLabs.JsonSchema.Functions.CoreFunctions.Minimum(RelogicLabs.JsonSchema.Types.JNumber,RelogicLabs.JsonSchema.Types.JNumber)
+  name: Minimum(JNumber, JNumber)
+  href: api/RelogicLabs.JsonSchema.Functions.CoreFunctions.html#RelogicLabs_JsonSchema_Functions_CoreFunctions_Minimum_RelogicLabs_JsonSchema_Types_JNumber_RelogicLabs_JsonSchema_Types_JNumber_
+  commentId: M:RelogicLabs.JsonSchema.Functions.CoreFunctions.Minimum(RelogicLabs.JsonSchema.Types.JNumber,RelogicLabs.JsonSchema.Types.JNumber)
+  fullName: RelogicLabs.JsonSchema.Functions.CoreFunctions.Minimum(RelogicLabs.JsonSchema.Types.JNumber, RelogicLabs.JsonSchema.Types.JNumber)
+  nameWithType: CoreFunctions.Minimum(JNumber, JNumber)
+- uid: RelogicLabs.JsonSchema.Functions.CoreFunctions.Minimum*
+  name: Minimum
+  href: api/RelogicLabs.JsonSchema.Functions.CoreFunctions.html#RelogicLabs_JsonSchema_Functions_CoreFunctions_Minimum_
+  commentId: Overload:RelogicLabs.JsonSchema.Functions.CoreFunctions.Minimum
+  isSpec: "True"
+  fullName: RelogicLabs.JsonSchema.Functions.CoreFunctions.Minimum
+  nameWithType: CoreFunctions.Minimum
 - uid: RelogicLabs.JsonSchema.Functions.CoreFunctions.Negative(RelogicLabs.JsonSchema.Types.JNumber)
   name: Negative(JNumber)
   href: api/RelogicLabs.JsonSchema.Functions.CoreFunctions.html#RelogicLabs_JsonSchema_Functions_CoreFunctions_Negative_RelogicLabs_JsonSchema_Types_JNumber_
@@ -2597,6 +2635,22 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Tree.RuntimeContext.FloatingPointTolerance
   nameWithType: RuntimeContext.FloatingPointTolerance
+- uid: RelogicLabs.JsonSchema.Tree.RuntimeContext.GetPragmaValue*
+  name: GetPragmaValue
+  href: api/RelogicLabs.JsonSchema.Tree.RuntimeContext.html#RelogicLabs_JsonSchema_Tree_RuntimeContext_GetPragmaValue_
+  commentId: Overload:RelogicLabs.JsonSchema.Tree.RuntimeContext.GetPragmaValue
+  isSpec: "True"
+  fullName: RelogicLabs.JsonSchema.Tree.RuntimeContext.GetPragmaValue
+  nameWithType: RuntimeContext.GetPragmaValue
+- uid: RelogicLabs.JsonSchema.Tree.RuntimeContext.GetPragmaValue``1(System.String)
+  name: GetPragmaValue<T>(string)
+  href: api/RelogicLabs.JsonSchema.Tree.RuntimeContext.html#RelogicLabs_JsonSchema_Tree_RuntimeContext_GetPragmaValue__1_System_String_
+  commentId: M:RelogicLabs.JsonSchema.Tree.RuntimeContext.GetPragmaValue``1(System.String)
+  name.vb: GetPragmaValue(Of T)(String)
+  fullName: RelogicLabs.JsonSchema.Tree.RuntimeContext.GetPragmaValue<T>(string)
+  fullName.vb: RelogicLabs.JsonSchema.Tree.RuntimeContext.GetPragmaValue(Of T)(String)
+  nameWithType: RuntimeContext.GetPragmaValue<T>(string)
+  nameWithType.vb: RuntimeContext.GetPragmaValue(Of T)(String)
 - uid: RelogicLabs.JsonSchema.Tree.RuntimeContext.IgnoreObjectPropertyOrder
   name: IgnoreObjectPropertyOrder
   href: api/RelogicLabs.JsonSchema.Tree.RuntimeContext.html#RelogicLabs_JsonSchema_Tree_RuntimeContext_IgnoreObjectPropertyOrder
@@ -2636,19 +2690,6 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Tree.RuntimeContext.InvokeFunction
   nameWithType: RuntimeContext.InvokeFunction
-- uid: RelogicLabs.JsonSchema.Tree.RuntimeContext.Pragmas
-  name: Pragmas
-  href: api/RelogicLabs.JsonSchema.Tree.RuntimeContext.html#RelogicLabs_JsonSchema_Tree_RuntimeContext_Pragmas
-  commentId: P:RelogicLabs.JsonSchema.Tree.RuntimeContext.Pragmas
-  fullName: RelogicLabs.JsonSchema.Tree.RuntimeContext.Pragmas
-  nameWithType: RuntimeContext.Pragmas
-- uid: RelogicLabs.JsonSchema.Tree.RuntimeContext.Pragmas*
-  name: Pragmas
-  href: api/RelogicLabs.JsonSchema.Tree.RuntimeContext.html#RelogicLabs_JsonSchema_Tree_RuntimeContext_Pragmas_
-  commentId: Overload:RelogicLabs.JsonSchema.Tree.RuntimeContext.Pragmas
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Tree.RuntimeContext.Pragmas
-  nameWithType: RuntimeContext.Pragmas
 - uid: RelogicLabs.JsonSchema.Tree.RuntimeContext.ThrowException
   name: ThrowException
   href: api/RelogicLabs.JsonSchema.Tree.RuntimeContext.html#RelogicLabs_JsonSchema_Tree_RuntimeContext_ThrowException
@@ -2995,6 +3036,25 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Types.JBoolean.Match
   nameWithType: JBoolean.Match
+- uid: RelogicLabs.JsonSchema.Types.JBoolean.op_Implicit(RelogicLabs.JsonSchema.Types.JBoolean)~System.Boolean
+  name: implicit operator bool(JBoolean)
+  href: api/RelogicLabs.JsonSchema.Types.JBoolean.html#RelogicLabs_JsonSchema_Types_JBoolean_op_Implicit_RelogicLabs_JsonSchema_Types_JBoolean__System_Boolean
+  commentId: M:RelogicLabs.JsonSchema.Types.JBoolean.op_Implicit(RelogicLabs.JsonSchema.Types.JBoolean)~System.Boolean
+  name.vb: CType(JBoolean)
+  fullName: RelogicLabs.JsonSchema.Types.JBoolean.implicit operator bool(RelogicLabs.JsonSchema.Types.JBoolean)
+  fullName.vb: RelogicLabs.JsonSchema.Types.JBoolean.CType(RelogicLabs.JsonSchema.Types.JBoolean)
+  nameWithType: JBoolean.implicit operator bool(JBoolean)
+  nameWithType.vb: JBoolean.CType(JBoolean)
+- uid: RelogicLabs.JsonSchema.Types.JBoolean.op_Implicit*
+  name: implicit operator
+  href: api/RelogicLabs.JsonSchema.Types.JBoolean.html#RelogicLabs_JsonSchema_Types_JBoolean_op_Implicit_
+  commentId: Overload:RelogicLabs.JsonSchema.Types.JBoolean.op_Implicit
+  isSpec: "True"
+  name.vb: CType
+  fullName: RelogicLabs.JsonSchema.Types.JBoolean.implicit operator
+  fullName.vb: RelogicLabs.JsonSchema.Types.JBoolean.CType
+  nameWithType: JBoolean.implicit operator
+  nameWithType.vb: JBoolean.CType
 - uid: RelogicLabs.JsonSchema.Types.JBoolean.ToString
   name: ToString()
   href: api/RelogicLabs.JsonSchema.Types.JBoolean.html#RelogicLabs_JsonSchema_Types_JBoolean_ToString

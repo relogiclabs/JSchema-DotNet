@@ -1,3 +1,7 @@
+<style>
+pre code { font-size: 1.1em; }
+</style>
+
 # A New JSON Schema
 A JSON Schema is crucial for making communication, interoperability, validation, testing, documentation, and specification seamless. All of this combined contributes to better maintenance and evolution of data-driven applications and systems. For a comprehensive overview of the roles and uses of JSON Schema in modern web applications, we invite you to explore our dedicated post available [here](https://www.relogiclabs.com/2023/01/the-roles-of-json-schema.html).
 

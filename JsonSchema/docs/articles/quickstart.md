@@ -1,15 +1,19 @@
+<style>
+pre code { font-size: 1.1em; }
+</style>
+
 # Getting Started
 This guide will walk you through the essential steps to quickly get up and running with New JSON Schema library. It is also assumes a modest familiarity with the .NET SDK and .NET CLI (command-line interface) toolchain including basic familiarity with NuGet packages. Additionally, it considers a certain level of knowledge in C# language.
 
 ## NuGet Library Package
-To get started, launch your preferred IDE (such as Visual Studio, JetBrains Rider, or VS Code) and open the C# project where you intend to include this library package. Within your IDE, navigate to the NuGet package manager and search for the package by the name 'RelogicLabs.JsonSchema'. Subsequently, proceed to add or install the package to your project. Alternatively, you have the option to utilize the .NET CLI by executing the following command to include the package within your project:
+To get started, launch your preferred IDE (such as Visual Studio, JetBrains Rider, or VS Code) and open the C# project where you intend to include this library package. Within your IDE, navigate to the NuGet package manager and search for the package by the name 'RelogicLabs.JsonSchema'. Subsequently, proceed to add or install the package to your project. Alternatively, you can use the .NET CLI to add the package to your project. Simply run the following command, replacing `1.x.x` with either the latest version or your preferred version:
 ```shell
-dotnet add package RelogicLabs.JsonSchema --version 1.1.0
+dotnet add package RelogicLabs.JsonSchema --version 1.x.x
 ```
 To verify the successful integration of the library into your project, you may manually inspect your project file, typically named `.csproj`, using a text editor, and search for the following XML snippet within the file:
 ```xml
 <ItemGroup>
-    <PackageReference Include="RelogicLabs.JsonSchema" Version="1.1.0" />
+    <PackageReference Include="RelogicLabs.JsonSchema" Version="1.x.x" />
 </ItemGroup>
 ```
 ## Write a Sample to Test
@@ -120,8 +124,8 @@ if(!jsonSchema.IsValid(json)) jsonSchema.WriteError();
 Here is the error as displayed in the console. More specific errors will be listed first, followed by more general errors. Consequently, the specific errors will precisely pinpoint the issues within the JSON document, while the generic errors will provide contextual information about where the errors occurred.
 
 ```accesslog
-Schema (Line: 6:31) Json (Line: 3:14) [DTYP02]: Data type mismatch. Data type #integer is expected but found #string inferred by "not number".
-Schema (Line: 6:14) [FUNC03]: Function @range(1, 10000) is applicable on JNumber but applied on JString of "not number"
+Schema (Line: 6:31) Json (Line: 3:14) [DTYP04]: Data type mismatch. Data type #integer is expected but found #string inferred by "not number".
+Schema (Line: 6:14) [FUNC03]: Function @range(1, 10000) is applicable on #number but applied on #string of "not number"
 Schema (Line: 8:20) Json (Line: 4:20) [REGX01]: Regex pattern does not match. String of pattern "[a-z_]{3,30}" is expected but found "john doe" that mismatches with pattern.
 Schema (Line: 5:12) Json (Line: 2:12) [VALD01]: Validation Failed. Value {"id": @range(1, 10000) #integer, "username": @regex("[a-z_]{3,30}") #string, "role": "user" #string, "isActive": #boolean, "profile"...ing, "country": @regex("[A-Za-z ]{3,50}") #string} #object #null}} is expected but found {"id": "not number", "username": "john doe", "role": "user", "isActive": true, "profile": {"firstName": "John", "lastName": "Doe", "a...: "123 Some St", "city": "Some town", "country": "Some Country"}}}.
 Schema (Line: 4:0) Json (Line: 1:0) [VALD01]: Validation Failed. Value {"user": {"id": @range(1, 10000) #integer, "username": @regex("[a-z_]{3,30}") #string, "role": "user" #string, "isActive": #boolean, ...ng, "country": @regex("[A-Za-z ]{3,50}") #string} #object #null}}} is expected but found {"user": {"id": "not number", "username": "john doe", "role": "user", "isActive": true, "profile": {"firstName": "John", "lastName": ... "123 Some St", "city": "Some town", "country": "Some Country"}}}}.

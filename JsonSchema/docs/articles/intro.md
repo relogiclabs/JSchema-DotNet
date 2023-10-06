@@ -7,6 +7,8 @@ JSON, short for JavaScript Object Notation, is one of the most widely used data 
 
  * <font size="4">[Validation Syntax & Format](/JsonSchema-DotNet/articles/validation.html)</font>
 
+ * <font size="4">[Validation Directives & Pragmas](/JsonSchema-DotNet/articles/directive.html)</font>
+
  * <font size="4">[Schema Specification & Grammar](/JsonSchema-DotNet/articles/specification.html)</font>
 
  * <font size="4">[Data Types & Validation](/JsonSchema-DotNet/articles/datatypes.html)</font>
@@ -16,5 +18,7 @@ JSON, short for JavaScript Object Notation, is one of the most widely used data 
  * <font size="4">[Date & Time Patterns](/JsonSchema-DotNet/articles/datetime.html)</font>
 
  * <font size="4">[Build from Source Code](/JsonSchema-DotNet/articles/sourcebuild.html)</font>
+
+ * <font size="4">[API Reference Documentation](/JsonSchema-DotNet/api/index.html)</font>
 
 <br/>

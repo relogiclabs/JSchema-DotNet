@@ -1,5 +1,5 @@
 <style>
-pre code { font-size: 1.3em; }
+pre code { font-size: 1.1em; }
 table th:first-of-type { min-width: 140px; }
 </style>
 
@@ -28,12 +28,12 @@ Validates that the length of the target string satisfies the range requirement s
 
 If either the parameter values for `minimum` or `maximum` are unspecified or undefined, the `undefined` symbol `!` can be used in place of either of these parameters. The following examples illustrate the various use cases of the `@length` function of the two variations described above, for the target data type string:
 
-| Ues Cases       | Valid Values                   | Invalid Values          |
-|-----------------|--------------------------------|-------------------------|
-| `@length(4)`    | `"ABCD"`                       | `"AB"`, `"ABCDE"`       |
-| `@length(2, 4)` | `"AB"`, `"ABC"`, `"ABCD"`      | `""`, `"A"`, `"ABCDE"`  |
-| `@length(2, !)` | `"AB"`, `"ABCDEFGH"`           | `""`, `"A"`             |
-| `@length(!, 4)` | `""`, `"A"`, `"ABC"`, `"ABCD"` | `"ABCDE"` `"ABCDEFGHI"` |
+| Ues Cases       | Valid Values                   | Invalid Values           |
+|-----------------|--------------------------------|--------------------------|
+| `@length(4)`    | `"ABCD"`                       | `"AB"`; `"ABCDE"`        |
+| `@length(2, 4)` | `"AB"`; `"ABC"`; `"ABCD"`      | `""`; `"A"`; `"ABCDE"`   |
+| `@length(2, !)` | `"AB"`; `"ABCDEFGH"`           | `""`; `"A"`              |
+| `@length(!, 4)` | `""`; `"A"`; `"ABC"`; `"ABCD"` | `"ABCDE"`; `"ABCDEFGHI"` |
 
 ### Array Length
 ```stylus
@@ -50,10 +50,10 @@ If either the parameter values for `minimum` or `maximum` are unspecified or und
 
 | Ues Cases       | Valid Values                          | Invalid Values                          |
 |-----------------|---------------------------------------|-----------------------------------------|
-| `@length(4)`    | `[1, 2, 3, 4]`                        | `[1, 2, 3]`, `[1, 2, 3, 4, 5]`          |
-| `@length(2, 4)` | `[1, 2]`, `[1, 2, 3]`, `[1, 2, 3, 4]` | `[]`, `[1]`, `[1, 2, 3, 4, 5]`          |
-| `@length(2, !)` | `[1, 2]`, `[1, 2, 3, 4, 5]`           | `[]`, `[1]`                             |
-| `@length(!, 4)` | `[]`, `[1, 2]`, `[1, 2, 3, 4]`        | `[1, 2, 3, 4, 5]`, `[1, 2, 3, 4, 5, 6]` |
+| `@length(4)`    | `[1, 2, 3, 4]`                        | `[1, 2, 3]`; `[1, 2, 3, 4, 5]`          |
+| `@length(2, 4)` | `[1, 2]`; `[1, 2, 3]`; `[1, 2, 3, 4]` | `[]`; `[1]`; `[1, 2, 3, 4, 5]`          |
+| `@length(2, !)` | `[1, 2]`; `[1, 2, 3, 4, 5]`           | `[]`; `[1]`                             |
+| `@length(!, 4)` | `[]`; `[1, 2]`; `[1, 2, 3, 4]`        | `[1, 2, 3, 4, 5]`; `[1, 2, 3, 4, 5, 6]` |
 
 ### Object Length / Size
 ```stylus
@@ -70,24 +70,50 @@ If either the parameter values for `minimum` or `maximum` are unspecified or und
 
 | Ues Cases       | Valid Values                                                   | Invalid Values                                                         |
 |-----------------|----------------------------------------------------------------|------------------------------------------------------------------------|
-| `@length(4)`    | `{"k1":1, "k2":2, "k3":3, "k4":4}`                             | `{"k1":1, "k2":2, "k3":3}`, `{"k1":1, "k2":2, "k3":3, "k4":4, "k5":5}` |
-| `@length(2, 4)` | `{"k1":1, "k2":2}`, `{"k1":1, "k2":2, "k3":3, "k4":4}`         | `{}`, `{"k1":1}`, `{"k1":1, "k2":2, "k3":3, "k4":4, "k5":5}`           |
-| `@length(2, !)` | `{"k1":1, "k2":2}`, `{"k1":1, "k2":2, "k3":3, "k4":4, "k5":5}` | `{}`, `{"k1":1}`                                                       |
-| `@length(!, 4)` | `{}`, `{"k1":1, "k2":2}`, `{"k1":1, "k2":2, "k3":3, "k4":4}`   | `{"k1":1, "k2":2, "k3":3, "k4":4, "k5":5}`                             |
+| `@length(4)`    | `{"k1":1, "k2":2, "k3":3, "k4":4}`                             | `{"k1":1, "k2":2, "k3":3}`; `{"k1":1, "k2":2, "k3":3, "k4":4, "k5":5}` |
+| `@length(2, 4)` | `{"k1":1, "k2":2}`; `{"k1":1, "k2":2, "k3":3, "k4":4}`         | `{}`; `{"k1":1}`; `{"k1":1, "k2":2, "k3":3, "k4":4, "k5":5}`           |
+| `@length(2, !)` | `{"k1":1, "k2":2}`; `{"k1":1, "k2":2, "k3":3, "k4":4, "k5":5}` | `{}`; `{"k1":1}`                                                       |
+| `@length(!, 4)` | `{}`; `{"k1":1, "k2":2}`; `{"k1":1, "k2":2, "k3":3, "k4":4}`   | `{"k1":1, "k2":2, "k3":3, "k4":4, "k5":5}`                             |
 
 ### Number Range
 ```stylus
 #number target - @range(#number minimum, #number maximum)
 ```
-Validates that the `target` number satisfies the range requirement specified by the parameters. It checks that the `target` number is equal to or greater than the `minimum` number specified and simultaneously less than or equal to the `maximum` number specified. If not, a validation error will generate. 
+Validates that the `target` number satisfies the range requirement specified by the parameters. It checks that the `target` number is greater than or equal to the `minimum` number specified and simultaneously less than or equal to the `maximum` number specified. If not, a validation error will generate. 
 
 If either the parameter values for `minimum` or `maximum` are unspecified or undefined, the `undefined` symbol `!` can be used in place of either of these parameters. The following examples illustrate the various use cases of the `@range` function of the two variations described above, for the target data type number:
 
 | Ues Cases      | Valid Values          | Invalid Values          |
 |----------------|-----------------------|-------------------------|
-| `@range(2, 4)` | `2`, `3`, `4`         | `0`, `1`, `-100`, `100` |
-| `@range(2, !)` | `2`, `3`, `4`, `100`  | `0`, `1`, `-100`        |
-| `@range(!, 4)` | `0`, `1`, `4`, `-100` | `5`, `10`, `100`        |
+| `@range(2, 4)` | `2`; `3`; `4`         | `0`; `1`; `-100`; `100` |
+| `@range(2, !)` | `2`; `3`; `4`; `100`  | `0`; `1`; `-100`        |
+| `@range(!, 4)` | `0`; `1`; `4`; `-100` | `5`; `10`; `100`        |
+
+### Number Minimum
+```stylus
+#number target - @minimum(#number minimum)
+#number target - @minimum(#number minimum, #boolean exclusive)
+```
+Validates that the `target` number is greater than or equal to the `minimum` number specified as a parameter, unless the `exclusive` parameter flag is explicitly set to `true`, in which case the `target` number must be exclusively greater than the `minimum` number.
+
+| Ues Cases          | Valid Values             | Invalid Values           |
+|--------------------|--------------------------|--------------------------|
+| `minimum(0)`       | `0`; `1`; `1000`         | `-1`; `-10`; `-10000`    |
+| `minimum(10.5)`    | `10.5`; `10.6`; `1000.1` | `10.49`; `1.0`; `-100.1` |
+| `minimum(0, true)` | `0.001`; `1.01`; `100.1` | `0`; `-0.01`; `-100.1`   |
+
+### Number Maximum
+```stylus
+#number target - @maximum(#number maximum)
+#number target - @maximum(#number maximum, #boolean exclusive)
+```
+Validates that the `target` number is less than or equal to the `maximum` number specified as a parameter, unless the `exclusive` parameter flag is explicitly set to `true`, in which case the `target` number must be exclusively less than the `maximum` number.
+
+| Ues Cases          | Valid Values                 | Invalid Values            |
+|--------------------|------------------------------|---------------------------|
+| `maximum(100)`     | `100`; `-100`; `0`           | `101`; `1000`; `10000`    |
+| `maximum(10.5)`    | `10.50`; `10.49`; `-1000.1`  | `10.51`; `11.0`; `1000.1` |
+| `maximum(0, true)` | `-0.001`; `-1.01`; `-1000.1` | `0`; `0.01`; `100.1`      |
 
 ### String Enum
 ```stylus

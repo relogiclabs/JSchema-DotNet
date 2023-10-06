@@ -4,6 +4,8 @@
   href: quickstart.md
 - name: Validation Syntax
   href: validation.md
+- name: Directives
+  href: directives.md
 - name: Specification
   href: specification.md
 - name: Data Types
