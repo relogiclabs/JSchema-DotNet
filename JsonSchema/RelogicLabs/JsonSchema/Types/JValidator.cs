@@ -10,13 +10,13 @@ public class JValidator : JBranch
 {
     public const string OptionalMarker = "?";
     private IEnumerable<JNode> _children = Enumerable.Empty<JNode>()!;
-    
+
     public JNode? Value { get; init; }
     public required IList<JFunction> Functions { get; init; }
     public required IList<JDataType> DataTypes { get; init; }
     public bool Optional { get; init; }
     public override IEnumerable<JNode> Children => _children;
-    
+
     internal JValidator(IDictionary<JNode, JNode> relations) : base(relations) { }
 
     internal override JValidator Initialize()
@@ -59,8 +59,8 @@ public class JValidator : JBranch
 
     public override string ToString() => (
         $"{Value?.ToString() ?? string.Empty}"
-        + $"{Functions.ToString(" ", " ")}"
-        + $"{DataTypes.ToString(" ", " ")}"
+        + $"{Functions.Join(" ", " ")}"
+        + $"{DataTypes.Join(" ", " ")}"
         + $"{(Optional? $" {OptionalMarker}" : string.Empty)}"
     ).Trim();
 }

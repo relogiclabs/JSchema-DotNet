@@ -78,7 +78,7 @@
         <article data-uid="">
 
 <style>
-pre code { font-size: 1.3em; }
+pre code { font-size: 1.1em; }
 </style>
 <h1 id="constraint-data-types">Constraint Data Types</h1>
 <p>Data types play a pivotal role in validating JSON data for compliance with the schema. Essentially, data types determine the kind of data that a JSON element or value can contain. This mechanism serves as a fundamental process in maintaining the accuracy, consistency, and integrity of JSON document and its structure throughout the system, where data quality and reliability are vital.</p>
@@ -144,7 +144,8 @@ pre code { font-size: 1.3em; }
 <pre><code class="lang-stylus">#boolean
 </code></pre>
 <h3 id="the-null-data-type">The Null Data Type</h3>
-<p>The null data type serves as a special constraint within JSON schemas, facilitating the controlled use of <code>null</code> in place of other JSON elements or values. Typically, it is combined with other data types to permit the use of <code>null</code> for specific JSON elements or values. This can set constraints for scenarios in which an array without any elements and an object without any properties can either have <code>null</code> or only be allowed to be empty. Additionally, the <code>@nonempty</code> constraint functions can be employed to further control the use of empty values within a JSON document. To specify the null type in the schema, use the following syntax:</p>
+<p>The null data type serves as a special constraint within JSON schemas, facilitating the controlled use of <code>null</code> in place of other JSON elements or values. Typically, it is combined with other data types to permit the use of <code>null</code> for specific JSON elements or values. This can set constraints for scenarios in which an array without any elements and an object without any properties can either have <code>null</code> or only be allowed to be empty.</p>
+<p>Additionally, the <code>@nonempty</code> constraint functions can be employed to further control the use of empty values within a JSON document. To specify the null type in the schema, use the following syntax:</p>
 <pre><code class="lang-stylus">#null
 </code></pre>
 </article>

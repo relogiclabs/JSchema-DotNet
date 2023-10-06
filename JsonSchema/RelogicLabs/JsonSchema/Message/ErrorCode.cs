@@ -99,6 +99,12 @@ internal static class ErrorCode
     public const string JLEX01 = "JLEX01";
     public const string JPRS01 = "JPRS01";
     public const string KEYS01 = "KEYS01";
+    public const string MAXI01 = "MAXI01";
+    public const string MAXI02 = "MAXI02";
+    public const string MAXI03 = "MAXI03";
+    public const string MINI01 = "MINI01";
+    public const string MINI02 = "MINI02";
+    public const string MINI03 = "MINI03";
     public const string NEGI01 = "NEGI01";
     public const string NEMT01 = "NEMT01";
     public const string NEMT02 = "NEMT02";

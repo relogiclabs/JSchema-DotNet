@@ -8,6 +8,25 @@ public class FunctionTests
 {
 
     [TestMethod]
+    public void When_FunctionAppliedOnWrongType_ExceptionThrown()
+    {
+        var schema =
+            """
+            %schema: @range(10, 20)
+            """;
+        var json =
+            """
+            "test"
+            """;
+
+        //JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<FunctionMismatchException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(FUNC03, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
     public void When_ExternalIncludeNotInheritBaseClass_ExceptionThrown()
     {
         var schema =

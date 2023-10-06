@@ -3,16 +3,18 @@ using RelogicLabs.JsonSchema.Exceptions;
 using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Time;
 using RelogicLabs.JsonSchema.Tree;
+using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 
 namespace RelogicLabs.JsonSchema.Types;
 
 public class JsonType
 {
-    private static readonly Dictionary<string, JsonType> _DataTypes = new();
+    private static readonly Dictionary<string, JsonType> _StringMapTypes = new();
+    private static readonly Dictionary<Type, JsonType> _ClassMapTypes = new();
     private static readonly DateTimeValidator _Iso8601Date = new(DateTimeValidator.ISO_8601_DATE);
     private static readonly DateTimeValidator _Iso8601Time = new(DateTimeValidator.ISO_8601_TIME);
-    
+
     public static readonly JsonType BOOLEAN = new("#boolean", typeof(JBoolean));
     public static readonly JsonType STRING = new("#string", typeof(JString));
     public static readonly JsonType INTEGER = new("#integer", typeof(JInteger));
@@ -25,17 +27,18 @@ public class JsonType
     public static readonly JsonType DATE = new("#date", typeof(JString));
     public static readonly JsonType TIME = new("#time", typeof(JString));
     public static readonly JsonType ANY = new("#any", typeof(IJsonType));
-    
+
     public string Name { get; }
     public Type Type { get; }
 
 
-    internal static JsonType From(ITerminalNode node) 
+    internal static JsonType? From(Type type) => _ClassMapTypes.GetValue(type);
+    internal static JsonType From(ITerminalNode node)
         => From(node.GetText(), Location.From(node.Symbol));
-    
+
     internal static JsonType From(string name, Location location)
     {
-        var result = _DataTypes.TryGetValue(name, out var type);
+        var result = _StringMapTypes.TryGetValue(name, out var type);
         if(!result) throw new InvalidDataTypeException(MessageFormatter.FormatForSchema(
                 DTYP01, $"Invalid data type {name}", location));
         return type!;
@@ -45,7 +48,8 @@ public class JsonType
     {
         Name = name;
         Type = type;
-        _DataTypes[name] = this;
+        _StringMapTypes[name] = this;
+        _ClassMapTypes.TryAdd(type, this);
     }
 
     public override string ToString() => Name;

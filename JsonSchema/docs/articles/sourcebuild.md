@@ -1,3 +1,7 @@
+<style>
+pre code { font-size: 1.1em; }
+</style>
+
 # Build from Source Code
 This comprehensive guide illustrates the procedures for retrieving source code from a GitHub repository, compiling the project source code into a library, and seamlessly integrating the compiled library into your project. Within this document, we will navigate through these steps, presenting them clearly and straightforwardly.
 
@@ -19,7 +23,7 @@ To integrate the library with your project, you can create a `libs` folder withi
 ```
 Additionally, this project has a dependency on ANTLR runtime, which you can integrate by executing the following command:
 ```shell
-dotnet add package Antlr4.Runtime.Standard --version 4.13.0
+dotnet add package Antlr4.Runtime.Standard --version 4.13.1
 ```
 ## Write a Sample to Test
 With the necessary components in place, you are now prepared to create a sample schema and validate a corresponding JSON against the schema. The subsequent example presents a C# class featuring a method designed for validating a sample JSON based on a provided schema.
@@ -129,8 +133,8 @@ if(!jsonSchema.IsValid(json)) jsonSchema.WriteError();
 Here is the error as displayed in the console. More specific errors will be listed first, followed by more general errors. Consequently, the specific errors will precisely pinpoint the issues within the JSON document, while the generic errors will provide contextual information about where the errors occurred.
 
 ```accesslog
-Schema (Line: 6:31) Json (Line: 3:14) [DTYP02]: Data type mismatch. Data type #integer is expected but found #string inferred by "not number".
-Schema (Line: 6:14) [FUNC03]: Function @range(1, 10000) is applicable on JNumber but applied on JString of "not number"
+Schema (Line: 6:31) Json (Line: 3:14) [DTYP04]: Data type mismatch. Data type #integer is expected but found #string inferred by "not number".
+Schema (Line: 6:14) [FUNC03]: Function @range(1, 10000) is applicable on #number but applied on #string of "not number"
 Schema (Line: 8:20) Json (Line: 4:20) [REGX01]: Regex pattern does not match. String of pattern "[a-z_]{3,30}" is expected but found "john doe" that mismatches with pattern.
 Schema (Line: 5:12) Json (Line: 2:12) [VALD01]: Validation Failed. Value {"id": @range(1, 10000) #integer, "username": @regex("[a-z_]{3,30}") #string, "role": "user" #string, "isActive": #boolean, "profile"...ing, "country": @regex("[A-Za-z ]{3,50}") #string} #object #null}} is expected but found {"id": "not number", "username": "john doe", "role": "user", "isActive": true, "profile": {"firstName": "John", "lastName": "Doe", "a...: "123 Some St", "city": "Some town", "country": "Some Country"}}}.
 Schema (Line: 4:0) Json (Line: 1:0) [VALD01]: Validation Failed. Value {"user": {"id": @range(1, 10000) #integer, "username": @regex("[a-z_]{3,30}") #string, "role": "user" #string, "isActive": #boolean, ...ng, "country": @regex("[A-Za-z ]{3,50}") #string} #object #null}}} is expected but found {"user": {"id": "not number", "username": "john doe", "role": "user", "isActive": true, "profile": {"firstName": "John", "lastName": ... "123 Some St", "city": "Some town", "country": "Some Country"}}}}.

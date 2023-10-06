@@ -28,4 +28,10 @@ public abstract class ContextDetail
             ? jsonNode.Type.Name
             : node.GetType().Name;
     }
+
+    internal static string GetTypeName(Type type)
+    {
+        var jsonType = JsonType.From(type);
+        return jsonType != null ? jsonType.Name : type.Name;
+    }
 }

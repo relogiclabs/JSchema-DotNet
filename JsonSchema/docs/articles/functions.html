@@ -78,7 +78,7 @@
         <article data-uid="">
 
 <style>
-pre code { font-size: 1.3em; }
+pre code { font-size: 1.1em; }
 table th:first-of-type { min-width: 140px; }
 </style>
 <h1 id="constraint-functions">Constraint Functions</h1>
@@ -109,22 +109,22 @@ table th:first-of-type { min-width: 140px; }
 <tr>
 <td><code>@length(4)</code></td>
 <td><code>&quot;ABCD&quot;</code></td>
-<td><code>&quot;AB&quot;</code>, <code>&quot;ABCDE&quot;</code></td>
+<td><code>&quot;AB&quot;</code>; <code>&quot;ABCDE&quot;</code></td>
 </tr>
 <tr>
 <td><code>@length(2, 4)</code></td>
-<td><code>&quot;AB&quot;</code>, <code>&quot;ABC&quot;</code>, <code>&quot;ABCD&quot;</code></td>
-<td><code>&quot;&quot;</code>, <code>&quot;A&quot;</code>, <code>&quot;ABCDE&quot;</code></td>
+<td><code>&quot;AB&quot;</code>; <code>&quot;ABC&quot;</code>; <code>&quot;ABCD&quot;</code></td>
+<td><code>&quot;&quot;</code>; <code>&quot;A&quot;</code>; <code>&quot;ABCDE&quot;</code></td>
 </tr>
 <tr>
 <td><code>@length(2, !)</code></td>
-<td><code>&quot;AB&quot;</code>, <code>&quot;ABCDEFGH&quot;</code></td>
-<td><code>&quot;&quot;</code>, <code>&quot;A&quot;</code></td>
+<td><code>&quot;AB&quot;</code>; <code>&quot;ABCDEFGH&quot;</code></td>
+<td><code>&quot;&quot;</code>; <code>&quot;A&quot;</code></td>
 </tr>
 <tr>
 <td><code>@length(!, 4)</code></td>
-<td><code>&quot;&quot;</code>, <code>&quot;A&quot;</code>, <code>&quot;ABC&quot;</code>, <code>&quot;ABCD&quot;</code></td>
-<td><code>&quot;ABCDE&quot;</code> <code>&quot;ABCDEFGHI&quot;</code></td>
+<td><code>&quot;&quot;</code>; <code>&quot;A&quot;</code>; <code>&quot;ABC&quot;</code>; <code>&quot;ABCD&quot;</code></td>
+<td><code>&quot;ABCDE&quot;</code>; <code>&quot;ABCDEFGHI&quot;</code></td>
 </tr>
 </tbody>
 </table>
@@ -148,22 +148,22 @@ table th:first-of-type { min-width: 140px; }
 <tr>
 <td><code>@length(4)</code></td>
 <td><code>[1, 2, 3, 4]</code></td>
-<td><code>[1, 2, 3]</code>, <code>[1, 2, 3, 4, 5]</code></td>
+<td><code>[1, 2, 3]</code>; <code>[1, 2, 3, 4, 5]</code></td>
 </tr>
 <tr>
 <td><code>@length(2, 4)</code></td>
-<td><code>[1, 2]</code>, <code>[1, 2, 3]</code>, <code>[1, 2, 3, 4]</code></td>
-<td><code>[]</code>, <code>[1]</code>, <code>[1, 2, 3, 4, 5]</code></td>
+<td><code>[1, 2]</code>; <code>[1, 2, 3]</code>; <code>[1, 2, 3, 4]</code></td>
+<td><code>[]</code>; <code>[1]</code>; <code>[1, 2, 3, 4, 5]</code></td>
 </tr>
 <tr>
 <td><code>@length(2, !)</code></td>
-<td><code>[1, 2]</code>, <code>[1, 2, 3, 4, 5]</code></td>
-<td><code>[]</code>, <code>[1]</code></td>
+<td><code>[1, 2]</code>; <code>[1, 2, 3, 4, 5]</code></td>
+<td><code>[]</code>; <code>[1]</code></td>
 </tr>
 <tr>
 <td><code>@length(!, 4)</code></td>
-<td><code>[]</code>, <code>[1, 2]</code>, <code>[1, 2, 3, 4]</code></td>
-<td><code>[1, 2, 3, 4, 5]</code>, <code>[1, 2, 3, 4, 5, 6]</code></td>
+<td><code>[]</code>; <code>[1, 2]</code>; <code>[1, 2, 3, 4]</code></td>
+<td><code>[1, 2, 3, 4, 5]</code>; <code>[1, 2, 3, 4, 5, 6]</code></td>
 </tr>
 </tbody>
 </table>
@@ -187,21 +187,21 @@ table th:first-of-type { min-width: 140px; }
 <tr>
 <td><code>@length(4)</code></td>
 <td><code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3, &quot;k4&quot;:4}</code></td>
-<td><code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3}</code>, <code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3, &quot;k4&quot;:4, &quot;k5&quot;:5}</code></td>
+<td><code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3}</code>; <code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3, &quot;k4&quot;:4, &quot;k5&quot;:5}</code></td>
 </tr>
 <tr>
 <td><code>@length(2, 4)</code></td>
-<td><code>{&quot;k1&quot;:1, &quot;k2&quot;:2}</code>, <code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3, &quot;k4&quot;:4}</code></td>
-<td><code>{}</code>, <code>{&quot;k1&quot;:1}</code>, <code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3, &quot;k4&quot;:4, &quot;k5&quot;:5}</code></td>
+<td><code>{&quot;k1&quot;:1, &quot;k2&quot;:2}</code>; <code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3, &quot;k4&quot;:4}</code></td>
+<td><code>{}</code>; <code>{&quot;k1&quot;:1}</code>; <code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3, &quot;k4&quot;:4, &quot;k5&quot;:5}</code></td>
 </tr>
 <tr>
 <td><code>@length(2, !)</code></td>
-<td><code>{&quot;k1&quot;:1, &quot;k2&quot;:2}</code>, <code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3, &quot;k4&quot;:4, &quot;k5&quot;:5}</code></td>
-<td><code>{}</code>, <code>{&quot;k1&quot;:1}</code></td>
+<td><code>{&quot;k1&quot;:1, &quot;k2&quot;:2}</code>; <code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3, &quot;k4&quot;:4, &quot;k5&quot;:5}</code></td>
+<td><code>{}</code>; <code>{&quot;k1&quot;:1}</code></td>
 </tr>
 <tr>
 <td><code>@length(!, 4)</code></td>
-<td><code>{}</code>, <code>{&quot;k1&quot;:1, &quot;k2&quot;:2}</code>, <code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3, &quot;k4&quot;:4}</code></td>
+<td><code>{}</code>; <code>{&quot;k1&quot;:1, &quot;k2&quot;:2}</code>; <code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3, &quot;k4&quot;:4}</code></td>
 <td><code>{&quot;k1&quot;:1, &quot;k2&quot;:2, &quot;k3&quot;:3, &quot;k4&quot;:4, &quot;k5&quot;:5}</code></td>
 </tr>
 </tbody>
@@ -209,7 +209,7 @@ table th:first-of-type { min-width: 140px; }
 <h3 id="number-range">Number Range</h3>
 <pre><code class="lang-stylus">#number target - @range(#number minimum, #number maximum)
 </code></pre>
-<p>Validates that the <code>target</code> number satisfies the range requirement specified by the parameters. It checks that the <code>target</code> number is equal to or greater than the <code>minimum</code> number specified and simultaneously less than or equal to the <code>maximum</code> number specified. If not, a validation error will generate.</p>
+<p>Validates that the <code>target</code> number satisfies the range requirement specified by the parameters. It checks that the <code>target</code> number is greater than or equal to the <code>minimum</code> number specified and simultaneously less than or equal to the <code>maximum</code> number specified. If not, a validation error will generate.</p>
 <p>If either the parameter values for <code>minimum</code> or <code>maximum</code> are unspecified or undefined, the <code>undefined</code> symbol <code>!</code> can be used in place of either of these parameters. The following examples illustrate the various use cases of the <code>@range</code> function of the two variations described above, for the target data type number:</p>
 <table>
 <thead>
@@ -222,18 +222,80 @@ table th:first-of-type { min-width: 140px; }
 <tbody>
 <tr>
 <td><code>@range(2, 4)</code></td>
-<td><code>2</code>, <code>3</code>, <code>4</code></td>
-<td><code>0</code>, <code>1</code>, <code>-100</code>, <code>100</code></td>
+<td><code>2</code>; <code>3</code>; <code>4</code></td>
+<td><code>0</code>; <code>1</code>; <code>-100</code>; <code>100</code></td>
 </tr>
 <tr>
 <td><code>@range(2, !)</code></td>
-<td><code>2</code>, <code>3</code>, <code>4</code>, <code>100</code></td>
-<td><code>0</code>, <code>1</code>, <code>-100</code></td>
+<td><code>2</code>; <code>3</code>; <code>4</code>; <code>100</code></td>
+<td><code>0</code>; <code>1</code>; <code>-100</code></td>
 </tr>
 <tr>
 <td><code>@range(!, 4)</code></td>
-<td><code>0</code>, <code>1</code>, <code>4</code>, <code>-100</code></td>
-<td><code>5</code>, <code>10</code>, <code>100</code></td>
+<td><code>0</code>; <code>1</code>; <code>4</code>; <code>-100</code></td>
+<td><code>5</code>; <code>10</code>; <code>100</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="number-minimum">Number Minimum</h3>
+<pre><code class="lang-stylus">#number target - @minimum(#number minimum)
+#number target - @minimum(#number minimum, #boolean exclusive)
+</code></pre>
+<p>Validates that the <code>target</code> number is greater than or equal to the <code>minimum</code> number specified as a parameter, unless the <code>exclusive</code> parameter flag is explicitly set to <code>true</code>, in which case the <code>target</code> number must be exclusively greater than the <code>minimum</code> number.</p>
+<table>
+<thead>
+<tr>
+<th>Ues Cases</th>
+<th>Valid Values</th>
+<th>Invalid Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>minimum(0)</code></td>
+<td><code>0</code>; <code>1</code>; <code>1000</code></td>
+<td><code>-1</code>; <code>-10</code>; <code>-10000</code></td>
+</tr>
+<tr>
+<td><code>minimum(10.5)</code></td>
+<td><code>10.5</code>; <code>10.6</code>; <code>1000.1</code></td>
+<td><code>10.49</code>; <code>1.0</code>; <code>-100.1</code></td>
+</tr>
+<tr>
+<td><code>minimum(0, true)</code></td>
+<td><code>0.001</code>; <code>1.01</code>; <code>100.1</code></td>
+<td><code>0</code>; <code>-0.01</code>; <code>-100.1</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="number-maximum">Number Maximum</h3>
+<pre><code class="lang-stylus">#number target - @maximum(#number maximum)
+#number target - @maximum(#number maximum, #boolean exclusive)
+</code></pre>
+<p>Validates that the <code>target</code> number is less than or equal to the <code>maximum</code> number specified as a parameter, unless the <code>exclusive</code> parameter flag is explicitly set to <code>true</code>, in which case the <code>target</code> number must be exclusively less than the <code>maximum</code> number.</p>
+<table>
+<thead>
+<tr>
+<th>Ues Cases</th>
+<th>Valid Values</th>
+<th>Invalid Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maximum(100)</code></td>
+<td><code>100</code>; <code>-100</code>; <code>0</code></td>
+<td><code>101</code>; <code>1000</code>; <code>10000</code></td>
+</tr>
+<tr>
+<td><code>maximum(10.5)</code></td>
+<td><code>10.50</code>; <code>10.49</code>; <code>-1000.1</code></td>
+<td><code>10.51</code>; <code>11.0</code>; <code>1000.1</code></td>
+</tr>
+<tr>
+<td><code>maximum(0, true)</code></td>
+<td><code>-0.001</code>; <code>-1.01</code>; <code>-1000.1</code></td>
+<td><code>0</code>; <code>0.01</code>; <code>100.1</code></td>
 </tr>
 </tbody>
 </table>

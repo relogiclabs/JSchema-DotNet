@@ -826,6 +826,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "articles/directives.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/directives.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "articles/functions.md",
       "output": {
         ".html": {

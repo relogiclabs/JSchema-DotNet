@@ -9,7 +9,7 @@ internal abstract class PragmaDescriptor
     public static readonly PragmaProfile<bool> IgnoreUndefinedProperties
         = new(nameof(IgnoreUndefinedProperties), typeof(JBoolean), false);
     public static readonly PragmaProfile<double> FloatingPointTolerance
-        = new(nameof(FloatingPointTolerance), typeof(JNumber), 1E-7);
+        = new(nameof(FloatingPointTolerance), typeof(JNumber), 1E-10);
     public static readonly PragmaProfile<bool> IgnoreObjectPropertyOrder
         = new(nameof(IgnoreObjectPropertyOrder), typeof(JBoolean), true);
 

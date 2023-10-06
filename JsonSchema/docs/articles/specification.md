@@ -1,3 +1,7 @@
+<style>
+pre code { font-size: 1.1em; }
+</style>
+
 # Specification
 New JSON Schema is a vocabulary that allows you to describe the structure and constraints of JSON documents. It provides a way to define rules for validating the data in a JSON document. With JSON Schema, you can ensure that your JSON data follows a specific format and adheres to certain rules.
 
