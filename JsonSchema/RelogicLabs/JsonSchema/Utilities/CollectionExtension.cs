@@ -5,8 +5,12 @@ namespace RelogicLabs.JsonSchema.Utilities;
 
 internal static class CollectionExtension
 {
-    public static string Join(this IEnumerable<string> source, string separator)
-        => string.Join(separator, source);
+    public static string Join(this IEnumerable<object> source, string separator,
+        string prefix = "", string suffix = "")
+    {
+        var result = string.Join(separator, source);
+        return string.IsNullOrEmpty(result) ? result : $"{prefix}{result}{suffix}";
+    }
 
     public static string ToString(this IEnumerable<JNode> source, string separator,
         string prefix = "", string suffix = "")
@@ -76,4 +80,7 @@ internal static class CollectionExtension
         source.ForEach(p => _values.Remove(p.Value));
         return _values;
     }
+
+    public static TV? GetValue<TK, TV>(this IDictionary<TK, TV> dict, TK key)
+        => dict.TryGetValue(key, out var value) ? value : default;
 }

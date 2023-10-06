@@ -4,21 +4,21 @@ namespace RelogicLabs.JsonSchema.Utilities;
 
 internal static class StringExtension
 {
-    public static string Affix(this string source, string prefix = "", string suffix = "") 
+    public static string Affix(this string source, string prefix = "", string suffix = "")
         => $"{prefix}{source}{suffix}";
-    
-    public static string ToUpperFirstLetter(this string source) 
+
+    public static string ToUpperFirstLetter(this string source)
         => source[..1].ToUpper() + source[1..];
-    
-    public static string ToLowerFirstLetter(this string source) 
+
+    public static string ToLowerFirstLetter(this string source)
         => source[..1].ToLower() + source[1..];
-    
+
     public static string ToEncoded(this string source)
     {
         StringBuilder builder = new();
-        if(source.StartsWith('"') && source.EndsWith('"')) 
+        if(source.StartsWith('"') && source.EndsWith('"'))
             source = source[1..^1];
-        
+
         for(int i = 0; i < source.Length; i++)
         {
             char current = source[i];
@@ -42,7 +42,7 @@ internal static class StringExtension
         }
         return builder.ToString();
     }
-    
+
     public static string Quote(this string source)
         => $"\"{source}\"";
 }

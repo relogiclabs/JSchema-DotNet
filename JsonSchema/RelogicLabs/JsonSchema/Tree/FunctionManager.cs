@@ -4,8 +4,8 @@ using RelogicLabs.JsonSchema.Functions;
 using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Types;
 using RelogicLabs.JsonSchema.Utilities;
+using static RelogicLabs.JsonSchema.Message.ContextDetail;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
-using static RelogicLabs.JsonSchema.Tree.MethodPointer;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
@@ -121,8 +121,8 @@ internal class FunctionManager
             if(!IsMatch(_parameters[0], target))
             {
                 mismatchMessage = $"Function {function.GetOutline()} is applicable on {
-                    _parameters[0].ParameterType.Name} but applied on {
-                        target.GetType().Name} of {target}";
+                    GetTypeName(_parameters[0].ParameterType)} but applied on {
+                        GetTypeName(target.GetType())} of {target}";
                 continue;
             }
             return method.Invoke(function, AddTarget(schemaArgs, target));
