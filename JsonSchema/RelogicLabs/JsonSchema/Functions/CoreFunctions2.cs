@@ -17,7 +17,7 @@ public partial class CoreFunctions
                 new ActualDetail(target, $"string {target.GetOutline()} is not found in list")));
         return true;
     }
-    
+
     public bool Enum(JNumber target, params JNumber[] items)
     {
         if(!items.Contains(target))
@@ -26,6 +26,64 @@ public partial class CoreFunctions
                 new ExpectedDetail(Function, $"number in list {items.ToString(", ", "[", "]")}"),
                 new ActualDetail(target, $"number {target} is not found in list")));
         return true;
+    }
+
+    public bool Minimum(JNumber target, JNumber minimum)
+    {
+        if(target.Compare(minimum) < 0)
+            return FailWith(new JsonSchemaException(
+                new ErrorDetail(MINI01, "Number is less than provided minimum"),
+                new ExpectedDetail(Function, $"a number greater than or equal to {minimum}"),
+                new ActualDetail(target, $"number {target} is less than {minimum}")));
+        return true;
+    }
+
+    public bool Minimum(JNumber target, JNumber minimum, JBoolean exclusive)
+    {
+        if(target.Compare(minimum) < 0)
+            return FailWith(new JsonSchemaException(
+                new ErrorDetail(MINI02, "Number is less than provided minimum"),
+                new ExpectedDetail(Function, $"a number {RelationTo()} {minimum}"),
+                new ActualDetail(target, $"number {target} is less than {minimum}")));
+        if(exclusive && target.Compare(minimum) == 0)
+            return FailWith(new JsonSchemaException(
+                new ErrorDetail(MINI03, "Number is equal to provided minimum"),
+                new ExpectedDetail(Function, $"a number {RelationTo()} {minimum}"),
+                new ActualDetail(target, $"number {target} is equal to {minimum}")));
+        return true;
+
+        string RelationTo() => exclusive
+            ? "greater than"
+            : "greater than or equal to";
+    }
+
+    public bool Maximum(JNumber target, JNumber maximum)
+    {
+        if(target.Compare(maximum) > 0)
+            return FailWith(new JsonSchemaException(
+                new ErrorDetail(MAXI01, "Number is greater than provided maximum"),
+                new ExpectedDetail(Function, $"a number less than or equal {maximum}"),
+                new ActualDetail(target, $"number {target} is greater than {maximum}")));
+        return true;
+    }
+
+    public bool Maximum(JNumber target, JNumber maximum, JBoolean exclusive)
+    {
+        if(target.Compare(maximum) > 0)
+            return FailWith(new JsonSchemaException(
+                new ErrorDetail(MAXI02, "Number is greater than provided maximum"),
+                new ExpectedDetail(Function, $"a number {RelationTo()} {maximum}"),
+                new ActualDetail(target, $"number {target} is greater than {maximum}")));
+        if(exclusive && target.Compare(maximum) == 0)
+            return FailWith(new JsonSchemaException(
+                new ErrorDetail(MAXI03, "Number is equal to provided maximum"),
+                new ExpectedDetail(Function, $"a number {RelationTo()} {maximum}"),
+                new ActualDetail(target, $"number {target} is equal to {maximum}")));
+        return true;
+
+        string RelationTo() => exclusive
+            ? "less than"
+            : "less than or equal to";
     }
 
     public bool Positive(JNumber target)
@@ -47,7 +105,7 @@ public partial class CoreFunctions
                 new ActualDetail(target, $"number {target} is greater than or equal to zero")));
         return true;
     }
-    
+
     public bool Range(JNumber target, JNumber minimum, JNumber maximum)
     {
         if(target.Compare(minimum) < 0)
@@ -62,7 +120,7 @@ public partial class CoreFunctions
                 new ActualDetail(target, $"number {target} is greater than {maximum}")));
         return true;
     }
-    
+
     public bool Range(JNumber target, JNumber minimum, JUndefined undefined)
     {
         if(target.Compare(minimum) < 0)
@@ -72,7 +130,7 @@ public partial class CoreFunctions
                 new ActualDetail(target, $"number {target} is less than {minimum}")));
         return true;
     }
-    
+
     public bool Range(JNumber target, JUndefined undefined, JNumber maximum)
     {
         if(target.Compare(maximum) > 0)
@@ -82,7 +140,7 @@ public partial class CoreFunctions
                 new ActualDetail(target, $"number {target} is greater than {maximum}")));
         return true;
     }
-    
+
     public bool Nonempty(JString target)
     {
         var _length = target.Value.Length;
@@ -92,7 +150,7 @@ public partial class CoreFunctions
             new ActualDetail(target, "found empty string")));
         return true;
     }
-    
+
     public bool Nonempty(JArray target)
     {
         var _length = target.Elements.Count;
@@ -102,7 +160,7 @@ public partial class CoreFunctions
             new ActualDetail(target, "found empty array")));
         return true;
     }
-    
+
     public bool Nonempty(JObject target)
     {
         var _length = target.Properties.Count;
