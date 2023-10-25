@@ -76,11 +76,8 @@
         </div>
 
         <article data-uid="">
-
-<style>
-pre code { font-size: 1.1em; }
-</style>
 <h1 id="getting-started">Getting Started</h1>
+
 <p>This guide will walk you through the essential steps to quickly get up and running with New JSON Schema library. It is also assumes a modest familiarity with the .NET SDK and .NET CLI (command-line interface) toolchain including basic familiarity with NuGet packages. Additionally, it considers a certain level of knowledge in C# language.</p>
 <h2 id="nuget-library-package">NuGet Library Package</h2>
 <p>To get started, launch your preferred IDE (such as Visual Studio, JetBrains Rider, or VS Code) and open the C# project where you intend to include this library package. Within your IDE, navigate to the NuGet package manager and search for the package by the name 'RelogicLabs.JsonSchema'. Subsequently, proceed to add or install the package to your project. Alternatively, you can use the .NET CLI to add the package to your project. Simply run the following command, replacing <code>1.x.x</code> with either the latest version or your preferred version:</p>
@@ -91,6 +88,7 @@ pre code { font-size: 1.1em; }
     &lt;PackageReference Include=&quot;RelogicLabs.JsonSchema&quot; Version=&quot;1.x.x&quot; /&gt;
 &lt;/ItemGroup&gt;
 </code></pre>
+<p>For additional information regarding this library package, you can visit the NuGet package repository page of this library <a href="https://www.nuget.org/packages/RelogicLabs.JsonSchema">here</a>.</p>
 <h2 id="write-a-sample-to-test">Write a Sample to Test</h2>
 <p>With the necessary components in place, you are now prepared to create a sample schema and validate a corresponding JSON against the schema. The subsequent example presents a C# class featuring a method designed for validating a sample JSON based on a provided schema.</p>
 <pre><code class="lang-c#">using RelogicLabs.JsonSchema;
@@ -157,8 +155,7 @@ public class SampleSchema
     }
 }
 </code></pre>
-<p>For more information about the schema syntax format and library functionalities, please refer to the reference documentation <a href="/JsonSchema-DotNet/api/index.html">here</a>.</p>
-<h2 id="create-some-validation-errors">Create Some Validation Errors</h2>
+<h2 id="create-validation-errors">Create Validation Errors</h2>
 <p>Let's intentionally introduce a few errors by modifying the previous JSON document and then examine the validation results. To begin, we'll alter the <code>id</code> within the <code>user</code> object to a string type and observe the outcome. Additionally, we'll modify the <code>username</code> by inserting a space into its value, thus creating an invalid <code>username</code>. Below is the revised JSON representation, now containing these purposeful errors.</p>
 <pre><code class="lang-json">{
     &quot;user&quot;: {
@@ -196,7 +193,8 @@ Schema (Line: 8:20) Json (Line: 4:20) [REGX01]: Regex pattern does not match. St
 Schema (Line: 5:12) Json (Line: 2:12) [VALD01]: Validation Failed. Value {&quot;id&quot;: @range(1, 10000) #integer, &quot;username&quot;: @regex(&quot;[a-z_]{3,30}&quot;) #string, &quot;role&quot;: &quot;user&quot; #string, &quot;isActive&quot;: #boolean, &quot;profile&quot;...ing, &quot;country&quot;: @regex(&quot;[A-Za-z ]{3,50}&quot;) #string} #object #null}} is expected but found {&quot;id&quot;: &quot;not number&quot;, &quot;username&quot;: &quot;john doe&quot;, &quot;role&quot;: &quot;user&quot;, &quot;isActive&quot;: true, &quot;profile&quot;: {&quot;firstName&quot;: &quot;John&quot;, &quot;lastName&quot;: &quot;Doe&quot;, &quot;a...: &quot;123 Some St&quot;, &quot;city&quot;: &quot;Some town&quot;, &quot;country&quot;: &quot;Some Country&quot;}}}.
 Schema (Line: 4:0) Json (Line: 1:0) [VALD01]: Validation Failed. Value {&quot;user&quot;: {&quot;id&quot;: @range(1, 10000) #integer, &quot;username&quot;: @regex(&quot;[a-z_]{3,30}&quot;) #string, &quot;role&quot;: &quot;user&quot; #string, &quot;isActive&quot;: #boolean, ...ng, &quot;country&quot;: @regex(&quot;[A-Za-z ]{3,50}&quot;) #string} #object #null}}} is expected but found {&quot;user&quot;: {&quot;id&quot;: &quot;not number&quot;, &quot;username&quot;: &quot;john doe&quot;, &quot;role&quot;: &quot;user&quot;, &quot;isActive&quot;: true, &quot;profile&quot;: {&quot;firstName&quot;: &quot;John&quot;, &quot;lastName&quot;: ... &quot;123 Some St&quot;, &quot;city&quot;: &quot;Some town&quot;, &quot;country&quot;: &quot;Some Country&quot;}}}}.
 </code></pre>
-<p>To utilize this library for test automation and API testing, you can employ the following alternative code snippet to perform assertions on input JSON against a specified schema. For instance, let's examine how to assert the JSON, which has been intentionally altered to introduce some errors, against the aforementioned schema. The following demonstrates the adjusted code for asserting the JSON with errors:</p>
+<h2 id="assertion-for-validation">Assertion for Validation</h2>
+<p>To utilize this library for test automation and API testing, you can use the following alternative code snippet to perform assertions on input JSON against a specified schema. For instance, let's examine how to assert the JSON, which has been intentionally altered to introduce some errors, against the aforementioned schema. The following demonstrates the adjusted code for asserting the JSON with errors:</p>
 <pre><code class="lang-c#">...
 
 try {
@@ -207,7 +205,7 @@ try {
 
 ...
 </code></pre>
-<p>The following presents the printed stack trace for the preceding example. It's important to note that when utilizing <code>JsonAssert</code>, it throws an exception upon encountering the first error, thus preventing the continuation of processing the rest of the schema:</p>
+<p>The following presents the printed stack trace for the preceding example. It's important to note that when using <code>JsonAssert</code>, it throws an exception upon encountering the first error, thus preventing the continuation of processing the rest of the schema:</p>
 <pre><code class="lang-accesslog">RelogicLabs.JsonSchema.Exceptions.JsonSchemaException: DTYP04: Data type mismatch
 Expected (Schema Line: 6:31): data type #integer
 Actual (Json Line: 3:14): found #string inferred by &quot;not number&quot;
@@ -225,7 +223,6 @@ Actual (Json Line: 3:14): found #string inferred by &quot;not number&quot;
    at RelogicLabs.JsonSchema.Types.JRoot.Match(JNode node)
    at RelogicLabs.JsonSchema.JsonAssert.IsValid(String schemaExpected, String jsonActual)
    at CSharpApplication.SampleSchema.CheckIsValid() in /SampleSchema.cs:line 61
-
 </code></pre>
 <p>For more information about the schema syntax format and library functionalities, please refer to the reference documentation <a href="/JsonSchema-DotNet/api/index.html">here</a>.</p>
 </article>

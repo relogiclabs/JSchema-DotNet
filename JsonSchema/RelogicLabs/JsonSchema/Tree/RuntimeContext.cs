@@ -9,6 +9,7 @@ public class RuntimeContext
 {
     private readonly FunctionManager _functionManager;
     private readonly PragmaManager _pragmaManager;
+    private int _disableCount;
 
     internal MessageFormatter MessageFormatter { get; set; }
     public bool ThrowException { get; set; }
@@ -59,10 +60,23 @@ public class RuntimeContext
     internal bool AreEqual(double value1, double value2)
         => Math.Abs(value1 - value2) < FloatingPointTolerance;
 
+    internal T TryMatch<T>(Func<T> function)
+    {
+        try
+        {
+            _disableCount += 1;
+            return function();
+        }
+        finally
+        {
+            _disableCount -= 1;
+        }
+    }
+
     internal bool FailWith(Exception exception)
     {
-        if(ThrowException) throw exception;
-        Exceptions.Enqueue(exception);
+        if(ThrowException && _disableCount == 0) throw exception;
+        if(_disableCount == 0) Exceptions.Enqueue(exception);
         return false;
     }
 }

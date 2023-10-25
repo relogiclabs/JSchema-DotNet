@@ -32,6 +32,7 @@ internal static class ErrorCode
     public const string DEFI01 = "DEFI01";
     public const string DEFI02 = "DEFI02";
     public const string DEFI03 = "DEFI03";
+    public const string DEFI04 = "DEFI04";
     public const string DERA01 = "DERA01";
     public const string DERA02 = "DERA02";
     public const string DFRC01 = "DFRC01";
@@ -71,6 +72,7 @@ internal static class ErrorCode
     public const string DTYP04 = "DTYP04";
     public const string DTYP05 = "DTYP05";
     public const string DTYP06 = "DTYP06";
+    public const string DTYP07 = "DTYP07";
     public const string DUBL01 = "DUBL01";
     public const string DUTC01 = "DUTC01";
     public const string DUTC02 = "DUTC02";

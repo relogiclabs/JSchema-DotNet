@@ -11,26 +11,26 @@ public class StringTests
     {
         var schema = "#string";
         var json = "10";
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidUnicodeStringInSchema_ExceptionThrown()
     {
         var schema = @"""\uX0485\uY486\r\n\t #string""";
         var json = @"""\u0485\u0486\r\n\t""";
-            
+
         var exception = Assert.ThrowsException<SchemaLexerException>(
              () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(SLEX01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidUnicodeStringInJson_ExceptionThrown()
     {
@@ -42,7 +42,7 @@ public class StringTests
         Assert.AreEqual(JLEX01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_JsonNotStringInObject_ExceptionThrown()
     {
@@ -68,7 +68,7 @@ public class StringTests
         Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_JsonNotStringInArray_ExceptionThrown()
     {
@@ -283,7 +283,7 @@ public class StringTests
         Assert.AreEqual(URLA01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_UrlWithSchemeAndWrongStringAddressInObject_ExceptionThrown()
     {
@@ -301,7 +301,7 @@ public class StringTests
                 "key2": "ftp://www.example.com/"
             }
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
@@ -334,7 +334,7 @@ public class StringTests
         Assert.AreEqual(PHON01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_EmptyStringInObject_ExceptionThrown()
     {

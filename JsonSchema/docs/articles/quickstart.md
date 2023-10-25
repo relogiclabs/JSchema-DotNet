@@ -1,7 +1,3 @@
-<style>
-pre code { font-size: 1.1em; }
-</style>
-
 # Getting Started
 This guide will walk you through the essential steps to quickly get up and running with New JSON Schema library. It is also assumes a modest familiarity with the .NET SDK and .NET CLI (command-line interface) toolchain including basic familiarity with NuGet packages. Additionally, it considers a certain level of knowledge in C# language.
 
@@ -16,6 +12,8 @@ To verify the successful integration of the library into your project, you may m
     <PackageReference Include="RelogicLabs.JsonSchema" Version="1.x.x" />
 </ItemGroup>
 ```
+For additional information regarding this library package, you can visit the NuGet package repository page of this library [here](https://www.nuget.org/packages/RelogicLabs.JsonSchema).
+
 ## Write a Sample to Test
 With the necessary components in place, you are now prepared to create a sample schema and validate a corresponding JSON against the schema. The subsequent example presents a C# class featuring a method designed for validating a sample JSON based on a provided schema.
 ```c#
@@ -83,9 +81,8 @@ public class SampleSchema
     }
 }
 ```
-For more information about the schema syntax format and library functionalities, please refer to the reference documentation [here](/JsonSchema-DotNet/api/index.html).
 
-## Create Some Validation Errors
+## Create Validation Errors
 Let's intentionally introduce a few errors by modifying the previous JSON document and then examine the validation results. To begin, we'll alter the `id` within the `user` object to a string type and observe the outcome. Additionally, we'll modify the `username` by inserting a space into its value, thus creating an invalid `username`. Below is the revised JSON representation, now containing these purposeful errors.
 ```json
 {
@@ -109,7 +106,6 @@ Let's intentionally introduce a few errors by modifying the previous JSON docume
     }
 }
 ```
-
 To achieve the desired outcome, please make the following changes to the preceding code. Specifically, ensure that any schema validation errors are displayed in the console. The modified code snippet that invokes the `WriteError` method to display the errors if validation fails is as follows:
 
 ```c#
@@ -120,7 +116,6 @@ if(!jsonSchema.IsValid(json)) jsonSchema.WriteError();
 
 ...
 ```
-
 Here is the error as displayed in the console. More specific errors will be listed first, followed by more general errors. Consequently, the specific errors will precisely pinpoint the issues within the JSON document, while the generic errors will provide contextual information about where the errors occurred.
 
 ```accesslog
@@ -131,8 +126,8 @@ Schema (Line: 5:12) Json (Line: 2:12) [VALD01]: Validation Failed. Value {"id": 
 Schema (Line: 4:0) Json (Line: 1:0) [VALD01]: Validation Failed. Value {"user": {"id": @range(1, 10000) #integer, "username": @regex("[a-z_]{3,30}") #string, "role": "user" #string, "isActive": #boolean, ...ng, "country": @regex("[A-Za-z ]{3,50}") #string} #object #null}}} is expected but found {"user": {"id": "not number", "username": "john doe", "role": "user", "isActive": true, "profile": {"firstName": "John", "lastName": ... "123 Some St", "city": "Some town", "country": "Some Country"}}}}.
 ```
 
-To utilize this library for test automation and API testing, you can employ the following alternative code snippet to perform assertions on input JSON against a specified schema. For instance, let's examine how to assert the JSON, which has been intentionally altered to introduce some errors, against the aforementioned schema. The following demonstrates the adjusted code for asserting the JSON with errors:
-
+## Assertion for Validation
+To utilize this library for test automation and API testing, you can use the following alternative code snippet to perform assertions on input JSON against a specified schema. For instance, let's examine how to assert the JSON, which has been intentionally altered to introduce some errors, against the aforementioned schema. The following demonstrates the adjusted code for asserting the JSON with errors:
 ```c#
 ...
 
@@ -144,8 +139,7 @@ try {
 
 ...
 ```
-The following presents the printed stack trace for the preceding example. It's important to note that when utilizing `JsonAssert`, it throws an exception upon encountering the first error, thus preventing the continuation of processing the rest of the schema:
-
+The following presents the printed stack trace for the preceding example. It's important to note that when using `JsonAssert`, it throws an exception upon encountering the first error, thus preventing the continuation of processing the rest of the schema:
 ```accesslog
 RelogicLabs.JsonSchema.Exceptions.JsonSchemaException: DTYP04: Data type mismatch
 Expected (Schema Line: 6:31): data type #integer
@@ -164,7 +158,5 @@ Actual (Json Line: 3:14): found #string inferred by "not number"
    at RelogicLabs.JsonSchema.Types.JRoot.Match(JNode node)
    at RelogicLabs.JsonSchema.JsonAssert.IsValid(String schemaExpected, String jsonActual)
    at CSharpApplication.SampleSchema.CheckIsValid() in /SampleSchema.cs:line 61
-
 ```
-
 For more information about the schema syntax format and library functionalities, please refer to the reference documentation [here](/JsonSchema-DotNet/api/index.html).

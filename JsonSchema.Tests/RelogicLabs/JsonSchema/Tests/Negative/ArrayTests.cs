@@ -11,14 +11,14 @@ public class ArrayTests
     {
         var schema = "#array";
         var json = "10";
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_JsonNotArrayInObject_ExceptionThrown()
     {
@@ -38,14 +38,14 @@ public class ArrayTests
                 "key3": 100000
             }
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_JsonNotArrayInArray_ExceptionThrown()
     {
@@ -57,14 +57,14 @@ public class ArrayTests
             """
             [{}, "value1", 10.5]
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_NestedJsonNotArrayInArray_ExceptionThrown()
     {
@@ -76,14 +76,14 @@ public class ArrayTests
             """
             [true, "value1", false]
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(DTYP06, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_NestedJsonNotArrayInObject_ExceptionThrown()
     {
@@ -99,44 +99,44 @@ public class ArrayTests
                 "key3": "value1"
             }
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(DTYP06, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_ElementsWithWrongArray_ExceptionThrown()
     {
         var schema = "@elements(10, 20, 30, 40) #array";
         var json = "[5, 10, 15, 20, 25]";
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(ELEM01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_NestedElementsWithWrongArrayInArray_ExceptionThrown()
     {
         var schema = "@elements*(5, 10) #array";
         var json = "[[5, 10], [], [5, 10, 15, 20]]";
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(ELEM01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_EnumWithWrongValueInArray_ExceptionThrown()
     {
-        var schema = 
+        var schema =
             """
             [
             @enum(5, 10, 15), 
@@ -145,27 +145,27 @@ public class ArrayTests
             ] #array
             """;
         var json = """[11, 102, "efg"]""";
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(ENUM02, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidJsonInArray_ExceptionThrown()
     {
         var schema = "#array";
         var json = "[,,]";
-        
+
         //JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonParserException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(JPRS01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_EmptyArrayInObject_ExceptionThrown()
     {

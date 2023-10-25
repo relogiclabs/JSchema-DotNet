@@ -11,27 +11,27 @@ public class DateTimeTests
     {
         var schema = "#date";
         var json = "\"This is not a valid date\"";
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_JsonNotTime_ExceptionThrown()
     {
         var schema = "#time";
         var json = "\"This is not a valid time\"";
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_DateInputWrong_ExceptionThrown()
     {
@@ -43,7 +43,7 @@ public class DateTimeTests
         Assert.AreEqual(DDAY04, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_TimeInputWrong_ExceptionThrown()
     {
@@ -55,7 +55,7 @@ public class DateTimeTests
         Assert.AreEqual(DHUR03, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_DateDayOutOfRange_ExceptionThrown()
     {
@@ -67,7 +67,7 @@ public class DateTimeTests
         Assert.AreEqual(DDAY03, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_DateDayOutOfRange2_ExceptionThrown()
     {
@@ -79,7 +79,7 @@ public class DateTimeTests
         Assert.AreEqual(DDAY04, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidDateMonthFullName_ExceptionThrown()
     {
@@ -91,7 +91,7 @@ public class DateTimeTests
         Assert.AreEqual(DMON01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidDateMonthShortName_ExceptionThrown()
     {
@@ -103,7 +103,7 @@ public class DateTimeTests
         Assert.AreEqual(DMON02, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidDateMonthNumber_ExceptionThrown()
     {
@@ -115,7 +115,7 @@ public class DateTimeTests
         Assert.AreEqual(DMON03, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidDateMonthNumberRange_ExceptionThrown()
     {
@@ -127,7 +127,7 @@ public class DateTimeTests
         Assert.AreEqual(DMON05, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidDateWeekdayInput_ExceptionThrown()
     {
@@ -139,7 +139,7 @@ public class DateTimeTests
         Assert.AreEqual(DWKD02, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_ConflictingDateInfoInInput_ExceptionThrown()
     {
@@ -151,7 +151,7 @@ public class DateTimeTests
         Assert.AreEqual(DCNF01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_ConflictingTimeInfoInInput_ExceptionThrown()
     {
@@ -163,7 +163,7 @@ public class DateTimeTests
         Assert.AreEqual(DCNF01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidDateWeekday_ExceptionThrown()
     {
@@ -175,7 +175,7 @@ public class DateTimeTests
         Assert.AreEqual(DWKD03, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidDateYearInput_ExceptionThrown()
     {
@@ -187,7 +187,7 @@ public class DateTimeTests
         Assert.AreEqual(DYAR02, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidDateYearInput2_ExceptionThrown()
     {
@@ -199,7 +199,7 @@ public class DateTimeTests
         Assert.AreEqual(DYAR03, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidDateYearInput3_ExceptionThrown()
     {
@@ -211,7 +211,7 @@ public class DateTimeTests
         Assert.AreEqual(DINV02, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidDateEraInput_ExceptionThrown()
     {
@@ -223,7 +223,7 @@ public class DateTimeTests
         Assert.AreEqual(DERA01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidTimeTextMissing_ExceptionThrown()
     {
@@ -235,7 +235,7 @@ public class DateTimeTests
         Assert.AreEqual(DTXT01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidTimeHourInput_ExceptionThrown()
     {
@@ -247,7 +247,7 @@ public class DateTimeTests
         Assert.AreEqual(DHUR01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidTimeHourRange_ExceptionThrown()
     {
@@ -259,7 +259,7 @@ public class DateTimeTests
         Assert.AreEqual(DHUR06, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidTimeMinuteInput_ExceptionThrown()
     {
@@ -271,7 +271,7 @@ public class DateTimeTests
         Assert.AreEqual(DMIN01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidTimeMinuteRange_ExceptionThrown()
     {
@@ -283,7 +283,7 @@ public class DateTimeTests
         Assert.AreEqual(DMIN03, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidTimeSecondInput_ExceptionThrown()
     {
@@ -295,7 +295,7 @@ public class DateTimeTests
         Assert.AreEqual(DSEC01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidTimeSecondRange_ExceptionThrown()
     {
@@ -307,7 +307,7 @@ public class DateTimeTests
         Assert.AreEqual(DSEC03, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidTimeSecondFraction_ExceptionThrown()
     {
@@ -319,7 +319,7 @@ public class DateTimeTests
         Assert.AreEqual(DFRC04, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidTimeNoHourInput_ExceptionThrown()
     {
@@ -331,7 +331,7 @@ public class DateTimeTests
         Assert.AreEqual(DHUR02, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidTimeInput_ExceptionThrown()
     {
@@ -343,7 +343,7 @@ public class DateTimeTests
         Assert.AreEqual(DWTS01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidTimeAmPmInput_ExceptionThrown()
     {
@@ -355,7 +355,7 @@ public class DateTimeTests
         Assert.AreEqual(DTAP01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidTime12HourInput_ExceptionThrown()
     {
@@ -367,7 +367,7 @@ public class DateTimeTests
         Assert.AreEqual(DHUR03, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidTimeAmPmMissing_ExceptionThrown()
     {
@@ -379,7 +379,7 @@ public class DateTimeTests
         Assert.AreEqual(DTAP01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidTimeUTCOffsetInput_ExceptionThrown()
     {
@@ -391,7 +391,7 @@ public class DateTimeTests
         Assert.AreEqual(DUTC01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidTimeUTCOffsetHourRange_ExceptionThrown()
     {
@@ -403,7 +403,7 @@ public class DateTimeTests
         Assert.AreEqual(DUTC04, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidTimeUTCOffsetMinuteRange_ExceptionThrown()
     {
@@ -415,26 +415,26 @@ public class DateTimeTests
         Assert.AreEqual(DUTC05, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidDatePatternCauseLexerError_ExceptionThrown()
     {
         var schema = """ @date("ABCD") """;
         var json = "\"23-09-01T14:35:10.555\"";
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(DLEX01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_InvalidTimePatternCauseLexerError_ExceptionThrown()
     {
         var schema = """ @time("ABCD") """;
         var json = "\"23-09-01T14:35:10.555\"";
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));

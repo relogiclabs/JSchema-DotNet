@@ -11,27 +11,27 @@ public class IntegerTests
     {
         var schema = "#integer";
         var json = "10.5";
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_JsonValueNotEqualForInteger_ExceptionThrown()
     {
         var schema = "10 #integer";
         var json = "9";
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(INTE01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_JsonNotIntegerInObject_ExceptionThrown()
     {
@@ -51,14 +51,14 @@ public class IntegerTests
                 "key3": 4000.45
             }
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_JsonNotIntegerInArray_ExceptionThrown()
     {
@@ -70,14 +70,14 @@ public class IntegerTests
             """
             [true, -4568.57, 100]
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_NestedJsonNotIntegerInArray_ExceptionThrown()
     {
@@ -89,14 +89,14 @@ public class IntegerTests
             """
             [null, 2.2, "40000000"]
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(DTYP06, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_NestedJsonNotIntegerInObject_ExceptionThrown()
     {
@@ -112,14 +112,14 @@ public class IntegerTests
                 "key3": "-50000"
             }
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(DTYP06, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_NestedRangeWithJsonNotIntegerInObject_ExceptionThrown()
     {
@@ -135,14 +135,14 @@ public class IntegerTests
                 "key3": "-50000"
             }
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(DTYP06, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_NestedRangeWithNonCompositeJsonInObject_ExceptionThrown()
     {
@@ -154,14 +154,14 @@ public class IntegerTests
             """
             "value1"
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(FUNC06, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_NestedRangeWithJsonWrongIntegerInObject_ExceptionThrown()
     {
@@ -177,14 +177,14 @@ public class IntegerTests
                 "key3": -500
             }
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(RANG01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_NestedRangeWithUndefinedAndWrongIntegerInArray_ExceptionThrown()
     {
@@ -196,14 +196,14 @@ public class IntegerTests
             """
             [100, 500, 900]
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(RANG04, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_NestedPositiveWithWrongIntegerInArray_ExceptionThrown()
     {
@@ -215,14 +215,14 @@ public class IntegerTests
             """
             [100, -500, 900]
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(POSI01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_NestedNegativeWithWrongIntegerInArray_ExceptionThrown()
     {
@@ -234,7 +234,7 @@ public class IntegerTests
             """
             [-100, -500, 900]
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));

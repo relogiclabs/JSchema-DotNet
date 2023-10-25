@@ -4,52 +4,18 @@ using static RelogicLabs.JsonSchema.Message.ErrorCode;
 namespace RelogicLabs.JsonSchema.Tests.Negative;
 
 [TestClass]
-public class BooleanTests
+public class DataTypeTests
 {
     [TestMethod]
-    public void When_JsonNotBoolean_ExceptionThrown()
-    {
-        var schema = "#boolean";
-        var json = "5";
-
-        JsonSchema.IsValid(schema, json);
-        var exception = Assert.ThrowsException<JsonSchemaException>(
-            () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTYP04, exception.Code);
-        Console.WriteLine(exception);
-    }
-
-    [TestMethod]
-    public void When_JsonValueNotEqualForBoolean_ExceptionThrown()
-    {
-        var schema = "true #boolean";
-        var json = "false";
-
-        JsonSchema.IsValid(schema, json);
-        var exception = Assert.ThrowsException<JsonSchemaException>(
-            () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(BOOL01, exception.Code);
-        Console.WriteLine(exception);
-    }
-
-    [TestMethod]
-    public void When_JsonNotBooleanInObject_ExceptionThrown()
+    public void When_JsonWithWrongMainDataType_ExceptionThrown()
     {
         var schema =
             """
-            {
-                "key1": #boolean,
-                "key2": #boolean,
-                "key3": #boolean
-            }
+            #string* #array
             """;
         var json =
             """
-            {
-                "key1": null,
-                "key2": 10.5,
-                "key3": true
-            }
+            10
             """;
 
         JsonSchema.IsValid(schema, json);
@@ -60,34 +26,15 @@ public class BooleanTests
     }
 
     [TestMethod]
-    public void When_JsonNotBooleanInArray_ExceptionThrown()
+    public void When_JsonWithWrongNestedDataType_ExceptionThrown()
     {
         var schema =
             """
-            [#boolean, #boolean, #boolean]
+            #string* #array
             """;
         var json =
             """
-            [[], 11.5, "false"]
-            """;
-
-        JsonSchema.IsValid(schema, json);
-        var exception = Assert.ThrowsException<JsonSchemaException>(
-            () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTYP04, exception.Code);
-        Console.WriteLine(exception);
-    }
-
-    [TestMethod]
-    public void When_NestedJsonNotBooleanInArray_ExceptionThrown()
-    {
-        var schema =
-            """
-            #boolean*
-            """;
-        var json =
-            """
-            ["true", {}, [true]]
+            [10, 20]
             """;
 
         JsonSchema.IsValid(schema, json);
@@ -98,25 +45,99 @@ public class BooleanTests
     }
 
     [TestMethod]
-    public void When_NestedJsonNotBooleanInObject_ExceptionThrown()
+    public void When_NestedTypeWithNonCompositeJson_ExceptionThrown()
     {
         var schema =
             """
-            #boolean*
+            #string*
             """;
         var json =
             """
-            {
-                "key1": {"key": true},
-                "key2": null,
-                "key3": false
-            }
+            10
             """;
 
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(DTYP06, exception.Code);
+        Assert.AreEqual(DTYP03, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_UndefinedDataTypeArgument_ExceptionThrown()
+    {
+        var schema =
+            """
+            #array($undefined)
+            """;
+        var json =
+            """
+            [10, 20]
+            """;
+
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<DefinitionNotFoundException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(DEFI03, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_UndefinedNestedDataTypeArgument_ExceptionThrown()
+    {
+        var schema =
+            """
+            #integer*($undefined) #array
+            """;
+        var json =
+            """
+            [10, 20]
+            """;
+
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<DefinitionNotFoundException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(DEFI04, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_DataTypeArgumentWithValidationFailed_ExceptionThrown()
+    {
+        var schema =
+            """
+            %define $test: {"k1": #string}
+            %schema: #object($test)
+            """;
+        var json =
+            """
+            {"k1": 10}
+            """;
+
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(DTYP04, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_NestedDataTypeArgumentWithValidationFailed_ExceptionThrown()
+    {
+        var schema =
+            """
+            %define $test: {"k1": #string}
+            %schema: #object*($test) #array
+            """;
+        var json =
+            """
+            [{"k1": 10}]
+            """;
+
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
 }

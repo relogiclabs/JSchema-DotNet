@@ -11,14 +11,14 @@ public class ObjectTests
     {
         var schema = "#object";
         var json = "100";
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_JsonNotObjectInObject_ExceptionThrown()
     {
@@ -38,14 +38,14 @@ public class ObjectTests
                 "key3": [10, 20, 30]
             }
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_JsonNotObjectInArray_ExceptionThrown()
     {
@@ -57,14 +57,14 @@ public class ObjectTests
             """
             [null, "value1", true]
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_NestedJsonNotObjectInArray_ExceptionThrown()
     {
@@ -76,14 +76,14 @@ public class ObjectTests
             """
             [ 100, true, false ]
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(DTYP06, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_NestedJsonNotObjectInObject_ExceptionThrown()
     {
@@ -99,14 +99,14 @@ public class ObjectTests
                 "key3": [10]
             }
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(DTYP06, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_KeysWithWrongObject_ExceptionThrown()
     {
@@ -122,14 +122,14 @@ public class ObjectTests
                 "key6": 200
             }
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(KEYS01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_ValuesWithWrongObject_ExceptionThrown()
     {
@@ -145,14 +145,14 @@ public class ObjectTests
                 "key3": 3
             }
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(VALU01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_NestedKeysWithWrongObjectInObject_ExceptionThrown()
     {
@@ -168,14 +168,14 @@ public class ObjectTests
                 "key3": {"value": 1000}
             }
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(KEYS01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_NestedKeysAndValuesWithWrongObjectInArray_ExceptionThrown()
     {
@@ -187,18 +187,18 @@ public class ObjectTests
             """
             [{"value": 10}, {"value": 20}, {"value": 30}]
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(KEYS01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_EnumWithWrongObject_ExceptionThrown()
     {
-        var schema = 
+        var schema =
             """
             {
             "key1": @enum(5, 10, 15),
@@ -206,7 +206,7 @@ public class ObjectTests
             "key3": @enum("abc", "pqr", "xyz")
             } #object
             """;
-        var json = 
+        var json =
             """
             {
             "key1": 1, 
@@ -214,14 +214,14 @@ public class ObjectTests
             "key3": "efg"
             }
             """;
-        
+
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(ENUM02, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_DuplicateJsonPropertyInObject_ExceptionThrown()
     {
@@ -241,14 +241,14 @@ public class ObjectTests
                 "key2": [10, 20, 30]
             }
             """;
-        
+
         //JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<DuplicatePropertyKeyException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(PROP03, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_DuplicateSchemaPropertyInObject_ExceptionThrown()
     {
@@ -268,14 +268,14 @@ public class ObjectTests
                 "key3": [10, 20, 30]
             }
             """;
-        
+
         //JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<DuplicatePropertyKeyException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(PROP04, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_EmptyObjectInArray_ExceptionThrown()
     {
@@ -299,7 +299,7 @@ public class ObjectTests
         Assert.AreEqual(NEMT03, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_WrongLengthOfObjectInArray1_ExceptionThrown()
     {
@@ -321,7 +321,7 @@ public class ObjectTests
         Assert.AreEqual(OLEN01, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_WrongLengthOfObjectInArray2_ExceptionThrown()
     {
@@ -343,7 +343,7 @@ public class ObjectTests
         Assert.AreEqual(OLEN02, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_WrongLengthOfObjectInArray3_ExceptionThrown()
     {
@@ -365,7 +365,7 @@ public class ObjectTests
         Assert.AreEqual(OLEN05, exception.Code);
         Console.WriteLine(exception);
     }
-    
+
     [TestMethod]
     public void When_WrongLengthOfObjectInArray4_ExceptionThrown()
     {

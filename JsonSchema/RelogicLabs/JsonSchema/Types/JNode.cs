@@ -59,7 +59,7 @@ public abstract class JNode
     {
         if(node is T other) return other;
         FailWith(new JsonSchemaException(
-            new ErrorDetail(DTYP03, DataTypeMismatch),
+            new ErrorDetail(DTYP02, DataTypeMismatch),
             ExpectedDetail.AsDataTypeMismatch(this),
             ActualDetail.AsDataTypeMismatch(node)));
         return default;
