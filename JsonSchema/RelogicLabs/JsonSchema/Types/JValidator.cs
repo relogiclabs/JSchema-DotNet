@@ -40,7 +40,6 @@ public class JValidator : JBranch
             ExpectedDetail.AsValueMismatch(Value!),
             ActualDetail.AsValueMismatch(node)));
         var rDataType = MatchDataType(node);
-        if(!rDataType) DataTypes.ForEach(d => d.MatchForReport(node));
         var fDataType = rDataType && DataTypes.Count != 0;
         bool rFunction = Functions.Where(f => f.IsApplicable(node) || !fDataType)
             .Select(f => f.Match(node)).ForEachTrue() || Functions.Count == 0;
@@ -49,12 +48,20 @@ public class JValidator : JBranch
 
     private bool MatchDataType(JNode node)
     {
+        if(Runtime.TryMatch(() => CheckDataType(node))) return true;
+        DataTypes.Where(d => !d.Nested).ForEach(d => d.MatchForReport(node));
+        DataTypes.Where(d => d.Nested).ForEach(d => d.MatchForReport(node));
+        return false;
+    }
+
+    private bool CheckDataType(JNode node)
+    {
         var list1 = DataTypes.Where(d => !d.Nested).Select(d => d.Match(node)).ToList();
-        var result1 = list1.AnyTrue() || list1.Count == 0;
+        var result1 = list1.AnyTrue();
         var list2 = DataTypes.Where(d => d.Nested && (d.IsApplicable(node) || !result1))
             .Select(d => d.Match(node)).ToList();
         var result2 = list2.AnyTrue() || list2.Count == 0;
-        return result1 && result2;
+        return (result1 || list1.Count == 0) && result2;
     }
 
     public override string ToString() => (

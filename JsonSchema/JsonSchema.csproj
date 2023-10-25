@@ -5,9 +5,9 @@
         <Description>A simplified, concise, intuitive, and extensible JSON Schema</Description>
         <Authors>Relogic Labs</Authors>
         <Company>Relogic Labs</Company>
-        <Version>1.4.0</Version>
-        <PackageVersion>1.4.0</PackageVersion>
-        <AssemblyVersion>1.4.0</AssemblyVersion>
+        <Version>1.5.0</Version>
+        <PackageVersion>1.5.0</PackageVersion>
+        <AssemblyVersion>1.5.0</AssemblyVersion>
         <PackageTags>JsonSchema;Schema;Json;Validation;Assert;Test</PackageTags>
         <Copyright>Copyright © Relogic Labs. All rights reserved.</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
