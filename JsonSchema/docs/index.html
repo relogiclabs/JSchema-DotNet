@@ -144,7 +144,7 @@ pre code { font-size: 1.1em; }
 <pre><code class="lang-stylus">%title: &quot;Extended User Profile Dashboard API Response&quot;
 %version: 2.0.0
 %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
-            RelogicLabs.JsonSchema.Tests
+          RelogicLabs.JsonSchema.Tests
 
 %pragma IgnoreUndefinedProperties: true
 
@@ -168,7 +168,7 @@ pre code { font-size: 1.1em; }
     } #object #null
 }
 
-%define $tags: @length(1, 10) #array($tag)
+%define $tags: @length(1, 10) #string*($tag) #array
 %define $tag: @length(3, 20) @regex(&quot;[A-Za-z_]+&quot;) #string
 
 %schema: 
@@ -177,10 +177,9 @@ pre code { font-size: 1.1em; }
         &quot;id&quot;: @range(1, 10000) #integer,
         /*username does not allow special characters*/
         &quot;username&quot;: @regex(&quot;[a-z_]{3,30}&quot;) #string,
-        /*currently only one role is allowed by system*/
-        &quot;role&quot;: &quot;user&quot; #string,
+        &quot;role&quot;: @enum(&quot;user&quot;, &quot;admin&quot;) #string,
         &quot;isActive&quot;: #boolean, //user account current status
-        &quot;registeredAt&quot;: #time,
+        &quot;registeredAt&quot;: @time(&quot;DD-MM-YYYY hh:mm:ss&quot;) #string,
         &quot;profile&quot;: {
             &quot;firstName&quot;: @regex(&quot;[A-Za-z]{3,50}&quot;) #string,
             &quot;lastName&quot;: @regex(&quot;[A-Za-z]{3,50}&quot;) #string,
@@ -214,9 +213,9 @@ pre code { font-size: 1.1em; }
     &quot;user&quot;: {
         &quot;id&quot;: 1234,
         &quot;username&quot;: &quot;johndoe&quot;,
-        &quot;role&quot;: &quot;user&quot;,
+        &quot;role&quot;: &quot;admin&quot;,
         &quot;isActive&quot;: true,
-        &quot;registeredAt&quot;: &quot;2023-09-06T15:10:30.639Z&quot;,
+        &quot;registeredAt&quot;: &quot;06-09-2023 15:10:30&quot;,
         &quot;profile&quot;: {
             &quot;firstName&quot;: &quot;John&quot;,
             &quot;lastName&quot;: &quot;Doe&quot;,
@@ -284,9 +283,9 @@ pre code { font-size: 1.1em; }
             &quot;price&quot;: 1299.99,
             &quot;inStock&quot;: false,
             &quot;specs&quot;: {
-                &quot;cpu&quot;: &quot;Intel i7&quot;,
-                &quot;ram&quot;: &quot;16GB&quot;,
-                &quot;storage&quot;: &quot;512GB SSD&quot;
+                &quot;cpu&quot;: &quot;Intel i11&quot;,
+                &quot;ram&quot;: &quot;11GB&quot;,
+                &quot;storage&quot;: &quot;11GB SSD&quot;
             }
         }
     ],
