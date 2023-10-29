@@ -32,7 +32,7 @@ public class JsonAssert
     {
         Runtime.Exceptions.Clear();
         JsonTree jsonTree = new(Runtime, json);
-        DebugUtils.Print(SchemaTree, jsonTree);
+        DebugUtilities.Print(SchemaTree, jsonTree);
         if(!SchemaTree.Root.Match(jsonTree.Root)) 
             throw new InvalidOperationException("Exception not thrown");
     }
@@ -48,7 +48,7 @@ public class JsonAssert
         RuntimeContext runtime = new(MessageFormatter.SchemaAssertion, true);
         SchemaTree schemaTree = new(runtime, schemaExpected);
         JsonTree jsonTree = new(runtime, jsonActual);
-        DebugUtils.Print(schemaTree, jsonTree);
+        DebugUtilities.Print(schemaTree, jsonTree);
         if(!schemaTree.Root.Match(jsonTree.Root)) 
             throw new InvalidOperationException("Exception not thrown");
     }
@@ -65,7 +65,7 @@ public class JsonAssert
         RuntimeContext runtime = new(MessageFormatter.JsonAssertion, true);
         JsonTree expectedTree = new(runtime, jsonExpected);
         JsonTree actualTree = new(runtime, jsonActual);
-        DebugUtils.Print(expectedTree, actualTree);
+        DebugUtilities.Print(expectedTree, actualTree);
         if(!expectedTree.Root.Match(actualTree.Root))
             throw new InvalidOperationException("Exception not thrown");
     }

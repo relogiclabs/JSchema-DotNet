@@ -6,47 +6,95 @@ using static RelogicLabs.JsonSchema.Message.ErrorCode;
 
 namespace RelogicLabs.JsonSchema.Time;
 
-internal abstract partial class SegmentProcessor
+internal abstract class SegmentProcessor
 {
+    private static readonly Regex EraRegex = new("^(BC|AD)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+    private static readonly Regex YearNumber4Regex = new(@"^(\d{4})", RegexOptions.Compiled);
+    private static readonly Regex YearNumber2Regex = new(@"^(\d{2})", RegexOptions.Compiled);
+
+    private static readonly Regex MonthNameRegex = new(
+            "^(January|February|March|April|May|June|July"
+            + "|August|September|October|November|December)",
+            RegexOptions.Compiled | RegexOptions.IgnoreCase);
+    private static readonly Regex MonthShortNameRegex = new(
+            "^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)",
+            RegexOptions.Compiled | RegexOptions.IgnoreCase);
+    private static readonly Regex MonthNumber2Regex = new(@"^(\d{2})", RegexOptions.Compiled);
+    private static readonly Regex MonthNumberRegex = new(@"^(\d{1,2})", RegexOptions.Compiled);
+
+    private static readonly Regex WeekdayNameRegex = new(
+            "^(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday)",
+            RegexOptions.Compiled | RegexOptions.IgnoreCase);
+    private static readonly Regex WeekdayShortNameRegex = new("^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)",
+            RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+    private static readonly Regex DayNumber2Regex = new(@"^(\d{2})", RegexOptions.Compiled);
+    private static readonly Regex DayNumberRegex = new(@"^(\d{1,2})", RegexOptions.Compiled);
+
+    private static readonly Regex ClockAmPmRegex = new("^(AM|PM)",
+            RegexOptions.Compiled | RegexOptions.IgnoreCase);
+    private static readonly Regex HourNumber2Regex = new(@"^(\d{2})", RegexOptions.Compiled);
+    private static readonly Regex HourNumberRegex = new(@"^(\d{1,2})", RegexOptions.Compiled);
+
+    private static readonly Regex MinuteNumber2Regex = new(@"^(\d{2})", RegexOptions.Compiled);
+    private static readonly Regex MinuteNumberRegex = new(@"^(\d{1,2})", RegexOptions.Compiled);
+
+    private static readonly Regex SecondNumber2Regex = new(@"^(\d{2})", RegexOptions.Compiled);
+    private static readonly Regex SecondNumberRegex = new(@"^(\d{1,2})", RegexOptions.Compiled);
+
+    private static readonly Regex FractionNumberRegex = new(@"^(\d{1,6})", RegexOptions.Compiled);
+    private static readonly Regex FractionNumber1Regex = new(@"^(\d)", RegexOptions.Compiled);
+    private static readonly Regex FractionNumber2Regex = new(@"^(\d{2})", RegexOptions.Compiled);
+    private static readonly Regex FractionNumber3Regex = new(@"^(\d{3})", RegexOptions.Compiled);
+    private static readonly Regex FractionNumber4Regex = new(@"^(\d{4})", RegexOptions.Compiled);
+    private static readonly Regex FractionNumber5Regex = new(@"^(\d{5})", RegexOptions.Compiled);
+    private static readonly Regex FractionNumber6Regex = new(@"^(\d{6})", RegexOptions.Compiled);
+
+    private static readonly Regex UtcOffsetHourRegex = new(@"^([+-]\d{2}|Z)", RegexOptions.Compiled);
+    private static readonly Regex UtcOffsetTime1Regex = new(@"^([+-]\d{2}):(\d{2})|Z", RegexOptions.Compiled);
+    private static readonly Regex UtcOffsetTime2Regex = new(@"^([+-]\d{2})(\d{2})|Z", RegexOptions.Compiled);
+
     public static readonly SegmentProcessor Text = new TextProcessor();
     public static readonly SegmentProcessor Symbol = new SymbolProcessor();
     public static readonly SegmentProcessor Whitespace = new WhitespaceProcessor();
 
-    public static readonly SegmentProcessor Era = new EraProcessor(EraRegex(), DERA01);
-    public static readonly SegmentProcessor YearNum4 = new YearNumProcessor(YearNum4Regex(), DYAR01);
-    public static readonly SegmentProcessor YearNum2 = new YearNumProcessor(YearNum2Regex(), DYAR02);
+    public static readonly SegmentProcessor Era = new EraProcessor(EraRegex, DERA01);
+    public static readonly SegmentProcessor YearNumber4
+            = new YearNumberProcessor(YearNumber4Regex, DYAR01);
+    public static readonly SegmentProcessor YearNumber2
+            = new YearNumberProcessor(YearNumber2Regex, DYAR02);
 
-    public static readonly SegmentProcessor MonthName = new MonthNameProcessor(MonthNameRegex(), DMON01);
-    public static readonly SegmentProcessor MonthShortName = new MonthNameProcessor(MonthShortNameRegex(), DMON02);
-    public static readonly SegmentProcessor MonthNum2 = new MonthNumProcessor(MonthNum2Regex(), DMON03);
-    public static readonly SegmentProcessor MonthNum = new MonthNumProcessor(MonthNumRegex(), DMON04);
+    public static readonly SegmentProcessor MonthName = new MonthNameProcessor(MonthNameRegex, DMON01);
+    public static readonly SegmentProcessor MonthShortName = new MonthNameProcessor(MonthShortNameRegex, DMON02);
+    public static readonly SegmentProcessor MonthNumber2 = new MonthNumberProcessor(MonthNumber2Regex, DMON03);
+    public static readonly SegmentProcessor MonthNumber = new MonthNumberProcessor(MonthNumberRegex, DMON04);
 
-    public static readonly SegmentProcessor WeekdayName = new WeekdayProcessor(WeekdayNameRegex(), DWKD01);
-    public static readonly SegmentProcessor WeekdayShortName = new WeekdayProcessor(WeekdayShortNameRegex(), DWKD02);
-    public static readonly SegmentProcessor DayNum2 = new DayNumProcessor(DayNum2Regex(), DDAY01);
-    public static readonly SegmentProcessor DayNum = new DayNumProcessor(DayNumRegex(), DDAY02);
+    public static readonly SegmentProcessor WeekdayName = new WeekdayProcessor(WeekdayNameRegex, DWKD01);
+    public static readonly SegmentProcessor WeekdayShortName = new WeekdayProcessor(WeekdayShortNameRegex, DWKD02);
+    public static readonly SegmentProcessor DayNumber2 = new DayNumberProcessor(DayNumber2Regex, DDAY01);
+    public static readonly SegmentProcessor DayNumber = new DayNumberProcessor(DayNumberRegex, DDAY02);
 
-    public static readonly SegmentProcessor AmPm = new AmPmProcessor(AmPmRegex(), DTAP01);
-    public static readonly SegmentProcessor HourNum2 = new HourNumProcessor(HourNum2Regex(), DHUR01);
-    public static readonly SegmentProcessor HourNum = new HourNumProcessor(HourNumRegex(), DHUR02);
+    public static readonly SegmentProcessor ClockAmPm = new ClockAmPmProcessor(ClockAmPmRegex, DTAP01);
+    public static readonly SegmentProcessor HourNumber2 = new HourNumberProcessor(HourNumber2Regex, DHUR01);
+    public static readonly SegmentProcessor HourNumber = new HourNumberProcessor(HourNumberRegex, DHUR02);
 
-    public static readonly SegmentProcessor MinuteNum2 = new MinuteNumProcessor(MinuteNum2Regex(), DMIN01);
-    public static readonly SegmentProcessor MinuteNum = new MinuteNumProcessor(MinuteNumRegex(), DMIN02);
+    public static readonly SegmentProcessor MinuteNumber2 = new MinuteNumberProcessor(MinuteNumber2Regex, DMIN01);
+    public static readonly SegmentProcessor MinuteNumber = new MinuteNumberProcessor(MinuteNumberRegex, DMIN02);
 
-    public static readonly SegmentProcessor SecondNum2 = new SecondNumProcessor(SecondNum2Regex(), DSEC01);
-    public static readonly SegmentProcessor SecondNum = new SecondNumProcessor(SecondNumRegex(), DSEC02);
+    public static readonly SegmentProcessor SecondNumber2 = new SecondNumberProcessor(SecondNumber2Regex, DSEC01);
+    public static readonly SegmentProcessor SecondNumber = new SecondNumberProcessor(SecondNumberRegex, DSEC02);
 
-    public static readonly SegmentProcessor FractionNum = new FractionNumProcessor(FractionNumRegex(), DFRC01);
-    public static readonly SegmentProcessor FractionNum01 = new FractionNumProcessor(FractionNum01Regex(), DFRC02);
-    public static readonly SegmentProcessor FractionNum02 = new FractionNumProcessor(FractionNum02Regex(), DFRC03);
-    public static readonly SegmentProcessor FractionNum03 = new FractionNumProcessor(FractionNum03Regex(), DFRC04);
-    public static readonly SegmentProcessor FractionNum04 = new FractionNumProcessor(FractionNum04Regex(), DFRC05);
-    public static readonly SegmentProcessor FractionNum05 = new FractionNumProcessor(FractionNum05Regex(), DFRC06);
-    public static readonly SegmentProcessor FractionNum06 = new FractionNumProcessor(FractionNum06Regex(), DFRC07);
+    public static readonly SegmentProcessor FractionNumber = new FractionNumberProcessor(FractionNumberRegex, DFRC01);
+    public static readonly SegmentProcessor FractionNumber1 = new FractionNumberProcessor(FractionNumber1Regex, DFRC02);
+    public static readonly SegmentProcessor FractionNumber2 = new FractionNumberProcessor(FractionNumber2Regex, DFRC03);
+    public static readonly SegmentProcessor FractionNumber3 = new FractionNumberProcessor(FractionNumber3Regex, DFRC04);
+    public static readonly SegmentProcessor FractionNumber4 = new FractionNumberProcessor(FractionNumber4Regex, DFRC05);
+    public static readonly SegmentProcessor FractionNumber5 = new FractionNumberProcessor(FractionNumber5Regex, DFRC06);
+    public static readonly SegmentProcessor FractionNumber6 = new FractionNumberProcessor(FractionNumber6Regex, DFRC07);
 
-    public static readonly SegmentProcessor UtcOffsetHour = new UtcOffsetHourProcessor(UtcOffsetHourRegex(), DUTC01);
-    public static readonly SegmentProcessor UtcOffsetTime1 = new UtcOffsetTimeProcessor(UtcOffsetTime1Regex(), DUTC02);
-    public static readonly SegmentProcessor UtcOffsetTime2 = new UtcOffsetTimeProcessor(UtcOffsetTime2Regex(), DUTC03);
+    public static readonly SegmentProcessor UtcOffsetHour = new UtcOffsetHourProcessor(UtcOffsetHourRegex, DUTC01);
+    public static readonly SegmentProcessor UtcOffsetTime1 = new UtcOffsetTimeProcessor(UtcOffsetTime1Regex, DUTC02);
+    public static readonly SegmentProcessor UtcOffsetTime2 = new UtcOffsetTimeProcessor(UtcOffsetTime2Regex, DUTC03);
 
     public abstract string Process(string input, IToken token, DateTimeContext context);
 
@@ -114,9 +162,9 @@ internal abstract partial class SegmentProcessor
         }
     }
 
-    private class YearNumProcessor : SegmentRegexProcessor
+    private class YearNumberProcessor : SegmentRegexProcessor
     {
-        public YearNumProcessor(Regex regex, string code) : base(regex, code) { }
+        public YearNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
             if(!match.Success) throw new InvalidDateTimeException(_code,
@@ -137,9 +185,9 @@ internal abstract partial class SegmentProcessor
         }
     }
 
-    private class MonthNumProcessor : SegmentRegexProcessor
+    private class MonthNumberProcessor : SegmentRegexProcessor
     {
-        public MonthNumProcessor(Regex regex, string code) : base(regex, code) { }
+        public MonthNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
             if(!match.Success) throw new InvalidDateTimeException(_code,
@@ -159,9 +207,9 @@ internal abstract partial class SegmentProcessor
         }
     }
 
-    private class DayNumProcessor : SegmentRegexProcessor
+    private class DayNumberProcessor : SegmentRegexProcessor
     {
-        public DayNumProcessor(Regex regex, string code) : base(regex, code) { }
+        public DayNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
             if(!match.Success) throw new InvalidDateTimeException(_code,
@@ -170,9 +218,9 @@ internal abstract partial class SegmentProcessor
         }
     }
 
-    private class AmPmProcessor : SegmentRegexProcessor
+    private class ClockAmPmProcessor : SegmentRegexProcessor
     {
-        public AmPmProcessor(Regex regex, string code) : base(regex, code) { }
+        public ClockAmPmProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
             if(!match.Success) throw new InvalidDateTimeException(_code,
@@ -181,9 +229,9 @@ internal abstract partial class SegmentProcessor
         }
     }
 
-    private class HourNumProcessor : SegmentRegexProcessor
+    private class HourNumberProcessor : SegmentRegexProcessor
     {
-        public HourNumProcessor(Regex regex, string code) : base(regex, code) { }
+        public HourNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
             if(!match.Success) throw new InvalidDateTimeException(_code,
@@ -192,9 +240,9 @@ internal abstract partial class SegmentProcessor
         }
     }
 
-    private class MinuteNumProcessor : SegmentRegexProcessor
+    private class MinuteNumberProcessor : SegmentRegexProcessor
     {
-        public MinuteNumProcessor(Regex regex, string code) : base(regex, code) { }
+        public MinuteNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
             if(!match.Success) throw new InvalidDateTimeException(_code,
@@ -203,9 +251,9 @@ internal abstract partial class SegmentProcessor
         }
     }
 
-    private class SecondNumProcessor : SegmentRegexProcessor
+    private class SecondNumberProcessor : SegmentRegexProcessor
     {
-        public SecondNumProcessor(Regex regex, string code) : base(regex, code) { }
+        public SecondNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
             if(!match.Success) throw new InvalidDateTimeException(_code,
@@ -214,9 +262,9 @@ internal abstract partial class SegmentProcessor
         }
     }
 
-    private class FractionNumProcessor : SegmentRegexProcessor
+    private class FractionNumberProcessor : SegmentRegexProcessor
     {
-        public FractionNumProcessor(Regex regex, string code) : base(regex, code) { }
+        public FractionNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
             if(!match.Success) throw new InvalidDateTimeException(_code,
@@ -249,93 +297,4 @@ internal abstract partial class SegmentProcessor
                 int.Parse(match.Groups[2].Value, NumberStyles.Integer));
         }
     }
-
-    [GeneratedRegex("^(BC|AD)", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
-    private static partial Regex EraRegex();
-
-    [GeneratedRegex(@"^(\d{4})", RegexOptions.Compiled)]
-    private static partial Regex YearNum4Regex();
-
-    [GeneratedRegex(@"^(\d{2})", RegexOptions.Compiled)]
-    private static partial Regex YearNum2Regex();
-
-    [GeneratedRegex("^(January|February|March|April|May|June|July" +
-                    "|August|September|October|November|December)",
-        RegexOptions.Compiled | RegexOptions.IgnoreCase)]
-    private static partial Regex MonthNameRegex();
-
-    [GeneratedRegex("^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)",
-        RegexOptions.Compiled | RegexOptions.IgnoreCase)]
-    private static partial Regex MonthShortNameRegex();
-
-    [GeneratedRegex(@"^(\d{2})", RegexOptions.Compiled)]
-    private static partial Regex MonthNum2Regex();
-
-    [GeneratedRegex(@"^(\d{1,2})", RegexOptions.Compiled)]
-    private static partial Regex MonthNumRegex();
-
-    [GeneratedRegex("^(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday)",
-        RegexOptions.Compiled | RegexOptions.IgnoreCase)]
-    private static partial Regex WeekdayNameRegex();
-
-    [GeneratedRegex("^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)",
-        RegexOptions.Compiled | RegexOptions.IgnoreCase)]
-    private static partial Regex WeekdayShortNameRegex();
-
-    [GeneratedRegex(@"^(\d{2})", RegexOptions.Compiled)]
-    private static partial Regex DayNum2Regex();
-
-    [GeneratedRegex(@"^(\d{1,2})", RegexOptions.Compiled)]
-    private static partial Regex DayNumRegex();
-
-    [GeneratedRegex("^(AM|PM)", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
-    private static partial Regex AmPmRegex();
-
-    [GeneratedRegex(@"^(\d{2})", RegexOptions.Compiled)]
-    private static partial Regex HourNum2Regex();
-
-    [GeneratedRegex(@"^(\d{1,2})", RegexOptions.Compiled)]
-    private static partial Regex HourNumRegex();
-
-    [GeneratedRegex(@"^(\d{2})", RegexOptions.Compiled)]
-    private static partial Regex MinuteNum2Regex();
-
-    [GeneratedRegex(@"^(\d{1,2})", RegexOptions.Compiled)]
-    private static partial Regex MinuteNumRegex();
-
-    [GeneratedRegex(@"^(\d{2})", RegexOptions.Compiled)]
-    private static partial Regex SecondNum2Regex();
-
-    [GeneratedRegex(@"^(\d{1,2})", RegexOptions.Compiled)]
-    private static partial Regex SecondNumRegex();
-
-    [GeneratedRegex(@"^(\d{1,6})", RegexOptions.Compiled)]
-    private static partial Regex FractionNumRegex();
-
-    [GeneratedRegex(@"^(\d)", RegexOptions.Compiled)]
-    private static partial Regex FractionNum01Regex();
-
-    [GeneratedRegex(@"^(\d{2})", RegexOptions.Compiled)]
-    private static partial Regex FractionNum02Regex();
-
-    [GeneratedRegex(@"^(\d{3})", RegexOptions.Compiled)]
-    private static partial Regex FractionNum03Regex();
-
-    [GeneratedRegex(@"^(\d{4})", RegexOptions.Compiled)]
-    private static partial Regex FractionNum04Regex();
-
-    [GeneratedRegex(@"^(\d{5})", RegexOptions.Compiled)]
-    private static partial Regex FractionNum05Regex();
-
-    [GeneratedRegex(@"^(\d{6})", RegexOptions.Compiled)]
-    private static partial Regex FractionNum06Regex();
-
-    [GeneratedRegex(@"^([+-]\d{2}|Z)", RegexOptions.Compiled)]
-    private static partial Regex UtcOffsetHourRegex();
-
-    [GeneratedRegex(@"^([+-]\d{2}):(\d{2})|Z", RegexOptions.Compiled)]
-    private static partial Regex UtcOffsetTime1Regex();
-
-    [GeneratedRegex(@"^([+-]\d{2})(\d{2})|Z", RegexOptions.Compiled)]
-    private static partial Regex UtcOffsetTime2Regex();
 }

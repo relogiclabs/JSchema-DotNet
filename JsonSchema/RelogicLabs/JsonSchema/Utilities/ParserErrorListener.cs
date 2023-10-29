@@ -37,7 +37,7 @@ internal abstract class ParserErrorListener : IAntlrErrorListener<IToken>
     public void SyntaxError(TextWriter output, IRecognizer recognizer, 
         IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
     {
-        DebugUtils.Print(recognizer);
+        DebugUtilities.Print(recognizer);
         var message = string.Format(GetMessageFormat(), line, charPositionInLine, msg, offendingSymbol);
         throw CreateException(message, e);
     }
