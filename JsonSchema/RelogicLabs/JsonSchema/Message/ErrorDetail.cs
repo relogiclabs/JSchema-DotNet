@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-
 namespace RelogicLabs.JsonSchema.Message;
 
 public class ErrorDetail
@@ -17,10 +15,9 @@ public class ErrorDetail
     internal const string PropertyValueMismatch = "Property value mismatch";
     internal const string PropertyOrderMismatch = "Property order mismatch";
 
-    public required string Code { get; init; }
-    public required string Message { get; init; }
+    public string Code { get; }
+    public string Message { get; }
 
-    [SetsRequiredMembers]
     public ErrorDetail(string code, string message)
     {
         Code = code;

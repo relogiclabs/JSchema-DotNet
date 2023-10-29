@@ -30,8 +30,8 @@ internal class FunctionManager
         // if not FunctionBase's subclass
         if(!baseclass.IsAssignableFrom(subclass))
             throw new InvalidIncludeException(MessageFormatter
-                .FormatForSchema(CLAS03, $"{subclass.FullName} needs to inherit {
-                    baseclass.FullName}", context));
+                .FormatForSchema(CLAS03, $"{subclass.FullName} needs to inherit " +
+                                         $"{baseclass.FullName}", context));
 
         FunctionBase instance = CreateInstance(subclass, context);
         try
@@ -120,9 +120,9 @@ internal class FunctionManager
             if(schemaArgs == null) continue;
             if(!IsMatch(_parameters[0], target))
             {
-                mismatchMessage = $"Function {function.GetOutline()} is applicable on {
-                    GetTypeName(_parameters[0].ParameterType)} but applied on {
-                        GetTypeName(target.GetType())} of {target}";
+                mismatchMessage = $"Function {function.GetOutline()} is applicable on " +
+                                  $"{GetTypeName(_parameters[0].ParameterType)} but applied " +
+                                  $"on {GetTypeName(target.GetType())} of {target}";
                 continue;
             }
             return method.Invoke(function, AddTarget(schemaArgs, target));

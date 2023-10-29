@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using RelogicLabs.JsonSchema.Tree;
 using RelogicLabs.JsonSchema.Types;
 
@@ -6,11 +5,9 @@ namespace RelogicLabs.JsonSchema.Message;
 
 public class ExpectedDetail : ContextDetail
 {
-    [SetsRequiredMembers]
     public ExpectedDetail(Context context, string message)
         : base(context, message) { }
 
-    [SetsRequiredMembers]
     public ExpectedDetail(JNode node, string message)
         : base(node, message) { }
 

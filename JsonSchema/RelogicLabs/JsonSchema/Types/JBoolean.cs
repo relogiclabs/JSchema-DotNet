@@ -2,13 +2,16 @@ using RelogicLabs.JsonSchema.Exceptions;
 using RelogicLabs.JsonSchema.Message;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 using static RelogicLabs.JsonSchema.Message.ErrorDetail;
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JBoolean : JPrimitive, IPragmaValue<bool>
+public sealed class JBoolean : JPrimitive, IPragmaValue<bool>
 {
-    public required bool Value { get; init; }
-    internal JBoolean(IDictionary<JNode, JNode> relations) : base(relations) { }
+    public bool Value { get; }
+
+    private JBoolean(Builder builder) : base(builder)
+        => Value = NonNull(builder.Value);
 
     public override bool Match(JNode node)
     {
@@ -34,4 +37,9 @@ public class JBoolean : JPrimitive, IPragmaValue<bool>
     public override int GetHashCode() => Value.GetHashCode();
     public static implicit operator bool(JBoolean @bool) => @bool.Value;
     public override string ToString() => Value.ToString().ToLower();
+
+    internal new class Builder : JPrimitive.Builder<bool>
+    {
+        public override JBoolean Build() => Build(new JBoolean(this));
+    }
 }

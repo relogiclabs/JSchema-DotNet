@@ -2,7 +2,8 @@ namespace RelogicLabs.JsonSchema.Types;
 
 public abstract class JNumber : JPrimitive
 {
-    internal JNumber(IDictionary<JNode, JNode> relations) : base(relations) { }
+    private protected JNumber(Builder builder) : base(builder) { }
+
     protected abstract double ToDouble();
     public static implicit operator double(JNumber number) => number.ToDouble();
 

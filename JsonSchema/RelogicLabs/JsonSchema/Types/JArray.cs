@@ -3,15 +3,19 @@ using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 using static RelogicLabs.JsonSchema.Message.ErrorDetail;
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JArray : JComposite
+public sealed class JArray : JComposite
 {
-    public required IList<JNode> Elements { get; init; }
-    public override IEnumerable<JNode> Children => Elements;
+    public IList<JNode> Elements { get; }
 
-    internal JArray(IDictionary<JNode, JNode> relations) : base(relations) { }
+    private JArray(Builder builder) : base(builder)
+    {
+        Elements = NonNull(builder.Elements);
+        Children = Elements;
+    }
 
     public override bool Match(JNode node)
     {
@@ -34,4 +38,10 @@ public class JArray : JComposite
     public override JsonType Type => JsonType.ARRAY;
     public override IList<JNode> GetComponents() => Elements;
     public override string ToString() => Elements.ToString(", ", "[", "]");
+
+    internal new class Builder : JNode.Builder
+    {
+        public IList<JNode>? Elements { get; init; }
+        public override JArray Build() => Build(new JArray(this));
+    }
 }

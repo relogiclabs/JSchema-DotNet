@@ -4,16 +4,21 @@ using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 using static RelogicLabs.JsonSchema.Message.ErrorDetail;
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JProperty : JBranch, IKeyer<string>
+public sealed class JProperty : JBranch, IKeyer<string>
 {
-    public required string Key { get; init; }
-    public required JNode Value { get; init; }
+    public string Key { get; }
+    public JNode Value { get; }
 
-    internal JProperty(IDictionary<JNode, JNode> relations) : base(relations) { }
-    public override IEnumerable<JNode> Children => new[] { Value };
+    private JProperty(Builder builder) : base(builder)
+    {
+        Key = NonNull(builder.Key);
+        Value = NonNull(builder.Value);
+        Children = ToList(Value);
+    }
 
     public override bool Match(JNode node)
     {
@@ -55,5 +60,12 @@ public class JProperty : JBranch, IKeyer<string>
         throw new DuplicatePropertyKeyException(MessageFormatter.FormatForJson(
             errorCode, $"Multiple key with name {property.Key.Quote()} found",
             property.Context));
+    }
+
+    internal new class Builder : JNode.Builder
+    {
+        public string? Key { get; init; }
+        public JNode? Value { get; init; }
+        public override JProperty Build() => Build(new JProperty(this));
     }
 }

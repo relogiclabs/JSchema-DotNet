@@ -12,34 +12,36 @@ public abstract class MessageFormatter
     private const string JsonBaseException = "Json Input [{0}]: {1}";
     private const string SchemaParseException = "Schema (Line: {0}) [{1}]: {2}";
     private const string JsonParseException = "Json (Line: {0}) [{1}]: {2}";
-    
-    public static readonly MessageFormatter SchemaValidation
-        = new ValidationFormatter
-        {
-            Summary = "Schema (Line: {0}) Json (Line: {1}) [{2}]: {3}.",
-            Expected = " {0} is expected",
-            Actual = " but {0}."
-        };
-    public static readonly MessageFormatter SchemaAssertion
-        = new AssertionFormatter
-        {
-            Summary = $"{{0}}: {{1}}{NewLine}",
-            Expected = $"Expected (Schema Line: {{0}}): {{1}}{NewLine}",
-            Actual = $"Actual (Json Line: {{0}}): {{1}}{NewLine}"
-        };
-    
-    public static readonly MessageFormatter JsonAssertion
-        = new AssertionFormatter
-        {
-            Summary = $"{{0}}: {{1}}{NewLine}",
-            Expected = $"Expected (Json Line: {{0}}): {{1}}{NewLine}",
-            Actual = $"Actual (Json Line: {{0}}): {{1}}{NewLine}"
-        };
 
-    public required string Summary { get; init; }
-    public required string Expected { get; init; }
-    public required string Actual { get; init; }
+    public static readonly MessageFormatter SchemaValidation
+        = new ValidationFormatter(
+            "Schema (Line: {0}) Json (Line: {1}) [{2}]: {3}.",
+            " {0} is expected",
+            " but {0}.");
+
+    public static readonly MessageFormatter SchemaAssertion
+        = new AssertionFormatter(
+            $"{{0}}: {{1}}{NewLine}",
+            $"Expected (Schema Line: {{0}}): {{1}}{NewLine}",
+            $"Actual (Json Line: {{0}}): {{1}}{NewLine}");
+
+    public static readonly MessageFormatter JsonAssertion
+        = new AssertionFormatter(
+            $"{{0}}: {{1}}{NewLine}",
+            $"Expected (Json Line: {{0}}): {{1}}{NewLine}",
+            $"Actual (Json Line: {{0}}): {{1}}{NewLine}");
+
+    public string Summary { get; }
+    public string Expected { get; }
+    public string Actual { get; }
     public int OutlineLength { get; set; } = 200;
+
+    private MessageFormatter(string summary, string expected, string actual)
+    {
+        Summary = summary;
+        Expected = expected;
+        Actual = actual;
+    }
 
     public string CreateOutline(string target)
     {
@@ -53,21 +55,27 @@ public abstract class MessageFormatter
 
     private class ValidationFormatter : MessageFormatter
     {
-        internal override string Format(ErrorDetail error, ExpectedDetail expected, 
+        public ValidationFormatter(string summary, string expected, string actual)
+            : base(summary, expected, actual) { }
+
+        internal override string Format(ErrorDetail error, ExpectedDetail expected,
             ActualDetail actual)
         {
             return new StringBuilder()
-                .Append(string.Format(Summary, expected.Location, 
+                .Append(string.Format(Summary, expected.Location,
                     actual.Location, error.Code, error.Message))
                 .Append(string.Format(Expected, expected.Message.ToUpperFirstLetter()))
                 .Append(string.Format(Actual, actual.Message))
                 .ToString();
         }
     }
-    
+
     private class AssertionFormatter : MessageFormatter
     {
-        internal override string Format(ErrorDetail error, ExpectedDetail expected, 
+        public AssertionFormatter(string summary, string expected, string actual)
+            : base(summary, expected, actual) { }
+
+        internal override string Format(ErrorDetail error, ExpectedDetail expected,
             ActualDetail actual)
         {
             return new StringBuilder()
@@ -83,21 +91,21 @@ public abstract class MessageFormatter
 
     internal static ErrorDetail FormatForSchema(string code, string message, Context? context)
         => FormatForSchema(code, message, context?.GetLocation());
-    
-    internal static ErrorDetail FormatForSchema(string code, string message, Location? location) 
+
+    internal static ErrorDetail FormatForSchema(string code, string message, Location? location)
         => location == null ? CreateDetail(code, SchemaBaseException, message)
             : CreateDetail(code, SchemaParseException, message, location);
 
     internal static ErrorDetail FormatForJson(string code, string message, Context? context)
         => FormatForJson(code, message, context?.GetLocation());
-    
-    internal static ErrorDetail FormatForJson(string code, string message, Location? location) 
+
+    internal static ErrorDetail FormatForJson(string code, string message, Location? location)
         => location == null ? CreateDetail(code, JsonBaseException, message)
             : CreateDetail(code, JsonParseException, message, location);
 
-    private static ErrorDetail CreateDetail(string code, string format, string message) 
+    private static ErrorDetail CreateDetail(string code, string format, string message)
         => new(code, string.Format(format, code, message));
 
-    private static ErrorDetail CreateDetail(string code, string format, string message, 
+    private static ErrorDetail CreateDetail(string code, string format, string message,
         Location location) => new(code, string.Format(format, location, code, message));
 }

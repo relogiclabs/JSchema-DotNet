@@ -5,36 +5,33 @@ using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 using static RelogicLabs.JsonSchema.Message.ErrorDetail;
 using static RelogicLabs.JsonSchema.Message.MatchReport;
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JDataType : JBranch, INestedMode
+public sealed class JDataType : JBranch, INestedMode
 {
-    private IList<JNode> _children = null!;
-    public required JsonType JsonType { get; init; }
-    public required JAlias? Alias { get; init; }
-    public required bool Nested { get; init; }
-    public override IEnumerable<JNode> Children => _children;
+    public JsonType JsonType { get; }
+    public bool Nested { get; }
+    public JAlias? Alias { get; }
 
-    internal JDataType(IDictionary<JNode, JNode> relations) : base(relations) { }
-
-    internal override JNode Initialize()
+    private JDataType(Builder builder) : base(builder)
     {
-        List<JNode> children = new();
-        if(Alias != null) children.Add(Alias);
-        _children = children.AsReadOnly();
-        return base.Initialize();
+        JsonType = NonNull(builder.JsonType);
+        Nested = NonNull(builder.Nested);
+        Alias = builder.Alias;
+        Children = ToList(Alias);
     }
 
     public override bool Match(JNode node)
     {
-        if(!Nested) return _MatchCurrent(node);
+        if(!Nested) return IsMatchCurrent(node);
         if(node is not JComposite composite) return false;
         IList<JNode> components = composite.GetComponents();
-        return components.Select(_MatchCurrent).AllTrue();
+        return components.Select(IsMatchCurrent).AllTrue();
     }
 
-    private bool _MatchCurrent(JNode node)
+    private bool IsMatchCurrent(JNode node)
         => MatchCurrent(node) == Success;
 
     private MatchReport MatchCurrent(JNode node)
@@ -72,7 +69,7 @@ public class JDataType : JBranch, INestedMode
         if(ReferenceEquals(result, AliasError)) return FailWith(
             new DefinitionNotFoundException(
                 MessageFormatter.FormatForSchema(AliasError.GetCode(nested),
-                    $"No definition found for {Alias!.Name}", Context)));
+                    $"No definition found for '{Alias}'", Context)));
         if(ReferenceEquals(result, ArgumentError)) return FailWith(
             new JsonSchemaException(
                 new ErrorDetail(ArgumentError.GetCode(nested),
@@ -101,5 +98,13 @@ public class JDataType : JBranch, INestedMode
         if(Nested && !baseForm) builder.Append(INestedMode.NestedMarker);
         if(Alias != null  && !baseForm) builder.Append($"({Alias})");
         return builder.ToString();
+    }
+
+    internal new class Builder : JNode.Builder
+    {
+        public JsonType? JsonType { get; init; }
+        public JAlias? Alias { get; init; }
+        public bool? Nested { get; init; }
+        public override JDataType Build() => Build(new JDataType(this));
     }
 }

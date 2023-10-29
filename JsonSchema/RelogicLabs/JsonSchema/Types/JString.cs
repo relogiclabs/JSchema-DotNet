@@ -3,14 +3,17 @@ using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 using static RelogicLabs.JsonSchema.Message.ErrorDetail;
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JString : JPrimitive, IPragmaValue<string>
+public sealed class JString : JPrimitive, IPragmaValue<string>
 {
-    public required string Value { get; init; }
+    public string Value { get; }
 
-    internal JString(IDictionary<JNode, JNode> relations) : base(relations) { }
+    private JString(Builder builder) : base(builder)
+        => Value = NonNull(builder.Value);
+
     public override bool Match(JNode node)
     {
         var other = CastType<JString>(node);
@@ -35,4 +38,9 @@ public class JString : JPrimitive, IPragmaValue<string>
     public override int GetHashCode() => Value.GetHashCode();
     public static implicit operator string(JString @string) => @string.Value;
     public override string ToString() => Value.Quote();
+
+    internal new class Builder : JPrimitive.Builder<string>
+    {
+        public override JString Build() => Build(new JString(this));
+    }
 }

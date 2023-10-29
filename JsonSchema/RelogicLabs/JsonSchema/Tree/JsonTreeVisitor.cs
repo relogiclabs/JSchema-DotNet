@@ -15,11 +15,12 @@ internal class JsonTreeVisitor : JsonParserBaseVisitor<JNode>
         => _runtime = runtime;
 
     public override JNode VisitJson(JsonParser.JsonContext context)
-        => new JRoot(_relations)
+        => new JRoot.Builder
         {
+            Relations = _relations,
             Context = new Context(context, _runtime),
             Value = Visit(context.value()),
-        }.Initialize();
+        }.Build();
 
     public override JNode VisitValue(JsonParser.ValueContext context)
     {
@@ -30,76 +31,88 @@ internal class JsonTreeVisitor : JsonParserBaseVisitor<JNode>
     }
 
     public override JNode VisitObject(JsonParser.ObjectContext context)
-        => new JObject(_relations)
+        => new JObject.Builder
         {
+            Relations = _relations,
             Context = new Context(context, _runtime),
             Properties = ProcessProperties(context.property())
-        }.Initialize();
+        }.Build();
 
     private IIndexMap<string,JProperty> ProcessProperties(JsonParser.PropertyContext[] contexts)
     {
         List<JProperty> properties = contexts.Select(p => (JProperty) Visit(p)).ToList();
-        return JProperty.CheckForDuplicate(properties, PROP03).ToIndexMap();
+        return JProperty.CheckForDuplicate(properties, PROP03).ToIndexMap().AsReadOnly();
     }
 
     public override JNode VisitProperty(JsonParser.PropertyContext context)
-        => new JProperty(_relations)
+        => new JProperty.Builder
         {
+            Relations = _relations,
             Context = new Context(context, _runtime),
             Key = context.STRING().GetText()[1..^1],
             Value = Visit(context.value())
-        }.Initialize();
+        }.Build();
 
     public override JNode VisitArray(JsonParser.ArrayContext context)
-        => new JArray(_relations)
+        => new JArray.Builder
         {
+            Relations = _relations,
             Context = new Context(context, _runtime),
             Elements = context.value().Select(Visit).ToList().AsReadOnly()
-        }.Initialize();
+        }.Build();
 
     public override JNode VisitPrimitiveTrue(JsonParser.PrimitiveTrueContext context)
-        => new JBoolean(_relations)
+        => new JBoolean.Builder
         {
+            Relations = _relations,
             Context = new Context(context, _runtime),
             Value = true
-        }.Initialize();
+        }.Build();
 
     public override JNode VisitPrimitiveFalse(JsonParser.PrimitiveFalseContext context)
-        => new JBoolean(_relations)
+        => new JBoolean.Builder
         {
+            Relations = _relations,
             Context = new Context(context, _runtime),
             Value = false
-        }.Initialize();
+        }.Build();
 
     public override JNode VisitPrimitiveString(JsonParser.PrimitiveStringContext context)
-        => new JString(_relations)
+        => new JString.Builder
         {
+            Relations = _relations,
             Context = new Context(context, _runtime),
             Value = context.STRING().GetText().ToEncoded()
-        }.Initialize();
+        }.Build();
 
     public override JNode VisitPrimitiveInteger(JsonParser.PrimitiveIntegerContext context)
-        => new JInteger(_relations)
+        => new JInteger.Builder
         {
+            Relations = _relations,
             Context = new Context(context, _runtime),
             Value = Convert.ToInt64(context.INTEGER().GetText())
-        }.Initialize();
+        }.Build();
 
     public override JNode VisitPrimitiveFloat(JsonParser.PrimitiveFloatContext context)
-        => new JFloat(_relations)
+        => new JFloat.Builder
         {
+            Relations = _relations,
             Context = new Context(context, _runtime),
             Value = Convert.ToDouble(context.FLOAT().GetText())
-        }.Initialize();
+        }.Build();
 
     public override JNode VisitPrimitiveDouble(JsonParser.PrimitiveDoubleContext context)
-        => new JDouble(_relations)
+        => new JDouble.Builder
         {
+            Relations = _relations,
             Context = new Context(context, _runtime),
             Value = Convert.ToDouble(context.DOUBLE().GetText())
-        }.Initialize();
+        }.Build();
 
     public override JNode VisitPrimitiveNull(JsonParser.PrimitiveNullContext context)
-        => new JNull(_relations) { Context = new Context(context, _runtime) }
-            .Initialize();
+        => new JNull.Builder
+        {
+            Relations = _relations,
+            Context = new Context(context, _runtime)
+        }.Build();
 }

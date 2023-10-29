@@ -6,11 +6,11 @@ namespace RelogicLabs.JsonSchema.Functions;
 
 public abstract class FunctionBase
 {
-    public required RuntimeContext Runtime { get; init; }
+    public RuntimeContext Runtime { get; }
     public JFunction Function { get; set; } = null!;
-    
+
     protected FunctionBase(RuntimeContext runtime) => Runtime = runtime;
-    
+
     protected bool FailWith(JsonSchemaException exception)
         => Runtime.FailWith(exception);
 }

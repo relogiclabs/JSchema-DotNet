@@ -2,14 +2,16 @@ using RelogicLabs.JsonSchema.Exceptions;
 using RelogicLabs.JsonSchema.Message;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 using static RelogicLabs.JsonSchema.Message.ErrorDetail;
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JFloat : JNumber, IPragmaValue<double>
+public sealed class JFloat : JNumber, IPragmaValue<double>
 {
-    public required double Value { get; init; }
+    public double Value { get; }
 
-    internal JFloat(IDictionary<JNode, JNode> relations) : base(relations) { }
+    private JFloat(Builder builder) : base(builder)
+        => Value = NonNull(builder.Value);
 
     public override bool Match(JNode node)
     {
@@ -36,4 +38,9 @@ public class JFloat : JNumber, IPragmaValue<double>
     public static implicit operator double(JFloat @float) => @float.Value;
     protected override double ToDouble() => Convert.ToDouble(Value);
     public override string ToString() => $"{Value:0.0##############}";
+
+    internal new class Builder : JPrimitive.Builder<double>
+    {
+        public override JFloat Build() => Build(new JFloat(this));
+    }
 }

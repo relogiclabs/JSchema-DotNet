@@ -4,15 +4,19 @@ using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 using static RelogicLabs.JsonSchema.Message.ErrorDetail;
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JObject : JComposite
+public sealed class JObject : JComposite
 {
-    public override IEnumerable<JNode> Children => Properties.Values;
-    public required IIndexMap<string, JProperty> Properties { get; init; }
+    public IIndexMap<string, JProperty> Properties { get; }
 
-    internal JObject(IDictionary<JNode, JNode> relations) : base(relations) { }
+    private JObject(Builder builder) : base(builder)
+    {
+        Properties = NonNull(builder.Properties);
+        Children = Properties.Values;
+    }
 
     public override bool Match(JNode node)
     {
@@ -109,4 +113,10 @@ public class JObject : JComposite
     public override JsonType Type => JsonType.OBJECT;
     public override int GetHashCode() => Properties.GetHashCode();
     public override string ToString() => Properties.ToString(", ", "{", "}");
+
+    internal new class Builder : JNode.Builder
+    {
+        public IIndexMap<string, JProperty>? Properties { get; init; }
+        public override JObject Build() => Build(new JObject(this));
+    }
 }

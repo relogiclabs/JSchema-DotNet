@@ -1,15 +1,25 @@
+using RelogicLabs.JsonSchema.Exceptions;
+using RelogicLabs.JsonSchema.Message;
+using RelogicLabs.JsonSchema.Tree;
+using RelogicLabs.JsonSchema.Utilities;
+using static RelogicLabs.JsonSchema.Message.ErrorCode;
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
+
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JPragma : JDirective
+public sealed class JPragma : JDirective
 {
     public const string PragmaMarker = "%pragma";
-    
-    internal JPragma(IDictionary<JNode, JNode> relations) : base(relations) { }
-    
-    public required string Name { get; init; }
-    public required JPrimitive Value { get; init; }
-    public override IEnumerable<JNode> Children 
-        => new List<JNode> { Value }.AsReadOnly();
+
+    public string Name { get; }
+    public JPrimitive Value { get; }
+
+    private JPragma(Builder builder) : base(builder)
+    {
+        Name = NonNull(builder.Name);
+        Value = NonNull(builder.Value);
+        Children = ToList(Value);
+    }
 
     public override bool Equals(object? obj)
     {
@@ -21,6 +31,31 @@ public class JPragma : JDirective
     }
 
     public override int GetHashCode() => HashCode.Combine(Name, Value);
-    internal override JPragma Initialize() => (JPragma) base.Initialize();
     public override string ToString() => $"{PragmaMarker} {Name}: {Value}";
+
+    internal new class Builder : JNode.Builder
+    {
+        public string? Name { get; init; }
+        public JPrimitive? Value { get; init; }
+
+        private void CheckPragma()
+        {
+            var name = NonNull(Name);
+            var value = NonNull(Value);
+            var descriptor = PragmaDescriptor.From(name);
+            if(descriptor == null) throw new PragmaNotFoundException(MessageFormatter
+                .FormatForSchema(PRAG01, $"Invalid pragma {name.Quote()} with value " +
+                                         $"{value.GetOutline()} found", Context));
+            if(!descriptor.MatchType(value.GetType()))
+                throw new InvalidPragmaValueException(MessageFormatter.FormatForSchema(
+                    PRAG02, $"Invalid value {value.GetOutline()} for pragma {name.Quote()} found",
+                    value.Context));
+        }
+
+        public override JPragma Build()
+        {
+            CheckPragma();
+            return Build(new JPragma(this));
+        }
+    }
 }

@@ -1,14 +1,26 @@
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
+
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JDefinition : JDirective
+public sealed class JDefinition : JDirective
 {
     public const string DefineMarker = "%define";
-    public required JAlias Alias { get; init; }
-    public required JValidator Validator { get; init; }
-    public override IEnumerable<JNode> Children 
-        => new List<JNode> { Alias, Validator }.AsReadOnly();
+    public JAlias Alias { get; }
+    public JValidator Validator { get; }
 
-    internal JDefinition(IDictionary<JNode, JNode> relations) : base(relations) { }
-    internal override JDefinition Initialize() => (JDefinition) base.Initialize();
+    private JDefinition(Builder builder) : base(builder)
+    {
+        Alias = NonNull(builder.Alias);
+        Validator = NonNull(builder.Validator);
+        Children = ToList(Alias, Validator);
+    }
+
     public override string ToString() => $"{DefineMarker} {Alias} {Validator}";
+
+    internal new class Builder : JNode.Builder
+    {
+        public JAlias? Alias { get; init; }
+        public JValidator? Validator { get; init; }
+        public override JDefinition Build() => Build(new JDefinition(this));
+    }
 }

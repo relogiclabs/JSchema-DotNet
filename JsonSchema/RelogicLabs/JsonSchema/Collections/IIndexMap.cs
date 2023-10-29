@@ -7,5 +7,5 @@ public interface IIndexMap<TK, TV> : IList<TV>
     IEnumerable<TK> Keys { get; }
     IEnumerable<TV> Values { get; }
     bool TryGetValue(TK key, out TV? value);
-    void MakeReadOnly();
+    IIndexMap<TK, TV> AsReadOnly();
 }

@@ -10,6 +10,13 @@ namespace RelogicLabs.JsonSchema.Functions;
 
 public partial class CoreFunctions
 {
+    // Based on SMTP protocol RFC 5322
+    private static readonly Regex EmailRegex = new(
+        "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", RegexOptions.Compiled);
+
+    // Based on ITU-T E.163 and E.164 (extended)
+    private static readonly Regex PhoneRegex = new(@"^\+?[0-9\s-()]+$", RegexOptions.Compiled);
+
     public bool Elements(JArray target, params JNode[] items)
     {
         return items.Where(n => !target.Elements.Contains(n))
@@ -65,7 +72,7 @@ public partial class CoreFunctions
 
     public bool Email(JString target)
     {
-        var result = EmailRegex().IsMatch(target);
+        var result = EmailRegex.IsMatch(target);
         if(!result) return FailWith(new JsonSchemaException(
             new ErrorDetail(EMAL01, "Invalid email address"),
             new ExpectedDetail(Function, "a valid email address"),
@@ -85,8 +92,8 @@ public partial class CoreFunctions
         if(!result) return FailWith(new JsonSchemaException(
             new ErrorDetail(URLA02, "Invalid url address scheme"),
             new ExpectedDetail(Function, "HTTP or HTTPS scheme"),
-            new ActualDetail(target, $"found {uriResult.Scheme.Quote()} from {
-                target} that has invalid scheme")));
+            new ActualDetail(target, $"found {uriResult.Scheme.Quote()} from {target} " +
+                                     $"that has invalid scheme")));
         return true;
     }
 
@@ -101,14 +108,14 @@ public partial class CoreFunctions
         if(!result) return FailWith(new JsonSchemaException(
             new ErrorDetail(URLA04, "Mismatch url address scheme"),
             new ExpectedDetail(Function, $"scheme {scheme} for url address"),
-            new ActualDetail(target, $"found {uriResult.Scheme.Quote()} from {
-                target} that does not matched")));
+            new ActualDetail(target, $"found {uriResult.Scheme.Quote()} from {target} " +
+                                     $"that does not matched")));
         return true;
     }
 
     public bool Phone(JString target)
     {
-        bool result = PhoneRegex().IsMatch(target);
+        bool result = PhoneRegex.IsMatch(target);
         if(!result) return FailWith(new JsonSchemaException(
             new ErrorDetail(PHON01, "Invalid phone number format"),
             new ExpectedDetail(Function, "a valid phone number"),
@@ -149,12 +156,4 @@ public partial class CoreFunctions
                 ex));
         }
     }
-
-    // Based on SMTP protocol RFC 5322
-    [GeneratedRegex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", RegexOptions.Compiled)]
-    private static partial Regex EmailRegex();
-
-    // Based on ITU-T E.163 and E.164 (extended)
-    [GeneratedRegex(@"^\+?[0-9\s-()]+$", RegexOptions.Compiled)]
-    private static partial Regex PhoneRegex();
 }

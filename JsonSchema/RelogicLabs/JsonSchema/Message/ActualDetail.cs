@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using RelogicLabs.JsonSchema.Tree;
 using RelogicLabs.JsonSchema.Types;
 using RelogicLabs.JsonSchema.Utilities;
@@ -7,11 +6,9 @@ namespace RelogicLabs.JsonSchema.Message;
 
 public class ActualDetail : ContextDetail
 {
-    [SetsRequiredMembers]
     public ActualDetail(Context context, string message)
         : base(context, message) { }
 
-    [SetsRequiredMembers]
     public ActualDetail(JNode node, string message)
         : base(node, message) { }
 

@@ -2,14 +2,16 @@ using RelogicLabs.JsonSchema.Exceptions;
 using RelogicLabs.JsonSchema.Message;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 using static RelogicLabs.JsonSchema.Message.ErrorDetail;
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JInteger : JNumber, IPragmaValue<long>
+public sealed class JInteger : JNumber, IPragmaValue<long>
 {
-    public required long Value { get; init; }
+    public long Value { get; }
 
-    internal JInteger(IDictionary<JNode, JNode> relations) : base(relations) { }
+    private JInteger(Builder builder) : base(builder)
+        => Value = NonNull(builder.Value);
 
     public override bool Match(JNode node)
     {
@@ -37,4 +39,9 @@ public class JInteger : JNumber, IPragmaValue<long>
     public static implicit operator double(JInteger integer) => integer.Value;
     protected override double ToDouble() => Convert.ToDouble(Value);
     public override string ToString() => Value.ToString();
+
+    internal new class Builder : JPrimitive.Builder<long>
+    {
+        public override JInteger Build() => Build(new JInteger(this));
+    }
 }

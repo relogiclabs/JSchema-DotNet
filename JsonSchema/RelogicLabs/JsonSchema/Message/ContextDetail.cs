@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using RelogicLabs.JsonSchema.Tree;
 using RelogicLabs.JsonSchema.Types;
 
@@ -6,11 +5,10 @@ namespace RelogicLabs.JsonSchema.Message;
 
 public abstract class ContextDetail
 {
-    public required Context Context { get; init; }
-    public required string Message { get; init; }
-    public required Location Location { get; init; }
+    public Context Context { get; }
+    public string Message { get; }
+    public Location Location { get; }
 
-    [SetsRequiredMembers]
     protected ContextDetail(Context context, string message)
     {
         Context = context;
@@ -18,7 +16,6 @@ public abstract class ContextDetail
         Location = context.GetLocation();
     }
 
-    [SetsRequiredMembers]
     protected ContextDetail(JNode node, string message)
         : this(node.Context, message) { }
 

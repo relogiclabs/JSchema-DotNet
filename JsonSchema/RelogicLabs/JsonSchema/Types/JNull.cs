@@ -1,10 +1,11 @@
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JNull : JPrimitive
+public sealed class JNull : JPrimitive
 {
     public const string NullMarker = "null";
 
-    internal JNull(IDictionary<JNode, JNode> relations) : base(relations) { }
+    private JNull(Builder builder) : base(builder) { }
+
     public override bool Match(JNode node) => CheckType<JNull>(node);
     public override bool Equals(object? obj)
     {
@@ -16,4 +17,9 @@ public class JNull : JPrimitive
     public override JsonType Type => JsonType.NULL;
     public override int GetHashCode() => NullMarker.GetHashCode();
     public override string ToString() => NullMarker;
+
+    internal new class Builder : JNode.Builder
+    {
+        public override JNull Build() => Build(new JNull(this));
+    }
 }

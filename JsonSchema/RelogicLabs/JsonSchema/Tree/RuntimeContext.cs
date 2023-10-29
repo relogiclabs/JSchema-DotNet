@@ -50,8 +50,8 @@ public class RuntimeContext
     {
         if(Definitions.TryGetValue(definition.Alias, out var previous))
             throw new DuplicateDefinitionException(MessageFormatter.FormatForSchema(
-                DEFI01, $"Duplicate definition of {definition.Alias
-                } is found and already defined as {previous.GetOutline()}",
+                DEFI01, $"Duplicate definition of {definition.Alias} is found " +
+                        $"and already defined as {previous.GetOutline()}",
                 definition.Context));
         Definitions.Add(definition.Alias, definition.Validator);
         return definition;

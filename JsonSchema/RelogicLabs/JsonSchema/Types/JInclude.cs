@@ -1,12 +1,14 @@
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
+
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JInclude : JDirective
+public sealed class JInclude : JDirective
 {
     public const string IncludeMarker = "%include";
-    public required string ClassName { get; init; }
+    public string ClassName { get; }
 
-    internal JInclude(IDictionary<JNode, JNode> relations) : base(relations) { }
-    internal override JInclude Initialize() => (JInclude) base.Initialize();
+    private JInclude(Builder builder) : base(builder)
+        => ClassName = NonNull(builder.ClassName);
 
     public override bool Equals(object? obj)
     {
@@ -19,4 +21,10 @@ public class JInclude : JDirective
 
     public override int GetHashCode() => ClassName.GetHashCode();
     public override string ToString() => $"{IncludeMarker} {ClassName}";
+
+    internal new class Builder : JNode.Builder
+    {
+        public string? ClassName { get; init; }
+        public override JInclude Build() => Build(new JInclude(this));
+    }
 }

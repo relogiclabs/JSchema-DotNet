@@ -26,6 +26,8 @@ public class JsonType
     public static readonly JsonType NUMBER = new("#number", typeof(JNumber));
     public static readonly JsonType DATE = new("#date", typeof(JString));
     public static readonly JsonType TIME = new("#time", typeof(JString));
+    public static readonly JsonType PRIMITIVE = new("#primitive", typeof(JPrimitive));
+    public static readonly JsonType COMPOSITE = new("#composite", typeof(JComposite));
     public static readonly JsonType ANY = new("#any", typeof(IJsonType));
 
     public string Name { get; }
