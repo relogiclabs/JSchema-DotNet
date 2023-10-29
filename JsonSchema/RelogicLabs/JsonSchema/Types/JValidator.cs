@@ -3,28 +3,25 @@ using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 using static RelogicLabs.JsonSchema.Message.ErrorDetail;
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JValidator : JBranch
+public sealed class JValidator : JBranch
 {
     public const string OptionalMarker = "?";
-    private IEnumerable<JNode> _children = Enumerable.Empty<JNode>()!;
+    public JNode? Value { get; }
+    public IList<JFunction> Functions { get; }
+    public IList<JDataType> DataTypes { get; }
+    public bool Optional { get; }
 
-    public JNode? Value { get; init; }
-    public required IList<JFunction> Functions { get; init; }
-    public required IList<JDataType> DataTypes { get; init; }
-    public bool Optional { get; init; }
-    public override IEnumerable<JNode> Children => _children;
-
-    internal JValidator(IDictionary<JNode, JNode> relations) : base(relations) { }
-
-    internal override JValidator Initialize()
+    private JValidator(Builder builder) : base(builder)
     {
-        if(Value != null) _children = _children.Concat(new[] { Value });
-        _children = _children.Concat(Functions).Concat(DataTypes);
-        foreach(var c in Children) _relations[c] = this;
-        return this;
+        Value = builder.Value;
+        Functions = NonNull(builder.Functions);
+        DataTypes = NonNull(builder.DataTypes);
+        Optional = NonNull(builder.Optional);
+        Children = ToList(ToList(Value), Functions, DataTypes);
     }
 
     public override bool Match(JNode node)
@@ -70,4 +67,13 @@ public class JValidator : JBranch
         + $"{DataTypes.Join(" ", " ")}"
         + $"{(Optional? $" {OptionalMarker}" : string.Empty)}"
     ).Trim();
+
+    internal new class Builder : JNode.Builder
+    {
+        public JNode? Value { get; init; }
+        public IList<JFunction>? Functions { get; init; }
+        public IList<JDataType>? DataTypes { get; init; }
+        public bool? Optional { get; init; }
+        public override JValidator Build() => Build(new JValidator(this));
+    }
 }

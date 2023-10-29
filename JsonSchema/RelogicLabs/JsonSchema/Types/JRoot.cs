@@ -1,42 +1,30 @@
 using System.Text;
 using RelogicLabs.JsonSchema.Utilities;
 using static System.Environment;
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JRoot : JNode
+public sealed class JRoot : JNode
 {
-    private IEnumerable<JNode> _children = Enumerable.Empty<JNode>();
+    public JTitle? Title { get; }
+    public JVersion? Version { get; }
+    public IList<JInclude>? Includes { get; }
+    public IList<JPragma>? Pragmas { get; }
+    public IList<JDefinition>? Definitions { get; }
+    public JNode Value { get; }
 
-    public JTitle? Title { get; init; }
-    public JVersion? Version { get; init; }
-    public IList<JInclude>? Includes { get; init; }
-    public IList<JPragma>? Pragmas { get; init; }
-    public IList<JDefinition>? Definitions { get; init; }
-    public required JNode Value { get; init; }
-    
     public override JNode Parent => null!;
-    public override IEnumerable<JNode> Children => _children;
 
-    internal JRoot(IDictionary<JNode, JNode> relations) : base(relations) { }
-    
-    // Avoid enumeration with yield for performance
-    internal override JRoot Initialize()
+    private JRoot(Builder builder) : base(builder)
     {
-        _relations[this] = null!;
-        List<JNode> list = new();
-        AddNodeToList(Title);
-        AddNodeToList(Version);
-        AddNodesToList(Includes);
-        AddNodesToList(Pragmas);
-        AddNodesToList(Definitions);
-        AddNodeToList(Value);
-        _children = list.AsReadOnly();
-        return (JRoot) base.Initialize();
-
-        void AddNodeToList(JNode? node) { if(node != null) list.Add(node); }
-        void AddNodesToList(IEnumerable<JNode>? nodes) { if(nodes != null) 
-            list.AddRange(nodes); }
+        Title = builder.Title;
+        Version = builder.Version;
+        Includes = builder.Includes;
+        Pragmas = builder.Pragmas;
+        Definitions = builder.Definitions;
+        Value = NonNull(builder.Value);
+        Children = ToList(ToList(Title, Version), Includes, Pragmas, Definitions, ToList(Value));
     }
 
     public override bool Match(JNode node)
@@ -57,10 +45,21 @@ public class JRoot : JNode
         AppendTo(builder, Value.ToString());
         return builder.ToString().Trim();
     }
-    
+
     private void AppendTo(StringBuilder builder, string? text)
     {
         if(text is null || text.Length == 0) return;
         builder.Append(text).Append(NewLine);
+    }
+
+    internal new class Builder : JNode.Builder
+    {
+        public JTitle? Title { get; init; }
+        public JVersion? Version { get; init; }
+        public IList<JInclude>? Includes { get; init; }
+        public IList<JPragma>? Pragmas { get; init; }
+        public IList<JDefinition>? Definitions { get; init; }
+        public JNode? Value { get; init; }
+        public override JRoot Build() => Build(new JRoot(this));
     }
 }

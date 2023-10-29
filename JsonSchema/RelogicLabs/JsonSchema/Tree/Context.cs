@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 using RelogicLabs.JsonSchema.Message;
@@ -7,11 +6,10 @@ namespace RelogicLabs.JsonSchema.Tree;
 
 public class Context
 {
-    public required ParserRuleContext Parser { get; init; }
-    public required RuntimeContext Runtime { get; init; }
+    public ParserRuleContext Parser { get; }
+    public RuntimeContext Runtime { get; }
     internal MessageFormatter MessageFormatter => Runtime.MessageFormatter;
 
-    [SetsRequiredMembers]
     public Context(ParserRuleContext parser, RuntimeContext runtime)
     {
         Parser = parser;
@@ -23,7 +21,7 @@ public class Context
         var token = Parser.Start;
         return new Location(token.Line, token.Column);
     }
-    
+
     public string GetText()
     {
         IToken start = Parser.Start;

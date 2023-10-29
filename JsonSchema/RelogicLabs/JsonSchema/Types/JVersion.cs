@@ -1,9 +1,20 @@
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
+
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JVersion : JDirective
+public sealed class JVersion : JDirective
 {
     public const string VersionMarker = "%version";
-    public required string Version { get; init; }
-    internal JVersion(IDictionary<JNode, JNode> relations) : base(relations) { }
+    public string Version { get; }
+
+    private JVersion(Builder builder) : base(builder)
+        => Version = NonNull(builder.Version);
+
     public override string ToString() => $"{VersionMarker} {Version}";
+
+    internal new class Builder : JNode.Builder
+    {
+        public string? Version { get; init; }
+        public override JVersion Build() => Build(new JVersion(this));
+    }
 }

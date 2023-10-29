@@ -6,18 +6,24 @@ using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 using static RelogicLabs.JsonSchema.Message.ErrorDetail;
 using static RelogicLabs.JsonSchema.Types.INestedMode;
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JFunction : JBranch, INestedMode
+public sealed class JFunction : JBranch, INestedMode
 {
-    public required string Name { get; init; }
-    public required IList<JNode> Arguments { get; init; }
-    public override IEnumerable<JNode> Children => Arguments;
-    public required bool Nested { get; init; }
+    public string Name { get; }
+    public bool Nested { get; }
+    public IList<JNode> Arguments { get; }
 
-    internal JFunction(IDictionary<JNode, JNode> relations) : base(relations) { }
-    
+    private JFunction(Builder builder) : base(builder)
+    {
+        Name = NonNull(builder.Name);
+        Nested = NonNull(builder.Nested);
+        Arguments = NonNull(builder.Arguments);
+        Children = Arguments;
+    }
+
     public override bool Match(JNode node)
     {
         if(!Nested) return InvokeFunction(node);
@@ -52,5 +58,13 @@ public class JFunction : JBranch, INestedMode
         if(Nested && !baseForm) builder.Append(NestedMarker);
         builder.Append(Arguments.ToString(", ", "(", ")"));
         return builder.ToString();
+    }
+
+    internal new class Builder : JNode.Builder
+    {
+        public string? Name { get; init; }
+        public bool? Nested { get; init; }
+        public IList<JNode>? Arguments { get; init; }
+        public override JFunction Build() => Build(new JFunction(this));
     }
 }

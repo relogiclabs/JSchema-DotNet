@@ -2,7 +2,7 @@ using System.Reflection;
 
 namespace RelogicLabs.JsonSchema.Utilities;
 
-internal static class CommonExtension
+internal static class CommonExtensions
 {
     public static string GetSignature(this MethodInfo methodInfo)
     {

@@ -1,10 +1,20 @@
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
+
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JTitle : JDirective
+public sealed class JTitle : JDirective
 {
     public const string TitleMarker = "%title";
-    public required string Title { get; init; }
-    internal JTitle(IDictionary<JNode, JNode> relations) : base(relations) { }
+    public string Title { get; }
+
+    private JTitle(Builder builder) : base(builder)
+        => Title = NonNull(builder.Title);
 
     public override string ToString() => $"{TitleMarker} {Title}";
+
+    internal new class Builder : JNode.Builder
+    {
+        public string? Title { get; init; }
+        public override JTitle Build() => Build(new JTitle(this));
+    }
 }

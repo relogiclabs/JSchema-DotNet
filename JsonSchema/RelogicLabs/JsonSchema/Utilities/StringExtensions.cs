@@ -2,7 +2,7 @@ using System.Text;
 
 namespace RelogicLabs.JsonSchema.Utilities;
 
-internal static class StringExtension
+internal static class StringExtensions
 {
     public static string Affix(this string source, string prefix = "", string suffix = "")
         => $"{prefix}{source}{suffix}";

@@ -2,28 +2,34 @@ using Antlr4.Runtime;
 using RelogicLabs.JsonSchema.Exceptions;
 using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Tree;
+using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 using static RelogicLabs.JsonSchema.Message.ErrorDetail;
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Types;
 
 public abstract class JNode
 {
     // To make complete tree read only and immutable
-    internal readonly IDictionary<JNode, JNode> _relations;
-    public required Context Context { get; init; }
-    public virtual JNode? Parent => _relations[this];
-    public abstract IEnumerable<JNode> Children { get; }
+    private readonly IDictionary<JNode, JNode> _relations;
+    public Context Context { get; }
+    public virtual JNode? Parent => _relations.GetValue(this);
+    public virtual IEnumerable<JNode> Children
+        { get; private protected init; } = Enumerable.Empty<JNode>();
     public ParserRuleContext Parser => Context.Parser;
     public RuntimeContext Runtime => Context.Runtime;
 
-    internal JNode(IDictionary<JNode, JNode> relations)
-        => _relations = relations;
+    private protected JNode(Builder builder)
+    {
+        _relations = NonNull(builder.Relations);
+        Context = NonNull(builder.Context);
+    }
 
-    internal virtual JNode Initialize()
+    private protected virtual T Initialize<T>() where T : JNode
     {
         foreach(var c in Children) _relations[c] = this;
-        return this;
+        return (T) this;
     }
 
     /// <summary>
@@ -55,7 +61,7 @@ public abstract class JNode
     public virtual string GetOutline()
         => Context.MessageFormatter.CreateOutline(ToString());
 
-    protected T? CastType<T>(JNode node)
+    private protected T? CastType<T>(JNode node)
     {
         if(node is T other) return other;
         FailWith(new JsonSchemaException(
@@ -65,9 +71,17 @@ public abstract class JNode
         return default;
     }
 
-    protected bool CheckType<T>(JNode node)
+    private protected bool CheckType<T>(JNode node)
         => CastType<T>(node) != null;
 
     internal bool FailWith(Exception exception)
         => Runtime.FailWith(exception);
+
+    internal abstract class Builder
+    {
+        public IDictionary<JNode, JNode>? Relations { get; init; }
+        public Context? Context { get; init; }
+        public abstract JNode Build();
+        protected static T Build<T>(T node) where T : JNode => node.Initialize<T>();
+    }
 }

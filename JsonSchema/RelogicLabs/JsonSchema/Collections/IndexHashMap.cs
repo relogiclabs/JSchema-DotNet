@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.ObjectModel;
 
 namespace RelogicLabs.JsonSchema.Collections;
 
@@ -10,8 +11,8 @@ public class IndexHashMap<TK, TV> : IIndexMap<TK, TV>
 
     public IndexHashMap(IEnumerable<TV> source)
     {
-        _list = source.ToList().AsReadOnly();
-        _dictionary = _list.ToDictionary(e => e.GetKey(), e => e).AsReadOnly();
+        _list = source.ToList();
+        _dictionary = _list.ToDictionary(e => e.GetKey(), e => e);
     }
 
     public IEnumerator<TV> GetEnumerator() => _list.GetEnumerator();
@@ -68,9 +69,10 @@ public class IndexHashMap<TK, TV> : IIndexMap<TK, TV>
     public bool TryGetValue(TK key, out TV? value)
         => _dictionary.TryGetValue(key, out value);
 
-    public void MakeReadOnly()
+    public IIndexMap<TK, TV> AsReadOnly()
     {
-        _list = _list.AsReadOnly();
-        _dictionary = _dictionary.AsReadOnly();
+        _list = new ReadOnlyCollection<TV>(_list);
+        _dictionary = new ReadOnlyDictionary<TK, TV>(_dictionary);
+        return this;
     }
 }

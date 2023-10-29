@@ -1,14 +1,16 @@
 using RelogicLabs.JsonSchema.Exceptions;
 using RelogicLabs.JsonSchema.Message;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JAlias : JLeaf
+public sealed class JAlias : JLeaf
 {
-    public required string Name { get; init; }
+    public string Name { get; }
 
-    internal JAlias(IDictionary<JNode, JNode> relations) : base(relations) { }
+    private JAlias(Builder builder) : base(builder)
+        => Name = NonNull(builder.Name);
 
     public override bool Match(JNode node)
     {
@@ -29,4 +31,10 @@ public class JAlias : JLeaf
 
     public override int GetHashCode() => Name.GetHashCode();
     public override string ToString() => Name;
+
+    internal new class Builder : JNode.Builder
+    {
+        public string? Name { get; init; }
+        public override JAlias Build() => Build(new JAlias(this));
+    }
 }

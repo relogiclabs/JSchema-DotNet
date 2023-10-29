@@ -2,17 +2,19 @@
 
     <PropertyGroup>
         <PackageId>RelogicLabs.JsonSchema</PackageId>
-        <Description>A simplified, concise, intuitive, and extensible JSON Schema</Description>
+        <Description>New JSON Schema prioritizes simplicity, conciseness, readability, and efficiency.
+            It offers precise JSON document definition through ample functionalities and extensibility
+            to meet the diverse web service requirements.</Description>
         <Authors>Relogic Labs</Authors>
         <Company>Relogic Labs</Company>
-        <Version>1.5.0</Version>
-        <PackageVersion>1.5.0</PackageVersion>
-        <AssemblyVersion>1.5.0</AssemblyVersion>
+        <Version>1.6.0</Version>
+        <PackageVersion>1.6.0</PackageVersion>
+        <AssemblyVersion>1.6.0</AssemblyVersion>
         <PackageTags>JsonSchema;Schema;Json;Validation;Assert;Test</PackageTags>
         <Copyright>Copyright © Relogic Labs. All rights reserved.</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
         <AssemblyName>RelogicLabs.JsonSchema</AssemblyName>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <RootNamespace>RelogicLabs</RootNamespace>

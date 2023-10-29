@@ -3,7 +3,7 @@ using RelogicLabs.JsonSchema.Types;
 
 namespace RelogicLabs.JsonSchema.Utilities;
 
-internal static class CollectionExtension
+internal static class CollectionExtensions
 {
     public static string Join(this IEnumerable<object> source, string separator,
         string prefix = "", string suffix = "")

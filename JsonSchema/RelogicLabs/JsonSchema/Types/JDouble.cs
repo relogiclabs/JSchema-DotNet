@@ -2,14 +2,17 @@ using RelogicLabs.JsonSchema.Exceptions;
 using RelogicLabs.JsonSchema.Message;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 using static RelogicLabs.JsonSchema.Message.ErrorDetail;
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JDouble : JNumber, IPragmaValue<double>
+public sealed class JDouble : JNumber, IPragmaValue<double>
 {
-    public required double Value { get; init; }
+    public double Value { get; }
 
-    internal JDouble(IDictionary<JNode, JNode> relations) : base(relations) { }
+    private JDouble(Builder builder) : base(builder)
+        => Value = NonNull(builder.Value);
+
     public override bool Match(JNode node)
     {
         var other = CastType<JDouble>(node);
@@ -35,4 +38,9 @@ public class JDouble : JNumber, IPragmaValue<double>
     public override int GetHashCode() => Value.GetHashCode();
     protected override double ToDouble() => Convert.ToDouble(Value);
     public override string ToString() => $"{Value:0.###############E+0}";
+
+    internal new class Builder : JPrimitive.Builder<double>
+    {
+        public override JDouble Build() => Build(new JDouble(this));
+    }
 }

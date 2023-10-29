@@ -36,7 +36,7 @@ public class JsonSchema
     {
         Exceptions.Clear();
         JsonTree jsonTree = new(Runtime, json);
-        DebugUtils.Print(SchemaTree, jsonTree);
+        DebugUtilities.Print(SchemaTree, jsonTree);
         var result = SchemaTree.Root.Match(jsonTree.Root);
         return result;
     }

@@ -5,8 +5,8 @@ using RelogicLabs.JsonSchema.Tree;
 namespace RelogicLabs.JsonSchema.Utilities;
 
 // External logging library may consider
-// But create additional dependency
-internal static class DebugUtils
+// Kept it lightweight for now
+internal static class DebugUtilities
 {
     public static bool DebugPrint = false;
 

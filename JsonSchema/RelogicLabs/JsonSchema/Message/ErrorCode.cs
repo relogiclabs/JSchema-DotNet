@@ -24,7 +24,6 @@ internal static class ErrorCode
     public const string CLAS13 = "CLAS13";
     public const string CLAS14 = "CLAS14";
     public const string DCNF01 = "DCNF01";
-    public const string DCNF02 = "DCNF02";
     public const string DDAY01 = "DDAY01";
     public const string DDAY02 = "DDAY02";
     public const string DDAY03 = "DDAY03";
