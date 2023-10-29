@@ -83,7 +83,7 @@
 
   <h1 id="RelogicLabs_JsonSchema_Types_JFunction" data-uid="RelogicLabs.JsonSchema.Types.JFunction" class="text-break">
     Class JFunction
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JFunction.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JFunction.cs/#L13"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -95,7 +95,7 @@
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class JFunction : JBranch, INestedMode</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class JFunction : JBranch, INestedMode</code></pre>
   </div>
 
 
@@ -129,6 +129,9 @@
       <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_Parent">JNode.Parent</a>
     </div>
     <div>
+      <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_Children">JNode.Children</a>
+    </div>
+    <div>
       <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_Parser">JNode.Parser</a>
     </div>
     <div>
@@ -136,12 +139,6 @@
     </div>
     <div>
       <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_GetOutline">JNode.GetOutline()</a>
-    </div>
-    <div>
-      <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_CastType__1_RelogicLabs_JsonSchema_Types_JNode_">JNode.CastType&lt;T&gt;(JNode)</a>
-    </div>
-    <div>
-      <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_CheckType__1_RelogicLabs_JsonSchema_Types_JNode_">JNode.CheckType&lt;T&gt;(JNode)</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
@@ -154,9 +151,6 @@
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
@@ -176,14 +170,14 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JFunction_Arguments" data-uid="RelogicLabs.JsonSchema.Types.JFunction.Arguments">
   Arguments
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JFunction.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JFunction.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public required IList&lt;JNode&gt; Arguments { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IList&lt;JNode&gt; Arguments { get; }</code></pre>
   </div>
 
 
@@ -203,49 +197,18 @@
 
 
 
-  <a id="RelogicLabs_JsonSchema_Types_JFunction_Children_" data-uid="RelogicLabs.JsonSchema.Types.JFunction.Children*"></a>
-
-  <h3 id="RelogicLabs_JsonSchema_Types_JFunction_Children" data-uid="RelogicLabs.JsonSchema.Types.JFunction.Children">
-  Children
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JFunction.cs/#L16"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override IEnumerable&lt;JNode&gt; Children { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html">JNode</a>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="RelogicLabs_JsonSchema_Types_JFunction_Name_" data-uid="RelogicLabs.JsonSchema.Types.JFunction.Name*"></a>
 
   <h3 id="RelogicLabs_JsonSchema_Types_JFunction_Name" data-uid="RelogicLabs.JsonSchema.Types.JFunction.Name">
   Name
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JFunction.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JFunction.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public required string Name { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string Name { get; }</code></pre>
   </div>
 
 
@@ -269,14 +232,14 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JFunction_Nested" data-uid="RelogicLabs.JsonSchema.Types.JFunction.Nested">
   Nested
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JFunction.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JFunction.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public required bool Nested { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Nested { get; }</code></pre>
   </div>
 
 
@@ -304,7 +267,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JFunction_IsApplicable_RelogicLabs_JsonSchema_Types_JNode_" data-uid="RelogicLabs.JsonSchema.Types.JFunction.IsApplicable(RelogicLabs.JsonSchema.Types.JNode)">
   IsApplicable(JNode)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JFunction.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JFunction.cs/#L53"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -340,7 +303,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JFunction_Match_RelogicLabs_JsonSchema_Types_JNode_" data-uid="RelogicLabs.JsonSchema.Types.JFunction.Match(RelogicLabs.JsonSchema.Types.JNode)">
   Match(JNode)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JFunction.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JFunction.cs/#L27"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Determines whether the specified node matches with the current node.</p>
@@ -380,7 +343,7 @@ otherwise, <code>false</code>.</p>
 
   <h3 id="RelogicLabs_JsonSchema_Types_JFunction_ToString" data-uid="RelogicLabs.JsonSchema.Types.JFunction.ToString">
   ToString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JFunction.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JFunction.cs/#L54"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Returns a JSON string that represents the current object.</p>
@@ -413,7 +376,7 @@ otherwise, <code>false</code>.</p>
 
   <h3 id="RelogicLabs_JsonSchema_Types_JFunction_ToString_System_Boolean_" data-uid="RelogicLabs.JsonSchema.Types.JFunction.ToString(System.Boolean)">
   ToString(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JFunction.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JFunction.cs/#L55"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -449,7 +412,7 @@ otherwise, <code>false</code>.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JFunction.cs/#L12" class="edit-link">Edit this page</a>
+          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JFunction.cs/#L13" class="edit-link">Edit this page</a>
         </div>
 
         

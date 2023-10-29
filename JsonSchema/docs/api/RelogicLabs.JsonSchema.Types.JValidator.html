@@ -83,7 +83,7 @@
 
   <h1 id="RelogicLabs_JsonSchema_Types_JValidator" data-uid="RelogicLabs.JsonSchema.Types.JValidator" class="text-break">
     Class JValidator
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JValidator.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JValidator.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -95,7 +95,7 @@
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class JValidator : JBranch</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class JValidator : JBranch</code></pre>
   </div>
 
 
@@ -123,6 +123,9 @@
       <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_Parent">JNode.Parent</a>
     </div>
     <div>
+      <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_Children">JNode.Children</a>
+    </div>
+    <div>
       <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_Parser">JNode.Parser</a>
     </div>
     <div>
@@ -130,12 +133,6 @@
     </div>
     <div>
       <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_GetOutline">JNode.GetOutline()</a>
-    </div>
-    <div>
-      <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_CastType__1_RelogicLabs_JsonSchema_Types_JNode_">JNode.CastType&lt;T&gt;(JNode)</a>
-    </div>
-    <div>
-      <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_CheckType__1_RelogicLabs_JsonSchema_Types_JNode_">JNode.CheckType&lt;T&gt;(JNode)</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
@@ -148,9 +145,6 @@
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
@@ -169,7 +163,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JValidator_OptionalMarker" data-uid="RelogicLabs.JsonSchema.Types.JValidator.OptionalMarker">
   OptionalMarker
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JValidator.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JValidator.cs/#L12"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -200,49 +194,18 @@
 </h2>
 
 
-  <a id="RelogicLabs_JsonSchema_Types_JValidator_Children_" data-uid="RelogicLabs.JsonSchema.Types.JValidator.Children*"></a>
-
-  <h3 id="RelogicLabs_JsonSchema_Types_JValidator_Children" data-uid="RelogicLabs.JsonSchema.Types.JValidator.Children">
-  Children
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JValidator.cs/#L18"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override IEnumerable&lt;JNode&gt; Children { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html">JNode</a>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="RelogicLabs_JsonSchema_Types_JValidator_DataTypes_" data-uid="RelogicLabs.JsonSchema.Types.JValidator.DataTypes*"></a>
 
   <h3 id="RelogicLabs_JsonSchema_Types_JValidator_DataTypes" data-uid="RelogicLabs.JsonSchema.Types.JValidator.DataTypes">
   DataTypes
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JValidator.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JValidator.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public required IList&lt;JDataType&gt; DataTypes { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IList&lt;JDataType&gt; DataTypes { get; }</code></pre>
   </div>
 
 
@@ -266,14 +229,14 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JValidator_Functions" data-uid="RelogicLabs.JsonSchema.Types.JValidator.Functions">
   Functions
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JValidator.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JValidator.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public required IList&lt;JFunction&gt; Functions { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IList&lt;JFunction&gt; Functions { get; }</code></pre>
   </div>
 
 
@@ -297,14 +260,14 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JValidator_Optional" data-uid="RelogicLabs.JsonSchema.Types.JValidator.Optional">
   Optional
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JValidator.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JValidator.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Optional { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Optional { get; }</code></pre>
   </div>
 
 
@@ -328,14 +291,14 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JValidator_Value" data-uid="RelogicLabs.JsonSchema.Types.JValidator.Value">
   Value
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JValidator.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JValidator.cs/#L13"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public JNode? Value { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">public JNode? Value { get; }</code></pre>
   </div>
 
 
@@ -363,7 +326,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JValidator_Match_RelogicLabs_JsonSchema_Types_JNode_" data-uid="RelogicLabs.JsonSchema.Types.JValidator.Match(RelogicLabs.JsonSchema.Types.JNode)">
   Match(JNode)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JValidator.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JValidator.cs/#L27"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Determines whether the specified node matches with the current node.</p>
@@ -403,7 +366,7 @@ otherwise, <code>false</code>.</p>
 
   <h3 id="RelogicLabs_JsonSchema_Types_JValidator_ToString" data-uid="RelogicLabs.JsonSchema.Types.JValidator.ToString">
   ToString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JValidator.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JValidator.cs/#L64"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Returns a JSON string that represents the current object.</p>
@@ -436,7 +399,7 @@ otherwise, <code>false</code>.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JValidator.cs/#L9" class="edit-link">Edit this page</a>
+          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JValidator.cs/#L10" class="edit-link">Edit this page</a>
         </div>
 
         

@@ -83,7 +83,7 @@
 
   <h1 id="RelogicLabs_JsonSchema_Types_JProperty" data-uid="RelogicLabs.JsonSchema.Types.JProperty" class="text-break">
     Class JProperty
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -95,7 +95,7 @@
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class JProperty : JBranch, IKeyer&lt;string&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class JProperty : JBranch, IKeyer&lt;string&gt;</code></pre>
   </div>
 
 
@@ -129,6 +129,9 @@
       <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_Parent">JNode.Parent</a>
     </div>
     <div>
+      <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_Children">JNode.Children</a>
+    </div>
+    <div>
       <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_Parser">JNode.Parser</a>
     </div>
     <div>
@@ -138,19 +141,10 @@
       <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_GetOutline">JNode.GetOutline()</a>
     </div>
     <div>
-      <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_CastType__1_RelogicLabs_JsonSchema_Types_JNode_">JNode.CastType&lt;T&gt;(JNode)</a>
-    </div>
-    <div>
-      <a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_CheckType__1_RelogicLabs_JsonSchema_Types_JNode_">JNode.CheckType&lt;T&gt;(JNode)</a>
-    </div>
-    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
@@ -166,49 +160,18 @@
 </h2>
 
 
-  <a id="RelogicLabs_JsonSchema_Types_JProperty_Children_" data-uid="RelogicLabs.JsonSchema.Types.JProperty.Children*"></a>
-
-  <h3 id="RelogicLabs_JsonSchema_Types_JProperty_Children" data-uid="RelogicLabs.JsonSchema.Types.JProperty.Children">
-  Children
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L16"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override IEnumerable&lt;JNode&gt; Children { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html">JNode</a>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="RelogicLabs_JsonSchema_Types_JProperty_Key_" data-uid="RelogicLabs.JsonSchema.Types.JProperty.Key*"></a>
 
   <h3 id="RelogicLabs_JsonSchema_Types_JProperty_Key" data-uid="RelogicLabs.JsonSchema.Types.JProperty.Key">
   Key
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L13"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public required string Key { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string Key { get; }</code></pre>
   </div>
 
 
@@ -232,14 +195,14 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JProperty_Value" data-uid="RelogicLabs.JsonSchema.Types.JProperty.Value">
   Value
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public required JNode Value { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">public JNode Value { get; }</code></pre>
   </div>
 
 
@@ -267,7 +230,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JProperty_Equals_System_Object_" data-uid="RelogicLabs.JsonSchema.Types.JProperty.Equals(System.Object)">
   Equals(object?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L40"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Determines whether the specified object is equal to the current object.</p>
@@ -306,7 +269,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JProperty_GetHashCode" data-uid="RelogicLabs.JsonSchema.Types.JProperty.GetHashCode">
   GetHashCode()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L49"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Serves as the default hash function.</p>
@@ -339,7 +302,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JProperty_GetKey" data-uid="RelogicLabs.JsonSchema.Types.JProperty.GetKey">
   GetKey()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -370,7 +333,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JProperty_GetPropertyKey" data-uid="RelogicLabs.JsonSchema.Types.JProperty.GetPropertyKey">
   GetPropertyKey()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L52"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -401,7 +364,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JProperty_GetPropertyValue" data-uid="RelogicLabs.JsonSchema.Types.JProperty.GetPropertyValue">
   GetPropertyValue()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L53"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -432,7 +395,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Types_JProperty_Match_RelogicLabs_JsonSchema_Types_JNode_" data-uid="RelogicLabs.JsonSchema.Types.JProperty.Match(RelogicLabs.JsonSchema.Types.JNode)">
   Match(JNode)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L23"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Determines whether the specified node matches with the current node.</p>
@@ -472,7 +435,7 @@ otherwise, <code>false</code>.</p>
 
   <h3 id="RelogicLabs_JsonSchema_Types_JProperty_ToString" data-uid="RelogicLabs.JsonSchema.Types.JProperty.ToString">
   ToString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L50"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Returns a JSON string that represents the current object.</p>
@@ -505,7 +468,7 @@ otherwise, <code>false</code>.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L10" class="edit-link">Edit this page</a>
+          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Types/JProperty.cs/#L11" class="edit-link">Edit this page</a>
         </div>
 
         

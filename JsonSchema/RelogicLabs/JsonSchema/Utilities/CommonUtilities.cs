@@ -2,7 +2,7 @@ using RelogicLabs.JsonSchema.Types;
 
 namespace RelogicLabs.JsonSchema.Utilities;
 
-public static class CommonUtilities
+internal static class CommonUtilities
 {
     public static T NonNull<T>(T? value)
         => value ?? throw new NullReferenceException("Required reference not set to an instance");
