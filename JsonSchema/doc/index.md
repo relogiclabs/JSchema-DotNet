@@ -1,3 +1,7 @@
+<style>
+pre code { font-size: 1.1em; }
+</style>
+
 # A New JSON Schema
 A JSON Schema is crucial for making communication, interoperability, validation, testing, documentation, and specification seamless. All of this combined contributes to better maintenance and evolution of data-driven applications and systems. For a comprehensive overview of the roles and uses of JSON Schema in modern web applications, we invite you to explore our dedicated post available [here](https://www.relogiclabs.com/2023/01/the-roles-of-json-schema.html).
 
@@ -8,7 +12,7 @@ This new schema is simple, lucid, easy to grasp, and doesn't require much prior 
 
 ## Basic Example
 Let's explore an example of our schema for a typical JSON API response containing information about a user profile or account. The schema is very self-explanatory and thus almost no prior knowledge is required to understand the schema and the JSON responses specified by this schema.
-```cpp
+```stylus
 %title: "User Profile Response"
 %version: 1.0.0
 %schema:
@@ -37,7 +41,7 @@ Let's explore an example of our schema for a typical JSON API response containin
     }
 }
 ```
-In the above example, two types of constraints are used: constraint functions (also referred to as validation functions, such as `@range(1, 10000)`) and constraint data types (also referred to as validation data types, such as `#integer`). All constraint functions begin with the `@` symbol, while all constraint data types start with `#`. C-style comments are also supported within the schema. In this example, `address` can be `null` (like an optional input for users) and if it is `null` then no constraints of `address` are applicable. The following JSON is one of the examples that will be successfully validated against the above schema. To start your journey with the JSON validation library, please consult the documentation available [here](https://relogiclabs.github.io/JsonSchema-DotNet/articles/intro.html).
+In the above example, two types of constraints are used: constraint functions (also referred to as validation functions, such as `@range(1, 10000)`) and constraint data types (also referred to as validation data types, such as `#integer`). All constraint functions begin with the `@` symbol, while all constraint data types start with `#`. C-style comments are also supported within the schema. In this example, `address` can be `null` (like an optional input for users) and if it is `null` then no constraints of `address` are applicable. The following JSON is one of the examples that will be successfully validated against the above schema. To start your journey with the JSON validation library, please consult the documentation available [here](/JsonSchema-DotNet/articles/intro.html).
 ```json
 {
     "user": {
@@ -63,8 +67,8 @@ In the above example, two types of constraints are used: constraint functions (a
 }
 ```
 ## Extended Example
-The next example represents an expanded version of the previous one, which brings more complexity. To effectively construct such schemas with multiple layers of nested structures, it's beneficial to have a fundamental understanding of this schema format. While the syntax may seem difficult at first, it becomes straightforward once you have a basic understanding of it. For more detailed information, reference documentation is available [here](https://relogiclabs.github.io/JsonSchema-DotNet/articles/intro.html).
-```cpp
+The next example represents an expanded version of the previous one, which brings more complexity. To effectively construct such schemas with multiple layers of nested structures, it's beneficial to have a fundamental understanding of this schema format. While the syntax may seem difficult at first, it becomes straightforward once you have a basic understanding of it. For more detailed information, reference documentation is available [here](/JsonSchema-DotNet/articles/intro.html).
+```stylus
 %title: "Extended User Profile Dashboard API Response"
 %version: 2.0.0
 %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
@@ -221,4 +225,4 @@ The subsequent JSON sample is an illustrative example that successfully validate
     }
 }
 ```
-For more information about the schema syntax format and library functionalities, please refer to the reference documentation [here](https://relogiclabs.github.io/JsonSchema-DotNet/api/index.html).
+For more information about the schema syntax format and library functionalities, please refer to the reference documentation [here](/JsonSchema-DotNet/api/index.html).

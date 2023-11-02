@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Constraint Data Types | Json Schema </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Constraint Data Types | Json Schema ">
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/doc/articles/datatypes.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="Json Schema">
+            Json Schema
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+
+<style>
+pre code { font-size: 1.1em; }
+</style>
+<h1 id="constraint-data-types">Constraint Data Types</h1>
+<p>Data types play a pivotal role in validating JSON data for compliance with the schema. Essentially, data types determine the kind of data that a JSON element or value can contain. This mechanism serves as a fundamental process in maintaining the accuracy, consistency, and integrity of JSON document and its structure throughout the system, where data quality and reliability are vital.</p>
+<p>In the schema document, data types are denoted by the <code>#</code> prefix. Here is an outline of all data types, including their subtypes, used in the schema document to validate a JSON document. When using multiple data types for validation, it indicates that the JSON value is considered valid if it complies with any of the specified alternative data types. All of these data types and their subtypes offer the flexibility of selecting the most appropriate type based on requirements.</p>
+<pre><code class="lang-stylus">#any
+ ┬
+ ├ #object
+ ├ #array
+ ├ #string
+ │  ┬
+ │  ├ #date
+ │  └ #time
+ ├ #number
+ │  ┬
+ │  ├ #integer
+ │  ├ #float
+ │  └ #double  
+ ├ #boolean
+ └ #null
+</code></pre>
+<h3 id="the-any-data-type">The Any Data Type</h3>
+<p>This data type accepts any valid JSON value that conforms to the JSON standard. It is the least restrictive data type and serves as the parent type for all other data types defined in this schema, each of which imposes more specific constraints. Here is the <a href="https://www.json.org">specification</a> of JSON document containing rules of all valid JSON values. Following is the syntax for specifying this data type:</p>
+<pre><code class="lang-stylus">#any
+</code></pre>
+<h3 id="the-object-data-type">The Object Data Type</h3>
+<p>This data type represents the JSON object type and accepts any JSON object specified by the JSON standard. The specification document for JSON provides details about the different syntax and forms of JSON objects. Following is the syntax for specifying this data type:</p>
+<pre><code class="lang-stylus">#object
+</code></pre>
+<h3 id="the-array-data-type">The Array Data Type</h3>
+<p>This data type represents the JSON array type and accepts any JSON array specified by the JSON standard. The specification document for JSON provides details about the various syntax and forms of JSON arrays. Below is the syntax for specifying this data type:</p>
+<pre><code class="lang-stylus">#array
+</code></pre>
+<h3 id="the-string-data-type">The String Data Type</h3>
+<p>This is one of the most commonly used data types in a JSON document, designed to accept any JSON string as specified by the JSON standard. The syntax for specifying this data type is as follows:</p>
+<pre><code class="lang-stylus">#string
+</code></pre>
+<h3 id="the-date-data-type">The Date Data Type</h3>
+<p>The date data type accepts only a type of string which represent a date specified by ISO 8601 standard (date part only). It is a subtype of string data type and thus formatted as per the JSON string specification. Detailed explanations of the ISO 8601 standard can be found in this <a href="https://www.iso.org/iso-8601-date-and-time-format.html">document</a>. Furthermore, you can refer to this <a href="/JsonSchema-DotNet/articles/datetime.html">document</a> for a detailed description of the date pattern associated with this data type. To define this data type in schema, use the following syntax:</p>
+<pre><code class="lang-stylus">#date
+</code></pre>
+<h3 id="the-time-data-type">The Time Data Type</h3>
+<p>The time data type only accepts strings representing date-time (including both date and time), in accordance with the ISO 8601 standard. Similar to the date data type, it is a subtype of string data type and thus formatted as per the JSON string specification. Here is the ISO 8601 standard <a href="https://www.iso.org/iso-8601-date-and-time-format.html">document</a>, which contains detailed explanations. Furthermore, you can refer to this <a href="/JsonSchema-DotNet/articles/datetime.html">document</a> for a detailed description of the date-time pattern associated with this data type. To define this data type in schema, use the following syntax:</p>
+<pre><code class="lang-stylus">#time
+</code></pre>
+<h3 id="the-number-data-type">The Number Data Type</h3>
+<p>The number data type serves as the parent data type for all numeric types accommodated by the schema, including integer, floating-point, and exponent-based numbers. It accepts any JSON numerical value in accordance with the JSON standard. The syntax for specifying the number type is as follows:</p>
+<pre><code class="lang-stylus">#number
+</code></pre>
+<h3 id="the-integer-data-type">The Integer Data Type</h3>
+<p>The integer data type is a subtype of the number data type that only allows integral numbers or whole numbers without any fraction and exponent and thus provides constraints for a wide range of real-world scenarios where numbers cannot involve decimal points or exponents. To specify the integer type in schema, use the following syntax:</p>
+<pre><code class="lang-stylus">#integer
+</code></pre>
+<h3 id="the-float-data-type">The Float Data Type</h3>
+<p>The float data type is also a subtype of the number data type that only accepts floating point numbers and does not allow exponent in numbers or integral numbers. This constraint is useful for various real-world applications that require numbers to be exclusively in floating-point format. To specify the float type in schema, use the following syntax:</p>
+<pre><code class="lang-stylus">#float
+</code></pre>
+<h3 id="the-double-data-type">The Double Data Type</h3>
+<p>The double data type, as a subtype of the number data type, exclusively accepts numbers with exponents. It can either be an integral number with an exponent or a floating-point number with an exponent. This constraint distinguishes it from other number formats and makes it particularly useful for handling large numbers with exponents. To specify the double type in a schema, use the following syntax:</p>
+<pre><code class="lang-stylus">#double
+</code></pre>
+<h3 id="the-boolean-data-type">The Boolean Data Type</h3>
+<p>The boolean data type is a binary or switch-based data type that only accepts two values, namely <code>true</code> and <code>false</code>. It is particularly useful in situations where toggling and switching are necessary. To specify the boolean type in the schema, use the following syntax:</p>
+<pre><code class="lang-stylus">#boolean
+</code></pre>
+<h3 id="the-null-data-type">The Null Data Type</h3>
+<p>The null data type serves as a special constraint within JSON schemas, facilitating the controlled use of <code>null</code> in place of other JSON elements or values. Typically, it is combined with other data types to permit the use of <code>null</code> for specific JSON elements or values. This can set constraints for scenarios in which an array without any elements and an object without any properties can either have <code>null</code> or only be allowed to be empty.</p>
+<p>Additionally, the <code>@nonempty</code> constraint functions can be employed to further control the use of empty values within a JSON document. To specify the null type in the schema, use the following syntax:</p>
+<pre><code class="lang-stylus">#null
+</code></pre>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/doc/articles/datatypes.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <div style="display:flex;justify-content:space-between"><span style="text-align:left"><a href="https://www.relogiclabs.com"><img src="/JsonSchema-DotNet/images/relogiclabs.svg" alt="Relogic Labs"></a></span><span style="text-align:right">&copy; Relogic Labs. All rights reserved.</span></div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

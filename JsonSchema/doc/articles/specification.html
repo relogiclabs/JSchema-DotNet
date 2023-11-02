@@ -1,0 +1,360 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Specification | Json Schema </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Specification | Json Schema ">
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/doc/articles/specification.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="Json Schema">
+            Json Schema
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+
+<style>
+pre code { font-size: 1.1em; }
+</style>
+<h1 id="specification">Specification</h1>
+<p>New JSON Schema is a vocabulary that allows you to describe the structure and constraints of JSON documents. It provides a way to define rules for validating the data in a JSON document. With JSON Schema, you can ensure that your JSON data follows a specific format and adheres to certain rules.</p>
+<h2 id="grammar">Grammar</h2>
+<p>The New JSON Schema grammar is introduced through a notation similar to what is known as the McKeeman form grammar notation, which is a simplified version of the Backus-Naur form and Extended Backus–Naur form. This form minimizes the usage of complex structures of meta-characters, making the grammar highly readable and easy to understand without requiring extensive prior knowledge of grammar syntax. Moreover, inside the grammar whitespace defining rules are ignored to make it clear and concise.</p>
+<pre><code class="lang-html">schema
+    schema-header-opt defines-opt schema-core defines-opt
+    validator
+
+schema-header-opt
+    title-opt version-opt includes-opt pragmas-opt
+
+title-opt
+    ''
+    '%title' ':' string
+
+version-opt
+    ''
+    '%version' ':' version-digits
+
+version-digits
+    digits
+    digits '.' version-digits
+
+includes-opt
+    ''
+    includes
+
+includes
+    include includes
+
+include
+    '%include' ':' class-identifier
+
+class-identifier
+    identifier
+    identifier '.' class-identifier
+
+pragmas-opt
+    ''
+    pragmas
+
+pragmas
+    pragma pragmas
+
+pragma
+    '%pragma' identifier ':' primitive
+
+defines-opt
+    ''
+    defines
+
+defines
+    define defines
+
+define
+    '%define' alias-name ':' validator-main
+
+alias-name
+    '$' identifier
+
+schema-core
+    '%schema' ':' validator
+
+validator
+    validator-main
+    alias-name
+
+validator-main
+    value-opt functions-opt datatypes-opt this-opt
+
+value-opt
+    ''
+    value
+
+value
+    primitive
+    object
+    array
+
+functions-opt
+    ''
+    functions
+
+functions
+    function functions
+
+function
+    function-name function-params-opt
+
+function-name
+    '@' identifier
+    '@' identifier '*'
+
+function-params-opt
+    ''
+    '(' ')'
+    '(' function-params ')'
+
+function-params
+    value
+    value ',' function-params
+
+datatypes-opt
+    ''
+    datatypes
+
+datatypes
+    datatype datatypes
+
+datatype
+    datatype-name datatype-param-opt
+
+datatype-name
+    '#' alphas
+    '#' alphas '*'
+
+alphas
+    alpha alphas
+
+datatype-param-opt
+    ''
+    '(' alias-name ')'
+
+this-opt
+    ''
+    '?'
+
+object
+    '{' '}'
+    '{' properties '}'
+
+properties
+    property
+    property ',' properties
+
+property
+    string ':' validator
+
+array
+    '[' ']'
+    '[' elements ']'
+
+elements
+    validator
+    validator ',' elements
+
+primitive
+    string
+    number
+    undefined
+    'true'
+    'false'
+    'null'
+
+undefined
+    '!'
+
+identifier
+    alpha
+    alpha alpha-numerics
+
+alpha-numerics
+    alpha-numeric alpha-numerics
+
+alpha-numeric
+    alpha
+    '0' . '9'
+
+alpha
+    'A' . 'Z'
+    'a' . 'z'
+    '_'
+
+string
+    '&quot;' characters '&quot;'
+
+characters
+    ''
+    character characters
+
+character
+    '0020' . '10FFFF' - '&quot;' - '\'
+    '\' escape
+
+escape
+    '&quot;'
+    '\'
+    '/'
+    'b'
+    'f'
+    'n'
+    'r'
+    't'
+    'u' hex hex hex hex
+
+hex
+    digit
+    'A' . 'F'
+    'a' . 'f'
+
+number
+    integer
+    float
+    double
+
+integer
+    positive-integer
+    negative-integer
+
+float
+    integer fraction
+
+fraction
+    '.' digits
+
+double
+    integer fraction-opt exponent
+
+fraction-opt
+    ''
+    '.' digits
+
+exponent
+    'E' sign-opt digits
+    'e' sign-opt digits
+
+sign-opt
+    ''
+    '+'
+    '-'
+
+positive-integer
+    digit
+    one-to-nine digits
+
+negative-integer
+    '-' digit
+    '-' one-to-nine digits
+
+digits
+    digit
+    digit digits
+
+digit
+    '0'
+    one-to-nine
+
+one-to-nine
+    '1' . '9'
+
+</code></pre>
+<p>To explore more about McKeeman form grammar notation and standard JSON document grammar in McKeeman form notation, please visit <a href="https://www.json.org">this page</a>. The resource offers valuable information regarding JSON specification and implementations in different programming languages.</p>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/doc/articles/specification.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <div style="display:flex;justify-content:space-between"><span style="text-align:left"><a href="https://www.relogiclabs.com"><img src="/JsonSchema-DotNet/images/relogiclabs.svg" alt="Relogic Labs"></a></span><span style="text-align:right">&copy; Relogic Labs. All rights reserved.</span></div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
