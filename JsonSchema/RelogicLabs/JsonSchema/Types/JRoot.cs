@@ -24,7 +24,9 @@ public sealed class JRoot : JNode
         Pragmas = builder.Pragmas;
         Definitions = builder.Definitions;
         Value = NonNull(builder.Value);
-        Children = ToList(ToList(Title, Version), Includes, Pragmas, Definitions, ToList(Value));
+        Children = new List<JNode>().AddToList(Title, Version)
+            .AddToList(Includes, Pragmas, Definitions)
+            .AddToList(Value).AsReadOnly();
     }
 
     public override bool Match(JNode node)
@@ -46,7 +48,7 @@ public sealed class JRoot : JNode
         return builder.ToString().Trim();
     }
 
-    private void AppendTo(StringBuilder builder, string? text)
+    private static void AppendTo(StringBuilder builder, string? text)
     {
         if(text is null || text.Length == 0) return;
         builder.Append(text).Append(NewLine);

@@ -16,7 +16,7 @@ public sealed class JAlias : JLeaf
     {
         if(!Runtime.Definitions.ContainsKey(this))
             throw new DefinitionNotFoundException(MessageFormatter
-                .FormatForSchema(DEFI02, $"Definition of {Name} not found", Context));
+                .FormatForSchema(DEFI02, $"Definition of '{Name}' not found", Context));
         return Runtime.Definitions[this].Match(node);
     }
 

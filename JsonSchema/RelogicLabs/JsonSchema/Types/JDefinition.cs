@@ -12,10 +12,10 @@ public sealed class JDefinition : JDirective
     {
         Alias = NonNull(builder.Alias);
         Validator = NonNull(builder.Validator);
-        Children = ToList(Alias, Validator);
+        Children = AsList<JNode>(Alias, Validator);
     }
 
-    public override string ToString() => $"{DefineMarker} {Alias} {Validator}";
+    public override string ToString() => $"{DefineMarker} {Alias}: {Validator}";
 
     internal new class Builder : JNode.Builder
     {

@@ -83,4 +83,18 @@ internal static class CollectionExtensions
 
     public static TV? GetValue<TK, TV>(this IDictionary<TK, TV> dict, TK key)
         => dict.TryGetValue(key, out var value) ? value : default;
+
+    public static List<T> AddToList<T>(this List<T> source, params IEnumerable<T>?[] collection)
+    {
+        foreach(var e in collection) if(!ReferenceEquals(e, null)) source.AddRange(e);
+        return source;
+    }
+
+    public static List<T> AddToList<T>(this List<T> source, params T?[] collection)
+    {
+        foreach(var e in collection) if(!ReferenceEquals(e, null)) source.Add(e);
+        return source;
+    }
+
+    public static bool IsEmpty<T>(this IEnumerable<T> source) => !source.Any();
 }

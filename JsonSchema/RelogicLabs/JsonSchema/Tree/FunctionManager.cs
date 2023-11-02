@@ -9,7 +9,7 @@ using static RelogicLabs.JsonSchema.Message.ErrorCode;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
-internal class FunctionManager
+internal sealed class FunctionManager
 {
     private readonly HashSet<string> _includes = new();
     private readonly Dictionary<FunctionKey, List<MethodPointer>> _functions = new();
@@ -30,8 +30,8 @@ internal class FunctionManager
         // if not FunctionBase's subclass
         if(!baseclass.IsAssignableFrom(subclass))
             throw new InvalidIncludeException(MessageFormatter
-                .FormatForSchema(CLAS03, $"{subclass.FullName} needs to inherit " +
-                                         $"{baseclass.FullName}", context));
+                .FormatForSchema(CLAS03, $"{subclass.FullName} needs to inherit {
+                    baseclass.FullName}", context));
 
         FunctionBase instance = CreateInstance(subclass, context);
         try
@@ -96,7 +96,7 @@ internal class FunctionManager
         return functions;
     }
 
-    private int GetParameterCount(ICollection<ParameterInfo> parameters)
+    private static int GetParameterCount(ICollection<ParameterInfo> parameters)
     {
         foreach(var p in parameters) if(IsParams(p)) return -1;
         return parameters.Count;
@@ -111,29 +111,31 @@ internal class FunctionManager
     public bool InvokeFunction(JFunction function, JNode target)
     {
         var methods = GetMethods(function);
-        string? mismatchMessage = null;
+        ParameterInfo? mismatchParameter = null;
+
         foreach(var method in methods)
         {
             var _parameters = method.Parameters;
             var _arguments = function.Arguments;
             var schemaArgs = ProcessArguments(_parameters, _arguments);
             if(schemaArgs == null) continue;
-            if(!IsMatch(_parameters[0], target))
-            {
-                mismatchMessage = $"Function {function.GetOutline()} is applicable on " +
-                                  $"{GetTypeName(_parameters[0].ParameterType)} but applied " +
-                                  $"on {GetTypeName(target.GetType())} of {target}";
-                continue;
-            }
-            return method.Invoke(function, AddTarget(schemaArgs, target));
+            if(IsMatch(_parameters[0], target)) return method.Invoke(function,
+                AddTarget(schemaArgs, target));
+            mismatchParameter = _parameters[0];
         }
-        if(mismatchMessage != null) return FailWith(new FunctionMismatchException(
-            MessageFormatter.FormatForSchema(FUNC03, mismatchMessage, function.Context)));
+        if(mismatchParameter != null)
+            return FailWith(new JsonSchemaException(new ErrorDetail(FUNC03,
+                    $"Function {function.GetOutline()} is incompatible with the target data type"),
+                new ExpectedDetail(function, $"applying to a supported data type such as {
+                    GetTypeName(mismatchParameter.ParameterType)}"),
+                new ActualDetail(target, $"applied to an unsupported data type {
+                    GetTypeName(target.GetType())} of {target}")));
+
         return FailWith(new FunctionNotFoundException(MessageFormatter
             .FormatForSchema(FUNC04, function.GetOutline(), function.Context)));
     }
 
-    private List<object> AddTarget(IList<object> arguments, JNode target)
+    private static List<object> AddTarget(IList<object> arguments, JNode target)
     {
         List<object> _arguments = new(1 + arguments.Count) { target };
         _arguments.AddRange(arguments);
@@ -152,7 +154,7 @@ internal class FunctionManager
         return methodPointers;
     }
 
-    private List<object>? ProcessArguments(IList<ParameterInfo> parameters, IList<JNode> arguments)
+    private static List<object>? ProcessArguments(IList<ParameterInfo> parameters, IList<JNode> arguments)
     {
         List<object> _arguments = new();
         for(int i = 1; i < parameters.Count; i++)
