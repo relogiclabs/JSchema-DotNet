@@ -10,7 +10,20 @@ public class DateTimeTests
     public void When_JsonNotDate_ExceptionThrown()
     {
         var schema = "#date";
-        var json = "\"This is not a valid date\"";
+        var json = "\"This is not a date\"";
+
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(DTYP04, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_JsonNotValidDate_ExceptionThrown()
+    {
+        var schema = "#date";
+        var json = "\"1939-02-29\"";
 
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
@@ -23,7 +36,20 @@ public class DateTimeTests
     public void When_JsonNotTime_ExceptionThrown()
     {
         var schema = "#time";
-        var json = "\"This is not a valid time\"";
+        var json = "\"This is not a time\"";
+
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(DTYP04, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_JsonNotValidTime_ExceptionThrown()
+    {
+        var schema = "#time";
+        var json = "\"1939-09-02T2:12:12.000Z\"";
 
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
