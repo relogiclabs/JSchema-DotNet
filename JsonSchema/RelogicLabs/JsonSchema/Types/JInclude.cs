@@ -20,7 +20,7 @@ public sealed class JInclude : JDirective
     }
 
     public override int GetHashCode() => ClassName.GetHashCode();
-    public override string ToString() => $"{IncludeMarker} {ClassName}";
+    public override string ToString() => $"{IncludeMarker}: {ClassName}";
 
     internal new class Builder : JNode.Builder
     {

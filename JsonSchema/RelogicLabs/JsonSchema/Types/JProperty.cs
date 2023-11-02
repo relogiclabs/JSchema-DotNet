@@ -17,7 +17,7 @@ public sealed class JProperty : JBranch, IKeyer<string>
     {
         Key = NonNull(builder.Key);
         Value = NonNull(builder.Value);
-        Children = ToList(Value);
+        Children = AsList(Value);
     }
 
     public override bool Match(JNode node)

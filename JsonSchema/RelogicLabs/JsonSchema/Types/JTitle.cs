@@ -10,7 +10,7 @@ public sealed class JTitle : JDirective
     private JTitle(Builder builder) : base(builder)
         => Title = NonNull(builder.Title);
 
-    public override string ToString() => $"{TitleMarker} {Title}";
+    public override string ToString() => $"{TitleMarker}: {Title}";
 
     internal new class Builder : JNode.Builder
     {

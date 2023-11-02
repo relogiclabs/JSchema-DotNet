@@ -10,7 +10,7 @@ public sealed class JVersion : JDirective
     private JVersion(Builder builder) : base(builder)
         => Version = NonNull(builder.Version);
 
-    public override string ToString() => $"{VersionMarker} {Version}";
+    public override string ToString() => $"{VersionMarker}: {Version}";
 
     internal new class Builder : JNode.Builder
     {

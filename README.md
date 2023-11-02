@@ -37,7 +37,7 @@ Let's explore an example of our schema for a typical JSON API response containin
     }
 }
 ```
-In the above example, two types of constraint or rule descriptors are used: constraint functions (also known as validation functions, such as `@range(1, 10000)`) and constraint data types (also known as validation data types, such as `#integer`). All constraint functions begin with the `@` symbol, while all constraint data types start with `#`. C-style comments are also permitted in the schema. Please note that `address` can be `null` (eg. an optional input for users) and if it is `null` then no constraints of `address` are applicable. The following JSON is one of the examples which can successfully validate against the above schema. To start your journey with the JSON validation library, please consult the documentation available [here](https://relogiclabs.github.io/JsonSchema-DotNet/articles/intro.html).
+In the above example, two types of constraints are used: constraint functions (also referred to as validation functions, such as `@range(1, 10000)`) and constraint data types (also referred to as validation data types, such as `#integer`). All constraint functions begin with the `@` symbol, while all constraint data types start with `#`. C-style comments are also supported within the schema. In this example, `address` can be `null` (like an optional input for users) and if it is `null` then no constraints of `address` are applicable. The following JSON is one of the examples that will be successfully validated against the above schema. To start your journey with the JSON validation library, please consult the documentation available [here](https://relogiclabs.github.io/JsonSchema-DotNet/articles/intro.html).
 ```json
 {
     "user": {
@@ -132,7 +132,7 @@ The next example represents an expanded version of the previous one, which bring
     }
 }
 ```
-The subsequent JSON sample is an illustrative example that successfully validates against the expanded schema mentioned earlier. Within this example, recurring JSON structure appear that can be validated through defining components. By reusing defined components, you can achieve a clear and concise schema when validating large JSON with repetitive structures instead of duplicating large and complex validation constraints across the schema. This improves the overall readability and maintainability of the schema.
+The subsequent JSON sample is an illustrative example that successfully validates against the expanded schema mentioned earlier. Within this example, recurring JSON structures appear that can be validated by defining components or nested functions and data types. Besides, reusing simple component definitions, you can achieve a clear and concise schema when validating large JSON with repetitive structures instead of duplicating or referring to various structures across the schema. This improves the overall readability and maintainability of the schema.
 ```json
 {
     "user": {

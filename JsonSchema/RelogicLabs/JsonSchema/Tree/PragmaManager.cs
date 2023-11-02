@@ -5,7 +5,7 @@ using static RelogicLabs.JsonSchema.Message.ErrorCode;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
-internal class PragmaManager
+internal sealed class PragmaManager
 {
     public const string IGNORE_UNDEFINED_PROPERTIES = "IgnoreUndefinedProperties";
     public const string FLOATING_POINT_TOLERANCE = "FloatingPointTolerance";

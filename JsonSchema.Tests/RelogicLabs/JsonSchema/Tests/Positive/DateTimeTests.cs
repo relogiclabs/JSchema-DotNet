@@ -3,7 +3,7 @@ namespace RelogicLabs.JsonSchema.Tests.Positive;
 [TestClass]
 public class DateTimeTests
 {
-    
+
     [TestMethod]
     public void When_DataTypeDate_ValidTrue()
     {
@@ -11,7 +11,7 @@ public class DateTimeTests
         var json = "\"2023-09-01\"";
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_DataTypeTime_ValidTrue()
     {
@@ -19,7 +19,7 @@ public class DateTimeTests
         var json = "\"2023-09-01T14:35:10.123+06:00\"";
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_DataTypeDateInObject_ValidTrue()
     {
@@ -41,7 +41,7 @@ public class DateTimeTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_DataTypeTimeInObject_ValidTrue()
     {
@@ -56,14 +56,14 @@ public class DateTimeTests
         var json =
             """
             {
-                "key1": "1950-12-31T11:40:10.000+06:30",
-                "key2": "0001-01-01T00:00:00.000+00:00",
-                "key3": "1600-02-29T23:59:59.999Z"
+                "key1": "1950-12-31T11:40:10.333+06:30",
+                "key2": "0001-01-01T00:00:00.0+00:00",
+                "key3": "1600-02-29T23:59:59.99999Z"
             }
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_DataTypeDateInArray_ValidTrue()
     {
@@ -77,7 +77,7 @@ public class DateTimeTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_DataTypeTimeInArray_ValidTrue()
     {
@@ -87,11 +87,11 @@ public class DateTimeTests
             """;
         var json =
             """
-            ["0001-01-01T00:00:00.000Z", "9999-12-31T23:59:59.999+12:59"]
+            ["0001-01-01T00:00:00.0Z", "9999-12-31T23:59:59.999999+12:59"]
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedDataTypeDateInArray_ValidTrue()
     {
@@ -105,7 +105,7 @@ public class DateTimeTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedDataTypeTimeInArray_ValidTrue()
     {
@@ -119,7 +119,7 @@ public class DateTimeTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedDataTypeDateInObject_ValidTrue()
     {
@@ -136,7 +136,7 @@ public class DateTimeTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedDataTypeTimeInObject_ValidTrue()
     {
@@ -153,7 +153,7 @@ public class DateTimeTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_DateFunctionWithYearMonthDay1InObject_ValidTrue()
     {
@@ -187,7 +187,7 @@ public class DateTimeTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_DateFunctionWithYearMonthDay2InObject_ValidTrue()
     {
@@ -217,7 +217,7 @@ public class DateTimeTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_TimeFunctionWithHourMinuteSecondInObject_ValidTrue()
     {
@@ -249,7 +249,7 @@ public class DateTimeTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_TimeFunctionWithUtcOffsetInObject_ValidTrue()
     {
@@ -275,7 +275,7 @@ public class DateTimeTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_DateFunctionWithPartialDateInObject_ValidTrue()
     {
@@ -301,7 +301,7 @@ public class DateTimeTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_TimeFunctionWithPartialTimeInObject_ValidTrue()
     {
@@ -327,7 +327,7 @@ public class DateTimeTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedDateFunctionInArray_ValidTrue()
     {
@@ -345,7 +345,7 @@ public class DateTimeTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedDateFunctionInObject_ValidTrue()
     {
@@ -363,7 +363,7 @@ public class DateTimeTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedTimeFunctionInArray_ValidTrue()
     {
@@ -381,7 +381,7 @@ public class DateTimeTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedTimeFunctionInObject_ValidTrue()
     {

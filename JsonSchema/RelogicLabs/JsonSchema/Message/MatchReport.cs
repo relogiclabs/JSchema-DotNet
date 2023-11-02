@@ -2,7 +2,7 @@ using static RelogicLabs.JsonSchema.Message.ErrorCode;
 
 namespace RelogicLabs.JsonSchema.Message;
 
-internal class MatchReport
+internal sealed class MatchReport
 {
     public static readonly MatchReport Success = new();
     public static readonly MatchReport TypeError = new(DTYP04, DTYP06);

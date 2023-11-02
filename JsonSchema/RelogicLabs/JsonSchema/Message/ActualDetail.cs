@@ -4,7 +4,7 @@ using RelogicLabs.JsonSchema.Utilities;
 
 namespace RelogicLabs.JsonSchema.Message;
 
-public class ActualDetail : ContextDetail
+public sealed class ActualDetail : ContextDetail
 {
     public ActualDetail(Context context, string message)
         : base(context, message) { }

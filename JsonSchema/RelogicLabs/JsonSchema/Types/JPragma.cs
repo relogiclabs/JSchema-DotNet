@@ -18,7 +18,7 @@ public sealed class JPragma : JDirective
     {
         Name = NonNull(builder.Name);
         Value = NonNull(builder.Value);
-        Children = ToList(Value);
+        Children = AsList(Value);
     }
 
     public override bool Equals(object? obj)
@@ -44,8 +44,8 @@ public sealed class JPragma : JDirective
             var value = NonNull(Value);
             var descriptor = PragmaDescriptor.From(name);
             if(descriptor == null) throw new PragmaNotFoundException(MessageFormatter
-                .FormatForSchema(PRAG01, $"Invalid pragma {name.Quote()} with value " +
-                                         $"{value.GetOutline()} found", Context));
+                .FormatForSchema(PRAG01, $"Invalid pragma {name.Quote()} with value {
+                    value.GetOutline()} found", Context));
             if(!descriptor.MatchType(value.GetType()))
                 throw new InvalidPragmaValueException(MessageFormatter.FormatForSchema(
                     PRAG02, $"Invalid value {value.GetOutline()} for pragma {name.Quote()} found",

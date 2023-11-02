@@ -19,8 +19,8 @@ public class FunctionTests
             "test"
             """;
 
-        //JsonSchema.IsValid(schema, json);
-        var exception = Assert.ThrowsException<FunctionMismatchException>(
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(FUNC03, exception.Code);
         Console.WriteLine(exception);
@@ -32,7 +32,7 @@ public class FunctionTests
         var schema =
             """
             %include: RelogicLabs.JsonSchema.Tests.Negative.ExternalFunctions1,
-                    RelogicLabs.JsonSchema.Tests
+                      RelogicLabs.JsonSchema.Tests
             %schema: @odd #integer
             """;
         var json = "10";

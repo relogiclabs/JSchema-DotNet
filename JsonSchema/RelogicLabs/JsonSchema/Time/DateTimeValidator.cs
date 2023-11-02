@@ -8,10 +8,10 @@ using static RelogicLabs.JsonSchema.Time.SegmentProcessor;
 
 namespace RelogicLabs.JsonSchema.Time;
 
-internal class DateTimeValidator
+internal sealed class DateTimeValidator
 {
     public const string ISO_8601_DATE = "YYYY-MM-DD";
-    public const string ISO_8601_TIME = "YYYY-MM-DD'T'hh:mm:ss.fffZZ";
+    public const string ISO_8601_TIME = "YYYY-MM-DD'T'hh:mm:ss.FZZ";
 
     private static readonly Dictionary<string, SegmentProcessor> _Processors = new();
     private readonly DateTimeLexer _dateTimeLexer;
@@ -83,8 +83,9 @@ internal class DateTimeValidator
     public void ValidateTime(string input)
         => Validate(input, new DateTimeContext(DateTimeType.TIME_TYPE));
 
-    public bool IsValidDate(string input)
+    public bool IsValidDate(string input, out string error)
     {
+        error = string.Empty;
         try
         {
             ValidateDate(input);
@@ -93,12 +94,14 @@ internal class DateTimeValidator
         catch(InvalidDateTimeException ex)
         {
             DebugUtilities.Print(ex);
+            error = ex.Message;
             return false;
         }
     }
 
-    public bool IsValidTime(string input)
+    public bool IsValidTime(string input, out string error)
     {
+        error = string.Empty;
         try
         {
             ValidateTime(input);
@@ -107,6 +110,7 @@ internal class DateTimeValidator
         catch(InvalidDateTimeException ex)
         {
             DebugUtilities.Print(ex);
+            error = ex.Message;
             return false;
         }
     }

@@ -7,10 +7,10 @@ internal static class StringExtensions
     public static string Affix(this string source, string prefix = "", string suffix = "")
         => $"{prefix}{source}{suffix}";
 
-    public static string ToUpperFirstLetter(this string source)
+    public static string Capitalize(this string source)
         => source[..1].ToUpper() + source[1..];
 
-    public static string ToLowerFirstLetter(this string source)
+    public static string Uncapitalize(this string source)
         => source[..1].ToLower() + source[1..];
 
     public static string ToEncoded(this string source)

@@ -16,7 +16,7 @@ public abstract class JNode
     public Context Context { get; }
     public virtual JNode? Parent => _relations.GetValue(this);
     public virtual IEnumerable<JNode> Children
-        { get; private protected init; } = Enumerable.Empty<JNode>();
+    { get; private protected init; } = Enumerable.Empty<JNode>();
     public ParserRuleContext Parser => Context.Parser;
     public RuntimeContext Runtime => Context.Runtime;
 
@@ -26,7 +26,7 @@ public abstract class JNode
         Context = NonNull(builder.Context);
     }
 
-    private protected virtual T Initialize<T>() where T : JNode
+    private T Initialize<T>() where T : JNode
     {
         foreach(var c in Children) _relations[c] = this;
         return (T) this;

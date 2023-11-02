@@ -6,7 +6,7 @@ using static RelogicLabs.JsonSchema.Message.ErrorCode;
 
 namespace RelogicLabs.JsonSchema.Functions;
 
-public partial class CoreFunctions : FunctionBase
+public sealed partial class CoreFunctions : FunctionBase
 {
     public CoreFunctions(RuntimeContext runtime) : base(runtime) { }
 
@@ -19,7 +19,7 @@ public partial class CoreFunctions : FunctionBase
                 new ActualDetail(target, $"found {_length} for {target}")));
         return true;
     }
-    
+
     public bool Length(JArray target, JInteger length)
     {
         var _length = target.Elements.Count;
@@ -44,7 +44,7 @@ public partial class CoreFunctions : FunctionBase
     {
         var length = target.Value.Length;
         if(length < minimum)
-            return FailWith(new JsonSchemaException(new ErrorDetail(SLEN02, 
+            return FailWith(new JsonSchemaException(new ErrorDetail(SLEN02,
                     $"String {target.GetOutline()} length is outside of range"),
                 new ExpectedDetail(Function, $"length in range [{minimum}, {maximum}]"),
                 new ActualDetail(target, $"found {length} that is less than {minimum}")));
@@ -55,7 +55,7 @@ public partial class CoreFunctions : FunctionBase
                 new ActualDetail(target, $"found {length} that is greater than {maximum}")));
         return true;
     }
-    
+
     public bool Length(JString target, JInteger minimum, JUndefined undefined)
     {
         var length = target.Value.Length;
@@ -66,7 +66,7 @@ public partial class CoreFunctions : FunctionBase
                 new ActualDetail(target, $"found {length} that is less than {minimum}")));
         return true;
     }
-    
+
     public bool Length(JString target, JUndefined undefined, JInteger maximum)
     {
         var length = target.Value.Length;
@@ -77,7 +77,7 @@ public partial class CoreFunctions : FunctionBase
                 new ActualDetail(target, $"found {length} that is greater than {maximum}")));
         return true;
     }
-    
+
     public bool Length(JArray target, JInteger minimum, JInteger maximum)
     {
         var length = target.Elements.Count;
@@ -93,7 +93,7 @@ public partial class CoreFunctions : FunctionBase
                 new ActualDetail(target, $"found {length} that is greater than {maximum}")));
         return true;
     }
-    
+
     public bool Length(JArray target, JInteger minimum, JUndefined undefined)
     {
         var length = target.Elements.Count;
@@ -104,7 +104,7 @@ public partial class CoreFunctions : FunctionBase
                 new ActualDetail(target, $"found {length} that is less than {minimum}")));
         return true;
     }
-    
+
     public bool Length(JArray target, JUndefined undefined, JInteger maximum)
     {
         var length = target.Elements.Count;
@@ -131,7 +131,7 @@ public partial class CoreFunctions : FunctionBase
                 new ActualDetail(target, $"found {length} that is greater than {maximum}")));
         return true;
     }
-    
+
     public bool Length(JObject target, JInteger minimum, JUndefined undefined)
     {
         var length = target.Properties.Count;
@@ -142,7 +142,7 @@ public partial class CoreFunctions : FunctionBase
                 new ActualDetail(target, $"found {length} that is less than {minimum}")));
         return true;
     }
-    
+
     public bool Length(JObject target, JUndefined undefined, JInteger maximum)
     {
         var length = target.Properties.Count;

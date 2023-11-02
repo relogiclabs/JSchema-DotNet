@@ -6,7 +6,7 @@ using static RelogicLabs.JsonSchema.Message.ErrorCode;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
-internal class JsonTreeVisitor : JsonParserBaseVisitor<JNode>
+internal sealed class JsonTreeVisitor : JsonParserBaseVisitor<JNode>
 {
     private readonly Dictionary<JNode, JNode> _relations = new();
     private readonly RuntimeContext _runtime;
@@ -19,7 +19,7 @@ internal class JsonTreeVisitor : JsonParserBaseVisitor<JNode>
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
-            Value = Visit(context.value()),
+            Value = Visit(context.value())
         }.Build();
 
     public override JNode VisitValue(JsonParser.ValueContext context)

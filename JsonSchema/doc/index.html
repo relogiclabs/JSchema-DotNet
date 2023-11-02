@@ -1,0 +1,325 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>A New JSON Schema | Json Schema </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="A New JSON Schema | Json Schema ">
+      
+      <link rel="icon" href="images/favicon.ico">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/doc/index.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './public/main.js'
+    import { init } from './public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="images/logo.svg" alt="Json Schema">
+            Json Schema
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+
+<style>
+pre code { font-size: 1.1em; }
+</style>
+<h1 id="a-new-json-schema">A New JSON Schema</h1>
+<p>A JSON Schema is crucial for making communication, interoperability, validation, testing, documentation, and specification seamless. All of this combined contributes to better maintenance and evolution of data-driven applications and systems. For a comprehensive overview of the roles and uses of JSON Schema in modern web applications, we invite you to explore our dedicated post available <a href="https://www.relogiclabs.com/2023/01/the-roles-of-json-schema.html">here</a>.</p>
+<h2 id="design-goals">Design Goals</h2>
+<p>The traditional standard JSON Schema rigorously follows the conventional JSON structure, which unfortunately comes at the expense of simplicity, conciseness, and readability. Our goal is to develop a new JSON Schema that promotes these essential aspects that were previously missing.</p>
+<p>This new schema is simple, lucid, easy to grasp, and doesn't require much prior knowledge to understand it. It also offers a shallow learning curve for both reading and writing. Additionally, its simplicity and conciseness allow us and machines to read-write more efficiently. Moreover, a large set of constraint data types and functions within the core schema promotes the precise definition of JSON documents, significantly reducing the potential for communication gaps among collaborators. Furthermore, its inherent extensibility not only facilitates the test automation process in API testing but also simplifies the integrations of new constraints and functionalities to meet the diverse requirements of modern web services.</p>
+<h2 id="basic-example">Basic Example</h2>
+<p>Let's explore an example of our schema for a typical JSON API response containing information about a user profile or account. The schema is very self-explanatory and thus almost no prior knowledge is required to understand the schema and the JSON responses specified by this schema.</p>
+<pre><code class="lang-stylus">%title: &quot;User Profile Response&quot;
+%version: 1.0.0
+%schema:
+{
+    &quot;user&quot;: {
+        &quot;id&quot;: @range(1, 10000) #integer,
+        /*username does not allow special characters*/
+        &quot;username&quot;: @regex(&quot;[a-z_]{3,30}&quot;) #string,
+        /*currently only one role is allowed by system*/
+        &quot;role&quot;: &quot;user&quot; #string,
+        &quot;isActive&quot;: #boolean, //user account current status
+        &quot;registeredAt&quot;: #time,
+        &quot;profile&quot;: {
+            &quot;firstName&quot;: @regex(&quot;[A-Za-z ]{3,50}&quot;) #string,
+            &quot;lastName&quot;: @regex(&quot;[A-Za-z ]{3,50}&quot;) #string,
+            &quot;dateOfBirth&quot;: #date,
+            &quot;age&quot;: @range(18, 130) #integer,
+            &quot;email&quot;: @email #string,
+            &quot;pictureURL&quot;: @url #string,
+            &quot;address&quot;: {
+                &quot;street&quot;: @length(10, 200) #string,
+                &quot;city&quot;: @length(3, 50) #string,
+                &quot;country&quot;: @regex(&quot;[A-Za-z ]{3,50}&quot;) #string
+            } #object #null
+        }
+    }
+}
+</code></pre>
+<p>In the above example, two types of constraints are used: constraint functions (also referred to as validation functions, such as <code>@range(1, 10000)</code>) and constraint data types (also referred to as validation data types, such as <code>#integer</code>). All constraint functions begin with the <code>@</code> symbol, while all constraint data types start with <code>#</code>. C-style comments are also supported within the schema. In this example, <code>address</code> can be <code>null</code> (like an optional input for users) and if it is <code>null</code> then no constraints of <code>address</code> are applicable. The following JSON is one of the examples that will be successfully validated against the above schema. To start your journey with the JSON validation library, please consult the documentation available <a href="/JsonSchema-DotNet/articles/intro.html">here</a>.</p>
+<pre><code class="lang-json">{
+    &quot;user&quot;: {
+        &quot;id&quot;: 1234,
+        &quot;username&quot;: &quot;johndoe&quot;,
+        &quot;role&quot;: &quot;user&quot;,
+        &quot;isActive&quot;: true,
+        &quot;registeredAt&quot;: &quot;2023-09-06T15:10:30.639Z&quot;,
+        &quot;profile&quot;: {
+            &quot;firstName&quot;: &quot;John&quot;,
+            &quot;lastName&quot;: &quot;Doe&quot;,
+            &quot;dateOfBirth&quot;: &quot;1993-06-17&quot;,
+            &quot;age&quot;: 30,
+            &quot;email&quot;: &quot;john.doe@example.com&quot;,
+            &quot;pictureURL&quot;: &quot;https://example.com/picture.jpg&quot;,
+            &quot;address&quot;: {
+                &quot;street&quot;: &quot;123 Some St&quot;,
+                &quot;city&quot;: &quot;Some town&quot;,
+                &quot;country&quot;: &quot;Some Country&quot;
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="extended-example">Extended Example</h2>
+<p>The next example represents an expanded version of the previous one, which brings more complexity. To effectively construct such schemas with multiple layers of nested structures, it's beneficial to have a fundamental understanding of this schema format. While the syntax may seem difficult at first, it becomes straightforward once you have a basic understanding of it. For more detailed information, reference documentation is available <a href="/JsonSchema-DotNet/articles/intro.html">here</a>.</p>
+<pre><code class="lang-stylus">%title: &quot;Extended User Profile Dashboard API Response&quot;
+%version: 2.0.0
+%include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+          RelogicLabs.JsonSchema.Tests
+
+%pragma IgnoreUndefinedProperties: true
+
+%define $post: {
+    &quot;id&quot;: @range(1, 1000) #integer,
+    &quot;title&quot;: @length(10, 100) #string,
+    &quot;content&quot;: @length(30, 1000) #string,
+    &quot;tags&quot;: $tags
+} #object
+
+%define $product: {
+    &quot;id&quot;: @length(2, 10) @regex(&quot;[a-z][a-z0-9]+&quot;) #string,
+    &quot;name&quot;: @length(5, 30) #string,
+    &quot;brand&quot;: @length(5, 30) #string,
+    &quot;price&quot;: @range(0.1, 1000000),
+    &quot;inStock&quot;: #boolean,
+    &quot;specs&quot;: {
+        &quot;cpu&quot;: @length(5, 30) #string,
+        &quot;ram&quot;: @regex(&quot;[0-9]{1,2}GB&quot;) #string,
+        &quot;storage&quot;: @regex(&quot;[0-9]{1,4}GB (SSD|HDD)&quot;) #string
+    } #object #null
+}
+
+%define $tags: @length(1, 10) #string*($tag) #array
+%define $tag: @length(3, 20) @regex(&quot;[A-Za-z_]+&quot;) #string
+
+%schema: 
+{
+    &quot;user&quot;: {
+        &quot;id&quot;: @range(1, 10000) #integer,
+        /*username does not allow special characters*/
+        &quot;username&quot;: @regex(&quot;[a-z_]{3,30}&quot;) #string,
+        &quot;role&quot;: @enum(&quot;user&quot;, &quot;admin&quot;) #string,
+        &quot;isActive&quot;: #boolean, //user account current status
+        &quot;registeredAt&quot;: @time(&quot;DD-MM-YYYY hh:mm:ss&quot;) #string,
+        &quot;profile&quot;: {
+            &quot;firstName&quot;: @regex(&quot;[A-Za-z]{3,50}&quot;) #string,
+            &quot;lastName&quot;: @regex(&quot;[A-Za-z]{3,50}&quot;) #string,
+            &quot;dateOfBirth&quot;: @date(&quot;DD-MM-YYYY&quot;) #string,
+            &quot;age&quot;: @range(18, 128) #integer,
+            &quot;email&quot;: @email #string,
+            &quot;pictureURL&quot;: @url #string,
+            &quot;address&quot;: {
+                &quot;street&quot;: @length(10, 200) #string,
+                &quot;city&quot;: @length(3, 50) #string,
+                &quot;country&quot;: @regex(&quot;[A-Za-z ]{3,50}&quot;) #string
+            } #object #null,
+            &quot;hobbies&quot;: !?
+        },
+        &quot;posts&quot;: @length(0, 1000) #object*($post) #array,
+        &quot;preferences&quot;: {
+            &quot;theme&quot;: @enum(&quot;light&quot;, &quot;dark&quot;) #string,
+            &quot;fontSize&quot;: @range(9, 24) #integer,
+            &quot;autoSave&quot;: #boolean
+        }
+    },
+    &quot;products&quot;: #object*($product) #array,
+    &quot;weather&quot;: {
+        &quot;temperature&quot;: @range(-50.0, 60.0) #float,
+        &quot;isCloudy&quot;: #boolean
+    }
+}
+</code></pre>
+<p>The subsequent JSON sample is an illustrative example that successfully validates against the expanded schema mentioned earlier. Within this example, recurring JSON structures appear that can be validated by defining components or nested functions and data types. Besides, reusing simple component definitions, you can achieve a clear and concise schema when validating large JSON with repetitive structures instead of duplicating or referring to various structures across the schema. This improves the overall readability and maintainability of the schema.</p>
+<pre><code class="lang-json">{
+    &quot;user&quot;: {
+        &quot;id&quot;: 1234,
+        &quot;username&quot;: &quot;johndoe&quot;,
+        &quot;role&quot;: &quot;admin&quot;,
+        &quot;isActive&quot;: true,
+        &quot;registeredAt&quot;: &quot;06-09-2023 15:10:30&quot;,
+        &quot;profile&quot;: {
+            &quot;firstName&quot;: &quot;John&quot;,
+            &quot;lastName&quot;: &quot;Doe&quot;,
+            &quot;dateOfBirth&quot;: &quot;17-06-1993&quot;,
+            &quot;age&quot;: 30,
+            &quot;email&quot;: &quot;john.doe@example.com&quot;,
+            &quot;pictureURL&quot;: &quot;https://example.com/picture.jpg&quot;,
+            &quot;address&quot;: {
+                &quot;street&quot;: &quot;123 Some St&quot;,
+                &quot;city&quot;: &quot;Some town&quot;,
+                &quot;country&quot;: &quot;Some Country&quot;
+            }
+        },
+        &quot;posts&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;title&quot;: &quot;Introduction to JSON&quot;,
+                &quot;content&quot;: &quot;JSON (JavaScript Object Notation) is a lightweight data interchange format...&quot;,
+                &quot;tags&quot;: [
+                    &quot;JSON&quot;,
+                    &quot;tutorial&quot;,
+                    &quot;data&quot;
+                ]
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;title&quot;: &quot;Working with JSON in C#&quot;,
+                &quot;content&quot;: &quot;C# provides built-in support for working with JSON...&quot;,
+                &quot;tags&quot;: [
+                    &quot;CSharp&quot;,
+                    &quot;JSON&quot;,
+                    &quot;tutorial&quot;
+                ]
+            },
+            {
+                &quot;id&quot;: 3,
+                &quot;title&quot;: &quot;Introduction to JSON Schema&quot;,
+                &quot;content&quot;: &quot;A JSON schema defines the structure and data types of JSON objects...&quot;,
+                &quot;tags&quot;: [
+                    &quot;Schema&quot;,
+                    &quot;JSON&quot;,
+                    &quot;tutorial&quot;
+                ]
+            }
+        ],
+        &quot;preferences&quot;: {
+            &quot;theme&quot;: &quot;dark&quot;,
+            &quot;fontSize&quot;: 14,
+            &quot;autoSave&quot;: true
+        }
+    },
+    &quot;products&quot;: [
+        {
+            &quot;id&quot;: &quot;p1&quot;,
+            &quot;name&quot;: &quot;Smartphone&quot;,
+            &quot;brand&quot;: &quot;TechGiant&quot;,
+            &quot;price&quot;: 599.99,
+            &quot;inStock&quot;: true,
+            &quot;specs&quot;: null
+        },
+        {
+            &quot;id&quot;: &quot;p2&quot;,
+            &quot;name&quot;: &quot;Laptop&quot;,
+            &quot;brand&quot;: &quot;SuperTech&quot;,
+            &quot;price&quot;: 1299.99,
+            &quot;inStock&quot;: false,
+            &quot;specs&quot;: {
+                &quot;cpu&quot;: &quot;Intel i11&quot;,
+                &quot;ram&quot;: &quot;11GB&quot;,
+                &quot;storage&quot;: &quot;11GB SSD&quot;
+            }
+        }
+    ],
+    &quot;weather&quot;: {
+        &quot;temperature&quot;: 25.5,
+        &quot;isCloudy&quot;: true,
+        &quot;conditions&quot;: null
+    }
+}
+</code></pre>
+<p>For more information about the schema syntax format and library functionalities, please refer to the reference documentation <a href="/JsonSchema-DotNet/api/index.html">here</a>.</p>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/doc/index.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <div style="display:flex;justify-content:space-between"><span style="text-align:left"><a href="https://www.relogiclabs.com"><img src="/JsonSchema-DotNet/images/relogiclabs.svg" alt="Relogic Labs"></a></span><span style="text-align:right">&copy; Relogic Labs. All rights reserved.</span></div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

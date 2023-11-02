@@ -21,7 +21,8 @@ public sealed class JValidator : JBranch
         Functions = NonNull(builder.Functions);
         DataTypes = NonNull(builder.DataTypes);
         Optional = NonNull(builder.Optional);
-        Children = ToList(ToList(Value), Functions, DataTypes);
+        Children = new List<JNode>().AddToList(Value)
+            .AddToList(Functions, DataTypes).AsReadOnly();
     }
 
     public override bool Match(JNode node)

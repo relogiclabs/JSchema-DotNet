@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace RelogicLabs.JsonSchema.Collections;
 
-public class IndexHashMap<TK, TV> : IIndexMap<TK, TV>
+public sealed class IndexHashMap<TK, TV> : IIndexMap<TK, TV>
     where TV : IKeyer<TK> where TK : notnull
 {
     private IDictionary<TK, TV> _dictionary;
@@ -71,6 +71,7 @@ public class IndexHashMap<TK, TV> : IIndexMap<TK, TV>
 
     public IIndexMap<TK, TV> AsReadOnly()
     {
+        if(IsReadOnly) return this;
         _list = new ReadOnlyCollection<TV>(_list);
         _dictionary = new ReadOnlyDictionary<TK, TV>(_dictionary);
         return this;

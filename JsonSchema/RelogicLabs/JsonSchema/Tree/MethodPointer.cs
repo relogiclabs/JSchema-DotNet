@@ -5,7 +5,7 @@ using RelogicLabs.JsonSchema.Utilities;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
-internal class MethodPointer
+internal sealed class MethodPointer
 {
     public FunctionBase Instance { get; }
     public MethodInfo Method { get; }

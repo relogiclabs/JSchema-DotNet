@@ -10,11 +10,13 @@ namespace RelogicLabs.JsonSchema.Types;
 
 public sealed class JObject : JComposite
 {
+    private IList<JNode> _components;
     public IIndexMap<string, JProperty> Properties { get; }
 
     private JObject(Builder builder) : base(builder)
     {
         Properties = NonNull(builder.Properties);
+        _components = Properties.Select(p => p.Value).ToList().AsReadOnly();
         Children = Properties.Values;
     }
 
@@ -40,16 +42,14 @@ public sealed class JObject : JComposite
                         ExpectedDetail.AsPropertyNotFound(thisProp),
                         ActualDetail.AsPropertyNotFound(node, thisProp)));
         }
-        if(unresolved.Count > 0 && !Runtime.IgnoreUndefinedProperties)
+        if(unresolved.IsEmpty() || Runtime.IgnoreUndefinedProperties) return result;
+        foreach(var key in unresolved)
         {
-            foreach(var key in unresolved)
-            {
-                var property = other.Properties[key];
-                result &= FailWith(new JsonSchemaException(
-                    new ErrorDetail(PROP06, UndefinedPropertyFound),
-                    ExpectedDetail.AsUndefinedProperty(this, property),
-                    ActualDetail.AsUndefinedProperty(property)));
-            }
+            var property = other.Properties[key];
+            result &= FailWith(new JsonSchemaException(
+                new ErrorDetail(PROP06, UndefinedPropertyFound),
+                ExpectedDetail.AsUndefinedProperty(this, property),
+                ActualDetail.AsUndefinedProperty(property)));
         }
         return result;
     }
@@ -79,11 +79,10 @@ public sealed class JObject : JComposite
         return p1.Key == p2.Key;
     }
 
-    private JProperty? GetPropAt(IIndexMap<string, JProperty> properties, int index)
+    private static JProperty? GetPropAt(IIndexMap<string, JProperty> properties, int index)
         => index >= properties.Count ? null : properties[index];
 
-    public override IList<JNode> GetComponents() => Properties.Select(p => p.Value)
-        .ToList().AsReadOnly();
+    public override IList<JNode> GetComponents() => _components;
 
     public override bool Equals(object? obj)
     {

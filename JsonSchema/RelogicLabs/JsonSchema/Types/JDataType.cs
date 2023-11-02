@@ -20,7 +20,7 @@ public sealed class JDataType : JBranch, INestedMode
         JsonType = NonNull(builder.JsonType);
         Nested = NonNull(builder.Nested);
         Alias = builder.Alias;
-        Children = ToList(Alias);
+        Children = AsList(Alias);
     }
 
     public override bool Match(JNode node)
@@ -32,11 +32,11 @@ public sealed class JDataType : JBranch, INestedMode
     }
 
     private bool IsMatchCurrent(JNode node)
-        => MatchCurrent(node) == Success;
+        => MatchCurrent(node, out _) == Success;
 
-    private MatchReport MatchCurrent(JNode node)
+    private MatchReport MatchCurrent(JNode node, out string error)
     {
-        var result = JsonType.Match(node) ? Success : TypeError;
+        var result = JsonType.Match(node, out error) ? Success : TypeError;
         if(Alias == null || result != Success) return result;
         Runtime.Definitions.TryGetValue(Alias, out var validator);
         if(validator == null) return AliasError;
@@ -60,10 +60,11 @@ public sealed class JDataType : JBranch, INestedMode
 
     private bool MatchForReport(JNode node, bool nested)
     {
-        var result = MatchCurrent(node);
+        var result = MatchCurrent(node, out var error);
         if(ReferenceEquals(result, TypeError)) return FailWith(
             new JsonSchemaException(
-                new ErrorDetail(TypeError.GetCode(nested), DataTypeMismatch),
+                new ErrorDetail(TypeError.GetCode(nested),
+                    FormatMessage(DataTypeMismatch, error)),
                 ExpectedDetail.AsDataTypeMismatch(this),
                 ActualDetail.AsDataTypeMismatch(node)));
         if(ReferenceEquals(result, AliasError)) return FailWith(
@@ -78,6 +79,9 @@ public sealed class JDataType : JBranch, INestedMode
                 ActualDetail.AsDataTypeArgumentFailed(node)));
         return true;
     }
+
+    private static string FormatMessage(string main, string optional)
+        => string.IsNullOrEmpty(optional) ? main : $"{main} ({optional.Uncapitalize()})";
 
     public override bool Equals(object? obj)
     {
@@ -103,8 +107,8 @@ public sealed class JDataType : JBranch, INestedMode
     internal new class Builder : JNode.Builder
     {
         public JsonType? JsonType { get; init; }
-        public JAlias? Alias { get; init; }
         public bool? Nested { get; init; }
+        public JAlias? Alias { get; init; }
         public override JDataType Build() => Build(new JDataType(this));
     }
 }

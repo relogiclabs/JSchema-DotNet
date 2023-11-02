@@ -5,10 +5,10 @@ using RelogicLabs.JsonSchema.Utilities;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
-public class JsonTree
+public sealed class JsonTree
 {
     public JRoot Root { get; }
-    
+
     public JsonTree(RuntimeContext context, string input)
     {
         JsonLexer jsonLexer = new(CharStreams.fromString(input));

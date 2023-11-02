@@ -4,7 +4,7 @@ using RelogicLabs.JsonSchema.Message;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
-public class Context
+public sealed class Context
 {
     public ParserRuleContext Parser { get; }
     public RuntimeContext Runtime { get; }

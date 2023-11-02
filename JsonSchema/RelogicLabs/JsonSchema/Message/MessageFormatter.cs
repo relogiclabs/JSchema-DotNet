@@ -53,7 +53,7 @@ public abstract class MessageFormatter
             .Append(target[^back..]).ToString();
     }
 
-    private class ValidationFormatter : MessageFormatter
+    private sealed class ValidationFormatter : MessageFormatter
     {
         public ValidationFormatter(string summary, string expected, string actual)
             : base(summary, expected, actual) { }
@@ -64,13 +64,13 @@ public abstract class MessageFormatter
             return new StringBuilder()
                 .Append(string.Format(Summary, expected.Location,
                     actual.Location, error.Code, error.Message))
-                .Append(string.Format(Expected, expected.Message.ToUpperFirstLetter()))
+                .Append(string.Format(Expected, expected.Message.Capitalize()))
                 .Append(string.Format(Actual, actual.Message))
                 .ToString();
         }
     }
 
-    private class AssertionFormatter : MessageFormatter
+    private sealed class AssertionFormatter : MessageFormatter
     {
         public AssertionFormatter(string summary, string expected, string actual)
             : base(summary, expected, actual) { }
@@ -94,14 +94,14 @@ public abstract class MessageFormatter
 
     internal static ErrorDetail FormatForSchema(string code, string message, Location? location)
         => location == null ? CreateDetail(code, SchemaBaseException, message)
-            : CreateDetail(code, SchemaParseException, message, location);
+            : CreateDetail(code, SchemaParseException, message, (Location) location);
 
     internal static ErrorDetail FormatForJson(string code, string message, Context? context)
         => FormatForJson(code, message, context?.GetLocation());
 
     internal static ErrorDetail FormatForJson(string code, string message, Location? location)
         => location == null ? CreateDetail(code, JsonBaseException, message)
-            : CreateDetail(code, JsonParseException, message, location);
+            : CreateDetail(code, JsonParseException, message, (Location) location);
 
     private static ErrorDetail CreateDetail(string code, string format, string message)
         => new(code, string.Format(format, code, message));

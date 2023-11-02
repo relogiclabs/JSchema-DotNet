@@ -55,11 +55,12 @@ public class JsonType
     }
 
     public override string ToString() => Name;
-    public bool Match(JNode node)
+    public bool Match(JNode node, out string error)
     {
+        error = string.Empty;
         if(!Type.IsInstanceOfType(node)) return false;
-        if(this == DATE) return _Iso8601Date.IsValidDate((JString) node);
-        if(this == TIME) return _Iso8601Time.IsValidTime((JString) node);
+        if(this == DATE) return _Iso8601Date.IsValidDate((JString) node, out error);
+        if(this == TIME) return _Iso8601Time.IsValidTime((JString) node, out error);
         return true;
     }
 }

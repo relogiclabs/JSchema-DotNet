@@ -1,13 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <AssemblyName>RelogicLabs.JsonSchema.Tests</AssemblyName>
+        <Description>This project contains test cases for JsonSchema project.</Description>
+        <Authors>Relogic Labs</Authors>
+        <Company>Relogic Labs</Company>
+        <Version>1.7.0</Version>
+        <AssemblyVersion>1.7.0</AssemblyVersion>
+        <Copyright>Copyright © Relogic Labs. All rights reserved.</Copyright>
+        <NeutralLanguage>en</NeutralLanguage>
+        <TargetFrameworks>net5.0;net6.0;net7.0</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
-        <AssemblyName>RelogicLabs.JsonSchema.Tests</AssemblyName>
-        <Company>Relogic Labs</Company>
-        <RootNamespace />
+        <RootNamespace>RelogicLabs</RootNamespace>
+        <LangVersion>preview</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
