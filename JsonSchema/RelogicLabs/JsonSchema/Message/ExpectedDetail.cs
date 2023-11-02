@@ -3,7 +3,7 @@ using RelogicLabs.JsonSchema.Types;
 
 namespace RelogicLabs.JsonSchema.Message;
 
-public class ExpectedDetail : ContextDetail
+public sealed class ExpectedDetail : ContextDetail
 {
     public ExpectedDetail(Context context, string message)
         : base(context, message) { }

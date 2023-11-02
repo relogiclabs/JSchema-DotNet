@@ -5,7 +5,7 @@ using static System.DayOfWeek;
 
 namespace RelogicLabs.JsonSchema.Time;
 
-internal class DateTimeContext
+internal sealed class DateTimeContext
 {
     private const int PIVOT_YEAR = 50;
     private static readonly int[] _DaysInMonth = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
@@ -234,7 +234,7 @@ internal class DateTimeContext
     }
 
     private static bool IsLeapYear(int year)
-        => (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+        => (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
 
     private static int ToFourDigitYear(int year)
     {

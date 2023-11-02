@@ -6,7 +6,7 @@ using static RelogicLabs.JsonSchema.Message.ErrorCode;
 
 namespace RelogicLabs.JsonSchema.Functions;
 
-public partial class CoreFunctions
+public sealed partial class CoreFunctions
 {
     public bool Enum(JString target, params JString[] items)
     {

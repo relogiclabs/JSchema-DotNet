@@ -99,7 +99,7 @@ internal abstract class SegmentProcessor
     public abstract string Process(string input, IToken token, DateTimeContext context);
 
 
-    private class TextProcessor : SegmentProcessor
+    private sealed class TextProcessor : SegmentProcessor
     {
         public override string Process(string input, IToken token, DateTimeContext context)
         {
@@ -110,7 +110,7 @@ internal abstract class SegmentProcessor
         }
     }
 
-    private class SymbolProcessor : SegmentProcessor
+    private sealed class SymbolProcessor : SegmentProcessor
     {
         public override string Process(string input, IToken token, DateTimeContext context)
         {
@@ -120,7 +120,7 @@ internal abstract class SegmentProcessor
         }
     }
 
-    private class WhitespaceProcessor : SegmentProcessor
+    private sealed class WhitespaceProcessor : SegmentProcessor
     {
         public override string Process(string input, IToken token, DateTimeContext context)
         {
@@ -151,7 +151,7 @@ internal abstract class SegmentProcessor
         protected abstract void Process(Match match, DateTimeContext context);
     }
 
-    private class EraProcessor : SegmentRegexProcessor
+    private sealed class EraProcessor : SegmentRegexProcessor
     {
         public EraProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
@@ -162,7 +162,7 @@ internal abstract class SegmentProcessor
         }
     }
 
-    private class YearNumberProcessor : SegmentRegexProcessor
+    private sealed class YearNumberProcessor : SegmentRegexProcessor
     {
         public YearNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
@@ -174,7 +174,7 @@ internal abstract class SegmentProcessor
         }
     }
 
-    private class MonthNameProcessor : SegmentRegexProcessor
+    private sealed class MonthNameProcessor : SegmentRegexProcessor
     {
         public MonthNameProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
@@ -185,7 +185,7 @@ internal abstract class SegmentProcessor
         }
     }
 
-    private class MonthNumberProcessor : SegmentRegexProcessor
+    private sealed class MonthNumberProcessor : SegmentRegexProcessor
     {
         public MonthNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
@@ -196,7 +196,7 @@ internal abstract class SegmentProcessor
         }
     }
 
-    private class WeekdayProcessor : SegmentRegexProcessor
+    private sealed class WeekdayProcessor : SegmentRegexProcessor
     {
         public WeekdayProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
@@ -207,7 +207,7 @@ internal abstract class SegmentProcessor
         }
     }
 
-    private class DayNumberProcessor : SegmentRegexProcessor
+    private sealed class DayNumberProcessor : SegmentRegexProcessor
     {
         public DayNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
@@ -218,7 +218,7 @@ internal abstract class SegmentProcessor
         }
     }
 
-    private class ClockAmPmProcessor : SegmentRegexProcessor
+    private sealed class ClockAmPmProcessor : SegmentRegexProcessor
     {
         public ClockAmPmProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
@@ -229,7 +229,7 @@ internal abstract class SegmentProcessor
         }
     }
 
-    private class HourNumberProcessor : SegmentRegexProcessor
+    private sealed class HourNumberProcessor : SegmentRegexProcessor
     {
         public HourNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
@@ -240,7 +240,7 @@ internal abstract class SegmentProcessor
         }
     }
 
-    private class MinuteNumberProcessor : SegmentRegexProcessor
+    private sealed class MinuteNumberProcessor : SegmentRegexProcessor
     {
         public MinuteNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
@@ -251,7 +251,7 @@ internal abstract class SegmentProcessor
         }
     }
 
-    private class SecondNumberProcessor : SegmentRegexProcessor
+    private sealed class SecondNumberProcessor : SegmentRegexProcessor
     {
         public SecondNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
@@ -262,7 +262,7 @@ internal abstract class SegmentProcessor
         }
     }
 
-    private class FractionNumberProcessor : SegmentRegexProcessor
+    private sealed class FractionNumberProcessor : SegmentRegexProcessor
     {
         public FractionNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
@@ -273,7 +273,7 @@ internal abstract class SegmentProcessor
         }
     }
 
-    private class UtcOffsetHourProcessor : SegmentRegexProcessor
+    private sealed class UtcOffsetHourProcessor : SegmentRegexProcessor
     {
         public UtcOffsetHourProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
@@ -285,7 +285,7 @@ internal abstract class SegmentProcessor
         }
     }
 
-    private class UtcOffsetTimeProcessor : SegmentRegexProcessor
+    private sealed class UtcOffsetTimeProcessor : SegmentRegexProcessor
     {
         public UtcOffsetTimeProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)

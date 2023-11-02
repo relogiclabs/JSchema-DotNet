@@ -8,7 +8,7 @@ using static RelogicLabs.JsonSchema.Message.ErrorCode;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
-internal class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
+internal sealed class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
 {
     private readonly Dictionary<JNode, JNode> _relations = new();
     private readonly RuntimeContext _runtime;
@@ -35,7 +35,7 @@ internal class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
             Relations = _relations,
             Context = new Context(context, _runtime),
             Includes = ProcessIncludes(Array.Empty<SchemaParser.IncludeContext>()),
-            Value = Visit(context.validator()),
+            Value = Visit(context.validator())
         }.Build();
 
     private List<JInclude> ProcessIncludes(SchemaParser.IncludeContext[] contexts)
@@ -171,8 +171,8 @@ internal class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
             Relations = _relations,
             Context = new Context(context, _runtime),
             JsonType = JsonType.From(context.DATATYPE()),
-            Alias = (JAlias) Visit(context.aliasName()),
-            Nested = context.STAR() != null
+            Nested = context.STAR() != null,
+            Alias = (JAlias) Visit(context.aliasName())
         }.Build();
 
     public override JNode VisitFunction(SchemaParser.FunctionContext context)
@@ -181,8 +181,8 @@ internal class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
             Relations = _relations,
             Context = new Context(context, _runtime),
             Name = context.FUNCTION().GetText(),
-            Arguments = context.value().Select(Visit).ToList().AsReadOnly(),
-            Nested = context.STAR() != null
+            Nested = context.STAR() != null,
+            Arguments = context.value().Select(Visit).ToList().AsReadOnly()
         }.Build();
 
     public override JNode VisitPrimitiveTrue(SchemaParser.PrimitiveTrueContext context)

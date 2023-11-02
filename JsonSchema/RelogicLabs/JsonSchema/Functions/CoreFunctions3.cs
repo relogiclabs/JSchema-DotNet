@@ -8,7 +8,7 @@ using static RelogicLabs.JsonSchema.Message.ErrorCode;
 
 namespace RelogicLabs.JsonSchema.Functions;
 
-public partial class CoreFunctions
+public sealed partial class CoreFunctions
 {
     // Based on SMTP protocol RFC 5322
     private static readonly Regex EmailRegex = new(
@@ -85,15 +85,15 @@ public partial class CoreFunctions
         // Handle Uri based on RFC 3986
         bool result = Uri.TryCreate(target, UriKind.Absolute, out Uri? uriResult);
         if(!result || uriResult == null) return FailWith(new JsonSchemaException(
-            new ErrorDetail(URLA01, $"Invalid url address"),
+            new ErrorDetail(URLA01, "Invalid url address"),
             new ExpectedDetail(Function, "a valid url address"),
             new ActualDetail(target, $"found {target} that is invalid")));
         result &= uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps;
         if(!result) return FailWith(new JsonSchemaException(
             new ErrorDetail(URLA02, "Invalid url address scheme"),
             new ExpectedDetail(Function, "HTTP or HTTPS scheme"),
-            new ActualDetail(target, $"found {uriResult.Scheme.Quote()} from {target} " +
-                                     $"that has invalid scheme")));
+            new ActualDetail(target, $"found {uriResult.Scheme.Quote()} from {
+                target} that has invalid scheme")));
         return true;
     }
 
@@ -101,15 +101,15 @@ public partial class CoreFunctions
     {
         bool result = Uri.TryCreate(target, UriKind.Absolute, out Uri? uriResult);
         if(!result || uriResult == null) return FailWith(
-            new JsonSchemaException(new ErrorDetail(URLA03, $"Invalid url address"),
+            new JsonSchemaException(new ErrorDetail(URLA03, "Invalid url address"),
             new ExpectedDetail(Function, "a valid url address"),
             new ActualDetail(target, $"found {target} that is invalid")));
         result &= uriResult.Scheme.Equals(scheme);
         if(!result) return FailWith(new JsonSchemaException(
             new ErrorDetail(URLA04, "Mismatch url address scheme"),
             new ExpectedDetail(Function, $"scheme {scheme} for url address"),
-            new ActualDetail(target, $"found {uriResult.Scheme.Quote()} from {target} " +
-                                     $"that does not matched")));
+            new ActualDetail(target, $"found {uriResult.Scheme.Quote()} from {
+                target} that does not matched")));
         return true;
     }
 

@@ -1,6 +1,6 @@
 namespace RelogicLabs.JsonSchema.Message;
 
-public class ErrorDetail
+public sealed class ErrorDetail
 {
     internal const string ValidationFailed = "Validation failed";
     internal const string ValueMismatch = "Value mismatch";

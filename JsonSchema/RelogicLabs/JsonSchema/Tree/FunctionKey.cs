@@ -4,7 +4,7 @@ using RelogicLabs.JsonSchema.Utilities;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
-internal record FunctionKey(string FunctionName, int ParameterCount)
+internal sealed record FunctionKey(string FunctionName, int ParameterCount)
 {
     public const char EscapedPrefix = '_';
 
@@ -15,5 +15,5 @@ internal record FunctionKey(string FunctionName, int ParameterCount)
         : this(GetFunctionName(methodInfo), parameterCount) { }
 
     private static string GetFunctionName(MethodInfo methodInfo)
-        => '@' + methodInfo.Name.TrimStart(EscapedPrefix).ToLowerFirstLetter();
+        => '@' + methodInfo.Name.TrimStart(EscapedPrefix).Uncapitalize();
 }
