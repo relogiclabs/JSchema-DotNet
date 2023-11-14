@@ -8,16 +8,16 @@ using static RelogicLabs.JsonSchema.Time.SegmentProcessor;
 
 namespace RelogicLabs.JsonSchema.Time;
 
-internal sealed class DateTimeValidator
+internal sealed class DateTimeParser
 {
-    public const string ISO_8601_DATE = "YYYY-MM-DD";
-    public const string ISO_8601_TIME = "YYYY-MM-DD'T'hh:mm:ss.FZZ";
-
     private static readonly Dictionary<string, SegmentProcessor> _Processors = new();
     private readonly DateTimeLexer _dateTimeLexer;
     private readonly IList<IToken> _lexerTokens;
 
-    static DateTimeValidator()
+    public string Pattern { get; }
+    public DateTimeType Type { get; }
+
+    static DateTimeParser()
     {
         AddProcessor(TEXT, Text);
         AddProcessor(SYMBOL, Symbol);
@@ -55,15 +55,17 @@ internal sealed class DateTimeValidator
     private static void AddProcessor(int index, SegmentProcessor processor)
         => _Processors.Add(ruleNames[index - 1], processor);
 
-    public DateTimeValidator(string pattern)
+    public DateTimeParser(string pattern, DateTimeType type)
     {
+        Pattern = pattern;
+        Type = type;
         _dateTimeLexer = new DateTimeLexer(CharStreams.fromString(pattern));
         _dateTimeLexer.RemoveErrorListeners();
         _dateTimeLexer.AddErrorListener(LexerErrorListener.DateTime);
         _lexerTokens = _dateTimeLexer.GetAllTokens();
     }
 
-    private void Validate(string input, DateTimeContext context)
+    private JsonDateTime Parse(string input, DateTimeContext context)
     {
         foreach(var token in _lexerTokens)
         {
@@ -73,45 +75,26 @@ internal sealed class DateTimeValidator
         if(input.Length != 0) throw new InvalidDateTimeException(ErrorCode.DINV02,
             $"Invalid {context.Type} input format");
 
-        context.Validate();
+        var dateTime = context.Validate();
         DebugUtilities.Print(context);
+        return dateTime;
     }
 
-    public void ValidateDate(string input)
-        => Validate(input, new DateTimeContext(DateTimeType.DATE_TYPE));
+    public JsonDateTime Parse(string input)
+        => Parse(input, new DateTimeContext(Type));
 
-    public void ValidateTime(string input)
-        => Validate(input, new DateTimeContext(DateTimeType.TIME_TYPE));
-
-    public bool IsValidDate(string input, out string error)
+    public JsonDateTime? TryParse(string input, out string error)
     {
         error = string.Empty;
         try
         {
-            ValidateDate(input);
-            return true;
+            return Parse(input);
         }
         catch(InvalidDateTimeException ex)
         {
             DebugUtilities.Print(ex);
             error = ex.Message;
-            return false;
-        }
-    }
-
-    public bool IsValidTime(string input, out string error)
-    {
-        error = string.Empty;
-        try
-        {
-            ValidateTime(input);
-            return true;
-        }
-        catch(InvalidDateTimeException ex)
-        {
-            DebugUtilities.Print(ex);
-            error = ex.Message;
-            return false;
+            return null;
         }
     }
 }

@@ -103,6 +103,14 @@ pre code { font-size: 1.1em; }
 <p>The default value of this directive is <code>false</code>, which means that by default, undefined properties in the JSON document are not ignored, and validation errors will be raised for them. For example, the following usage of this directive instructs the validation process to ignore any undefined properties in the JSON document:</p>
 <pre><code class="lang-stylus">%pragma IgnoreUndefinedProperties: true
 </code></pre>
+<h3 id="date-data-type-format">Date Data Type Format</h3>
+<p>The <code>DateDataTypeFormat</code> pragma directive enables you to customize the default format of the <code>#date</code> data type. By default, the <code>#date</code> data type follows the ISO 8601 standard, precisely using the format <code>YYYY-MM-DD</code>. Additional details on date-time patterns and formats are available <a href="/JsonSchema-DotNet/articles/datetime.html">here</a>. The subsequent example illustrates the process of defining a customized date format for the <code>#date</code> data type:</p>
+<pre><code class="lang-stylus">%pragma DateDataTypeFormat: &quot;DD-MM-YYYY&quot;
+</code></pre>
+<h3 id="time-data-type-format">Time Data Type Format</h3>
+<p>To customize the default format of the <code>#time</code> data type, utilize the <code>TimeDataTypeFormat</code> pragma directive. By default, the <code>#time</code> data type follows the ISO 8601 standard, precisely in the format <code>YYYY-MM-DD'T'hh:mm:ss.FZZ</code>. Further information on date-time patterns and formats can be found <a href="/JsonSchema-DotNet/articles/datetime.html">here</a>. The following example demonstrates how to specify a customized time format for the <code>#time</code> data type:</p>
+<pre><code class="lang-stylus">%pragma TimeDataTypeFormat: &quot;DD-MM-YYYY hh:mm:ss&quot;
+</code></pre>
 <h3 id="floating-point-tolerance">Floating Point Tolerance</h3>
 <p>The <code>FloatingPointTolerance</code> pragma directive allows you to define the tolerance level for relative errors in floating-point numbers during calculations and computations carried out by the validation process. By default, this directive is set to <code>1E-10</code>, indicating a small tolerance. However, you have the flexibility to adjust this value to any desired number. To specify a custom tolerance value of <code>1E-07</code>, you can use the following notation as an example:</p>
 <pre><code class="lang-stylus">%pragma FloatingPointTolerance: 1E-07

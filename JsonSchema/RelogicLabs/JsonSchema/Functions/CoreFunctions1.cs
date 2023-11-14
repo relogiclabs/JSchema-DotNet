@@ -14,9 +14,9 @@ public sealed partial class CoreFunctions : FunctionBase
     {
         var _length = target.Value.Length;
         if(_length != length) return FailWith(new JsonSchemaException(
-                new ErrorDetail(SLEN01, "Invalid string length"),
-                new ExpectedDetail(Function, $"length {length}"),
-                new ActualDetail(target, $"found {_length} for {target}")));
+                new ErrorDetail(SLEN01, $"Invalid length of string {target}"),
+                new ExpectedDetail(Function, $"a string of length {length}"),
+                new ActualDetail(target, $"found {_length} which does not match")));
         return true;
     }
 
@@ -24,9 +24,9 @@ public sealed partial class CoreFunctions : FunctionBase
     {
         var _length = target.Elements.Count;
         if(_length != length) return FailWith(new JsonSchemaException(
-                new ErrorDetail(ALEN01, "Invalid array length"),
-                new ExpectedDetail(Function, $"length {length}"),
-                new ActualDetail(target, $"found {_length} for {target.GetOutline()}")));
+                new ErrorDetail(ALEN01, $"Invalid length of array {target.GetOutline()}"),
+                new ExpectedDetail(Function, $"an array of length {length}"),
+                new ActualDetail(target, $"found {_length} which does not match")));
         return true;
     }
 
@@ -34,9 +34,9 @@ public sealed partial class CoreFunctions : FunctionBase
     {
         var _length = target.Properties.Count;
         if(_length != length) return FailWith(new JsonSchemaException(
-                new ErrorDetail(OLEN01, "Invalid object size or length"),
-                new ExpectedDetail(Function, $"length {length}"),
-                new ActualDetail(target, $"found {_length} for {target.GetOutline()}")));
+                new ErrorDetail(OLEN01, $"Invalid size or length of object {target.GetOutline()}"),
+                new ExpectedDetail(Function, $"an object of length {length}"),
+                new ActualDetail(target, $"found {_length} which does not match")));
         return true;
     }
 

@@ -345,6 +345,58 @@ table th:first-of-type { min-width: 140px; }
 <pre><code>#string target - @time(pattern)
 </code></pre>
 <p>Both the <code>@date</code> and <code>@time</code> functions support a complete range of date-time patterns, enabling the precise definition of any date and time scenario. Therefore, these functions can be used interchangeably. When the sole consideration is the date or day of the month in a year, employing the <code>@date</code> function is the more convenient choice. In contrast, when it becomes necessary to specify a particular time on a date, the <code>@time</code> function is the more appropriate option. To learn more about date-time patterns, please refer to <a href="/JsonSchema-DotNet/articles/datetime.html">this page</a>.</p>
+<h3 id="date-and-time-range">Date and Time Range</h3>
+<pre><code class="lang-stylus">#datetime target - @range(#string start, #string end)
+</code></pre>
+<p>Validates that the <code>target</code> date-time satisfies the range requirement specified by the parameters. It checks that the <code>target</code> date-time is from or after the <code>start</code> date-time specified and simultaneously until and before the <code>end</code> date-time specified. If not, a validation error will generate. The <code>start</code> and <code>end</code> parameters must be the string representation of the <code>target</code> data type, which can either be a <code>#date</code> or <code>#time</code> type.</p>
+<p>If either the parameter values for <code>start</code> or <code>end</code> are unspecified or undefined, the <code>undefined</code> symbol <code>!</code> can be used in place of either of these parameters. The following examples illustrate the various use cases of the <code>@range</code> function of the two variations described above, for the target type:</p>
+<table>
+<thead>
+<tr>
+<th>Ues Cases</th>
+<th>Valid Values</th>
+<th>Invalid Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@range(&quot;2010-01-01&quot;, &quot;2010-12-31&quot;)</code></td>
+<td><code>2010-01-01</code>; <code>2010-06-30</code>; <code>2010-12-31</code></td>
+<td><code>2009-12-31</code>; <code>2011-01-01</code>; <code>2030-11-05</code></td>
+</tr>
+<tr>
+<td><code>@range(&quot;2010-01-01T00:00:00.000Z&quot;, &quot;2010-12-31T23:59:59.999Z&quot;)</code></td>
+<td><code>2010-01-01T00:00:00.000Z</code>; <code>2010-12-31T23:59:59.999Z</code></td>
+<td><code>2009-12-31T23:59:59.999Z</code></td>
+</tr>
+<tr>
+<td><code>@range(!, &quot;2010-12-31&quot;)</code></td>
+<td><code>1990-01-01</code>; <code>2010-12-31</code></td>
+<td><code>2011-01-01</code>; <code>2030-11-05</code></td>
+</tr>
+<tr>
+<td><code>@range(&quot;2010-01-01&quot;, !)</code></td>
+<td><code>2010-01-01</code>; <code>2030-11-05</code></td>
+<td><code>1990-01-01</code>; <code>2009-12-31</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="date-and-time-start">Date and Time Start</h3>
+<pre><code class="lang-stylus">#datetime target - @start(#string reference)
+</code></pre>
+<p>Validates that the <code>target</code> date-time starts from or finds after the specified <code>reference</code> date-time parameter. If the <code>target</code> date-time finds before the <code>reference</code> date-time, a validation error is triggered. The <code>reference</code> parameter must be the string representation of the <code>target</code> data type, which can either be a <code>#date</code> or <code>#time</code> type.</p>
+<h3 id="date-and-time-end">Date and Time End</h3>
+<pre><code class="lang-stylus">#datetime target - @end(#string reference)
+</code></pre>
+<p>Validates that the <code>target</code> date-time finds before or ends at the specified <code>reference</code> date-time parameter. If the <code>target</code> date-time finds after the <code>reference</code> date-time, a validation error is triggered. The <code>reference</code> parameter must be the string representation of the <code>target</code> data type, which can either be a <code>#date</code> or <code>#time</code> type.</p>
+<h3 id="date-and-time-before">Date and Time Before</h3>
+<pre><code class="lang-stylus">#datetime target - @before(#string reference)
+</code></pre>
+<p>Validates that the <code>target</code> date-time is exclusively before the <code>reference</code> date-time. If the <code>target</code> date-time finds on or after the <code>reference</code> date-time, a validation error is triggered. The <code>reference</code> parameter must be the string representation of the <code>target</code> data type, which can either be a <code>#date</code> or <code>#time</code> type.</p>
+<h3 id="date-and-time-after">Date and Time After</h3>
+<pre><code class="lang-stylus">#datetime target - @after(#string reference)
+</code></pre>
+<p>Validates that the <code>target</code> date-time is exclusively after the <code>reference</code> date-time. If the <code>target</code> date-time finds on or before the <code>reference</code> date-time, a validation error is triggered. The <code>reference</code> parameter must be the string representation of the <code>target</code> data type, which can either be a <code>#date</code> or <code>#time</code> type.</p>
 <h3 id="number-positive">Number Positive</h3>
 <pre><code class="lang-stylus">#number target - @positive
 </code></pre>

@@ -2,6 +2,7 @@ using System.Text;
 using RelogicLabs.JsonSchema.Exceptions;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 using static System.DayOfWeek;
+using static RelogicLabs.JsonSchema.Time.JsonDateTime;
 
 namespace RelogicLabs.JsonSchema.Time;
 
@@ -48,20 +49,18 @@ internal sealed class DateTimeContext
         _Weekdays[key2] = value;
     }
 
-    private const int _UNSET = -100;
-
-    private int _era = _UNSET;
-    private int _year = _UNSET;
-    private int _month = _UNSET;
-    private int _weekday = _UNSET;
-    private int _day = _UNSET;
-    private int _amPm = _UNSET;
-    private int _hour = _UNSET;
-    private int _minute = _UNSET;
-    private int _second = _UNSET;
-    private int _fraction = _UNSET;
-    private int _utcOffsetHour = _UNSET;
-    private int _utcOffsetMinute = _UNSET;
+    private int _era = UNSET;
+    private int _year = UNSET;
+    private int _month = UNSET;
+    private int _weekday = UNSET;
+    private int _day = UNSET;
+    private int _amPm = UNSET;
+    private int _hour = UNSET;
+    private int _minute = UNSET;
+    private int _second = UNSET;
+    private int _fraction = UNSET;
+    private int _utcHour = UNSET;
+    private int _utcMinute = UNSET;
 
     public DateTimeType Type { get; }
 
@@ -122,7 +121,7 @@ internal sealed class DateTimeContext
             _ => throw new InvalidDateTimeException(DTAP02,
                 $"Invalid {Type} hour AM/PM input")
         };
-        if(_hour != _UNSET && _hour is < 1 or > 12)
+        if(_hour != UNSET && _hour is < 1 or > 12)
             throw new InvalidDateTimeException(DHUR03,
                 $"Invalid {Type} hour AM/PM out of range");
         SetField(ref _amPm, amPmNum);
@@ -130,7 +129,7 @@ internal sealed class DateTimeContext
 
     public void SetHour(int hour)
     {
-        if(_amPm != _UNSET && _hour is < 1 or > 12)
+        if(_amPm != UNSET && _hour is < 1 or > 12)
             throw new InvalidDateTimeException(DHUR04,
                 $"Invalid {Type} hour AM/PM out of range");
         if(hour is < 0 or > 23)
@@ -161,39 +160,41 @@ internal sealed class DateTimeContext
             $"Invalid {Type} UTC offset hour out of range");
         if(minute is < 0 or > 59) throw new InvalidDateTimeException(DUTC05,
             $"Invalid {Type} UTC offset minute out of range");
-        SetField(ref _utcOffsetHour, hour);
-        SetField(ref _utcOffsetMinute, minute);
+        SetField(ref _utcHour, hour);
+        SetField(ref _utcMinute, minute);
     }
 
     private void SetField(ref int field, int value)
     {
-        if(field != _UNSET && field != value)
+        if(field != UNSET && field != value)
             throw new InvalidDateTimeException(DCNF01,
                 $"Conflicting {Type} segments input");
         field = value;
     }
 
     private static bool IsAllSet(params int[] values)
-        => values.All(value => value != _UNSET);
+        => values.All(value => value != UNSET);
 
-    public void Validate()
+    public JsonDateTime Validate()
     {
         try
         {
-            DateTime dateTime;
             if(IsAllSet(_year, _month, _day))
             {
                 _DaysInMonth[2] = IsLeapYear(_year)? 29 : 28;
                 if(_day < 1 || _day > _DaysInMonth[_month])
                     throw new InvalidDateTimeException(DDAY03,
                         $"Invalid {Type} day out of range");
-                dateTime = new DateTime(_year, _month, _day);
-                if(_weekday != _UNSET && (int) dateTime.DayOfWeek != _weekday)
+                JsonDateTime dateTime = new(Type, _year, _month, _day);
+                if(_weekday != UNSET && (int?) dateTime.GetDayOfWeek() != _weekday)
                     throw new InvalidDateTimeException(DWKD03, $"Invalid {Type} weekday input");
             }
+            if(IsAllSet(_hour, _amPm)) ConvertTo24Hour();
+            if(_hour != UNSET && _hour is < 0 or > 23)
+                throw new InvalidDateTimeException(DHUR05, $"Invalid {Type} hour out of range");
 
-            if(IsAllSet(_year, _month)) dateTime = new DateTime(_year, _month, 1);
-            if(IsAllSet(_year)) dateTime = new DateTime(_year, 1, 1);
+            return new JsonDateTime(Type, _year, _month, _day, _hour, _minute, _second,
+                _fraction, _utcHour, _utcMinute);
         }
         catch(InvalidDateTimeException) { throw; }
         catch(Exception ex)
@@ -201,10 +202,6 @@ internal sealed class DateTimeContext
             throw new InvalidDateTimeException(DINV01,
                 $"Invalid {Type} year, month or day out of range", ex);
         }
-
-        if(IsAllSet(_hour, _amPm)) ConvertTo24Hour();
-        if(_hour != _UNSET && _hour is < 0 or > 23)
-            throw new InvalidDateTimeException(DHUR05, $"Invalid {Type} hour out of range");
     }
 
     private void ConvertTo24Hour()
@@ -216,18 +213,18 @@ internal sealed class DateTimeContext
     public override string ToString()
     {
         StringBuilder builder = new("{");
-        if(_era != _UNSET) builder.Append($"Era: {_era}, ");
-        if(_year != _UNSET) builder.Append($"Year: {_year}, ");
-        if(_month != _UNSET) builder.Append($"Month: {_month}, ");
-        if(_weekday != _UNSET) builder.Append($"Weekday: {_weekday}, ");
-        if(_day != _UNSET) builder.Append($"Day: {_day}, ");
-        if(_amPm != _UNSET) builder.Append($"AM/PM: {_amPm}, ");
-        if(_hour != _UNSET) builder.Append($"Hour: {_hour}, ");
-        if(_minute != _UNSET) builder.Append($"Minute: {_minute}, ");
-        if(_second != _UNSET) builder.Append($"Second: {_second}, ");
-        if(_fraction != _UNSET) builder.Append($"Fraction: {_fraction}, ");
-        if(_utcOffsetHour != _UNSET) builder.Append($"UTC Offset Hour: {_utcOffsetHour}, ");
-        if(_utcOffsetMinute != _UNSET) builder.Append($"UTC Offset Minute: {_utcOffsetMinute}, ");
+        if(_era != UNSET) builder.Append($"Era: {_era}, ");
+        if(_year != UNSET) builder.Append($"Year: {_year}, ");
+        if(_month != UNSET) builder.Append($"Month: {_month}, ");
+        if(_weekday != UNSET) builder.Append($"Weekday: {_weekday}, ");
+        if(_day != UNSET) builder.Append($"Day: {_day}, ");
+        if(_amPm != UNSET) builder.Append($"AM/PM: {_amPm}, ");
+        if(_hour != UNSET) builder.Append($"Hour: {_hour}, ");
+        if(_minute != UNSET) builder.Append($"Minute: {_minute}, ");
+        if(_second != UNSET) builder.Append($"Second: {_second}, ");
+        if(_fraction != UNSET) builder.Append($"Fraction: {_fraction}, ");
+        if(_utcHour != UNSET) builder.Append($"UTC Offset Hour: {_utcHour}, ");
+        if(_utcMinute != UNSET) builder.Append($"UTC Offset Minute: {_utcMinute}, ");
         var result = builder.ToString();
         if(result.EndsWith(", ")) result = result[..^2];
         return result + "}";

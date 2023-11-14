@@ -189,4 +189,109 @@ public class ArrayTests
         Assert.AreEqual(NEMT02, exception.Code);
         Console.WriteLine(exception);
     }
+
+    [TestMethod]
+    public void When_JsonWrongLengthInObject_ExceptionThrown()
+    {
+        var schema =
+            """
+            @length*(2) #array* #object
+            """;
+        var json =
+            """
+            {
+                "key1": [10, 20],
+                "key2": [10]
+            }
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(ALEN01, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_JsonWrongMinimumLengthInObject_ExceptionThrown()
+    {
+        var schema =
+            """
+            @length*(2, 4) #array* #object
+            """;
+        var json =
+            """
+            {
+                "key1": [10, 20],
+                "key2": [10]
+            }
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(ALEN02, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_JsonWrongMaximumLengthInObject_ExceptionThrown()
+    {
+        var schema =
+            """
+            @length*(2, 4) #array* #object
+            """;
+        var json =
+            """
+            {
+                "key1": [10, 20],
+                "key2": [10, 20, 30, 40, 50]
+            }
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(ALEN03, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_JsonWrongMinimumLengthWithUndefinedInObject_ExceptionThrown()
+    {
+        var schema =
+            """
+            @length*(2, !) #array* #object
+            """;
+        var json =
+            """
+            {
+                "key1": [10, 20],
+                "key2": [10]
+            }
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(ALEN04, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_JsonWrongMaximumLengthWithUndefinedInObject_ExceptionThrown()
+    {
+        var schema =
+            """
+            @length*(!, 4) #array* #object
+            """;
+        var json =
+            """
+            {
+                "key1": [10, 20],
+                "key2": [10, 20, 30, 40, 50]
+            }
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(ALEN05, exception.Code);
+        Console.WriteLine(exception);
+    }
 }

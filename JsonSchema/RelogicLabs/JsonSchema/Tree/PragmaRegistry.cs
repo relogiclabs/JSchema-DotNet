@@ -1,15 +1,19 @@
 using RelogicLabs.JsonSchema.Exceptions;
 using RelogicLabs.JsonSchema.Message;
+using RelogicLabs.JsonSchema.Time;
 using RelogicLabs.JsonSchema.Types;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
+using static RelogicLabs.JsonSchema.Time.DateTimeType;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
-internal sealed class PragmaManager
+public sealed class PragmaRegistry
 {
-    public const string IGNORE_UNDEFINED_PROPERTIES = "IgnoreUndefinedProperties";
-    public const string FLOATING_POINT_TOLERANCE = "FloatingPointTolerance";
-    public const string IGNORE_OBJECT_PROPERTY_ORDER = "IgnoreObjectPropertyOrder";
+    private const string IGNORE_UNDEFINED_PROPERTIES = "IgnoreUndefinedProperties";
+    private const string FLOATING_POINT_TOLERANCE = "FloatingPointTolerance";
+    private const string IGNORE_OBJECT_PROPERTY_ORDER = "IgnoreObjectPropertyOrder";
+    private const string DATE_DATA_TYPE_FORMAT = "DateDataTypeFormat";
+    private const string TIME_DATA_TYPE_FORMAT = "TimeDataTypeFormat";
 
     private readonly Dictionary<string, JPragma> _pragmas = new();
 
@@ -19,6 +23,19 @@ internal sealed class PragmaManager
         = PragmaDescriptor.FloatingPointTolerance.DefaultValue;
     public bool IgnoreObjectPropertyOrder { get; private set; }
         = PragmaDescriptor.IgnoreObjectPropertyOrder.DefaultValue;
+    public string DateDataTypeFormat { get; private set; }
+        = PragmaDescriptor.DateDataTypeFormat.DefaultValue;
+    public string TimeDataTypeFormat { get; private set; }
+        = PragmaDescriptor.TimeDataTypeFormat.DefaultValue;
+
+    internal DateTimeParser DateTypeParser { get; private set; }
+    internal DateTimeParser TimeTypeParser { get; private set; }
+
+    public PragmaRegistry()
+    {
+        DateTypeParser = new DateTimeParser(DateDataTypeFormat, DATE_TYPE);
+        TimeTypeParser = new DateTimeParser(TimeDataTypeFormat, TIME_TYPE);
+    }
 
     public JPragma AddPragma(JPragma pragma) {
         if(_pragmas.ContainsKey(pragma.Name))
@@ -39,6 +56,14 @@ internal sealed class PragmaManager
                 break;
             case IGNORE_OBJECT_PROPERTY_ORDER:
                 IgnoreObjectPropertyOrder = ((IPragmaValue<bool>) value).Value;
+                break;
+            case DATE_DATA_TYPE_FORMAT:
+                DateDataTypeFormat = ((IPragmaValue<string>) value).Value;
+                DateTypeParser = new DateTimeParser(DateDataTypeFormat, DATE_TYPE);
+                break;
+            case TIME_DATA_TYPE_FORMAT:
+                TimeDataTypeFormat = ((IPragmaValue<string>) value).Value;
+                TimeTypeParser = new DateTimeParser(TimeDataTypeFormat, TIME_TYPE);
                 break;
         }
     }

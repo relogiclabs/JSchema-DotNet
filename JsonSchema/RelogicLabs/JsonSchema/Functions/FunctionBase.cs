@@ -11,6 +11,6 @@ public abstract class FunctionBase
 
     protected FunctionBase(RuntimeContext runtime) => Runtime = runtime;
 
-    protected bool FailWith(JsonSchemaException exception)
+    public bool FailWith(JsonSchemaException exception)
         => Runtime.FailWith(exception);
 }

@@ -1,12 +1,21 @@
+using RelogicLabs.JsonSchema.Types;
+using static RelogicLabs.JsonSchema.Types.JsonType;
+
 namespace RelogicLabs.JsonSchema.Time;
 
-internal sealed class DateTimeType
+public sealed class DateTimeType
 {
-    public static readonly DateTimeType DATE_TYPE = new("date");
-    public static readonly DateTimeType TIME_TYPE = new("time");
+    public static readonly DateTimeType DATE_TYPE = new("date", DATE);
+    public static readonly DateTimeType TIME_TYPE = new("time", TIME);
 
-    private string Name { get; }
+    public string Name { get; }
+    public JsonType Type { get; }
 
-    private DateTimeType(string name) => Name = name;
+    private DateTimeType(string name, JsonType type)
+    {
+        Name = name;
+        Type = type;
+    }
+
     public override string ToString() => Name;
 }

@@ -2,12 +2,16 @@ namespace RelogicLabs.JsonSchema.Message;
 
 internal static class ErrorCode
 {
+    public const string AFTR01 = "AFTR01";
+    public const string AFTR02 = "AFTR02";
     public const string ALEN01 = "ALEN01";
     public const string ALEN02 = "ALEN02";
     public const string ALEN03 = "ALEN03";
     public const string ALEN04 = "ALEN04";
     public const string ALEN05 = "ALEN05";
     public const string ARRY01 = "ARRY01";
+    public const string BFOR01 = "BFOR01";
+    public const string BFOR02 = "BFOR02";
     public const string BOOL01 = "BOOL01";
     public const string CLAS01 = "CLAS01";
     public const string CLAS02 = "CLAS02";
@@ -58,6 +62,14 @@ internal static class ErrorCode
     public const string DMON03 = "DMON03";
     public const string DMON04 = "DMON04";
     public const string DMON05 = "DMON05";
+    public const string DRNG01 = "DRNG01";
+    public const string DRNG02 = "DRNG02";
+    public const string DRNG03 = "DRNG03";
+    public const string DRNG04 = "DRNG04";
+    public const string DRNG05 = "DRNG05";
+    public const string DRNG06 = "DRNG06";
+    public const string DRNG07 = "DRNG07";
+    public const string DRNG08 = "DRNG08";
     public const string DSEC01 = "DSEC01";
     public const string DSEC02 = "DSEC02";
     public const string DSEC03 = "DSEC03";
@@ -87,6 +99,8 @@ internal static class ErrorCode
     public const string DYAR03 = "DYAR03";
     public const string ELEM01 = "ELEM01";
     public const string EMAL01 = "EMAL01";
+    public const string ENDE01 = "ENDE01";
+    public const string ENDE02 = "ENDE02";
     public const string ENUM01 = "ENUM01";
     public const string ENUM02 = "ENUM02";
     public const string FLOT01 = "FLOT01";
@@ -140,6 +154,8 @@ internal static class ErrorCode
     public const string SLEX01 = "SLEX01";
     public const string SPRS01 = "SPRS01";
     public const string STRN01 = "STRN01";
+    public const string STRT01 = "STRT01";
+    public const string STRT02 = "STRT02";
     public const string URLA01 = "URLA01";
     public const string URLA02 = "URLA02";
     public const string URLA03 = "URLA03";

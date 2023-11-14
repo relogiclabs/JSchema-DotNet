@@ -37,6 +37,18 @@ The default value of this directive is `false`, which means that by default, und
 %pragma IgnoreUndefinedProperties: true
 ```
 
+### Date Data Type Format
+The `DateDataTypeFormat` pragma directive enables you to customize the default format of the `#date` data type. By default, the `#date` data type follows the ISO 8601 standard, precisely using the format `YYYY-MM-DD`. Additional details on date-time patterns and formats are available [here](/JsonSchema-DotNet/articles/datetime.html). The subsequent example illustrates the process of defining a customized date format for the `#date` data type:
+```stylus
+%pragma DateDataTypeFormat: "DD-MM-YYYY"
+```
+
+### Time Data Type Format
+To customize the default format of the `#time` data type, utilize the `TimeDataTypeFormat` pragma directive. By default, the `#time` data type follows the ISO 8601 standard, precisely in the format `YYYY-MM-DD'T'hh:mm:ss.FZZ`. Further information on date-time patterns and formats can be found [here](/JsonSchema-DotNet/articles/datetime.html). The following example demonstrates how to specify a customized time format for the `#time` data type:
+```stylus
+%pragma TimeDataTypeFormat: "DD-MM-YYYY hh:mm:ss"
+```
+
 ### Floating Point Tolerance
 The `FloatingPointTolerance` pragma directive allows you to define the tolerance level for relative errors in floating-point numbers during calculations and computations carried out by the validation process. By default, this directive is set to `1E-10`, indicating a small tolerance. However, you have the flexibility to adjust this value to any desired number. To specify a custom tolerance value of `1E-07`, you can use the following notation as an example:
 ```stylus

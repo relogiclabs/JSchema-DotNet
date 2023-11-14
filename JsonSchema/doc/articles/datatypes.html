@@ -85,19 +85,25 @@ pre code { font-size: 1.1em; }
 <p>In the schema document, data types are denoted by the <code>#</code> prefix. Here is an outline of all data types, including their subtypes, used in the schema document to validate a JSON document. When using multiple data types for validation, it indicates that the JSON value is considered valid if it complies with any of the specified alternative data types. All of these data types and their subtypes offer the flexibility of selecting the most appropriate type based on requirements.</p>
 <pre><code class="lang-stylus">#any
  ┬
- ├ #object
- ├ #array
- ├ #string
+ ├ #primitive
  │  ┬
- │  ├ #date
- │  └ #time
- ├ #number
- │  ┬
- │  ├ #integer
- │  ├ #float
- │  └ #double  
- ├ #boolean
- └ #null
+ │  ├ #string
+ │  │  ┬
+ │  │  └ #datetime
+ │  │     ┬
+ │  │     ├ #date
+ │  │     └ #time
+ │  ├ #number
+ │  │  ┬
+ │  │  ├ #integer
+ │  │  ├ #float
+ │  │  └ #double  
+ │  ├ #boolean
+ │  └ #null  
+ └ #composite
+    ┬
+    ├ #array
+    └ #object
 </code></pre>
 <h3 id="the-any-data-type">The Any Data Type</h3>
 <p>This data type accepts any valid JSON value that conforms to the JSON standard. It is the least restrictive data type and serves as the parent type for all other data types defined in this schema, each of which imposes more specific constraints. Here is the <a href="https://www.json.org">specification</a> of JSON document containing rules of all valid JSON values. Following is the syntax for specifying this data type:</p>
@@ -115,12 +121,16 @@ pre code { font-size: 1.1em; }
 <p>This is one of the most commonly used data types in a JSON document, designed to accept any JSON string as specified by the JSON standard. The syntax for specifying this data type is as follows:</p>
 <pre><code class="lang-stylus">#string
 </code></pre>
+<h3 id="the-date-time-data-type">The Date Time Data Type</h3>
+<p>The date-time data type serves as the parent data type for both date and time data types. It is a subtype of string data type and thus formatted as per the JSON string specification.</p>
+<pre><code class="lang-stylus">#datetime
+</code></pre>
 <h3 id="the-date-data-type">The Date Data Type</h3>
-<p>The date data type accepts only a type of string which represent a date specified by ISO 8601 standard (date part only). It is a subtype of string data type and thus formatted as per the JSON string specification. Detailed explanations of the ISO 8601 standard can be found in this <a href="https://www.iso.org/iso-8601-date-and-time-format.html">document</a>. Furthermore, you can refer to this <a href="/JsonSchema-DotNet/articles/datetime.html">document</a> for a detailed description of the date pattern associated with this data type. To define this data type in schema, use the following syntax:</p>
+<p>The date data type accepts a string representation of a date, conforming to the ISO 8601 standard (date part only). This behavior is based on the default configuration, which can be modified as needed. It is a subtype of date-time type and thus also formatted as per the JSON string specification. Detailed explanations of the ISO 8601 standard can be found in this <a href="https://www.iso.org/iso-8601-date-and-time-format.html">document</a>. Furthermore, you can refer to this <a href="/JsonSchema-DotNet/articles/datetime.html">document</a> for a detailed description of the date pattern associated with this data type. To define this data type in schema, use the following syntax:</p>
 <pre><code class="lang-stylus">#date
 </code></pre>
 <h3 id="the-time-data-type">The Time Data Type</h3>
-<p>The time data type only accepts strings representing date-time (including both date and time), in accordance with the ISO 8601 standard. Similar to the date data type, it is a subtype of string data type and thus formatted as per the JSON string specification. Here is the ISO 8601 standard <a href="https://www.iso.org/iso-8601-date-and-time-format.html">document</a>, which contains detailed explanations. Furthermore, you can refer to this <a href="/JsonSchema-DotNet/articles/datetime.html">document</a> for a detailed description of the date-time pattern associated with this data type. To define this data type in schema, use the following syntax:</p>
+<p>The time data type accepts a string representation of a time (including both date and time parts), in accordance with the ISO 8601 standard. This behavior is based on the default configuration, which can be modified as needed. Similar to the date data type, it is a subtype of date-time data type and thus also formatted as per the JSON string specification. Here is the ISO 8601 standard <a href="https://www.iso.org/iso-8601-date-and-time-format.html">document</a>, which contains detailed explanations. Furthermore, you can refer to this <a href="/JsonSchema-DotNet/articles/datetime.html">document</a> for a detailed description of the date-time pattern associated with this data type. To define this data type in schema, use the following syntax:</p>
 <pre><code class="lang-stylus">#time
 </code></pre>
 <h3 id="the-number-data-type">The Number Data Type</h3>
