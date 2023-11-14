@@ -1,3 +1,5 @@
+using RelogicLabs.JsonSchema.Utilities;
+
 namespace RelogicLabs.JsonSchema.Message;
 
 public sealed class ErrorDetail
@@ -21,6 +23,6 @@ public sealed class ErrorDetail
     public ErrorDetail(string code, string message)
     {
         Code = code;
-        Message = message;
+        Message = message.Capitalize();
     }
 }

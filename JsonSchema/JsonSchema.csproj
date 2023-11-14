@@ -8,9 +8,9 @@
         <AssemblyName>RelogicLabs.JsonSchema</AssemblyName>
         <Authors>Relogic Labs</Authors>
         <Company>Relogic Labs</Company>
-        <Version>1.7.0</Version>
-        <PackageVersion>1.7.0</PackageVersion>
-        <AssemblyVersion>1.7.0</AssemblyVersion>
+        <Version>1.8.0</Version>
+        <PackageVersion>1.8.0</PackageVersion>
+        <AssemblyVersion>1.8.0</AssemblyVersion>
         <PackageTags>JsonSchema;Schema;Json;Validation;Assert;Test</PackageTags>
         <Copyright>Copyright © Relogic Labs. All rights reserved.</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
