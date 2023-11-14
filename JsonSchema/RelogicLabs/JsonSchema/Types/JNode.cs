@@ -14,6 +14,7 @@ public abstract class JNode
     // To make complete tree read only and immutable
     private readonly IDictionary<JNode, JNode> _relations;
     public Context Context { get; }
+    internal JNode Derived { get; set; }
     public virtual JNode? Parent => _relations.GetValue(this);
     public virtual IEnumerable<JNode> Children
     { get; private protected init; } = Enumerable.Empty<JNode>();
@@ -24,6 +25,14 @@ public abstract class JNode
     {
         _relations = NonNull(builder.Relations);
         Context = NonNull(builder.Context);
+        Derived = this;
+    }
+
+    private protected JNode(JNode node)
+    {
+        _relations = NonNull(node._relations);
+        Context = NonNull(node.Context);
+        Derived = this;
     }
 
     private T Initialize<T>() where T : JNode

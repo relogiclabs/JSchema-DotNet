@@ -40,7 +40,7 @@ public sealed class JFunction : JBranch, INestedMode
     {
         try
         {
-            return Runtime.InvokeFunction(this, node);
+            return Runtime.Functions.InvokeFunction(this, node);
         }
         catch(Exception ex)
         {

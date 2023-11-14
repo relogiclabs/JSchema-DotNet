@@ -40,7 +40,7 @@ internal sealed class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
 
     private List<JInclude> ProcessIncludes(SchemaParser.IncludeContext[] contexts)
     {
-        _runtime.AddClass(typeof(CoreFunctions).FullName!);
+        _runtime.Functions.AddClass(typeof(CoreFunctions).FullName!);
         return contexts.Select(i => (JInclude) Visit(i)).ToList();
     }
 
@@ -71,7 +71,7 @@ internal sealed class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
             Context = new Context(context, _runtime),
             ClassName = context.IDENTIFIER().Select(n => n.GetText()).Join(",")
         }.Build();
-        return _runtime.AddClass(include);
+        return _runtime.Functions.AddClass(include);
     }
 
     public override JNode VisitPragma(SchemaParser.PragmaContext context)
@@ -83,7 +83,7 @@ internal sealed class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
             Name = context.IDENTIFIER().GetText(),
             Value = (JPrimitive) Visit(context.primitive())
         }.Build();
-        return _runtime.AddPragma(pragma);
+        return _runtime.Pragmas.AddPragma(pragma);
     }
 
     public override JNode VisitValidator(SchemaParser.ValidatorContext context)

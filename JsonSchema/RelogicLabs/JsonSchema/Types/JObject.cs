@@ -42,7 +42,7 @@ public sealed class JObject : JComposite
                         ExpectedDetail.AsPropertyNotFound(thisProp),
                         ActualDetail.AsPropertyNotFound(node, thisProp)));
         }
-        if(unresolved.IsEmpty() || Runtime.IgnoreUndefinedProperties) return result;
+        if(unresolved.IsEmpty() || Runtime.Pragmas.IgnoreUndefinedProperties) return result;
         foreach(var key in unresolved)
         {
             var property = other.Properties[key];
@@ -58,7 +58,7 @@ public sealed class JObject : JComposite
     {
         var thisProp = Properties[index];
         JProperty? otherProp = null;
-        if(!Runtime.IgnoreObjectPropertyOrder)
+        if(!Runtime.Pragmas.IgnoreObjectPropertyOrder)
         {
             var atProp = GetPropAt(other.Properties, index);
             if(AreKeysEqual(atProp, thisProp)) otherProp = atProp;
@@ -91,7 +91,7 @@ public sealed class JObject : JComposite
         if(obj.GetType() != this.GetType()) return false;
         var other = (JObject) obj;
         if(Properties.Count != other.Properties.Count) return false;
-        return Runtime.IgnoreObjectPropertyOrder? UnorderedEquals(other.Properties)
+        return Runtime.Pragmas.IgnoreObjectPropertyOrder? UnorderedEquals(other.Properties)
             : OrderedEquals(other.Properties);
     }
 

@@ -7,12 +7,15 @@ using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Types;
 
-public sealed class JString : JPrimitive, IPragmaValue<string>
+public class JString : JPrimitive, IPragmaValue<string>
 {
     public string Value { get; }
 
     private JString(Builder builder) : base(builder)
         => Value = NonNull(builder.Value);
+
+    private protected JString(JString node) : base(node)
+        => Value = NonNull(node.Value);
 
     public override bool Match(JNode node)
     {

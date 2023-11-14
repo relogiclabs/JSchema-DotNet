@@ -9,13 +9,19 @@ using static RelogicLabs.JsonSchema.Message.ErrorCode;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
-internal sealed class FunctionManager
+public sealed class FunctionRegistry
 {
     private readonly HashSet<string> _includes = new();
     private readonly Dictionary<FunctionKey, List<MethodPointer>> _functions = new();
     private readonly RuntimeContext _runtime;
 
-    public FunctionManager(RuntimeContext runtime) => _runtime = runtime;
+    public FunctionRegistry(RuntimeContext runtime) => _runtime = runtime;
+
+    public JInclude AddClass(JInclude include)
+    {
+        AddClass(include.ClassName, include.Context);
+        return include;
+    }
 
     public void AddClass(string className, Context? context = null)
     {
@@ -103,7 +109,7 @@ internal sealed class FunctionManager
     }
 
     private static bool IsMatch(ParameterInfo parameter, JNode argument)
-        => parameter.ParameterType.IsInstanceOfType(argument);
+        => parameter.ParameterType.IsInstanceOfType(argument.Derived);
 
     private static bool IsParams(ParameterInfo parameter)
         => parameter.IsDefined(typeof(ParamArrayAttribute), false);
@@ -120,7 +126,7 @@ internal sealed class FunctionManager
             var schemaArgs = ProcessArguments(_parameters, _arguments);
             if(schemaArgs == null) continue;
             if(IsMatch(_parameters[0], target)) return method.Invoke(function,
-                AddTarget(schemaArgs, target));
+                AddTarget(schemaArgs, target.Derived));
             mismatchParameter = _parameters[0];
         }
         if(mismatchParameter != null)
