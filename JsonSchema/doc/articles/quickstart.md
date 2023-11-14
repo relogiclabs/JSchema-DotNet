@@ -1,5 +1,5 @@
 # Getting Started
-This guide will walk you through the essential steps to quickly get up and running with New JSON Schema library. It is also assumes a modest familiarity with the .NET SDK and .NET CLI (command-line interface) toolchain including basic familiarity with NuGet packages. Additionally, it considers a certain level of knowledge in C# language.
+This guide will walk you through the essential steps to quickly get up and running with the New JSON Schema library. It is also assumed a modest familiarity with the C# language, .NET SDK, and .NET CLI (command-line interface), including basic familiarity with NuGet packages.
 
 ## NuGet Library Package
 To get started, launch your preferred IDE (such as Visual Studio, JetBrains Rider, or VS Code) and open the C# project where you intend to include this library package. Within your IDE, navigate to the NuGet package manager and search for the package by the name 'RelogicLabs.JsonSchema'. Subsequently, proceed to add or install the package to your project. Alternatively, you can use the .NET CLI to add the package to your project. Simply run the following command, replacing `1.x.x` with either the latest version or your preferred version:
@@ -15,7 +15,7 @@ To verify the successful integration of the library into your project, you may m
 For additional information regarding this library package, you can visit the NuGet package repository page of this library [here](https://www.nuget.org/packages/RelogicLabs.JsonSchema).
 
 ## Write a Sample to Test
-With all the necessary components in place, you are now ready to create a sample schema and validate a corresponding JSON against the schema. The subsequent example presents a C# class featuring a method designed for validating a sample JSON based on a provided schema. If you are working with C# 11 or above, you can enhance the code further by utilizing new C# language features like raw string literals, file scoped namespaces and others.
+With all the necessary components in place, you are now ready to create a sample schema and validate a corresponding JSON against the schema. The subsequent example presents a C# class featuring a method designed for validating a sample JSON based on a provided schema. If you are working with C# 11 or above, you can enhance the code further by utilizing new language features like raw string literals, file scoped namespaces and others.
 ```c#
 using RelogicLabs.JsonSchema;
 

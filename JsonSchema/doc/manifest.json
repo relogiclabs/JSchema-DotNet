@@ -383,10 +383,50 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Time.DateTimeType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JsonSchema.Time.DateTimeType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Time.JsonDateTime.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JsonSchema.Time.JsonDateTime.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Time.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JsonSchema.Time.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/RelogicLabs.JsonSchema.Tree.Context.yml",
       "output": {
         ".html": {
           "relative_path": "api/RelogicLabs.JsonSchema.Tree.Context.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Tree.FunctionRegistry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JsonSchema.Tree.FunctionRegistry.html"
         }
       },
       "version": ""
@@ -407,6 +447,16 @@
       "output": {
         ".html": {
           "relative_path": "api/RelogicLabs.JsonSchema.Tree.Location.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Tree.PragmaRegistry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JsonSchema.Tree.PragmaRegistry.html"
         }
       },
       "version": ""
@@ -527,6 +577,26 @@
       "output": {
         ".html": {
           "relative_path": "api/RelogicLabs.JsonSchema.Types.JDataType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JDate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JsonSchema.Types.JDate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JDateTime.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JsonSchema.Types.JDateTime.html"
         }
       },
       "version": ""
@@ -697,6 +767,16 @@
       "output": {
         ".html": {
           "relative_path": "api/RelogicLabs.JsonSchema.Types.JString.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JTime.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JsonSchema.Types.JTime.html"
         }
       },
       "version": ""

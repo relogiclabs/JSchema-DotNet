@@ -1,5 +1,5 @@
 # Build from Source Code
-This comprehensive guide illustrates the procedures for retrieving source code from a GitHub repository, compiling the project source code into a library, and seamlessly integrating the compiled library into your project. Within this document, we will navigate through these steps, presenting them clearly and straightforwardly.
+This comprehensive guide illustrates the procedures for retrieving source code from a GitHub repository, compiling the project source code into a library, and seamlessly integrating the compiled library into your project. It is essential to have a foundational understanding of the C# language, as well as a modest level of familiarity with the .NET SDK and CLI.
 
 ## Build the Library
 To get started, clone the project from the following URL using your preferred Git client (command line or GUI). You can open a terminal and enter the following Git clone command as shown below:
