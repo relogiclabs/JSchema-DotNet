@@ -467,4 +467,218 @@ public class DateTimeTests
         Assert.AreEqual(DLEX01, exception.Code);
         Console.WriteLine(exception);
     }
+
+    [TestMethod]
+    public void When_JsonDateNotValidWithBothRange_ExceptionThrown()
+    {
+        var schema =
+            """
+            @range*("2010-01-01", "2010-12-31") #date* #array
+            """;
+        var json =
+            """
+            [
+                "2010-01-01",
+                "2010-02-01",
+                "2010-06-30",
+                "2009-12-31",
+                "2011-01-01"
+            ]
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(DRNG01, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_JsonTimeNotValidWithBothRange_ExceptionThrown()
+    {
+        var schema =
+            """
+            @range*("2010-01-01T00:00:00.000Z", 
+                    "2010-12-31T23:59:59.999Z") 
+            #time* #array
+            """;
+        var json =
+            """
+            [
+                "2010-01-01T00:00:00.000Z",
+                "2010-02-01T01:30:45.1Z",
+                "2010-06-30T12:01:07.999999Z",
+                "2009-12-31T22:39:50.0-04:00",
+                "2011-01-01T02:10:00.0+06:00",
+                "2009-12-31T22:59:59.000Z",
+                "2011-01-01T00:00:00.000Z"
+            ]
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(DRNG02, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_JsonDateNotValidWithStart_ExceptionThrown()
+    {
+        var schema =
+            """
+            @start*("2010-01-01") #date* #array
+            """;
+        var json =
+            """
+            [
+                "2010-01-01",
+                "2010-02-01",
+                "2011-06-30",
+                "2050-11-01",
+                "2009-12-31"
+            ]
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(STRT01, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_JsonDateNotValidWithEnd_ExceptionThrown()
+    {
+        var schema =
+            """
+            @end*("2010-12-31") #date* #array
+            """;
+        var json =
+            """
+            [
+                "1930-01-01",
+                "2000-02-01",
+                "2005-06-30",
+                "2010-12-31",
+                "2011-01-01"
+            ]
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(ENDE01, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_JsonDateNotValidWithBefore_ExceptionThrown()
+    {
+        var schema =
+            """
+            @before*("2011-01-01") #date* #array
+            """;
+        var json =
+            """
+            [
+                "2010-01-01",
+                "2010-06-30",
+                "2010-12-31",
+                "2011-01-01",
+                "2023-11-15"
+            ]
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(BFOR01, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_JsonDateNotValidWithAfter_ExceptionThrown()
+    {
+        var schema =
+            """
+            @after*("2009-12-31") #date* #array
+            """;
+        var json =
+            """
+            [
+                "2010-01-01",
+                "2010-02-10",
+                "2010-12-31",
+                "2009-12-31",
+                "1980-11-19"
+            ]
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(AFTR01, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_JsonTimeNotValidWithEndInFraction_ExceptionThrown()
+    {
+        var schema =
+            """
+            @end*("1939-09-02T02:12:12.555Z") #time* #array
+            """;
+        var json =
+            """
+            [
+                "1939-09-02T02:12:12.554Z",
+                "1939-09-02T02:12:12.555Z",
+                "1939-09-02T02:12:12.556Z"
+            ]
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(ENDE02, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_SchemaDateNotValidWithBefore_ExceptionThrown()
+    {
+        var schema =
+            """
+            @before*("01-01-2011") #date* #array
+            """;
+        var json =
+            """
+            [
+                "1900-01-01",
+                "2010-06-30",
+                "2010-12-31"
+            ]
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(DYAR01, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_SchemaDateNotValidWithAfter_ExceptionThrown()
+    {
+        var schema =
+            """
+            @after*("12-31-2009") #date* #array
+            """;
+        var json =
+            """
+            [
+                "2010-01-01",
+                "2010-02-10",
+                "2050-12-31"
+            ]
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(DYAR01, exception.Code);
+        Console.WriteLine(exception);
+    }
 }

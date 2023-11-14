@@ -10,7 +10,7 @@ public class DataTypeTests
         var json = "10";
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_DataTypeMultipleInObject_ValidTrue()
     {
@@ -32,7 +32,7 @@ public class DataTypeTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_DataTypeMultipleInArray_ValidTrue()
     {
@@ -46,7 +46,7 @@ public class DataTypeTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_DataTypeMultipleWithNestedFunctionInObject_ValidTrue()
     {
@@ -63,6 +63,20 @@ public class DataTypeTests
                 "key1": [10, 20, 30],
                 "key2": null
             }
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
+
+    [TestMethod]
+    public void When_DataTypeAnyInArray_ValidTrue()
+    {
+        var schema =
+            """
+            #any* #array
+            """;
+        var json =
+            """
+            [[], {}, null, false, "test", 0.5, 1E-10, 0]
             """;
         JsonAssert.IsValid(schema, json);
     }

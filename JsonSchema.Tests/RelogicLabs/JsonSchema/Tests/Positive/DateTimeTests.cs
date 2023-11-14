@@ -399,4 +399,148 @@ public class DateTimeTests
             """;
         JsonAssert.IsValid(schema, json);
     }
+
+    [TestMethod]
+    public void When_RangeDateInObject_ValidTrue()
+    {
+        var schema =
+            """
+            @range*("2010-01-01", "2010-12-31") #date* #object
+            """;
+        var json =
+            """
+            {
+                "key1": "2010-01-01",
+                "key2": "2010-06-30",
+                "key3": "2010-12-31"
+            }
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
+
+    [TestMethod]
+    public void When_RangeTimeInObject_ValidTrue()
+    {
+        var schema =
+            """
+            @range*("2010-01-01T00:00:00.000Z", "2010-12-31T23:59:59.999Z") #time* #object
+            """;
+        var json =
+            """
+            {
+                "key1": "2010-01-01T00:00:00.000Z",
+                "key2": "2010-06-30T10:38:50.345Z",
+                "key3": "2010-12-31T23:59:59.999Z"
+            }
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
+
+    [TestMethod]
+    public void When_BeforeDateInObject_ValidTrue()
+    {
+        var schema =
+            """
+            @before*("2023-11-02") #date* #object
+            """;
+        var json =
+            """
+            {
+                "key1": "1900-01-01",
+                "key2": "2020-12-31",
+                "key3": "2023-11-01"
+            }
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
+
+    [TestMethod]
+    public void When_AfterDateInObject_ValidTrue()
+    {
+        var schema =
+            """
+            @after*("2010-12-31") #date* #object
+            """;
+        var json =
+            """
+            {
+                "key1": "2011-01-01",
+                "key2": "2030-01-31",
+                "key3": "2012-03-01"
+            }
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
+
+    [TestMethod]
+    public void When_StartDateInObject_ValidTrue()
+    {
+        var schema =
+            """
+            @start*("2010-01-01") #date* #object
+            """;
+        var json =
+            """
+            {
+                "key1": "2010-01-01",
+                "key2": "2030-01-31",
+                "key3": "2012-03-01"
+            }
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
+
+    [TestMethod]
+    public void When_EndDateInObject_ValidTrue()
+    {
+        var schema =
+            """
+            @end*("2023-12-31") #date* #object
+            """;
+        var json =
+            """
+            {
+                "key1": "1900-01-01",
+                "key2": "2020-12-31",
+                "key3": "2023-12-31"
+            }
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
+
+    [TestMethod]
+    public void When_BeforeTimeInObject_ValidTrue()
+    {
+        var schema =
+            """
+            @before*("2023-11-02T22:30:58.999+05:00") #time* #object
+            """;
+        var json =
+            """
+            {
+                "key1": "1900-01-01T23:59:59.0Z",
+                "key2": "2020-12-31T00:00:00.12Z",
+                "key3": "2023-11-02T22:58:58.999+05:30"
+            }
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
+
+    [TestMethod]
+    public void When_AfterTimeInObject_ValidTrue()
+    {
+        var schema =
+            """
+            @after*("2010-12-31T23:59:59.999Z") #time* #object
+            """;
+        var json =
+            """
+            {
+                "key1": "2011-01-01T00:00:00.000Z",
+                "key2": "2010-12-31T20:00:00.000-04:00",
+                "key3": "2023-11-02T22:58:58.999+05:30"
+            }
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
 }

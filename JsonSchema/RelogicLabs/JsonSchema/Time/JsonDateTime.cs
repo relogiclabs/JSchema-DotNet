@@ -32,9 +32,9 @@ public class JsonDateTime
     private DateTimeOffset _dateTimeOffset;
     private TimeSpan _utcOffset;
 
-    public JsonDateTime(DateTimeType type, int year = DEFAULT_YEAR, int month = DEFAULT_MONTH,
-        int day = DEFAULT_DAY, int hour = DEFAULT_HOUR, int minute = DEFAULT_MINUTE, int second = DEFAULT_SECOND,
-        int fraction = DEFAULT_FRACTION, int utcHour = DEFAULT_UTC_HOUR, int utcMinute = DEFAULT_UTC_MINUTE)
+    internal JsonDateTime(DateTimeType type, int year = UNSET, int month = UNSET,
+        int day = UNSET, int hour = UNSET, int minute = UNSET, int second = UNSET,
+        int fraction = UNSET, int utcHour = UNSET, int utcMinute = UNSET)
     {
         Type = type;
         Year = year;

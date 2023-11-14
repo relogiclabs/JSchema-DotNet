@@ -186,7 +186,7 @@ public class IntegerTests
     }
 
     [TestMethod]
-    public void When_NestedRangeWithUndefinedAndWrongIntegerInArray_ExceptionThrown()
+    public void When_NestedRangeWithMinUndefinedAndWrongIntegerInArray_ExceptionThrown()
     {
         var schema =
             """
@@ -201,6 +201,25 @@ public class IntegerTests
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(RANG04, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_NestedRangeWithMaxUndefinedAndWrongIntegerInArray_ExceptionThrown()
+    {
+        var schema =
+            """
+            @range*(1000, !) #integer*
+            """;
+        var json =
+            """
+            [2000, 1000, 900]
+            """;
+
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(RANG03, exception.Code);
         Console.WriteLine(exception);
     }
 

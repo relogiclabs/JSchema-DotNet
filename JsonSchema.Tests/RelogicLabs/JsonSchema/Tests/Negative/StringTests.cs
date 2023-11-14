@@ -129,6 +129,28 @@ public class StringTests
     }
 
     [TestMethod]
+    public void When_WrongLengthWithStringInObject_ExceptionThrown()
+    {
+        var schema =
+            """
+            @length*(5) #string*
+            """;
+        var json =
+            """
+            {
+                "key1": "12345",
+                "key2": "1234",
+                "key3": "123456"
+            }
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(SLEN01, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
     public void When_NestedWrongLengthWithStringInObject_ExceptionThrown()
     {
         var schema =
