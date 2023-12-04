@@ -6,12 +6,12 @@ using static RelogicLabs.JsonSchema.Tree.TreeType;
 namespace RelogicLabs.JsonSchema;
 
 /// <summary>
-/// Provides assertion functionalities to validate Json document against a Schema or Json.
+/// Provides assertion functionalities to validate JSON document against a Schema or JSON.
 /// </summary>
 public class JsonAssert
 {
     public RuntimeContext Runtime { get; }
-    public IDataTree DataTree { get; }
+    public IDataTree ExpectedTree { get; }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="JsonAssert"/> class for the
@@ -22,38 +22,38 @@ public class JsonAssert
 
     /// <summary>
     /// Initializes a new instance of the <see cref="JsonAssert"/> class for the
-    /// specified <paramref name="expected"/> string which can be either a Schema or a Json
+    /// specified <paramref name="expected"/> string which can be either a Schema or a JSON
     /// representation.
     /// </summary>
-    /// <param name="expected">An expected Schema or Json string for validation or conformation.</param>
+    /// <param name="expected">An expected Schema or JSON string for validation or conformation.</param>
     /// <param name="type">The type of string provided by <paramref name="expected"/>, indicating
-    /// whether it represents a Schema or Json. Use <see cref="TreeType.SCHEMA_TREE"/> for Schema
-    /// and <see cref="TreeType.JSON_TREE"/> for Json.</param>
+    /// whether it represents a Schema or JSON. Use <see cref="TreeType.SCHEMA_TREE"/> for Schema
+    /// and <see cref="TreeType.JSON_TREE"/> for JSON.</param>
     public JsonAssert(string expected, TreeType type)
     {
         if(type == SCHEMA_TREE)
         {
             Runtime = new RuntimeContext(MessageFormatter.SchemaAssertion, true);
-            DataTree = new SchemaTree(Runtime, expected);
+            ExpectedTree = new SchemaTree(Runtime, expected);
         }
         else
         {
             Runtime = new RuntimeContext(MessageFormatter.JsonAssertion, true);
-            DataTree = new JsonTree(Runtime, expected);
+            ExpectedTree = new JsonTree(Runtime, expected);
         }
     }
 
     /// <summary>
-    /// Tests whether the input JSON string conforms to the Schema specified
-    /// in the <see cref="JsonAssert"/> constructor.
+    /// Tests whether the input JSON string conforms to the expected Schema or JSON
+    /// specified in the <see cref="JsonAssert"/> constructor.
     /// </summary>
-    /// <param name="jsonActual">The actual JSON to conform or validate.</param>
-    public void IsValid(string jsonActual)
+    /// <param name="json">The actual JSON to conform or validate.</param>
+    public void IsValid(string json)
     {
         Runtime.Clear();
-        JsonTree jsonTree = new(Runtime, jsonActual);
-        DebugUtilities.Print(DataTree, jsonTree);
-        if(!DataTree.Match(jsonTree))
+        JsonTree jsonTree = new(Runtime, json);
+        DebugUtilities.Print(ExpectedTree, jsonTree);
+        if(!ExpectedTree.Match(jsonTree))
             throw new InvalidOperationException("Invalid runtime state");
     }
 
@@ -61,18 +61,18 @@ public class JsonAssert
     /// Tests whether the specified JSON string conforms to the given Schema string
     /// and throws an exception if the JSON string does not conform to the Schema.
     /// </summary>
-    /// <param name="schemaExpected">The expected Schema to conform or validate.</param>
-    /// <param name="jsonActual">The actual JSON to conform or validate.</param>
-    public static void IsValid(string schemaExpected, string jsonActual)
-        => new JsonAssert(schemaExpected).IsValid(jsonActual);
+    /// <param name="schema">The expected Schema to conform or validate.</param>
+    /// <param name="json">The actual JSON to conform or validate.</param>
+    public static void IsValid(string schema, string json)
+        => new JsonAssert(schema).IsValid(json);
 
     /// <summary>
     /// Tests if the provided JSON strings are logically equivalent, meaning their structural
     /// composition and internal data are identical. If the JSON strings are not equivalent,
     /// an exception is thrown.
     /// </summary>
-    /// <param name="jsonExpected">The expected JSON to compare.</param>
-    /// <param name="jsonActual">The actual JSON to compare.</param>
-    public static void AreEqual(string jsonExpected, string jsonActual)
-        => new JsonAssert(jsonExpected, JSON_TREE).IsValid(jsonActual);
+    /// <param name="expected">The expected JSON to compare.</param>
+    /// <param name="actual">The actual JSON to compare.</param>
+    public static void AreEqual(string expected, string actual)
+        => new JsonAssert(expected, JSON_TREE).IsValid(actual);
 }

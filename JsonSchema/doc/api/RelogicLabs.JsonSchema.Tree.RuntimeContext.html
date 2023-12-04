@@ -147,7 +147,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Tree_RuntimeContext_Definitions" data-uid="RelogicLabs.JsonSchema.Tree.RuntimeContext.Definitions">
   Definitions
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/RuntimeContext.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/RuntimeContext.cs/#L13"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -178,14 +178,14 @@
 
   <h3 id="RelogicLabs_JsonSchema_Tree_RuntimeContext_Exceptions" data-uid="RelogicLabs.JsonSchema.Tree.RuntimeContext.Exceptions">
   Exceptions
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/RuntimeContext.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/RuntimeContext.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Queue&lt;Exception&gt; Exceptions { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ExceptionRegistry Exceptions { get; }</code></pre>
   </div>
 
 
@@ -194,7 +194,7 @@
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.queue-1">Queue</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dt><a class="xref" href="RelogicLabs.JsonSchema.Tree.ExceptionRegistry.html">ExceptionRegistry</a></dt>
     <dd></dd>
   </dl>
 
@@ -209,7 +209,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Tree_RuntimeContext_Functions" data-uid="RelogicLabs.JsonSchema.Tree.RuntimeContext.Functions">
   Functions
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/RuntimeContext.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/RuntimeContext.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -240,7 +240,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Tree_RuntimeContext_Pragmas" data-uid="RelogicLabs.JsonSchema.Tree.RuntimeContext.Pragmas">
   Pragmas
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/RuntimeContext.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/RuntimeContext.cs/#L12"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -267,18 +267,18 @@
 
 
 
-  <a id="RelogicLabs_JsonSchema_Tree_RuntimeContext_ThrowException_" data-uid="RelogicLabs.JsonSchema.Tree.RuntimeContext.ThrowException*"></a>
+  <a id="RelogicLabs_JsonSchema_Tree_RuntimeContext_Receivers_" data-uid="RelogicLabs.JsonSchema.Tree.RuntimeContext.Receivers*"></a>
 
-  <h3 id="RelogicLabs_JsonSchema_Tree_RuntimeContext_ThrowException" data-uid="RelogicLabs.JsonSchema.Tree.RuntimeContext.ThrowException">
-  ThrowException
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/RuntimeContext.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  <h3 id="RelogicLabs_JsonSchema_Tree_RuntimeContext_Receivers" data-uid="RelogicLabs.JsonSchema.Tree.RuntimeContext.Receivers">
+  Receivers
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/RuntimeContext.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool ThrowException { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;JReceiver, List&lt;JNode&gt;&gt; Receivers { get; }</code></pre>
   </div>
 
 
@@ -287,7 +287,69 @@
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="RelogicLabs.JsonSchema.Types.JReceiver.html">JReceiver</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html">JNode</a>&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="RelogicLabs_JsonSchema_Tree_RuntimeContext_Storage_" data-uid="RelogicLabs.JsonSchema.Tree.RuntimeContext.Storage*"></a>
+
+  <h3 id="RelogicLabs_JsonSchema_Tree_RuntimeContext_Storage" data-uid="RelogicLabs.JsonSchema.Tree.RuntimeContext.Storage">
+  Storage
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/RuntimeContext.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;string, object&gt; Storage { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="RelogicLabs_JsonSchema_Tree_RuntimeContext_Validators_" data-uid="RelogicLabs.JsonSchema.Tree.RuntimeContext.Validators*"></a>
+
+  <h3 id="RelogicLabs_JsonSchema_Tree_RuntimeContext_Validators" data-uid="RelogicLabs.JsonSchema.Tree.RuntimeContext.Validators">
+  Validators
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/RuntimeContext.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;string, FutureValidator&gt; Validators { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="RelogicLabs.JsonSchema.Functions.FutureValidator.html">FutureValidator</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -338,29 +400,29 @@
 
 
 
-  <a id="RelogicLabs_JsonSchema_Tree_RuntimeContext_Retrieve_" data-uid="RelogicLabs.JsonSchema.Tree.RuntimeContext.Retrieve*"></a>
+  <a id="RelogicLabs_JsonSchema_Tree_RuntimeContext_AddValidator_" data-uid="RelogicLabs.JsonSchema.Tree.RuntimeContext.AddValidator*"></a>
 
-  <h3 id="RelogicLabs_JsonSchema_Tree_RuntimeContext_Retrieve_System_String_" data-uid="RelogicLabs.JsonSchema.Tree.RuntimeContext.Retrieve(System.String)">
-  Retrieve(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/RuntimeContext.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  <h3 id="RelogicLabs_JsonSchema_Tree_RuntimeContext_AddValidator_RelogicLabs_JsonSchema_Functions_FutureValidator_" data-uid="RelogicLabs.JsonSchema.Tree.RuntimeContext.AddValidator(RelogicLabs.JsonSchema.Functions.FutureValidator)">
+  AddValidator(FutureValidator)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/RuntimeContext.cs/#L70"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public object? Retrieve(string name)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool AddValidator(FutureValidator validator)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><code>validator</code> <a class="xref" href="RelogicLabs.JsonSchema.Functions.FutureValidator.html">FutureValidator</a></dt>
     <dd></dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
   </dl>
 
@@ -374,27 +436,20 @@
 
 
 
-  <a id="RelogicLabs_JsonSchema_Tree_RuntimeContext_Store_" data-uid="RelogicLabs.JsonSchema.Tree.RuntimeContext.Store*"></a>
+  <a id="RelogicLabs_JsonSchema_Tree_RuntimeContext_Clear_" data-uid="RelogicLabs.JsonSchema.Tree.RuntimeContext.Clear*"></a>
 
-  <h3 id="RelogicLabs_JsonSchema_Tree_RuntimeContext_Store_System_String_System_Object_" data-uid="RelogicLabs.JsonSchema.Tree.RuntimeContext.Store(System.String,System.Object)">
-  Store(string, object)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/RuntimeContext.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  <h3 id="RelogicLabs_JsonSchema_Tree_RuntimeContext_Clear" data-uid="RelogicLabs.JsonSchema.Tree.RuntimeContext.Clear">
+  Clear()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/RuntimeContext.cs/#L80"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Store(string name, object value)</code></pre>
+    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
   </div>
 
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
-    <dd></dd>
-  </dl>
 
 
 

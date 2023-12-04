@@ -233,10 +233,30 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.NoValueReceivedException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.NoValueReceivedException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.PragmaNotFoundException.yml",
       "output": {
         ".html": {
           "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.PragmaNotFoundException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.ReceiverNotFoundException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.ReceiverNotFoundException.html"
         }
       },
       "version": ""
@@ -287,6 +307,16 @@
       "output": {
         ".html": {
           "relative_path": "api/RelogicLabs.JsonSchema.Functions.FunctionBase.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Functions.FutureValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JsonSchema.Functions.FutureValidator.html"
         }
       },
       "version": ""
@@ -423,10 +453,30 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Tree.ExceptionRegistry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JsonSchema.Tree.ExceptionRegistry.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/RelogicLabs.JsonSchema.Tree.FunctionRegistry.yml",
       "output": {
         ".html": {
           "relative_path": "api/RelogicLabs.JsonSchema.Tree.FunctionRegistry.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Tree.IDataTree.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JsonSchema.Tree.IDataTree.html"
         }
       },
       "version": ""
@@ -477,6 +527,16 @@
       "output": {
         ".html": {
           "relative_path": "api/RelogicLabs.JsonSchema.Tree.SchemaTree.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Tree.TreeType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JsonSchema.Tree.TreeType.html"
         }
       },
       "version": ""
@@ -747,6 +807,16 @@
       "output": {
         ".html": {
           "relative_path": "api/RelogicLabs.JsonSchema.Types.JProperty.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JReceiver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JsonSchema.Types.JReceiver.html"
         }
       },
       "version": ""

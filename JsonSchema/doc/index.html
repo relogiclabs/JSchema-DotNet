@@ -146,6 +146,8 @@ pre code { font-size: 1.1em; }
 %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
           RelogicLabs.JsonSchema.Tests
 
+%pragma DateDataTypeFormat: &quot;DD-MM-YYYY&quot;
+%pragma TimeDataTypeFormat: &quot;DD-MM-YYYY hh:mm:ss&quot;
 %pragma IgnoreUndefinedProperties: true
 
 %define $post: {
@@ -177,13 +179,14 @@ pre code { font-size: 1.1em; }
         &quot;id&quot;: @range(1, 10000) #integer,
         /*username does not allow special characters*/
         &quot;username&quot;: @regex(&quot;[a-z_]{3,30}&quot;) #string,
-        &quot;role&quot;: @enum(&quot;user&quot;, &quot;admin&quot;) #string,
+        &quot;role&quot;: @enum(&quot;user&quot;, &quot;admin&quot;) #string &amp;role,
         &quot;isActive&quot;: #boolean, //user account current status
-        &quot;registeredAt&quot;: @time(&quot;DD-MM-YYYY hh:mm:ss&quot;) #string,
+        &quot;registeredAt&quot;: @after(&quot;01-01-2010 00:00:00&quot;) #time,
+        &quot;dataAccess&quot;: @checkAccess(&amp;role) #integer,
         &quot;profile&quot;: {
             &quot;firstName&quot;: @regex(&quot;[A-Za-z]{3,50}&quot;) #string,
             &quot;lastName&quot;: @regex(&quot;[A-Za-z]{3,50}&quot;) #string,
-            &quot;dateOfBirth&quot;: @date(&quot;DD-MM-YYYY&quot;) #string,
+            &quot;dateOfBirth&quot;: @before(&quot;01-01-2006&quot;) #date,
             &quot;age&quot;: @range(18, 128) #integer,
             &quot;email&quot;: @email #string,
             &quot;pictureURL&quot;: @url #string,
@@ -203,7 +206,7 @@ pre code { font-size: 1.1em; }
     },
     &quot;products&quot;: #object*($product) #array,
     &quot;weather&quot;: {
-        &quot;temperature&quot;: @range(-50.0, 60.0) #float,
+        &quot;temperature&quot;: @range(-50, 60) #integer #float,
         &quot;isCloudy&quot;: #boolean
     }
 }
@@ -216,6 +219,7 @@ pre code { font-size: 1.1em; }
         &quot;role&quot;: &quot;admin&quot;,
         &quot;isActive&quot;: true,
         &quot;registeredAt&quot;: &quot;06-09-2023 15:10:30&quot;,
+        &quot;dataAccess&quot;: 10,
         &quot;profile&quot;: {
             &quot;firstName&quot;: &quot;John&quot;,
             &quot;lastName&quot;: &quot;Doe&quot;,
@@ -291,7 +295,7 @@ pre code { font-size: 1.1em; }
     ],
     &quot;weather&quot;: {
         &quot;temperature&quot;: 25.5,
-        &quot;isCloudy&quot;: true,
+        &quot;isCloudy&quot;: false,
         &quot;conditions&quot;: null
     }
 }

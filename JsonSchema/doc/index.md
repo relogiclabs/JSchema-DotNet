@@ -74,6 +74,8 @@ The next example represents an expanded version of the previous one, which bring
 %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
           RelogicLabs.JsonSchema.Tests
 
+%pragma DateDataTypeFormat: "DD-MM-YYYY"
+%pragma TimeDataTypeFormat: "DD-MM-YYYY hh:mm:ss"
 %pragma IgnoreUndefinedProperties: true
 
 %define $post: {
@@ -105,13 +107,14 @@ The next example represents an expanded version of the previous one, which bring
         "id": @range(1, 10000) #integer,
         /*username does not allow special characters*/
         "username": @regex("[a-z_]{3,30}") #string,
-        "role": @enum("user", "admin") #string,
+        "role": @enum("user", "admin") #string &role,
         "isActive": #boolean, //user account current status
-        "registeredAt": @time("DD-MM-YYYY hh:mm:ss") #string,
+        "registeredAt": @after("01-01-2010 00:00:00") #time,
+        "dataAccess": @checkAccess(&role) #integer,
         "profile": {
             "firstName": @regex("[A-Za-z]{3,50}") #string,
             "lastName": @regex("[A-Za-z]{3,50}") #string,
-            "dateOfBirth": @date("DD-MM-YYYY") #string,
+            "dateOfBirth": @before("01-01-2006") #date,
             "age": @range(18, 128) #integer,
             "email": @email #string,
             "pictureURL": @url #string,
@@ -131,7 +134,7 @@ The next example represents an expanded version of the previous one, which bring
     },
     "products": #object*($product) #array,
     "weather": {
-        "temperature": @range(-50.0, 60.0) #float,
+        "temperature": @range(-50, 60) #integer #float,
         "isCloudy": #boolean
     }
 }
@@ -145,6 +148,7 @@ The subsequent JSON sample is an illustrative example that successfully validate
         "role": "admin",
         "isActive": true,
         "registeredAt": "06-09-2023 15:10:30",
+        "dataAccess": 10,
         "profile": {
             "firstName": "John",
             "lastName": "Doe",
@@ -220,7 +224,7 @@ The subsequent JSON sample is an illustrative example that successfully validate
     ],
     "weather": {
         "temperature": 25.5,
-        "isCloudy": true,
+        "isCloudy": false,
         "conditions": null
     }
 }
