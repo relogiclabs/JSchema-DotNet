@@ -2,6 +2,7 @@ using System.Reflection;
 using System.Text;
 using RelogicLabs.JsonSchema.Exceptions;
 using RelogicLabs.JsonSchema.Message;
+using RelogicLabs.JsonSchema.Tree;
 using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 using static RelogicLabs.JsonSchema.Message.ErrorDetail;
@@ -15,6 +16,7 @@ public sealed class JFunction : JBranch, INestedMode
     public string Name { get; }
     public bool Nested { get; }
     public IList<JNode> Arguments { get; }
+    internal FunctionCache Cache { get; }
 
     private JFunction(Builder builder) : base(builder)
     {
@@ -22,6 +24,7 @@ public sealed class JFunction : JBranch, INestedMode
         Nested = NonNull(builder.Nested);
         Arguments = NonNull(builder.Arguments);
         Children = Arguments;
+        Cache = new FunctionCache();
     }
 
     public override bool Match(JNode node)
@@ -44,9 +47,8 @@ public sealed class JFunction : JBranch, INestedMode
         }
         catch(Exception ex)
         {
-            var cause = ex is TargetInvocationException? ex.InnerException ?? ex : ex;
-            if(cause is JsonSchemaException) throw cause;
-            throw;
+            throw ex is TargetInvocationException
+                ? ex.InnerException ?? ex : ex;
         }
     }
 

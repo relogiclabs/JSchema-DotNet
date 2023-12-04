@@ -3,7 +3,7 @@ parser grammar SchemaParser;
 options { tokenVocab = SchemaLexer; }
 
 schema
-    : title? version? include* pragma* 
+    : title? version? include* pragma*
             define* schemaBase define* EOF  # AggregateSchema
     | validator EOF                         # CoreSchema
     ;
@@ -28,28 +28,32 @@ pragma
     ;
 
 define
-    : DEFINE aliasName COLON validatorMain
+    : DEFINE alias COLON validatorMain
     ;
 
-aliasName
+alias
     : ALIAS
     ;
 
 validatorMain
-    : value function* datatype* OPTIONAL?
-    | function+ datatype* OPTIONAL?
-    | datatype+ OPTIONAL?
+    : value function* datatype* receiver* OPTIONAL?
+    | function+ datatype* receiver* OPTIONAL?
+    | datatype+ receiver* OPTIONAL?
     ;
 
 validator
     : validatorMain
-    | aliasName
+    | alias
     ;
 
 value
     : primitive
     | object
     | array
+    ;
+
+receiver
+    : RECEIVER
     ;
 
 object
@@ -65,11 +69,16 @@ array
     ;
 
 datatype
-    : DATATYPE STAR? (LPAREN aliasName RPAREN)?
+    : DATATYPE STAR? (LPAREN alias RPAREN)?
     ;
 
 function
-    : FUNCTION STAR? (LPAREN (value (COMMA value)*)? RPAREN)?
+    : FUNCTION STAR? (LPAREN (argument (COMMA argument)*)? RPAREN)?
+    ;
+
+argument
+    : value
+    | receiver
     ;
 
 primitive

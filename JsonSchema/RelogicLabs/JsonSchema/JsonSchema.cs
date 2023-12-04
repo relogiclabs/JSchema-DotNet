@@ -11,8 +11,8 @@ public class JsonSchema
 {
     public RuntimeContext Runtime { get; }
     public SchemaTree SchemaTree { get; }
-    public Queue<Exception> Exceptions { get; }
-    
+    public ExceptionRegistry Exceptions { get; }
+
     /// <summary>
     /// Initializes a new instance of the <see cref="JsonSchema"/> class for the
     /// specified Schema string.
@@ -34,10 +34,10 @@ public class JsonSchema
     /// <c>false</c>.</returns>
     public bool IsValid(string json)
     {
-        Exceptions.Clear();
+        Runtime.Clear();
         JsonTree jsonTree = new(Runtime, json);
         DebugUtilities.Print(SchemaTree, jsonTree);
-        var result = SchemaTree.Root.Match(jsonTree.Root);
+        var result = SchemaTree.Match(jsonTree);
         return result;
     }
 
@@ -50,7 +50,7 @@ public class JsonSchema
         foreach(var exception in Exceptions)
             Console.Error.WriteLine(exception.Message);
     }
-    
+
     /// <summary>
     /// Indicates whether the input JSON string conforms to the given Schema string.
     /// </summary>

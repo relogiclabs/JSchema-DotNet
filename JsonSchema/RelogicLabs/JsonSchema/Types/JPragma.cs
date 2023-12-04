@@ -49,7 +49,7 @@ public sealed class JPragma : JDirective
             if(!descriptor.MatchType(value.GetType()))
                 throw new InvalidPragmaValueException(MessageFormatter.FormatForSchema(
                     PRAG02, $"Invalid value {value.GetOutline()} for pragma {name.Quote()} found",
-                    value.Context));
+                    value));
         }
 
         public override JPragma Build()

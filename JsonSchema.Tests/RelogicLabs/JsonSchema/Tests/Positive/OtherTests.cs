@@ -39,23 +39,31 @@ public class OtherTests
     public void When_NonStaticValidMethod_ValidTrue() {
         var schema =
             """
-            {
-                "key1": #array,
-                "key2": #array
+            %version: 2023.09.11
+            %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+                      RelogicLabs.JsonSchema.Tests
+            %pragma IgnoreUndefinedProperties: true
+            %define $element: @range(1, 100) #integer
+            %schema: {
+                "key1": #integer*($element) #array,
+                "key2": #array,
+                "key3": @even #integer
             }
             """;
         var json1 =
             """
             {
                 "key1": [1, 10, 100],
-                "key2": [100, 1000, [10, 10000]]
+                "key2": [100, 1000, [10, 10000]],
+                "key3": 10
             }
             """;
         var json2 =
             """
             {
-                "key1": [10.5, "test", 500],
-                "key2": ["test", 1000, [10.7, 10000]]
+                "key1": [10, 20, 50, 90, 100],
+                "key2": ["test", 1000, [10.7, 10000]],
+                "key3": 102
             }
             """;
         var jsonAssert = new JsonAssert(schema);

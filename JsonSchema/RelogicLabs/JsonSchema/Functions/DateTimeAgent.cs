@@ -5,20 +5,20 @@ using RelogicLabs.JsonSchema.Types;
 
 namespace RelogicLabs.JsonSchema.Functions;
 
-internal class DateTimeFunction
+internal class DateTimeAgent
 {
     private DateTimeParser? _parser;
 
     public string Pattern { get; }
     public DateTimeType Type { get; }
 
-    public DateTimeFunction(string pattern, DateTimeType type)
+    public DateTimeAgent(string pattern, DateTimeType type)
     {
         Pattern = pattern;
         Type = type;
     }
 
-    public DateTimeFunction(DateTimeParser parser)
+    public DateTimeAgent(DateTimeParser parser)
     {
         Pattern = parser.Pattern;
         Type = parser.Type;

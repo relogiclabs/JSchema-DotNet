@@ -5,8 +5,8 @@
         <Description>This project contains test cases for JsonSchema project.</Description>
         <Authors>Relogic Labs</Authors>
         <Company>Relogic Labs</Company>
-        <Version>1.8.0</Version>
-        <AssemblyVersion>1.8.0</AssemblyVersion>
+        <Version>1.9.0</Version>
+        <AssemblyVersion>1.9.0</AssemblyVersion>
         <Copyright>Copyright © Relogic Labs. All rights reserved.</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
         <TargetFrameworks>net5.0;net6.0;net7.0</TargetFrameworks>

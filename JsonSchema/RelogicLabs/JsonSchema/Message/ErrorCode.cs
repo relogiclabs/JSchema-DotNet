@@ -145,6 +145,10 @@ internal static class ErrorCode
     public const string RANG02 = "RANG02";
     public const string RANG03 = "RANG03";
     public const string RANG04 = "RANG04";
+    public const string RECV01 = "RECV01";
+    public const string RECV02 = "RECV02";
+    public const string RECV03 = "RECV03";
+    public const string RECV04 = "RECV04";
     public const string REGX01 = "REGX01";
     public const string SLEN01 = "SLEN01";
     public const string SLEN02 = "SLEN02";

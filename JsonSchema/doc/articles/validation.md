@@ -12,25 +12,26 @@ Conversely, Non-composite values are the atomic data elements in a JSON document
 ## Validation Format
 A JSON Schema ensures the correctness and consistency of JSON documents and it also defines the structure and constraints that a JSON document must conform to. It specifies how both composite and non-composite values should be organized and validated the input document based on the rules specified in the schema document. Thus a key element of JSON Schema is the validation rule syntax, which provides the required instructions for the validation process. A validation rule is typically expressed using the following notations:
 ```yaml
-1. [Value] [Function-Set] [DataType-Set] [Optional]
+1. [Value] [Function-Set] [DataType-Set] [Receiver-Set] [Optional]
 2. [Undefined] [Optional]
 ```
 
-| SN | Component                                  | Example                                                  |
-|----|--------------------------------------------|----------------------------------------------------------|
-| 1  | `Value`                                    | `10`; `"string"`; `[10, 20, 30]`; `{ "key1": "value1" }` |
-| 2  | `Function-Set`                             | `@range(1, 10)`; `@length(5, 50) @regex("[A-Za-z]+")`    |
-| 3  | `DataType-Set`                             | `#string`; `#object #null`; `#number* #array`            |
-| 4  | `Value Optional`                           | `10 ?`; `"string" ?`; `[10, 20, 30] ?`                   |
-| 5  | `Function-Set Optional`                    | `@range(1, 10) ?`; `@length(5, 50) ?`                    |
-| 6  | `DataType-Set Optional`                    | `#string ?`; `#integer ?`; `#array ?`                    |
-| 7  | `Function-Set DataType-Set`                | `@range(1, 10) #integer`; `@length(5, 10) #string`       |
-| 8  | `Function-Set DataType-Set Optional`       | `@range(1, 10) #integer ?`; `@length(5, 10) #string ?`   |
-| 9  | `Value Function-Set DataType-Set Optional` | `10 @range(1, 100) #integer ?`                           |
-| 10 | `Undefined`                                | `!`                                                      |
-| 11 | `Undefined Optional`                       | `! ?`                                                    |
+| SN | Component                                               | Example                                                  |
+|----|---------------------------------------------------------|----------------------------------------------------------|
+| 1  | `Value`                                                 | `10`; `"string"`; `[10, 20, 30]`; `{ "key1": "value1" }` |
+| 2  | `Function-Set`                                          | `@range(1, 10)`; `@length(5, 50) @regex("[A-Za-z]+")`    |
+| 3  | `DataType-Set`                                          | `#string`; `#object #null`; `#number* #array`            |
+| 4  | `Receiver-Set`                                          | `&receiver`; `&anyName`; `&anyName123`                   |
+| 5  | `Value Optional`                                        | `10 ?`; `"string" ?`; `[10, 20, 30] ?`                   |
+| 6  | `Function-Set Optional`                                 | `@range(1, 10) ?`; `@length(5, 50) ?`                    |
+| 7  | `DataType-Set Optional`                                 | `#string ?`; `#integer ?`; `#array ?`                    |
+| 8  | `Function-Set DataType-Set`                             | `@range(1, 10) #integer`; `@length(5, 10) #string`       |
+| 9  | `Function-Set DataType-Set Optional`                    | `@range(1, 10) #integer ?`; `@length(5, 10) #string ?`   |
+| 10 | `Value Function-Set DataType-Set Receiver-Set Optional` | `10 @range(1, 100) #integer &receiver ?`                 |
+| 11 | `Undefined`                                             | `!`                                                      |
+| 12 | `Undefined Optional`                                    | `! ?`                                                    |
 
-The syntax in the 9th row of the table is valid but uncommon in real-world scenarios. Since constraint function and data type provide unnecessary validation considering the validation for value is succeeded. It is a recommended practice to always define data type except in the previous scenario, even if the functions perform precise validations. This data type definition not only makes the schema more explicit for reader, but it also generates clearer validation errors that pinpoint data type mismatches if they occurred.
+The syntax in the 9th row of the table is valid but uncommon in real-world scenarios. Since constraint function and data type provide unnecessary validation considering the validation for value is succeeded. It is generally recommended to define the data type in all cases except in the previous scenario, even though the functions perform precise validations, but functions are usually defined to accept multiple more general data types. Thus, data type definition not only makes the schema more explicit for reader, but it also generates clearer validation errors that pinpoint data type mismatches if they occur.
 
 Now, let's explore the components of this notation and their functionalities. In the context of the validation rule, `Value` refers to a specific input JSON value of the document. This value can be either a composite value (e.g., an object or an array) or a primitive value (e.g., a string or a number).
 
@@ -64,7 +65,11 @@ Validation of the `Datatype-Set` is deemed successful if validation is successfu
 | 3  | `#string`          | `lorem`; `"lorem ipsum"`     |
 | 4  | `#string* #array`  | `["lorem", "lorem ipsum"]`   |
 
-When defining a nested type for components, it is good practice to also define the top-level type (eg. `#array` and `#object`) that not only makes the schema more convenient for readers but also generates more straightforward validation errors to the point if they occurred, but it is optional.
+When defining a nested type for components, it is good practice to also define the top-level type (eg. `#array` and `#object`) that not only makes the schema more convenient for readers but also generates more straightforward validation errors to the point if they occur, but it is optional.
+
+The `Receiver-Set` is also an optional part of the validation rule, and it can consist of one or more receivers. A receiver is identified by its name always prefixed by `&` and can receive or store the input JSON values of that position. A validation function can accept receivers and validate input based on the received values of the receivers. 
+
+Moreover, one receiver can be used in multiple validation rules and one validation rule can contain multiple receivers. This flexibility facilitates the organization and utilization of receivers in a more coherent and readable manner in a schema. Depending on its position a receiver can receive zero or more JSON input values. For instance, if a receiver is placed inside a common element section of an array, it will receive zero value if the array is empty and many values if it contains many elements.
 
 The `Optional` specifier, denoted as `?`, signifies that the presence of the target value is optional within the input JSON document. When `Optional` is specified, it indicates that the value may or may not be present. If it is absent, no validation is performed for that specific target value, and the JSON document is considered valid.
 

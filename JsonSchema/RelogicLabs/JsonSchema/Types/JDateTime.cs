@@ -2,14 +2,14 @@ using RelogicLabs.JsonSchema.Time;
 
 namespace RelogicLabs.JsonSchema.Types;
 
-public class JDateTime : JString
+public abstract class JDateTime : JString
 {
     public JsonDateTime DateTime { get; }
 
     internal JDateTime(JString baseNode, JsonDateTime dateTime) : base(baseNode)
         => DateTime = dateTime;
 
-    internal DateTimeParser GetParser()
+    internal DateTimeParser GetDateTimeParser()
     {
         if(Type == JsonType.DATE) return Runtime.Pragmas.DateTypeParser;
         if(Type == JsonType.TIME) return Runtime.Pragmas.TimeTypeParser;

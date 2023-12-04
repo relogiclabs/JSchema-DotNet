@@ -13,6 +13,7 @@ public sealed class JValidator : JBranch
     public JNode? Value { get; }
     public IList<JFunction> Functions { get; }
     public IList<JDataType> DataTypes { get; }
+    public IList<JReceiver> Receivers { get; }
     public bool Optional { get; }
 
     private JValidator(Builder builder) : base(builder)
@@ -20,9 +21,12 @@ public sealed class JValidator : JBranch
         Value = builder.Value;
         Functions = NonNull(builder.Functions);
         DataTypes = NonNull(builder.DataTypes);
+        Receivers = NonNull(builder.Receivers);
         Optional = NonNull(builder.Optional);
+        Runtime.Register(Receivers);
         Children = new List<JNode>().AddToList(Value)
-            .AddToList(Functions, DataTypes).AsReadOnly();
+            .AddToList(Functions, DataTypes, Receivers)
+            .AsReadOnly();
     }
 
     public override bool Match(JNode node)
@@ -30,6 +34,7 @@ public sealed class JValidator : JBranch
         bool rValue = true;
         var value = CastType<IJsonType>(node);
         if(value == null) return false;
+        Runtime.Receive(Receivers, node);
         if(node is JNull && DataTypes.Select(d => d.IsMatchNull()).AnyTrue())
             return true;
         if(Value != null) rValue &= Value.Match(value.Node);
@@ -46,7 +51,7 @@ public sealed class JValidator : JBranch
 
     private bool MatchDataType(JNode node)
     {
-        if(Runtime.TryMatch(() => CheckDataType(node))) return true;
+        if(Runtime.TryExecute(() => CheckDataType(node))) return true;
         DataTypes.Where(d => !d.Nested).ForEach(d => d.MatchForReport(node));
         DataTypes.Where(d => d.Nested).ForEach(d => d.MatchForReport(node));
         return false;
@@ -74,6 +79,7 @@ public sealed class JValidator : JBranch
         public JNode? Value { get; init; }
         public IList<JFunction>? Functions { get; init; }
         public IList<JDataType>? DataTypes { get; init; }
+        public IList<JReceiver>? Receivers { get; init; }
         public bool? Optional { get; init; }
         public override JValidator Build() => Build(new JValidator(this));
     }

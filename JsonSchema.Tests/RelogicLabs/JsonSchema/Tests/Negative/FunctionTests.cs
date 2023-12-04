@@ -143,7 +143,7 @@ public class FunctionTests
             """
             %include: RelogicLabs.JsonSchema.Tests.Negative.ExternalFunctions4,
                     RelogicLabs.JsonSchema.Tests
-            %schema: @odd #integer
+            %schema: @notExist #integer
             """;
         var json = "10";
 
@@ -151,6 +151,23 @@ public class FunctionTests
         var exception = Assert.ThrowsException<FunctionNotFoundException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(FUNC05, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_FunctionThrowArbitraryException_ExceptionThrown()
+    {
+        var schema =
+            """
+            %include: RelogicLabs.JsonSchema.Tests.Negative.ExternalFunctions4,
+                    RelogicLabs.JsonSchema.Tests
+            %schema: @canTest #integer
+            """;
+        var json = "10";
+
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<Exception>(
+            () => JsonAssert.IsValid(schema, json));
         Console.WriteLine(exception);
     }
 }

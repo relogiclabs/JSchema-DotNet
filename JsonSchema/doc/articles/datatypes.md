@@ -37,16 +37,28 @@ This data type accepts any valid JSON value that conforms to the JSON standard. 
 #any
 ```
 
-### The Object Data Type
-This data type represents the JSON object type and accepts any JSON object specified by the JSON standard. The specification document for JSON provides details about the different syntax and forms of JSON objects. Following is the syntax for specifying this data type:
+### The Primitive Data Type
+This serves as the foundational data type for all non-composite or primitive JSON values. While it is not intended for direct use in a schema, it organizes common functionalities across other sub-data types. Nevertheless, it remains valid for use, as illustrated by the following syntax:
 ```stylus
-#object
+#primitive
+```
+
+### The Composite Data Type
+As the parent data type for two kinds of composite JSON values, namely arrays and objects, this composite type consists of zero or more JSON values. It is not designed to be used in a schema but rather the organization of shared functionalities among other sub-data types. Despite this, it is still valid for use, demonstrated by the following syntax:
+```stylus
+#composite
 ```
 
 ### The Array Data Type
 This data type represents the JSON array type and accepts any JSON array specified by the JSON standard. The specification document for JSON provides details about the various syntax and forms of JSON arrays. Below is the syntax for specifying this data type:
 ```stylus
 #array
+```
+
+### The Object Data Type
+This data type represents the JSON object type and accepts any JSON object specified by the JSON standard. The specification document for JSON provides details about the different syntax and forms of JSON objects. Following is the syntax for specifying this data type:
+```stylus
+#object
 ```
 
 ### The String Data Type
@@ -56,19 +68,19 @@ This is one of the most commonly used data types in a JSON document, designed to
 ```
 
 ### The Date Time Data Type
-The date-time data type serves as the parent data type for both date and time data types. It is a subtype of string data type and thus formatted as per the JSON string specification.
+The date-time data type serves as the parent data type for both date and time types. It is a subtype of JSON string type and thus formatted as per the JSON string specification. It is not intended to be used directly in a schema, but it provides common functionality for both date and time types.
 ```stylus
 #datetime
 ```
 
 ### The Date Data Type
-The date data type accepts a string representation of a date, conforming to the ISO 8601 standard (date part only). This behavior is based on the default configuration, which can be modified as needed. It is a subtype of date-time type and thus also formatted as per the JSON string specification. Detailed explanations of the ISO 8601 standard can be found in this [document](https://www.iso.org/iso-8601-date-and-time-format.html). Furthermore, you can refer to this [document](/JsonSchema-DotNet/articles/datetime.html) for a detailed description of the date pattern associated with this data type. To define this data type in schema, use the following syntax:
+The date data type accepts a string representation of a date, conforming to the ISO 8601 standard (date part only). This is the default configuration, which can be modified using the directive described [here](/JsonSchema-DotNet/articles/directives.html). It is a subtype of date-time type and thus also formatted as per the JSON string specification. Detailed explanations of the ISO 8601 standard can be found in this [document](https://www.iso.org/iso-8601-date-and-time-format.html). Furthermore, you can refer to this [document](/JsonSchema-DotNet/articles/datetime.html) for a detailed description of the date pattern associated with this data type. To define this data type in schema, use the following syntax:
 ```stylus
 #date
 ```
 
 ### The Time Data Type
-The time data type accepts a string representation of a time (including both date and time parts), in accordance with the ISO 8601 standard. This behavior is based on the default configuration, which can be modified as needed. Similar to the date data type, it is a subtype of date-time data type and thus also formatted as per the JSON string specification. Here is the ISO 8601 standard [document](https://www.iso.org/iso-8601-date-and-time-format.html), which contains detailed explanations. Furthermore, you can refer to this [document](/JsonSchema-DotNet/articles/datetime.html) for a detailed description of the date-time pattern associated with this data type. To define this data type in schema, use the following syntax:
+The time data type accepts a string representation of a time (including both date and time parts), in accordance with the ISO 8601 standard. This default configuration can be modified using the directive described [here](/JsonSchema-DotNet/articles/directives.html). Similar to the date data type, it is a subtype of date-time data type and thus also formatted as per the JSON string specification. Here is the ISO 8601 standard [document](https://www.iso.org/iso-8601-date-and-time-format.html), which contains detailed explanations. Furthermore, you can refer to this [document](/JsonSchema-DotNet/articles/datetime.html) for a detailed description of the date-time pattern associated with this data type. To define this data type in schema, use the following syntax:
 ```stylus
 #time
 ```

@@ -98,6 +98,42 @@ public class AggregatedTests
     }
 
     [TestMethod]
+    public void When_JsonAggregatedFormatTest_ValidTrue()
+    {
+        var expected = """
+        {
+            "key1" : 10,
+            "key2" : "val2",
+            "key3" : [5, 10, 15, 20],
+            "key4" : 0.5,
+            "key5" : 10,
+            "key6" : {
+                "key11" : "test",
+                "key12" : "email.address@gmail.com",
+                "key13" : [ "Microsoft", "https://www.microsoft.com/en-us/" ],
+                "key14" : [ 10, 20, 30, 40 ]
+            },
+            "key8" : [ "ABC", "EFG", "XYZ" ],
+            "key7" : true
+        }
+        """;
+        var actual = """
+        {
+            "key3": [5, 10, 15, 20],
+            "key1": 10, "key2": "val2",
+            "key4": 0.5, "key5": 10,
+            "key6": {
+                "key12": "email.address@gmail.com",
+                "key13": ["Microsoft", "https://www.microsoft.com/en-us/"],
+                "key11": "test", "key14": [10, 20, 30, 40]
+            },
+            "key8": ["ABC", "EFG", "XYZ"], "key7": true
+        }
+        """;
+        JsonAssert.AreEqual(expected, actual);
+    }
+
+    [TestMethod]
     public void When_SimpleJsonSchemaAggregatedTest_ValidTrue()
     {
         var schema = """
@@ -153,7 +189,6 @@ public class AggregatedTests
             }
         }
         """;
-
         JsonAssert.IsValid(schema, json);
     }
 
@@ -166,6 +201,8 @@ public class AggregatedTests
         %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
                   RelogicLabs.JsonSchema.Tests
         
+        %pragma DateDataTypeFormat: "DD-MM-YYYY"
+        %pragma TimeDataTypeFormat: "DD-MM-YYYY hh:mm:ss"
         %pragma IgnoreUndefinedProperties: true
         
         %define $post: {
@@ -194,13 +231,14 @@ public class AggregatedTests
                 "id": @range(1, 10000) #integer,
                 /*username does not allow special characters*/
                 "username": @regex("[a-z_]{3,30}") #string,
-                "role": @enum("user", "admin") #string,
+                "role": @enum("user", "admin") #string &role,
                 "isActive": #boolean, //user account current status
-                "registeredAt": @time("DD-MM-YYYY hh:mm:ss") #string,
+                "registeredAt": @after("01-01-2010 00:00:00") #time,
+                "dataAccess": @checkAccess(&role) #integer,
                 "profile": {
                     "firstName": @regex("[A-Za-z]{3,50}") #string,
                     "lastName": @regex("[A-Za-z]{3,50}") #string,
-                    "dateOfBirth": @date("DD-MM-YYYY") #string,
+                    "dateOfBirth": @before("01-01-2006") #date,
                     "age": @range(18, 128) #integer,
                     "email": @email #string,
                     "pictureURL": @url #string,
@@ -220,7 +258,7 @@ public class AggregatedTests
             },
             "products": #object*($product) #array,
             "weather": {
-                "temperature": @range(-50.0, 60.0) #float,
+                "temperature": @range(-50, 60) #integer #float,
                 "isCloudy": #boolean
             }
         }
@@ -233,6 +271,7 @@ public class AggregatedTests
                 "role": "admin",
                 "isActive": true,
                 "registeredAt": "06-09-2023 15:10:30",
+                "dataAccess": 10,
                 "profile": {
                     "firstName": "John",
                     "lastName": "Doe",
@@ -308,12 +347,11 @@ public class AggregatedTests
             ],
             "weather": {
                 "temperature": 25.5,
-                "isCloudy": true,
+                "isCloudy": false,
                 "conditions": null
             }
         }
         """;
-
         JsonAssert.IsValid(schema, json);
     }
 }
