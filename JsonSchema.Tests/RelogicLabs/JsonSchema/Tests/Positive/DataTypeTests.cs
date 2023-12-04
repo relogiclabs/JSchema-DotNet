@@ -80,4 +80,32 @@ public class DataTypeTests
             """;
         JsonAssert.IsValid(schema, json);
     }
+
+    [TestMethod]
+    public void When_DataTypePrimitiveInArray_ValidTrue()
+    {
+        var schema =
+            """
+            #primitive* #array
+            """;
+        var json =
+            """
+            ["test", 0, false, null]
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
+
+    [TestMethod]
+    public void When_DataTypeCompositeInArray_ValidTrue()
+    {
+        var schema =
+            """
+            #composite* #array
+            """;
+        var json =
+            """
+            [[], {}, [10, 20], {"key": 100}]
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
 }
