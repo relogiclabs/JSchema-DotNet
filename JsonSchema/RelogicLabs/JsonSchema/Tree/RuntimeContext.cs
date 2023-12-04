@@ -1,32 +1,32 @@
 using RelogicLabs.JsonSchema.Exceptions;
+using RelogicLabs.JsonSchema.Functions;
 using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Types;
-using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
 public sealed class RuntimeContext
 {
-    private int _disableException;
-    private readonly Dictionary<string, object> _memoryMap;
-
-    internal MessageFormatter MessageFormatter { get; set; }
-    public bool ThrowException { get; set; }
-    public Dictionary<JAlias, JValidator> Definitions { get; }
-    public PragmaRegistry Pragmas { get; }
     public FunctionRegistry Functions { get; }
-    public Queue<Exception> Exceptions { get; }
+    public PragmaRegistry Pragmas { get; }
+    public Dictionary<JAlias, JValidator> Definitions { get; }
+    public ExceptionRegistry Exceptions { get; }
+    public Dictionary<string, FutureValidator> Validators { get; }
+    public Dictionary<JReceiver, List<JNode>> Receivers { get; }
+    public Dictionary<string, object> Storage { get; }
+    internal MessageFormatter MessageFormatter { get; }
 
     internal RuntimeContext(MessageFormatter messageFormatter, bool throwException)
     {
-        _memoryMap = new Dictionary<string, object>();
         Functions = new FunctionRegistry(this);
         Pragmas = new PragmaRegistry();
         MessageFormatter = messageFormatter;
-        ThrowException = throwException;
         Definitions = new Dictionary<JAlias, JValidator>();
-        Exceptions = new Queue<Exception>();
+        Exceptions = new ExceptionRegistry(throwException);
+        Validators = new Dictionary<string, FutureValidator>();
+        Receivers = new Dictionary<JReceiver, List<JNode>>();
+        Storage = new Dictionary<string, object>();
     }
 
     public JDefinition AddDefinition(JDefinition definition)
@@ -35,7 +35,7 @@ public sealed class RuntimeContext
             throw new DuplicateDefinitionException(MessageFormatter.FormatForSchema(
                 DEFI01, $"Duplicate definition of {definition.Alias
                 } is found and already defined as {previous.GetOutline()}",
-                definition.Context));
+                definition));
         Definitions.Add(definition.Alias, definition.Validator);
         return definition;
     }
@@ -43,26 +43,44 @@ public sealed class RuntimeContext
     internal bool AreEqual(double value1, double value2)
         => Math.Abs(value1 - value2) < Pragmas.FloatingPointTolerance;
 
-    internal T TryMatch<T>(Func<T> function)
-    {
-        try
-        {
-            _disableException += 1;
-            return function();
-        }
-        finally
-        {
-            _disableException -= 1;
-        }
-    }
-
+    internal T TryExecute<T>(Func<T> function) => Exceptions.TryExecute(function);
     internal bool FailWith(Exception exception)
     {
-        if(ThrowException && _disableException == 0) throw exception;
-        if(_disableException == 0) Exceptions.Enqueue(exception);
+        Exceptions.TryThrow(exception);
+        Exceptions.TryAdd(exception);
         return false;
     }
 
-    public void Store(string name, object value) => _memoryMap[name] = value;
-    public object? Retrieve(string name) => _memoryMap.GetValue(name);
+    internal void Register(IEnumerable<JReceiver> receivers)
+    {
+        foreach(var r in receivers) Receivers[r] = new List<JNode>();
+    }
+
+    internal void Receive(IEnumerable<JReceiver> receivers, JNode node)
+    {
+        foreach(var r in receivers) Receivers[r].Add(node);
+    }
+
+    internal List<JNode>? Fetch(JReceiver receiver)
+    {
+        Receivers.TryGetValue(receiver, out var list);
+        return list;
+    }
+
+    public bool AddValidator(FutureValidator validator)
+        => Validators.TryAdd(Guid.NewGuid().ToString(), validator);
+
+    internal bool InvokeValidators()
+    {
+        var result = true;
+        foreach(var v in Validators) result &= v.Value();
+        return result;
+    }
+
+    public void Clear()
+    {
+        Exceptions.Clear();
+        Storage.Clear();
+        foreach(var pair in Receivers) pair.Value.Clear();
+    }
 }

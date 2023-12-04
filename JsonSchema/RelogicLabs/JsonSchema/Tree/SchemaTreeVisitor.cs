@@ -88,7 +88,7 @@ internal sealed class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
 
     public override JNode VisitValidator(SchemaParser.ValidatorContext context)
     {
-        if(context.aliasName() != null) return Visit(context.aliasName());
+        if(context.alias() != null) return Visit(context.alias());
         if(context.validatorMain() != null) return Visit(context.validatorMain());
         throw new InvalidOperationException("Invalid parser state");
     }
@@ -99,13 +99,13 @@ internal sealed class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
-            Alias = (JAlias) Visit(context.aliasName()),
+            Alias = (JAlias) Visit(context.alias()),
             Validator = (JValidator) Visit(context.validatorMain())
         }.Build();
         return _runtime.AddDefinition(definition);
     }
 
-    public override JNode VisitAliasName(SchemaParser.AliasNameContext context)
+    public override JNode VisitAlias(SchemaParser.AliasContext context)
         => new JAlias.Builder
         {
             Relations = _relations,
@@ -130,6 +130,8 @@ internal sealed class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
             Functions = context.function().Select(ctx => (JFunction) Visit(ctx))
                 .ToList().AsReadOnly(),
             DataTypes = context.datatype().Select(ctx => (JDataType) Visit(ctx))
+                .ToList().AsReadOnly(),
+            Receivers = context.receiver().Select(ctx => (JReceiver) Visit(ctx))
                 .ToList().AsReadOnly(),
             Optional = context.OPTIONAL() != null
         }.Build();
@@ -172,7 +174,7 @@ internal sealed class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
             Context = new Context(context, _runtime),
             JsonType = JsonType.From(context.DATATYPE()),
             Nested = context.STAR() != null,
-            Alias = (JAlias) Visit(context.aliasName())
+            Alias = (JAlias) Visit(context.alias())
         }.Build();
 
     public override JNode VisitFunction(SchemaParser.FunctionContext context)
@@ -182,7 +184,22 @@ internal sealed class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
             Context = new Context(context, _runtime),
             Name = context.FUNCTION().GetText(),
             Nested = context.STAR() != null,
-            Arguments = context.value().Select(Visit).ToList().AsReadOnly()
+            Arguments = context.argument().Select(Visit).ToList().AsReadOnly()
+        }.Build();
+
+    public override JNode VisitArgument(SchemaParser.ArgumentContext context)
+    {
+        if(context.value() != null) return Visit(context.value());
+        if(context.receiver() != null) return Visit(context.receiver());
+        throw new InvalidOperationException("Invalid parser state");
+    }
+
+    public override JNode VisitReceiver(SchemaParser.ReceiverContext context)
+        => new JReceiver.Builder
+        {
+            Relations = _relations,
+            Context = new Context(context, _runtime),
+            Name = context.RECEIVER().GetText()
         }.Build();
 
     public override JNode VisitPrimitiveTrue(SchemaParser.PrimitiveTrueContext context)

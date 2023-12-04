@@ -16,11 +16,11 @@ public sealed partial class CoreFunctions
         => DateTime(target, pattern, TIME_TYPE);
 
     private bool DateTime(JString target, JString pattern, DateTimeType type)
-        => !ReferenceEquals(new DateTimeFunction(pattern, type).Parse(Function, target), null);
+        => !ReferenceEquals(new DateTimeAgent(pattern, type).Parse(Function, target), null);
 
     public bool Before(JDateTime target, JString reference)
     {
-        var dateTime = GetDateTime(target.GetParser(), reference);
+        var dateTime = GetDateTime(target.GetDateTimeParser(), reference);
         if(ReferenceEquals(dateTime, null)) return false;
         if(target.DateTime.Compare(dateTime.DateTime) < 0) return true;
         var type = target.DateTime.Type;
@@ -34,7 +34,7 @@ public sealed partial class CoreFunctions
 
     public bool After(JDateTime target, JString reference)
     {
-        var dateTime = GetDateTime(target.GetParser(), reference);
+        var dateTime = GetDateTime(target.GetDateTimeParser(), reference);
         if(ReferenceEquals(dateTime, null)) return false;
         if(target.DateTime.Compare(dateTime.DateTime) > 0) return true;
         var type = target.DateTime.Type;
@@ -48,9 +48,9 @@ public sealed partial class CoreFunctions
 
     public bool Range(JDateTime target, JString start, JString end)
     {
-        var _start = GetDateTime(target.GetParser(), start);
+        var _start = GetDateTime(target.GetDateTimeParser(), start);
         if(ReferenceEquals(_start, null)) return false;
-        var _end = GetDateTime(target.GetParser(), end);
+        var _end = GetDateTime(target.GetDateTimeParser(), end);
         if(ReferenceEquals(_end, null)) return false;
         if(target.DateTime.Compare(_start.DateTime) < 0)
         {
@@ -77,7 +77,7 @@ public sealed partial class CoreFunctions
 
     public bool Range(JDateTime target, JUndefined start, JString end)
     {
-        var _end = GetDateTime(target.GetParser(), end);
+        var _end = GetDateTime(target.GetDateTimeParser(), end);
         if(ReferenceEquals(_end, null)) return false;
         if(target.DateTime.Compare(_end.DateTime) > 0)
         {
@@ -94,7 +94,7 @@ public sealed partial class CoreFunctions
 
     public bool Range(JDateTime target, JString start, JUndefined end)
     {
-        var _start = GetDateTime(target.GetParser(), start);
+        var _start = GetDateTime(target.GetDateTimeParser(), start);
         if(ReferenceEquals(_start, null)) return false;
         if(target.DateTime.Compare(_start.DateTime) < 0)
         {
@@ -111,7 +111,7 @@ public sealed partial class CoreFunctions
 
     public bool Start(JDateTime target, JString reference)
     {
-        var dateTime = GetDateTime(target.GetParser(), reference);
+        var dateTime = GetDateTime(target.GetDateTimeParser(), reference);
         if(ReferenceEquals(dateTime, null)) return false;
         if(target.DateTime.Compare(dateTime.DateTime) < 0)
         {
@@ -128,7 +128,7 @@ public sealed partial class CoreFunctions
 
     public bool End(JDateTime target, JString reference)
     {
-        var dateTime = GetDateTime(target.GetParser(), reference);
+        var dateTime = GetDateTime(target.GetDateTimeParser(), reference);
         if(ReferenceEquals(dateTime, null)) return false;
         if(target.DateTime.Compare(dateTime.DateTime) > 0)
         {
@@ -147,7 +147,7 @@ public sealed partial class CoreFunctions
     {
         if(dateTime.Derived is JDateTime _result
            && _result.DateTime.Type == parser.Type) return _result;
-        var _dateTime = new DateTimeFunction(parser).Parse(Function, dateTime);
+        var _dateTime = new DateTimeAgent(parser).Parse(Function, dateTime);
         if(ReferenceEquals(_dateTime, null)) return null;
         dateTime.Derived = _dateTime.Create(dateTime);
         return (JDateTime) dateTime.Derived;

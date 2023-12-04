@@ -1,5 +1,6 @@
 using System.Text;
 using RelogicLabs.JsonSchema.Tree;
+using RelogicLabs.JsonSchema.Types;
 using RelogicLabs.JsonSchema.Utilities;
 using static System.Environment;
 
@@ -88,6 +89,9 @@ public abstract class MessageFormatter
 
     internal abstract string Format(ErrorDetail error, ExpectedDetail expected,
         ActualDetail actual);
+
+    internal static ErrorDetail FormatForSchema(string code, string message, JNode? node)
+        => FormatForSchema(code, message, node?.Context);
 
     internal static ErrorDetail FormatForSchema(string code, string message, Context? context)
         => FormatForSchema(code, message, context?.GetLocation());

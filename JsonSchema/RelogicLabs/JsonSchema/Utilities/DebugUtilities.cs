@@ -10,25 +10,14 @@ internal static class DebugUtilities
 {
     public static bool DebugPrint = false;
 
-    internal static void Print(SchemaTree schemaTree, JsonTree jsonTree)
+    internal static void Print(IDataTree expected, IDataTree actual)
     {
         if(!DebugPrint) return;
-        Console.WriteLine("[DEBUG] Schema interpretation:");
-        Console.WriteLine(schemaTree.Root);
+        Console.WriteLine($"[DEBUG] Expected {expected.Type} tree interpretation:");
+        Console.WriteLine(expected.Root);
         Console.WriteLine("---");
-        Console.WriteLine("[DEBUG] Json interpretation:");
-        Console.WriteLine(jsonTree.Root);
-        Console.WriteLine("---");
-    }
-
-    internal static void Print(JsonTree expectedTree, JsonTree actualTree)
-    {
-        if(!DebugPrint) return;
-        Console.WriteLine("[DEBUG] Expected Json interpretation:");
-        Console.WriteLine(expectedTree.Root);
-        Console.WriteLine("---");
-        Console.WriteLine("[DEBUG] Actual Json interpretation:");
-        Console.WriteLine(actualTree.Root);
+        Console.WriteLine($"[DEBUG] Actual {actual.Type} tree interpretation:");
+        Console.WriteLine(actual.Root);
         Console.WriteLine("---");
     }
 

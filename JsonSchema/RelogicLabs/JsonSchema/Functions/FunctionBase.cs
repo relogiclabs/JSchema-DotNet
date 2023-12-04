@@ -1,4 +1,3 @@
-using RelogicLabs.JsonSchema.Exceptions;
 using RelogicLabs.JsonSchema.Tree;
 using RelogicLabs.JsonSchema.Types;
 
@@ -11,6 +10,6 @@ public abstract class FunctionBase
 
     protected FunctionBase(RuntimeContext runtime) => Runtime = runtime;
 
-    public bool FailWith(JsonSchemaException exception)
+    protected bool FailWith(Exception exception)
         => Runtime.FailWith(exception);
 }
