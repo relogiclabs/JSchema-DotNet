@@ -12,16 +12,16 @@ public sealed class SchemaTree : IDataTree
     public JRoot Root { get; }
     public TreeType Type => SCHEMA_TREE;
 
-    public SchemaTree(RuntimeContext context, string input)
+    public SchemaTree(RuntimeContext runtime, string input)
     {
-        Runtime = context;
+        Runtime = runtime;
         SchemaLexer schemaLexer = new(CharStreams.fromString(input));
         schemaLexer.RemoveErrorListeners();
         schemaLexer.AddErrorListener(LexerErrorListener.Schema);
         SchemaParser schemaParser = new(new CommonTokenStream(schemaLexer));
         schemaParser.RemoveErrorListeners();
         schemaParser.AddErrorListener(ParserErrorListener.Schema);
-        Root = (JRoot) new SchemaTreeVisitor(context).Visit(schemaParser.schema());
+        Root = (JRoot) new SchemaTreeVisitor(runtime).Visit(schemaParser.schema());
     }
 
     public bool Match(IDataTree dataTree)

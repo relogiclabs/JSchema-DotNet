@@ -31,7 +31,7 @@ public sealed class PragmaRegistry
     internal DateTimeParser DateTypeParser { get; private set; }
     internal DateTimeParser TimeTypeParser { get; private set; }
 
-    public PragmaRegistry()
+    internal PragmaRegistry()
     {
         DateTypeParser = new DateTimeParser(DateDataTypeFormat, DATE_TYPE);
         TimeTypeParser = new DateTimeParser(TimeDataTypeFormat, TIME_TYPE);
@@ -40,7 +40,7 @@ public sealed class PragmaRegistry
     public JPragma AddPragma(JPragma pragma) {
         if(_pragmas.ContainsKey(pragma.Name))
             throw new DuplicatePragmaException(MessageFormatter.FormatForSchema(
-                PRAG03, $"Duplication found for {pragma.GetOutline()}", pragma.Context));
+                PRAG03, $"Duplication found for {pragma.GetOutline()}", pragma));
         _pragmas.Add(pragma.Name, pragma);
         SetPragmaValue(pragma.Name, pragma.Value);
         return pragma;

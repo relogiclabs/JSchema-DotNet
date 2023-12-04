@@ -19,11 +19,11 @@ internal sealed class MethodPointer
         Parameters = parameters.ToReadOnlyList();
     }
 
-    public bool Invoke(JFunction function, List<object> arguments)
+    public object Invoke(JFunction function, object?[] arguments)
     {
         Instance.Function = function;
-        var result = Method.Invoke(Instance, arguments.ToArray());
-        if(result is not bool _result) throw new InvalidOperationException();
-        return _result;
+        var result = Method.Invoke(Instance, arguments);
+        if(result is null) throw new InvalidOperationException();
+        return result;
     }
 }

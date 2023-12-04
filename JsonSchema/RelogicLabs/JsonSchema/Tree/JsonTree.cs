@@ -12,16 +12,16 @@ public sealed class JsonTree : IDataTree
     public JRoot Root { get; }
     public TreeType Type => JSON_TREE;
 
-    public JsonTree(RuntimeContext context, string input)
+    public JsonTree(RuntimeContext runtime, string input)
     {
-        Runtime = context;
+        Runtime = runtime;
         JsonLexer jsonLexer = new(CharStreams.fromString(input));
         jsonLexer.RemoveErrorListeners();
         jsonLexer.AddErrorListener(LexerErrorListener.Json);
         JsonParser jsonParser = new(new CommonTokenStream(jsonLexer));
         jsonParser.RemoveErrorListeners();
         jsonParser.AddErrorListener(ParserErrorListener.Json);
-        Root = (JRoot) new JsonTreeVisitor(context).Visit(jsonParser.json());
+        Root = (JRoot) new JsonTreeVisitor(runtime).Visit(jsonParser.json());
     }
 
     public bool Match(IDataTree dataTree)

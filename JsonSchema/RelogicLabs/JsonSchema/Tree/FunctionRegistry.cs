@@ -15,7 +15,7 @@ public sealed class FunctionRegistry
     private readonly Dictionary<FunctionKey, List<MethodPointer>> _functions = new();
     private readonly RuntimeContext _runtime;
 
-    public FunctionRegistry(RuntimeContext runtime) => _runtime = runtime;
+    internal FunctionRegistry(RuntimeContext runtime) => _runtime = runtime;
 
     public JInclude AddClass(JInclude include)
     {
@@ -88,10 +88,11 @@ public sealed class FunctionRegistry
             if(!baseclass.IsAssignableFrom(m.DeclaringType)) continue;
             if(baseclass == m.DeclaringType) continue;
             ParameterInfo[] parameters = m.GetParameters();
-            if(m.ReturnType != typeof(bool)) throw new InvalidFunctionException(FUNC01,
-                $"Function [{m.GetSignature()}] requires return type boolean");
+            if(!IsValidReturnType(m.ReturnType))
+                throw new InvalidFunctionException(FUNC01,
+                $"Function [{m.GetSignature()}] requires valid return type");
             if(parameters.Length < 1) throw new InvalidFunctionException(FUNC02,
-                $"Function [{m.GetSignature()}] requires minimum one parameter");
+                $"Function [{m.GetSignature()}] requires target parameter");
             var key = new FunctionKey(m, GetParameterCount(parameters));
             var value = new MethodPointer(instance, m, parameters);
             functions.TryGetValue(key, out var valueList);
@@ -100,6 +101,12 @@ public sealed class FunctionRegistry
             functions[key] = valueList;
         }
         return functions;
+    }
+
+    private static bool IsValidReturnType(Type type) {
+        if(type == typeof(bool)) return true;
+        if(type == typeof(FutureValidator)) return true;
+        return false;
     }
 
     private static int GetParameterCount(ICollection<ParameterInfo> parameters)
@@ -114,8 +121,20 @@ public sealed class FunctionRegistry
     private static bool IsParams(ParameterInfo parameter)
         => parameter.IsDefined(typeof(ParamArrayAttribute), false);
 
+    private bool HandleValidator(object result)
+    {
+        return result is FutureValidator validator
+            ? _runtime.AddValidator(validator)
+            : (bool) result;
+    }
+
     public bool InvokeFunction(JFunction function, JNode target)
     {
+        foreach(var e in function.Cache)
+        {
+            if(e.IsTargetMatch(target))
+                return HandleValidator(e.Invoke(function, target));
+        }
         var methods = GetMethods(function);
         ParameterInfo? mismatchParameter = null;
 
@@ -125,8 +144,13 @@ public sealed class FunctionRegistry
             var _arguments = function.Arguments;
             var schemaArgs = ProcessArguments(_parameters, _arguments);
             if(schemaArgs == null) continue;
-            if(IsMatch(_parameters[0], target)) return method.Invoke(function,
-                AddTarget(schemaArgs, target.Derived));
+            if(IsMatch(_parameters[0], target))
+            {
+                object?[] allArgs = AddTarget(schemaArgs, target).ToArray();
+                var result = method.Invoke(function, allArgs);
+                function.Cache.Add(method, allArgs);
+                return HandleValidator(result);
+            }
             mismatchParameter = _parameters[0];
         }
         if(mismatchParameter != null)
@@ -138,14 +162,13 @@ public sealed class FunctionRegistry
                     GetTypeName(target.GetType())} of {target}")));
 
         return FailWith(new FunctionNotFoundException(MessageFormatter
-            .FormatForSchema(FUNC04, function.GetOutline(), function.Context)));
+            .FormatForSchema(FUNC04, function.GetOutline(), function)));
     }
 
-    private static List<object> AddTarget(IList<object> arguments, JNode target)
+    private static List<object> AddTarget(List<object> arguments, JNode target)
     {
-        List<object> _arguments = new(1 + arguments.Count) { target };
-        _arguments.AddRange(arguments);
-        return _arguments;
+        arguments.Insert(0, target.Derived);
+        return arguments;
     }
 
     private List<MethodPointer> GetMethods(JFunction function)
@@ -156,7 +179,7 @@ public sealed class FunctionRegistry
                 function.Name, -1), out methodPointers);
         if(methodPointers == null)
             throw new FunctionNotFoundException(MessageFormatter
-                .FormatForSchema(FUNC05, $"Not found {function.GetOutline()}", function.Context));
+                .FormatForSchema(FUNC05, $"Not found {function.GetOutline()}", function));
         return methodPointers;
     }
 
@@ -193,6 +216,5 @@ public sealed class FunctionRegistry
         return _arguments;
     }
 
-    private bool FailWith(Exception exception)
-        => _runtime.FailWith(exception);
+    private bool FailWith(Exception exception) => _runtime.FailWith(exception);
 }

@@ -15,7 +15,7 @@ public sealed class JReceiver : JLeaf
     public override bool Match(JNode node)
         => throw new InvalidOperationException("Invalid runtime state");
 
-    public int GetCount()
+    public int GetValueCount()
     {
         var list = Runtime.Fetch(this);
         if(ReferenceEquals(list, null)) throw new ReceiverNotFoundException(MessageFormatter
