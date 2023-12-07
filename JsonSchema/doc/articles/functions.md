@@ -227,14 +227,16 @@ Validates that the `target` date-time is exclusively after the `reference` date-
 ### Number Positive
 ```stylus
 #number target - @positive
+#number target - @positive(#number reference)
 ```
-Validates that the `target` number is positive. If the `target` number is zero or negative, it generates a validation error.
+Validates that the `target` number is positive or positive from (or relative to) the specified `reference`. If the `target` number is zero or negative for the first definition or less than the `reference` for the second definition, it generates a validation error.
 
 ### Number Negative
 ```stylus
 #number target - @negative
+#number target - @negative(#number reference)
 ```
-Validates that the `target` number is negative. If the `target` number is zero or positive, it generates a validation error.
+Validates that the `target` number is negative or negative from (or relative to) the specified `reference`. If the `target` number is zero or positive for the first definition or greater than the `reference` for the second definition, it generates a validation error.
 
 ### String Not Empty
 ```stylus

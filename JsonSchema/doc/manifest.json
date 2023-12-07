@@ -1,5 +1,4 @@
 {
-  "homepages": [],
   "source_base_path": "/home/zahid/Projects/JsonSchema-DotNet/JsonSchema/doc",
   "xrefmap": "xrefmap.yml",
   "files": [
@@ -23,10 +22,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Collections.IKeyer-1.yml",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Collections.IKeyed-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Collections.IKeyer-1.html"
+          "relative_path": "api/RelogicLabs.JsonSchema.Collections.IKeyed-1.html"
         }
       },
       "version": ""
@@ -513,6 +512,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Tree.ReceiverRegistry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JsonSchema.Tree.ReceiverRegistry.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/RelogicLabs.JsonSchema.Tree.RuntimeContext.yml",
       "output": {
         ".html": {
@@ -547,6 +556,16 @@
       "output": {
         ".html": {
           "relative_path": "api/RelogicLabs.JsonSchema.Tree.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.IDerived.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JsonSchema.Types.IDerived.html"
         }
       },
       "version": ""
@@ -935,11 +954,11 @@
       "type": "Toc",
       "source_relative_path": "api/toc.yml",
       "output": {
-        ".html": {
-          "relative_path": "api/toc.html"
-        },
         ".json": {
           "relative_path": "api/toc.json"
+        },
+        ".html": {
+          "relative_path": "api/toc.html"
         }
       },
       "version": ""
@@ -1028,11 +1047,11 @@
       "type": "Toc",
       "source_relative_path": "articles/toc.yml",
       "output": {
-        ".html": {
-          "relative_path": "articles/toc.html"
-        },
         ".json": {
           "relative_path": "articles/toc.json"
+        },
+        ".html": {
+          "relative_path": "articles/toc.html"
         }
       },
       "version": ""
@@ -1091,17 +1110,16 @@
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
-        ".html": {
-          "relative_path": "toc.html"
-        },
         ".json": {
           "relative_path": "toc.json"
+        },
+        ".html": {
+          "relative_path": "toc.html"
         }
       },
       "version": ""
     }
   ],
-  "version_info": {},
   "groups": [
     {
       "xrefmap": "xrefmap.yml"
