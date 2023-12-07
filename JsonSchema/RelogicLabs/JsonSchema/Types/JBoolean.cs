@@ -11,7 +11,7 @@ public sealed class JBoolean : JPrimitive, IPragmaValue<bool>
     public bool Value { get; }
 
     private JBoolean(Builder builder) : base(builder)
-        => Value = NonNull(builder.Value);
+        => Value = RequireNonNull(builder.Value);
 
     public override bool Match(JNode node)
     {

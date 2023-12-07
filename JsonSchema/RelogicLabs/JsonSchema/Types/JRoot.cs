@@ -23,7 +23,7 @@ public sealed class JRoot : JNode
         Includes = builder.Includes;
         Pragmas = builder.Pragmas;
         Definitions = builder.Definitions;
-        Value = NonNull(builder.Value);
+        Value = RequireNonNull(builder.Value);
         Children = new List<JNode>().AddToList(Title, Version)
             .AddToList(Includes, Pragmas, Definitions)
             .AddToList(Value).AsReadOnly();

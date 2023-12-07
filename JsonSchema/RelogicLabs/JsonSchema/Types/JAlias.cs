@@ -10,7 +10,7 @@ public sealed class JAlias : JLeaf
     public string Name { get; }
 
     private JAlias(Builder builder) : base(builder)
-        => Name = NonNull(builder.Name);
+        => Name = RequireNonNull(builder.Name);
 
     public override bool Match(JNode node)
     {

@@ -8,15 +8,15 @@ using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Types;
 
-public sealed class JProperty : JBranch, IKeyer<string>
+public sealed class JProperty : JBranch, IKeyed<string>
 {
     public string Key { get; }
     public JNode Value { get; }
 
     private JProperty(Builder builder) : base(builder)
     {
-        Key = NonNull(builder.Key);
-        Value = NonNull(builder.Value);
+        Key = RequireNonNull(builder.Key);
+        Value = RequireNonNull(builder.Value);
         Children = AsList(Value);
     }
 

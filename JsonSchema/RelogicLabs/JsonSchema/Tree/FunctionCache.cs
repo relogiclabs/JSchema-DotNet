@@ -1,5 +1,6 @@
 using System.Collections;
 using RelogicLabs.JsonSchema.Types;
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
@@ -8,19 +9,17 @@ internal class FunctionCache : IEnumerable<FunctionCache.Entry>
     public record Entry(MethodPointer MethodPointer, object?[] Arguments)
     {
         public bool IsTargetMatch(JNode target) => MethodPointer.Parameters[0]
-            .ParameterType.IsInstanceOfType(target.Derived);
+            .ParameterType.IsInstanceOfType(GetDerived(target));
 
         public object Invoke(JFunction function, JNode target)
         {
-            Arguments[0] = target.Derived;
+            Arguments[0] = GetDerived(target);
             return MethodPointer.Invoke(function, Arguments);
         }
     }
 
     public static int SizeLimit { get; set; } = 10;
-    private List<Entry> _cache;
-
-    public FunctionCache() => _cache = new List<Entry>(SizeLimit);
+    private List<Entry> _cache = new(SizeLimit);
 
     public void Add(MethodPointer methodPointer, object?[] arguments)
     {

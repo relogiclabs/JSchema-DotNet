@@ -1,6 +1,6 @@
 namespace RelogicLabs.JsonSchema.Collections;
 
-public interface IKeyer<out TK>
+public interface IKeyed<out TK>
 {
     TK GetKey();
 }

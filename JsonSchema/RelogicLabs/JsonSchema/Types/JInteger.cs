@@ -11,7 +11,7 @@ public sealed class JInteger : JNumber, IPragmaValue<long>
     public long Value { get; }
 
     private JInteger(Builder builder) : base(builder)
-        => Value = NonNull(builder.Value);
+        => Value = RequireNonNull(builder.Value);
 
     public override bool Match(JNode node)
     {

@@ -64,14 +64,14 @@ public class JsonType
             var dateTime = node.Runtime.Pragmas.DateTypeParser
                 .TryParse(_node, out error);
             if(ReferenceEquals(dateTime, null)) return false;
-            node.Derived = new JDate(_node, dateTime);
+            _node.Derived = new JDate(_node, dateTime);
         }
         else if(this == TIME) {
             var _node = (JString) node;
             var dateTime = node.Runtime.Pragmas.TimeTypeParser
                 .TryParse((JString) node, out error);
             if(ReferenceEquals(dateTime, null)) return false;
-            node.Derived = new JTime(_node, dateTime);
+            _node.Derived = new JTime(_node, dateTime);
         }
         return true;
     }

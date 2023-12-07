@@ -21,9 +21,8 @@ public class JsonAssert
     public JsonAssert(string schema) : this(schema, SCHEMA_TREE) { }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="JsonAssert"/> class for the
-    /// specified <paramref name="expected"/> string which can be either a Schema or a JSON
-    /// representation.
+    /// Initializes a new instance of the <see cref="JsonAssert"/> class for the specified
+    /// <paramref name="expected"/> string which can be either a Schema or a JSON representation.
     /// </summary>
     /// <param name="expected">An expected Schema or JSON string for validation or conformation.</param>
     /// <param name="type">The type of string provided by <paramref name="expected"/>, indicating

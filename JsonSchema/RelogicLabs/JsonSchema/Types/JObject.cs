@@ -15,7 +15,7 @@ public sealed class JObject : JComposite
 
     private JObject(Builder builder) : base(builder)
     {
-        Properties = NonNull(builder.Properties);
+        Properties = RequireNonNull(builder.Properties);
         _components = Properties.Select(p => p.Value).ToList().AsReadOnly();
         Children = Properties.Values;
     }

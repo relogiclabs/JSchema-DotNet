@@ -13,7 +13,7 @@ public sealed class RuntimeContext
     public Dictionary<JAlias, JValidator> Definitions { get; }
     public ExceptionRegistry Exceptions { get; }
     public Dictionary<string, FutureValidator> Validators { get; }
-    public Dictionary<JReceiver, List<JNode>> Receivers { get; }
+    public ReceiverRegistry Receivers { get; }
     public Dictionary<string, object> Storage { get; }
     internal MessageFormatter MessageFormatter { get; }
 
@@ -25,7 +25,7 @@ public sealed class RuntimeContext
         Definitions = new Dictionary<JAlias, JValidator>();
         Exceptions = new ExceptionRegistry(throwException);
         Validators = new Dictionary<string, FutureValidator>();
-        Receivers = new Dictionary<JReceiver, List<JNode>>();
+        Receivers = new ReceiverRegistry();
         Storage = new Dictionary<string, object>();
     }
 
@@ -51,22 +51,6 @@ public sealed class RuntimeContext
         return false;
     }
 
-    internal void Register(IEnumerable<JReceiver> receivers)
-    {
-        foreach(var r in receivers) Receivers[r] = new List<JNode>();
-    }
-
-    internal void Receive(IEnumerable<JReceiver> receivers, JNode node)
-    {
-        foreach(var r in receivers) Receivers[r].Add(node);
-    }
-
-    internal List<JNode>? Fetch(JReceiver receiver)
-    {
-        Receivers.TryGetValue(receiver, out var list);
-        return list;
-    }
-
     public bool AddValidator(FutureValidator validator)
         => Validators.TryAdd(Guid.NewGuid().ToString(), validator);
 
@@ -81,6 +65,6 @@ public sealed class RuntimeContext
     {
         Exceptions.Clear();
         Storage.Clear();
-        foreach(var pair in Receivers) pair.Value.Clear();
+        Receivers.Clear();
     }
 }

@@ -10,8 +10,8 @@ public sealed class JDefinition : JDirective
 
     private JDefinition(Builder builder) : base(builder)
     {
-        Alias = NonNull(builder.Alias);
-        Validator = NonNull(builder.Validator);
+        Alias = RequireNonNull(builder.Alias);
+        Validator = RequireNonNull(builder.Validator);
         Children = AsList<JNode>(Alias, Validator);
     }
 

@@ -8,7 +8,7 @@ public sealed class JTitle : JDirective
     public string Title { get; }
 
     private JTitle(Builder builder) : base(builder)
-        => Title = NonNull(builder.Title);
+        => Title = RequireNonNull(builder.Title);
 
     public override string ToString() => $"{TitleMarker}: {Title}";
 
