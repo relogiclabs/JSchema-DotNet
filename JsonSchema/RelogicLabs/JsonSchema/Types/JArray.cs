@@ -13,7 +13,7 @@ public sealed class JArray : JComposite
 
     private JArray(Builder builder) : base(builder)
     {
-        Elements = NonNull(builder.Elements);
+        Elements = RequireNonNull(builder.Elements);
         Children = Elements;
     }
 

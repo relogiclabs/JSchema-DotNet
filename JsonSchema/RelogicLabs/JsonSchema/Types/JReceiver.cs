@@ -10,14 +10,14 @@ public sealed class JReceiver : JLeaf
     public string Name { get; }
 
     private JReceiver(Builder builder) : base(builder)
-        => Name = NonNull(builder.Name);
+        => Name = RequireNonNull(builder.Name);
 
     public override bool Match(JNode node)
         => throw new InvalidOperationException("Invalid runtime state");
 
     public int GetValueCount()
     {
-        var list = Runtime.Fetch(this);
+        var list = Runtime.Receivers.Fetch(this);
         if(ReferenceEquals(list, null)) throw new ReceiverNotFoundException(MessageFormatter
             .FormatForSchema(RECV01, $"Receiver '{Name}' not found", Context));
         return list.Count;
@@ -25,7 +25,7 @@ public sealed class JReceiver : JLeaf
 
     public T GetValueNode<T>() where T : JNode
     {
-        var list = Runtime.Fetch(this);
+        var list = Runtime.Receivers.Fetch(this);
         if(ReferenceEquals(list, null)) throw new ReceiverNotFoundException(MessageFormatter
             .FormatForSchema(RECV02, $"Receiver '{Name}' not found", Context));
         if(list.Count == 0) throw new NoValueReceivedException(MessageFormatter
@@ -36,7 +36,7 @@ public sealed class JReceiver : JLeaf
 
     public IList<T> GetValueNodes<T>() where T : JNode
     {
-        var list = Runtime.Fetch(this);
+        var list = Runtime.Receivers.Fetch(this);
         if(ReferenceEquals(list, null)) throw new ReceiverNotFoundException(MessageFormatter
             .FormatForSchema(RECV04, $"Receiver '{Name}' not found", Context));
         return list.Select(i => (T) i).ToList().AsReadOnly();

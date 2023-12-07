@@ -20,9 +20,9 @@ public sealed class JFunction : JBranch, INestedMode
 
     private JFunction(Builder builder) : base(builder)
     {
-        Name = NonNull(builder.Name);
-        Nested = NonNull(builder.Nested);
-        Arguments = NonNull(builder.Arguments);
+        Name = RequireNonNull(builder.Name);
+        Nested = RequireNonNull(builder.Nested);
+        Arguments = RequireNonNull(builder.Arguments);
         Children = Arguments;
         Cache = new FunctionCache();
     }

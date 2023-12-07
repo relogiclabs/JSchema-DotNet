@@ -222,42 +222,4 @@ public class IntegerTests
         Assert.AreEqual(RANG03, exception.Code);
         Console.WriteLine(exception);
     }
-
-    [TestMethod]
-    public void When_NestedPositiveWithWrongIntegerInArray_ExceptionThrown()
-    {
-        var schema =
-            """
-            @positive* #integer*
-            """;
-        var json =
-            """
-            [100, -500, 900]
-            """;
-
-        JsonSchema.IsValid(schema, json);
-        var exception = Assert.ThrowsException<JsonSchemaException>(
-            () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(POSI01, exception.Code);
-        Console.WriteLine(exception);
-    }
-
-    [TestMethod]
-    public void When_NestedNegativeWithWrongIntegerInArray_ExceptionThrown()
-    {
-        var schema =
-            """
-            @negative* #integer*
-            """;
-        var json =
-            """
-            [-100, -500, 900]
-            """;
-
-        JsonSchema.IsValid(schema, json);
-        var exception = Assert.ThrowsException<JsonSchemaException>(
-            () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(NEGI01, exception.Code);
-        Console.WriteLine(exception);
-    }
 }

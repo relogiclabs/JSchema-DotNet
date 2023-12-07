@@ -8,7 +8,7 @@ public sealed class JInclude : JDirective
     public string ClassName { get; }
 
     private JInclude(Builder builder) : base(builder)
-        => ClassName = NonNull(builder.ClassName);
+        => ClassName = RequireNonNull(builder.ClassName);
 
     public override bool Equals(object? obj)
     {

@@ -16,8 +16,8 @@ public sealed class JPragma : JDirective
 
     private JPragma(Builder builder) : base(builder)
     {
-        Name = NonNull(builder.Name);
-        Value = NonNull(builder.Value);
+        Name = RequireNonNull(builder.Name);
+        Value = RequireNonNull(builder.Value);
         Children = AsList(Value);
     }
 
@@ -40,8 +40,8 @@ public sealed class JPragma : JDirective
 
         private void CheckPragma()
         {
-            var name = NonNull(Name);
-            var value = NonNull(Value);
+            var name = RequireNonNull(Name);
+            var value = RequireNonNull(Value);
             var descriptor = PragmaDescriptor.From(name);
             if(descriptor == null) throw new PragmaNotFoundException(MessageFormatter
                 .FormatForSchema(PRAG01, $"Invalid pragma {name.Quote()} with value {

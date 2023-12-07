@@ -109,7 +109,7 @@ public class NumberTests
     }
 
     [TestMethod]
-    public void When_NestedMaximumFloatInObject_ValidTrue()
+    public void When_NestedMaximumWrongFloatInObject_ExceptionThrown()
     {
         var schema =
             """
@@ -131,7 +131,7 @@ public class NumberTests
     }
 
     [TestMethod]
-    public void When_NestedMinimumExclusiveFloatInObject_ValidTrue()
+    public void When_NestedMinimumExclusiveWrongFloatInObject_ExceptionThrown()
     {
         var schema =
             """
@@ -153,7 +153,7 @@ public class NumberTests
     }
 
     [TestMethod]
-    public void When_NestedMaximumExclusiveFloatInObject_ValidTrue()
+    public void When_NestedMaximumExclusiveWrongFloatInObject_ExceptionThrown()
     {
         var schema =
             """
@@ -171,6 +171,82 @@ public class NumberTests
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(MAXI03, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_NestedPositiveWithWrongNumberInArray_ExceptionThrown()
+    {
+        var schema =
+            """
+            @positive* #number*
+            """;
+        var json =
+            """
+            [1, 100.5, -500]
+            """;
+
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(POSI01, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_NestedPositiveReferenceWithWrongNumberInArray_ExceptionThrown()
+    {
+        var schema =
+            """
+            @positive*(0) #number*
+            """;
+        var json =
+            """
+            [0, 100, 0.1, -1]
+            """;
+
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(POSI02, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_NestedNegativeWithWrongNumberInArray_ExceptionThrown()
+    {
+        var schema =
+            """
+            @negative* #number*
+            """;
+        var json =
+            """
+            [-100, -500, -0.1, 0]
+            """;
+
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(NEGI01, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_NestedNegativeReferenceWithWrongNumberInArray_ExceptionThrown()
+    {
+        var schema =
+            """
+            @negative*(0) #number*
+            """;
+        var json =
+            """
+            [-100, -500, -0.01, 1]
+            """;
+
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(NEGI02, exception.Code);
         Console.WriteLine(exception);
     }
 }

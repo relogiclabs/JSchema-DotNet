@@ -17,8 +17,8 @@ public sealed class JDataType : JBranch, INestedMode
 
     private JDataType(Builder builder) : base(builder)
     {
-        JsonType = NonNull(builder.JsonType);
-        Nested = NonNull(builder.Nested);
+        JsonType = RequireNonNull(builder.JsonType);
+        Nested = RequireNonNull(builder.Nested);
         Alias = builder.Alias;
         Children = AsList(Alias);
     }

@@ -19,11 +19,11 @@ public sealed class JValidator : JBranch
     private JValidator(Builder builder) : base(builder)
     {
         Value = builder.Value;
-        Functions = NonNull(builder.Functions);
-        DataTypes = NonNull(builder.DataTypes);
-        Receivers = NonNull(builder.Receivers);
-        Optional = NonNull(builder.Optional);
-        Runtime.Register(Receivers);
+        Functions = RequireNonNull(builder.Functions);
+        DataTypes = RequireNonNull(builder.DataTypes);
+        Receivers = RequireNonNull(builder.Receivers);
+        Optional = RequireNonNull(builder.Optional);
+        Runtime.Receivers.Register(Receivers);
         Children = new List<JNode>().AddToList(Value)
             .AddToList(Functions, DataTypes, Receivers)
             .AsReadOnly();
@@ -34,7 +34,7 @@ public sealed class JValidator : JBranch
         bool rValue = true;
         var value = CastType<IJsonType>(node);
         if(value == null) return false;
-        Runtime.Receive(Receivers, node);
+        Runtime.Receivers.Receive(Receivers, node);
         if(node is JNull && DataTypes.Select(d => d.IsMatchNull()).AnyTrue())
             return true;
         if(Value != null) rValue &= Value.Match(value.Node);

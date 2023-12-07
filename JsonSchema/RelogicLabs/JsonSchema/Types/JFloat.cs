@@ -11,7 +11,7 @@ public sealed class JFloat : JNumber, IPragmaValue<double>
     public double Value { get; }
 
     private JFloat(Builder builder) : base(builder)
-        => Value = NonNull(builder.Value);
+        => Value = RequireNonNull(builder.Value);
 
     public override bool Match(JNode node)
     {

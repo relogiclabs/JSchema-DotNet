@@ -8,7 +8,7 @@ public sealed class JVersion : JDirective
     public string Version { get; }
 
     private JVersion(Builder builder) : base(builder)
-        => Version = NonNull(builder.Version);
+        => Version = RequireNonNull(builder.Version);
 
     public override string ToString() => $"{VersionMarker}: {Version}";
 

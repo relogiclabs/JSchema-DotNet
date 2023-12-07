@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 namespace RelogicLabs.JsonSchema.Collections;
 
 public sealed class IndexHashMap<TK, TV> : IIndexMap<TK, TV>
-    where TV : IKeyer<TK> where TK : notnull
+    where TV : IKeyed<TK> where TK : notnull
 {
     private IDictionary<TK, TV> _dictionary;
     private IList<TV> _list;

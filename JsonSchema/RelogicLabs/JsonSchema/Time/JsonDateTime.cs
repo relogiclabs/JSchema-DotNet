@@ -13,8 +13,8 @@ public class JsonDateTime
     private const int DEFAULT_MINUTE = 0;
     private const int DEFAULT_SECOND = 0;
     private const int DEFAULT_FRACTION = 0;
-    private const int DEFAULT_UTC_HOUR = 0;
-    private const int DEFAULT_UTC_MINUTE = 0;
+    private const int DEFAULT_UTC_OFFSET_HOUR = 0;
+    private const int DEFAULT_UTC_OFFSET_MINUTE = 0;
 
     public const int UNSET = -1000;
 
@@ -26,15 +26,15 @@ public class JsonDateTime
     public int Minute { get; }
     public int Second { get; }
     public int Fraction { get; }
-    public int UtcHour { get; }
-    public int UtcMinute { get; }
+    public int UtcOffsetHour { get; }
+    public int UtcOffsetMinute { get; }
 
     private DateTimeOffset _dateTimeOffset;
     private TimeSpan _utcOffset;
 
     internal JsonDateTime(DateTimeType type, int year = UNSET, int month = UNSET,
         int day = UNSET, int hour = UNSET, int minute = UNSET, int second = UNSET,
-        int fraction = UNSET, int utcHour = UNSET, int utcMinute = UNSET)
+        int fraction = UNSET, int utcOffsetHour = UNSET, int utcOffsetMinute = UNSET)
     {
         Type = type;
         Year = year;
@@ -44,12 +44,12 @@ public class JsonDateTime
         Minute = minute;
         Second = second;
         Fraction = fraction;
-        UtcHour = utcHour;
-        UtcMinute = utcMinute;
+        UtcOffsetHour = utcOffsetHour;
+        UtcOffsetMinute = utcOffsetMinute;
 
         _utcOffset = new TimeSpan(
-            DefaultIfUnset(utcHour, DEFAULT_UTC_HOUR),
-            DefaultIfUnset(utcMinute, DEFAULT_UTC_MINUTE), 0);
+            DefaultIfUnset(utcOffsetHour, DEFAULT_UTC_OFFSET_HOUR),
+            DefaultIfUnset(utcOffsetMinute, DEFAULT_UTC_OFFSET_MINUTE), 0);
 
         _dateTimeOffset = new DateTimeOffset(
             DefaultIfUnset(year, DEFAULT_YEAR),
@@ -63,7 +63,6 @@ public class JsonDateTime
 
     private static int DefaultIfUnset(int value, int defaultValue)
         => value == UNSET ? defaultValue : value;
-
 
     private static bool IsAllSet(params int[] values)
         => values.All(value => value != UNSET);
@@ -85,6 +84,13 @@ public class JsonDateTime
         return result;
     }
 
+    internal JDateTime CreateNode(JString dateTime)
+    {
+        if(Type == DATE_TYPE) return new JDate(dateTime, this);
+        if(Type == TIME_TYPE) return new JTime(dateTime, this);
+        throw new InvalidOperationException("Invalid date time type");
+    }
+
     public override string ToString()
     {
         StringBuilder builder = new("{");
@@ -95,17 +101,10 @@ public class JsonDateTime
         if(Minute != UNSET) builder.Append($"Minute: {Minute}, ");
         if(Second != UNSET) builder.Append($"Second: {Second}, ");
         if(Fraction != UNSET) builder.Append($"Fraction: {Fraction}, ");
-        if(UtcHour != UNSET) builder.Append($"UTC Offset Hour: {UtcHour}, ");
-        if(UtcMinute != UNSET) builder.Append($"UTC Offset Minute: {UtcMinute}, ");
+        if(UtcOffsetHour != UNSET) builder.Append($"UTC Offset Hour: {UtcOffsetHour}, ");
+        if(UtcOffsetMinute != UNSET) builder.Append($"UTC Offset Minute: {UtcOffsetMinute}, ");
         var result = builder.ToString();
         if(result.EndsWith(", ")) result = result[..^2];
         return result + "}";
-    }
-
-    internal JDateTime Create(JString dateTime)
-    {
-        if(Type == DATE_TYPE) return new JDate(dateTime, this);
-        if(Type == TIME_TYPE) return new JTime(dateTime, this);
-        throw new InvalidOperationException("Invalid date time type");
     }
 }

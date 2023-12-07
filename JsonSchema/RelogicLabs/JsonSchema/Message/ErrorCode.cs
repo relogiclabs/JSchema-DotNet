@@ -121,6 +121,7 @@ internal static class ErrorCode
     public const string MINI02 = "MINI02";
     public const string MINI03 = "MINI03";
     public const string NEGI01 = "NEGI01";
+    public const string NEGI02 = "NEGI02";
     public const string NEMT01 = "NEMT01";
     public const string NEMT02 = "NEMT02";
     public const string NEMT03 = "NEMT03";
@@ -131,6 +132,7 @@ internal static class ErrorCode
     public const string OLEN05 = "OLEN05";
     public const string PHON01 = "PHON01";
     public const string POSI01 = "POSI01";
+    public const string POSI02 = "POSI02";
     public const string PRAG01 = "PRAG01";
     public const string PRAG02 = "PRAG02";
     public const string PRAG03 = "PRAG03";

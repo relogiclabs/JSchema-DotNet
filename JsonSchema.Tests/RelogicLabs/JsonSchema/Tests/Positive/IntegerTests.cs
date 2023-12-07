@@ -10,7 +10,7 @@ public class IntegerTests
         var json = "10";
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_DataTypeIntegerInObject_ValidTrue()
     {
@@ -32,7 +32,7 @@ public class IntegerTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_DataTypeIntegerInArray_ValidTrue()
     {
@@ -46,7 +46,7 @@ public class IntegerTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedDataTypeIntegerInArray_ValidTrue()
     {
@@ -60,7 +60,7 @@ public class IntegerTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedDataTypeIntegerInObject_ValidTrue()
     {
@@ -78,7 +78,7 @@ public class IntegerTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedRangeIntegerInObject_ValidTrue()
     {
@@ -96,7 +96,7 @@ public class IntegerTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedRangeWithUndefinedIntegerInObject_ValidTrue()
     {
@@ -114,7 +114,7 @@ public class IntegerTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedRangeWithUndefinedIntegerInArray_ValidTrue()
     {
@@ -125,34 +125,6 @@ public class IntegerTests
         var json =
             """
             [10, 2000, 40000]
-            """;
-        JsonAssert.IsValid(schema, json);
-    }
-    
-    [TestMethod]
-    public void When_NestedPositiveWithIntegerInArray_ValidTrue()
-    {
-        var schema =
-            """
-            @positive* #integer*
-            """;
-        var json =
-            """
-            [100, 500, 900]
-            """;
-        JsonAssert.IsValid(schema, json);
-    }
-    
-    [TestMethod]
-    public void When_NestedNegativeWithIntegerInArray_ValidTrue()
-    {
-        var schema =
-            """
-            @negative* #integer*
-            """;
-        var json =
-            """
-            [-100, -500, -900]
             """;
         JsonAssert.IsValid(schema, json);
     }

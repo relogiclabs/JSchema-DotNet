@@ -6,6 +6,7 @@ using RelogicLabs.JsonSchema.Types;
 using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ContextDetail;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
@@ -116,12 +117,12 @@ public sealed class FunctionRegistry
     }
 
     private static bool IsMatch(ParameterInfo parameter, JNode argument)
-        => parameter.ParameterType.IsInstanceOfType(argument.Derived);
+        => parameter.ParameterType.IsInstanceOfType(GetDerived(argument));
 
     private static bool IsParams(ParameterInfo parameter)
         => parameter.IsDefined(typeof(ParamArrayAttribute), false);
 
-    private bool HandleValidator(object result)
+    private bool HandleFuture(object result)
     {
         return result is FutureValidator validator
             ? _runtime.AddValidator(validator)
@@ -133,7 +134,7 @@ public sealed class FunctionRegistry
         foreach(var e in function.Cache)
         {
             if(e.IsTargetMatch(target))
-                return HandleValidator(e.Invoke(function, target));
+                return HandleFuture(e.Invoke(function, target));
         }
         var methods = GetMethods(function);
         ParameterInfo? mismatchParameter = null;
@@ -149,7 +150,7 @@ public sealed class FunctionRegistry
                 object?[] allArgs = AddTarget(schemaArgs, target).ToArray();
                 var result = method.Invoke(function, allArgs);
                 function.Cache.Add(method, allArgs);
-                return HandleValidator(result);
+                return HandleFuture(result);
             }
             mismatchParameter = _parameters[0];
         }
@@ -167,7 +168,7 @@ public sealed class FunctionRegistry
 
     private static List<object> AddTarget(List<object> arguments, JNode target)
     {
-        arguments.Insert(0, target.Derived);
+        arguments.Insert(0, GetDerived(target));
         return arguments;
     }
 
