@@ -115,4 +115,39 @@ public class OtherTests
         Assert.AreEqual(DTYP04, exception.Code);
         Console.WriteLine(exception);
     }
+
+    [TestMethod]
+    public void When_MandatoryValueMissingInArray_ExceptionThrown()
+    {
+        var schema = "[#number, #number?, #number?]";
+        var json = "[]";
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(ARRY01, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_MandatoryPropertyMissingInObject_ExceptionThrown()
+    {
+        var schema =
+            """
+            {
+                "key1": #integer,
+                "key2": #integer
+            }
+            """;
+        var json =
+            """
+            {
+                "key1": 10
+            }
+            """;
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(PROP05, exception.Code);
+        Console.WriteLine(exception);
+    }
 }
