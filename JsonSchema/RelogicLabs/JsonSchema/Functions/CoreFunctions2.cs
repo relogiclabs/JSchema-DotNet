@@ -106,6 +106,26 @@ public sealed partial class CoreFunctions
         return true;
     }
 
+    public bool Positive(JNumber target, JNumber reference)
+    {
+        if(target.Compare(reference) < 0)
+            return FailWith(new JsonSchemaException(
+                new ErrorDetail(POSI02, "Number is not positive from reference"),
+                new ExpectedDetail(Function, $"a positive number from {reference}"),
+                new ActualDetail(target, $"number {target} is less than reference")));
+        return true;
+    }
+
+    public bool Negative(JNumber target, JNumber reference)
+    {
+        if(target.Compare(reference) > 0)
+            return FailWith(new JsonSchemaException(
+                new ErrorDetail(NEGI02, "Number is not negative from reference"),
+                new ExpectedDetail(Function, $"a negative number from {reference}"),
+                new ActualDetail(target, $"number {target} is greater than reference")));
+        return true;
+    }
+
     public bool Range(JNumber target, JNumber minimum, JNumber maximum)
     {
         if(target.Compare(minimum) < 0)
