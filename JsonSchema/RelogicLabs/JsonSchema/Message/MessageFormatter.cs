@@ -100,6 +100,9 @@ public abstract class MessageFormatter
         => location == null ? CreateDetail(code, SchemaBaseException, message)
             : CreateDetail(code, SchemaParseException, message, (Location) location);
 
+    internal static ErrorDetail FormatForJson(string code, string message, JNode? node)
+        => FormatForJson(code, message, node?.Context);
+
     internal static ErrorDetail FormatForJson(string code, string message, Context? context)
         => FormatForJson(code, message, context?.GetLocation());
 

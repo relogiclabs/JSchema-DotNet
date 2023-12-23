@@ -4,7 +4,7 @@ namespace RelogicLabs.JsonSchema.Types;
 
 public sealed class JInclude : JDirective
 {
-    public const string IncludeMarker = "%include";
+    internal const string IncludeMarker = "%include";
     public string ClassName { get; }
 
     private JInclude(Builder builder) : base(builder)

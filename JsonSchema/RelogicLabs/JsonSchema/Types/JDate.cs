@@ -4,6 +4,6 @@ namespace RelogicLabs.JsonSchema.Types;
 
 public sealed class JDate : JDateTime
 {
-    internal JDate(JString baseNode, JsonDateTime dateTime) : base(baseNode, dateTime) { }
+    internal JDate(JString node, JsonDateTime dateTime) : base(node, dateTime) { }
     public override JsonType Type => JsonType.DATE;
 }

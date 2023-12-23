@@ -1,6 +1,5 @@
 using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
-using RelogicLabs.JsonSchema.Message;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
@@ -8,7 +7,6 @@ public sealed class Context
 {
     public ParserRuleContext Parser { get; }
     public RuntimeContext Runtime { get; }
-    internal MessageFormatter MessageFormatter => Runtime.MessageFormatter;
 
     public Context(ParserRuleContext parser, RuntimeContext runtime)
     {

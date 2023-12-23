@@ -11,5 +11,5 @@ public abstract class FunctionBase
     protected FunctionBase(RuntimeContext runtime) => Runtime = runtime;
 
     protected bool FailWith(Exception exception)
-        => Runtime.FailWith(exception);
+        => Runtime.Exceptions.FailWith(exception);
 }

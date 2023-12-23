@@ -35,7 +35,7 @@ public sealed class JFloat : JNumber, IPragmaValue<double>
 
     public override JsonType Type => JsonType.FLOAT;
     public override int GetHashCode() => Value.GetHashCode();
-    public static implicit operator double(JFloat @float) => @float.Value;
+    public static implicit operator double(JFloat node) => node.Value;
     protected override double ToDouble() => Convert.ToDouble(Value);
     public override string ToString() => $"{Value:0.0##############}";
 

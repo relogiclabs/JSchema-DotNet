@@ -1,4 +1,3 @@
-using Antlr4.Runtime;
 using RelogicLabs.JsonSchema.Exceptions;
 using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Tree;
@@ -14,10 +13,9 @@ public abstract class JNode
     // To make complete tree read only and immutable
     private readonly IDictionary<JNode, JNode> _relations;
     public Context Context { get; }
-    public virtual JNode? Parent => _relations.GetValue(this);
+    public virtual JNode? Parent => _relations.TryGetValue(this);
     public virtual IEnumerable<JNode> Children
     { get; private protected init; } = Enumerable.Empty<JNode>();
-    public ParserRuleContext Parser => Context.Parser;
     public RuntimeContext Runtime => Context.Runtime;
 
     private protected JNode(Builder builder)
@@ -30,6 +28,7 @@ public abstract class JNode
     {
         _relations = RequireNonNull(node._relations);
         Context = RequireNonNull(node.Context);
+        Children = RequireNonNull(node.Children);
     }
 
     private T Initialize<T>() where T : JNode
@@ -65,7 +64,7 @@ public abstract class JNode
     /// An abbreviated outline version of the <see cref="ToString"/> string.
     /// </returns>
     public virtual string GetOutline()
-        => Context.MessageFormatter.CreateOutline(ToString());
+        => Runtime.MessageFormatter.CreateOutline(ToString());
 
     private protected T? CastType<T>(JNode node)
     {
@@ -80,8 +79,8 @@ public abstract class JNode
     private protected bool CheckType<T>(JNode node)
         => CastType<T>(node) != null;
 
-    internal bool FailWith(Exception exception)
-        => Runtime.FailWith(exception);
+    private protected bool FailWith(Exception exception)
+        => Runtime.Exceptions.FailWith(exception);
 
     internal abstract class Builder
     {

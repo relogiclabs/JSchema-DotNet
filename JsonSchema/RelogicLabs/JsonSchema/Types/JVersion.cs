@@ -4,7 +4,7 @@ namespace RelogicLabs.JsonSchema.Types;
 
 public sealed class JVersion : JDirective
 {
-    public const string VersionMarker = "%version";
+    internal const string VersionMarker = "%version";
     public string Version { get; }
 
     private JVersion(Builder builder) : base(builder)

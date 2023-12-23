@@ -41,9 +41,9 @@ public sealed class JRoot : JNode
         StringBuilder builder = new();
         AppendTo(builder, Title?.ToString());
         AppendTo(builder, Version?.ToString());
-        AppendTo(builder, Includes?.ToString(NewLine));
-        AppendTo(builder, Pragmas?.ToString(NewLine));
-        AppendTo(builder, Definitions?.ToString(NewLine));
+        AppendTo(builder, Includes?.Join(NewLine));
+        AppendTo(builder, Pragmas?.Join(NewLine));
+        AppendTo(builder, Definitions?.Join(NewLine));
         AppendTo(builder, Value.ToString());
         return builder.ToString().Trim();
     }

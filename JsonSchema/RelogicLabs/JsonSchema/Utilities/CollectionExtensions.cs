@@ -12,12 +12,9 @@ internal static class CollectionExtensions
         return string.IsNullOrEmpty(result) ? result : $"{prefix}{result}{suffix}";
     }
 
-    public static string ToString(this IEnumerable<JNode> source, string separator,
-        string prefix = "", string suffix = "")
-    {
-        var result = string.Join(separator, source);
-        return $"{prefix}{result}{suffix}";
-    }
+    public static string JoinWith(this IEnumerable<JNode> source, string separator,
+        string prefix = "", string suffix = "") => $"{prefix}{string.Join(separator,
+            source)}{suffix}";
 
     public static void Merge<TKey, TValue>(this IDictionary<TKey, List<TValue>> source,
         IDictionary<TKey, List<TValue>> other)
@@ -47,22 +44,16 @@ internal static class CollectionExtensions
         foreach(T item in enumeration) action(item);
     }
 
-    // Use only if necessary to eagerly check every item
-    public static bool ForEachTrue(this IEnumerable<bool> enumeration)
+    public static bool ForEachTrue<T>(this IEnumerable<T> enumeration, Func<T, bool> predicate)
     {
+        // When no short-circuit evaluation with no early return
         var result = true;
-        foreach(var item in enumeration) result &= item;
+        foreach(var item in enumeration) result &= predicate(item);
         return result;
     }
 
     public static IIndexMap<string, JProperty> ToIndexMap(this IEnumerable<JProperty> source)
         => new IndexHashMap<string, JProperty>(source);
-
-    public static bool AllTrue(this IEnumerable<bool> source)
-        => source.All(i => i);
-
-    public static bool AnyTrue(this IEnumerable<bool> source)
-        => source.Any(i => i);
 
     public static IEnumerable<string> ContainsKeys(
         this IEnumerable<JProperty> source, params JString[] keys)
@@ -81,18 +72,18 @@ internal static class CollectionExtensions
         return _values;
     }
 
-    public static TV? GetValue<TK, TV>(this IDictionary<TK, TV> dict, TK key)
+    public static TV? TryGetValue<TK, TV>(this IDictionary<TK, TV> dict, TK key)
         => dict.TryGetValue(key, out var value) ? value : default;
 
     public static List<T> AddToList<T>(this List<T> source, params IEnumerable<T>?[] collection)
     {
-        foreach(var e in collection) if(!ReferenceEquals(e, null)) source.AddRange(e);
+        foreach(var e in collection) if(e is not null) source.AddRange(e);
         return source;
     }
 
     public static List<T> AddToList<T>(this List<T> source, params T?[] collection)
     {
-        foreach(var e in collection) if(!ReferenceEquals(e, null)) source.Add(e);
+        foreach(var e in collection) if(e is not null) source.Add(e);
         return source;
     }
 

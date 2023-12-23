@@ -1,6 +1,5 @@
 using RelogicLabs.JsonSchema.Tree;
 using RelogicLabs.JsonSchema.Types;
-using RelogicLabs.JsonSchema.Utilities;
 
 namespace RelogicLabs.JsonSchema.Message;
 

@@ -19,7 +19,7 @@ public sealed partial class CoreFunctions
     public bool Elements(JArray target, params JNode[] items)
     {
         return items.Where(n => !target.Elements.Contains(n))
-            .Select(FailWithNode).ForEachTrue();
+            .ForEachTrue(FailWithNode);
 
         bool FailWithNode(JNode node)
         {
@@ -33,7 +33,7 @@ public sealed partial class CoreFunctions
     public bool Keys(JObject target, params JString[] items)
     {
         return target.Properties.ContainsKeys(items)
-            .Select(FailWithNode).ForEachTrue();
+            .ForEachTrue(FailWithNode);
 
         bool FailWithNode(string node)
         {
@@ -47,7 +47,7 @@ public sealed partial class CoreFunctions
     public bool Values(JObject target, params JNode[] items)
     {
         return target.Properties.ContainsValues(items)
-            .Select(FailWithNode).ForEachTrue();
+            .ForEachTrue(FailWithNode);
 
         bool FailWithNode(JNode node)
         {
@@ -60,7 +60,7 @@ public sealed partial class CoreFunctions
 
     public bool Regex(JString target, JString pattern)
     {
-        var regex = new Regex(((string) pattern).Affix("^", "$"));
+        var regex = new Regex($"^{(string) pattern}$");
         bool result = regex.IsMatch(target);
         if(!result) return FailWith(new JsonSchemaException(
             new ErrorDetail(REGX01, "Regex pattern does not match"),

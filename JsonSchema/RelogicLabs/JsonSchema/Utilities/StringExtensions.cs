@@ -4,14 +4,14 @@ namespace RelogicLabs.JsonSchema.Utilities;
 
 internal static class StringExtensions
 {
-    public static string Affix(this string source, string prefix = "", string suffix = "")
-        => $"{prefix}{source}{suffix}";
-
     public static string Capitalize(this string source)
         => source[..1].ToUpper() + source[1..];
 
     public static string Uncapitalize(this string source)
         => source[..1].ToLower() + source[1..];
+
+    public static string RemoveEnd(this string source, string remove)
+        => source.EndsWith(remove) ? source[..^remove.Length] : source;
 
     public static string ToEncoded(this string source)
     {

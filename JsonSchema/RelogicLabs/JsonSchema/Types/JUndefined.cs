@@ -2,7 +2,7 @@ namespace RelogicLabs.JsonSchema.Types;
 
 public sealed class JUndefined : JLeaf
 {
-    public const string UndefinedMarker = "!";
+    internal const string UndefinedMarker = "!";
 
     private JUndefined(Builder builder) : base(builder) { }
 

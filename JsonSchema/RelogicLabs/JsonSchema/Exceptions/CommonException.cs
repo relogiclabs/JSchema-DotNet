@@ -10,12 +10,12 @@ public class CommonException : Exception
 
     protected CommonException(string code, string message) : base(message)
         => Code = code;
+    protected CommonException(string code, string message, Exception? innerException)
+        : base(message, innerException) => Code = code;
     protected CommonException(ErrorDetail detail) : base(detail.Message)
         => Code = detail.Code;
     protected CommonException(ErrorDetail detail, Exception? innerException)
         : base(detail.Message, innerException) => Code = detail.Code;
-    protected CommonException(string code, string message, Exception? innerException)
-        : base(message, innerException) => Code = code;
 
     public string? GetAttribute(string name) => _attributes?.TryGetValue(name);
 

@@ -3,6 +3,7 @@ using RelogicLabs.JsonSchema.Collections;
 using RelogicLabs.JsonSchema.Types;
 using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
+using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
@@ -41,7 +42,7 @@ internal sealed class JsonTreeVisitor : JsonParserBaseVisitor<JNode>
     private IIndexMap<string,JProperty> ProcessProperties(JsonParser.PropertyContext[] contexts)
     {
         List<JProperty> properties = contexts.Select(p => (JProperty) Visit(p)).ToList();
-        return JProperty.CheckForDuplicate(properties, PROP03).ToIndexMap().AsReadOnly();
+        return RequireUniqueness(properties, PROP03).ToIndexMap().AsReadOnly();
     }
 
     public override JNode VisitProperty(JsonParser.PropertyContext context)

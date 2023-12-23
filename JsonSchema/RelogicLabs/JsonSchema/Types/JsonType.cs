@@ -1,9 +1,9 @@
 using Antlr4.Runtime.Tree;
 using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Tree;
 using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
+using static RelogicLabs.JsonSchema.Message.MessageFormatter;
 
 namespace RelogicLabs.JsonSchema.Types;
 
@@ -32,15 +32,15 @@ public class JsonType
     public Type Type { get; }
 
 
-    internal static JsonType? From(Type type) => _ClassTypeMap.GetValue(type);
+    internal static JsonType? From(Type type) => _ClassTypeMap.TryGetValue(type);
     internal static JsonType From(ITerminalNode node)
         => From(node.GetText(), Location.From(node.Symbol));
 
     internal static JsonType From(string name, Location location)
     {
         var result = _StringTypeMap.TryGetValue(name, out var type);
-        if(!result) throw new InvalidDataTypeException(MessageFormatter.FormatForSchema(
-                DTYP01, $"Invalid data type {name}", location));
+        if(!result) throw new InvalidDataTypeException(FormatForSchema(DTYP01,
+            $"Invalid data type '{name}'", location));
         return type!;
     }
 
@@ -57,21 +57,20 @@ public class JsonType
     {
         error = string.Empty;
         if(!Type.IsInstanceOfType(node)) return false;
-
         if(this == DATE)
         {
-            var _node = (JString) node;
+            var date = (JString) node;
             var dateTime = node.Runtime.Pragmas.DateTypeParser
-                .TryParse(_node, out error);
-            if(ReferenceEquals(dateTime, null)) return false;
-            _node.Derived = new JDate(_node, dateTime);
+                .TryParse(date, out error);
+            if(dateTime is null) return false;
+            date.Derived = new JDate(date, dateTime);
         }
         else if(this == TIME) {
-            var _node = (JString) node;
+            var time = (JString) node;
             var dateTime = node.Runtime.Pragmas.TimeTypeParser
-                .TryParse((JString) node, out error);
-            if(ReferenceEquals(dateTime, null)) return false;
-            _node.Derived = new JTime(_node, dateTime);
+                .TryParse(time, out error);
+            if(dateTime is null) return false;
+            time.Derived = new JTime(time, dateTime);
         }
         return true;
     }

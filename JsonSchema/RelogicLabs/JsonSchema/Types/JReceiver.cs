@@ -1,6 +1,7 @@
 using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Message;
+using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
+using static RelogicLabs.JsonSchema.Message.MessageFormatter;
 using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Types;
@@ -18,27 +19,27 @@ public sealed class JReceiver : JLeaf
     public int GetValueCount()
     {
         var list = Runtime.Receivers.Fetch(this);
-        if(ReferenceEquals(list, null)) throw new ReceiverNotFoundException(MessageFormatter
-            .FormatForSchema(RECV01, $"Receiver '{Name}' not found", Context));
+        if(list is null) throw new ReceiverNotFoundException(
+            FormatForSchema(RECV01, $"Receiver '{Name}' not found", this));
         return list.Count;
     }
 
     public T GetValueNode<T>() where T : JNode
     {
         var list = Runtime.Receivers.Fetch(this);
-        if(ReferenceEquals(list, null)) throw new ReceiverNotFoundException(MessageFormatter
-            .FormatForSchema(RECV02, $"Receiver '{Name}' not found", Context));
-        if(list.Count == 0) throw new NoValueReceivedException(MessageFormatter
-            .FormatForSchema(RECV03, $"No value received for '{Name}'", Context));
-        if(list.Count > 1) throw new InvalidOperationException("Multiple values found");
+        if(list is null) throw new ReceiverNotFoundException(
+            FormatForSchema(RECV02, $"Receiver '{Name}' not found", this));
+        if(list.IsEmpty()) throw new NoValueReceivedException(
+            FormatForSchema(RECV03, $"No value received for '{Name}'", this));
+        if(list.Count > 1) throw new NotSupportedException("Multiple values exist");
         return (T) list[0];
     }
 
     public IList<T> GetValueNodes<T>() where T : JNode
     {
         var list = Runtime.Receivers.Fetch(this);
-        if(ReferenceEquals(list, null)) throw new ReceiverNotFoundException(MessageFormatter
-            .FormatForSchema(RECV04, $"Receiver '{Name}' not found", Context));
+        if(list is null) throw new ReceiverNotFoundException(
+            FormatForSchema(RECV04, $"Receiver '{Name}' not found", this));
         return list.Select(i => (T) i).ToList().AsReadOnly();
     }
 

@@ -1,13 +1,14 @@
+using System.Collections;
 using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Time;
 using RelogicLabs.JsonSchema.Types;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
+using static RelogicLabs.JsonSchema.Message.MessageFormatter;
 using static RelogicLabs.JsonSchema.Time.DateTimeType;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
-public sealed class PragmaRegistry
+public sealed class PragmaRegistry : IEnumerable<KeyValuePair<string, JPragma>>
 {
     private const string IGNORE_UNDEFINED_PROPERTIES = "IgnoreUndefinedProperties";
     private const string FLOATING_POINT_TOLERANCE = "FloatingPointTolerance";
@@ -39,8 +40,8 @@ public sealed class PragmaRegistry
 
     public JPragma AddPragma(JPragma pragma) {
         if(_pragmas.ContainsKey(pragma.Name))
-            throw new DuplicatePragmaException(MessageFormatter.FormatForSchema(
-                PRAG03, $"Duplication found for {pragma.GetOutline()}", pragma));
+            throw new DuplicatePragmaException(FormatForSchema(PRAG03,
+                $"Duplication found for {pragma.GetOutline()}", pragma));
         _pragmas.Add(pragma.Name, pragma);
         SetPragmaValue(pragma.Name, pragma.Value);
         return pragma;
@@ -82,4 +83,8 @@ public sealed class PragmaRegistry
         _pragmas.TryGetValue(entry!.Name, out var pragma);
         return pragma;
     }
+
+    public IEnumerator<KeyValuePair<string, JPragma>> GetEnumerator()
+        => _pragmas.GetEnumerator();
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

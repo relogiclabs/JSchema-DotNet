@@ -6,7 +6,7 @@ public abstract class JDateTime : JString
 {
     public JsonDateTime DateTime { get; }
 
-    internal JDateTime(JString baseNode, JsonDateTime dateTime) : base(baseNode)
+    private protected JDateTime(JString node, JsonDateTime dateTime) : base(node)
         => DateTime = dateTime;
 
     internal DateTimeParser GetDateTimeParser()

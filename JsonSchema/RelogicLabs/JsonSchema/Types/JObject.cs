@@ -10,13 +10,13 @@ namespace RelogicLabs.JsonSchema.Types;
 
 public sealed class JObject : JComposite
 {
-    private IList<JNode> _components;
     public IIndexMap<string, JProperty> Properties { get; }
+    public override IList<JNode> Components { get; }
 
     private JObject(Builder builder) : base(builder)
     {
         Properties = RequireNonNull(builder.Properties);
-        _components = Properties.Select(p => p.Value).ToList().AsReadOnly();
+        Components = Properties.Select(p => p.Value).ToList().AsReadOnly();
         Children = Properties.Values;
     }
 
@@ -82,8 +82,6 @@ public sealed class JObject : JComposite
     private static JProperty? GetPropAt(IIndexMap<string, JProperty> properties, int index)
         => index >= properties.Count ? null : properties[index];
 
-    public override IList<JNode> GetComponents() => _components;
-
     public override bool Equals(object? obj)
     {
         if(ReferenceEquals(null, obj)) return false;
@@ -111,7 +109,7 @@ public sealed class JObject : JComposite
 
     public override JsonType Type => JsonType.OBJECT;
     public override int GetHashCode() => Properties.GetHashCode();
-    public override string ToString() => Properties.ToString(", ", "{", "}");
+    public override string ToString() => Properties.JoinWith(", ", "{", "}");
 
     internal new class Builder : JNode.Builder
     {

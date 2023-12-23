@@ -13,7 +13,7 @@ public sealed partial class CoreFunctions
         if(!items.Contains(target))
             return FailWith(new JsonSchemaException(
                 new ErrorDetail(ENUM01, "String is not in enum list"),
-                new ExpectedDetail(Function, $"string in list {items.ToString(", ", "[", "]")}"),
+                new ExpectedDetail(Function, $"string in list {items.JoinWith(", ", "[", "]")}"),
                 new ActualDetail(target, $"string {target.GetOutline()} is not found in list")));
         return true;
     }
@@ -23,7 +23,7 @@ public sealed partial class CoreFunctions
         if(!items.Contains(target))
             return FailWith(new JsonSchemaException(
                 new ErrorDetail(ENUM02, "Number is not in enum list"),
-                new ExpectedDetail(Function, $"number in list {items.ToString(", ", "[", "]")}"),
+                new ExpectedDetail(Function, $"number in list {items.JoinWith(", ", "[", "]")}"),
                 new ActualDetail(target, $"number {target} is not found in list")));
         return true;
     }
