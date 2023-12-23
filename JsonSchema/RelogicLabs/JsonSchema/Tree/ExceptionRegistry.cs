@@ -5,27 +5,30 @@ namespace RelogicLabs.JsonSchema.Tree;
 public class ExceptionRegistry : IEnumerable<Exception>
 {
     private int _disableException;
+    private readonly List<Exception> _exceptions;
 
+    internal List<Exception> TryBuffer { get; }
     public bool ThrowException { get; set; }
-    public int CutoffLimit { get; set; } = 200;
-    public Queue<Exception> Exceptions { get; }
-
+    public int CutoffLimit { get; set; } = 500;
+    public int Count => _exceptions.Count;
 
     internal ExceptionRegistry(bool throwException)
     {
+        _exceptions = new List<Exception>();
         ThrowException = throwException;
-        Exceptions = new Queue<Exception>();
+        TryBuffer = new List<Exception>();
     }
 
-    public void TryAdd(Exception exception)
-    {
-        if(_disableException == 0 && Exceptions.Count < CutoffLimit)
-            Exceptions.Enqueue(exception);
+    private bool AddException(List<Exception> list, Exception exception) {
+        if(list.Count <= CutoffLimit) list.Add(exception);
+        return false;
     }
 
-    public void TryThrow(Exception exception)
+    internal bool FailWith(Exception exception)
     {
-        if(ThrowException && _disableException == 0) throw exception;
+        if(_disableException > 0) return AddException(TryBuffer, exception);
+        if(ThrowException) throw exception;
+        return AddException(_exceptions, exception);
     }
 
     internal T TryExecute<T>(Func<T> function)
@@ -37,11 +40,17 @@ public class ExceptionRegistry : IEnumerable<Exception>
         }
         finally
         {
-            _disableException -= 1;
+            if(_disableException >= 1) _disableException -= 1;
+            else throw new InvalidOperationException("Invalid runtime state");
         }
     }
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-    public IEnumerator<Exception> GetEnumerator() => Exceptions.GetEnumerator();
-    public void Clear() => Exceptions.Clear();
+    public IEnumerator<Exception> GetEnumerator() => _exceptions.GetEnumerator();
+
+    public void Clear()
+    {
+        _exceptions.Clear();
+        TryBuffer.Clear();
+    }
 }
