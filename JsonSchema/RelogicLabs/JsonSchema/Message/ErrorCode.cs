@@ -10,6 +10,7 @@ internal static class ErrorCode
     public const string ALEN04 = "ALEN04";
     public const string ALEN05 = "ALEN05";
     public const string ARRY01 = "ARRY01";
+    public const string ARRY02 = "ARRY02";
     public const string BFOR01 = "BFOR01";
     public const string BFOR02 = "BFOR02";
     public const string BOOL01 = "BOOL01";
