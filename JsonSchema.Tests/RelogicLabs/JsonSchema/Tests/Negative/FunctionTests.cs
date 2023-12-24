@@ -31,7 +31,7 @@ public class FunctionTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Negative.ExternalFunctions1,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions1,
                       RelogicLabs.JsonSchema.Tests
             %schema: @odd #integer
             """;
@@ -49,7 +49,7 @@ public class FunctionTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Negative.NotExisting,
+            %include: RelogicLabs.JsonSchema.Tests.External.NotExisting,
                     RelogicLabs.JsonSchema.Tests
             %schema: @odd #integer
             """;
@@ -67,9 +67,9 @@ public class FunctionTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
                     RelogicLabs.JsonSchema.Tests
-            %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
                     RelogicLabs.JsonSchema.Tests
             %schema: @odd #integer
             """;
@@ -87,7 +87,7 @@ public class FunctionTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Negative.ExternalFunctions5,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions5,
                     RelogicLabs.JsonSchema.Tests
             %schema: @odd #integer
             """;
@@ -105,7 +105,7 @@ public class FunctionTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Negative.ExternalFunctions2,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions2,
                     RelogicLabs.JsonSchema.Tests
             %schema: @odd #integer
             """;
@@ -123,7 +123,7 @@ public class FunctionTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Negative.ExternalFunctions3,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions3,
                     RelogicLabs.JsonSchema.Tests
             %schema: @odd #integer
             """;
@@ -141,7 +141,7 @@ public class FunctionTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Negative.ExternalFunctions4,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions4,
                     RelogicLabs.JsonSchema.Tests
             %schema: @notExist #integer
             """;
@@ -159,7 +159,7 @@ public class FunctionTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Negative.ExternalFunctions4,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions4,
                     RelogicLabs.JsonSchema.Tests
             %schema: @canTest #integer
             """;

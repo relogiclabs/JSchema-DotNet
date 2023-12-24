@@ -1,6 +1,6 @@
 using RelogicLabs.JsonSchema.Exceptions;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
-using static RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions;
+using static RelogicLabs.JsonSchema.Tests.External.ExternalFunctions;
 
 namespace RelogicLabs.JsonSchema.Tests.Negative;
 
@@ -12,7 +12,7 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
                       RelogicLabs.JsonSchema.Tests
             %schema:
             {
@@ -39,7 +39,7 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
                       RelogicLabs.JsonSchema.Tests
 
             %schema:
@@ -67,7 +67,7 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
                       RelogicLabs.JsonSchema.Tests
 
             %schema:
@@ -95,7 +95,7 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
                       RelogicLabs.JsonSchema.Tests
 
             %define $numbers: @range(1, 10) #integer &relatedValues
@@ -124,7 +124,7 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
                       RelogicLabs.JsonSchema.Tests
 
             %schema:
@@ -160,7 +160,7 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
                       RelogicLabs.JsonSchema.Tests
 
             %schema:

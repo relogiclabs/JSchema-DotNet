@@ -5,7 +5,8 @@ using RelogicLabs.JsonSchema.Tree;
 using RelogicLabs.JsonSchema.Types;
 using RelogicLabs.JsonSchema.Utilities;
 
-namespace RelogicLabs.JsonSchema.Tests.Positive;
+// Functions for positive (valid) test cases
+namespace RelogicLabs.JsonSchema.Tests.External;
 
 public class ExternalFunctions : FunctionBase
 {
