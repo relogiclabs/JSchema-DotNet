@@ -67,7 +67,7 @@ The next example represents an expanded version of the previous one, which bring
 ```cpp
 %title: "Extended User Profile Dashboard API Response"
 %version: 2.0.0
-%include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+%include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
           RelogicLabs.JsonSchema.Tests
 
 %pragma DateDataTypeFormat: "DD-MM-YYYY"

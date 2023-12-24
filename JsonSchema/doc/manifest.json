@@ -32,16 +32,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/RelogicLabs.JsonSchema.Collections.yml",
       "output": {
         ".html": {
@@ -226,6 +216,16 @@
       "output": {
         ".html": {
           "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.html"
         }
       },
       "version": ""
@@ -426,6 +426,16 @@
       "output": {
         ".html": {
           "relative_path": "api/RelogicLabs.JsonSchema.Time.JsonDateTime.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JsonSchema.Time.JsonUtcOffset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JsonSchema.Time.JsonUtcOffset.html"
         }
       },
       "version": ""
@@ -965,6 +975,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "articles/components.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/components.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "articles/datatypes.md",
       "output": {
         ".html": {
@@ -999,16 +1019,6 @@
       "output": {
         ".html": {
           "relative_path": "articles/functions.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "articles/intro.md",
-      "output": {
-        ".html": {
-          "relative_path": "articles/intro.html"
         }
       },
       "version": ""

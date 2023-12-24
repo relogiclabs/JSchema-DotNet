@@ -91,7 +91,7 @@
 
   <h1 id="RelogicLabs_JsonSchema_Tree_ReceiverRegistry" data-uid="RelogicLabs.JsonSchema.Tree.ReceiverRegistry" class="text-break">
     Class ReceiverRegistry
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/ReceiverRegistry.cs/#L5"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/ReceiverRegistry.cs/#L6"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -103,7 +103,7 @@
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ReceiverRegistry</code></pre>
+    <pre><code class="lang-csharp hljs">public class ReceiverRegistry : IEnumerable&lt;KeyValuePair&lt;JReceiver, List&lt;JNode&gt;&gt;&gt;, IEnumerable</code></pre>
   </div>
 
 
@@ -117,6 +117,13 @@
     </dd>
   </dl>
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="RelogicLabs.JsonSchema.Types.JReceiver.html">JReceiver</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html">JNode</a>&gt;&gt;&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
+    </dd>
+  </dl>
 
 
   <dl class="typelist derived">
@@ -150,41 +157,6 @@
 
 
 
-  <h2 class="section" id="properties">Properties
-</h2>
-
-
-  <a id="RelogicLabs_JsonSchema_Tree_ReceiverRegistry_Receivers_" data-uid="RelogicLabs.JsonSchema.Tree.ReceiverRegistry.Receivers*"></a>
-
-  <h3 id="RelogicLabs_JsonSchema_Tree_ReceiverRegistry_Receivers" data-uid="RelogicLabs.JsonSchema.Tree.ReceiverRegistry.Receivers">
-  Receivers
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/ReceiverRegistry.cs/#L7"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Dictionary&lt;JReceiver, List&lt;JNode&gt;&gt; Receivers { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="RelogicLabs.JsonSchema.Types.JReceiver.html">JReceiver</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html">JNode</a>&gt;&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -193,7 +165,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Tree_ReceiverRegistry_Clear" data-uid="RelogicLabs.JsonSchema.Tree.ReceiverRegistry.Clear">
   Clear()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/ReceiverRegistry.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/ReceiverRegistry.cs/#L26"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -219,7 +191,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Tree_ReceiverRegistry_Fetch_RelogicLabs_JsonSchema_Types_JReceiver_" data-uid="RelogicLabs.JsonSchema.Tree.ReceiverRegistry.Fetch(RelogicLabs.JsonSchema.Types.JReceiver)">
   Fetch(JReceiver)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/ReceiverRegistry.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/ReceiverRegistry.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -251,11 +223,44 @@
 
 
 
+  <a id="RelogicLabs_JsonSchema_Tree_ReceiverRegistry_GetEnumerator_" data-uid="RelogicLabs.JsonSchema.Tree.ReceiverRegistry.GetEnumerator*"></a>
+
+  <h3 id="RelogicLabs_JsonSchema_Tree_ReceiverRegistry_GetEnumerator" data-uid="RelogicLabs.JsonSchema.Tree.ReceiverRegistry.GetEnumerator">
+  GetEnumerator()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/ReceiverRegistry.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns an enumerator that iterates through the collection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerator&lt;KeyValuePair&lt;JReceiver, List&lt;JNode&gt;&gt;&gt; GetEnumerator()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1">IEnumerator</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="RelogicLabs.JsonSchema.Types.JReceiver.html">JReceiver</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="RelogicLabs.JsonSchema.Types.JNode.html">JNode</a>&gt;&gt;&gt;</dt>
+    <dd><p>An enumerator that can be used to iterate through the collection.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="RelogicLabs_JsonSchema_Tree_ReceiverRegistry_Receive_" data-uid="RelogicLabs.JsonSchema.Tree.ReceiverRegistry.Receive*"></a>
 
   <h3 id="RelogicLabs_JsonSchema_Tree_ReceiverRegistry_Receive_System_Collections_Generic_IEnumerable_RelogicLabs_JsonSchema_Types_JReceiver__RelogicLabs_JsonSchema_Types_JNode_" data-uid="RelogicLabs.JsonSchema.Tree.ReceiverRegistry.Receive(System.Collections.Generic.IEnumerable{RelogicLabs.JsonSchema.Types.JReceiver},RelogicLabs.JsonSchema.Types.JNode)">
   Receive(IEnumerable&lt;JReceiver&gt;, JNode)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/ReceiverRegistry.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/ReceiverRegistry.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -288,7 +293,7 @@
 
   <h3 id="RelogicLabs_JsonSchema_Tree_ReceiverRegistry_Register_System_Collections_Generic_IEnumerable_RelogicLabs_JsonSchema_Types_JReceiver__" data-uid="RelogicLabs.JsonSchema.Tree.ReceiverRegistry.Register(System.Collections.Generic.IEnumerable{RelogicLabs.JsonSchema.Types.JReceiver})">
   Register(IEnumerable&lt;JReceiver&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/ReceiverRegistry.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/ReceiverRegistry.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -319,7 +324,7 @@
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/ReceiverRegistry.cs/#L5" class="edit-link">Edit this page</a>
+          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Tree/ReceiverRegistry.cs/#L6" class="edit-link">Edit this page</a>
         </div>
 
 

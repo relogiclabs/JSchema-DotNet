@@ -91,7 +91,7 @@
 
   <h1 id="RelogicLabs_JsonSchema_Exceptions_JsonSchemaException" data-uid="RelogicLabs.JsonSchema.Exceptions.JsonSchemaException" class="text-break">
     Class JsonSchemaException
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Exceptions/JsonSchemaException.cs/#L6"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Exceptions/JsonSchemaException.cs/#L5"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -132,6 +132,12 @@
     <dd>
     <div>
       <a class="xref" href="RelogicLabs.JsonSchema.Exceptions.CommonException.html#RelogicLabs_JsonSchema_Exceptions_CommonException_Code">CommonException.Code</a>
+    </div>
+    <div>
+      <a class="xref" href="RelogicLabs.JsonSchema.Exceptions.CommonException.html#RelogicLabs_JsonSchema_Exceptions_CommonException_GetAttribute_System_String_">CommonException.GetAttribute(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="RelogicLabs.JsonSchema.Exceptions.CommonException.html#RelogicLabs_JsonSchema_Exceptions_CommonException_SetAttribute_System_String_System_String_">CommonException.SetAttribute(string, string)</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.getbaseexception">Exception.GetBaseException()</a>
@@ -200,8 +206,8 @@
 
   <a id="RelogicLabs_JsonSchema_Exceptions_JsonSchemaException__ctor_" data-uid="RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.#ctor*"></a>
 
-  <h3 id="RelogicLabs_JsonSchema_Exceptions_JsonSchemaException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_RelogicLabs_JsonSchema_Message_ExpectedDetail_RelogicLabs_JsonSchema_Message_ActualDetail_" data-uid="RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,RelogicLabs.JsonSchema.Message.ExpectedDetail,RelogicLabs.JsonSchema.Message.ActualDetail)">
-  JsonSchemaException(ErrorDetail, ExpectedDetail, ActualDetail)
+  <h3 id="RelogicLabs_JsonSchema_Exceptions_JsonSchemaException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_RelogicLabs_JsonSchema_Message_ExpectedDetail_RelogicLabs_JsonSchema_Message_ActualDetail_System_Exception_" data-uid="RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,RelogicLabs.JsonSchema.Message.ExpectedDetail,RelogicLabs.JsonSchema.Message.ActualDetail,System.Exception)">
+  JsonSchemaException(ErrorDetail, ExpectedDetail, ActualDetail, Exception?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Exceptions/JsonSchemaException.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -209,42 +215,7 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public JsonSchemaException(ErrorDetail error, ExpectedDetail expected, ActualDetail actual)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>error</code> <a class="xref" href="RelogicLabs.JsonSchema.Message.ErrorDetail.html">ErrorDetail</a></dt>
-    <dd></dd>
-    <dt><code>expected</code> <a class="xref" href="RelogicLabs.JsonSchema.Message.ExpectedDetail.html">ExpectedDetail</a></dt>
-    <dd></dd>
-    <dt><code>actual</code> <a class="xref" href="RelogicLabs.JsonSchema.Message.ActualDetail.html">ActualDetail</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-
-  <a id="RelogicLabs_JsonSchema_Exceptions_JsonSchemaException__ctor_" data-uid="RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.#ctor*"></a>
-
-  <h3 id="RelogicLabs_JsonSchema_Exceptions_JsonSchemaException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_RelogicLabs_JsonSchema_Message_ExpectedDetail_RelogicLabs_JsonSchema_Message_ActualDetail_System_Exception_" data-uid="RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,RelogicLabs.JsonSchema.Message.ExpectedDetail,RelogicLabs.JsonSchema.Message.ActualDetail,System.Exception)">
-  JsonSchemaException(ErrorDetail, ExpectedDetail, ActualDetail, Exception)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Exceptions/JsonSchemaException.cs/#L18"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public JsonSchemaException(ErrorDetail error, ExpectedDetail expected, ActualDetail actual, Exception innerException)</code></pre>
+    <pre><code class="lang-csharp hljs">public JsonSchemaException(ErrorDetail error, ExpectedDetail expected, ActualDetail actual, Exception? innerException = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -305,6 +276,37 @@
 
 
 
+  <a id="RelogicLabs_JsonSchema_Exceptions_JsonSchemaException_Error_" data-uid="RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.Error*"></a>
+
+  <h3 id="RelogicLabs_JsonSchema_Exceptions_JsonSchemaException_Error" data-uid="RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.Error">
+  Error
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Exceptions/JsonSchemaException.cs/#L7"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ErrorDetail Error { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="RelogicLabs.JsonSchema.Message.ErrorDetail.html">ErrorDetail</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="RelogicLabs_JsonSchema_Exceptions_JsonSchemaException_Expected_" data-uid="RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.Expected*"></a>
 
   <h3 id="RelogicLabs_JsonSchema_Exceptions_JsonSchemaException_Expected" data-uid="RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.Expected">
@@ -340,7 +342,7 @@
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Exceptions/JsonSchemaException.cs/#L6" class="edit-link">Edit this page</a>
+          <a href="https://github.com/relogiclabs/JsonSchema-DotNet/blob/develop/JsonSchema/RelogicLabs/JsonSchema/Exceptions/JsonSchemaException.cs/#L5" class="edit-link">Edit this page</a>
         </div>
 
 

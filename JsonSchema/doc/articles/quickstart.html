@@ -199,8 +199,8 @@ if(!jsonSchema.IsValid(json)) jsonSchema.WriteError();
 <pre><code class="lang-accesslog">Schema (Line: 6:47) Json (Line: 3:30) [DTYP04]: Data type mismatch. Data type #integer is expected but found #string inferred by &quot;not number&quot;.
 Schema (Line: 6:30) Json (Line: 3:30) [FUNC03]: Function @range(1, 10000) is incompatible with the target data type. Applying to a supported data type such as #number is expected but applied to an unsupported data type #string of &quot;not number&quot;.
 Schema (Line: 8:36) Json (Line: 4:36) [REGX01]: Regex pattern does not match. String of pattern &quot;[a-z_]{3,30}&quot; is expected but found &quot;john doe&quot; that mismatches with pattern.
-Schema (Line: 5:28) Json (Line: 2:28) [VALD01]: Validation failed. Value {&quot;id&quot;: @range(1, 10000) #integer, &quot;username&quot;: @regex(&quot;[a-z_]{3,30}&quot;) #string, &quot;role&quot;: &quot;user&quot; #string, &quot;isActive&quot;: #boolean, &quot;register...ing, &quot;country&quot;: @regex(&quot;[A-Za-z ]{3,50}&quot;) #string} #object #null}} is expected but found {&quot;id&quot;: &quot;not number&quot;, &quot;username&quot;: &quot;john doe&quot;, &quot;role&quot;: &quot;user&quot;, &quot;isActive&quot;: true, &quot;registeredAt&quot;: &quot;2023-09-06T15:10:30.639Z&quot;, &quot;profile&quot;:...: &quot;123 Some St&quot;, &quot;city&quot;: &quot;Some town&quot;, &quot;country&quot;: &quot;Some Country&quot;}}}.
-Schema (Line: 4:16) Json (Line: 1:0) [VALD01]: Validation failed. Value {&quot;user&quot;: {&quot;id&quot;: @range(1, 10000) #integer, &quot;username&quot;: @regex(&quot;[a-z_]{3,30}&quot;) #string, &quot;role&quot;: &quot;user&quot; #string, &quot;isActive&quot;: #boolean, ...ng, &quot;country&quot;: @regex(&quot;[A-Za-z ]{3,50}&quot;) #string} #object #null}}} is expected but found {&quot;user&quot;: {&quot;id&quot;: &quot;not number&quot;, &quot;username&quot;: &quot;john doe&quot;, &quot;role&quot;: &quot;user&quot;, &quot;isActive&quot;: true, &quot;registeredAt&quot;: &quot;2023-09-06T15:10:30.639Z&quot;, &quot;... &quot;123 Some St&quot;, &quot;city&quot;: &quot;Some town&quot;, &quot;country&quot;: &quot;Some Country&quot;}}}}.
+Schema (Line: 5:28) Json (Line: 2:28) [VALD01]: Validation failed. A valid value of {&quot;id&quot;: @range(1, 10000) #integer, &quot;username&quot;: @regex(&quot;[a-z_]{3,30}&quot;) #string, &quot;role&quot;: &quot;user&quot; #string, &quot;isActive&quot;: #boolean, &quot;register...ing, &quot;country&quot;: @regex(&quot;[A-Za-z ]{3,50}&quot;) #string} #object #null}} is expected but found {&quot;id&quot;: &quot;not number&quot;, &quot;username&quot;: &quot;john doe&quot;, &quot;role&quot;: &quot;user&quot;, &quot;isActive&quot;: true, &quot;registeredAt&quot;: &quot;2023-09-06T15:10:30.639Z&quot;, &quot;profile&quot;:...: &quot;123 Some St&quot;, &quot;city&quot;: &quot;Some town&quot;, &quot;country&quot;: &quot;Some Country&quot;}}}.
+Schema (Line: 4:16) Json (Line: 1:0) [VALD01]: Validation failed. A valid value of {&quot;user&quot;: {&quot;id&quot;: @range(1, 10000) #integer, &quot;username&quot;: @regex(&quot;[a-z_]{3,30}&quot;) #string, &quot;role&quot;: &quot;user&quot; #string, &quot;isActive&quot;: #boolean, ...ng, &quot;country&quot;: @regex(&quot;[A-Za-z ]{3,50}&quot;) #string} #object #null}}} is expected but found {&quot;user&quot;: {&quot;id&quot;: &quot;not number&quot;, &quot;username&quot;: &quot;john doe&quot;, &quot;role&quot;: &quot;user&quot;, &quot;isActive&quot;: true, &quot;registeredAt&quot;: &quot;2023-09-06T15:10:30.639Z&quot;, &quot;... &quot;123 Some St&quot;, &quot;city&quot;: &quot;Some town&quot;, &quot;country&quot;: &quot;Some Country&quot;}}}}.
 </code></pre>
 <h2 id="assertion-for-validation">Assertion for Validation</h2>
 <p>To utilize this library for test automation and API testing, you can use the following alternative code snippet to perform assertions on input JSON against a specified schema. For instance, let's examine how to assert the JSON, which has been intentionally altered to introduce some errors, against the aforementioned schema. The following demonstrates the adjusted code for asserting the JSON with errors:</p>
@@ -219,11 +219,7 @@ try {
 Expected (Schema Line: 6:47): data type #integer
 Actual (Json Line: 3:30): found #string inferred by &quot;not number&quot;
 
-   at RelogicLabs.JsonSchema.Tree.RuntimeContext.FailWith(Exception exception)
-   at RelogicLabs.JsonSchema.Types.JNode.FailWith(Exception exception)
-   at RelogicLabs.JsonSchema.Types.JDataType.MatchForReport(JNode node, Boolean nested)
-   at RelogicLabs.JsonSchema.Types.JValidator.&lt;&gt;c__DisplayClass15_0.&lt;MatchDataType&gt;b__2(JDataType d)
-   at RelogicLabs.JsonSchema.Utilities.CollectionExtensions.ForEach[T](IEnumerable`1 enumeration, Action`1 action)
+   at RelogicLabs.JsonSchema.Tree.ExceptionRegistry.FailWith(Exception exception)
    at RelogicLabs.JsonSchema.Types.JValidator.MatchDataType(JNode node)
    at RelogicLabs.JsonSchema.Types.JValidator.Match(JNode node)
    at RelogicLabs.JsonSchema.Types.JObject.Match(JNode node)
@@ -231,7 +227,9 @@ Actual (Json Line: 3:30): found #string inferred by &quot;not number&quot;
    at RelogicLabs.JsonSchema.Types.JObject.Match(JNode node)
    at RelogicLabs.JsonSchema.Types.JValidator.Match(JNode node)
    at RelogicLabs.JsonSchema.Types.JRoot.Match(JNode node)
-   at RelogicLabs.JsonSchema.JsonAssert.IsValid(String schemaExpected, String jsonActual)
+   at RelogicLabs.JsonSchema.Tree.SchemaTree.Match(IDataTree dataTree)
+   at RelogicLabs.JsonSchema.JsonAssert.IsValid(String json)
+   at RelogicLabs.JsonSchema.JsonAssert.IsValid(String schema, String json)
    at CSharpApplication.SampleSchema.CheckIsValid() in /SampleSchema.cs:line 62
 </code></pre>
 <p>For more information about the schema syntax format and library functionalities, please refer to the reference documentation <a href="/JsonSchema-DotNet/api/index.html">here</a>.</p>

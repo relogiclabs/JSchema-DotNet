@@ -1,5 +1,5 @@
 - name: Introduction
-  href: intro.md
+  href: ../index.md
 - name: Quick Start
   href: quickstart.md
 - name: Validation Syntax
@@ -14,5 +14,9 @@
   href: functions.md
 - name: Date and Time
   href: datetime.md
+- name: Components
+  href: components.md
 - name: Source Build
   href: sourcebuild.md
+- name: GitHub Code
+  href: https://github.com/relogiclabs/JsonSchema-DotNet

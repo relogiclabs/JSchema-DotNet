@@ -101,7 +101,7 @@ pre code { font-size: 1.1em; }
 </code></pre>
 <h2 id="include-directive">Include Directive</h2>
 <p>Include directive enables the addition or inclusion of a class, as defined by object-oriented programming, to a schema along with a set of methods that have specific signatures for performing custom validations. This feature extends the built-in validation capabilities of the schema. In the C# language, it is also necessary to specify the assembly name together with the class name. The example below illustrates how to utilize the include directive in C# language:</p>
-<pre><code class="lang-stylus">%include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+<pre><code class="lang-stylus">%include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
                                      RelogicLabs.JsonSchema.Tests
 </code></pre>
 <h2 id="pragma-directive">Pragma Directive</h2>
@@ -128,8 +128,8 @@ pre code { font-size: 1.1em; }
 <pre><code class="lang-stylus">%pragma IgnoreObjectPropertyOrder: false
 </code></pre>
 <h2 id="definition--define-directive">Definition / Define Directive</h2>
-<p>This feature in JSON schemas allows you to define a name for a fragment of schema or validation rules, which can be referenced from various parts of your schema. This means that if you encounter similar validation requirements in different sections of your schema, you can conveniently refer to the named fragment instead of duplicating the same validation rules.</p>
-<p>By providing clear and descriptive names for these validation rules or sub-schemas, you enhance the overall clarity and context of your schema. This clarity not only makes it easier to understand the structure and intent of the schema but also contributes to keeping your complex schema well-organized, concise, and more manageable.</p>
+<p>This feature in JSON schemas allows you to define a name for a component or fragment of schema or validation rules, which can be referenced from various parts of your schema. This means that if you encounter similar validation requirements in different sections of your schema, you can conveniently refer to the named component instead of duplicating the same validation rules.</p>
+<p>By providing clear and descriptive names for these validation rules or sub-schemas, you can enhance the overall clarity and context of your schema. This clarity not only makes it easier to understand the structure and intent of the schema but also contributes to keeping your complex schema well-organized, concise, and more manageable. For more information about the schema component syntax and format, please refer to the documentation <a href="/JsonSchema-DotNet/articles/components.html">here</a>.</p>
 <p>The name or alias of the directive is always start with <code>$</code> which also refers to that they are named fragment defined elsewhere in the schema. Here is a simple example of how to use this directive:</p>
 <pre><code class="lang-stylus">%define $product: {
     &quot;id&quot;: @length(2, 10) @regex(&quot;[a-z][a-z0-9]+&quot;) #string,
