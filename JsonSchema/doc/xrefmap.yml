@@ -119,338 +119,23 @@ references:
   fullName.vb: RelogicLabs.JsonSchema.Collections.IKeyed(Of TK)
   nameWithType: IKeyed<TK>
   nameWithType.vb: IKeyed(Of TK)
-- uid: RelogicLabs.JsonSchema.Collections.IKeyed`1.GetKey
-  name: GetKey()
-  href: api/RelogicLabs.JsonSchema.Collections.IKeyed-1.html#RelogicLabs_JsonSchema_Collections_IKeyed_1_GetKey
-  commentId: M:RelogicLabs.JsonSchema.Collections.IKeyed`1.GetKey
-  fullName: RelogicLabs.JsonSchema.Collections.IKeyed<TK>.GetKey()
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IKeyed(Of TK).GetKey()
-  nameWithType: IKeyed<TK>.GetKey()
-  nameWithType.vb: IKeyed(Of TK).GetKey()
-- uid: RelogicLabs.JsonSchema.Collections.IKeyed`1.GetKey*
-  name: GetKey
-  href: api/RelogicLabs.JsonSchema.Collections.IKeyed-1.html#RelogicLabs_JsonSchema_Collections_IKeyed_1_GetKey_
-  commentId: Overload:RelogicLabs.JsonSchema.Collections.IKeyed`1.GetKey
+- uid: RelogicLabs.JsonSchema.Collections.IKeyed`1.Key
+  name: Key
+  href: api/RelogicLabs.JsonSchema.Collections.IKeyed-1.html#RelogicLabs_JsonSchema_Collections_IKeyed_1_Key
+  commentId: P:RelogicLabs.JsonSchema.Collections.IKeyed`1.Key
+  fullName: RelogicLabs.JsonSchema.Collections.IKeyed<TK>.Key
+  fullName.vb: RelogicLabs.JsonSchema.Collections.IKeyed(Of TK).Key
+  nameWithType: IKeyed<TK>.Key
+  nameWithType.vb: IKeyed(Of TK).Key
+- uid: RelogicLabs.JsonSchema.Collections.IKeyed`1.Key*
+  name: Key
+  href: api/RelogicLabs.JsonSchema.Collections.IKeyed-1.html#RelogicLabs_JsonSchema_Collections_IKeyed_1_Key_
+  commentId: Overload:RelogicLabs.JsonSchema.Collections.IKeyed`1.Key
   isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Collections.IKeyed<TK>.GetKey
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IKeyed(Of TK).GetKey
-  nameWithType: IKeyed<TK>.GetKey
-  nameWithType.vb: IKeyed(Of TK).GetKey
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2
-  name: IndexHashMap<TK, TV>
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html
-  commentId: T:RelogicLabs.JsonSchema.Collections.IndexHashMap`2
-  name.vb: IndexHashMap(Of TK, TV)
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV)
-  nameWithType: IndexHashMap<TK, TV>
-  nameWithType.vb: IndexHashMap(Of TK, TV)
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.#ctor(System.Collections.Generic.IEnumerable{`1})
-  name: IndexHashMap(IEnumerable<TV>)
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2__ctor_System_Collections_Generic_IEnumerable__1__
-  commentId: M:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.#ctor(System.Collections.Generic.IEnumerable{`1})
-  name.vb: New(IEnumerable(Of TV))
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.IndexHashMap(System.Collections.Generic.IEnumerable<TV>)
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).New(System.Collections.Generic.IEnumerable(Of TV))
-  nameWithType: IndexHashMap<TK, TV>.IndexHashMap(IEnumerable<TV>)
-  nameWithType.vb: IndexHashMap(Of TK, TV).New(IEnumerable(Of TV))
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.#ctor*
-  name: IndexHashMap
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2__ctor_
-  commentId: Overload:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.IndexHashMap
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).New
-  nameWithType: IndexHashMap<TK, TV>.IndexHashMap
-  nameWithType.vb: IndexHashMap(Of TK, TV).New
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Add(`1)
-  name: Add(TV)
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_Add__1_
-  commentId: M:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Add(`1)
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.Add(TV)
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).Add(TV)
-  nameWithType: IndexHashMap<TK, TV>.Add(TV)
-  nameWithType.vb: IndexHashMap(Of TK, TV).Add(TV)
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Add*
-  name: Add
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_Add_
-  commentId: Overload:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Add
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.Add
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).Add
-  nameWithType: IndexHashMap<TK, TV>.Add
-  nameWithType.vb: IndexHashMap(Of TK, TV).Add
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.AsReadOnly
-  name: AsReadOnly()
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_AsReadOnly
-  commentId: M:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.AsReadOnly
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.AsReadOnly()
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).AsReadOnly()
-  nameWithType: IndexHashMap<TK, TV>.AsReadOnly()
-  nameWithType.vb: IndexHashMap(Of TK, TV).AsReadOnly()
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.AsReadOnly*
-  name: AsReadOnly
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_AsReadOnly_
-  commentId: Overload:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.AsReadOnly
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.AsReadOnly
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).AsReadOnly
-  nameWithType: IndexHashMap<TK, TV>.AsReadOnly
-  nameWithType.vb: IndexHashMap(Of TK, TV).AsReadOnly
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Clear
-  name: Clear()
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_Clear
-  commentId: M:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Clear
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.Clear()
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).Clear()
-  nameWithType: IndexHashMap<TK, TV>.Clear()
-  nameWithType.vb: IndexHashMap(Of TK, TV).Clear()
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Clear*
-  name: Clear
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_Clear_
-  commentId: Overload:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Clear
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.Clear
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).Clear
-  nameWithType: IndexHashMap<TK, TV>.Clear
-  nameWithType.vb: IndexHashMap(Of TK, TV).Clear
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Contains(`1)
-  name: Contains(TV)
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_Contains__1_
-  commentId: M:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Contains(`1)
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.Contains(TV)
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).Contains(TV)
-  nameWithType: IndexHashMap<TK, TV>.Contains(TV)
-  nameWithType.vb: IndexHashMap(Of TK, TV).Contains(TV)
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Contains*
-  name: Contains
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_Contains_
-  commentId: Overload:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Contains
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.Contains
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).Contains
-  nameWithType: IndexHashMap<TK, TV>.Contains
-  nameWithType.vb: IndexHashMap(Of TK, TV).Contains
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.CopyTo(`1[],System.Int32)
-  name: CopyTo(TV[], int)
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_CopyTo__1___System_Int32_
-  commentId: M:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.CopyTo(`1[],System.Int32)
-  name.vb: CopyTo(TV(), Integer)
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.CopyTo(TV[], int)
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).CopyTo(TV(), Integer)
-  nameWithType: IndexHashMap<TK, TV>.CopyTo(TV[], int)
-  nameWithType.vb: IndexHashMap(Of TK, TV).CopyTo(TV(), Integer)
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.CopyTo*
-  name: CopyTo
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_CopyTo_
-  commentId: Overload:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.CopyTo
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.CopyTo
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).CopyTo
-  nameWithType: IndexHashMap<TK, TV>.CopyTo
-  nameWithType.vb: IndexHashMap(Of TK, TV).CopyTo
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Count
-  name: Count
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_Count
-  commentId: P:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Count
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.Count
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).Count
-  nameWithType: IndexHashMap<TK, TV>.Count
-  nameWithType.vb: IndexHashMap(Of TK, TV).Count
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Count*
-  name: Count
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_Count_
-  commentId: Overload:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Count
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.Count
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).Count
-  nameWithType: IndexHashMap<TK, TV>.Count
-  nameWithType.vb: IndexHashMap(Of TK, TV).Count
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.GetEnumerator
-  name: GetEnumerator()
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_GetEnumerator
-  commentId: M:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.GetEnumerator
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.GetEnumerator()
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).GetEnumerator()
-  nameWithType: IndexHashMap<TK, TV>.GetEnumerator()
-  nameWithType.vb: IndexHashMap(Of TK, TV).GetEnumerator()
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.GetEnumerator*
-  name: GetEnumerator
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_GetEnumerator_
-  commentId: Overload:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.GetEnumerator
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.GetEnumerator
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).GetEnumerator
-  nameWithType: IndexHashMap<TK, TV>.GetEnumerator
-  nameWithType.vb: IndexHashMap(Of TK, TV).GetEnumerator
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.IndexOf(`1)
-  name: IndexOf(TV)
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_IndexOf__1_
-  commentId: M:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.IndexOf(`1)
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.IndexOf(TV)
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).IndexOf(TV)
-  nameWithType: IndexHashMap<TK, TV>.IndexOf(TV)
-  nameWithType.vb: IndexHashMap(Of TK, TV).IndexOf(TV)
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.IndexOf*
-  name: IndexOf
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_IndexOf_
-  commentId: Overload:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.IndexOf
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.IndexOf
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).IndexOf
-  nameWithType: IndexHashMap<TK, TV>.IndexOf
-  nameWithType.vb: IndexHashMap(Of TK, TV).IndexOf
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Insert(System.Int32,`1)
-  name: Insert(int, TV)
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_Insert_System_Int32__1_
-  commentId: M:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Insert(System.Int32,`1)
-  name.vb: Insert(Integer, TV)
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.Insert(int, TV)
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).Insert(Integer, TV)
-  nameWithType: IndexHashMap<TK, TV>.Insert(int, TV)
-  nameWithType.vb: IndexHashMap(Of TK, TV).Insert(Integer, TV)
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Insert*
-  name: Insert
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_Insert_
-  commentId: Overload:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Insert
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.Insert
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).Insert
-  nameWithType: IndexHashMap<TK, TV>.Insert
-  nameWithType.vb: IndexHashMap(Of TK, TV).Insert
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.IsReadOnly
-  name: IsReadOnly
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_IsReadOnly
-  commentId: P:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.IsReadOnly
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.IsReadOnly
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).IsReadOnly
-  nameWithType: IndexHashMap<TK, TV>.IsReadOnly
-  nameWithType.vb: IndexHashMap(Of TK, TV).IsReadOnly
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.IsReadOnly*
-  name: IsReadOnly
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_IsReadOnly_
-  commentId: Overload:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.IsReadOnly
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.IsReadOnly
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).IsReadOnly
-  nameWithType: IndexHashMap<TK, TV>.IsReadOnly
-  nameWithType.vb: IndexHashMap(Of TK, TV).IsReadOnly
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Item(System.Int32)
-  name: this[int]
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_Item_System_Int32_
-  commentId: P:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Item(System.Int32)
-  name.vb: this[](Integer)
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.this[int]
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).this[](Integer)
-  nameWithType: IndexHashMap<TK, TV>.this[int]
-  nameWithType.vb: IndexHashMap(Of TK, TV).this[](Integer)
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Item(`0)
-  name: this[TK]
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_Item__0_
-  commentId: P:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Item(`0)
-  name.vb: this[](TK)
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.this[TK]
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).this[](TK)
-  nameWithType: IndexHashMap<TK, TV>.this[TK]
-  nameWithType.vb: IndexHashMap(Of TK, TV).this[](TK)
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Item*
-  name: this
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_Item_
-  commentId: Overload:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Item
-  isSpec: "True"
-  name.vb: this[]
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.this
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).this[]
-  nameWithType: IndexHashMap<TK, TV>.this
-  nameWithType.vb: IndexHashMap(Of TK, TV).this[]
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Keys
-  name: Keys
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_Keys
-  commentId: P:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Keys
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.Keys
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).Keys
-  nameWithType: IndexHashMap<TK, TV>.Keys
-  nameWithType.vb: IndexHashMap(Of TK, TV).Keys
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Keys*
-  name: Keys
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_Keys_
-  commentId: Overload:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Keys
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.Keys
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).Keys
-  nameWithType: IndexHashMap<TK, TV>.Keys
-  nameWithType.vb: IndexHashMap(Of TK, TV).Keys
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Remove(`1)
-  name: Remove(TV)
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_Remove__1_
-  commentId: M:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Remove(`1)
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.Remove(TV)
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).Remove(TV)
-  nameWithType: IndexHashMap<TK, TV>.Remove(TV)
-  nameWithType.vb: IndexHashMap(Of TK, TV).Remove(TV)
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Remove*
-  name: Remove
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_Remove_
-  commentId: Overload:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Remove
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.Remove
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).Remove
-  nameWithType: IndexHashMap<TK, TV>.Remove
-  nameWithType.vb: IndexHashMap(Of TK, TV).Remove
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.RemoveAt(System.Int32)
-  name: RemoveAt(int)
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_RemoveAt_System_Int32_
-  commentId: M:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.RemoveAt(System.Int32)
-  name.vb: RemoveAt(Integer)
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.RemoveAt(int)
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).RemoveAt(Integer)
-  nameWithType: IndexHashMap<TK, TV>.RemoveAt(int)
-  nameWithType.vb: IndexHashMap(Of TK, TV).RemoveAt(Integer)
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.RemoveAt*
-  name: RemoveAt
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_RemoveAt_
-  commentId: Overload:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.RemoveAt
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.RemoveAt
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).RemoveAt
-  nameWithType: IndexHashMap<TK, TV>.RemoveAt
-  nameWithType.vb: IndexHashMap(Of TK, TV).RemoveAt
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.TryGetValue(`0,`1@)
-  name: TryGetValue(TK, out TV?)
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_TryGetValue__0__1__
-  commentId: M:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.TryGetValue(`0,`1@)
-  name.vb: TryGetValue(TK, TV)
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.TryGetValue(TK, out TV?)
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).TryGetValue(TK, TV)
-  nameWithType: IndexHashMap<TK, TV>.TryGetValue(TK, out TV?)
-  nameWithType.vb: IndexHashMap(Of TK, TV).TryGetValue(TK, TV)
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.TryGetValue*
-  name: TryGetValue
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_TryGetValue_
-  commentId: Overload:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.TryGetValue
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.TryGetValue
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).TryGetValue
-  nameWithType: IndexHashMap<TK, TV>.TryGetValue
-  nameWithType.vb: IndexHashMap(Of TK, TV).TryGetValue
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Values
-  name: Values
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_Values
-  commentId: P:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Values
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.Values
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).Values
-  nameWithType: IndexHashMap<TK, TV>.Values
-  nameWithType.vb: IndexHashMap(Of TK, TV).Values
-- uid: RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Values*
-  name: Values
-  href: api/RelogicLabs.JsonSchema.Collections.IndexHashMap-2.html#RelogicLabs_JsonSchema_Collections_IndexHashMap_2_Values_
-  commentId: Overload:RelogicLabs.JsonSchema.Collections.IndexHashMap`2.Values
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Collections.IndexHashMap<TK, TV>.Values
-  fullName.vb: RelogicLabs.JsonSchema.Collections.IndexHashMap(Of TK, TV).Values
-  nameWithType: IndexHashMap<TK, TV>.Values
-  nameWithType.vb: IndexHashMap(Of TK, TV).Values
+  fullName: RelogicLabs.JsonSchema.Collections.IKeyed<TK>.Key
+  fullName.vb: RelogicLabs.JsonSchema.Collections.IKeyed(Of TK).Key
+  nameWithType: IKeyed<TK>.Key
+  nameWithType.vb: IKeyed(Of TK).Key
 - uid: RelogicLabs.JsonSchema.Exceptions
   name: RelogicLabs.JsonSchema.Exceptions
   href: api/RelogicLabs.JsonSchema.Exceptions.html
@@ -524,6 +209,15 @@ references:
   fullName.vb: RelogicLabs.JsonSchema.Exceptions.ClassNotFoundException.New(RelogicLabs.JsonSchema.Message.ErrorDetail)
   nameWithType: ClassNotFoundException.ClassNotFoundException(ErrorDetail)
   nameWithType.vb: ClassNotFoundException.New(ErrorDetail)
+- uid: RelogicLabs.JsonSchema.Exceptions.ClassNotFoundException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name: ClassNotFoundException(ErrorDetail, Exception?)
+  href: api/RelogicLabs.JsonSchema.Exceptions.ClassNotFoundException.html#RelogicLabs_JsonSchema_Exceptions_ClassNotFoundException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_System_Exception_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.ClassNotFoundException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name.vb: New(ErrorDetail, Exception)
+  fullName: RelogicLabs.JsonSchema.Exceptions.ClassNotFoundException.ClassNotFoundException(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception?)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.ClassNotFoundException.New(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception)
+  nameWithType: ClassNotFoundException.ClassNotFoundException(ErrorDetail, Exception?)
+  nameWithType.vb: ClassNotFoundException.New(ErrorDetail, Exception)
 - uid: RelogicLabs.JsonSchema.Exceptions.ClassNotFoundException.#ctor(System.String,System.String)
   name: ClassNotFoundException(string, string)
   href: api/RelogicLabs.JsonSchema.Exceptions.ClassNotFoundException.html#RelogicLabs_JsonSchema_Exceptions_ClassNotFoundException__ctor_System_String_System_String_
@@ -617,6 +311,38 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Exceptions.CommonException.Code
   nameWithType: CommonException.Code
+- uid: RelogicLabs.JsonSchema.Exceptions.CommonException.GetAttribute(System.String)
+  name: GetAttribute(string)
+  href: api/RelogicLabs.JsonSchema.Exceptions.CommonException.html#RelogicLabs_JsonSchema_Exceptions_CommonException_GetAttribute_System_String_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.CommonException.GetAttribute(System.String)
+  name.vb: GetAttribute(String)
+  fullName: RelogicLabs.JsonSchema.Exceptions.CommonException.GetAttribute(string)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.CommonException.GetAttribute(String)
+  nameWithType: CommonException.GetAttribute(string)
+  nameWithType.vb: CommonException.GetAttribute(String)
+- uid: RelogicLabs.JsonSchema.Exceptions.CommonException.GetAttribute*
+  name: GetAttribute
+  href: api/RelogicLabs.JsonSchema.Exceptions.CommonException.html#RelogicLabs_JsonSchema_Exceptions_CommonException_GetAttribute_
+  commentId: Overload:RelogicLabs.JsonSchema.Exceptions.CommonException.GetAttribute
+  isSpec: "True"
+  fullName: RelogicLabs.JsonSchema.Exceptions.CommonException.GetAttribute
+  nameWithType: CommonException.GetAttribute
+- uid: RelogicLabs.JsonSchema.Exceptions.CommonException.SetAttribute(System.String,System.String)
+  name: SetAttribute(string, string)
+  href: api/RelogicLabs.JsonSchema.Exceptions.CommonException.html#RelogicLabs_JsonSchema_Exceptions_CommonException_SetAttribute_System_String_System_String_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.CommonException.SetAttribute(System.String,System.String)
+  name.vb: SetAttribute(String, String)
+  fullName: RelogicLabs.JsonSchema.Exceptions.CommonException.SetAttribute(string, string)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.CommonException.SetAttribute(String, String)
+  nameWithType: CommonException.SetAttribute(string, string)
+  nameWithType.vb: CommonException.SetAttribute(String, String)
+- uid: RelogicLabs.JsonSchema.Exceptions.CommonException.SetAttribute*
+  name: SetAttribute
+  href: api/RelogicLabs.JsonSchema.Exceptions.CommonException.html#RelogicLabs_JsonSchema_Exceptions_CommonException_SetAttribute_
+  commentId: Overload:RelogicLabs.JsonSchema.Exceptions.CommonException.SetAttribute
+  isSpec: "True"
+  fullName: RelogicLabs.JsonSchema.Exceptions.CommonException.SetAttribute
+  nameWithType: CommonException.SetAttribute
 - uid: RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException
   name: DateTimeLexerException
   href: api/RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException.html
@@ -666,6 +392,15 @@ references:
   fullName.vb: RelogicLabs.JsonSchema.Exceptions.DefinitionNotFoundException.New(RelogicLabs.JsonSchema.Message.ErrorDetail)
   nameWithType: DefinitionNotFoundException.DefinitionNotFoundException(ErrorDetail)
   nameWithType.vb: DefinitionNotFoundException.New(ErrorDetail)
+- uid: RelogicLabs.JsonSchema.Exceptions.DefinitionNotFoundException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name: DefinitionNotFoundException(ErrorDetail, Exception?)
+  href: api/RelogicLabs.JsonSchema.Exceptions.DefinitionNotFoundException.html#RelogicLabs_JsonSchema_Exceptions_DefinitionNotFoundException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_System_Exception_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.DefinitionNotFoundException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name.vb: New(ErrorDetail, Exception)
+  fullName: RelogicLabs.JsonSchema.Exceptions.DefinitionNotFoundException.DefinitionNotFoundException(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception?)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.DefinitionNotFoundException.New(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception)
+  nameWithType: DefinitionNotFoundException.DefinitionNotFoundException(ErrorDetail, Exception?)
+  nameWithType.vb: DefinitionNotFoundException.New(ErrorDetail, Exception)
 - uid: RelogicLabs.JsonSchema.Exceptions.DefinitionNotFoundException.#ctor(System.String,System.String)
   name: DefinitionNotFoundException(string, string)
   href: api/RelogicLabs.JsonSchema.Exceptions.DefinitionNotFoundException.html#RelogicLabs_JsonSchema_Exceptions_DefinitionNotFoundException__ctor_System_String_System_String_
@@ -709,6 +444,15 @@ references:
   fullName.vb: RelogicLabs.JsonSchema.Exceptions.DuplicateDefinitionException.New(RelogicLabs.JsonSchema.Message.ErrorDetail)
   nameWithType: DuplicateDefinitionException.DuplicateDefinitionException(ErrorDetail)
   nameWithType.vb: DuplicateDefinitionException.New(ErrorDetail)
+- uid: RelogicLabs.JsonSchema.Exceptions.DuplicateDefinitionException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name: DuplicateDefinitionException(ErrorDetail, Exception?)
+  href: api/RelogicLabs.JsonSchema.Exceptions.DuplicateDefinitionException.html#RelogicLabs_JsonSchema_Exceptions_DuplicateDefinitionException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_System_Exception_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.DuplicateDefinitionException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name.vb: New(ErrorDetail, Exception)
+  fullName: RelogicLabs.JsonSchema.Exceptions.DuplicateDefinitionException.DuplicateDefinitionException(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception?)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.DuplicateDefinitionException.New(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception)
+  nameWithType: DuplicateDefinitionException.DuplicateDefinitionException(ErrorDetail, Exception?)
+  nameWithType.vb: DuplicateDefinitionException.New(ErrorDetail, Exception)
 - uid: RelogicLabs.JsonSchema.Exceptions.DuplicateDefinitionException.#ctor(System.String,System.String)
   name: DuplicateDefinitionException(string, string)
   href: api/RelogicLabs.JsonSchema.Exceptions.DuplicateDefinitionException.html#RelogicLabs_JsonSchema_Exceptions_DuplicateDefinitionException__ctor_System_String_System_String_
@@ -752,6 +496,24 @@ references:
   fullName.vb: RelogicLabs.JsonSchema.Exceptions.DuplicateIncludeException.New(RelogicLabs.JsonSchema.Message.ErrorDetail)
   nameWithType: DuplicateIncludeException.DuplicateIncludeException(ErrorDetail)
   nameWithType.vb: DuplicateIncludeException.New(ErrorDetail)
+- uid: RelogicLabs.JsonSchema.Exceptions.DuplicateIncludeException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name: DuplicateIncludeException(ErrorDetail, Exception?)
+  href: api/RelogicLabs.JsonSchema.Exceptions.DuplicateIncludeException.html#RelogicLabs_JsonSchema_Exceptions_DuplicateIncludeException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_System_Exception_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.DuplicateIncludeException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name.vb: New(ErrorDetail, Exception)
+  fullName: RelogicLabs.JsonSchema.Exceptions.DuplicateIncludeException.DuplicateIncludeException(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception?)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.DuplicateIncludeException.New(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception)
+  nameWithType: DuplicateIncludeException.DuplicateIncludeException(ErrorDetail, Exception?)
+  nameWithType.vb: DuplicateIncludeException.New(ErrorDetail, Exception)
+- uid: RelogicLabs.JsonSchema.Exceptions.DuplicateIncludeException.#ctor(System.String,System.String)
+  name: DuplicateIncludeException(string, string)
+  href: api/RelogicLabs.JsonSchema.Exceptions.DuplicateIncludeException.html#RelogicLabs_JsonSchema_Exceptions_DuplicateIncludeException__ctor_System_String_System_String_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.DuplicateIncludeException.#ctor(System.String,System.String)
+  name.vb: New(String, String)
+  fullName: RelogicLabs.JsonSchema.Exceptions.DuplicateIncludeException.DuplicateIncludeException(string, string)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.DuplicateIncludeException.New(String, String)
+  nameWithType: DuplicateIncludeException.DuplicateIncludeException(string, string)
+  nameWithType.vb: DuplicateIncludeException.New(String, String)
 - uid: RelogicLabs.JsonSchema.Exceptions.DuplicateIncludeException.#ctor(System.String,System.String,System.Exception)
   name: DuplicateIncludeException(string, string, Exception?)
   href: api/RelogicLabs.JsonSchema.Exceptions.DuplicateIncludeException.html#RelogicLabs_JsonSchema_Exceptions_DuplicateIncludeException__ctor_System_String_System_String_System_Exception_
@@ -786,6 +548,15 @@ references:
   fullName.vb: RelogicLabs.JsonSchema.Exceptions.DuplicatePragmaException.New(RelogicLabs.JsonSchema.Message.ErrorDetail)
   nameWithType: DuplicatePragmaException.DuplicatePragmaException(ErrorDetail)
   nameWithType.vb: DuplicatePragmaException.New(ErrorDetail)
+- uid: RelogicLabs.JsonSchema.Exceptions.DuplicatePragmaException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name: DuplicatePragmaException(ErrorDetail, Exception?)
+  href: api/RelogicLabs.JsonSchema.Exceptions.DuplicatePragmaException.html#RelogicLabs_JsonSchema_Exceptions_DuplicatePragmaException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_System_Exception_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.DuplicatePragmaException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name.vb: New(ErrorDetail, Exception)
+  fullName: RelogicLabs.JsonSchema.Exceptions.DuplicatePragmaException.DuplicatePragmaException(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception?)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.DuplicatePragmaException.New(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception)
+  nameWithType: DuplicatePragmaException.DuplicatePragmaException(ErrorDetail, Exception?)
+  nameWithType.vb: DuplicatePragmaException.New(ErrorDetail, Exception)
 - uid: RelogicLabs.JsonSchema.Exceptions.DuplicatePragmaException.#ctor(System.String,System.String)
   name: DuplicatePragmaException(string, string)
   href: api/RelogicLabs.JsonSchema.Exceptions.DuplicatePragmaException.html#RelogicLabs_JsonSchema_Exceptions_DuplicatePragmaException__ctor_System_String_System_String_
@@ -829,6 +600,15 @@ references:
   fullName.vb: RelogicLabs.JsonSchema.Exceptions.DuplicatePropertyKeyException.New(RelogicLabs.JsonSchema.Message.ErrorDetail)
   nameWithType: DuplicatePropertyKeyException.DuplicatePropertyKeyException(ErrorDetail)
   nameWithType.vb: DuplicatePropertyKeyException.New(ErrorDetail)
+- uid: RelogicLabs.JsonSchema.Exceptions.DuplicatePropertyKeyException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name: DuplicatePropertyKeyException(ErrorDetail, Exception?)
+  href: api/RelogicLabs.JsonSchema.Exceptions.DuplicatePropertyKeyException.html#RelogicLabs_JsonSchema_Exceptions_DuplicatePropertyKeyException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_System_Exception_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.DuplicatePropertyKeyException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name.vb: New(ErrorDetail, Exception)
+  fullName: RelogicLabs.JsonSchema.Exceptions.DuplicatePropertyKeyException.DuplicatePropertyKeyException(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception?)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.DuplicatePropertyKeyException.New(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception)
+  nameWithType: DuplicatePropertyKeyException.DuplicatePropertyKeyException(ErrorDetail, Exception?)
+  nameWithType.vb: DuplicatePropertyKeyException.New(ErrorDetail, Exception)
 - uid: RelogicLabs.JsonSchema.Exceptions.DuplicatePropertyKeyException.#ctor(System.String,System.String)
   name: DuplicatePropertyKeyException(string, string)
   href: api/RelogicLabs.JsonSchema.Exceptions.DuplicatePropertyKeyException.html#RelogicLabs_JsonSchema_Exceptions_DuplicatePropertyKeyException__ctor_System_String_System_String_
@@ -872,6 +652,15 @@ references:
   fullName.vb: RelogicLabs.JsonSchema.Exceptions.FunctionNotFoundException.New(RelogicLabs.JsonSchema.Message.ErrorDetail)
   nameWithType: FunctionNotFoundException.FunctionNotFoundException(ErrorDetail)
   nameWithType.vb: FunctionNotFoundException.New(ErrorDetail)
+- uid: RelogicLabs.JsonSchema.Exceptions.FunctionNotFoundException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name: FunctionNotFoundException(ErrorDetail, Exception?)
+  href: api/RelogicLabs.JsonSchema.Exceptions.FunctionNotFoundException.html#RelogicLabs_JsonSchema_Exceptions_FunctionNotFoundException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_System_Exception_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.FunctionNotFoundException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name.vb: New(ErrorDetail, Exception)
+  fullName: RelogicLabs.JsonSchema.Exceptions.FunctionNotFoundException.FunctionNotFoundException(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception?)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.FunctionNotFoundException.New(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception)
+  nameWithType: FunctionNotFoundException.FunctionNotFoundException(ErrorDetail, Exception?)
+  nameWithType.vb: FunctionNotFoundException.New(ErrorDetail, Exception)
 - uid: RelogicLabs.JsonSchema.Exceptions.FunctionNotFoundException.#ctor(System.String,System.String)
   name: FunctionNotFoundException(string, string)
   href: api/RelogicLabs.JsonSchema.Exceptions.FunctionNotFoundException.html#RelogicLabs_JsonSchema_Exceptions_FunctionNotFoundException__ctor_System_String_System_String_
@@ -1019,6 +808,15 @@ references:
   fullName.vb: RelogicLabs.JsonSchema.Exceptions.InvalidFunctionException.New(RelogicLabs.JsonSchema.Message.ErrorDetail)
   nameWithType: InvalidFunctionException.InvalidFunctionException(ErrorDetail)
   nameWithType.vb: InvalidFunctionException.New(ErrorDetail)
+- uid: RelogicLabs.JsonSchema.Exceptions.InvalidFunctionException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name: InvalidFunctionException(ErrorDetail, Exception?)
+  href: api/RelogicLabs.JsonSchema.Exceptions.InvalidFunctionException.html#RelogicLabs_JsonSchema_Exceptions_InvalidFunctionException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_System_Exception_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.InvalidFunctionException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name.vb: New(ErrorDetail, Exception)
+  fullName: RelogicLabs.JsonSchema.Exceptions.InvalidFunctionException.InvalidFunctionException(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception?)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.InvalidFunctionException.New(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception)
+  nameWithType: InvalidFunctionException.InvalidFunctionException(ErrorDetail, Exception?)
+  nameWithType.vb: InvalidFunctionException.New(ErrorDetail, Exception)
 - uid: RelogicLabs.JsonSchema.Exceptions.InvalidFunctionException.#ctor(System.String,System.String)
   name: InvalidFunctionException(string, string)
   href: api/RelogicLabs.JsonSchema.Exceptions.InvalidFunctionException.html#RelogicLabs_JsonSchema_Exceptions_InvalidFunctionException__ctor_System_String_System_String_
@@ -1062,6 +860,15 @@ references:
   fullName.vb: RelogicLabs.JsonSchema.Exceptions.InvalidIncludeException.New(RelogicLabs.JsonSchema.Message.ErrorDetail)
   nameWithType: InvalidIncludeException.InvalidIncludeException(ErrorDetail)
   nameWithType.vb: InvalidIncludeException.New(ErrorDetail)
+- uid: RelogicLabs.JsonSchema.Exceptions.InvalidIncludeException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name: InvalidIncludeException(ErrorDetail, Exception?)
+  href: api/RelogicLabs.JsonSchema.Exceptions.InvalidIncludeException.html#RelogicLabs_JsonSchema_Exceptions_InvalidIncludeException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_System_Exception_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.InvalidIncludeException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name.vb: New(ErrorDetail, Exception)
+  fullName: RelogicLabs.JsonSchema.Exceptions.InvalidIncludeException.InvalidIncludeException(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception?)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.InvalidIncludeException.New(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception)
+  nameWithType: InvalidIncludeException.InvalidIncludeException(ErrorDetail, Exception?)
+  nameWithType.vb: InvalidIncludeException.New(ErrorDetail, Exception)
 - uid: RelogicLabs.JsonSchema.Exceptions.InvalidIncludeException.#ctor(System.String,System.String)
   name: InvalidIncludeException(string, string)
   href: api/RelogicLabs.JsonSchema.Exceptions.InvalidIncludeException.html#RelogicLabs_JsonSchema_Exceptions_InvalidIncludeException__ctor_System_String_System_String_
@@ -1105,6 +912,15 @@ references:
   fullName.vb: RelogicLabs.JsonSchema.Exceptions.InvalidPragmaValueException.New(RelogicLabs.JsonSchema.Message.ErrorDetail)
   nameWithType: InvalidPragmaValueException.InvalidPragmaValueException(ErrorDetail)
   nameWithType.vb: InvalidPragmaValueException.New(ErrorDetail)
+- uid: RelogicLabs.JsonSchema.Exceptions.InvalidPragmaValueException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name: InvalidPragmaValueException(ErrorDetail, Exception?)
+  href: api/RelogicLabs.JsonSchema.Exceptions.InvalidPragmaValueException.html#RelogicLabs_JsonSchema_Exceptions_InvalidPragmaValueException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_System_Exception_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.InvalidPragmaValueException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name.vb: New(ErrorDetail, Exception)
+  fullName: RelogicLabs.JsonSchema.Exceptions.InvalidPragmaValueException.InvalidPragmaValueException(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception?)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.InvalidPragmaValueException.New(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception)
+  nameWithType: InvalidPragmaValueException.InvalidPragmaValueException(ErrorDetail, Exception?)
+  nameWithType.vb: InvalidPragmaValueException.New(ErrorDetail, Exception)
 - uid: RelogicLabs.JsonSchema.Exceptions.InvalidPragmaValueException.#ctor(System.String,System.String)
   name: InvalidPragmaValueException(string, string)
   href: api/RelogicLabs.JsonSchema.Exceptions.InvalidPragmaValueException.html#RelogicLabs_JsonSchema_Exceptions_InvalidPragmaValueException__ctor_System_String_System_String_
@@ -1207,23 +1023,14 @@ references:
   commentId: T:RelogicLabs.JsonSchema.Exceptions.JsonSchemaException
   fullName: RelogicLabs.JsonSchema.Exceptions.JsonSchemaException
   nameWithType: JsonSchemaException
-- uid: RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,RelogicLabs.JsonSchema.Message.ExpectedDetail,RelogicLabs.JsonSchema.Message.ActualDetail)
-  name: JsonSchemaException(ErrorDetail, ExpectedDetail, ActualDetail)
-  href: api/RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.html#RelogicLabs_JsonSchema_Exceptions_JsonSchemaException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_RelogicLabs_JsonSchema_Message_ExpectedDetail_RelogicLabs_JsonSchema_Message_ActualDetail_
-  commentId: M:RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,RelogicLabs.JsonSchema.Message.ExpectedDetail,RelogicLabs.JsonSchema.Message.ActualDetail)
-  name.vb: New(ErrorDetail, ExpectedDetail, ActualDetail)
-  fullName: RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.JsonSchemaException(RelogicLabs.JsonSchema.Message.ErrorDetail, RelogicLabs.JsonSchema.Message.ExpectedDetail, RelogicLabs.JsonSchema.Message.ActualDetail)
-  fullName.vb: RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.New(RelogicLabs.JsonSchema.Message.ErrorDetail, RelogicLabs.JsonSchema.Message.ExpectedDetail, RelogicLabs.JsonSchema.Message.ActualDetail)
-  nameWithType: JsonSchemaException.JsonSchemaException(ErrorDetail, ExpectedDetail, ActualDetail)
-  nameWithType.vb: JsonSchemaException.New(ErrorDetail, ExpectedDetail, ActualDetail)
 - uid: RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,RelogicLabs.JsonSchema.Message.ExpectedDetail,RelogicLabs.JsonSchema.Message.ActualDetail,System.Exception)
-  name: JsonSchemaException(ErrorDetail, ExpectedDetail, ActualDetail, Exception)
+  name: JsonSchemaException(ErrorDetail, ExpectedDetail, ActualDetail, Exception?)
   href: api/RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.html#RelogicLabs_JsonSchema_Exceptions_JsonSchemaException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_RelogicLabs_JsonSchema_Message_ExpectedDetail_RelogicLabs_JsonSchema_Message_ActualDetail_System_Exception_
   commentId: M:RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,RelogicLabs.JsonSchema.Message.ExpectedDetail,RelogicLabs.JsonSchema.Message.ActualDetail,System.Exception)
   name.vb: New(ErrorDetail, ExpectedDetail, ActualDetail, Exception)
-  fullName: RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.JsonSchemaException(RelogicLabs.JsonSchema.Message.ErrorDetail, RelogicLabs.JsonSchema.Message.ExpectedDetail, RelogicLabs.JsonSchema.Message.ActualDetail, System.Exception)
+  fullName: RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.JsonSchemaException(RelogicLabs.JsonSchema.Message.ErrorDetail, RelogicLabs.JsonSchema.Message.ExpectedDetail, RelogicLabs.JsonSchema.Message.ActualDetail, System.Exception?)
   fullName.vb: RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.New(RelogicLabs.JsonSchema.Message.ErrorDetail, RelogicLabs.JsonSchema.Message.ExpectedDetail, RelogicLabs.JsonSchema.Message.ActualDetail, System.Exception)
-  nameWithType: JsonSchemaException.JsonSchemaException(ErrorDetail, ExpectedDetail, ActualDetail, Exception)
+  nameWithType: JsonSchemaException.JsonSchemaException(ErrorDetail, ExpectedDetail, ActualDetail, Exception?)
   nameWithType.vb: JsonSchemaException.New(ErrorDetail, ExpectedDetail, ActualDetail, Exception)
 - uid: RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.#ctor*
   name: JsonSchemaException
@@ -1248,6 +1055,19 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.Actual
   nameWithType: JsonSchemaException.Actual
+- uid: RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.Error
+  name: Error
+  href: api/RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.html#RelogicLabs_JsonSchema_Exceptions_JsonSchemaException_Error
+  commentId: P:RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.Error
+  fullName: RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.Error
+  nameWithType: JsonSchemaException.Error
+- uid: RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.Error*
+  name: Error
+  href: api/RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.html#RelogicLabs_JsonSchema_Exceptions_JsonSchemaException_Error_
+  commentId: Overload:RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.Error
+  isSpec: "True"
+  fullName: RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.Error
+  nameWithType: JsonSchemaException.Error
 - uid: RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.Expected
   name: Expected
   href: api/RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.html#RelogicLabs_JsonSchema_Exceptions_JsonSchemaException_Expected
@@ -1261,6 +1081,58 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.Expected
   nameWithType: JsonSchemaException.Expected
+- uid: RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException
+  name: MisplacedOptionalException
+  href: api/RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.html
+  commentId: T:RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException
+  fullName: RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException
+  nameWithType: MisplacedOptionalException
+- uid: RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail)
+  name: MisplacedOptionalException(ErrorDetail)
+  href: api/RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.html#RelogicLabs_JsonSchema_Exceptions_MisplacedOptionalException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail)
+  name.vb: New(ErrorDetail)
+  fullName: RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.MisplacedOptionalException(RelogicLabs.JsonSchema.Message.ErrorDetail)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.New(RelogicLabs.JsonSchema.Message.ErrorDetail)
+  nameWithType: MisplacedOptionalException.MisplacedOptionalException(ErrorDetail)
+  nameWithType.vb: MisplacedOptionalException.New(ErrorDetail)
+- uid: RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name: MisplacedOptionalException(ErrorDetail, Exception?)
+  href: api/RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.html#RelogicLabs_JsonSchema_Exceptions_MisplacedOptionalException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_System_Exception_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name.vb: New(ErrorDetail, Exception)
+  fullName: RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.MisplacedOptionalException(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception?)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.New(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception)
+  nameWithType: MisplacedOptionalException.MisplacedOptionalException(ErrorDetail, Exception?)
+  nameWithType.vb: MisplacedOptionalException.New(ErrorDetail, Exception)
+- uid: RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.#ctor(System.String,System.String)
+  name: MisplacedOptionalException(string, string)
+  href: api/RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.html#RelogicLabs_JsonSchema_Exceptions_MisplacedOptionalException__ctor_System_String_System_String_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.#ctor(System.String,System.String)
+  name.vb: New(String, String)
+  fullName: RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.MisplacedOptionalException(string, string)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.New(String, String)
+  nameWithType: MisplacedOptionalException.MisplacedOptionalException(string, string)
+  nameWithType.vb: MisplacedOptionalException.New(String, String)
+- uid: RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.#ctor(System.String,System.String,System.Exception)
+  name: MisplacedOptionalException(string, string, Exception?)
+  href: api/RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.html#RelogicLabs_JsonSchema_Exceptions_MisplacedOptionalException__ctor_System_String_System_String_System_Exception_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.#ctor(System.String,System.String,System.Exception)
+  name.vb: New(String, String, Exception)
+  fullName: RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.MisplacedOptionalException(string, string, System.Exception?)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.New(String, String, System.Exception)
+  nameWithType: MisplacedOptionalException.MisplacedOptionalException(string, string, Exception?)
+  nameWithType.vb: MisplacedOptionalException.New(String, String, Exception)
+- uid: RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.#ctor*
+  name: MisplacedOptionalException
+  href: api/RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.html#RelogicLabs_JsonSchema_Exceptions_MisplacedOptionalException__ctor_
+  commentId: Overload:RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.MisplacedOptionalException
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.New
+  nameWithType: MisplacedOptionalException.MisplacedOptionalException
+  nameWithType.vb: MisplacedOptionalException.New
 - uid: RelogicLabs.JsonSchema.Exceptions.NoValueReceivedException
   name: NoValueReceivedException
   href: api/RelogicLabs.JsonSchema.Exceptions.NoValueReceivedException.html
@@ -1276,6 +1148,15 @@ references:
   fullName.vb: RelogicLabs.JsonSchema.Exceptions.NoValueReceivedException.New(RelogicLabs.JsonSchema.Message.ErrorDetail)
   nameWithType: NoValueReceivedException.NoValueReceivedException(ErrorDetail)
   nameWithType.vb: NoValueReceivedException.New(ErrorDetail)
+- uid: RelogicLabs.JsonSchema.Exceptions.NoValueReceivedException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name: NoValueReceivedException(ErrorDetail, Exception?)
+  href: api/RelogicLabs.JsonSchema.Exceptions.NoValueReceivedException.html#RelogicLabs_JsonSchema_Exceptions_NoValueReceivedException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_System_Exception_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.NoValueReceivedException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name.vb: New(ErrorDetail, Exception)
+  fullName: RelogicLabs.JsonSchema.Exceptions.NoValueReceivedException.NoValueReceivedException(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception?)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.NoValueReceivedException.New(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception)
+  nameWithType: NoValueReceivedException.NoValueReceivedException(ErrorDetail, Exception?)
+  nameWithType.vb: NoValueReceivedException.New(ErrorDetail, Exception)
 - uid: RelogicLabs.JsonSchema.Exceptions.NoValueReceivedException.#ctor(System.String,System.String)
   name: NoValueReceivedException(string, string)
   href: api/RelogicLabs.JsonSchema.Exceptions.NoValueReceivedException.html#RelogicLabs_JsonSchema_Exceptions_NoValueReceivedException__ctor_System_String_System_String_
@@ -1319,6 +1200,15 @@ references:
   fullName.vb: RelogicLabs.JsonSchema.Exceptions.PragmaNotFoundException.New(RelogicLabs.JsonSchema.Message.ErrorDetail)
   nameWithType: PragmaNotFoundException.PragmaNotFoundException(ErrorDetail)
   nameWithType.vb: PragmaNotFoundException.New(ErrorDetail)
+- uid: RelogicLabs.JsonSchema.Exceptions.PragmaNotFoundException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name: PragmaNotFoundException(ErrorDetail, Exception?)
+  href: api/RelogicLabs.JsonSchema.Exceptions.PragmaNotFoundException.html#RelogicLabs_JsonSchema_Exceptions_PragmaNotFoundException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_System_Exception_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.PragmaNotFoundException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name.vb: New(ErrorDetail, Exception)
+  fullName: RelogicLabs.JsonSchema.Exceptions.PragmaNotFoundException.PragmaNotFoundException(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception?)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.PragmaNotFoundException.New(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception)
+  nameWithType: PragmaNotFoundException.PragmaNotFoundException(ErrorDetail, Exception?)
+  nameWithType.vb: PragmaNotFoundException.New(ErrorDetail, Exception)
 - uid: RelogicLabs.JsonSchema.Exceptions.PragmaNotFoundException.#ctor(System.String,System.String)
   name: PragmaNotFoundException(string, string)
   href: api/RelogicLabs.JsonSchema.Exceptions.PragmaNotFoundException.html#RelogicLabs_JsonSchema_Exceptions_PragmaNotFoundException__ctor_System_String_System_String_
@@ -1362,6 +1252,15 @@ references:
   fullName.vb: RelogicLabs.JsonSchema.Exceptions.ReceiverNotFoundException.New(RelogicLabs.JsonSchema.Message.ErrorDetail)
   nameWithType: ReceiverNotFoundException.ReceiverNotFoundException(ErrorDetail)
   nameWithType.vb: ReceiverNotFoundException.New(ErrorDetail)
+- uid: RelogicLabs.JsonSchema.Exceptions.ReceiverNotFoundException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name: ReceiverNotFoundException(ErrorDetail, Exception?)
+  href: api/RelogicLabs.JsonSchema.Exceptions.ReceiverNotFoundException.html#RelogicLabs_JsonSchema_Exceptions_ReceiverNotFoundException__ctor_RelogicLabs_JsonSchema_Message_ErrorDetail_System_Exception_
+  commentId: M:RelogicLabs.JsonSchema.Exceptions.ReceiverNotFoundException.#ctor(RelogicLabs.JsonSchema.Message.ErrorDetail,System.Exception)
+  name.vb: New(ErrorDetail, Exception)
+  fullName: RelogicLabs.JsonSchema.Exceptions.ReceiverNotFoundException.ReceiverNotFoundException(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception?)
+  fullName.vb: RelogicLabs.JsonSchema.Exceptions.ReceiverNotFoundException.New(RelogicLabs.JsonSchema.Message.ErrorDetail, System.Exception)
+  nameWithType: ReceiverNotFoundException.ReceiverNotFoundException(ErrorDetail, Exception?)
+  nameWithType.vb: ReceiverNotFoundException.New(ErrorDetail, Exception)
 - uid: RelogicLabs.JsonSchema.Exceptions.ReceiverNotFoundException.#ctor(System.String,System.String)
   name: ReceiverNotFoundException(string, string)
   href: api/RelogicLabs.JsonSchema.Exceptions.ReceiverNotFoundException.html#RelogicLabs_JsonSchema_Exceptions_ReceiverNotFoundException__ctor_System_String_System_String_
@@ -2689,32 +2588,19 @@ references:
   commentId: F:RelogicLabs.JsonSchema.Time.JsonDateTime.UNSET
   fullName: RelogicLabs.JsonSchema.Time.JsonDateTime.UNSET
   nameWithType: JsonDateTime.UNSET
-- uid: RelogicLabs.JsonSchema.Time.JsonDateTime.UtcOffsetHour
-  name: UtcOffsetHour
-  href: api/RelogicLabs.JsonSchema.Time.JsonDateTime.html#RelogicLabs_JsonSchema_Time_JsonDateTime_UtcOffsetHour
-  commentId: P:RelogicLabs.JsonSchema.Time.JsonDateTime.UtcOffsetHour
-  fullName: RelogicLabs.JsonSchema.Time.JsonDateTime.UtcOffsetHour
-  nameWithType: JsonDateTime.UtcOffsetHour
-- uid: RelogicLabs.JsonSchema.Time.JsonDateTime.UtcOffsetHour*
-  name: UtcOffsetHour
-  href: api/RelogicLabs.JsonSchema.Time.JsonDateTime.html#RelogicLabs_JsonSchema_Time_JsonDateTime_UtcOffsetHour_
-  commentId: Overload:RelogicLabs.JsonSchema.Time.JsonDateTime.UtcOffsetHour
+- uid: RelogicLabs.JsonSchema.Time.JsonDateTime.UtcOffset
+  name: UtcOffset
+  href: api/RelogicLabs.JsonSchema.Time.JsonDateTime.html#RelogicLabs_JsonSchema_Time_JsonDateTime_UtcOffset
+  commentId: P:RelogicLabs.JsonSchema.Time.JsonDateTime.UtcOffset
+  fullName: RelogicLabs.JsonSchema.Time.JsonDateTime.UtcOffset
+  nameWithType: JsonDateTime.UtcOffset
+- uid: RelogicLabs.JsonSchema.Time.JsonDateTime.UtcOffset*
+  name: UtcOffset
+  href: api/RelogicLabs.JsonSchema.Time.JsonDateTime.html#RelogicLabs_JsonSchema_Time_JsonDateTime_UtcOffset_
+  commentId: Overload:RelogicLabs.JsonSchema.Time.JsonDateTime.UtcOffset
   isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Time.JsonDateTime.UtcOffsetHour
-  nameWithType: JsonDateTime.UtcOffsetHour
-- uid: RelogicLabs.JsonSchema.Time.JsonDateTime.UtcOffsetMinute
-  name: UtcOffsetMinute
-  href: api/RelogicLabs.JsonSchema.Time.JsonDateTime.html#RelogicLabs_JsonSchema_Time_JsonDateTime_UtcOffsetMinute
-  commentId: P:RelogicLabs.JsonSchema.Time.JsonDateTime.UtcOffsetMinute
-  fullName: RelogicLabs.JsonSchema.Time.JsonDateTime.UtcOffsetMinute
-  nameWithType: JsonDateTime.UtcOffsetMinute
-- uid: RelogicLabs.JsonSchema.Time.JsonDateTime.UtcOffsetMinute*
-  name: UtcOffsetMinute
-  href: api/RelogicLabs.JsonSchema.Time.JsonDateTime.html#RelogicLabs_JsonSchema_Time_JsonDateTime_UtcOffsetMinute_
-  commentId: Overload:RelogicLabs.JsonSchema.Time.JsonDateTime.UtcOffsetMinute
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Time.JsonDateTime.UtcOffsetMinute
-  nameWithType: JsonDateTime.UtcOffsetMinute
+  fullName: RelogicLabs.JsonSchema.Time.JsonDateTime.UtcOffset
+  nameWithType: JsonDateTime.UtcOffset
 - uid: RelogicLabs.JsonSchema.Time.JsonDateTime.Year
   name: Year
   href: api/RelogicLabs.JsonSchema.Time.JsonDateTime.html#RelogicLabs_JsonSchema_Time_JsonDateTime_Year
@@ -2728,6 +2614,79 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Time.JsonDateTime.Year
   nameWithType: JsonDateTime.Year
+- uid: RelogicLabs.JsonSchema.Time.JsonUtcOffset
+  name: JsonUtcOffset
+  href: api/RelogicLabs.JsonSchema.Time.JsonUtcOffset.html
+  commentId: T:RelogicLabs.JsonSchema.Time.JsonUtcOffset
+  fullName: RelogicLabs.JsonSchema.Time.JsonUtcOffset
+  nameWithType: JsonUtcOffset
+- uid: RelogicLabs.JsonSchema.Time.JsonUtcOffset.#ctor
+  name: JsonUtcOffset()
+  href: api/RelogicLabs.JsonSchema.Time.JsonUtcOffset.html#RelogicLabs_JsonSchema_Time_JsonUtcOffset__ctor
+  commentId: M:RelogicLabs.JsonSchema.Time.JsonUtcOffset.#ctor
+  name.vb: New()
+  fullName: RelogicLabs.JsonSchema.Time.JsonUtcOffset.JsonUtcOffset()
+  fullName.vb: RelogicLabs.JsonSchema.Time.JsonUtcOffset.New()
+  nameWithType: JsonUtcOffset.JsonUtcOffset()
+  nameWithType.vb: JsonUtcOffset.New()
+- uid: RelogicLabs.JsonSchema.Time.JsonUtcOffset.#ctor(System.Int32,System.Int32)
+  name: JsonUtcOffset(int, int)
+  href: api/RelogicLabs.JsonSchema.Time.JsonUtcOffset.html#RelogicLabs_JsonSchema_Time_JsonUtcOffset__ctor_System_Int32_System_Int32_
+  commentId: M:RelogicLabs.JsonSchema.Time.JsonUtcOffset.#ctor(System.Int32,System.Int32)
+  name.vb: New(Integer, Integer)
+  fullName: RelogicLabs.JsonSchema.Time.JsonUtcOffset.JsonUtcOffset(int, int)
+  fullName.vb: RelogicLabs.JsonSchema.Time.JsonUtcOffset.New(Integer, Integer)
+  nameWithType: JsonUtcOffset.JsonUtcOffset(int, int)
+  nameWithType.vb: JsonUtcOffset.New(Integer, Integer)
+- uid: RelogicLabs.JsonSchema.Time.JsonUtcOffset.#ctor*
+  name: JsonUtcOffset
+  href: api/RelogicLabs.JsonSchema.Time.JsonUtcOffset.html#RelogicLabs_JsonSchema_Time_JsonUtcOffset__ctor_
+  commentId: Overload:RelogicLabs.JsonSchema.Time.JsonUtcOffset.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: RelogicLabs.JsonSchema.Time.JsonUtcOffset.JsonUtcOffset
+  fullName.vb: RelogicLabs.JsonSchema.Time.JsonUtcOffset.New
+  nameWithType: JsonUtcOffset.JsonUtcOffset
+  nameWithType.vb: JsonUtcOffset.New
+- uid: RelogicLabs.JsonSchema.Time.JsonUtcOffset.Hour
+  name: Hour
+  href: api/RelogicLabs.JsonSchema.Time.JsonUtcOffset.html#RelogicLabs_JsonSchema_Time_JsonUtcOffset_Hour
+  commentId: P:RelogicLabs.JsonSchema.Time.JsonUtcOffset.Hour
+  fullName: RelogicLabs.JsonSchema.Time.JsonUtcOffset.Hour
+  nameWithType: JsonUtcOffset.Hour
+- uid: RelogicLabs.JsonSchema.Time.JsonUtcOffset.Hour*
+  name: Hour
+  href: api/RelogicLabs.JsonSchema.Time.JsonUtcOffset.html#RelogicLabs_JsonSchema_Time_JsonUtcOffset_Hour_
+  commentId: Overload:RelogicLabs.JsonSchema.Time.JsonUtcOffset.Hour
+  isSpec: "True"
+  fullName: RelogicLabs.JsonSchema.Time.JsonUtcOffset.Hour
+  nameWithType: JsonUtcOffset.Hour
+- uid: RelogicLabs.JsonSchema.Time.JsonUtcOffset.Minute
+  name: Minute
+  href: api/RelogicLabs.JsonSchema.Time.JsonUtcOffset.html#RelogicLabs_JsonSchema_Time_JsonUtcOffset_Minute
+  commentId: P:RelogicLabs.JsonSchema.Time.JsonUtcOffset.Minute
+  fullName: RelogicLabs.JsonSchema.Time.JsonUtcOffset.Minute
+  nameWithType: JsonUtcOffset.Minute
+- uid: RelogicLabs.JsonSchema.Time.JsonUtcOffset.Minute*
+  name: Minute
+  href: api/RelogicLabs.JsonSchema.Time.JsonUtcOffset.html#RelogicLabs_JsonSchema_Time_JsonUtcOffset_Minute_
+  commentId: Overload:RelogicLabs.JsonSchema.Time.JsonUtcOffset.Minute
+  isSpec: "True"
+  fullName: RelogicLabs.JsonSchema.Time.JsonUtcOffset.Minute
+  nameWithType: JsonUtcOffset.Minute
+- uid: RelogicLabs.JsonSchema.Time.JsonUtcOffset.ToString
+  name: ToString()
+  href: api/RelogicLabs.JsonSchema.Time.JsonUtcOffset.html#RelogicLabs_JsonSchema_Time_JsonUtcOffset_ToString
+  commentId: M:RelogicLabs.JsonSchema.Time.JsonUtcOffset.ToString
+  fullName: RelogicLabs.JsonSchema.Time.JsonUtcOffset.ToString()
+  nameWithType: JsonUtcOffset.ToString()
+- uid: RelogicLabs.JsonSchema.Time.JsonUtcOffset.ToString*
+  name: ToString
+  href: api/RelogicLabs.JsonSchema.Time.JsonUtcOffset.html#RelogicLabs_JsonSchema_Time_JsonUtcOffset_ToString_
+  commentId: Overload:RelogicLabs.JsonSchema.Time.JsonUtcOffset.ToString
+  isSpec: "True"
+  fullName: RelogicLabs.JsonSchema.Time.JsonUtcOffset.ToString
+  nameWithType: JsonUtcOffset.ToString
 - uid: RelogicLabs.JsonSchema.Tree
   name: RelogicLabs.JsonSchema.Tree
   href: api/RelogicLabs.JsonSchema.Tree.html
@@ -2830,6 +2789,19 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Tree.ExceptionRegistry.Clear
   nameWithType: ExceptionRegistry.Clear
+- uid: RelogicLabs.JsonSchema.Tree.ExceptionRegistry.Count
+  name: Count
+  href: api/RelogicLabs.JsonSchema.Tree.ExceptionRegistry.html#RelogicLabs_JsonSchema_Tree_ExceptionRegistry_Count
+  commentId: P:RelogicLabs.JsonSchema.Tree.ExceptionRegistry.Count
+  fullName: RelogicLabs.JsonSchema.Tree.ExceptionRegistry.Count
+  nameWithType: ExceptionRegistry.Count
+- uid: RelogicLabs.JsonSchema.Tree.ExceptionRegistry.Count*
+  name: Count
+  href: api/RelogicLabs.JsonSchema.Tree.ExceptionRegistry.html#RelogicLabs_JsonSchema_Tree_ExceptionRegistry_Count_
+  commentId: Overload:RelogicLabs.JsonSchema.Tree.ExceptionRegistry.Count
+  isSpec: "True"
+  fullName: RelogicLabs.JsonSchema.Tree.ExceptionRegistry.Count
+  nameWithType: ExceptionRegistry.Count
 - uid: RelogicLabs.JsonSchema.Tree.ExceptionRegistry.CutoffLimit
   name: CutoffLimit
   href: api/RelogicLabs.JsonSchema.Tree.ExceptionRegistry.html#RelogicLabs_JsonSchema_Tree_ExceptionRegistry_CutoffLimit
@@ -2843,19 +2815,6 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Tree.ExceptionRegistry.CutoffLimit
   nameWithType: ExceptionRegistry.CutoffLimit
-- uid: RelogicLabs.JsonSchema.Tree.ExceptionRegistry.Exceptions
-  name: Exceptions
-  href: api/RelogicLabs.JsonSchema.Tree.ExceptionRegistry.html#RelogicLabs_JsonSchema_Tree_ExceptionRegistry_Exceptions
-  commentId: P:RelogicLabs.JsonSchema.Tree.ExceptionRegistry.Exceptions
-  fullName: RelogicLabs.JsonSchema.Tree.ExceptionRegistry.Exceptions
-  nameWithType: ExceptionRegistry.Exceptions
-- uid: RelogicLabs.JsonSchema.Tree.ExceptionRegistry.Exceptions*
-  name: Exceptions
-  href: api/RelogicLabs.JsonSchema.Tree.ExceptionRegistry.html#RelogicLabs_JsonSchema_Tree_ExceptionRegistry_Exceptions_
-  commentId: Overload:RelogicLabs.JsonSchema.Tree.ExceptionRegistry.Exceptions
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Tree.ExceptionRegistry.Exceptions
-  nameWithType: ExceptionRegistry.Exceptions
 - uid: RelogicLabs.JsonSchema.Tree.ExceptionRegistry.GetEnumerator
   name: GetEnumerator()
   href: api/RelogicLabs.JsonSchema.Tree.ExceptionRegistry.html#RelogicLabs_JsonSchema_Tree_ExceptionRegistry_GetEnumerator
@@ -2882,32 +2841,6 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Tree.ExceptionRegistry.ThrowException
   nameWithType: ExceptionRegistry.ThrowException
-- uid: RelogicLabs.JsonSchema.Tree.ExceptionRegistry.TryAdd(System.Exception)
-  name: TryAdd(Exception)
-  href: api/RelogicLabs.JsonSchema.Tree.ExceptionRegistry.html#RelogicLabs_JsonSchema_Tree_ExceptionRegistry_TryAdd_System_Exception_
-  commentId: M:RelogicLabs.JsonSchema.Tree.ExceptionRegistry.TryAdd(System.Exception)
-  fullName: RelogicLabs.JsonSchema.Tree.ExceptionRegistry.TryAdd(System.Exception)
-  nameWithType: ExceptionRegistry.TryAdd(Exception)
-- uid: RelogicLabs.JsonSchema.Tree.ExceptionRegistry.TryAdd*
-  name: TryAdd
-  href: api/RelogicLabs.JsonSchema.Tree.ExceptionRegistry.html#RelogicLabs_JsonSchema_Tree_ExceptionRegistry_TryAdd_
-  commentId: Overload:RelogicLabs.JsonSchema.Tree.ExceptionRegistry.TryAdd
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Tree.ExceptionRegistry.TryAdd
-  nameWithType: ExceptionRegistry.TryAdd
-- uid: RelogicLabs.JsonSchema.Tree.ExceptionRegistry.TryThrow(System.Exception)
-  name: TryThrow(Exception)
-  href: api/RelogicLabs.JsonSchema.Tree.ExceptionRegistry.html#RelogicLabs_JsonSchema_Tree_ExceptionRegistry_TryThrow_System_Exception_
-  commentId: M:RelogicLabs.JsonSchema.Tree.ExceptionRegistry.TryThrow(System.Exception)
-  fullName: RelogicLabs.JsonSchema.Tree.ExceptionRegistry.TryThrow(System.Exception)
-  nameWithType: ExceptionRegistry.TryThrow(Exception)
-- uid: RelogicLabs.JsonSchema.Tree.ExceptionRegistry.TryThrow*
-  name: TryThrow
-  href: api/RelogicLabs.JsonSchema.Tree.ExceptionRegistry.html#RelogicLabs_JsonSchema_Tree_ExceptionRegistry_TryThrow_
-  commentId: Overload:RelogicLabs.JsonSchema.Tree.ExceptionRegistry.TryThrow
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Tree.ExceptionRegistry.TryThrow
-  nameWithType: ExceptionRegistry.TryThrow
 - uid: RelogicLabs.JsonSchema.Tree.FunctionRegistry
   name: FunctionRegistry
   href: api/RelogicLabs.JsonSchema.Tree.FunctionRegistry.html
@@ -3206,6 +3139,19 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Tree.PragmaRegistry.FloatingPointTolerance
   nameWithType: PragmaRegistry.FloatingPointTolerance
+- uid: RelogicLabs.JsonSchema.Tree.PragmaRegistry.GetEnumerator
+  name: GetEnumerator()
+  href: api/RelogicLabs.JsonSchema.Tree.PragmaRegistry.html#RelogicLabs_JsonSchema_Tree_PragmaRegistry_GetEnumerator
+  commentId: M:RelogicLabs.JsonSchema.Tree.PragmaRegistry.GetEnumerator
+  fullName: RelogicLabs.JsonSchema.Tree.PragmaRegistry.GetEnumerator()
+  nameWithType: PragmaRegistry.GetEnumerator()
+- uid: RelogicLabs.JsonSchema.Tree.PragmaRegistry.GetEnumerator*
+  name: GetEnumerator
+  href: api/RelogicLabs.JsonSchema.Tree.PragmaRegistry.html#RelogicLabs_JsonSchema_Tree_PragmaRegistry_GetEnumerator_
+  commentId: Overload:RelogicLabs.JsonSchema.Tree.PragmaRegistry.GetEnumerator
+  isSpec: "True"
+  fullName: RelogicLabs.JsonSchema.Tree.PragmaRegistry.GetEnumerator
+  nameWithType: PragmaRegistry.GetEnumerator
 - uid: RelogicLabs.JsonSchema.Tree.PragmaRegistry.GetPragma(System.String)
   name: GetPragma(string)
   href: api/RelogicLabs.JsonSchema.Tree.PragmaRegistry.html#RelogicLabs_JsonSchema_Tree_PragmaRegistry_GetPragma_System_String_
@@ -3309,6 +3255,19 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Tree.ReceiverRegistry.Fetch
   nameWithType: ReceiverRegistry.Fetch
+- uid: RelogicLabs.JsonSchema.Tree.ReceiverRegistry.GetEnumerator
+  name: GetEnumerator()
+  href: api/RelogicLabs.JsonSchema.Tree.ReceiverRegistry.html#RelogicLabs_JsonSchema_Tree_ReceiverRegistry_GetEnumerator
+  commentId: M:RelogicLabs.JsonSchema.Tree.ReceiverRegistry.GetEnumerator
+  fullName: RelogicLabs.JsonSchema.Tree.ReceiverRegistry.GetEnumerator()
+  nameWithType: ReceiverRegistry.GetEnumerator()
+- uid: RelogicLabs.JsonSchema.Tree.ReceiverRegistry.GetEnumerator*
+  name: GetEnumerator
+  href: api/RelogicLabs.JsonSchema.Tree.ReceiverRegistry.html#RelogicLabs_JsonSchema_Tree_ReceiverRegistry_GetEnumerator_
+  commentId: Overload:RelogicLabs.JsonSchema.Tree.ReceiverRegistry.GetEnumerator
+  isSpec: "True"
+  fullName: RelogicLabs.JsonSchema.Tree.ReceiverRegistry.GetEnumerator
+  nameWithType: ReceiverRegistry.GetEnumerator
 - uid: RelogicLabs.JsonSchema.Tree.ReceiverRegistry.Receive(System.Collections.Generic.IEnumerable{RelogicLabs.JsonSchema.Types.JReceiver},RelogicLabs.JsonSchema.Types.JNode)
   name: Receive(IEnumerable<JReceiver>, JNode)
   href: api/RelogicLabs.JsonSchema.Tree.ReceiverRegistry.html#RelogicLabs_JsonSchema_Tree_ReceiverRegistry_Receive_System_Collections_Generic_IEnumerable_RelogicLabs_JsonSchema_Types_JReceiver__RelogicLabs_JsonSchema_Types_JNode_
@@ -3325,19 +3284,6 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Tree.ReceiverRegistry.Receive
   nameWithType: ReceiverRegistry.Receive
-- uid: RelogicLabs.JsonSchema.Tree.ReceiverRegistry.Receivers
-  name: Receivers
-  href: api/RelogicLabs.JsonSchema.Tree.ReceiverRegistry.html#RelogicLabs_JsonSchema_Tree_ReceiverRegistry_Receivers
-  commentId: P:RelogicLabs.JsonSchema.Tree.ReceiverRegistry.Receivers
-  fullName: RelogicLabs.JsonSchema.Tree.ReceiverRegistry.Receivers
-  nameWithType: ReceiverRegistry.Receivers
-- uid: RelogicLabs.JsonSchema.Tree.ReceiverRegistry.Receivers*
-  name: Receivers
-  href: api/RelogicLabs.JsonSchema.Tree.ReceiverRegistry.html#RelogicLabs_JsonSchema_Tree_ReceiverRegistry_Receivers_
-  commentId: Overload:RelogicLabs.JsonSchema.Tree.ReceiverRegistry.Receivers
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Tree.ReceiverRegistry.Receivers
-  nameWithType: ReceiverRegistry.Receivers
 - uid: RelogicLabs.JsonSchema.Tree.ReceiverRegistry.Register(System.Collections.Generic.IEnumerable{RelogicLabs.JsonSchema.Types.JReceiver})
   name: Register(IEnumerable<JReceiver>)
   href: api/RelogicLabs.JsonSchema.Tree.ReceiverRegistry.html#RelogicLabs_JsonSchema_Tree_ReceiverRegistry_Register_System_Collections_Generic_IEnumerable_RelogicLabs_JsonSchema_Types_JReceiver__
@@ -3687,12 +3633,6 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Types.INestedMode.Nested
   nameWithType: INestedMode.Nested
-- uid: RelogicLabs.JsonSchema.Types.INestedMode.NestedMarker
-  name: NestedMarker
-  href: api/RelogicLabs.JsonSchema.Types.INestedMode.html#RelogicLabs_JsonSchema_Types_INestedMode_NestedMarker
-  commentId: F:RelogicLabs.JsonSchema.Types.INestedMode.NestedMarker
-  fullName: RelogicLabs.JsonSchema.Types.INestedMode.NestedMarker
-  nameWithType: INestedMode.NestedMarker
 - uid: RelogicLabs.JsonSchema.Types.IPragmaValue`1
   name: IPragmaValue<T>
   href: api/RelogicLabs.JsonSchema.Types.IPragmaValue-1.html
@@ -3799,6 +3739,19 @@ references:
   commentId: T:RelogicLabs.JsonSchema.Types.JArray
   fullName: RelogicLabs.JsonSchema.Types.JArray
   nameWithType: JArray
+- uid: RelogicLabs.JsonSchema.Types.JArray.Components
+  name: Components
+  href: api/RelogicLabs.JsonSchema.Types.JArray.html#RelogicLabs_JsonSchema_Types_JArray_Components
+  commentId: P:RelogicLabs.JsonSchema.Types.JArray.Components
+  fullName: RelogicLabs.JsonSchema.Types.JArray.Components
+  nameWithType: JArray.Components
+- uid: RelogicLabs.JsonSchema.Types.JArray.Components*
+  name: Components
+  href: api/RelogicLabs.JsonSchema.Types.JArray.html#RelogicLabs_JsonSchema_Types_JArray_Components_
+  commentId: Overload:RelogicLabs.JsonSchema.Types.JArray.Components
+  isSpec: "True"
+  fullName: RelogicLabs.JsonSchema.Types.JArray.Components
+  nameWithType: JArray.Components
 - uid: RelogicLabs.JsonSchema.Types.JArray.Elements
   name: Elements
   href: api/RelogicLabs.JsonSchema.Types.JArray.html#RelogicLabs_JsonSchema_Types_JArray_Elements
@@ -3812,19 +3765,6 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Types.JArray.Elements
   nameWithType: JArray.Elements
-- uid: RelogicLabs.JsonSchema.Types.JArray.GetComponents
-  name: GetComponents()
-  href: api/RelogicLabs.JsonSchema.Types.JArray.html#RelogicLabs_JsonSchema_Types_JArray_GetComponents
-  commentId: M:RelogicLabs.JsonSchema.Types.JArray.GetComponents
-  fullName: RelogicLabs.JsonSchema.Types.JArray.GetComponents()
-  nameWithType: JArray.GetComponents()
-- uid: RelogicLabs.JsonSchema.Types.JArray.GetComponents*
-  name: GetComponents
-  href: api/RelogicLabs.JsonSchema.Types.JArray.html#RelogicLabs_JsonSchema_Types_JArray_GetComponents_
-  commentId: Overload:RelogicLabs.JsonSchema.Types.JArray.GetComponents
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Types.JArray.GetComponents
-  nameWithType: JArray.GetComponents
 - uid: RelogicLabs.JsonSchema.Types.JArray.Match(RelogicLabs.JsonSchema.Types.JNode)
   name: Match(JNode)
   href: api/RelogicLabs.JsonSchema.Types.JArray.html#RelogicLabs_JsonSchema_Types_JArray_Match_RelogicLabs_JsonSchema_Types_JNode_
@@ -3982,19 +3922,19 @@ references:
   commentId: T:RelogicLabs.JsonSchema.Types.JComposite
   fullName: RelogicLabs.JsonSchema.Types.JComposite
   nameWithType: JComposite
-- uid: RelogicLabs.JsonSchema.Types.JComposite.GetComponents
-  name: GetComponents()
-  href: api/RelogicLabs.JsonSchema.Types.JComposite.html#RelogicLabs_JsonSchema_Types_JComposite_GetComponents
-  commentId: M:RelogicLabs.JsonSchema.Types.JComposite.GetComponents
-  fullName: RelogicLabs.JsonSchema.Types.JComposite.GetComponents()
-  nameWithType: JComposite.GetComponents()
-- uid: RelogicLabs.JsonSchema.Types.JComposite.GetComponents*
-  name: GetComponents
-  href: api/RelogicLabs.JsonSchema.Types.JComposite.html#RelogicLabs_JsonSchema_Types_JComposite_GetComponents_
-  commentId: Overload:RelogicLabs.JsonSchema.Types.JComposite.GetComponents
+- uid: RelogicLabs.JsonSchema.Types.JComposite.Components
+  name: Components
+  href: api/RelogicLabs.JsonSchema.Types.JComposite.html#RelogicLabs_JsonSchema_Types_JComposite_Components
+  commentId: P:RelogicLabs.JsonSchema.Types.JComposite.Components
+  fullName: RelogicLabs.JsonSchema.Types.JComposite.Components
+  nameWithType: JComposite.Components
+- uid: RelogicLabs.JsonSchema.Types.JComposite.Components*
+  name: Components
+  href: api/RelogicLabs.JsonSchema.Types.JComposite.html#RelogicLabs_JsonSchema_Types_JComposite_Components_
+  commentId: Overload:RelogicLabs.JsonSchema.Types.JComposite.Components
   isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Types.JComposite.GetComponents
-  nameWithType: JComposite.GetComponents
+  fullName: RelogicLabs.JsonSchema.Types.JComposite.Components
+  nameWithType: JComposite.Components
 - uid: RelogicLabs.JsonSchema.Types.JComposite.Node
   name: Node
   href: api/RelogicLabs.JsonSchema.Types.JComposite.html#RelogicLabs_JsonSchema_Types_JComposite_Node
@@ -4069,19 +4009,6 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Types.JDataType.GetHashCode
   nameWithType: JDataType.GetHashCode
-- uid: RelogicLabs.JsonSchema.Types.JDataType.IsApplicable(RelogicLabs.JsonSchema.Types.JNode)
-  name: IsApplicable(JNode)
-  href: api/RelogicLabs.JsonSchema.Types.JDataType.html#RelogicLabs_JsonSchema_Types_JDataType_IsApplicable_RelogicLabs_JsonSchema_Types_JNode_
-  commentId: M:RelogicLabs.JsonSchema.Types.JDataType.IsApplicable(RelogicLabs.JsonSchema.Types.JNode)
-  fullName: RelogicLabs.JsonSchema.Types.JDataType.IsApplicable(RelogicLabs.JsonSchema.Types.JNode)
-  nameWithType: JDataType.IsApplicable(JNode)
-- uid: RelogicLabs.JsonSchema.Types.JDataType.IsApplicable*
-  name: IsApplicable
-  href: api/RelogicLabs.JsonSchema.Types.JDataType.html#RelogicLabs_JsonSchema_Types_JDataType_IsApplicable_
-  commentId: Overload:RelogicLabs.JsonSchema.Types.JDataType.IsApplicable
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Types.JDataType.IsApplicable
-  nameWithType: JDataType.IsApplicable
 - uid: RelogicLabs.JsonSchema.Types.JDataType.JsonType
   name: JsonType
   href: api/RelogicLabs.JsonSchema.Types.JDataType.html#RelogicLabs_JsonSchema_Types_JDataType_JsonType
@@ -4213,12 +4140,6 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Types.JDefinition.Alias
   nameWithType: JDefinition.Alias
-- uid: RelogicLabs.JsonSchema.Types.JDefinition.DefineMarker
-  name: DefineMarker
-  href: api/RelogicLabs.JsonSchema.Types.JDefinition.html#RelogicLabs_JsonSchema_Types_JDefinition_DefineMarker
-  commentId: F:RelogicLabs.JsonSchema.Types.JDefinition.DefineMarker
-  fullName: RelogicLabs.JsonSchema.Types.JDefinition.DefineMarker
-  nameWithType: JDefinition.DefineMarker
 - uid: RelogicLabs.JsonSchema.Types.JDefinition.ToString
   name: ToString()
   href: api/RelogicLabs.JsonSchema.Types.JDefinition.html#RelogicLabs_JsonSchema_Types_JDefinition_ToString
@@ -4521,19 +4442,6 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Types.JFunction.Arguments
   nameWithType: JFunction.Arguments
-- uid: RelogicLabs.JsonSchema.Types.JFunction.IsApplicable(RelogicLabs.JsonSchema.Types.JNode)
-  name: IsApplicable(JNode)
-  href: api/RelogicLabs.JsonSchema.Types.JFunction.html#RelogicLabs_JsonSchema_Types_JFunction_IsApplicable_RelogicLabs_JsonSchema_Types_JNode_
-  commentId: M:RelogicLabs.JsonSchema.Types.JFunction.IsApplicable(RelogicLabs.JsonSchema.Types.JNode)
-  fullName: RelogicLabs.JsonSchema.Types.JFunction.IsApplicable(RelogicLabs.JsonSchema.Types.JNode)
-  nameWithType: JFunction.IsApplicable(JNode)
-- uid: RelogicLabs.JsonSchema.Types.JFunction.IsApplicable*
-  name: IsApplicable
-  href: api/RelogicLabs.JsonSchema.Types.JFunction.html#RelogicLabs_JsonSchema_Types_JFunction_IsApplicable_
-  commentId: Overload:RelogicLabs.JsonSchema.Types.JFunction.IsApplicable
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Types.JFunction.IsApplicable
-  nameWithType: JFunction.IsApplicable
 - uid: RelogicLabs.JsonSchema.Types.JFunction.Match(RelogicLabs.JsonSchema.Types.JNode)
   name: Match(JNode)
   href: api/RelogicLabs.JsonSchema.Types.JFunction.html#RelogicLabs_JsonSchema_Types_JFunction_Match_RelogicLabs_JsonSchema_Types_JNode_
@@ -4643,12 +4551,6 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Types.JInclude.GetHashCode
   nameWithType: JInclude.GetHashCode
-- uid: RelogicLabs.JsonSchema.Types.JInclude.IncludeMarker
-  name: IncludeMarker
-  href: api/RelogicLabs.JsonSchema.Types.JInclude.html#RelogicLabs_JsonSchema_Types_JInclude_IncludeMarker
-  commentId: F:RelogicLabs.JsonSchema.Types.JInclude.IncludeMarker
-  fullName: RelogicLabs.JsonSchema.Types.JInclude.IncludeMarker
-  nameWithType: JInclude.IncludeMarker
 - uid: RelogicLabs.JsonSchema.Types.JInclude.ToString
   name: ToString()
   href: api/RelogicLabs.JsonSchema.Types.JInclude.html#RelogicLabs_JsonSchema_Types_JInclude_ToString
@@ -4867,19 +4769,6 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Types.JNode.Parent
   nameWithType: JNode.Parent
-- uid: RelogicLabs.JsonSchema.Types.JNode.Parser
-  name: Parser
-  href: api/RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_Parser
-  commentId: P:RelogicLabs.JsonSchema.Types.JNode.Parser
-  fullName: RelogicLabs.JsonSchema.Types.JNode.Parser
-  nameWithType: JNode.Parser
-- uid: RelogicLabs.JsonSchema.Types.JNode.Parser*
-  name: Parser
-  href: api/RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_Parser_
-  commentId: Overload:RelogicLabs.JsonSchema.Types.JNode.Parser
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Types.JNode.Parser
-  nameWithType: JNode.Parser
 - uid: RelogicLabs.JsonSchema.Types.JNode.Runtime
   name: Runtime
   href: api/RelogicLabs.JsonSchema.Types.JNode.html#RelogicLabs_JsonSchema_Types_JNode_Runtime
@@ -4954,12 +4843,6 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Types.JNull.Match
   nameWithType: JNull.Match
-- uid: RelogicLabs.JsonSchema.Types.JNull.NullMarker
-  name: NullMarker
-  href: api/RelogicLabs.JsonSchema.Types.JNull.html#RelogicLabs_JsonSchema_Types_JNull_NullMarker
-  commentId: F:RelogicLabs.JsonSchema.Types.JNull.NullMarker
-  fullName: RelogicLabs.JsonSchema.Types.JNull.NullMarker
-  nameWithType: JNull.NullMarker
 - uid: RelogicLabs.JsonSchema.Types.JNull.ToString
   name: ToString()
   href: api/RelogicLabs.JsonSchema.Types.JNull.html#RelogicLabs_JsonSchema_Types_JNull_ToString
@@ -5088,6 +4971,19 @@ references:
   commentId: T:RelogicLabs.JsonSchema.Types.JObject
   fullName: RelogicLabs.JsonSchema.Types.JObject
   nameWithType: JObject
+- uid: RelogicLabs.JsonSchema.Types.JObject.Components
+  name: Components
+  href: api/RelogicLabs.JsonSchema.Types.JObject.html#RelogicLabs_JsonSchema_Types_JObject_Components
+  commentId: P:RelogicLabs.JsonSchema.Types.JObject.Components
+  fullName: RelogicLabs.JsonSchema.Types.JObject.Components
+  nameWithType: JObject.Components
+- uid: RelogicLabs.JsonSchema.Types.JObject.Components*
+  name: Components
+  href: api/RelogicLabs.JsonSchema.Types.JObject.html#RelogicLabs_JsonSchema_Types_JObject_Components_
+  commentId: Overload:RelogicLabs.JsonSchema.Types.JObject.Components
+  isSpec: "True"
+  fullName: RelogicLabs.JsonSchema.Types.JObject.Components
+  nameWithType: JObject.Components
 - uid: RelogicLabs.JsonSchema.Types.JObject.Equals(System.Object)
   name: Equals(object?)
   href: api/RelogicLabs.JsonSchema.Types.JObject.html#RelogicLabs_JsonSchema_Types_JObject_Equals_System_Object_
@@ -5104,19 +5000,6 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Types.JObject.Equals
   nameWithType: JObject.Equals
-- uid: RelogicLabs.JsonSchema.Types.JObject.GetComponents
-  name: GetComponents()
-  href: api/RelogicLabs.JsonSchema.Types.JObject.html#RelogicLabs_JsonSchema_Types_JObject_GetComponents
-  commentId: M:RelogicLabs.JsonSchema.Types.JObject.GetComponents
-  fullName: RelogicLabs.JsonSchema.Types.JObject.GetComponents()
-  nameWithType: JObject.GetComponents()
-- uid: RelogicLabs.JsonSchema.Types.JObject.GetComponents*
-  name: GetComponents
-  href: api/RelogicLabs.JsonSchema.Types.JObject.html#RelogicLabs_JsonSchema_Types_JObject_GetComponents_
-  commentId: Overload:RelogicLabs.JsonSchema.Types.JObject.GetComponents
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Types.JObject.GetComponents
-  nameWithType: JObject.GetComponents
 - uid: RelogicLabs.JsonSchema.Types.JObject.GetHashCode
   name: GetHashCode()
   href: api/RelogicLabs.JsonSchema.Types.JObject.html#RelogicLabs_JsonSchema_Types_JObject_GetHashCode
@@ -5230,12 +5113,6 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Types.JPragma.Name
   nameWithType: JPragma.Name
-- uid: RelogicLabs.JsonSchema.Types.JPragma.PragmaMarker
-  name: PragmaMarker
-  href: api/RelogicLabs.JsonSchema.Types.JPragma.html#RelogicLabs_JsonSchema_Types_JPragma_PragmaMarker
-  commentId: F:RelogicLabs.JsonSchema.Types.JPragma.PragmaMarker
-  fullName: RelogicLabs.JsonSchema.Types.JPragma.PragmaMarker
-  nameWithType: JPragma.PragmaMarker
 - uid: RelogicLabs.JsonSchema.Types.JPragma.ToString
   name: ToString()
   href: api/RelogicLabs.JsonSchema.Types.JPragma.html#RelogicLabs_JsonSchema_Types_JPragma_ToString
@@ -5329,45 +5206,6 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Types.JProperty.GetHashCode
   nameWithType: JProperty.GetHashCode
-- uid: RelogicLabs.JsonSchema.Types.JProperty.GetKey
-  name: GetKey()
-  href: api/RelogicLabs.JsonSchema.Types.JProperty.html#RelogicLabs_JsonSchema_Types_JProperty_GetKey
-  commentId: M:RelogicLabs.JsonSchema.Types.JProperty.GetKey
-  fullName: RelogicLabs.JsonSchema.Types.JProperty.GetKey()
-  nameWithType: JProperty.GetKey()
-- uid: RelogicLabs.JsonSchema.Types.JProperty.GetKey*
-  name: GetKey
-  href: api/RelogicLabs.JsonSchema.Types.JProperty.html#RelogicLabs_JsonSchema_Types_JProperty_GetKey_
-  commentId: Overload:RelogicLabs.JsonSchema.Types.JProperty.GetKey
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Types.JProperty.GetKey
-  nameWithType: JProperty.GetKey
-- uid: RelogicLabs.JsonSchema.Types.JProperty.GetPropertyKey
-  name: GetPropertyKey()
-  href: api/RelogicLabs.JsonSchema.Types.JProperty.html#RelogicLabs_JsonSchema_Types_JProperty_GetPropertyKey
-  commentId: M:RelogicLabs.JsonSchema.Types.JProperty.GetPropertyKey
-  fullName: RelogicLabs.JsonSchema.Types.JProperty.GetPropertyKey()
-  nameWithType: JProperty.GetPropertyKey()
-- uid: RelogicLabs.JsonSchema.Types.JProperty.GetPropertyKey*
-  name: GetPropertyKey
-  href: api/RelogicLabs.JsonSchema.Types.JProperty.html#RelogicLabs_JsonSchema_Types_JProperty_GetPropertyKey_
-  commentId: Overload:RelogicLabs.JsonSchema.Types.JProperty.GetPropertyKey
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Types.JProperty.GetPropertyKey
-  nameWithType: JProperty.GetPropertyKey
-- uid: RelogicLabs.JsonSchema.Types.JProperty.GetPropertyValue
-  name: GetPropertyValue()
-  href: api/RelogicLabs.JsonSchema.Types.JProperty.html#RelogicLabs_JsonSchema_Types_JProperty_GetPropertyValue
-  commentId: M:RelogicLabs.JsonSchema.Types.JProperty.GetPropertyValue
-  fullName: RelogicLabs.JsonSchema.Types.JProperty.GetPropertyValue()
-  nameWithType: JProperty.GetPropertyValue()
-- uid: RelogicLabs.JsonSchema.Types.JProperty.GetPropertyValue*
-  name: GetPropertyValue
-  href: api/RelogicLabs.JsonSchema.Types.JProperty.html#RelogicLabs_JsonSchema_Types_JProperty_GetPropertyValue_
-  commentId: Overload:RelogicLabs.JsonSchema.Types.JProperty.GetPropertyValue
-  isSpec: "True"
-  fullName: RelogicLabs.JsonSchema.Types.JProperty.GetPropertyValue
-  nameWithType: JProperty.GetPropertyValue
 - uid: RelogicLabs.JsonSchema.Types.JProperty.Key
   name: Key
   href: api/RelogicLabs.JsonSchema.Types.JProperty.html#RelogicLabs_JsonSchema_Types_JProperty_Key
@@ -5819,12 +5657,6 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Types.JTitle.Title
   nameWithType: JTitle.Title
-- uid: RelogicLabs.JsonSchema.Types.JTitle.TitleMarker
-  name: TitleMarker
-  href: api/RelogicLabs.JsonSchema.Types.JTitle.html#RelogicLabs_JsonSchema_Types_JTitle_TitleMarker
-  commentId: F:RelogicLabs.JsonSchema.Types.JTitle.TitleMarker
-  fullName: RelogicLabs.JsonSchema.Types.JTitle.TitleMarker
-  nameWithType: JTitle.TitleMarker
 - uid: RelogicLabs.JsonSchema.Types.JTitle.ToString
   name: ToString()
   href: api/RelogicLabs.JsonSchema.Types.JTitle.html#RelogicLabs_JsonSchema_Types_JTitle_ToString
@@ -5899,12 +5731,6 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Types.JUndefined.ToString
   nameWithType: JUndefined.ToString
-- uid: RelogicLabs.JsonSchema.Types.JUndefined.UndefinedMarker
-  name: UndefinedMarker
-  href: api/RelogicLabs.JsonSchema.Types.JUndefined.html#RelogicLabs_JsonSchema_Types_JUndefined_UndefinedMarker
-  commentId: F:RelogicLabs.JsonSchema.Types.JUndefined.UndefinedMarker
-  fullName: RelogicLabs.JsonSchema.Types.JUndefined.UndefinedMarker
-  nameWithType: JUndefined.UndefinedMarker
 - uid: RelogicLabs.JsonSchema.Types.JValidator
   name: JValidator
   href: api/RelogicLabs.JsonSchema.Types.JValidator.html
@@ -5963,12 +5789,6 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Types.JValidator.Optional
   nameWithType: JValidator.Optional
-- uid: RelogicLabs.JsonSchema.Types.JValidator.OptionalMarker
-  name: OptionalMarker
-  href: api/RelogicLabs.JsonSchema.Types.JValidator.html#RelogicLabs_JsonSchema_Types_JValidator_OptionalMarker
-  commentId: F:RelogicLabs.JsonSchema.Types.JValidator.OptionalMarker
-  fullName: RelogicLabs.JsonSchema.Types.JValidator.OptionalMarker
-  nameWithType: JValidator.OptionalMarker
 - uid: RelogicLabs.JsonSchema.Types.JValidator.Receivers
   name: Receivers
   href: api/RelogicLabs.JsonSchema.Types.JValidator.html#RelogicLabs_JsonSchema_Types_JValidator_Receivers
@@ -6040,12 +5860,6 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JsonSchema.Types.JVersion.Version
   nameWithType: JVersion.Version
-- uid: RelogicLabs.JsonSchema.Types.JVersion.VersionMarker
-  name: VersionMarker
-  href: api/RelogicLabs.JsonSchema.Types.JVersion.html#RelogicLabs_JsonSchema_Types_JVersion_VersionMarker
-  commentId: F:RelogicLabs.JsonSchema.Types.JVersion.VersionMarker
-  fullName: RelogicLabs.JsonSchema.Types.JVersion.VersionMarker
-  nameWithType: JVersion.VersionMarker
 - uid: RelogicLabs.JsonSchema.Types.JsonType
   name: JsonType
   href: api/RelogicLabs.JsonSchema.Types.JsonType.html

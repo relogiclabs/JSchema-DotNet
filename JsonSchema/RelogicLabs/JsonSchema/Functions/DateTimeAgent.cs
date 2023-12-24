@@ -27,6 +27,7 @@ internal class DateTimeAgent
 
     public JsonDateTime? Parse(JFunction function, JString dateTime)
     {
+        var exceptions = function.Runtime.Exceptions;
         try
         {
             _parser ??= new DateTimeParser(Pattern, Type);
@@ -34,7 +35,7 @@ internal class DateTimeAgent
         }
         catch(DateTimeLexerException ex)
         {
-            function.FailWith(new JsonSchemaException(
+            exceptions.FailWith(new JsonSchemaException(
                 new ErrorDetail(ex.Code, ex.Message),
                 new ExpectedDetail(function, $"a valid {Type} pattern"),
                 new ActualDetail(dateTime, $"found {Pattern} that is invalid"),
@@ -42,7 +43,7 @@ internal class DateTimeAgent
         }
         catch(InvalidDateTimeException ex)
         {
-            function.FailWith(new JsonSchemaException(
+            exceptions.FailWith(new JsonSchemaException(
                 new ErrorDetail(ex.Code, ex.Message),
                 new ExpectedDetail(function, $"a valid {Type} formatted as {Pattern}"),
                 new ActualDetail(dateTime, $"found {dateTime} that is invalid or malformatted"),

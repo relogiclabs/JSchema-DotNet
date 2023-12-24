@@ -3,52 +3,51 @@ namespace RelogicLabs.JsonSchema.Tests.Positive;
 [TestClass]
 public class FunctionTests
 {
-    
     [TestMethod]
     public void When_ExternalFunctionExecute_ValidTrue()
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
                     RelogicLabs.JsonSchema.Tests
             %schema: @even #integer
             """;
         var json = "10";
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_ExternalFunctionExecute2_ValidTrue()
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
                     RelogicLabs.JsonSchema.Tests
             %schema: @canTest("test", true, 1, 2, 3) #integer
             """;
         var json = "10";
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_ExternalFunctionWithoutDataType_ValidTrue()
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
                     RelogicLabs.JsonSchema.Tests
             %schema: @even
             """;
         var json = "10";
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_ExternalFunctionInObject_ValidTrue()
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions, 
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions, 
                     RelogicLabs.JsonSchema.Tests
             %schema:
             {
@@ -65,13 +64,13 @@ public class FunctionTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_ExternalFunctionInArray_ValidTrue()
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
                     RelogicLabs.JsonSchema.Tests
             %schema: [
                 @even #integer,

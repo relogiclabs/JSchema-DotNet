@@ -1,6 +1,8 @@
 using System.Text;
 using RelogicLabs.JsonSchema.Types;
+using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Time.DateTimeType;
+using static RelogicLabs.JsonSchema.Time.JsonUtcOffset;
 
 namespace RelogicLabs.JsonSchema.Time;
 
@@ -13,8 +15,6 @@ public class JsonDateTime
     private const int DEFAULT_MINUTE = 0;
     private const int DEFAULT_SECOND = 0;
     private const int DEFAULT_FRACTION = 0;
-    private const int DEFAULT_UTC_OFFSET_HOUR = 0;
-    private const int DEFAULT_UTC_OFFSET_MINUTE = 0;
 
     public const int UNSET = -1000;
 
@@ -26,15 +26,13 @@ public class JsonDateTime
     public int Minute { get; }
     public int Second { get; }
     public int Fraction { get; }
-    public int UtcOffsetHour { get; }
-    public int UtcOffsetMinute { get; }
+    public JsonUtcOffset UtcOffset { get; }
 
-    private DateTimeOffset _dateTimeOffset;
-    private TimeSpan _utcOffset;
+    internal DateTimeOffset DateTimeOffset { get; }
 
     internal JsonDateTime(DateTimeType type, int year = UNSET, int month = UNSET,
         int day = UNSET, int hour = UNSET, int minute = UNSET, int second = UNSET,
-        int fraction = UNSET, int utcOffsetHour = UNSET, int utcOffsetMinute = UNSET)
+        int fraction = UNSET, JsonUtcOffset? utcOffset = null)
     {
         Type = type;
         Year = year;
@@ -44,24 +42,19 @@ public class JsonDateTime
         Minute = minute;
         Second = second;
         Fraction = fraction;
-        UtcOffsetHour = utcOffsetHour;
-        UtcOffsetMinute = utcOffsetMinute;
+        UtcOffset = utcOffset ?? DefaultUtcOffset;
 
-        _utcOffset = new TimeSpan(
-            DefaultIfUnset(utcOffsetHour, DEFAULT_UTC_OFFSET_HOUR),
-            DefaultIfUnset(utcOffsetMinute, DEFAULT_UTC_OFFSET_MINUTE), 0);
-
-        _dateTimeOffset = new DateTimeOffset(
+        DateTimeOffset = new DateTimeOffset(
             DefaultIfUnset(year, DEFAULT_YEAR),
             DefaultIfUnset(month, DEFAULT_MONTH),
             DefaultIfUnset(day, DEFAULT_DAY),
             DefaultIfUnset(hour, DEFAULT_HOUR),
             DefaultIfUnset(minute, DEFAULT_MINUTE),
             DefaultIfUnset(second, DEFAULT_SECOND),
-            _utcOffset);
+            UtcOffset.TimeSpan);
     }
 
-    private static int DefaultIfUnset(int value, int defaultValue)
+    internal static int DefaultIfUnset(int value, int defaultValue)
         => value == UNSET ? defaultValue : value;
 
     private static bool IsAllSet(params int[] values)
@@ -69,13 +62,13 @@ public class JsonDateTime
 
     public DayOfWeek? GetDayOfWeek()
     {
-        if(IsAllSet(Year, Month, Day)) return _dateTimeOffset.DayOfWeek;
+        if(IsAllSet(Year, Month, Day)) return DateTimeOffset.DayOfWeek;
         return null;
     }
 
     public int Compare(JsonDateTime other)
     {
-        int result = DateTimeOffset.Compare(_dateTimeOffset, other._dateTimeOffset);
+        int result = DateTimeOffset.Compare(DateTimeOffset, other.DateTimeOffset);
         if(result == 0)
         {
             if(Fraction < other.Fraction) return -1;
@@ -101,10 +94,7 @@ public class JsonDateTime
         if(Minute != UNSET) builder.Append($"Minute: {Minute}, ");
         if(Second != UNSET) builder.Append($"Second: {Second}, ");
         if(Fraction != UNSET) builder.Append($"Fraction: {Fraction}, ");
-        if(UtcOffsetHour != UNSET) builder.Append($"UTC Offset Hour: {UtcOffsetHour}, ");
-        if(UtcOffsetMinute != UNSET) builder.Append($"UTC Offset Minute: {UtcOffsetMinute}, ");
-        var result = builder.ToString();
-        if(result.EndsWith(", ")) result = result[..^2];
-        return result + "}";
+        builder.Append(UtcOffset);
+        return builder.ToString().RemoveEnd(", ") + "}";
     }
 }

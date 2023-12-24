@@ -35,8 +35,8 @@ public sealed class JInteger : JNumber, IPragmaValue<long>
 
     public override JsonType Type => JsonType.INTEGER;
     public override int GetHashCode() => Value.GetHashCode();
-    public static implicit operator long(JInteger integer) => integer.Value;
-    public static implicit operator double(JInteger integer) => integer.Value;
+    public static implicit operator long(JInteger node) => node.Value;
+    public static implicit operator double(JInteger node) => node.Value;
     protected override double ToDouble() => Convert.ToDouble(Value);
     public override string ToString() => Value.ToString();
 

@@ -119,12 +119,24 @@ public class OtherTests
     [TestMethod]
     public void When_MandatoryValueMissingInArray_ExceptionThrown()
     {
-        var schema = "[#number, #number?, #number?]";
+        var schema = "[@range(1, 10) #number, @range(10, 100) #number?, #number?]";
         var json = "[]";
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<JsonSchemaException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(ARRY01, exception.Code);
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_OptionalValidatorMisplacedInArray_ExceptionThrown()
+    {
+        var schema = "[#number, #number?, #number]";
+        var json = "[10, 20]";
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<MisplacedOptionalException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(ARRY02, exception.Code);
         Console.WriteLine(exception);
     }
 

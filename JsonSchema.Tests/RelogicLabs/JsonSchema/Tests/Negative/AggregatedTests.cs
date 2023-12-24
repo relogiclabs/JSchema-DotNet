@@ -1,6 +1,6 @@
 using RelogicLabs.JsonSchema.Exceptions;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
-using static RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions;
+using static RelogicLabs.JsonSchema.Tests.External.ExternalFunctions;
 
 namespace RelogicLabs.JsonSchema.Tests.Negative;
 
@@ -74,7 +74,7 @@ public class AggregatedTests
         var schema = """
         %title: "Extended User Profile Dashboard API Response"
         %version: 2.0.0
-        %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+        %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
                   RelogicLabs.JsonSchema.Tests
         
         %pragma IgnoreUndefinedProperties: true

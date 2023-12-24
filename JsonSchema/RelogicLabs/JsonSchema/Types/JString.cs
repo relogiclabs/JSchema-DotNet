@@ -40,7 +40,7 @@ public class JString : JPrimitive, IDerived, IPragmaValue<string>
 
     public override JsonType Type => JsonType.STRING;
     public override int GetHashCode() => Value.GetHashCode();
-    public static implicit operator string(JString @string) => @string.Value;
+    public static implicit operator string(JString node) => node.Value;
     public override string ToString() => Value.Quote();
 
     internal new class Builder : JPrimitive.Builder<string>

@@ -34,7 +34,7 @@ public sealed class JDouble : JNumber, IPragmaValue<double>
     }
 
     public override JsonType Type => JsonType.DOUBLE;
-    public static implicit operator double(JDouble @double) => @double.Value;
+    public static implicit operator double(JDouble node) => node.Value;
     public override int GetHashCode() => Value.GetHashCode();
     protected override double ToDouble() => Convert.ToDouble(Value);
     public override string ToString() => $"{Value:0.###############E+0}";

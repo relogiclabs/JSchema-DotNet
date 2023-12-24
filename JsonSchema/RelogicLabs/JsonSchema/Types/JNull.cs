@@ -2,7 +2,7 @@ namespace RelogicLabs.JsonSchema.Types;
 
 public sealed class JNull : JPrimitive
 {
-    public const string NullMarker = "null";
+    internal const string NullMarker = "null";
 
     private JNull(Builder builder) : base(builder) { }
 

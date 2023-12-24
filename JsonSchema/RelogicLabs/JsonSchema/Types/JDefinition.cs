@@ -4,7 +4,7 @@ namespace RelogicLabs.JsonSchema.Types;
 
 public sealed class JDefinition : JDirective
 {
-    public const string DefineMarker = "%define";
+    internal const string DefineMarker = "%define";
     public JAlias Alias { get; }
     public JValidator Validator { get; }
 

@@ -1,15 +1,14 @@
 using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Tree;
-using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
+using static RelogicLabs.JsonSchema.Message.MessageFormatter;
 using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Types;
 
 public sealed class JPragma : JDirective
 {
-    public const string PragmaMarker = "%pragma";
+    internal const string PragmaMarker = "%pragma";
 
     public string Name { get; }
     public JPrimitive Value { get; }
@@ -43,13 +42,11 @@ public sealed class JPragma : JDirective
             var name = RequireNonNull(Name);
             var value = RequireNonNull(Value);
             var descriptor = PragmaDescriptor.From(name);
-            if(descriptor == null) throw new PragmaNotFoundException(MessageFormatter
-                .FormatForSchema(PRAG01, $"Invalid pragma {name.Quote()} with value {
-                    value.GetOutline()} found", Context));
+            if(descriptor == null) throw new PragmaNotFoundException(FormatForSchema(PRAG01,
+                $"Invalid pragma '{name}' with value {value.GetOutline()} found", Context));
             if(!descriptor.MatchType(value.GetType()))
-                throw new InvalidPragmaValueException(MessageFormatter.FormatForSchema(
-                    PRAG02, $"Invalid value {value.GetOutline()} for pragma {name.Quote()} found",
-                    value));
+                throw new InvalidPragmaValueException(FormatForSchema(PRAG02,
+                $"Invalid value {value.GetOutline()} for pragma '{name}' found", value));
         }
 
         public override JPragma Build()

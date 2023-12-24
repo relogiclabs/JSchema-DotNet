@@ -23,7 +23,7 @@ public abstract class JNumber : JPrimitive
         return AreEqual(this.ToDouble(), other.ToDouble());
     }
 
-    internal bool AreEqual(double value1, double value2)
+    private protected bool AreEqual(double value1, double value2)
         => Runtime.AreEqual(value1, value2);
 
     public override JsonType Type => JsonType.NUMBER;

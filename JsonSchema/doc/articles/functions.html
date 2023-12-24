@@ -260,17 +260,17 @@ table th:first-of-type { min-width: 140px; }
 </thead>
 <tbody>
 <tr>
-<td><code>minimum(0)</code></td>
+<td><code>@minimum(0)</code></td>
 <td><code>0</code>; <code>1</code>; <code>1000</code></td>
 <td><code>-1</code>; <code>-10</code>; <code>-10000</code></td>
 </tr>
 <tr>
-<td><code>minimum(10.5)</code></td>
+<td><code>@minimum(10.5)</code></td>
 <td><code>10.5</code>; <code>10.6</code>; <code>1000.1</code></td>
 <td><code>10.49</code>; <code>1.0</code>; <code>-100.1</code></td>
 </tr>
 <tr>
-<td><code>minimum(0, true)</code></td>
+<td><code>@minimum(0, true)</code></td>
 <td><code>0.001</code>; <code>1.01</code>; <code>100.1</code></td>
 <td><code>0</code>; <code>-0.01</code>; <code>-100.1</code></td>
 </tr>
@@ -291,30 +291,27 @@ table th:first-of-type { min-width: 140px; }
 </thead>
 <tbody>
 <tr>
-<td><code>maximum(100)</code></td>
+<td><code>@maximum(100)</code></td>
 <td><code>100</code>; <code>-100</code>; <code>0</code></td>
 <td><code>101</code>; <code>1000</code>; <code>10000</code></td>
 </tr>
 <tr>
-<td><code>maximum(10.5)</code></td>
+<td><code>@maximum(10.5)</code></td>
 <td><code>10.50</code>; <code>10.49</code>; <code>-1000.1</code></td>
 <td><code>10.51</code>; <code>11.0</code>; <code>1000.1</code></td>
 </tr>
 <tr>
-<td><code>maximum(0, true)</code></td>
+<td><code>@maximum(0, true)</code></td>
 <td><code>-0.001</code>; <code>-1.01</code>; <code>-1000.1</code></td>
 <td><code>0</code>; <code>0.01</code>; <code>100.1</code></td>
 </tr>
 </tbody>
 </table>
-<h3 id="string-enum">String Enum</h3>
+<h3 id="enum-string-and-number">Enum String and Number</h3>
 <pre><code class="lang-stylus">#string target - @enum(#string... items)
+#number target - @enum(#number... items)
 </code></pre>
-<p>Validates that the <code>target</code> string is equal to one of the strings specified by the <code>items</code> parameter. If not, a validation error will generate.</p>
-<h3 id="number-enum">Number Enum</h3>
-<pre><code class="lang-stylus">#number target - @enum(#number... items)
-</code></pre>
-<p>Validates that the <code>target</code> number is equal to one of the numbers specified by the <code>items</code> parameter. If not, a validation error will generate.</p>
+<p>Validates that the <code>target</code> string or number is equal to one of the strings or numbers respectively, specified by the <code>items</code> parameter. If not, a validation error will generate.</p>
 <h3 id="array-elements">Array Elements</h3>
 <pre><code class="lang-stylus">#array target - @elements(#any... items)
 </code></pre>
@@ -405,16 +402,66 @@ table th:first-of-type { min-width: 140px; }
 <pre><code class="lang-stylus">#datetime target - @after(#string reference)
 </code></pre>
 <p>Validates that the <code>target</code> date-time is exclusively after the <code>reference</code> date-time. If the <code>target</code> date-time finds on or before the <code>reference</code> date-time, a validation error is triggered. The <code>reference</code> parameter must be the string representation of the <code>target</code> data type, which can either be a <code>#date</code> or <code>#time</code> type.</p>
-<h3 id="number-positive">Number Positive</h3>
+<h3 id="number-positive-and-negative">Number Positive and Negative</h3>
 <pre><code class="lang-stylus">#number target - @positive
 #number target - @positive(#number reference)
 </code></pre>
 <p>Validates that the <code>target</code> number is positive or positive from (or relative to) the specified <code>reference</code>. If the <code>target</code> number is zero or negative for the first definition or less than the <code>reference</code> for the second definition, it generates a validation error.</p>
-<h3 id="number-negative">Number Negative</h3>
 <pre><code class="lang-stylus">#number target - @negative
 #number target - @negative(#number reference)
 </code></pre>
 <p>Validates that the <code>target</code> number is negative or negative from (or relative to) the specified <code>reference</code>. If the <code>target</code> number is zero or positive for the first definition or greater than the <code>reference</code> for the second definition, it generates a validation error.</p>
+<table>
+<thead>
+<tr>
+<th>Ues Cases</th>
+<th>Valid Values</th>
+<th>Invalid Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@positive</code></td>
+<td><code>1</code>; <code>5</code>; <code>1000</code></td>
+<td><code>0</code>; <code>-1</code>; <code>-1000</code></td>
+</tr>
+<tr>
+<td><code>@negative</code></td>
+<td><code>-1</code>; <code>-5</code>; <code>-1000</code></td>
+<td><code>0</code>; <code>1</code>; <code>1000</code></td>
+</tr>
+<tr>
+<td><code>@positive(0)</code></td>
+<td><code>0</code>; <code>1</code>; <code>5</code>; <code>1000</code></td>
+<td><code>-1</code>; <code>-5</code>; <code>-1000</code></td>
+</tr>
+<tr>
+<td><code>@positive(10)</code></td>
+<td><code>10</code>; <code>100</code>; <code>10000</code></td>
+<td><code>1</code>; <code>5</code>; <code>-1000</code></td>
+</tr>
+<tr>
+<td><code>@negative(0)</code></td>
+<td><code>0</code>; <code>-1</code>; <code>-5</code>; <code>-1000</code></td>
+<td><code>1</code>; <code>5</code>; <code>1000</code></td>
+</tr>
+<tr>
+<td><code>@negative(-10)</code></td>
+<td><code>-10</code>; <code>-100</code>; <code>-10000</code></td>
+<td><code>0</code>; <code>-5</code>; <code>1000</code></td>
+</tr>
+<tr>
+<td><code>@positive(-1)</code></td>
+<td><code>-1</code>; <code>0</code>; <code>10000</code></td>
+<td><code>-10</code>; <code>-100</code>; <code>-1000</code></td>
+</tr>
+<tr>
+<td><code>@negative(1)</code></td>
+<td><code>1</code>; <code>0</code>; <code>-10000</code></td>
+<td><code>10</code>; <code>100</code>; <code>1000</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="string-not-empty">String Not Empty</h3>
 <pre><code class="lang-stylus">#string target - @nonempty
 </code></pre>

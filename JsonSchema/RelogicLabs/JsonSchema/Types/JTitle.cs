@@ -4,7 +4,7 @@ namespace RelogicLabs.JsonSchema.Types;
 
 public sealed class JTitle : JDirective
 {
-    public const string TitleMarker = "%title";
+    internal const string TitleMarker = "%title";
     public string Title { get; }
 
     private JTitle(Builder builder) : base(builder)

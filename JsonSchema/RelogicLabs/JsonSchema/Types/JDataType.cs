@@ -4,13 +4,15 @@ using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 using static RelogicLabs.JsonSchema.Message.ErrorDetail;
-using static RelogicLabs.JsonSchema.Message.MatchReport;
+using static RelogicLabs.JsonSchema.Message.MessageFormatter;
+using static RelogicLabs.JsonSchema.Types.INestedMode;
 using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Types;
 
 public sealed class JDataType : JBranch, INestedMode
 {
+    internal const string DataTypeName = "DataTypeName";
     public JsonType JsonType { get; }
     public bool Nested { get; }
     public JAlias? Alias { get; }
@@ -25,59 +27,25 @@ public sealed class JDataType : JBranch, INestedMode
 
     public override bool Match(JNode node)
     {
-        if(!Nested) return IsMatchCurrent(node);
-        if(node is not JComposite composite) return false;
-        IList<JNode> components = composite.GetComponents();
-        return components.Select(IsMatchCurrent).AllTrue();
-    }
-
-    private bool IsMatchCurrent(JNode node)
-        => MatchCurrent(node, out _) == Success;
-
-    private MatchReport MatchCurrent(JNode node, out string error)
-    {
-        var result = JsonType.Match(node, out error) ? Success : TypeError;
-        if(Alias == null || result != Success) return result;
-        Runtime.Definitions.TryGetValue(Alias, out var validator);
-        if(validator == null) return AliasError;
-        result = validator.Match(node) ? Success : ArgumentError;
-        return result;
-    }
-
-    internal bool MatchForReport(JNode node)
-    {
-        if(!Nested) return MatchForReport(node, false);
-        if(node is not JComposite composite) return FailWith(
-            new JsonSchemaException(
-                new ErrorDetail(DTYP03, InvalidNestedDataType),
-                ExpectedDetail.AsInvalidNestedDataType(this),
-                ActualDetail.AsInvalidNestedDataType(node)));
-        IList<JNode> components = composite.GetComponents();
-        bool result = true;
-        foreach(var c in components) result &= MatchForReport(c, true);
-        return result;
-    }
-
-    private bool MatchForReport(JNode node, bool nested)
-    {
-        var result = MatchCurrent(node, out var error);
-        if(ReferenceEquals(result, TypeError)) return FailWith(
-            new JsonSchemaException(
-                new ErrorDetail(TypeError.GetCode(nested),
+        if(!JsonType.Match(node, out var error)) return FailTypeWith(
+            new JsonSchemaException(new ErrorDetail(Nested ? DTYP06 : DTYP04,
                     FormatMessage(DataTypeMismatch, error)),
                 ExpectedDetail.AsDataTypeMismatch(this),
                 ActualDetail.AsDataTypeMismatch(node)));
-        if(ReferenceEquals(result, AliasError)) return FailWith(
-            new DefinitionNotFoundException(
-                MessageFormatter.FormatForSchema(AliasError.GetCode(nested),
-                    $"No definition found for '{Alias}'", Context)));
-        if(ReferenceEquals(result, ArgumentError)) return FailWith(
-            new JsonSchemaException(
-                new ErrorDetail(ArgumentError.GetCode(nested),
-                    DataTypeArgumentFailed),
-                ExpectedDetail.AsDataTypeArgumentFailed(this),
-                ActualDetail.AsDataTypeArgumentFailed(node)));
+        if(Alias is null) return true;
+        var validator = Runtime.Definitions.TryGetValue(Alias);
+        if(validator is null) return FailWith(new DefinitionNotFoundException(
+            FormatForSchema(Nested ? DEFI04 : DEFI03, $"No definition found for '{Alias}'", this)));
+        if(!validator.Match(node)) return FailWith(new JsonSchemaException(
+            new ErrorDetail(Nested ? DTYP07 : DTYP05, DataTypeArgumentFailed),
+            ExpectedDetail.AsDataTypeArgumentFailed(this),
+            ActualDetail.AsDataTypeArgumentFailed(node)));
         return true;
+    }
+
+    private bool FailTypeWith(JsonSchemaException exception) {
+        exception.SetAttribute(DataTypeName, ToString(true));
+        return FailWith(exception);
     }
 
     private static string FormatMessage(string main, string optional)
@@ -93,13 +61,13 @@ public sealed class JDataType : JBranch, INestedMode
     }
 
     internal bool IsMatchNull() => !Nested && JsonType == JsonType.NULL;
-    public bool IsApplicable(JNode node) => !Nested || node is JComposite;
+    internal bool IsApplicable(JNode node) => !Nested || node is JComposite;
     public override int GetHashCode() => JsonType.GetHashCode();
     public override string ToString() => ToString(false);
     public string ToString(bool baseForm)
     {
         StringBuilder builder = new(JsonType.ToString());
-        if(Nested && !baseForm) builder.Append(INestedMode.NestedMarker);
+        if(Nested && !baseForm) builder.Append(NestedMarker);
         if(Alias != null  && !baseForm) builder.Append($"({Alias})");
         return builder.ToString();
     }

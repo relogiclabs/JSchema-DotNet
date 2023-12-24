@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace RelogicLabs.JsonSchema.Collections;
 
-public sealed class IndexHashMap<TK, TV> : IIndexMap<TK, TV>
+internal sealed class IndexHashMap<TK, TV> : IIndexMap<TK, TV>
     where TV : IKeyed<TK> where TK : notnull
 {
     private IDictionary<TK, TV> _dictionary;
@@ -12,7 +12,7 @@ public sealed class IndexHashMap<TK, TV> : IIndexMap<TK, TV>
     public IndexHashMap(IEnumerable<TV> source)
     {
         _list = source.ToList();
-        _dictionary = _list.ToDictionary(e => e.GetKey(), e => e);
+        _dictionary = _list.ToDictionary(e => e.Key, e => e);
     }
 
     public IEnumerator<TV> GetEnumerator() => _list.GetEnumerator();
@@ -20,13 +20,13 @@ public sealed class IndexHashMap<TK, TV> : IIndexMap<TK, TV>
     public void Add(TV item)
     {
         _list.Add(item);
-        _dictionary.Add(item.GetKey(), item);
+        _dictionary.Add(item.Key, item);
     }
 
     public bool Remove(TV item)
     {
         bool result = _list.Remove(item);
-        result &= _dictionary.Remove(item.GetKey());
+        result &= _dictionary.Remove(item.Key);
         return result;
     }
 
@@ -45,14 +45,14 @@ public sealed class IndexHashMap<TK, TV> : IIndexMap<TK, TV>
     public void Insert(int index, TV item)
     {
         _list.Insert(index, item);
-        _dictionary.Add(item.GetKey(), item);
+        _dictionary.Add(item.Key, item);
     }
 
     public void RemoveAt(int index)
     {
         TV item = _list[index];
         _list.RemoveAt(index);
-        _dictionary.Remove(item.GetKey());
+        _dictionary.Remove(item.Key);
     }
 
     public TV this[int index]

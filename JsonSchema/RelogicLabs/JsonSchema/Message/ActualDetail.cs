@@ -1,6 +1,5 @@
 using RelogicLabs.JsonSchema.Tree;
 using RelogicLabs.JsonSchema.Types;
-using RelogicLabs.JsonSchema.Utilities;
 
 namespace RelogicLabs.JsonSchema.Message;
 
@@ -13,7 +12,10 @@ public sealed class ActualDetail : ContextDetail
         : base(node, message) { }
 
     internal static ActualDetail AsValueMismatch(JNode node)
-        => new(node, node.GetOutline().Affix("found "));
+        => new(node, $"found {node.GetOutline()}");
+
+    internal static ActualDetail AsGeneralValueMismatch(JNode node)
+        => new(node, $"found {node.GetOutline()}");
 
     internal static ActualDetail AsPropertyNotFound(JNode node, JProperty property)
         => new(node, $"not found property key '{property.Key}'");
@@ -30,8 +32,8 @@ public sealed class ActualDetail : ContextDetail
     internal static ActualDetail AsInvalidFunction(JNode node)
         => new(node, $"applied on non-composite type {GetTypeName(node)}");
 
-    internal static ActualDetail AsInvalidNestedDataType(JNode node)
-        => new(node, $"found non-composite type {GetTypeName(node)}");
+    internal static ActualDetail AsInvalidNonCompositeType(JNode node)
+        => new(node, $"found non-composite {GetTypeName(node)} value {node.GetOutline()}");
 
     internal static ActualDetail AsDataTypeArgumentFailed(JNode node)
         => new(node, $"found invalid value {node.GetOutline()}");

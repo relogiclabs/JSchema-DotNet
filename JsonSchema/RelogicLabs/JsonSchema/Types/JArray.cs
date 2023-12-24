@@ -3,6 +3,7 @@ using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 using static RelogicLabs.JsonSchema.Message.ErrorDetail;
+using static RelogicLabs.JsonSchema.Message.MessageFormatter;
 using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Types;
@@ -21,10 +22,15 @@ public sealed class JArray : JComposite
     {
         var other = CastType<JArray>(node);
         if(other == null) return false;
-        var result = true;
+        bool result = true, restOptional = false;
         for(var i = 0; i < Elements.Count; i++)
         {
-            if(i >= other.Elements.Count && !((JValidator) Elements[i]).Optional)
+            var optional = IsOptional(Elements[i]);
+            if((restOptional |= optional) != optional) return FailWith(
+                new MisplacedOptionalException(FormatForSchema(ARRY02,
+                    "Mandatory array element cannot appear after optional element",
+                    Elements[i])));
+            if(i >= other.Elements.Count && !optional)
                 return FailWith(new JsonSchemaException(
                     new ErrorDetail(ARRY01, ArrayElementNotFound),
                     ExpectedDetail.AsArrayElementNotFound(Elements[i], i),
@@ -35,9 +41,10 @@ public sealed class JArray : JComposite
         return result;
     }
 
+    private static bool IsOptional(JNode node) => node is JValidator { Optional: true };
     public override JsonType Type => JsonType.ARRAY;
-    public override IList<JNode> GetComponents() => Elements;
-    public override string ToString() => Elements.ToString(", ", "[", "]");
+    public override IList<JNode> Components => Elements;
+    public override string ToString() => Elements.JoinWith(", ", "[", "]");
 
     internal new class Builder : JNode.Builder
     {

@@ -17,8 +17,11 @@ public sealed class ExpectedDetail : ContextDetail
     internal static ExpectedDetail AsValueMismatch(JNode node)
         => new(node, $"value {node.GetOutline()}");
 
-    internal static ExpectedDetail AsUndefinedProperty(JObject @object, JProperty property)
-        => new(@object, $"no property with key '{property.Key}'");
+    internal static ExpectedDetail AsGeneralValueMismatch(JNode node)
+        => new(node, $"a valid value of {node.GetOutline()}");
+
+    internal static ExpectedDetail AsUndefinedProperty(JObject node, JProperty property)
+        => new(node, $"no property with key '{property.Key}'");
 
     internal static ExpectedDetail AsPropertyNotFound(JProperty property)
         => new(property, $"property {{{property.GetOutline()}}}");
@@ -32,8 +35,8 @@ public sealed class ExpectedDetail : ContextDetail
     internal static ExpectedDetail AsInvalidFunction(JFunction function)
         => new(function, "applying on composite type");
 
-    internal static ExpectedDetail AsInvalidNestedDataType(JDataType dataType)
-        => new(dataType, "composite data type");
+    internal static ExpectedDetail AsInvalidNonCompositeType(JDataType dataType)
+        => new(dataType, "a composite value");
 
     internal static ExpectedDetail AsDataTypeArgumentFailed(JDataType dataType)
         => new(dataType, $"a valid value for '{dataType.Alias}'");

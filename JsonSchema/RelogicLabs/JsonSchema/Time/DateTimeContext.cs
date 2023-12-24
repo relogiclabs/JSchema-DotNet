@@ -1,5 +1,6 @@
 using System.Text;
 using RelogicLabs.JsonSchema.Exceptions;
+using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
 using static System.DayOfWeek;
 using static RelogicLabs.JsonSchema.Time.JsonDateTime;
@@ -194,7 +195,7 @@ internal sealed class DateTimeContext
                 throw new InvalidDateTimeException(DHUR05, $"Invalid {Type} hour out of range");
 
             return new JsonDateTime(Type, _year, _month, _day, _hour, _minute, _second,
-                _fraction, _utcHour, _utcMinute);
+                _fraction, new JsonUtcOffset(_utcHour, _utcMinute));
         }
         catch(InvalidDateTimeException) { throw; }
         catch(Exception ex)
@@ -225,9 +226,7 @@ internal sealed class DateTimeContext
         if(_fraction != UNSET) builder.Append($"Fraction: {_fraction}, ");
         if(_utcHour != UNSET) builder.Append($"UTC Offset Hour: {_utcHour}, ");
         if(_utcMinute != UNSET) builder.Append($"UTC Offset Minute: {_utcMinute}, ");
-        var result = builder.ToString();
-        if(result.EndsWith(", ")) result = result[..^2];
-        return result + "}";
+        return builder.ToString().RemoveEnd(", ") + "}";
     }
 
     private static bool IsLeapYear(int year)

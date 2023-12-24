@@ -1,6 +1,6 @@
-using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Tree;
 using RelogicLabs.JsonSchema.Utilities;
+using static RelogicLabs.JsonSchema.Message.MessageFormatter;
 
 namespace RelogicLabs.JsonSchema;
 
@@ -20,7 +20,7 @@ public class JsonSchema
     /// <param name="schema">A Schema string for validation or conformation.</param>
     public JsonSchema(string schema)
     {
-        Runtime = new(MessageFormatter.SchemaValidation, false);
+        Runtime = new(SchemaValidation, false);
         Exceptions = Runtime.Exceptions;
         SchemaTree = new(Runtime, schema);
     }

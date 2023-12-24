@@ -93,7 +93,7 @@ pre code { font-size: 1.1em; }
 <p>Composite values in a JSON document act as containers. They can hold zero or more composite or non-composite primitive values. These composite values provide the structural framework for organizing data hierarchically within JSON documents. There are two types of composite values allowed in JSON documents: Arrays and Objects.</p>
 <p>Conversely, Non-composite values are the atomic data elements in a JSON document. They cannot contain other values within them. There are four types of primitive values supported by JSON specification: Strings, Numbers, Booleans, and Nulls.</p>
 <h2 id="validation-format">Validation Format</h2>
-<p>A JSON Schema ensures the correctness and consistency of JSON documents and it also defines the structure and constraints that a JSON document must conform to. It specifies how both composite and non-composite values should be organized and validated the input document based on the rules specified in the schema document. Thus a key element of JSON Schema is the validation rule syntax, which provides the required instructions for the validation process. A validation rule is typically expressed using the following notations:</p>
+<p>A JSON Schema ensures the correctness and consistency of JSON documents, and it also defines the structure and constraints that a JSON document must conform to. It specifies how both composite and non-composite values should be organized and validated the input document based on the rules specified in the schema document. Thus, a key element of JSON Schema is the validation rule syntax, which provides the required instructions for the validation process. A validation rule is typically expressed using the following notations:</p>
 <pre><code class="lang-yaml">1. [Value] [Function-Set] [DataType-Set] [Receiver-Set] [Optional]
 2. [Undefined] [Optional]
 </code></pre>
@@ -168,13 +168,13 @@ pre code { font-size: 1.1em; }
 </tr>
 </tbody>
 </table>
-<p>The syntax in the 9th row of the table is valid but uncommon in real-world scenarios. Since constraint function and data type provide unnecessary validation considering the validation for value is succeeded. It is generally recommended to define the data type in all cases except in the previous scenario, even though the functions perform precise validations, but functions are usually defined to accept multiple more general data types. Thus, data type definition not only makes the schema more explicit for reader, but it also generates clearer validation errors that pinpoint data type mismatches if they occur.</p>
+<p>The syntax used in the 10th row of the table is valid, but not common in real-world scenarios. The constraint function and data type provide redundant validations, considering the validation for value is succeeded. It is generally recommended to specify the data type in all cases except in the previous scenario. Even though the functions may perform precise validations, they are typically designed to accept a broader range of data types. Therefore, specifying the data type not only makes the schema more unambiguous for readers, but also generates clear validation errors if the expected type of value is not received from the input document. For instance, the <code>@range</code> function is defined for all types of numeric input as well as dates and times. If you only accept integers for a particular field, the <code>@range</code> function without <code>#integer</code> data type cannot ensure this requirement.</p>
 <p>Now, let's explore the components of this notation and their functionalities. In the context of the validation rule, <code>Value</code> refers to a specific input JSON value of the document. This value can be either a composite value (e.g., an object or an array) or a primitive value (e.g., a string or a number).</p>
-<p>The inclusion of <code>Value</code> in the validation rule is optional, meaning that you can choose whether or not to specify a particular JSON value for validation. When <code>Value</code> is present in the rule, it serves as a requirement, implying that the specified JSON value must match with the input JSON value of the document for the validation to succeed. If it does not match with the input value, the validation will fail.</p>
-<p>The <code>Function-Set</code> is an optional part of the validation rule, and it can consist of one or more function constraints. Function constraints are rules or conditions that are applied to validate the input JSON value. These functions can be of two types:</p>
+<p>The inclusion of <code>Value</code> in the validation rule is optional, meaning that you can choose whether or not to specify a particular JSON value for validation. However, when <code>Value</code> is present in the rule, it serves as a requirement, implying that the specified JSON value must match with the input JSON value of the document for the validation to succeed. If it does not match with the input value, the validation will fail.</p>
+<p>The <code>Function-Set</code> is an optional part of the validation rule that can contain one or more function constraints. Function constraints are restrictions or conditions that validate the input JSON value. These functions can be of two types based on their application:</p>
 <ol>
-<li>Functions applied directly to the target value itself for which the validation rule is defined.</li>
-<li>Functions applied to components or items within the target value are applicable and valid only if the value is a composite JSON value. An asterisk <code>*</code> is used after the function name to indicate that the constraint function is applied to the nested components.</li>
+<li>Direct functions are applied directly to the target value itself for which the validation rule is defined.</li>
+<li>Nested functions are applied to the nested values or items within the target value. They are applicable and valid only if the target value is a composite JSON value. An asterisk <code>*</code> is used after the function name to indicate that the constraint function is applied to the nested values.</li>
 </ol>
 <p>The validation of the <code>Function-Set</code> as a whole is considered successful only if each function constraint within it succeeds, regardless of its type and application mode.</p>
 <table>
@@ -183,6 +183,7 @@ pre code { font-size: 1.1em; }
 <th>SN</th>
 <th>Function Example</th>
 <th>Valid Json</th>
+<th>Invalid Json</th>
 </tr>
 </thead>
 <tbody>
@@ -190,36 +191,41 @@ pre code { font-size: 1.1em; }
 <td>1</td>
 <td><code>@range(1, 10)</code></td>
 <td><code>5</code>; <code>8</code>; <code>10</code></td>
+<td><code>-1</code>; <code>0</code>; <code>11</code></td>
 </tr>
 <tr>
 <td>2</td>
 <td><code>@range*(1, 10)</code></td>
 <td><code>[1, 3]</code>; <code>[2, 4, 6, 8, 10]</code></td>
+<td><code>[-1, 0, 5, 11]</code></td>
 </tr>
 <tr>
 <td>3</td>
 <td><code>@length(1, 15)</code></td>
-<td><code>lorem</code>; <code>&quot;lorem ipsum&quot;</code></td>
+<td><code>&quot;lorem&quot;</code>; <code>&quot;lorem ipsum&quot;</code></td>
+<td><code>&quot;&quot;</code>; <code>&quot;lorem ipsum dolor&quot;</code></td>
 </tr>
 <tr>
 <td>4</td>
 <td><code>@length*(1, 15)</code></td>
 <td><code>[&quot;lorem&quot;, &quot;lorem ipsum&quot;]</code></td>
+<td><code>[&quot;lorem&quot;, &quot;lorem ipsum dolor&quot;]</code></td>
 </tr>
 </tbody>
 </table>
-<p>Similar to the <code>Function-Set</code>, the <code>Datatype-Set</code> is also an optional part of the validation rule and can contain one or more data type constraints. Data type constraints define the expected data types applicable to the value itself or its nested components, depending on whether the value is composite or primitive for the input JSON value. As like function constraints data type can be of two types:</p>
+<p>Similar to the <code>Function-Set</code>, the <code>Datatype-Set</code> is also an optional part of the validation rule and can contain one or more data type constraints. Data type constraints specify the expected data types that validate the input JSON value itself or its nested components, depending on whether the value is composite or primitive and whether its application mode is direct or nested. As like function constraints data types can be of two types based on their application:</p>
 <ol>
-<li>Data type applied directly to the target value itself for which the validation rule is defined.</li>
-<li>Data type applied to components or items within the target value are applicable and valid only if the value is a composite JSON value. An asterisk <code>*</code> is used after the data type name to indicate that the data type is applied to the nested components.</li>
+<li>Direct data types are applied directly to the target value itself for which the validation rule is defined.</li>
+<li>Nested data type applied to the nested values or items within the target value. They are applicable and valid only if the target value is a composite JSON value. An asterisk <code>*</code> is used after the data type name to indicate that the data type is applied to the nested values.</li>
 </ol>
-<p>Validation of the <code>Datatype-Set</code> is deemed successful if validation is successful for one of the type 1 (or top-level) data types and one of the type 2 (nested) data types. This becomes particularly relevant in scenarios where an optional composite target value, such as an array or object, is also permitted to be null. In real-world scenarios, it's rare for a target value to exhibit multiple data types, like switching between being a number and a string. Consequently, schema rules typically do not specify multiple top-level or nested data types.</p>
+<p>Validation of the <code>Datatype-Set</code> is deemed successful if validation is successful for one of the direct (type 1) data types and one of the nested (type 2) data types. This becomes particularly relevant in several real-world scenarios including those where a composite target value, such as an array or object, is also allowed to be null.</p>
 <table>
 <thead>
 <tr>
 <th>SN</th>
 <th>Data Type Example</th>
 <th>Valid Json</th>
+<th>Invalid Json</th>
 </tr>
 </thead>
 <tbody>
@@ -227,30 +233,52 @@ pre code { font-size: 1.1em; }
 <td>1</td>
 <td><code>#integer</code></td>
 <td><code>5</code>; <code>8</code>; <code>10</code></td>
+<td><code>10.5</code>; <code>1E-08</code></td>
 </tr>
 <tr>
 <td>2</td>
 <td><code>#integer* #array</code></td>
 <td><code>[1, 3]</code>; <code>[2, 4, 6, 8, 10]</code></td>
+<td><code>[10, 10.5, 1E-08]</code>; <code>10</code>; <code>null</code></td>
 </tr>
 <tr>
 <td>3</td>
 <td><code>#string</code></td>
-<td><code>lorem</code>; <code>&quot;lorem ipsum&quot;</code></td>
+<td><code>&quot;lorem&quot;</code>; <code>&quot;lorem ipsum&quot;</code></td>
+<td><code>100.5</code>; <code>[&quot;a&quot;, &quot;b&quot;]</code>; <code>null</code></td>
 </tr>
 <tr>
 <td>4</td>
 <td><code>#string* #array</code></td>
 <td><code>[&quot;lorem&quot;, &quot;lorem ipsum&quot;]</code></td>
+<td><code>[10, &quot;lorem&quot;]</code>; <code>&quot;lorem&quot;</code>; <code>null</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>#integer #float</code></td>
+<td><code>5</code>, <code>10.5</code>, <code>1000</code></td>
+<td><code>1E-08</code>; <code>&quot;lorem&quot;</code>; <code>false</code>; <code>null</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>#array #null</code></td>
+<td><code>[10, 20, 30]</code>; <code>null</code></td>
+<td><code>10</code>; <code>100.5</code>; <code>&quot;lorem&quot;</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>#integer* #float* #array</code></td>
+<td><code>[10, 10.5, 100]</code></td>
+<td><code>[10, &quot;lorem&quot;, false, null]</code></td>
 </tr>
 </tbody>
 </table>
-<p>When defining a nested type for components, it is good practice to also define the top-level type (eg. <code>#array</code> and <code>#object</code>) that not only makes the schema more convenient for readers but also generates more straightforward validation errors to the point if they occur, but it is optional.</p>
+<p>When defining nested types for values or elements for a composite type, it is good practice to also define the direct type (eg. <code>#array</code> and <code>#object</code>) that not only makes the schema more convenient for readers but also generates more straightforward validation errors if they occur, but it is optional. Moreover, each nested value must belong to one of the nested types specified in a validation rule.</p>
 <p>The <code>Receiver-Set</code> is also an optional part of the validation rule, and it can consist of one or more receivers. A receiver is identified by its name always prefixed by <code>&amp;</code> and can receive or store the input JSON values of that position. A validation function can accept receivers and validate input based on the received values of the receivers.</p>
 <p>Moreover, one receiver can be used in multiple validation rules and one validation rule can contain multiple receivers. This flexibility facilitates the organization and utilization of receivers in a more coherent and readable manner in a schema. Depending on its position a receiver can receive zero or more JSON input values. For instance, if a receiver is placed inside a common element section of an array, it will receive zero value if the array is empty and many values if it contains many elements.</p>
-<p>The <code>Optional</code> specifier, denoted as <code>?</code>, signifies that the presence of the target value is optional within the input JSON document. When <code>Optional</code> is specified, it indicates that the value may or may not be present. If it is absent, no validation is performed for that specific target value, and the JSON document is considered valid.</p>
-<p>However, if the target value is present, the validation rule must succeed for the document to be considered valid and conform to Schema. Failure to meet the validation rule renders the JSON document invalid. In the absence of the <code>Optional</code> specifier, the target JSON value must be present in the provided input JSON document for validation to succeed.</p>
-<p>In instances where no validation rule (or no components of the validation rule) is explicitly defined for a target input JSON value, the use of the undefined marker <code>!</code> signifies that any valid JSON value is acceptable for the target. This allows more flexibility in JSON data validation for specific cases.</p>
+<p>The <code>Optional</code> marker, denoted as <code>?</code>, specifies that the presence of the target value is optional within the input JSON document. When <code>Optional</code> is specified, it indicates that the target value may or may not be present. If it is absent, no validation is performed for that specific target value, and the JSON document is considered valid.</p>
+<p>However, if the target value is present, the validation rule must succeed for the document to be considered valid and conform to the Schema. Failure to meet the validation rule renders the JSON document invalid. The absence of the <code>Optional</code> specifier requires the target JSON value to be present in the input JSON document for validation to succeed.</p>
+<p>In instances where no validation rule (or no segments of the validation rule) is explicitly defined for a target input JSON value, the use of the undefined marker <code>!</code> signifies that any valid JSON value is acceptable for the target. This allows more flexibility in JSON data validation for specific cases.</p>
 
 </article>
 

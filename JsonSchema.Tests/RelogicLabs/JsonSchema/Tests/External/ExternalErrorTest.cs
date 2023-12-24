@@ -2,7 +2,8 @@ using RelogicLabs.JsonSchema.Functions;
 using RelogicLabs.JsonSchema.Tree;
 using RelogicLabs.JsonSchema.Types;
 
-namespace RelogicLabs.JsonSchema.Tests.Negative;
+// Functions for negative (error) test cases
+namespace RelogicLabs.JsonSchema.Tests.External;
 
 public class ExternalFunctions1
 {

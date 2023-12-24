@@ -16,12 +16,12 @@ public sealed partial class CoreFunctions
         => DateTime(target, pattern, TIME_TYPE);
 
     private bool DateTime(JString target, JString pattern, DateTimeType type)
-        => !ReferenceEquals(new DateTimeAgent(pattern, type).Parse(Function, target), null);
+        => new DateTimeAgent(pattern, type).Parse(Function, target) is not null;
 
     public bool Before(JDateTime target, JString reference)
     {
         var dateTime = GetDateTime(target.GetDateTimeParser(), reference);
-        if(ReferenceEquals(dateTime, null)) return false;
+        if(dateTime is null) return false;
         if(target.DateTime.Compare(dateTime.DateTime) < 0) return true;
         var type = target.DateTime.Type;
         var code = type == DATE_TYPE ? BFOR01 : BFOR02;
@@ -35,7 +35,7 @@ public sealed partial class CoreFunctions
     public bool After(JDateTime target, JString reference)
     {
         var dateTime = GetDateTime(target.GetDateTimeParser(), reference);
-        if(ReferenceEquals(dateTime, null)) return false;
+        if(dateTime is null) return false;
         if(target.DateTime.Compare(dateTime.DateTime) > 0) return true;
         var type = target.DateTime.Type;
         var code = type == DATE_TYPE ? AFTR01 : AFTR02;
@@ -49,9 +49,9 @@ public sealed partial class CoreFunctions
     public bool Range(JDateTime target, JString start, JString end)
     {
         var _start = GetDateTime(target.GetDateTimeParser(), start);
-        if(ReferenceEquals(_start, null)) return false;
+        if(_start is null) return false;
         var _end = GetDateTime(target.GetDateTimeParser(), end);
-        if(ReferenceEquals(_end, null)) return false;
+        if(_end is null) return false;
         if(target.DateTime.Compare(_start.DateTime) < 0)
             return FailOnStartDate(target, _start, GetErrorCode(target, DRNG01, DRNG02));
         if(target.DateTime.Compare(_end.DateTime) > 0)
@@ -86,7 +86,7 @@ public sealed partial class CoreFunctions
     public bool Range(JDateTime target, JUndefined start, JString end)
     {
         var _end = GetDateTime(target.GetDateTimeParser(), end);
-        if(ReferenceEquals(_end, null)) return false;
+        if(_end is null) return false;
         if(target.DateTime.Compare(_end.DateTime) <= 0) return true;
         return FailOnEndDate(target, _end, GetErrorCode(target, DRNG05, DRNG06));
     }
@@ -94,7 +94,7 @@ public sealed partial class CoreFunctions
     public bool Range(JDateTime target, JString start, JUndefined end)
     {
         var _start = GetDateTime(target.GetDateTimeParser(), start);
-        if(ReferenceEquals(_start, null)) return false;
+        if(_start is null) return false;
         if(target.DateTime.Compare(_start.DateTime) >= 0) return true;
         return FailOnStartDate(target, _start, GetErrorCode(target, DRNG07, DRNG08));
     }
@@ -102,7 +102,7 @@ public sealed partial class CoreFunctions
     public bool Start(JDateTime target, JString reference)
     {
         var dateTime = GetDateTime(target.GetDateTimeParser(), reference);
-        if(ReferenceEquals(dateTime, null)) return false;
+        if(dateTime is null) return false;
         if(target.DateTime.Compare(dateTime.DateTime) < 0)
         {
             var type = target.DateTime.Type;
@@ -119,7 +119,7 @@ public sealed partial class CoreFunctions
     public bool End(JDateTime target, JString reference)
     {
         var dateTime = GetDateTime(target.GetDateTimeParser(), reference);
-        if(ReferenceEquals(dateTime, null)) return false;
+        if(dateTime is null) return false;
         if(target.DateTime.Compare(dateTime.DateTime) > 0)
         {
             var type = target.DateTime.Type;
@@ -138,7 +138,7 @@ public sealed partial class CoreFunctions
         if(dateTime.Derived is JDateTime _result
            && _result.DateTime.Type == parser.Type) return _result;
         var _dateTime = new DateTimeAgent(parser).Parse(Function, dateTime);
-        if(ReferenceEquals(_dateTime, null)) return null;
+        if(_dateTime is null) return null;
         dateTime.Derived = _dateTime.CreateNode(dateTime);
         return (JDateTime) dateTime.Derived;
     }

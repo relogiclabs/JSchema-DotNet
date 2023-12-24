@@ -8,7 +8,7 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
                       RelogicLabs.JsonSchema.Tests
             %schema:
             {
@@ -40,7 +40,7 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
                       RelogicLabs.JsonSchema.Tests
             %schema:
             {
@@ -63,7 +63,7 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
                       RelogicLabs.JsonSchema.Tests
             
             %define $numbers: @range(1, 10) #integer &relatedValues
@@ -88,7 +88,7 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
                       RelogicLabs.JsonSchema.Tests
 
             %schema:
@@ -120,7 +120,7 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.Positive.ExternalFunctions,
+            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
                       RelogicLabs.JsonSchema.Tests
 
             %schema:

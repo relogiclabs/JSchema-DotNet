@@ -10,7 +10,7 @@ public class OptionalTests
         var json = "[]";
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_OptionalInObject_ValidTrue()
     {
@@ -18,19 +18,19 @@ public class OptionalTests
         var json = "{}";
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_OptionalWithMandatoryInArray_ValidTrue()
     {
-        var schema = "[#number, #number?, #number?]";
-        var json = "[10.5, 200]";
+        var schema = "[@range(1, 10) #number, @range(10, 100) #number?, #number?]";
+        var json = "[8.5, 80]";
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_OptionalWithFunctionInArray_ValidTrue()
     {
-        var schema = 
+        var schema =
             """
             [
                 @range(10, 11) #number, 
@@ -41,11 +41,11 @@ public class OptionalTests
         var json = "[10.5, -200]";
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_OptionalWithFunctionsInObject_ValidTrue()
     {
-        var schema = 
+        var schema =
             """
             {
                 "key1": @positive #number,
@@ -53,7 +53,7 @@ public class OptionalTests
                 "key3": @negative #number?
             }
             """;
-        var json = 
+        var json =
             """
             {
                 "key1": 0.11,

@@ -6,6 +6,7 @@ using RelogicLabs.JsonSchema.Types;
 using RelogicLabs.JsonSchema.Utilities;
 using static RelogicLabs.JsonSchema.Message.ContextDetail;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
+using static RelogicLabs.JsonSchema.Message.MessageFormatter;
 using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Tree;
@@ -27,18 +28,17 @@ public sealed class FunctionRegistry
     public void AddClass(string className, Context? context = null)
     {
         if(!_includes.Contains(className)) _includes.Add(className);
-        else throw new DuplicateIncludeException(MessageFormatter.FormatForSchema(
+        else throw new DuplicateIncludeException(FormatForSchema(
             CLAS01, $"Class already included [{className}]", context));
 
         var subclass = Type.GetType(className) ?? throw new ClassNotFoundException(
-            MessageFormatter.FormatForSchema(CLAS02, $"Not found {className}", context));
+            FormatForSchema(CLAS02, $"Not found {className}", context));
 
         var baseclass = typeof(FunctionBase);
         // if not FunctionBase's subclass
-        if(!baseclass.IsAssignableFrom(subclass))
-            throw new InvalidIncludeException(MessageFormatter
-                .FormatForSchema(CLAS03, $"{subclass.FullName} needs to inherit {
-                    baseclass.FullName}", context));
+        if(!baseclass.IsAssignableFrom(subclass)) throw new InvalidIncludeException(
+            FormatForSchema(CLAS03, $"{subclass.FullName} needs to inherit {
+                baseclass.FullName}", context));
 
         FunctionBase instance = CreateInstance(subclass, context);
         try
@@ -48,8 +48,7 @@ public sealed class FunctionRegistry
         }
         catch(InvalidFunctionException ex)
         {
-            throw new InvalidFunctionException(MessageFormatter
-                .FormatForSchema(ex.Code, ex.Message, context));
+            throw new InvalidFunctionException(FormatForSchema(ex.Code, ex.Message, context));
         }
     }
 
@@ -74,12 +73,12 @@ public sealed class FunctionRegistry
 
         Exception CreateException(string code, Exception? ex)
         {
-            return new ClassInstantiationException(MessageFormatter.FormatForSchema(
+            return new ClassInstantiationException(FormatForSchema(
                 code, $"Fail to create instance of {type.FullName}", context), ex);
         }
     }
 
-    private Dictionary<FunctionKey, List<MethodPointer>> ExtractMethods(
+    private static Dictionary<FunctionKey, List<MethodPointer>> ExtractMethods(
         Type subclass, FunctionBase instance)
     {
         var baseclass = typeof(FunctionBase);
@@ -110,10 +109,10 @@ public sealed class FunctionRegistry
         return false;
     }
 
-    private static int GetParameterCount(ICollection<ParameterInfo> parameters)
+    private static int GetParameterCount(ParameterInfo[] parameters)
     {
         foreach(var p in parameters) if(IsParams(p)) return -1;
-        return parameters.Count;
+        return parameters.Length;
     }
 
     private static bool IsMatch(ParameterInfo parameter, JNode argument)
@@ -161,9 +160,8 @@ public sealed class FunctionRegistry
                     GetTypeName(mismatchParameter.ParameterType)}"),
                 new ActualDetail(target, $"applied to an unsupported data type {
                     GetTypeName(target.GetType())} of {target}")));
-
-        return FailWith(new FunctionNotFoundException(MessageFormatter
-            .FormatForSchema(FUNC04, function.GetOutline(), function)));
+        return FailWith(new FunctionNotFoundException(FormatForSchema(FUNC04,
+            function.GetOutline(), function)));
     }
 
     private static List<object> AddTarget(List<object> arguments, JNode target)
@@ -179,8 +177,8 @@ public sealed class FunctionRegistry
             _functions.TryGetValue(new FunctionKey(
                 function.Name, -1), out methodPointers);
         if(methodPointers == null)
-            throw new FunctionNotFoundException(MessageFormatter
-                .FormatForSchema(FUNC05, $"Not found {function.GetOutline()}", function));
+            throw new FunctionNotFoundException(FormatForSchema(FUNC05,
+                $"Not found {function.GetOutline()}", function));
         return methodPointers;
     }
 
@@ -217,5 +215,5 @@ public sealed class FunctionRegistry
         return _arguments;
     }
 
-    private bool FailWith(Exception exception) => _runtime.FailWith(exception);
+    private bool FailWith(Exception exception) => _runtime.Exceptions.FailWith(exception);
 }

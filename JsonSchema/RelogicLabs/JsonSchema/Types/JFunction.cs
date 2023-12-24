@@ -35,8 +35,7 @@ public sealed class JFunction : JBranch, INestedMode
                 new ErrorDetail(FUNC06, InvalidNestedFunction),
                 ExpectedDetail.AsInvalidFunction(this),
                 ActualDetail.AsInvalidFunction(node)));
-        IList<JNode> components = composite.GetComponents();
-        return components.Select(InvokeFunction).ForEachTrue();
+        return composite.Components.ForEachTrue(InvokeFunction);
     }
 
     private bool InvokeFunction(JNode node)
@@ -52,13 +51,13 @@ public sealed class JFunction : JBranch, INestedMode
         }
     }
 
-    public bool IsApplicable(JNode node) => !Nested || node is JComposite;
+    internal bool IsApplicable(JNode node) => !Nested || node is JComposite;
     public override string ToString() => ToString(false);
     public string ToString(bool baseForm)
     {
         StringBuilder builder = new(Name);
         if(Nested && !baseForm) builder.Append(NestedMarker);
-        builder.Append(Arguments.ToString(", ", "(", ")"));
+        builder.Append(Arguments.Join(", ", "(", ")"));
         return builder.ToString();
     }
 

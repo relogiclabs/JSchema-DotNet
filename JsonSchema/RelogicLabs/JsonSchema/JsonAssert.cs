@@ -1,6 +1,6 @@
-using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Tree;
 using RelogicLabs.JsonSchema.Utilities;
+using static RelogicLabs.JsonSchema.Message.MessageFormatter;
 using static RelogicLabs.JsonSchema.Tree.TreeType;
 
 namespace RelogicLabs.JsonSchema;
@@ -32,12 +32,12 @@ public class JsonAssert
     {
         if(type == SCHEMA_TREE)
         {
-            Runtime = new RuntimeContext(MessageFormatter.SchemaAssertion, true);
+            Runtime = new RuntimeContext(SchemaAssertion, true);
             ExpectedTree = new SchemaTree(Runtime, expected);
         }
         else
         {
-            Runtime = new RuntimeContext(MessageFormatter.JsonAssertion, true);
+            Runtime = new RuntimeContext(JsonAssertion, true);
             ExpectedTree = new JsonTree(Runtime, expected);
         }
     }

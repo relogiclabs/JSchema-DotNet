@@ -1,29 +1,34 @@
+using System.Collections;
 using RelogicLabs.JsonSchema.Types;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
-public class ReceiverRegistry
+public class ReceiverRegistry : IEnumerable<KeyValuePair<JReceiver, List<JNode>>>
 {
-    public Dictionary<JReceiver, List<JNode>> Receivers { get; } = new();
+    private readonly Dictionary<JReceiver, List<JNode>> _receivers = new();
 
     public void Register(IEnumerable<JReceiver> receivers)
     {
-        foreach(var r in receivers) Receivers[r] = new List<JNode>();
+        foreach(var r in receivers) _receivers[r] = new List<JNode>();
     }
 
     public void Receive(IEnumerable<JReceiver> receivers, JNode node)
     {
-        foreach(var r in receivers) Receivers[r].Add(node);
+        foreach(var r in receivers) _receivers[r].Add(node);
     }
 
     public List<JNode>? Fetch(JReceiver receiver)
     {
-        Receivers.TryGetValue(receiver, out var list);
+        _receivers.TryGetValue(receiver, out var list);
         return list;
     }
 
     public void Clear()
     {
-        foreach(var pair in Receivers) pair.Value.Clear();
+        foreach(var pair in _receivers) pair.Value.Clear();
     }
+
+    public IEnumerator<KeyValuePair<JReceiver, List<JNode>>> GetEnumerator()
+        => _receivers.GetEnumerator();
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

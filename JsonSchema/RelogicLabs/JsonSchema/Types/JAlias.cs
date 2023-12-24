@@ -1,6 +1,6 @@
 using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Message;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
+using static RelogicLabs.JsonSchema.Message.MessageFormatter;
 using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JsonSchema.Types;
@@ -15,8 +15,8 @@ public sealed class JAlias : JLeaf
     public override bool Match(JNode node)
     {
         if(!Runtime.Definitions.ContainsKey(this))
-            throw new DefinitionNotFoundException(MessageFormatter
-                .FormatForSchema(DEFI02, $"Definition of '{Name}' not found", Context));
+            throw new DefinitionNotFoundException(FormatForSchema(DEFI02,
+                $"Definition of '{Name}' not found", this));
         return Runtime.Definitions[this].Match(node);
     }
 

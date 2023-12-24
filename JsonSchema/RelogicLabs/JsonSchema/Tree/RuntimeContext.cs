@@ -3,6 +3,7 @@ using RelogicLabs.JsonSchema.Functions;
 using RelogicLabs.JsonSchema.Message;
 using RelogicLabs.JsonSchema.Types;
 using static RelogicLabs.JsonSchema.Message.ErrorCode;
+using static RelogicLabs.JsonSchema.Message.MessageFormatter;
 
 namespace RelogicLabs.JsonSchema.Tree;
 
@@ -32,8 +33,8 @@ public sealed class RuntimeContext
     public JDefinition AddDefinition(JDefinition definition)
     {
         if(Definitions.TryGetValue(definition.Alias, out var previous))
-            throw new DuplicateDefinitionException(MessageFormatter.FormatForSchema(
-                DEFI01, $"Duplicate definition of {definition.Alias
+            throw new DuplicateDefinitionException(FormatForSchema(DEFI01,
+                $"Duplicate definition of {definition.Alias
                 } is found and already defined as {previous.GetOutline()}",
                 definition));
         Definitions.Add(definition.Alias, definition.Validator);
@@ -42,14 +43,6 @@ public sealed class RuntimeContext
 
     internal bool AreEqual(double value1, double value2)
         => Math.Abs(value1 - value2) < Pragmas.FloatingPointTolerance;
-
-    internal T TryExecute<T>(Func<T> function) => Exceptions.TryExecute(function);
-    internal bool FailWith(Exception exception)
-    {
-        Exceptions.TryThrow(exception);
-        Exceptions.TryAdd(exception);
-        return false;
-    }
 
     public bool AddValidator(FutureValidator validator)
         => Validators.TryAdd(Guid.NewGuid().ToString(), validator);

@@ -48,19 +48,6 @@ public sealed class JProperty : JBranch, IKeyed<string>
 
     public override int GetHashCode() => HashCode.Combine(Key, Value);
     public override string ToString() => $"{Key.Quote()}: {Value}";
-    public string GetKey() => Key;
-    public string GetPropertyKey() => Key;
-    public JNode GetPropertyValue() => Value;
-
-    internal static IEnumerable<JProperty> CheckForDuplicate(IList<JProperty> properties, string errorCode)
-    {
-        var group = properties.GroupBy(p => p.Key).FirstOrDefault(g => g.Count() > 1);
-        if(group == default) return properties;
-        JProperty property = group.First();
-        throw new DuplicatePropertyKeyException(MessageFormatter.FormatForJson(
-            errorCode, $"Multiple key with name {property.Key.Quote()} found",
-            property.Context));
-    }
 
     internal new class Builder : JNode.Builder
     {

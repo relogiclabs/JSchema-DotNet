@@ -2,5 +2,5 @@ namespace RelogicLabs.JsonSchema.Collections;
 
 public interface IKeyed<out TK>
 {
-    TK GetKey();
+    TK Key { get; }
 }

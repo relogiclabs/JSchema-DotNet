@@ -123,8 +123,8 @@ Here is the error as displayed in the console. More specific errors will be list
 Schema (Line: 6:47) Json (Line: 3:30) [DTYP04]: Data type mismatch. Data type #integer is expected but found #string inferred by "not number".
 Schema (Line: 6:30) Json (Line: 3:30) [FUNC03]: Function @range(1, 10000) is incompatible with the target data type. Applying to a supported data type such as #number is expected but applied to an unsupported data type #string of "not number".
 Schema (Line: 8:36) Json (Line: 4:36) [REGX01]: Regex pattern does not match. String of pattern "[a-z_]{3,30}" is expected but found "john doe" that mismatches with pattern.
-Schema (Line: 5:28) Json (Line: 2:28) [VALD01]: Validation failed. Value {"id": @range(1, 10000) #integer, "username": @regex("[a-z_]{3,30}") #string, "role": "user" #string, "isActive": #boolean, "register...ing, "country": @regex("[A-Za-z ]{3,50}") #string} #object #null}} is expected but found {"id": "not number", "username": "john doe", "role": "user", "isActive": true, "registeredAt": "2023-09-06T15:10:30.639Z", "profile":...: "123 Some St", "city": "Some town", "country": "Some Country"}}}.
-Schema (Line: 4:16) Json (Line: 1:0) [VALD01]: Validation failed. Value {"user": {"id": @range(1, 10000) #integer, "username": @regex("[a-z_]{3,30}") #string, "role": "user" #string, "isActive": #boolean, ...ng, "country": @regex("[A-Za-z ]{3,50}") #string} #object #null}}} is expected but found {"user": {"id": "not number", "username": "john doe", "role": "user", "isActive": true, "registeredAt": "2023-09-06T15:10:30.639Z", "... "123 Some St", "city": "Some town", "country": "Some Country"}}}}.
+Schema (Line: 5:28) Json (Line: 2:28) [VALD01]: Validation failed. A valid value of {"id": @range(1, 10000) #integer, "username": @regex("[a-z_]{3,30}") #string, "role": "user" #string, "isActive": #boolean, "register...ing, "country": @regex("[A-Za-z ]{3,50}") #string} #object #null}} is expected but found {"id": "not number", "username": "john doe", "role": "user", "isActive": true, "registeredAt": "2023-09-06T15:10:30.639Z", "profile":...: "123 Some St", "city": "Some town", "country": "Some Country"}}}.
+Schema (Line: 4:16) Json (Line: 1:0) [VALD01]: Validation failed. A valid value of {"user": {"id": @range(1, 10000) #integer, "username": @regex("[a-z_]{3,30}") #string, "role": "user" #string, "isActive": #boolean, ...ng, "country": @regex("[A-Za-z ]{3,50}") #string} #object #null}}} is expected but found {"user": {"id": "not number", "username": "john doe", "role": "user", "isActive": true, "registeredAt": "2023-09-06T15:10:30.639Z", "... "123 Some St", "city": "Some town", "country": "Some Country"}}}}.
 ```
 
 ## Assertion for Validation
@@ -146,11 +146,7 @@ RelogicLabs.JsonSchema.Exceptions.JsonSchemaException: DTYP04: Data type mismatc
 Expected (Schema Line: 6:47): data type #integer
 Actual (Json Line: 3:30): found #string inferred by "not number"
 
-   at RelogicLabs.JsonSchema.Tree.RuntimeContext.FailWith(Exception exception)
-   at RelogicLabs.JsonSchema.Types.JNode.FailWith(Exception exception)
-   at RelogicLabs.JsonSchema.Types.JDataType.MatchForReport(JNode node, Boolean nested)
-   at RelogicLabs.JsonSchema.Types.JValidator.<>c__DisplayClass15_0.<MatchDataType>b__2(JDataType d)
-   at RelogicLabs.JsonSchema.Utilities.CollectionExtensions.ForEach[T](IEnumerable`1 enumeration, Action`1 action)
+   at RelogicLabs.JsonSchema.Tree.ExceptionRegistry.FailWith(Exception exception)
    at RelogicLabs.JsonSchema.Types.JValidator.MatchDataType(JNode node)
    at RelogicLabs.JsonSchema.Types.JValidator.Match(JNode node)
    at RelogicLabs.JsonSchema.Types.JObject.Match(JNode node)
@@ -158,7 +154,9 @@ Actual (Json Line: 3:30): found #string inferred by "not number"
    at RelogicLabs.JsonSchema.Types.JObject.Match(JNode node)
    at RelogicLabs.JsonSchema.Types.JValidator.Match(JNode node)
    at RelogicLabs.JsonSchema.Types.JRoot.Match(JNode node)
-   at RelogicLabs.JsonSchema.JsonAssert.IsValid(String schemaExpected, String jsonActual)
+   at RelogicLabs.JsonSchema.Tree.SchemaTree.Match(IDataTree dataTree)
+   at RelogicLabs.JsonSchema.JsonAssert.IsValid(String json)
+   at RelogicLabs.JsonSchema.JsonAssert.IsValid(String schema, String json)
    at CSharpApplication.SampleSchema.CheckIsValid() in /SampleSchema.cs:line 62
 ```
 For more information about the schema syntax format and library functionalities, please refer to the reference documentation [here](/JsonSchema-DotNet/api/index.html).
