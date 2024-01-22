@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Reusable Components | Json Schema </title>
+      <title>Schema Components | Json Schema </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Reusable Components | Json Schema ">
+      <meta name="title" content="Schema Components | Json Schema ">
       
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
@@ -84,10 +84,11 @@
         </div>
 
         <article data-uid="">
-<h1 id="reusable-components">Reusable Components</h1>
+<h1 id="schema-components">Schema Components</h1>
 
-<p>A schema component, also known as a reusable schema fragment or sub-schema, plays a vital role in improving readability, reducing redundancy, and organizing the structure of a Schema document. In JSON validation, a schema component or fragment defines a validation rule that can be recursively composed of multiple nested validation rules, collectively specifying the expected and valid format of a JSON structure.</p>
-<p>These schema components are utilized as extensions of data type validation, as basic data types have a very limited ability to validate the internal structure of a composite JSON value or construct. Therefore, a data type is parameterized with a component to validate the internal structure of such composite JSON constructs. Moreover, schema components can be referenced from any other part of the Schema document, effectively reducing redundancy and enhancing reusability. The following example defines a simple schema component named <code>$component</code> where the validation rule describes an object structure with two key-value pairs:</p>
+<p>A schema component, also known as a reusable schema fragment or sub-schema, plays a vital role in improving readability, reducing redundancy, and organizing the structure of a Schema document. In JSON validation, a schema component or fragment defines a validation rule that can be recursively composed of multiple nested validation rules, collectively specifying the expected and valid format of a JSON construct.</p>
+<p>These schema components are used as an extension of data type validation, as core data types have limited features to validate the internal structure of a composite JSON value or construct. Therefore, a data type is parameterized with a schema component to validate the internal structure of such composite JSON constructs.</p>
+<p>The name or alias of a schema component always starts with <code>$</code> which also refers to the fact that they are named schema components or fragments defined elsewhere in the schema. Schema components can be referenced from any other part of the schema document, effectively reducing redundancy and enhancing reusability and readability. The following example defines a simple schema component named <code>$component</code> where the validation rule describes an object structure with two key-value pairs:</p>
 <pre><code class="lang-js">%define $component: { &quot;key1&quot;: #integer, &quot;key2&quot;: #string }
 </code></pre>
 <p>A composite JSON construct is created by combining multiple values as defined by the JSON specification. These nested values can range from simple, like numbers or strings, to more complex, such as arrays or objects. While simple nested values of a composite construct can be validated using only nested data types and functions, handling hierarchical composite constructs with multiple layers of nested structures requires defining schema components.</p>
@@ -128,7 +129,8 @@
 
 %schema: @length(1, 10) #object*($article) #array
 </code></pre>
-<p>In practical scenarios, JSON arrays often hold multiple composite JSON constructs as elements, typically sharing a recurring pattern and structure similar to the example above. To facilitate the validation of such elements, using schema components is highly effective. By defining a reusable schema component, one can improve readability, conciseness, and organization of the Schema document with such recurring structures. For instance, consider the following example of a JSON document which is valid against the Schema example above:</p>
+<p>In practical scenarios, JSON arrays often hold multiple composite JSON constructs as elements, typically sharing a recurring pattern and structure similar to the example above. To facilitate the validation of such elements, using schema components is highly effective.</p>
+<p>By defining a reusable schema component with a clear and descriptive name, one can improve the overall clarity and readability of the Schema document with recurring structures. This clarity not only makes it easier to understand the structure and intent of the schema but also contributes to keeping your complex schema well-organized, concise, and more manageable. For instance, consider the following example of a JSON document which is valid against the schema example provided above, demonstrating the usage of a schema component:</p>
 <pre><code class="lang-js">[
     {
         &quot;id&quot;: 1,

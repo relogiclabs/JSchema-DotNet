@@ -8,10 +8,10 @@
         <AssemblyName>RelogicLabs.JsonSchema</AssemblyName>
         <Authors>Relogic Labs</Authors>
         <Company>Relogic Labs</Company>
-        <Version>1.12.0</Version>
-        <PackageVersion>1.12.0</PackageVersion>
-        <AssemblyVersion>1.12.0</AssemblyVersion>
-        <PackageTags>JsonSchema;Schema;Json;Validation;Assert;Test</PackageTags>
+        <Version>1.12.1</Version>
+        <PackageVersion>1.12.1</PackageVersion>
+        <AssemblyVersion>1.12.1</AssemblyVersion>
+        <PackageTags>JSchema;JsonSchema;Schema;Json;Validation;Assert;Test</PackageTags>
         <Copyright>Copyright © Relogic Labs. All rights reserved.</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
         <TargetFrameworks>net5.0;net6.0;net7.0;net8.0</TargetFrameworks>

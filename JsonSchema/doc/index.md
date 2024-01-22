@@ -1,5 +1,7 @@
 # Introduction
-JSON, short for JavaScript Object Notation, is one of the most widely used data exchange formats that are both user-friendly and machine-readable. New JSON Schema is a practical tool for defining and validating the structure of JSON documents. It allows you to specify the expected format, data types, and constraints of JSON data. The following guides offer comprehensive details about the New JSON Schema. This document provides a list of links, each corresponding to a specific detail document available in this project.
+The New JSON Schema prioritizes simplicity, conciseness, and readability, making it intuitive and accessible without the need for extensive prior knowledge. It offers efficient read-write facilities, precise JSON document definition through various data types and functions, and extensibility to meet modern web service diverse requirements.
+
+JSON, short for JavaScript Object Notation, is one of the most widely used data exchange formats that are both user-friendly and machine-readable. New JSON Schema is a practical tool for defining and validating the structure of JSON documents. The following guides offer comprehensive details about the New JSON Schema. This document provides a list of links, each corresponding to a specific detail document available in this project.
 <br/>
 <br/>
 
@@ -17,7 +19,7 @@ JSON, short for JavaScript Object Notation, is one of the most widely used data 
 
  * <font size="4">[Date & Time Patterns](/JSchema-DotNet/articles/datetime.html)</font>
 
- * <font size="4">[Reusable Components of Validation](/JSchema-DotNet/articles/components.html)</font>
+ * <font size="4">[Defining Schema Components](/JSchema-DotNet/articles/components.html)</font>
 
  * <font size="4">[Build from Source Code](/JSchema-DotNet/articles/sourcebuild.html)</font>
 
