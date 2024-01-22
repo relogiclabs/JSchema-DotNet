@@ -31,16 +31,18 @@ A JSON Schema ensures the correctness and consistency of JSON documents, and it 
 | 11 | `Undefined`                                             | `!`                                                      |
 | 12 | `Undefined Optional`                                    | `! ?`                                                    |
 
-The syntax used in the 10th row of the table is valid, but not common in real-world scenarios. The constraint function and data type provide redundant validations, considering the validation for value is succeeded. It is generally recommended to specify the data type in all cases except in the previous scenario. Even though the functions may perform precise validations, they are typically designed to accept a broader range of data types. Therefore, specifying the data type not only makes the schema more unambiguous for readers, but also generates clear validation errors if the expected type of value is not received from the input document. For instance, the `@range` function is defined for all types of numeric input as well as dates and times. If you only accept integers for a particular field, the `@range` function without `#integer` data type cannot ensure this requirement.
+The syntax used in the 10th row of the table is valid, but not common in real-world scenarios. The constraint function and data type provide redundant validations, considering the validation for value is succeeded. It is generally recommended to specify the data type in all cases except in the previous scenario. Even though the functions may perform precise validations, they are typically designed to accept a broader range of data types.
 
-Now, let's explore the components of this notation and their functionalities. In the context of the validation rule, `Value` refers to a specific input JSON value of the document. This value can be either a composite value (e.g., an object or an array) or a primitive value (e.g., a string or a number).
+Therefore, specifying the data type not only makes the schema more definitive for readers, but also generates clear validation errors if the input document does not contain the expected value type. For instance, the `@range` function is defined for all types of numeric values as well as dates and times. If you only accept integers for a particular field, the `@range` function without `#integer` data type cannot ensure this requirement.
 
-The inclusion of `Value` in the validation rule is optional, meaning that you can choose whether or not to specify a particular JSON value for validation. However, when `Value` is present in the rule, it serves as a requirement, implying that the specified JSON value must match with the input JSON value of the document for the validation to succeed. If it does not match with the input value, the validation will fail.
+Now, let's explore the composition of this notation and its functionalities. In the context of the validation rule, `Value` refers to a specific input JSON value of the document. This value can be either a composite value (e.g., an object or an array) or a primitive value (e.g., a string or a number).
+
+The inclusion of `Value` in the validation rule is optional, meaning that you can choose whether or not to specify a particular JSON value for validation. However, when `Value` is present in the rule, it serves as a requirement, implying that the specified JSON value must match with the input JSON value of the document for the validation to succeed.
 
 The `Function-Set` is an optional part of the validation rule that can contain one or more function constraints. Function constraints are restrictions or conditions that validate the input JSON value. These functions can be of two types based on their application:
 
   1. Direct functions are applied directly to the target value itself for which the validation rule is defined.
-  2. Nested functions are applied to the nested values or items within the target value. They are applicable and valid only if the target value is a composite JSON value. An asterisk `*` is used after the function name to indicate that the constraint function is applied to the nested values.
+  2. Nested functions are applied to the nested values or nested components within the target value. They are applicable and valid only if the target value is a composite JSON value. An asterisk `*` is used after the function name to indicate that the constraint function is applied only to the nested values.
 
 The validation of the `Function-Set` as a whole is considered successful only if each function constraint within it succeeds, regardless of its type and application mode.
 
@@ -51,10 +53,10 @@ The validation of the `Function-Set` as a whole is considered successful only if
 | 3  | `@length(1, 15)`  | `"lorem"`; `"lorem ipsum"`   | `""`; `"lorem ipsum dolor"`      |
 | 4  | `@length*(1, 15)` | `["lorem", "lorem ipsum"]`   | `["lorem", "lorem ipsum dolor"]` |
 
-Similar to the `Function-Set`, the `Datatype-Set` is also an optional part of the validation rule and can contain one or more data type constraints. Data type constraints specify the expected data types that validate the input JSON value itself or its nested components, depending on whether the value is composite or primitive and whether its application mode is direct or nested. As like function constraints data types can be of two types based on their application:
+Similar to the `Function-Set`, the `Datatype-Set` is also an optional part of the validation rule and can contain one or more data type constraints. Data type constraints specify the expected data types that validate the input JSON value itself or its nested values, depending on whether the value is composite or primitive and whether its application mode is direct or nested. As like function constraints data types can be of two types based on their application:
 
   1. Direct data types are applied directly to the target value itself for which the validation rule is defined.
-  2. Nested data type applied to the nested values or items within the target value. They are applicable and valid only if the target value is a composite JSON value. An asterisk `*` is used after the data type name to indicate that the data type is applied to the nested values.
+  2. Nested data type applied to the nested values or nested components within the target value. They are applicable and valid only if the target value is a composite JSON value. An asterisk `*` is used after the data type name to indicate that the data type is applied only to the nested values.
 
 Validation of the `Datatype-Set` is deemed successful if validation is successful for one of the direct (type 1) data types and one of the nested (type 2) data types. This becomes particularly relevant in several real-world scenarios including those where a composite target value, such as an array or object, is also allowed to be null.
 
@@ -68,14 +70,14 @@ Validation of the `Datatype-Set` is deemed successful if validation is successfu
 | 6  | `#array #null`             | `[10, 20, 30]`; `null`       | `10`; `100.5`; `"lorem"`            |
 | 7  | `#integer* #float* #array` | `[10, 10.5, 100]`            | `[10, "lorem", false, null]`        |
 
-When defining nested types for values or elements for a composite type, it is good practice to also define the direct type (eg. `#array` and `#object`) that not only makes the schema more convenient for readers but also generates more straightforward validation errors if they occur, but it is optional. Moreover, each nested value must belong to one of the nested types specified in a validation rule.
+When defining nested types for values or elements of a composite type, it is recommended to also define the direct type (eg. `#array` and `#object`) that not only makes the schema more convenient for readers but also generates more straightforward validation errors if they occur, but it is optional. Moreover, each nested value must belong to one of the nested types specified in the validation rule for the validation to succeed.
 
 The `Receiver-Set` is also an optional part of the validation rule, and it can consist of one or more receivers. A receiver is identified by its name always prefixed by `&` and can receive or store the input JSON values of that position. A validation function can accept receivers and validate input based on the received values of the receivers. 
 
 Moreover, one receiver can be used in multiple validation rules and one validation rule can contain multiple receivers. This flexibility facilitates the organization and utilization of receivers in a more coherent and readable manner in a schema. Depending on its position a receiver can receive zero or more JSON input values. For instance, if a receiver is placed inside a common element section of an array, it will receive zero value if the array is empty and many values if it contains many elements.
 
-The `Optional` marker, denoted as `?`, specifies that the presence of the target value is optional within the input JSON document. When `Optional` is specified, it indicates that the target value may or may not be present. If it is absent, no validation is performed for that specific target value, and the JSON document is considered valid.
+The `Optional` marker, denoted as `?`, specifies that the presence of the target value is optional within the input JSON document. If the target value is absent, no validation is performed, and the JSON document is considered valid.
 
-However, if the target value is present, the validation rule must succeed for the document to be considered valid and conform to the Schema. Failure to meet the validation rule renders the JSON document invalid. The absence of the `Optional` specifier requires the target JSON value to be present in the input JSON document for validation to succeed.
+However, if the target value is present, the validation rule must succeed for the document to be considered valid and conform to the Schema. The absence of the `Optional` specifier requires the target JSON value to be present in the input JSON document for validation to succeed.
 
-In instances where no validation rule (or no segments of the validation rule) is explicitly defined for a target input JSON value, the use of the undefined marker `!` signifies that any valid JSON value is acceptable for the target. This allows more flexibility in JSON data validation for specific cases.
+In instances where no validation rule (or no parts of the validation rule) is explicitly defined for a target input JSON value, the use of the undefined marker `!` signifies that any valid JSON value is acceptable for the target. This allows more flexibility in JSON data validation for specific cases.

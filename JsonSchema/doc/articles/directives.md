@@ -62,11 +62,7 @@ The `IgnoreObjectPropertyOrder` pragma directive provides a means to enforce a s
 ```
 
 ## Definition / Define Directive
-This feature in JSON schemas allows you to define a name for a component or fragment of schema or validation rules, which can be referenced from various parts of your schema. This means that if you encounter similar validation requirements in different sections of your schema, you can conveniently refer to the named component instead of duplicating the same validation rules. 
-
-By providing clear and descriptive names for these validation rules or sub-schemas, you can enhance the overall clarity and context of your schema. This clarity not only makes it easier to understand the structure and intent of the schema but also contributes to keeping your complex schema well-organized, concise, and more manageable. For more information about the schema component syntax and format, please refer to the documentation [here](/JSchema-DotNet/articles/components.html).
-
-The name or alias of the directive is always start with `$` which also refers to that they are named fragment defined elsewhere in the schema. Here is a simple example of how to use this directive:
+This feature in JSON schemas allows you to define a name for a schema component or fragment, which can be referenced from various parts of your schema. This means that if you encounter similar validation requirements in different sections of your schema, you can conveniently refer to the named schema component instead of duplicating the same validation rules. For more information about the schema component syntax and format, please refer to the documentation [here](/JSchema-DotNet/articles/components.html). Here is a simple example of how to use this directive:
 ```stylus
 %define $product: {
     "id": @length(2, 10) @regex("[a-z][a-z0-9]+") #string,
