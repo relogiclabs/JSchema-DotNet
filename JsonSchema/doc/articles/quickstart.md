@@ -159,4 +159,4 @@ Actual (Json Line: 3:30): found #string inferred by "not number"
    at RelogicLabs.JsonSchema.JsonAssert.IsValid(String schema, String json)
    at CSharpApplication.SampleSchema.CheckIsValid() in /SampleSchema.cs:line 62
 ```
-For more information about the schema syntax format and library functionalities, please refer to the reference documentation [here](/JsonSchema-DotNet/api/index.html).
+For more information about the schema syntax format and library functionalities, please refer to the reference documentation [here](/JSchema-DotNet/api/index.html).

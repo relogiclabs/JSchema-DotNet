@@ -21,7 +21,7 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>icon.png</PackageIcon>
         <PackageProjectUrl>https://www.relogiclabs.com/p/json-schema.html</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/relogiclabs/JsonSchema-DotNet.git</RepositoryUrl>
+        <RepositoryUrl>https://github.com/relogiclabs/JSchema-DotNet.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <RepositoryBranch>master</RepositoryBranch>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>

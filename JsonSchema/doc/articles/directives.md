@@ -38,13 +38,13 @@ The default value of this directive is `false`, which means that by default, und
 ```
 
 ### Date Data Type Format
-The `DateDataTypeFormat` pragma directive enables you to customize the default format of the `#date` data type. By default, the `#date` data type follows the ISO 8601 standard, precisely using the format `YYYY-MM-DD`. Additional details on date-time patterns and formats are available [here](/JsonSchema-DotNet/articles/datetime.html). The subsequent example illustrates the process of defining a customized date format for the `#date` data type:
+The `DateDataTypeFormat` pragma directive enables you to customize the default format of the `#date` data type. By default, the `#date` data type follows the ISO 8601 standard, precisely using the format `YYYY-MM-DD`. Additional details on date-time patterns and formats are available [here](/JSchema-DotNet/articles/datetime.html). The subsequent example illustrates the process of defining a customized date format for the `#date` data type:
 ```stylus
 %pragma DateDataTypeFormat: "DD-MM-YYYY"
 ```
 
 ### Time Data Type Format
-To customize the default format of the `#time` data type, utilize the `TimeDataTypeFormat` pragma directive. By default, the `#time` data type follows the ISO 8601 standard, precisely in the format `YYYY-MM-DD'T'hh:mm:ss.FZZ`. Further information on date-time patterns and formats can be found [here](/JsonSchema-DotNet/articles/datetime.html). The following example demonstrates how to specify a customized time format for the `#time` data type:
+To customize the default format of the `#time` data type, utilize the `TimeDataTypeFormat` pragma directive. By default, the `#time` data type follows the ISO 8601 standard, precisely in the format `YYYY-MM-DD'T'hh:mm:ss.FZZ`. Further information on date-time patterns and formats can be found [here](/JSchema-DotNet/articles/datetime.html). The following example demonstrates how to specify a customized time format for the `#time` data type:
 ```stylus
 %pragma TimeDataTypeFormat: "DD-MM-YYYY hh:mm:ss"
 ```
@@ -64,7 +64,7 @@ The `IgnoreObjectPropertyOrder` pragma directive provides a means to enforce a s
 ## Definition / Define Directive
 This feature in JSON schemas allows you to define a name for a component or fragment of schema or validation rules, which can be referenced from various parts of your schema. This means that if you encounter similar validation requirements in different sections of your schema, you can conveniently refer to the named component instead of duplicating the same validation rules. 
 
-By providing clear and descriptive names for these validation rules or sub-schemas, you can enhance the overall clarity and context of your schema. This clarity not only makes it easier to understand the structure and intent of the schema but also contributes to keeping your complex schema well-organized, concise, and more manageable. For more information about the schema component syntax and format, please refer to the documentation [here](/JsonSchema-DotNet/articles/components.html).
+By providing clear and descriptive names for these validation rules or sub-schemas, you can enhance the overall clarity and context of your schema. This clarity not only makes it easier to understand the structure and intent of the schema but also contributes to keeping your complex schema well-organized, concise, and more manageable. For more information about the schema component syntax and format, please refer to the documentation [here](/JSchema-DotNet/articles/components.html).
 
 The name or alias of the directive is always start with `$` which also refers to that they are named fragment defined elsewhere in the schema. Here is a simple example of how to use this directive:
 ```stylus

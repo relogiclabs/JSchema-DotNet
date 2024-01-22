@@ -3,26 +3,26 @@ JSON, short for JavaScript Object Notation, is one of the most widely used data 
 <br/>
 <br/>
 
- * <font size="4">[Getting Started & Installation](/JsonSchema-DotNet/articles/quickstart.html)</font>
+ * <font size="4">[Getting Started & Installation](/JSchema-DotNet/articles/quickstart.html)</font>
 
- * <font size="4">[Validation Syntax & Format](/JsonSchema-DotNet/articles/validation.html)</font>
+ * <font size="4">[Validation Syntax & Format](/JSchema-DotNet/articles/validation.html)</font>
 
- * <font size="4">[Validation Directives & Pragmas](/JsonSchema-DotNet/articles/directives.html)</font>
+ * <font size="4">[Validation Directives & Pragmas](/JSchema-DotNet/articles/directives.html)</font>
 
- * <font size="4">[Schema Specification & Grammar](/JsonSchema-DotNet/articles/specification.html)</font>
+ * <font size="4">[Schema Specification & Grammar](/JSchema-DotNet/articles/specification.html)</font>
 
- * <font size="4">[Data Types & Validation](/JsonSchema-DotNet/articles/datatypes.html)</font>
+ * <font size="4">[Data Types & Validation](/JSchema-DotNet/articles/datatypes.html)</font>
 
- * <font size="4">[Functions & Validation](/JsonSchema-DotNet/articles/functions.html)</font>
+ * <font size="4">[Functions & Validation](/JSchema-DotNet/articles/functions.html)</font>
 
- * <font size="4">[Date & Time Patterns](/JsonSchema-DotNet/articles/datetime.html)</font>
+ * <font size="4">[Date & Time Patterns](/JSchema-DotNet/articles/datetime.html)</font>
 
- * <font size="4">[Reusable Components of Validation](/JsonSchema-DotNet/articles/components.html)</font>
+ * <font size="4">[Reusable Components of Validation](/JSchema-DotNet/articles/components.html)</font>
 
- * <font size="4">[Build from Source Code](/JsonSchema-DotNet/articles/sourcebuild.html)</font>
+ * <font size="4">[Build from Source Code](/JSchema-DotNet/articles/sourcebuild.html)</font>
 
- * <font size="4">[API Reference Documentation](/JsonSchema-DotNet/api/index.html)</font>
+ * <font size="4">[API Reference Documentation](/JSchema-DotNet/api/index.html)</font>
 
- * <font size="4">[GitHub Source Code Repository](https://github.com/relogiclabs/JsonSchema-DotNet)</font>
+ * <font size="4">[GitHub Source Code Repository](https://github.com/relogiclabs/JSchema-DotNet)</font>
 
 <br/>

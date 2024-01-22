@@ -173,12 +173,12 @@ Validates whether the `target` string is a valid phone number. It follows the IT
 ```stylus
 #string target - @date(pattern)
 ```
-Validates that the `target` string matches the date and time pattern specified by the `pattern` parameter. It fully supports the ISO 8601 date and time format. Beyond this standard, it also allows custom date and time formats, ensuring compatibility with various systems and meeting diverse users and businesses requirements. This [document](/JsonSchema-DotNet/articles/datetime.html) provides a comprehensive overview of the date-time custom patterns.
+Validates that the `target` string matches the date and time pattern specified by the `pattern` parameter. It fully supports the ISO 8601 date and time format. Beyond this standard, it also allows custom date and time formats, ensuring compatibility with various systems and meeting diverse users and businesses requirements. This [document](/JSchema-DotNet/articles/datetime.html) provides a comprehensive overview of the date-time custom patterns.
 
 ```
 #string target - @time(pattern)
 ```
-Both the `@date` and `@time` functions support a complete range of date-time patterns, enabling the precise definition of any date and time scenario. Therefore, these functions can be used interchangeably. When the sole consideration is the date or day of the month in a year, employing the `@date` function is the more convenient choice. In contrast, when it becomes necessary to specify a particular time on a date, the `@time` function is the more appropriate option. To learn more about date-time patterns, please refer to [this page](/JsonSchema-DotNet/articles/datetime.html).
+Both the `@date` and `@time` functions support a complete range of date-time patterns, enabling the precise definition of any date and time scenario. Therefore, these functions can be used interchangeably. When the sole consideration is the date or day of the month in a year, employing the `@date` function is the more convenient choice. In contrast, when it becomes necessary to specify a particular time on a date, the `@time` function is the more appropriate option. To learn more about date-time patterns, please refer to [this page](/JSchema-DotNet/articles/datetime.html).
 
 ### Date and Time Range
 ```stylus

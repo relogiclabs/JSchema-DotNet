@@ -4,7 +4,7 @@ This comprehensive guide illustrates the procedures for retrieving source code f
 ## Build the Library
 To get started, clone the project from the following URL using your preferred Git client (command line or GUI). You can open a terminal and enter the following Git clone command as shown below:
 ```shell
-git clone https://github.com/relogiclabs/JsonSchema-DotNet.git
+git clone https://github.com/relogiclabs/JSchema-DotNet.git
 ```
 Next, use .NET build command `dotnet build` to build the project and Retrieve the DLL file, `RelogicLabs.JsonSchema.dll` from the `bin` folder.
 
@@ -166,4 +166,4 @@ Actual (Json Line: 3:30): found #string inferred by "not number"
    at RelogicLabs.JsonSchema.JsonAssert.IsValid(String schema, String json)
    at CSharpApplication.SampleSchema.CheckIsValid() in /SampleSchema.cs:line 62
 ```
-For more information about the schema syntax format and library functionalities, please refer to the reference documentation [here](/JsonSchema-DotNet/api/index.html).
+For more information about the schema syntax format and library functionalities, please refer to the reference documentation [here](/JSchema-DotNet/api/index.html).
