@@ -1,11 +1,11 @@
-using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Message;
-using RelogicLabs.JsonSchema.Time;
-using RelogicLabs.JsonSchema.Types;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
-using static RelogicLabs.JsonSchema.Time.DateTimeType;
+using RelogicLabs.JSchema.Exceptions;
+using RelogicLabs.JSchema.Message;
+using RelogicLabs.JSchema.Time;
+using RelogicLabs.JSchema.Nodes;
+using static RelogicLabs.JSchema.Message.ErrorCode;
+using static RelogicLabs.JSchema.Time.DateTimeType;
 
-namespace RelogicLabs.JsonSchema.Functions;
+namespace RelogicLabs.JSchema.Functions;
 
 public sealed partial class CoreFunctions
 {
@@ -16,7 +16,7 @@ public sealed partial class CoreFunctions
         => DateTime(target, pattern, TIME_TYPE);
 
     private bool DateTime(JString target, JString pattern, DateTimeType type)
-        => new DateTimeAgent(pattern, type).Parse(Function, target) is not null;
+        => new DateTimeAgent(pattern, type).Parse(Caller, target) is not null;
 
     public bool Before(JDateTime target, JString reference)
     {
@@ -25,7 +25,7 @@ public sealed partial class CoreFunctions
         if(target.DateTime.Compare(dateTime.DateTime) < 0) return true;
         var type = target.DateTime.Type;
         var code = type == DATE_TYPE ? BFOR01 : BFOR02;
-        return FailWith(new JsonSchemaException(
+        return Fail(new JsonSchemaException(
             new ErrorDetail(code, $"{type} is not earlier than specified"),
             new ExpectedDetail(reference, $"a {type} before {reference}"),
             new ActualDetail(target, $"found {target} which is not inside limit")
@@ -39,7 +39,7 @@ public sealed partial class CoreFunctions
         if(target.DateTime.Compare(dateTime.DateTime) > 0) return true;
         var type = target.DateTime.Type;
         var code = type == DATE_TYPE ? AFTR01 : AFTR02;
-        return FailWith(new JsonSchemaException(
+        return Fail(new JsonSchemaException(
             new ErrorDetail(code, $"{type} is not later than specified"),
             new ExpectedDetail(reference, $"a {type} after {reference}"),
             new ActualDetail(target, $"found {target} which is not inside limit")
@@ -59,14 +59,13 @@ public sealed partial class CoreFunctions
         return true;
     }
 
-    private static string GetErrorCode(JDateTime target, string date, string time) {
-        return target.DateTime.Type == DATE_TYPE ? date : time;
-    }
+    private static string GetErrorCode(JDateTime target, string date, string time)
+        => target.DateTime.Type == DATE_TYPE ? date : time;
 
     private bool FailOnStartDate(JDateTime target, JDateTime start, string code)
     {
         var type = target.DateTime.Type;
-        return FailWith(new JsonSchemaException(
+        return Fail(new JsonSchemaException(
             new ErrorDetail(code, $"{type} is earlier than start {type}"),
             new ExpectedDetail(start, $"a {type} from or after {start}"),
             new ActualDetail(target, $"found {target} which is before start {type}")
@@ -76,7 +75,7 @@ public sealed partial class CoreFunctions
     private bool FailOnEndDate(JDateTime target, JDateTime end, string code)
     {
         var type = target.DateTime.Type;
-        return FailWith(new JsonSchemaException(
+        return Fail(new JsonSchemaException(
             new ErrorDetail(code, $"{type} is later than end {type}"),
             new ExpectedDetail(end, $"a {type} until or before {end}"),
             new ActualDetail(target, $"found {target} which is after end {type}")
@@ -107,7 +106,7 @@ public sealed partial class CoreFunctions
         {
             var type = target.DateTime.Type;
             var code = type == DATE_TYPE ? STRT01 : STRT02;
-            return FailWith(new JsonSchemaException(
+            return Fail(new JsonSchemaException(
                 new ErrorDetail(code, $"{type} is earlier than specified"),
                 new ExpectedDetail(dateTime, $"a {type} from or after {dateTime}"),
                 new ActualDetail(target, $"found {target} which is before limit")
@@ -124,7 +123,7 @@ public sealed partial class CoreFunctions
         {
             var type = target.DateTime.Type;
             var code = type == DATE_TYPE ? ENDE01 : ENDE02;
-            return FailWith(new JsonSchemaException(
+            return Fail(new JsonSchemaException(
                 new ErrorDetail(code, $"{type} is later than specified"),
                 new ExpectedDetail(dateTime, $"a {type} until or before {dateTime}"),
                 new ActualDetail(target, $"found {target} which is after limit")
@@ -137,7 +136,7 @@ public sealed partial class CoreFunctions
     {
         if(dateTime.Derived is JDateTime _result
            && _result.DateTime.Type == parser.Type) return _result;
-        var _dateTime = new DateTimeAgent(parser).Parse(Function, dateTime);
+        var _dateTime = new DateTimeAgent(parser).Parse(Caller, dateTime);
         if(_dateTime is null) return null;
         dateTime.Derived = _dateTime.CreateNode(dateTime);
         return (JDateTime) dateTime.Derived;

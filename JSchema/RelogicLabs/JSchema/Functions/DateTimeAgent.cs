@@ -1,9 +1,9 @@
-using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Message;
-using RelogicLabs.JsonSchema.Time;
-using RelogicLabs.JsonSchema.Types;
+using RelogicLabs.JSchema.Exceptions;
+using RelogicLabs.JSchema.Message;
+using RelogicLabs.JSchema.Time;
+using RelogicLabs.JSchema.Nodes;
 
-namespace RelogicLabs.JsonSchema.Functions;
+namespace RelogicLabs.JSchema.Functions;
 
 internal class DateTimeAgent
 {
@@ -35,7 +35,7 @@ internal class DateTimeAgent
         }
         catch(DateTimeLexerException ex)
         {
-            exceptions.FailWith(new JsonSchemaException(
+            exceptions.Fail(new JsonSchemaException(
                 new ErrorDetail(ex.Code, ex.Message),
                 new ExpectedDetail(function, $"a valid {Type} pattern"),
                 new ActualDetail(dateTime, $"found {Pattern} that is invalid"),
@@ -43,7 +43,7 @@ internal class DateTimeAgent
         }
         catch(InvalidDateTimeException ex)
         {
-            exceptions.FailWith(new JsonSchemaException(
+            exceptions.Fail(new JsonSchemaException(
                 new ErrorDetail(ex.Code, ex.Message),
                 new ExpectedDetail(function, $"a valid {Type} formatted as {Pattern}"),
                 new ActualDetail(dateTime, $"found {dateTime} that is invalid or malformatted"),
