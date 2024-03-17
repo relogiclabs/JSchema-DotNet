@@ -1,8 +1,7 @@
-namespace RelogicLabs.JsonSchema.Exceptions;
+namespace RelogicLabs.JSchema.Exceptions;
 
 public class DateTimeLexerException : CommonException
 {
-    public DateTimeLexerException(string code, string message) : base(code, message) { }
-    public DateTimeLexerException(string code, string message, Exception? innerException) 
+    public DateTimeLexerException(string code, string message, Exception? innerException = null)
         : base(code, message, innerException) { }
 }

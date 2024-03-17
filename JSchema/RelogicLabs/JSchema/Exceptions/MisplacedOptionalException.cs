@@ -1,13 +1,11 @@
-using RelogicLabs.JsonSchema.Message;
+using RelogicLabs.JSchema.Message;
 
-namespace RelogicLabs.JsonSchema.Exceptions;
+namespace RelogicLabs.JSchema.Exceptions;
 
 public class MisplacedOptionalException : CommonException
 {
-    public MisplacedOptionalException(string code, string message) : base(code, message) { }
-    public MisplacedOptionalException(string code, string message, Exception? innerException)
+    public MisplacedOptionalException(string code, string message, Exception? innerException = null)
         : base(code, message, innerException) { }
-    public MisplacedOptionalException(ErrorDetail detail) : base(detail) { }
-    public MisplacedOptionalException(ErrorDetail detail, Exception? innerException)
+    public MisplacedOptionalException(ErrorDetail detail, Exception? innerException = null)
         : base(detail, innerException) { }
 }

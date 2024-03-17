@@ -1,13 +1,11 @@
-using RelogicLabs.JsonSchema.Message;
+using RelogicLabs.JSchema.Message;
 
-namespace RelogicLabs.JsonSchema.Exceptions;
+namespace RelogicLabs.JSchema.Exceptions;
 
 public class PragmaNotFoundException : CommonException
 {
-    public PragmaNotFoundException(string code, string message) : base(code, message) { }
-    public PragmaNotFoundException(string code, string message, Exception? innerException)
+    public PragmaNotFoundException(string code, string message, Exception? innerException = null)
         : base(code, message, innerException) { }
-    public PragmaNotFoundException(ErrorDetail detail) : base(detail) { }
-    public PragmaNotFoundException(ErrorDetail detail, Exception? innerException)
+    public PragmaNotFoundException(ErrorDetail detail, Exception? innerException = null)
         : base(detail, innerException) { }
 }

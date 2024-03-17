@@ -1,13 +1,11 @@
-using RelogicLabs.JsonSchema.Message;
+using RelogicLabs.JSchema.Message;
 
-namespace RelogicLabs.JsonSchema.Exceptions;
+namespace RelogicLabs.JSchema.Exceptions;
 
 public class DuplicateDefinitionException : CommonException
 {
-    public DuplicateDefinitionException(string code, string message) : base(code, message) { }
-    public DuplicateDefinitionException(string code, string message, Exception? innerException)
+    public DuplicateDefinitionException(string code, string message, Exception? innerException = null)
         : base(code, message, innerException) { }
-    public DuplicateDefinitionException(ErrorDetail detail) : base(detail) { }
-    public DuplicateDefinitionException(ErrorDetail detail, Exception? innerException)
+    public DuplicateDefinitionException(ErrorDetail detail, Exception? innerException = null)
         : base(detail, innerException) { }
 }

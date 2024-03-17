@@ -1,13 +1,11 @@
-using RelogicLabs.JsonSchema.Message;
+using RelogicLabs.JSchema.Message;
 
-namespace RelogicLabs.JsonSchema.Exceptions;
+namespace RelogicLabs.JSchema.Exceptions;
 
 public class NoValueReceivedException : CommonException
 {
-    public NoValueReceivedException(string code, string message) : base(code, message) { }
-    public NoValueReceivedException(string code, string message, Exception? innerException)
+    public NoValueReceivedException(string code, string message, Exception? innerException = null)
         : base(code, message, innerException) { }
-    public NoValueReceivedException(ErrorDetail detail) : base(detail) { }
-    public NoValueReceivedException(ErrorDetail detail, Exception? innerException)
+    public NoValueReceivedException(ErrorDetail detail, Exception? innerException = null)
         : base(detail, innerException) { }
 }

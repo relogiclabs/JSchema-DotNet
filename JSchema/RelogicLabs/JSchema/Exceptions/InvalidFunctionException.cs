@@ -1,13 +1,11 @@
-using RelogicLabs.JsonSchema.Message;
+using RelogicLabs.JSchema.Message;
 
-namespace RelogicLabs.JsonSchema.Exceptions;
+namespace RelogicLabs.JSchema.Exceptions;
 
 public class InvalidFunctionException : CommonException
 {
-    public InvalidFunctionException(string code, string message) : base(code, message) { }
-    public InvalidFunctionException(string code, string message, Exception? innerException)
+    public InvalidFunctionException(string code, string message, Exception? innerException = null)
         : base(code, message, innerException) { }
-    public InvalidFunctionException(ErrorDetail detail) : base(detail) { }
-    public InvalidFunctionException(ErrorDetail detail, Exception? innerException)
+    public InvalidFunctionException(ErrorDetail detail, Exception? innerException = null)
         : base(detail, innerException) { }
 }

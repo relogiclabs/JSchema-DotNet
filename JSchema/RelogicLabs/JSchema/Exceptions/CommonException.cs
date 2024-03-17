@@ -1,24 +1,62 @@
-using RelogicLabs.JsonSchema.Message;
-using RelogicLabs.JsonSchema.Utilities;
+using RelogicLabs.JSchema.Message;
+using RelogicLabs.JSchema.Utilities;
 
-namespace RelogicLabs.JsonSchema.Exceptions;
+namespace RelogicLabs.JSchema.Exceptions;
 
 public class CommonException : Exception
 {
+    private const string ConstructorName = ".ctor";
+    private const string FailMethodPrefix = "Fail";
+    // Clear it to get complete stack trace
+    public static readonly HashSet<string> SkipModuleStackTrace = new(10);
     private Dictionary<string, string>? _attributes;
     public string Code { get; }
+    public override string? StackTrace { get; }
 
-    protected CommonException(string code, string message) : base(message)
-        => Code = code;
-    protected CommonException(string code, string message, Exception? innerException)
-        : base(message, innerException) => Code = code;
-    protected CommonException(ErrorDetail detail) : base(detail.Message)
-        => Code = detail.Code;
-    protected CommonException(ErrorDetail detail, Exception? innerException)
-        : base(detail.Message, innerException) => Code = detail.Code;
+    static CommonException()
+    {
+        SkipModuleStackTrace.Add("Microsoft.VisualStudio.TestPlatform.TestFramework.dll");
+        SkipModuleStackTrace.Add("Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll");
+    }
+
+    protected CommonException(string code, string message, Exception? innerException = null)
+        : base(message, innerException)
+    {
+        Code = code;
+        StackTrace = CaptureStackTrace();
+    }
+
+    protected CommonException(ErrorDetail detail, Exception? innerException = null)
+        : this(detail.Code, detail.Message, innerException) { }
 
     public string? GetAttribute(string name) => _attributes?.TryGetValue(name);
 
     public void SetAttribute(string name, string value)
         => (_attributes ??= new Dictionary<string, string>(5))[name] = value;
+
+    private static string CaptureStackTrace()
+    {
+        var stackTrace = new System.Diagnostics.StackTrace(3, true);
+        var frames = stackTrace.GetFrames();
+        var start = 0;
+        for(var i = start; i < frames.Length; i++)
+        {
+            if(frames[i].GetMethod()?.Name == ConstructorName) start++;
+            else break;
+        }
+        for(var i = start; i < frames.Length; i++)
+        {
+            if(frames[i].GetMethod()?.Name.StartsWith(FailMethodPrefix) ?? false) start++;
+            else break;
+        }
+        var end = start;
+        for(var i = start; i < frames.Length; i++)
+        {
+            if(!SkipModuleStackTrace.Contains(frames[i].GetMethod()?.Module.Name
+                                              ?? string.Empty)) end++;
+            else break;
+        }
+        var newLine = Environment.NewLine;
+        return string.Join(newLine, stackTrace.ToString().Split(newLine)[start..end]) + newLine;
+    }
 }

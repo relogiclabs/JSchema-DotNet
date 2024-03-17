@@ -1,13 +1,11 @@
-using RelogicLabs.JsonSchema.Message;
+using RelogicLabs.JSchema.Message;
 
-namespace RelogicLabs.JsonSchema.Exceptions;
+namespace RelogicLabs.JSchema.Exceptions;
 
 public class FunctionNotFoundException : CommonException
 {
-    public FunctionNotFoundException(string code, string message) : base(code, message) { }
-    public FunctionNotFoundException(string code, string message, Exception? innerException)
+    public FunctionNotFoundException(string code, string message, Exception? innerException = null)
         : base(code, message, innerException) { }
-    public FunctionNotFoundException(ErrorDetail detail) : base(detail) { }
-    public FunctionNotFoundException(ErrorDetail detail, Exception? innerException)
+    public FunctionNotFoundException(ErrorDetail detail, Exception? innerException = null)
         : base(detail, innerException) { }
 }

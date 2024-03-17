@@ -1,13 +1,11 @@
-using RelogicLabs.JsonSchema.Message;
+using RelogicLabs.JSchema.Message;
 
-namespace RelogicLabs.JsonSchema.Exceptions;
+namespace RelogicLabs.JSchema.Exceptions;
 
 public class DefinitionNotFoundException : CommonException
 {
-    public DefinitionNotFoundException(string code, string message) : base(code, message) { }
-    public DefinitionNotFoundException(string code, string message, Exception? innerException)
+    public DefinitionNotFoundException(string code, string message, Exception? innerException = null)
         : base(code, message, innerException) { }
-    public DefinitionNotFoundException(ErrorDetail detail) : base(detail) { }
-    public DefinitionNotFoundException(ErrorDetail detail, Exception? innerException)
+    public DefinitionNotFoundException(ErrorDetail detail, Exception? innerException = null)
         : base(detail, innerException) { }
 }

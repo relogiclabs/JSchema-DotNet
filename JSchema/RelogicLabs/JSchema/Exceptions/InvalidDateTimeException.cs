@@ -1,13 +1,11 @@
-using RelogicLabs.JsonSchema.Message;
+using RelogicLabs.JSchema.Message;
 
-namespace RelogicLabs.JsonSchema.Exceptions;
+namespace RelogicLabs.JSchema.Exceptions;
 
 public class InvalidDateTimeException : CommonException
 {
-    public InvalidDateTimeException(string code, string message) : base(code, message) { }
-    public InvalidDateTimeException(string code, string message, Exception? innerException)
+    public InvalidDateTimeException(string code, string message, Exception? innerException = null)
         : base(code, message, innerException) { }
-    public InvalidDateTimeException(ErrorDetail detail) : base(detail) { }
-    public InvalidDateTimeException(ErrorDetail detail, Exception? innerException)
+    public InvalidDateTimeException(ErrorDetail detail, Exception? innerException = null)
         : base(detail, innerException) { }
 }

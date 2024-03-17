@@ -1,13 +1,11 @@
-using RelogicLabs.JsonSchema.Message;
+using RelogicLabs.JSchema.Message;
 
-namespace RelogicLabs.JsonSchema.Exceptions;
+namespace RelogicLabs.JSchema.Exceptions;
 
 public class InvalidPragmaValueException : CommonException
 {
-    public InvalidPragmaValueException(string code, string message) : base(code, message) { }
-    public InvalidPragmaValueException(string code, string message, Exception? innerException)
+    public InvalidPragmaValueException(string code, string message, Exception? innerException = null)
         : base(code, message, innerException) { }
-    public InvalidPragmaValueException(ErrorDetail detail) : base(detail) { }
-    public InvalidPragmaValueException(ErrorDetail detail, Exception? innerException)
+    public InvalidPragmaValueException(ErrorDetail detail, Exception? innerException = null)
         : base(detail, innerException) { }
 }

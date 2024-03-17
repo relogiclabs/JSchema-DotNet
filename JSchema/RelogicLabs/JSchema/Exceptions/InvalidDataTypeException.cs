@@ -1,13 +1,11 @@
-using RelogicLabs.JsonSchema.Message;
+using RelogicLabs.JSchema.Message;
 
-namespace RelogicLabs.JsonSchema.Exceptions;
+namespace RelogicLabs.JSchema.Exceptions;
 
 public class InvalidDataTypeException : CommonException
 {
-    public InvalidDataTypeException(string code, string message) : base(code, message) { }
-    public InvalidDataTypeException(string code, string message, Exception? innerException)
+    public InvalidDataTypeException(string code, string message, Exception? innerException = null)
         : base(code, message, innerException) { }
-    public InvalidDataTypeException(ErrorDetail detail) : base(detail) { }
-    public InvalidDataTypeException(ErrorDetail detail, Exception? innerException)
+    public InvalidDataTypeException(ErrorDetail detail, Exception? innerException = null)
         : base(detail, innerException) { }
 }

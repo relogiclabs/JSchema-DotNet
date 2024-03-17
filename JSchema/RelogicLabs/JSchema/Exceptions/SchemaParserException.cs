@@ -1,8 +1,7 @@
-namespace RelogicLabs.JsonSchema.Exceptions;
+namespace RelogicLabs.JSchema.Exceptions;
 
 public class SchemaParserException : CommonException
 {
-    public SchemaParserException(string code, string message) : base(code, message) { }
-    public SchemaParserException(string code, string message, Exception? innerException) 
+    public SchemaParserException(string code, string message, Exception? innerException = null)
         : base(code, message, innerException) { }
 }

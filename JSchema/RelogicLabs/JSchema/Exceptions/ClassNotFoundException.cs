@@ -1,13 +1,11 @@
-using RelogicLabs.JsonSchema.Message;
+using RelogicLabs.JSchema.Message;
 
-namespace RelogicLabs.JsonSchema.Exceptions;
+namespace RelogicLabs.JSchema.Exceptions;
 
 public class ClassNotFoundException : CommonException
 {
-    public ClassNotFoundException(string code, string message) : base(code, message) { }
-    public ClassNotFoundException(string code, string message, Exception? innerException)
+    public ClassNotFoundException(string code, string message, Exception? innerException = null)
         : base(code, message, innerException) { }
-    public ClassNotFoundException(ErrorDetail detail) : base(detail) { }
-    public ClassNotFoundException(ErrorDetail detail, Exception? innerException)
+    public ClassNotFoundException(ErrorDetail detail, Exception? innerException = null)
         : base(detail, innerException) { }
 }
