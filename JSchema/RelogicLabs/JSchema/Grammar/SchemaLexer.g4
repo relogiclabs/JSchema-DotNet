@@ -1,74 +1,148 @@
 lexer grammar SchemaLexer;
 
-// Components
-TITLE: '%title';
-VERSION: '%version' -> pushMode(DIRECTIVE_VERSION1);
-INCLUDE: '%include';
-PRAGMA: '%pragma';
-DEFINE: '%define';
-SCHEMA: '%schema';
+// Sections
+TITLE : '%title';
+VERSION : '%version';
+IMPORT : '%import';
+PRAGMA : '%pragma';
+DEFINE : '%define';
+SCHEMA : '%schema';
+SCRIPT : '%script' -> pushMode(DIRECTIVE_SCRIPT1);
 
 // Keywords
-TRUE: 'true';
-FALSE: 'false';
-NULL: 'null';
+TRUE : 'true';
+FALSE : 'false';
+NULL : 'null';
 
 // Symbols
-COLON: ':';
-COMMA: ',';
-STAR: '*';
-LBRACE: '{';
-RBRACE: '}';
-LBRACKET: '[';
-RBRACKET: ']';
-LPAREN: '(';
-RPAREN: ')';
-OPTIONAL: '?';
-UNDEFINED: '!';
+COLON : ':';
+COMMA : ',';
+STAR : '*';
+LBRACE : '{';
+RBRACE : '}';
+LBRACKET : '[';
+RBRACKET : ']';
+LPAREN : '(';
+RPAREN : ')';
+OPTIONAL : '?';
+UNDEFINED : '!';
 
 // Identifiers
-IDENTIFIER: BASE_IDENTIFIER ('.' BASE_IDENTIFIER)*;
-ALIAS: '$' BASE_IDENTIFIER;
-DATATYPE: '#' ALPHA+;
-FUNCTION: '@' BASE_IDENTIFIER;
-RECEIVER: '&' BASE_IDENTIFIER;
+FULL_IDENTIFIER : IDENTIFIER ( '.' IDENTIFIER )*;
+ALIAS : '$' IDENTIFIER;
+DATATYPE : '#' ALPHA+;
+FUNCTION : '@' IDENTIFIER;
+RECEIVER : '&' IDENTIFIER;
 
-fragment BASE_IDENTIFIER: ALPHA ALPHANUMERIC*;
-fragment ALPHA: [A-Za-z_];
-fragment ALPHANUMERIC: [A-Za-z0-9_];
+fragment IDENTIFIER : ALPHA ALPHANUMERIC*;
+fragment ALPHA : [A-Za-z_];
+fragment ALPHANUMERIC : [A-Za-z0-9_];
 
 // String
-STRING: '"' (ESCAPE | SAFECODEPOINT)* '"';
-fragment ESCAPE: '\\' (["\\/bfnrt] | UNICODE);
-fragment UNICODE: 'u' HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT;
-fragment HEXDIGIT: [0-9a-fA-F];
-fragment SAFECODEPOINT: ~["\\\u0000-\u001F];
+STRING : '"' ( ESCAPE | SAFE_CODEPOINT )* '"';
+fragment ESCAPE : '\\' ( ["\\/bfnrt] | UNICODE );
+fragment UNICODE : 'u' HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT;
+fragment HEXDIGIT : [0-9a-fA-F];
+fragment SAFE_CODEPOINT : ~["\\\u0000-\u001F];
 
 // Numbers
-INTEGER: '-'? INTDIGIT;
-FLOAT: INTEGER ('.' DIGIT+);
-DOUBLE: INTEGER ('.' DIGIT+)? EXPONENT;
+INTEGER : '-'? INTDIGIT;
+FLOAT : INTEGER FRACTION;
+DOUBLE : INTEGER FRACTION? EXPONENT;
 
-fragment INTDIGIT: '0' | [1-9] DIGIT*;
-fragment EXPONENT: [eE] [+\-]? DIGIT+;
-fragment DIGIT: [0-9];
+fragment FRACTION : '.' DIGIT+;
+fragment INTDIGIT : '0' | [1-9] DIGIT*;
+fragment EXPONENT : [eE] [+\-]? DIGIT+;
+fragment DIGIT : [0-9];
 
-// Comments
-MULTILINE_COMMENT: MULTILINE_CMT -> channel(HIDDEN);
-LINE_COMMENT: LINE_CMT -> channel(HIDDEN);
+// Hidden Tokens
+WHITE_SPACE : [\n\r\t ]+ -> channel(HIDDEN);
+BLOCK_COMMENT : '/*' .*? '*/' -> channel(HIDDEN);
+LINE_COMMENT : '//' ~('\r' | '\n')* -> channel(HIDDEN);
 
-fragment MULTILINE_CMT: '/*' .*? '*/';
-fragment LINE_CMT: '//' ~('\r' | '\n')*;
+//---------------DIRECTIVE_SCRIPT1---------------
+mode DIRECTIVE_SCRIPT1;
 
-// Whitespace
-WHITE_SPACE: WHITE_SPC -> channel(HIDDEN);
-fragment WHITE_SPC: [\n\r\t ]+;
+// Keywords
+G_VAR : 'var';
+G_IF : 'if';
+G_ELSE : 'else';
+G_WHILE : 'while';
+G_FOR : 'for';
+G_FOREACH : 'foreach';
+G_IN : 'in';
+G_BREAK : 'break';
+G_CONSTRAINT : 'constraint';
+G_TARGET : 'target';
+G_CALLER : 'caller';
+G_SUBROUTINE : 'subroutine';
+G_TRYOF : 'tryof';
+G_THROW : 'throw';
+G_FUNCTION : 'function';
+G_RETURN : 'return';
+G_FUTURE : 'future';
+G_TRUE : 'true';
+G_FALSE : 'false';
+G_NULL : 'null';
+G_UNDEFINED : 'undefined';
 
-//---------------DIRECTIVE_VERSION1---------------
-mode DIRECTIVE_VERSION1;
+// Reserved Keywords
+G_THIS : 'this';
+G_NEW : 'new';
+G_CONTINUE : 'continue';
+G_DO : 'do';
+G_CONST : 'const';
+G_SWITCH : 'switch';
+G_CASE : 'case';
+G_IMPORT : 'import';
+G_CLASS : 'class';
+G_SUPER : 'super';
+G_DEFAULT : 'default';
 
-COLON1: ':';
-VERSION_NUMBER1: DIGIT+ ('.' DIGIT+)* -> popMode;
-WHITE_SPACE1: WHITE_SPC -> channel(HIDDEN);
-MULTILINE_COMMENT1: MULTILINE_CMT -> channel(HIDDEN);
-LINE_COMMENT1: LINE_CMT -> channel(HIDDEN);
+// Literals
+G_INTEGER : INTEGER;
+G_DOUBLE : INTEGER FRACTION? EXPONENT?;
+G_STRING : STRING;
+G_IDENTIFIER : IDENTIFIER;
+
+// Separator Symbols
+G_LBRACE : '{';
+G_RBRACE : '}';
+G_LBRACKET : '[';
+G_RBRACKET : ']';
+G_LPAREN : '(';
+G_RPAREN : ')';
+G_SEMI : ';';
+G_COMMA : ',';
+G_DOT : '.';
+G_COLON : ':';
+G_RANGE : '..';
+G_ELLIPSIS : '...';
+
+// Operator Symbols
+G_ASSIGN : '=';
+G_INC : '++';
+G_DEC : '--';
+G_PLUS : '+';
+G_MINUS : '-';
+G_MUL : '*';
+G_DIV : '/';
+G_GT : '>';
+G_LT : '<';
+G_LE : '<=';
+G_GE : '>=';
+G_EQ : '==';
+G_NE : '!=';
+G_NOT : '!';
+G_AND : '&&';
+G_OR : '||';
+
+// Next Sections
+DEFINE1 : '%define' -> type(DEFINE), popMode;
+SCHEMA1 : '%schema' -> type(SCHEMA), popMode;
+SCRIPT1 : '%script' -> type(SCRIPT);
+
+// Hidden Tokens
+WHITE_SPACE1 : WHITE_SPACE -> channel(HIDDEN);
+BLOCK_COMMENT1 : BLOCK_COMMENT -> channel(HIDDEN);
+LINE_COMMENT1 : LINE_COMMENT -> channel(HIDDEN);

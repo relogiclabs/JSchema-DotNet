@@ -10,16 +10,19 @@ RBRACE : '}';
 COMMA : ',';
 COLON : ':';
 
-STRING : '"' (ESCAPE | SAFECODEPOINT)* '"';
-fragment ESCAPE : '\\' ( ["\\/bfnrt] | UNICODE);
+// String
+STRING : '"' ( ESCAPE | SAFE_CODEPOINT )* '"';
+fragment ESCAPE : '\\' ( ["\\/bfnrt] | UNICODE );
 fragment UNICODE : 'u' HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT;
 fragment HEXDIGIT : [0-9a-fA-F];
-fragment SAFECODEPOINT : ~["\\\u0000-\u001F];
+fragment SAFE_CODEPOINT : ~["\\\u0000-\u001F];
 
-INTEGER : '-' ? INTDIGIT;
-FLOAT : INTEGER ('.' DIGIT+);
-DOUBLE : INTEGER ('.' DIGIT+)? EXPONENT;
+// Numbers
+INTEGER : '-'? INTDIGIT;
+FLOAT : INTEGER FRACTION;
+DOUBLE : INTEGER FRACTION? EXPONENT;
 
+fragment FRACTION : '.' DIGIT+;
 fragment INTDIGIT : '0' | [1-9] DIGIT*;
 fragment EXPONENT : [eE] [+\-]? DIGIT+;
 fragment DIGIT : [0-9];

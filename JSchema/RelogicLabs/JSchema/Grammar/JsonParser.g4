@@ -3,28 +3,28 @@ parser grammar JsonParser;
 options { tokenVocab = JsonLexer; }
 
 json
-    : value EOF
+    : valueNode EOF
     ;
 
-value
-    : primitive
-    | object
-    | array
+valueNode
+    : primitiveNode
+    | objectNode
+    | arrayNode
     ;
 
-object
-    : LBRACE (property (COMMA property)*)? RBRACE
+objectNode
+    : LBRACE ( propertyNode ( COMMA propertyNode )* )? RBRACE
     ;
 
-property
-    : STRING COLON value
+propertyNode
+    : STRING COLON valueNode
     ;
 
-array
-    : LBRACKET (value (COMMA value)*)? RBRACKET
+arrayNode
+    : LBRACKET ( valueNode ( COMMA valueNode )* )? RBRACKET
     ;
 
-primitive
+primitiveNode
     : TRUE          # PrimitiveTrue
     | FALSE         # PrimitiveFalse
     | STRING        # PrimitiveString
