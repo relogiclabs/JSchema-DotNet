@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
 // Unreachable code detected
 #pragma warning disable 0162
 // The variable '...' is assigned but its value is never used
@@ -18,7 +17,7 @@
 // Ambiguous reference in cref attribute
 #pragma warning disable 419
 
-namespace RelogicLabs.JsonSchema.Antlr {
+namespace RelogicLabs.JSchema.Antlr {
 using System;
 using System.IO;
 using System.Text;
@@ -38,10 +37,10 @@ internal partial class JsonParser : Parser {
 		TRUE=1, FALSE=2, NULL=3, LBRACKET=4, RBRACKET=5, LBRACE=6, RBRACE=7, COMMA=8,
 		COLON=9, STRING=10, INTEGER=11, FLOAT=12, DOUBLE=13, WHITE_SPACE=14;
 	public const int
-		RULE_json = 0, RULE_value = 1, RULE_object = 2, RULE_property = 3, RULE_array = 4,
-		RULE_primitive = 5;
+		RULE_json = 0, RULE_valueNode = 1, RULE_objectNode = 2, RULE_propertyNode = 3,
+		RULE_arrayNode = 4, RULE_primitiveNode = 5;
 	public static readonly string[] ruleNames = {
-		"json", "value", "object", "property", "array", "primitive"
+		"json", "valueNode", "objectNode", "propertyNode", "arrayNode", "primitiveNode"
 	};
 
 	private static readonly string[] _LiteralNames = {
@@ -85,8 +84,8 @@ internal partial class JsonParser : Parser {
 	}
 
 	public partial class JsonContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ValueContext value() {
-			return GetRuleContext<ValueContext>(0);
+		[System.Diagnostics.DebuggerNonUserCode] public ValueNodeContext valueNode() {
+			return GetRuleContext<ValueNodeContext>(0);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(JsonParser.Eof, 0); }
 		public JsonContext(ParserRuleContext parent, int invokingState)
@@ -110,7 +109,7 @@ internal partial class JsonParser : Parser {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 12;
-			value();
+			valueNode();
 			State = 13;
 			Match(Eof);
 			}
@@ -126,33 +125,33 @@ internal partial class JsonParser : Parser {
 		return _localctx;
 	}
 
-	public partial class ValueContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public PrimitiveContext primitive() {
-			return GetRuleContext<PrimitiveContext>(0);
+	public partial class ValueNodeContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public PrimitiveNodeContext primitiveNode() {
+			return GetRuleContext<PrimitiveNodeContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ObjectContext @object() {
-			return GetRuleContext<ObjectContext>(0);
+		[System.Diagnostics.DebuggerNonUserCode] public ObjectNodeContext objectNode() {
+			return GetRuleContext<ObjectNodeContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ArrayContext array() {
-			return GetRuleContext<ArrayContext>(0);
+		[System.Diagnostics.DebuggerNonUserCode] public ArrayNodeContext arrayNode() {
+			return GetRuleContext<ArrayNodeContext>(0);
 		}
-		public ValueContext(ParserRuleContext parent, int invokingState)
+		public ValueNodeContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_value; } }
+		public override int RuleIndex { get { return RULE_valueNode; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IJsonParserVisitor<TResult> typedVisitor = visitor as IJsonParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitValue(this);
+			if (typedVisitor != null) return typedVisitor.VisitValueNode(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public ValueContext value() {
-		ValueContext _localctx = new ValueContext(Context, State);
-		EnterRule(_localctx, 2, RULE_value);
+	public ValueNodeContext valueNode() {
+		ValueNodeContext _localctx = new ValueNodeContext(Context, State);
+		EnterRule(_localctx, 2, RULE_valueNode);
 		try {
 			State = 18;
 			ErrorHandler.Sync(this);
@@ -167,21 +166,21 @@ internal partial class JsonParser : Parser {
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 15;
-				primitive();
+				primitiveNode();
 				}
 				break;
 			case LBRACE:
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 16;
-				@object();
+				objectNode();
 				}
 				break;
 			case LBRACKET:
 				EnterOuterAlt(_localctx, 3);
 				{
 				State = 17;
-				array();
+				arrayNode();
 				}
 				break;
 			default:
@@ -199,36 +198,36 @@ internal partial class JsonParser : Parser {
 		return _localctx;
 	}
 
-	public partial class ObjectContext : ParserRuleContext {
+	public partial class ObjectNodeContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LBRACE() { return GetToken(JsonParser.LBRACE, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RBRACE() { return GetToken(JsonParser.RBRACE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public PropertyContext[] property() {
-			return GetRuleContexts<PropertyContext>();
+		[System.Diagnostics.DebuggerNonUserCode] public PropertyNodeContext[] propertyNode() {
+			return GetRuleContexts<PropertyNodeContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public PropertyContext property(int i) {
-			return GetRuleContext<PropertyContext>(i);
+		[System.Diagnostics.DebuggerNonUserCode] public PropertyNodeContext propertyNode(int i) {
+			return GetRuleContext<PropertyNodeContext>(i);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] COMMA() { return GetTokens(JsonParser.COMMA); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMMA(int i) {
 			return GetToken(JsonParser.COMMA, i);
 		}
-		public ObjectContext(ParserRuleContext parent, int invokingState)
+		public ObjectNodeContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_object; } }
+		public override int RuleIndex { get { return RULE_objectNode; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IJsonParserVisitor<TResult> typedVisitor = visitor as IJsonParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitObject(this);
+			if (typedVisitor != null) return typedVisitor.VisitObjectNode(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public ObjectContext @object() {
-		ObjectContext _localctx = new ObjectContext(Context, State);
-		EnterRule(_localctx, 4, RULE_object);
+	public ObjectNodeContext objectNode() {
+		ObjectNodeContext _localctx = new ObjectNodeContext(Context, State);
+		EnterRule(_localctx, 4, RULE_objectNode);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
@@ -241,7 +240,7 @@ internal partial class JsonParser : Parser {
 			if (_la==STRING) {
 				{
 				State = 21;
-				property();
+				propertyNode();
 				State = 26;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
@@ -251,7 +250,7 @@ internal partial class JsonParser : Parser {
 					State = 22;
 					Match(COMMA);
 					State = 23;
-					property();
+					propertyNode();
 					}
 					}
 					State = 28;
@@ -276,29 +275,29 @@ internal partial class JsonParser : Parser {
 		return _localctx;
 	}
 
-	public partial class PropertyContext : ParserRuleContext {
+	public partial class PropertyNodeContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(JsonParser.STRING, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COLON() { return GetToken(JsonParser.COLON, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ValueContext value() {
-			return GetRuleContext<ValueContext>(0);
+		[System.Diagnostics.DebuggerNonUserCode] public ValueNodeContext valueNode() {
+			return GetRuleContext<ValueNodeContext>(0);
 		}
-		public PropertyContext(ParserRuleContext parent, int invokingState)
+		public PropertyNodeContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_property; } }
+		public override int RuleIndex { get { return RULE_propertyNode; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IJsonParserVisitor<TResult> typedVisitor = visitor as IJsonParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitProperty(this);
+			if (typedVisitor != null) return typedVisitor.VisitPropertyNode(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public PropertyContext property() {
-		PropertyContext _localctx = new PropertyContext(Context, State);
-		EnterRule(_localctx, 6, RULE_property);
+	public PropertyNodeContext propertyNode() {
+		PropertyNodeContext _localctx = new PropertyNodeContext(Context, State);
+		EnterRule(_localctx, 6, RULE_propertyNode);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
@@ -307,7 +306,7 @@ internal partial class JsonParser : Parser {
 			State = 34;
 			Match(COLON);
 			State = 35;
-			value();
+			valueNode();
 			}
 		}
 		catch (RecognitionException re) {
@@ -321,36 +320,36 @@ internal partial class JsonParser : Parser {
 		return _localctx;
 	}
 
-	public partial class ArrayContext : ParserRuleContext {
+	public partial class ArrayNodeContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LBRACKET() { return GetToken(JsonParser.LBRACKET, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RBRACKET() { return GetToken(JsonParser.RBRACKET, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ValueContext[] value() {
-			return GetRuleContexts<ValueContext>();
+		[System.Diagnostics.DebuggerNonUserCode] public ValueNodeContext[] valueNode() {
+			return GetRuleContexts<ValueNodeContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ValueContext value(int i) {
-			return GetRuleContext<ValueContext>(i);
+		[System.Diagnostics.DebuggerNonUserCode] public ValueNodeContext valueNode(int i) {
+			return GetRuleContext<ValueNodeContext>(i);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] COMMA() { return GetTokens(JsonParser.COMMA); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMMA(int i) {
 			return GetToken(JsonParser.COMMA, i);
 		}
-		public ArrayContext(ParserRuleContext parent, int invokingState)
+		public ArrayNodeContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_array; } }
+		public override int RuleIndex { get { return RULE_arrayNode; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IJsonParserVisitor<TResult> typedVisitor = visitor as IJsonParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitArray(this);
+			if (typedVisitor != null) return typedVisitor.VisitArrayNode(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public ArrayContext array() {
-		ArrayContext _localctx = new ArrayContext(Context, State);
-		EnterRule(_localctx, 8, RULE_array);
+	public ArrayNodeContext arrayNode() {
+		ArrayNodeContext _localctx = new ArrayNodeContext(Context, State);
+		EnterRule(_localctx, 8, RULE_arrayNode);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
@@ -363,7 +362,7 @@ internal partial class JsonParser : Parser {
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 15454L) != 0)) {
 				{
 				State = 38;
-				value();
+				valueNode();
 				State = 43;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
@@ -373,7 +372,7 @@ internal partial class JsonParser : Parser {
 					State = 39;
 					Match(COMMA);
 					State = 40;
-					value();
+					valueNode();
 					}
 					}
 					State = 45;
@@ -398,21 +397,21 @@ internal partial class JsonParser : Parser {
 		return _localctx;
 	}
 
-	public partial class PrimitiveContext : ParserRuleContext {
-		public PrimitiveContext(ParserRuleContext parent, int invokingState)
+	public partial class PrimitiveNodeContext : ParserRuleContext {
+		public PrimitiveNodeContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_primitive; } }
+		public override int RuleIndex { get { return RULE_primitiveNode; } }
 
-		public PrimitiveContext() { }
-		public virtual void CopyFrom(PrimitiveContext context) {
+		public PrimitiveNodeContext() { }
+		public virtual void CopyFrom(PrimitiveNodeContext context) {
 			base.CopyFrom(context);
 		}
 	}
-	public partial class PrimitiveDoubleContext : PrimitiveContext {
+	public partial class PrimitiveDoubleContext : PrimitiveNodeContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DOUBLE() { return GetToken(JsonParser.DOUBLE, 0); }
-		public PrimitiveDoubleContext(PrimitiveContext context) { CopyFrom(context); }
+		public PrimitiveDoubleContext(PrimitiveNodeContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IJsonParserVisitor<TResult> typedVisitor = visitor as IJsonParserVisitor<TResult>;
@@ -420,9 +419,9 @@ internal partial class JsonParser : Parser {
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class PrimitiveFloatContext : PrimitiveContext {
+	public partial class PrimitiveFloatContext : PrimitiveNodeContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FLOAT() { return GetToken(JsonParser.FLOAT, 0); }
-		public PrimitiveFloatContext(PrimitiveContext context) { CopyFrom(context); }
+		public PrimitiveFloatContext(PrimitiveNodeContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IJsonParserVisitor<TResult> typedVisitor = visitor as IJsonParserVisitor<TResult>;
@@ -430,9 +429,9 @@ internal partial class JsonParser : Parser {
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class PrimitiveNullContext : PrimitiveContext {
+	public partial class PrimitiveNullContext : PrimitiveNodeContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NULL() { return GetToken(JsonParser.NULL, 0); }
-		public PrimitiveNullContext(PrimitiveContext context) { CopyFrom(context); }
+		public PrimitiveNullContext(PrimitiveNodeContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IJsonParserVisitor<TResult> typedVisitor = visitor as IJsonParserVisitor<TResult>;
@@ -440,9 +439,9 @@ internal partial class JsonParser : Parser {
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class PrimitiveTrueContext : PrimitiveContext {
+	public partial class PrimitiveTrueContext : PrimitiveNodeContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRUE() { return GetToken(JsonParser.TRUE, 0); }
-		public PrimitiveTrueContext(PrimitiveContext context) { CopyFrom(context); }
+		public PrimitiveTrueContext(PrimitiveNodeContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IJsonParserVisitor<TResult> typedVisitor = visitor as IJsonParserVisitor<TResult>;
@@ -450,9 +449,9 @@ internal partial class JsonParser : Parser {
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class PrimitiveFalseContext : PrimitiveContext {
+	public partial class PrimitiveFalseContext : PrimitiveNodeContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FALSE() { return GetToken(JsonParser.FALSE, 0); }
-		public PrimitiveFalseContext(PrimitiveContext context) { CopyFrom(context); }
+		public PrimitiveFalseContext(PrimitiveNodeContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IJsonParserVisitor<TResult> typedVisitor = visitor as IJsonParserVisitor<TResult>;
@@ -460,9 +459,9 @@ internal partial class JsonParser : Parser {
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class PrimitiveStringContext : PrimitiveContext {
+	public partial class PrimitiveStringContext : PrimitiveNodeContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(JsonParser.STRING, 0); }
-		public PrimitiveStringContext(PrimitiveContext context) { CopyFrom(context); }
+		public PrimitiveStringContext(PrimitiveNodeContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IJsonParserVisitor<TResult> typedVisitor = visitor as IJsonParserVisitor<TResult>;
@@ -470,9 +469,9 @@ internal partial class JsonParser : Parser {
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class PrimitiveIntegerContext : PrimitiveContext {
+	public partial class PrimitiveIntegerContext : PrimitiveNodeContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INTEGER() { return GetToken(JsonParser.INTEGER, 0); }
-		public PrimitiveIntegerContext(PrimitiveContext context) { CopyFrom(context); }
+		public PrimitiveIntegerContext(PrimitiveNodeContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IJsonParserVisitor<TResult> typedVisitor = visitor as IJsonParserVisitor<TResult>;
@@ -482,9 +481,9 @@ internal partial class JsonParser : Parser {
 	}
 
 	[RuleVersion(0)]
-	public PrimitiveContext primitive() {
-		PrimitiveContext _localctx = new PrimitiveContext(Context, State);
-		EnterRule(_localctx, 10, RULE_primitive);
+	public PrimitiveNodeContext primitiveNode() {
+		PrimitiveNodeContext _localctx = new PrimitiveNodeContext(Context, State);
+		EnterRule(_localctx, 10, RULE_primitiveNode);
 		try {
 			State = 57;
 			ErrorHandler.Sync(this);
@@ -586,4 +585,4 @@ internal partial class JsonParser : Parser {
 
 
 }
-} // namespace RelogicLabs.JsonSchema.Antlr
+} // namespace RelogicLabs.JSchema.Antlr

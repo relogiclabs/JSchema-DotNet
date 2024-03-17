@@ -17,7 +17,7 @@
 // Ambiguous reference in cref attribute
 #pragma warning disable 419
 
-namespace RelogicLabs.JsonSchema.Antlr {
+namespace RelogicLabs.JSchema.Antlr {
 using System;
 using System.IO;
 using System.Text;
@@ -171,4 +171,4 @@ internal partial class DateTimeLexer : Lexer {
 
 
 }
-} // namespace RelogicLabs.JsonSchema.Antlr
+} // namespace RelogicLabs.JSchema.Antlr

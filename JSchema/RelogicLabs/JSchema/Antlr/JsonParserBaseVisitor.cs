@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
 // Unreachable code detected
 #pragma warning disable 0162
 // The variable '...' is assigned but its value is never used
@@ -18,7 +17,7 @@
 // Ambiguous reference in cref attribute
 #pragma warning disable 419
 
-namespace RelogicLabs.JsonSchema.Antlr {
+namespace RelogicLabs.JSchema.Antlr {
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using IToken = Antlr4.Runtime.IToken;
@@ -44,7 +43,7 @@ internal partial class JsonParserBaseVisitor<Result> : AbstractParseTreeVisitor<
 	/// <return>The visitor result.</return>
 	public virtual Result VisitJson([NotNull] JsonParser.JsonContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JsonParser.value"/>.
+	/// Visit a parse tree produced by <see cref="JsonParser.valueNode"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -52,9 +51,9 @@ internal partial class JsonParserBaseVisitor<Result> : AbstractParseTreeVisitor<
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitValue([NotNull] JsonParser.ValueContext context) { return VisitChildren(context); }
+	public virtual Result VisitValueNode([NotNull] JsonParser.ValueNodeContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JsonParser.object"/>.
+	/// Visit a parse tree produced by <see cref="JsonParser.objectNode"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -62,9 +61,9 @@ internal partial class JsonParserBaseVisitor<Result> : AbstractParseTreeVisitor<
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitObject([NotNull] JsonParser.ObjectContext context) { return VisitChildren(context); }
+	public virtual Result VisitObjectNode([NotNull] JsonParser.ObjectNodeContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JsonParser.property"/>.
+	/// Visit a parse tree produced by <see cref="JsonParser.propertyNode"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -72,9 +71,9 @@ internal partial class JsonParserBaseVisitor<Result> : AbstractParseTreeVisitor<
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitProperty([NotNull] JsonParser.PropertyContext context) { return VisitChildren(context); }
+	public virtual Result VisitPropertyNode([NotNull] JsonParser.PropertyNodeContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JsonParser.array"/>.
+	/// Visit a parse tree produced by <see cref="JsonParser.arrayNode"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -82,10 +81,10 @@ internal partial class JsonParserBaseVisitor<Result> : AbstractParseTreeVisitor<
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitArray([NotNull] JsonParser.ArrayContext context) { return VisitChildren(context); }
+	public virtual Result VisitArrayNode([NotNull] JsonParser.ArrayNodeContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by the <c>PrimitiveTrue</c>
-	/// labeled alternative in <see cref="JsonParser.primitive"/>.
+	/// labeled alternative in <see cref="JsonParser.primitiveNode"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -96,7 +95,7 @@ internal partial class JsonParserBaseVisitor<Result> : AbstractParseTreeVisitor<
 	public virtual Result VisitPrimitiveTrue([NotNull] JsonParser.PrimitiveTrueContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by the <c>PrimitiveFalse</c>
-	/// labeled alternative in <see cref="JsonParser.primitive"/>.
+	/// labeled alternative in <see cref="JsonParser.primitiveNode"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -107,7 +106,7 @@ internal partial class JsonParserBaseVisitor<Result> : AbstractParseTreeVisitor<
 	public virtual Result VisitPrimitiveFalse([NotNull] JsonParser.PrimitiveFalseContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by the <c>PrimitiveString</c>
-	/// labeled alternative in <see cref="JsonParser.primitive"/>.
+	/// labeled alternative in <see cref="JsonParser.primitiveNode"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -118,7 +117,7 @@ internal partial class JsonParserBaseVisitor<Result> : AbstractParseTreeVisitor<
 	public virtual Result VisitPrimitiveString([NotNull] JsonParser.PrimitiveStringContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by the <c>PrimitiveInteger</c>
-	/// labeled alternative in <see cref="JsonParser.primitive"/>.
+	/// labeled alternative in <see cref="JsonParser.primitiveNode"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -129,7 +128,7 @@ internal partial class JsonParserBaseVisitor<Result> : AbstractParseTreeVisitor<
 	public virtual Result VisitPrimitiveInteger([NotNull] JsonParser.PrimitiveIntegerContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by the <c>PrimitiveFloat</c>
-	/// labeled alternative in <see cref="JsonParser.primitive"/>.
+	/// labeled alternative in <see cref="JsonParser.primitiveNode"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -140,7 +139,7 @@ internal partial class JsonParserBaseVisitor<Result> : AbstractParseTreeVisitor<
 	public virtual Result VisitPrimitiveFloat([NotNull] JsonParser.PrimitiveFloatContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by the <c>PrimitiveDouble</c>
-	/// labeled alternative in <see cref="JsonParser.primitive"/>.
+	/// labeled alternative in <see cref="JsonParser.primitiveNode"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -151,7 +150,7 @@ internal partial class JsonParserBaseVisitor<Result> : AbstractParseTreeVisitor<
 	public virtual Result VisitPrimitiveDouble([NotNull] JsonParser.PrimitiveDoubleContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by the <c>PrimitiveNull</c>
-	/// labeled alternative in <see cref="JsonParser.primitive"/>.
+	/// labeled alternative in <see cref="JsonParser.primitiveNode"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -161,4 +160,4 @@ internal partial class JsonParserBaseVisitor<Result> : AbstractParseTreeVisitor<
 	/// <return>The visitor result.</return>
 	public virtual Result VisitPrimitiveNull([NotNull] JsonParser.PrimitiveNullContext context) { return VisitChildren(context); }
 }
-} // namespace RelogicLabs.JsonSchema.Antlr
+} // namespace RelogicLabs.JSchema.Antlr

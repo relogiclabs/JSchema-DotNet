@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
 // Unreachable code detected
 #pragma warning disable 0162
 // The variable '...' is assigned but its value is never used
@@ -18,7 +17,7 @@
 // Ambiguous reference in cref attribute
 #pragma warning disable 419
 
-namespace RelogicLabs.JsonSchema.Antlr {
+namespace RelogicLabs.JSchema.Antlr {
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using IToken = Antlr4.Runtime.IToken;
@@ -37,77 +36,77 @@ internal interface IJsonParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitJson([NotNull] JsonParser.JsonContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JsonParser.value"/>.
+	/// Visit a parse tree produced by <see cref="JsonParser.valueNode"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitValue([NotNull] JsonParser.ValueContext context);
+	Result VisitValueNode([NotNull] JsonParser.ValueNodeContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JsonParser.object"/>.
+	/// Visit a parse tree produced by <see cref="JsonParser.objectNode"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitObject([NotNull] JsonParser.ObjectContext context);
+	Result VisitObjectNode([NotNull] JsonParser.ObjectNodeContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JsonParser.property"/>.
+	/// Visit a parse tree produced by <see cref="JsonParser.propertyNode"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitProperty([NotNull] JsonParser.PropertyContext context);
+	Result VisitPropertyNode([NotNull] JsonParser.PropertyNodeContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JsonParser.array"/>.
+	/// Visit a parse tree produced by <see cref="JsonParser.arrayNode"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitArray([NotNull] JsonParser.ArrayContext context);
+	Result VisitArrayNode([NotNull] JsonParser.ArrayNodeContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>PrimitiveTrue</c>
-	/// labeled alternative in <see cref="JsonParser.primitive"/>.
+	/// labeled alternative in <see cref="JsonParser.primitiveNode"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitPrimitiveTrue([NotNull] JsonParser.PrimitiveTrueContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>PrimitiveFalse</c>
-	/// labeled alternative in <see cref="JsonParser.primitive"/>.
+	/// labeled alternative in <see cref="JsonParser.primitiveNode"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitPrimitiveFalse([NotNull] JsonParser.PrimitiveFalseContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>PrimitiveString</c>
-	/// labeled alternative in <see cref="JsonParser.primitive"/>.
+	/// labeled alternative in <see cref="JsonParser.primitiveNode"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitPrimitiveString([NotNull] JsonParser.PrimitiveStringContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>PrimitiveInteger</c>
-	/// labeled alternative in <see cref="JsonParser.primitive"/>.
+	/// labeled alternative in <see cref="JsonParser.primitiveNode"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitPrimitiveInteger([NotNull] JsonParser.PrimitiveIntegerContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>PrimitiveFloat</c>
-	/// labeled alternative in <see cref="JsonParser.primitive"/>.
+	/// labeled alternative in <see cref="JsonParser.primitiveNode"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitPrimitiveFloat([NotNull] JsonParser.PrimitiveFloatContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>PrimitiveDouble</c>
-	/// labeled alternative in <see cref="JsonParser.primitive"/>.
+	/// labeled alternative in <see cref="JsonParser.primitiveNode"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitPrimitiveDouble([NotNull] JsonParser.PrimitiveDoubleContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>PrimitiveNull</c>
-	/// labeled alternative in <see cref="JsonParser.primitive"/>.
+	/// labeled alternative in <see cref="JsonParser.primitiveNode"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitPrimitiveNull([NotNull] JsonParser.PrimitiveNullContext context);
 }
-} // namespace RelogicLabs.JsonSchema.Antlr
+} // namespace RelogicLabs.JSchema.Antlr
