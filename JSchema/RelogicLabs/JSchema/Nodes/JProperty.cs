@@ -1,12 +1,12 @@
-using RelogicLabs.JsonSchema.Collections;
-using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Message;
-using RelogicLabs.JsonSchema.Utilities;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
-using static RelogicLabs.JsonSchema.Message.ErrorDetail;
-using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
+using RelogicLabs.JSchema.Collections;
+using RelogicLabs.JSchema.Exceptions;
+using RelogicLabs.JSchema.Message;
+using RelogicLabs.JSchema.Utilities;
+using static RelogicLabs.JSchema.Message.ErrorCode;
+using static RelogicLabs.JSchema.Message.ErrorDetail;
+using static RelogicLabs.JSchema.Utilities.CommonUtilities;
 
-namespace RelogicLabs.JsonSchema.Types;
+namespace RelogicLabs.JSchema.Nodes;
 
 public sealed class JProperty : JBranch, IKeyed<string>
 {
@@ -24,12 +24,12 @@ public sealed class JProperty : JBranch, IKeyed<string>
     {
         var other = CastType<JProperty>(node);
         if(other == null) return false;
-        if(!Key.Equals(other.Key)) return FailWith(
+        if(!Key.Equals(other.Key)) return Fail(
             new JsonSchemaException(
                 new ErrorDetail(PROP01, PropertyKeyMismatch),
                 ExpectedDetail.AsValueMismatch(this),
                 ActualDetail.AsValueMismatch(other)));
-        if(!Value.Match(other.Value)) return FailWith(
+        if(!Value.Match(other.Value)) return Fail(
             new JsonSchemaException(
                 new ErrorDetail(PROP02, PropertyValueMismatch),
                 ExpectedDetail.AsValueMismatch(this),
@@ -49,7 +49,7 @@ public sealed class JProperty : JBranch, IKeyed<string>
     public override int GetHashCode() => HashCode.Combine(Key, Value);
     public override string ToString() => $"{Key.Quote()}: {Value}";
 
-    internal new class Builder : JNode.Builder
+    internal new sealed class Builder : JNode.Builder
     {
         public string? Key { get; init; }
         public JNode? Value { get; init; }

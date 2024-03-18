@@ -1,4 +1,4 @@
-namespace RelogicLabs.JsonSchema.Types;
+namespace RelogicLabs.JSchema.Nodes;
 
 public abstract class JBranch : JNode
 {

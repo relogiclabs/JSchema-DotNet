@@ -1,10 +1,10 @@
-using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Tree;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
-using static RelogicLabs.JsonSchema.Message.MessageFormatter;
-using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
+using RelogicLabs.JSchema.Exceptions;
+using RelogicLabs.JSchema.Tree;
+using static RelogicLabs.JSchema.Message.ErrorCode;
+using static RelogicLabs.JSchema.Message.MessageFormatter;
+using static RelogicLabs.JSchema.Utilities.CommonUtilities;
 
-namespace RelogicLabs.JsonSchema.Types;
+namespace RelogicLabs.JSchema.Nodes;
 
 public sealed class JPragma : JDirective
 {
@@ -32,7 +32,7 @@ public sealed class JPragma : JDirective
     public override int GetHashCode() => HashCode.Combine(Name, Value);
     public override string ToString() => $"{PragmaMarker} {Name}: {Value}";
 
-    internal new class Builder : JNode.Builder
+    internal new sealed class Builder : JNode.Builder
     {
         public string? Name { get; init; }
         public JPrimitive? Value { get; init; }

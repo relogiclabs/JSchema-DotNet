@@ -1,14 +1,15 @@
-using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Message;
-using RelogicLabs.JsonSchema.Utilities;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
-using static RelogicLabs.JsonSchema.Message.ErrorDetail;
-using static RelogicLabs.JsonSchema.Message.MessageFormatter;
-using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
+using RelogicLabs.JSchema.Exceptions;
+using RelogicLabs.JSchema.Message;
+using RelogicLabs.JSchema.Types;
+using RelogicLabs.JSchema.Utilities;
+using static RelogicLabs.JSchema.Message.ErrorCode;
+using static RelogicLabs.JSchema.Message.ErrorDetail;
+using static RelogicLabs.JSchema.Message.MessageFormatter;
+using static RelogicLabs.JSchema.Utilities.CommonUtilities;
 
-namespace RelogicLabs.JsonSchema.Types;
+namespace RelogicLabs.JSchema.Nodes;
 
-public sealed class JArray : JComposite
+public sealed class JArray : JComposite, IEArray
 {
     public IList<JNode> Elements { get; }
 
@@ -26,12 +27,12 @@ public sealed class JArray : JComposite
         for(var i = 0; i < Elements.Count; i++)
         {
             var optional = IsOptional(Elements[i]);
-            if((restOptional |= optional) != optional) return FailWith(
+            if((restOptional |= optional) != optional) return Fail(
                 new MisplacedOptionalException(FormatForSchema(ARRY02,
                     "Mandatory array element cannot appear after optional element",
                     Elements[i])));
             if(i >= other.Elements.Count && !optional)
-                return FailWith(new JsonSchemaException(
+                return Fail(new JsonSchemaException(
                     new ErrorDetail(ARRY01, ArrayElementNotFound),
                     ExpectedDetail.AsArrayElementNotFound(Elements[i], i),
                     ActualDetail.AsArrayElementNotFound(other, i)));
@@ -41,12 +42,13 @@ public sealed class JArray : JComposite
         return result;
     }
 
-    private static bool IsOptional(JNode node) => node is JValidator { Optional: true };
-    public override JsonType Type => JsonType.ARRAY;
     public override IList<JNode> Components => Elements;
+    public IReadOnlyList<IEValue> Values => (IReadOnlyList<IEValue>) Elements;
+    public IEValue Get(int index) => Elements[index];
+    private static bool IsOptional(JNode node) => node is JValidator { Optional: true };
     public override string ToString() => Elements.JoinWith(", ", "[", "]");
 
-    internal new class Builder : JNode.Builder
+    internal new sealed class Builder : JNode.Builder
     {
         public IList<JNode>? Elements { get; init; }
         public override JArray Build() => Build(new JArray(this));

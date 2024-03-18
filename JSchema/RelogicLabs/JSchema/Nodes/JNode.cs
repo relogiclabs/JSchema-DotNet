@@ -1,14 +1,15 @@
-using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Message;
-using RelogicLabs.JsonSchema.Tree;
-using RelogicLabs.JsonSchema.Utilities;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
-using static RelogicLabs.JsonSchema.Message.ErrorDetail;
-using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
+using RelogicLabs.JSchema.Exceptions;
+using RelogicLabs.JSchema.Message;
+using RelogicLabs.JSchema.Tree;
+using RelogicLabs.JSchema.Types;
+using RelogicLabs.JSchema.Utilities;
+using static RelogicLabs.JSchema.Message.ErrorCode;
+using static RelogicLabs.JSchema.Message.ErrorDetail;
+using static RelogicLabs.JSchema.Utilities.CommonUtilities;
 
-namespace RelogicLabs.JsonSchema.Types;
+namespace RelogicLabs.JSchema.Nodes;
 
-public abstract class JNode
+public abstract class JNode : IEValue
 {
     // To make complete tree read only and immutable
     private readonly IDictionary<JNode, JNode> _relations;
@@ -56,20 +57,19 @@ public abstract class JNode
     /// <summary>
     /// Returns an abbreviated outline version of the string obtained from the
     /// <see cref="ToString"/> method of the specified length from
-    /// <see cref="MessageFormatter.OutlineLength"/> and replaces a portion of the
+    /// <see cref="OutlineFormatter.OutlineLength"/> and replaces a portion of the
     /// string with ellipses to match the specified length; otherwise, returns the
     /// string unmodified.
     /// </summary>
     /// <returns>
     /// An abbreviated outline version of the <see cref="ToString"/> string.
     /// </returns>
-    public virtual string GetOutline()
-        => Runtime.MessageFormatter.CreateOutline(ToString());
+    public virtual string GetOutline() => OutlineFormatter.CreateOutline(ToString());
 
     private protected T? CastType<T>(JNode node)
     {
         if(node is T other) return other;
-        FailWith(new JsonSchemaException(
+        Fail(new JsonSchemaException(
             new ErrorDetail(DTYP02, DataTypeMismatch),
             ExpectedDetail.AsDataTypeMismatch(this),
             ActualDetail.AsDataTypeMismatch(node)));
@@ -79,8 +79,8 @@ public abstract class JNode
     private protected bool CheckType<T>(JNode node)
         => CastType<T>(node) != null;
 
-    private protected bool FailWith(Exception exception)
-        => Runtime.Exceptions.FailWith(exception);
+    private protected bool Fail(Exception exception)
+        => Runtime.Exceptions.Fail(exception);
 
     internal abstract class Builder
     {

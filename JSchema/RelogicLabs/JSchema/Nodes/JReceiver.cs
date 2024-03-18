@@ -1,14 +1,16 @@
-using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Utilities;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
-using static RelogicLabs.JsonSchema.Message.MessageFormatter;
-using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
+using RelogicLabs.JSchema.Exceptions;
+using RelogicLabs.JSchema.Types;
+using RelogicLabs.JSchema.Utilities;
+using static RelogicLabs.JSchema.Message.ErrorCode;
+using static RelogicLabs.JSchema.Message.MessageFormatter;
+using static RelogicLabs.JSchema.Utilities.CommonUtilities;
 
-namespace RelogicLabs.JsonSchema.Types;
+namespace RelogicLabs.JSchema.Nodes;
 
-public sealed class JReceiver : JLeaf
+public sealed class JReceiver : JLeaf, IEArray
 {
     public string Name { get; }
+    public IReadOnlyList<IEValue> Values => FetchValueNodes();
 
     private JReceiver(Builder builder) : base(builder)
         => Name = RequireNonNull(builder.Name);
@@ -16,32 +18,29 @@ public sealed class JReceiver : JLeaf
     public override bool Match(JNode node)
         => throw new InvalidOperationException("Invalid runtime state");
 
-    public int GetValueCount()
+    private List<JNode> FetchValueNodes()
     {
         var list = Runtime.Receivers.Fetch(this);
         if(list is null) throw new ReceiverNotFoundException(
             FormatForSchema(RECV01, $"Receiver '{Name}' not found", this));
-        return list.Count;
+        return list;
     }
+
+    public int GetValueCount() => FetchValueNodes().Count;
 
     public T GetValueNode<T>() where T : JNode
     {
-        var list = Runtime.Receivers.Fetch(this);
-        if(list is null) throw new ReceiverNotFoundException(
-            FormatForSchema(RECV02, $"Receiver '{Name}' not found", this));
+        var list = FetchValueNodes();
         if(list.IsEmpty()) throw new NoValueReceivedException(
-            FormatForSchema(RECV03, $"No value received for '{Name}'", this));
+            FormatForSchema(RECV02, $"No value received for '{Name}'", this));
         if(list.Count > 1) throw new NotSupportedException("Multiple values exist");
         return (T) list[0];
     }
 
     public IList<T> GetValueNodes<T>() where T : JNode
-    {
-        var list = Runtime.Receivers.Fetch(this);
-        if(list is null) throw new ReceiverNotFoundException(
-            FormatForSchema(RECV04, $"Receiver '{Name}' not found", this));
-        return list.Select(i => (T) i).ToList().AsReadOnly();
-    }
+        => FetchValueNodes().Cast<T>().ToList().AsReadOnly();
+
+    public IEValue Get(int index) => FetchValueNodes()[index];
 
     public override bool Equals(object? obj)
     {
@@ -55,7 +54,7 @@ public sealed class JReceiver : JLeaf
     public override int GetHashCode() => Name.GetHashCode();
     public override string ToString() => Name;
 
-    internal new class Builder : JNode.Builder
+    internal new sealed class Builder : JNode.Builder
     {
         public string? Name { get; init; }
         public override JReceiver Build() => Build(new JReceiver(this));

@@ -1,6 +1,6 @@
-using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
+using static RelogicLabs.JSchema.Utilities.CommonUtilities;
 
-namespace RelogicLabs.JsonSchema.Types;
+namespace RelogicLabs.JSchema.Nodes;
 
 public sealed class JTitle : JDirective
 {
@@ -12,7 +12,7 @@ public sealed class JTitle : JDirective
 
     public override string ToString() => $"{TitleMarker}: {Title}";
 
-    internal new class Builder : JNode.Builder
+    internal new sealed class Builder : JNode.Builder
     {
         public string? Title { get; init; }
         public override JTitle Build() => Build(new JTitle(this));

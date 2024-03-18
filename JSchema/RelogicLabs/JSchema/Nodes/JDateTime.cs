@@ -1,6 +1,7 @@
-using RelogicLabs.JsonSchema.Time;
+using RelogicLabs.JSchema.Time;
+using RelogicLabs.JSchema.Types;
 
-namespace RelogicLabs.JsonSchema.Types;
+namespace RelogicLabs.JSchema.Nodes;
 
 public abstract class JDateTime : JString
 {
@@ -11,9 +12,8 @@ public abstract class JDateTime : JString
 
     internal DateTimeParser GetDateTimeParser()
     {
-        if(Type == JsonType.DATE) return Runtime.Pragmas.DateTypeParser;
-        if(Type == JsonType.TIME) return Runtime.Pragmas.TimeTypeParser;
+        if(Type == EType.DATE) return Runtime.Pragmas.DateTypeParser;
+        if(Type == EType.TIME) return Runtime.Pragmas.TimeTypeParser;
         throw new InvalidOperationException("Invalid date time type");
     }
-    public override JsonType Type => JsonType.DATETIME;
 }

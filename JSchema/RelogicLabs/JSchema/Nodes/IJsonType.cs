@@ -1,7 +1,8 @@
-namespace RelogicLabs.JsonSchema.Types;
+using RelogicLabs.JSchema.Types;
 
-public interface IJsonType
+namespace RelogicLabs.JSchema.Nodes;
+
+public interface IJsonType : IEValue
 {
-    public JsonType Type => JsonType.ANY;
     public JNode Node { get; }
 }

@@ -1,10 +1,12 @@
-namespace RelogicLabs.JsonSchema.Types;
+using RelogicLabs.JSchema.Types;
 
-public abstract class JNumber : JPrimitive
+namespace RelogicLabs.JSchema.Nodes;
+
+public abstract class JNumber : JPrimitive, IENumber
 {
     private protected JNumber(Builder builder) : base(builder) { }
 
-    protected abstract double ToDouble();
+    public abstract double ToDouble();
     public static implicit operator double(JNumber number) => number.ToDouble();
 
     public int Compare(double other)
@@ -26,6 +28,5 @@ public abstract class JNumber : JPrimitive
     private protected bool AreEqual(double value1, double value2)
         => Runtime.AreEqual(value1, value2);
 
-    public override JsonType Type => JsonType.NUMBER;
     public override int GetHashCode() => base.GetHashCode();
 }

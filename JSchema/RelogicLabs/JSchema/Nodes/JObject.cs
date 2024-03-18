@@ -1,22 +1,25 @@
-using RelogicLabs.JsonSchema.Collections;
-using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Message;
-using RelogicLabs.JsonSchema.Utilities;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
-using static RelogicLabs.JsonSchema.Message.ErrorDetail;
-using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
+using RelogicLabs.JSchema.Collections;
+using RelogicLabs.JSchema.Exceptions;
+using RelogicLabs.JSchema.Message;
+using RelogicLabs.JSchema.Types;
+using RelogicLabs.JSchema.Utilities;
+using static RelogicLabs.JSchema.Message.ErrorCode;
+using static RelogicLabs.JSchema.Message.ErrorDetail;
+using static RelogicLabs.JSchema.Utilities.CommonUtilities;
 
-namespace RelogicLabs.JsonSchema.Types;
+namespace RelogicLabs.JSchema.Nodes;
 
-public sealed class JObject : JComposite
+public sealed class JObject : JComposite, IEObject
 {
     public IIndexMap<string, JProperty> Properties { get; }
     public override IList<JNode> Components { get; }
+    public int Count => Properties.Count;
+    public IEnumerable<string> Keys => Properties.Keys;
 
     private JObject(Builder builder) : base(builder)
     {
         Properties = RequireNonNull(builder.Properties);
-        Components = Properties.Select(p => p.Value).ToList().AsReadOnly();
+        Components = Properties.Select(static p => p.Value).ToList().AsReadOnly();
         Children = Properties.Values;
     }
 
@@ -37,7 +40,7 @@ public sealed class JObject : JComposite
                 continue;
             }
             if(!((JValidator) thisProp.Value).Optional)
-                return FailWith(new JsonSchemaException(
+                return Fail(new JsonSchemaException(
                         new ErrorDetail(PROP05, PropertyNotFound),
                         ExpectedDetail.AsPropertyNotFound(thisProp),
                         ActualDetail.AsPropertyNotFound(node, thisProp)));
@@ -46,7 +49,7 @@ public sealed class JObject : JComposite
         foreach(var key in unresolved)
         {
             var property = other.Properties[key];
-            result &= FailWith(new JsonSchemaException(
+            result &= Fail(new JsonSchemaException(
                 new ErrorDetail(PROP06, UndefinedPropertyFound),
                 ExpectedDetail.AsUndefinedProperty(this, property),
                 ActualDetail.AsUndefinedProperty(property)));
@@ -65,7 +68,7 @@ public sealed class JObject : JComposite
             JProperty? existing = null;
             if(otherProp == null) other.Properties.TryGetValue(thisProp.Key, out existing);
             if(otherProp == null && existing != null)
-                FailWith(new JsonSchemaException(
+                Fail(new JsonSchemaException(
                     new ErrorDetail(PROP07, PropertyOrderMismatch),
                     ExpectedDetail.AsPropertyOrderMismatch(thisProp),
                     ActualDetail.AsPropertyOrderMismatch(atProp ?? (JNode) other)));
@@ -107,11 +110,16 @@ public sealed class JObject : JComposite
         return true;
     }
 
-    public override JsonType Type => JsonType.OBJECT;
+    public IEValue? Get(string key)
+    {
+        Properties.TryGetValue(key, out var property);
+        return property?.Value;
+    }
+
     public override int GetHashCode() => Properties.GetHashCode();
     public override string ToString() => Properties.JoinWith(", ", "{", "}");
 
-    internal new class Builder : JNode.Builder
+    internal new sealed class Builder : JNode.Builder
     {
         public IIndexMap<string, JProperty>? Properties { get; init; }
         public override JObject Build() => Build(new JObject(this));

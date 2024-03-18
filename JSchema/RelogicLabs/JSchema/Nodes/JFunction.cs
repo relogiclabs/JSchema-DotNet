@@ -1,15 +1,15 @@
 using System.Reflection;
 using System.Text;
-using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Message;
-using RelogicLabs.JsonSchema.Tree;
-using RelogicLabs.JsonSchema.Utilities;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
-using static RelogicLabs.JsonSchema.Message.ErrorDetail;
-using static RelogicLabs.JsonSchema.Types.INestedMode;
-using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
+using RelogicLabs.JSchema.Exceptions;
+using RelogicLabs.JSchema.Message;
+using RelogicLabs.JSchema.Tree;
+using RelogicLabs.JSchema.Utilities;
+using static RelogicLabs.JSchema.Message.ErrorCode;
+using static RelogicLabs.JSchema.Message.ErrorDetail;
+using static RelogicLabs.JSchema.Nodes.INestedMode;
+using static RelogicLabs.JSchema.Utilities.CommonUtilities;
 
-namespace RelogicLabs.JsonSchema.Types;
+namespace RelogicLabs.JSchema.Nodes;
 
 public sealed class JFunction : JBranch, INestedMode
 {
@@ -30,7 +30,7 @@ public sealed class JFunction : JBranch, INestedMode
     public override bool Match(JNode node)
     {
         if(!Nested) return InvokeFunction(node);
-        if(node is not JComposite composite) return FailWith(
+        if(node is not JComposite composite) return Fail(
             new JsonSchemaException(
                 new ErrorDetail(FUNC06, InvalidNestedFunction),
                 ExpectedDetail.AsInvalidFunction(this),
@@ -44,11 +44,12 @@ public sealed class JFunction : JBranch, INestedMode
         {
             return Runtime.Functions.InvokeFunction(this, node);
         }
-        catch(Exception ex)
+        catch(TargetInvocationException ex)
         {
-            throw ex is TargetInvocationException
-                ? ex.InnerException ?? ex : ex;
+            if(ex.InnerException == null) throw;
+            throw ex.InnerException;
         }
+        catch { throw; }
     }
 
     internal bool IsApplicable(JNode node) => !Nested || node is JComposite;
@@ -61,7 +62,7 @@ public sealed class JFunction : JBranch, INestedMode
         return builder.ToString();
     }
 
-    internal new class Builder : JNode.Builder
+    internal new sealed class Builder : JNode.Builder
     {
         public string? Name { get; init; }
         public bool? Nested { get; init; }

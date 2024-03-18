@@ -1,14 +1,14 @@
 using System.Text;
-using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Message;
-using RelogicLabs.JsonSchema.Utilities;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
-using static RelogicLabs.JsonSchema.Message.ErrorDetail;
-using static RelogicLabs.JsonSchema.Message.MessageFormatter;
-using static RelogicLabs.JsonSchema.Types.INestedMode;
-using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
+using RelogicLabs.JSchema.Exceptions;
+using RelogicLabs.JSchema.Message;
+using RelogicLabs.JSchema.Utilities;
+using static RelogicLabs.JSchema.Message.ErrorCode;
+using static RelogicLabs.JSchema.Message.ErrorDetail;
+using static RelogicLabs.JSchema.Message.MessageFormatter;
+using static RelogicLabs.JSchema.Nodes.INestedMode;
+using static RelogicLabs.JSchema.Utilities.CommonUtilities;
 
-namespace RelogicLabs.JsonSchema.Types;
+namespace RelogicLabs.JSchema.Nodes;
 
 public sealed class JDataType : JBranch, INestedMode
 {
@@ -34,9 +34,9 @@ public sealed class JDataType : JBranch, INestedMode
                 ActualDetail.AsDataTypeMismatch(node)));
         if(Alias is null) return true;
         var validator = Runtime.Definitions.TryGetValue(Alias);
-        if(validator is null) return FailWith(new DefinitionNotFoundException(
+        if(validator is null) return Fail(new DefinitionNotFoundException(
             FormatForSchema(Nested ? DEFI04 : DEFI03, $"No definition found for '{Alias}'", this)));
-        if(!validator.Match(node)) return FailWith(new JsonSchemaException(
+        if(!validator.Match(node)) return Fail(new JsonSchemaException(
             new ErrorDetail(Nested ? DTYP07 : DTYP05, DataTypeArgumentFailed),
             ExpectedDetail.AsDataTypeArgumentFailed(this),
             ActualDetail.AsDataTypeArgumentFailed(node)));
@@ -45,7 +45,7 @@ public sealed class JDataType : JBranch, INestedMode
 
     private bool FailTypeWith(JsonSchemaException exception) {
         exception.SetAttribute(DataTypeName, ToString(true));
-        return FailWith(exception);
+        return Fail(exception);
     }
 
     private static string FormatMessage(string main, string optional)
@@ -60,7 +60,7 @@ public sealed class JDataType : JBranch, INestedMode
         return JsonType == other.JsonType;
     }
 
-    internal bool IsMatchNull() => !Nested && JsonType == JsonType.NULL;
+    internal bool IsMatchNull() => !Nested && JsonType.IsNullType();
     internal bool IsApplicable(JNode node) => !Nested || node is JComposite;
     public override int GetHashCode() => JsonType.GetHashCode();
     public override string ToString() => ToString(false);
@@ -72,7 +72,7 @@ public sealed class JDataType : JBranch, INestedMode
         return builder.ToString();
     }
 
-    internal new class Builder : JNode.Builder
+    internal new sealed class Builder : JNode.Builder
     {
         public JsonType? JsonType { get; init; }
         public bool? Nested { get; init; }

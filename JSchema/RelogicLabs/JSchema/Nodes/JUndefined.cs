@@ -1,9 +1,10 @@
-namespace RelogicLabs.JsonSchema.Types;
+using RelogicLabs.JSchema.Types;
+using static RelogicLabs.JSchema.Types.IEUndefined;
 
-public sealed class JUndefined : JLeaf
+namespace RelogicLabs.JSchema.Nodes;
+
+public sealed class JUndefined : JLeaf, IEUndefined
 {
-    internal const string UndefinedMarker = "!";
-
     private JUndefined(Builder builder) : base(builder) { }
 
     public override bool Match(JNode node) => true;
@@ -15,10 +16,10 @@ public sealed class JUndefined : JLeaf
         return obj.GetType() == this.GetType();
     }
 
-    public override int GetHashCode() => UndefinedMarker.GetHashCode();
-    public override string ToString() => UndefinedMarker;
+    public override int GetHashCode() => Marker.GetHashCode();
+    public override string ToString() => Marker;
 
-    internal new class Builder : JNode.Builder
+    internal new sealed class Builder : JNode.Builder
     {
         public override JUndefined Build() => Build(new JUndefined(this));
     }

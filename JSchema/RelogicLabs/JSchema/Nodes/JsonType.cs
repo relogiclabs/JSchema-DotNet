@@ -1,63 +1,67 @@
+using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
-using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Tree;
-using RelogicLabs.JsonSchema.Utilities;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
-using static RelogicLabs.JsonSchema.Message.MessageFormatter;
+using RelogicLabs.JSchema.Exceptions;
+using RelogicLabs.JSchema.Types;
+using RelogicLabs.JSchema.Utilities;
+using static RelogicLabs.JSchema.Message.ErrorCode;
+using static RelogicLabs.JSchema.Message.MessageFormatter;
+using static RelogicLabs.JSchema.Types.EType;
 
-namespace RelogicLabs.JsonSchema.Types;
+namespace RelogicLabs.JSchema.Nodes;
 
-public class JsonType
+public sealed class JsonType
 {
-    private static readonly Dictionary<string, JsonType> _StringTypeMap = new();
-    private static readonly Dictionary<Type, JsonType> _ClassTypeMap = new();
+    private static readonly Dictionary<string, EType> _StringTypeMap = new(16);
+    private static readonly Dictionary<EType, Type> _TypeClassMap = new(16);
+    private static readonly Dictionary<Type, EType> _ClassTypeMap = new(16);
 
-    public static readonly JsonType BOOLEAN = new("#boolean", typeof(JBoolean));
-    public static readonly JsonType STRING = new("#string", typeof(JString));
-    public static readonly JsonType INTEGER = new("#integer", typeof(JInteger));
-    public static readonly JsonType FLOAT = new("#float", typeof(JFloat));
-    public static readonly JsonType DOUBLE = new("#double", typeof(JDouble));
-    public static readonly JsonType OBJECT = new("#object", typeof(JObject));
-    public static readonly JsonType ARRAY = new("#array", typeof(JArray));
-    public static readonly JsonType NULL = new("#null", typeof(JNull));
-    public static readonly JsonType NUMBER = new("#number", typeof(JNumber));
-    public static readonly JsonType DATETIME = new("#datetime", typeof(JDateTime));
-    public static readonly JsonType DATE = new("#date", typeof(JString));
-    public static readonly JsonType TIME = new("#time", typeof(JString));
-    public static readonly JsonType PRIMITIVE = new("#primitive", typeof(JPrimitive));
-    public static readonly JsonType COMPOSITE = new("#composite", typeof(JComposite));
-    public static readonly JsonType ANY = new("#any", typeof(IJsonType));
+    public EType Type { get; }
 
-    public string Name { get; }
-    public Type Type { get; }
+    static JsonType()
+    {
+        MapType(BOOLEAN, typeof(JBoolean));
+        MapType(INTEGER, typeof(JInteger));
+        MapType(FLOAT, typeof(JFloat));
+        MapType(DOUBLE, typeof(JDouble));
+        MapType(NUMBER, typeof(JNumber));
+        MapType(STRING, typeof(JString));
+        MapType(ARRAY, typeof(JArray));
+        MapType(OBJECT, typeof(JObject));
+        MapType(NULL, typeof(JNull));
+        MapType(DATE, typeof(JString));
+        MapType(TIME, typeof(JString));
+        MapType(PRIMITIVE, typeof(JPrimitive));
+        MapType(COMPOSITE, typeof(JComposite));
+        MapType(ANY, typeof(IJsonType));
+    }
 
+    private JsonType(EType type) => Type = type;
+    internal bool IsNullType() => Type == NULL;
+    internal static EType? GetType(Type typeClass) => _ClassTypeMap.TryGetValue(typeClass);
 
-    internal static JsonType? From(Type type) => _ClassTypeMap.TryGetValue(type);
+    private static void MapType(EType type, Type typeClass)
+    {
+        _StringTypeMap[type.Name] = type;
+        _ClassTypeMap.TryAdd(typeClass, type);
+        _TypeClassMap[type] = typeClass;
+    }
+
     internal static JsonType From(ITerminalNode node)
-        => From(node.GetText(), Location.From(node.Symbol));
+        => From(node.GetText(), node.Symbol);
 
-    internal static JsonType From(string name, Location location)
+    internal static JsonType From(string name, IToken token)
     {
-        var result = _StringTypeMap.TryGetValue(name, out var type);
-        if(!result) throw new InvalidDataTypeException(FormatForSchema(DTYP01,
-            $"Invalid data type '{name}'", location));
-        return type!;
+        _StringTypeMap.TryGetValue(name, out var type);
+        if(type is null) throw new InvalidDataTypeException(FormatForSchema(DTYP01,
+            $"Invalid data type '{name}'", token));
+        return new JsonType(type);
     }
 
-    private JsonType(string name, Type type)
-    {
-        Name = name;
-        Type = type;
-        _StringTypeMap[name] = this;
-        _ClassTypeMap.TryAdd(type, this);
-    }
-
-    public override string ToString() => Name;
     public bool Match(JNode node, out string error)
     {
         error = string.Empty;
-        if(!Type.IsInstanceOfType(node)) return false;
-        if(this == DATE)
+        if(!_TypeClassMap[Type].IsInstanceOfType(node)) return false;
+        if(Type == DATE)
         {
             var date = (JString) node;
             var dateTime = node.Runtime.Pragmas.DateTypeParser
@@ -65,7 +69,8 @@ public class JsonType
             if(dateTime is null) return false;
             date.Derived = new JDate(date, dateTime);
         }
-        else if(this == TIME) {
+        else if(Type == TIME)
+        {
             var time = (JString) node;
             var dateTime = node.Runtime.Pragmas.TimeTypeParser
                 .TryParse(time, out error);
@@ -74,4 +79,6 @@ public class JsonType
         }
         return true;
     }
+
+    public override string ToString() => Type.Name;
 }

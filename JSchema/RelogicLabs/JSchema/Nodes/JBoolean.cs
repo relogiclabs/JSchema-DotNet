@@ -1,12 +1,13 @@
-using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Message;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
-using static RelogicLabs.JsonSchema.Message.ErrorDetail;
-using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
+using RelogicLabs.JSchema.Exceptions;
+using RelogicLabs.JSchema.Message;
+using RelogicLabs.JSchema.Types;
+using static RelogicLabs.JSchema.Message.ErrorCode;
+using static RelogicLabs.JSchema.Message.ErrorDetail;
+using static RelogicLabs.JSchema.Utilities.CommonUtilities;
 
-namespace RelogicLabs.JsonSchema.Types;
+namespace RelogicLabs.JSchema.Nodes;
 
-public sealed class JBoolean : JPrimitive, IPragmaValue<bool>
+public sealed class JBoolean : JPrimitive, IEBoolean, IPragmaValue<bool>
 {
     public bool Value { get; }
 
@@ -18,7 +19,7 @@ public sealed class JBoolean : JPrimitive, IPragmaValue<bool>
         var other = CastType<JBoolean>(node);
         if(other == null) return false;
         if(Value == other.Value) return true;
-        return FailWith(new JsonSchemaException(
+        return Fail(new JsonSchemaException(
             new ErrorDetail(BOOL01, ValueMismatch),
             ExpectedDetail.AsValueMismatch(this),
             ActualDetail.AsValueMismatch(other)));
@@ -33,12 +34,11 @@ public sealed class JBoolean : JPrimitive, IPragmaValue<bool>
         return Value == other.Value;
     }
 
-    public override JsonType Type => JsonType.BOOLEAN;
     public override int GetHashCode() => Value.GetHashCode();
     public static implicit operator bool(JBoolean @bool) => @bool.Value;
     public override string ToString() => Value.ToString().ToLower();
 
-    internal new class Builder : JPrimitive.Builder<bool>
+    internal new sealed class Builder : JPrimitive.Builder<bool>
     {
         public override JBoolean Build() => Build(new JBoolean(this));
     }

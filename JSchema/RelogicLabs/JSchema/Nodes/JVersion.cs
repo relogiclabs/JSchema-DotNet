@@ -1,6 +1,6 @@
-using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
+using static RelogicLabs.JSchema.Utilities.CommonUtilities;
 
-namespace RelogicLabs.JsonSchema.Types;
+namespace RelogicLabs.JSchema.Nodes;
 
 public sealed class JVersion : JDirective
 {
@@ -12,7 +12,7 @@ public sealed class JVersion : JDirective
 
     public override string ToString() => $"{VersionMarker}: {Version}";
 
-    internal new class Builder : JNode.Builder
+    internal new sealed class Builder : JNode.Builder
     {
         public string? Version { get; init; }
         public override JVersion Build() => Build(new JVersion(this));

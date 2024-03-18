@@ -1,12 +1,13 @@
-using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Message;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
-using static RelogicLabs.JsonSchema.Message.ErrorDetail;
-using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
+using RelogicLabs.JSchema.Exceptions;
+using RelogicLabs.JSchema.Message;
+using RelogicLabs.JSchema.Types;
+using static RelogicLabs.JSchema.Message.ErrorCode;
+using static RelogicLabs.JSchema.Message.ErrorDetail;
+using static RelogicLabs.JSchema.Utilities.CommonUtilities;
 
-namespace RelogicLabs.JsonSchema.Types;
+namespace RelogicLabs.JSchema.Nodes;
 
-public sealed class JFloat : JNumber, IPragmaValue<double>
+public sealed class JFloat : JNumber, IEDouble, IPragmaValue<double>
 {
     public double Value { get; }
 
@@ -18,7 +19,7 @@ public sealed class JFloat : JNumber, IPragmaValue<double>
         var other = CastType<JFloat>(node);
         if(other == null) return false;
         if(AreEqual(Value, other.Value)) return true;
-        return FailWith(new JsonSchemaException(
+        return Fail(new JsonSchemaException(
             new ErrorDetail(FLOT01, ValueMismatch),
             ExpectedDetail.AsValueMismatch(this),
             ActualDetail.AsValueMismatch(other)));
@@ -33,13 +34,13 @@ public sealed class JFloat : JNumber, IPragmaValue<double>
         return AreEqual(Value, other.Value);
     }
 
-    public override JsonType Type => JsonType.FLOAT;
+    public EType Type => EType.FLOAT;
     public override int GetHashCode() => Value.GetHashCode();
     public static implicit operator double(JFloat node) => node.Value;
-    protected override double ToDouble() => Convert.ToDouble(Value);
+    public override double ToDouble() => Value;
     public override string ToString() => $"{Value:0.0##############}";
 
-    internal new class Builder : JPrimitive.Builder<double>
+    internal new sealed class Builder : JPrimitive.Builder<double>
     {
         public override JFloat Build() => Build(new JFloat(this));
     }

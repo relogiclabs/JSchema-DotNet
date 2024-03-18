@@ -1,17 +1,18 @@
 using System.Text;
-using RelogicLabs.JsonSchema.Utilities;
+using RelogicLabs.JSchema.Utilities;
 using static System.Environment;
-using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
+using static RelogicLabs.JSchema.Utilities.CommonUtilities;
 
-namespace RelogicLabs.JsonSchema.Types;
+namespace RelogicLabs.JSchema.Nodes;
 
 public sealed class JRoot : JNode
 {
     public JTitle? Title { get; }
     public JVersion? Version { get; }
-    public IList<JInclude>? Includes { get; }
+    public IList<JImport>? Imports { get; }
     public IList<JPragma>? Pragmas { get; }
     public IList<JDefinition>? Definitions { get; }
+    public IList<JScript>? Scripts { get; }
     public JNode Value { get; }
 
     public override JNode Parent => null!;
@@ -20,12 +21,13 @@ public sealed class JRoot : JNode
     {
         Title = builder.Title;
         Version = builder.Version;
-        Includes = builder.Includes;
+        Imports = builder.Imports;
         Pragmas = builder.Pragmas;
         Definitions = builder.Definitions;
+        Scripts = builder.Scripts;
         Value = RequireNonNull(builder.Value);
         Children = new List<JNode>().AddToList(Title, Version)
-            .AddToList(Includes, Pragmas, Definitions)
+            .AddToList(Imports, Pragmas, Definitions)
             .AddToList(Value).AsReadOnly();
     }
 
@@ -41,7 +43,7 @@ public sealed class JRoot : JNode
         StringBuilder builder = new();
         AppendTo(builder, Title?.ToString());
         AppendTo(builder, Version?.ToString());
-        AppendTo(builder, Includes?.Join(NewLine));
+        AppendTo(builder, Imports?.Join(NewLine));
         AppendTo(builder, Pragmas?.Join(NewLine));
         AppendTo(builder, Definitions?.Join(NewLine));
         AppendTo(builder, Value.ToString());
@@ -54,13 +56,14 @@ public sealed class JRoot : JNode
         builder.Append(text).Append(NewLine);
     }
 
-    internal new class Builder : JNode.Builder
+    internal new sealed class Builder : JNode.Builder
     {
         public JTitle? Title { get; init; }
         public JVersion? Version { get; init; }
-        public IList<JInclude>? Includes { get; init; }
+        public IList<JImport>? Imports { get; init; }
         public IList<JPragma>? Pragmas { get; init; }
         public IList<JDefinition>? Definitions { get; init; }
+        public IList<JScript>? Scripts { get; init; }
         public JNode? Value { get; init; }
         public override JRoot Build() => Build(new JRoot(this));
     }

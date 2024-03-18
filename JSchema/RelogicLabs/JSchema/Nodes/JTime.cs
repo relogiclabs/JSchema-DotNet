@@ -1,9 +1,10 @@
-using RelogicLabs.JsonSchema.Time;
+using RelogicLabs.JSchema.Time;
+using RelogicLabs.JSchema.Types;
 
-namespace RelogicLabs.JsonSchema.Types;
+namespace RelogicLabs.JSchema.Nodes;
 
 public sealed class JTime : JDateTime
 {
     internal JTime(JString node, JsonDateTime dateTime) : base(node, dateTime) { }
-    public override JsonType Type => JsonType.TIME;
+    public override EType Type => EType.TIME;
 }

@@ -1,6 +1,6 @@
-using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
+using static RelogicLabs.JSchema.Utilities.CommonUtilities;
 
-namespace RelogicLabs.JsonSchema.Types;
+namespace RelogicLabs.JSchema.Nodes;
 
 public sealed class JDefinition : JDirective
 {
@@ -17,7 +17,7 @@ public sealed class JDefinition : JDirective
 
     public override string ToString() => $"{DefineMarker} {Alias}: {Validator}";
 
-    internal new class Builder : JNode.Builder
+    internal new sealed class Builder : JNode.Builder
     {
         public JAlias? Alias { get; init; }
         public JValidator? Validator { get; init; }

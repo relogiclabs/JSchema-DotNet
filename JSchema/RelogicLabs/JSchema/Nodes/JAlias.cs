@@ -1,9 +1,9 @@
-using RelogicLabs.JsonSchema.Exceptions;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
-using static RelogicLabs.JsonSchema.Message.MessageFormatter;
-using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
+using RelogicLabs.JSchema.Exceptions;
+using static RelogicLabs.JSchema.Message.ErrorCode;
+using static RelogicLabs.JSchema.Message.MessageFormatter;
+using static RelogicLabs.JSchema.Utilities.CommonUtilities;
 
-namespace RelogicLabs.JsonSchema.Types;
+namespace RelogicLabs.JSchema.Nodes;
 
 public sealed class JAlias : JLeaf
 {
@@ -32,7 +32,7 @@ public sealed class JAlias : JLeaf
     public override int GetHashCode() => Name.GetHashCode();
     public override string ToString() => Name;
 
-    internal new class Builder : JNode.Builder
+    internal new sealed class Builder : JNode.Builder
     {
         public string? Name { get; init; }
         public override JAlias Build() => Build(new JAlias(this));
