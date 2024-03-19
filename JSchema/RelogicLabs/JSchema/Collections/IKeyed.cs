@@ -1,4 +1,4 @@
-namespace RelogicLabs.JsonSchema.Collections;
+namespace RelogicLabs.JSchema.Collections;
 
 public interface IKeyed<out TK>
 {

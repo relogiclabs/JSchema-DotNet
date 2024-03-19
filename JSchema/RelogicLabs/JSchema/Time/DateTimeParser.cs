@@ -1,12 +1,12 @@
 using Antlr4.Runtime;
-using RelogicLabs.JsonSchema.Antlr;
-using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Message;
-using RelogicLabs.JsonSchema.Utilities;
-using static RelogicLabs.JsonSchema.Antlr.DateTimeLexer;
-using static RelogicLabs.JsonSchema.Time.SegmentProcessor;
+using RelogicLabs.JSchema.Antlr;
+using RelogicLabs.JSchema.Exceptions;
+using RelogicLabs.JSchema.Message;
+using RelogicLabs.JSchema.Utilities;
+using static RelogicLabs.JSchema.Antlr.DateTimeLexer;
+using static RelogicLabs.JSchema.Time.SegmentProcessor;
 
-namespace RelogicLabs.JsonSchema.Time;
+namespace RelogicLabs.JSchema.Time;
 
 internal sealed class DateTimeParser
 {
@@ -76,7 +76,7 @@ internal sealed class DateTimeParser
             $"Invalid {context.Type} input format");
 
         var dateTime = context.Validate();
-        DebugUtilities.Print(context);
+        LogHelper.Debug(context);
         return dateTime;
     }
 
@@ -92,7 +92,7 @@ internal sealed class DateTimeParser
         }
         catch(InvalidDateTimeException ex)
         {
-            DebugUtilities.Print(ex);
+            LogHelper.Debug(ex);
             error = ex.Message;
             return null;
         }

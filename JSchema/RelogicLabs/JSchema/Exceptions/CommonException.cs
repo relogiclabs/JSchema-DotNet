@@ -1,5 +1,6 @@
 using RelogicLabs.JSchema.Message;
 using RelogicLabs.JSchema.Utilities;
+using static System.Environment;
 
 namespace RelogicLabs.JSchema.Exceptions;
 
@@ -56,7 +57,6 @@ public class CommonException : Exception
                                               ?? string.Empty)) end++;
             else break;
         }
-        var newLine = Environment.NewLine;
-        return string.Join(newLine, stackTrace.ToString().Split(newLine)[start..end]) + newLine;
+        return string.Join(NewLine, stackTrace.ToString().Split(NewLine)[start..end]) + NewLine;
     }
 }

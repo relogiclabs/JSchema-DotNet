@@ -1,7 +1,7 @@
-using RelogicLabs.JsonSchema.Types;
-using static RelogicLabs.JsonSchema.Types.JsonType;
+using RelogicLabs.JSchema.Types;
+using static RelogicLabs.JSchema.Types.EType;
 
-namespace RelogicLabs.JsonSchema.Time;
+namespace RelogicLabs.JSchema.Time;
 
 public sealed class DateTimeType
 {
@@ -9,9 +9,9 @@ public sealed class DateTimeType
     public static readonly DateTimeType TIME_TYPE = new("time", TIME);
 
     public string Name { get; }
-    public JsonType Type { get; }
+    public EType Type { get; }
 
-    private DateTimeType(string name, JsonType type)
+    private DateTimeType(string name, EType type)
     {
         Name = name;
         Type = type;

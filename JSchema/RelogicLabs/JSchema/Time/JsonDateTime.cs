@@ -1,10 +1,10 @@
 using System.Text;
-using RelogicLabs.JsonSchema.Types;
-using RelogicLabs.JsonSchema.Utilities;
-using static RelogicLabs.JsonSchema.Time.DateTimeType;
-using static RelogicLabs.JsonSchema.Time.JsonUtcOffset;
+using RelogicLabs.JSchema.Nodes;
+using RelogicLabs.JSchema.Utilities;
+using static RelogicLabs.JSchema.Time.DateTimeType;
+using static RelogicLabs.JSchema.Time.JsonUtcOffset;
 
-namespace RelogicLabs.JsonSchema.Time;
+namespace RelogicLabs.JSchema.Time;
 
 public class JsonDateTime
 {
@@ -58,7 +58,7 @@ public class JsonDateTime
         => value == UNSET ? defaultValue : value;
 
     private static bool IsAllSet(params int[] values)
-        => values.All(value => value != UNSET);
+        => values.All(static value => value != UNSET);
 
     public DayOfWeek? GetDayOfWeek()
     {

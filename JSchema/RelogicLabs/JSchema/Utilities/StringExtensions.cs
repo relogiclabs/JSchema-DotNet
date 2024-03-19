@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace RelogicLabs.JsonSchema.Utilities;
+namespace RelogicLabs.JSchema.Utilities;
 
 internal static class StringExtensions
 {
@@ -41,6 +41,12 @@ internal static class StringExtensions
             } else builder.Append(current);
         }
         return builder.ToString();
+    }
+
+    public static string SubstringBefore(this string source, char separator)
+    {
+        var index = source.IndexOf(separator);
+        return index == -1 ? source : source[..index];
     }
 
     public static string Quote(this string source)

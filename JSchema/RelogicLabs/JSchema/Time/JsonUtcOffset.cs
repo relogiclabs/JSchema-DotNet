@@ -1,8 +1,8 @@
 using System.Text;
-using RelogicLabs.JsonSchema.Utilities;
-using static RelogicLabs.JsonSchema.Time.JsonDateTime;
+using RelogicLabs.JSchema.Utilities;
+using static RelogicLabs.JSchema.Time.JsonDateTime;
 
-namespace RelogicLabs.JsonSchema.Time;
+namespace RelogicLabs.JSchema.Time;
 
 public class JsonUtcOffset
 {

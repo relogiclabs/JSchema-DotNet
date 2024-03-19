@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.ObjectModel;
 
-namespace RelogicLabs.JsonSchema.Collections;
+namespace RelogicLabs.JSchema.Collections;
 
 internal sealed class IndexHashMap<TK, TV> : IIndexMap<TK, TV>
     where TV : IKeyed<TK> where TK : notnull
@@ -12,7 +12,7 @@ internal sealed class IndexHashMap<TK, TV> : IIndexMap<TK, TV>
     public IndexHashMap(IEnumerable<TV> source)
     {
         _list = source.ToList();
-        _dictionary = _list.ToDictionary(e => e.Key, e => e);
+        _dictionary = _list.ToDictionary(static e => e.Key, static e => e);
     }
 
     public IEnumerator<TV> GetEnumerator() => _list.GetEnumerator();
@@ -25,7 +25,7 @@ internal sealed class IndexHashMap<TK, TV> : IIndexMap<TK, TV>
 
     public bool Remove(TV item)
     {
-        bool result = _list.Remove(item);
+        var result = _list.Remove(item);
         result &= _dictionary.Remove(item.Key);
         return result;
     }
@@ -50,7 +50,7 @@ internal sealed class IndexHashMap<TK, TV> : IIndexMap<TK, TV>
 
     public void RemoveAt(int index)
     {
-        TV item = _list[index];
+        var item = _list[index];
         _list.RemoveAt(index);
         _dictionary.Remove(item.Key);
     }

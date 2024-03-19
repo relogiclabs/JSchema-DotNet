@@ -1,6 +1,6 @@
-using RelogicLabs.JsonSchema.Utilities;
+using RelogicLabs.JSchema.Utilities;
 
-namespace RelogicLabs.JsonSchema.Message;
+namespace RelogicLabs.JSchema.Message;
 
 public sealed class ErrorDetail
 {
@@ -8,7 +8,7 @@ public sealed class ErrorDetail
     internal const string ValueMismatch = "Value mismatch";
     internal const string DataTypeMismatch = "Data type mismatch";
     internal const string InvalidNonCompositeType = "Invalid non-composite value type";
-    internal const string DataTypeArgumentFailed = "Data type argument validation failed";
+    internal const string DataTypeArgumentFailed = "Data type argument failed";
     internal const string InvalidNestedFunction = "Invalid nested function operation";
     internal const string PropertyNotFound = "Mandatory property not found";
     internal const string ArrayElementNotFound = "Mandatory array element not found";

@@ -1,4 +1,4 @@
-namespace RelogicLabs.JsonSchema.Collections;
+namespace RelogicLabs.JSchema.Collections;
 
 public interface IIndexMap<TK, TV> : IList<TV>
     where TV : IKeyed<TK> where TK : notnull

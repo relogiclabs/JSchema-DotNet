@@ -1,11 +1,11 @@
 using System.Text;
-using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Utilities;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
+using RelogicLabs.JSchema.Exceptions;
+using RelogicLabs.JSchema.Utilities;
+using static RelogicLabs.JSchema.Message.ErrorCode;
 using static System.DayOfWeek;
-using static RelogicLabs.JsonSchema.Time.JsonDateTime;
+using static RelogicLabs.JSchema.Time.JsonDateTime;
 
-namespace RelogicLabs.JsonSchema.Time;
+namespace RelogicLabs.JSchema.Time;
 
 internal sealed class DateTimeContext
 {

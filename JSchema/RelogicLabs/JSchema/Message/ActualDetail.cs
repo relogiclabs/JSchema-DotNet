@@ -1,7 +1,7 @@
-using RelogicLabs.JsonSchema.Tree;
-using RelogicLabs.JsonSchema.Types;
+using RelogicLabs.JSchema.Tree;
+using RelogicLabs.JSchema.Nodes;
 
-namespace RelogicLabs.JsonSchema.Message;
+namespace RelogicLabs.JSchema.Message;
 
 public sealed class ActualDetail : ContextDetail
 {
