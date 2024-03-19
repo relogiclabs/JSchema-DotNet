@@ -1,6 +1,6 @@
 using Antlr4.Runtime;
 
-namespace RelogicLabs.JsonSchema.Tree;
+namespace RelogicLabs.JSchema.Tree;
 
 public readonly record struct Location(int Line, int Column)
 {

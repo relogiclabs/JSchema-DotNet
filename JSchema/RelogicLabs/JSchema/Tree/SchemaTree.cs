@@ -1,10 +1,11 @@
 using Antlr4.Runtime;
-using RelogicLabs.JsonSchema.Antlr;
-using RelogicLabs.JsonSchema.Types;
-using RelogicLabs.JsonSchema.Utilities;
-using static RelogicLabs.JsonSchema.Tree.TreeType;
+using RelogicLabs.JSchema.Antlr;
+using RelogicLabs.JSchema.Engine;
+using RelogicLabs.JSchema.Nodes;
+using RelogicLabs.JSchema.Utilities;
+using static RelogicLabs.JSchema.Tree.TreeType;
 
-namespace RelogicLabs.JsonSchema.Tree;
+namespace RelogicLabs.JSchema.Tree;
 
 public sealed class SchemaTree : IDataTree
 {
@@ -15,19 +16,23 @@ public sealed class SchemaTree : IDataTree
     public SchemaTree(RuntimeContext runtime, string input)
     {
         Runtime = runtime;
-        SchemaLexer schemaLexer = new(CharStreams.fromString(input));
+        var schemaLexer = new SchemaLexer(CharStreams.fromString(input));
         schemaLexer.RemoveErrorListeners();
         schemaLexer.AddErrorListener(LexerErrorListener.Schema);
-        SchemaParser schemaParser = new(new CommonTokenStream(schemaLexer));
+        var schemaParser = new SchemaParser(new CommonTokenStream(schemaLexer));
         schemaParser.RemoveErrorListeners();
         schemaParser.AddErrorListener(ParserErrorListener.Schema);
-        Root = (JRoot) new SchemaTreeVisitor(runtime).Visit(schemaParser.schema());
+        var schemaParseTree = schemaParser.schema();
+        var scriptVisitor = new ScriptTreeVisitor(runtime);
+        var evaluator = scriptVisitor.Visit(schemaParseTree);
+        Root = (JRoot) new SchemaTreeVisitor(scriptVisitor).Visit(schemaParseTree);
+        evaluator(runtime.ScriptContext);
     }
 
     public bool Match(IDataTree dataTree)
     {
         var result = Root.Match(dataTree.Root);
-        result &= Runtime.InvokeValidators();
+        result &= Runtime.InvokeFutures();
         return result;
     }
 }

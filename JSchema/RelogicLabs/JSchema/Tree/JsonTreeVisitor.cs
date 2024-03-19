@@ -1,11 +1,11 @@
-using RelogicLabs.JsonSchema.Antlr;
-using RelogicLabs.JsonSchema.Collections;
-using RelogicLabs.JsonSchema.Types;
-using RelogicLabs.JsonSchema.Utilities;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
-using static RelogicLabs.JsonSchema.Utilities.CommonUtilities;
+using RelogicLabs.JSchema.Antlr;
+using RelogicLabs.JSchema.Collections;
+using RelogicLabs.JSchema.Nodes;
+using RelogicLabs.JSchema.Utilities;
+using static RelogicLabs.JSchema.Tree.TreeType;
+using static RelogicLabs.JSchema.Tree.TreeHelper;
 
-namespace RelogicLabs.JsonSchema.Tree;
+namespace RelogicLabs.JSchema.Tree;
 
 internal sealed class JsonTreeVisitor : JsonParserBaseVisitor<JNode>
 {
@@ -20,46 +20,38 @@ internal sealed class JsonTreeVisitor : JsonParserBaseVisitor<JNode>
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
-            Value = Visit(context.value())
+            Value = Visit(context.valueNode())
         }.Build();
 
-    public override JNode VisitValue(JsonParser.ValueContext context)
-    {
-        if(context.primitive() != null) return Visit(context.primitive());
-        if(context.array() != null) return Visit(context.array());
-        if(context.@object() != null) return Visit(context.@object());
-        throw new InvalidOperationException("Invalid parser state");
-    }
-
-    public override JNode VisitObject(JsonParser.ObjectContext context)
+    public override JNode VisitObjectNode(JsonParser.ObjectNodeContext context)
         => new JObject.Builder
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
-            Properties = ProcessProperties(context.property())
+            Properties = ProcessProperties(context.propertyNode())
         }.Build();
 
-    private IIndexMap<string,JProperty> ProcessProperties(JsonParser.PropertyContext[] contexts)
+    private IIndexMap<string,JProperty> ProcessProperties(JsonParser.PropertyNodeContext[] contexts)
     {
-        List<JProperty> properties = contexts.Select(p => (JProperty) Visit(p)).ToList();
-        return RequireUniqueness(properties, PROP03).ToIndexMap().AsReadOnly();
+        var properties = contexts.Select(p => (JProperty) Visit(p)).ToList();
+        return RequireUniqueness(properties, JSON_TREE).ToIndexMap().AsReadOnly();
     }
 
-    public override JNode VisitProperty(JsonParser.PropertyContext context)
+    public override JNode VisitPropertyNode(JsonParser.PropertyNodeContext context)
         => new JProperty.Builder
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
             Key = context.STRING().GetText()[1..^1],
-            Value = Visit(context.value())
+            Value = Visit(context.valueNode())
         }.Build();
 
-    public override JNode VisitArray(JsonParser.ArrayContext context)
+    public override JNode VisitArrayNode(JsonParser.ArrayNodeContext context)
         => new JArray.Builder
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
-            Elements = context.value().Select(Visit).ToList().AsReadOnly()
+            Elements = context.valueNode().Select(Visit).ToList().AsReadOnly()
         }.Build();
 
     public override JNode VisitPrimitiveTrue(JsonParser.PrimitiveTrueContext context)

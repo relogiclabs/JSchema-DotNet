@@ -1,8 +1,8 @@
 using System.Collections;
 
-namespace RelogicLabs.JsonSchema.Tree;
+namespace RelogicLabs.JSchema.Tree;
 
-public class ExceptionRegistry : IEnumerable<Exception>
+public sealed class ExceptionRegistry : IEnumerable<Exception>
 {
     private int _disableException;
     private readonly List<Exception> _exceptions;
@@ -19,12 +19,13 @@ public class ExceptionRegistry : IEnumerable<Exception>
         TryBuffer = new List<Exception>();
     }
 
-    private bool AddException(List<Exception> list, Exception exception) {
+    private bool AddException(List<Exception> list, Exception exception)
+    {
         if(list.Count <= CutoffLimit) list.Add(exception);
         return false;
     }
 
-    internal bool FailWith(Exception exception)
+    internal bool Fail(Exception exception)
     {
         if(_disableException > 0) return AddException(TryBuffer, exception);
         if(ThrowException) throw exception;

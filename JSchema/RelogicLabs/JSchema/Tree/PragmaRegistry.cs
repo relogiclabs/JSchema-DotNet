@@ -1,12 +1,12 @@
 using System.Collections;
-using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Time;
-using RelogicLabs.JsonSchema.Types;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
-using static RelogicLabs.JsonSchema.Message.MessageFormatter;
-using static RelogicLabs.JsonSchema.Time.DateTimeType;
+using RelogicLabs.JSchema.Exceptions;
+using RelogicLabs.JSchema.Time;
+using RelogicLabs.JSchema.Nodes;
+using static RelogicLabs.JSchema.Message.ErrorCode;
+using static RelogicLabs.JSchema.Message.MessageFormatter;
+using static RelogicLabs.JSchema.Time.DateTimeType;
 
-namespace RelogicLabs.JsonSchema.Tree;
+namespace RelogicLabs.JSchema.Tree;
 
 public sealed class PragmaRegistry : IEnumerable<KeyValuePair<string, JPragma>>
 {
@@ -38,7 +38,8 @@ public sealed class PragmaRegistry : IEnumerable<KeyValuePair<string, JPragma>>
         TimeTypeParser = new DateTimeParser(TimeDataTypeFormat, TIME_TYPE);
     }
 
-    public JPragma AddPragma(JPragma pragma) {
+    public JPragma AddPragma(JPragma pragma)
+    {
         if(_pragmas.ContainsKey(pragma.Name))
             throw new DuplicatePragmaException(FormatForSchema(PRAG03,
                 $"Duplication found for {pragma.GetOutline()}", pragma));
@@ -47,8 +48,10 @@ public sealed class PragmaRegistry : IEnumerable<KeyValuePair<string, JPragma>>
         return pragma;
     }
 
-    private void SetPragmaValue(string name, JPrimitive value) {
-        switch(name) {
+    private void SetPragmaValue(string name, JPrimitive value)
+    {
+        switch(name)
+        {
             case IGNORE_UNDEFINED_PROPERTIES:
                 IgnoreUndefinedProperties = ((IPragmaValue<bool>) value).Value;
                 break;
@@ -78,7 +81,8 @@ public sealed class PragmaRegistry : IEnumerable<KeyValuePair<string, JPragma>>
             : ((IPragmaValue<T>) pragma.Value).Value;
     }
 
-    public JPragma? GetPragma(string name) {
+    public JPragma? GetPragma(string name)
+    {
         var entry = PragmaDescriptor.From(name);
         _pragmas.TryGetValue(entry!.Name, out var pragma);
         return pragma;

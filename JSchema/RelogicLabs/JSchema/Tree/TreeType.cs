@@ -1,6 +1,6 @@
-namespace RelogicLabs.JsonSchema.Tree;
+namespace RelogicLabs.JSchema.Tree;
 
-public class TreeType
+public sealed class TreeType
 {
     public static readonly TreeType SCHEMA_TREE = new("Schema");
     public static readonly TreeType JSON_TREE = new("Json");

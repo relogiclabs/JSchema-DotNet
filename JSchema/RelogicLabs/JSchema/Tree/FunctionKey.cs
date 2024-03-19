@@ -1,19 +1,18 @@
-using System.Reflection;
-using RelogicLabs.JsonSchema.Types;
-using RelogicLabs.JsonSchema.Utilities;
+using RelogicLabs.JSchema.Nodes;
+using RelogicLabs.JSchema.Utilities;
 
-namespace RelogicLabs.JsonSchema.Tree;
+namespace RelogicLabs.JSchema.Tree;
 
 internal sealed record FunctionKey(string FunctionName, int ParameterCount)
 {
     public const char EscapedPrefix = '_';
 
-    public FunctionKey(JFunction function)
-        : this(function.Name, function.Arguments.Count + 1) { }
+    public FunctionKey(JFunction caller)
+        : this(caller.Name, caller.Arguments.Count + 1) { }
 
-    public FunctionKey(MethodInfo methodInfo, int parameterCount)
-        : this(GetFunctionName(methodInfo), parameterCount) { }
+    public FunctionKey(IEFunction function)
+        : this(FormatName(function.Name), function.Arity) { }
 
-    private static string GetFunctionName(MethodInfo methodInfo)
-        => '@' + methodInfo.Name.TrimStart(EscapedPrefix).Uncapitalize();
+    private static string FormatName(string name)
+        => '@' + name.TrimStart(EscapedPrefix).Uncapitalize();
 }

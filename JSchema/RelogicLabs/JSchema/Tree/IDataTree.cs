@@ -1,6 +1,6 @@
-using RelogicLabs.JsonSchema.Types;
+using RelogicLabs.JSchema.Nodes;
 
-namespace RelogicLabs.JsonSchema.Tree;
+namespace RelogicLabs.JSchema.Tree;
 
 public interface IDataTree
 {

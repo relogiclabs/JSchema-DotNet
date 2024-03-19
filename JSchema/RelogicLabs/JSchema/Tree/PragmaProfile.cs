@@ -1,4 +1,4 @@
-namespace RelogicLabs.JsonSchema.Tree;
+namespace RelogicLabs.JSchema.Tree;
 
 internal sealed class PragmaProfile<T> : PragmaDescriptor
 {

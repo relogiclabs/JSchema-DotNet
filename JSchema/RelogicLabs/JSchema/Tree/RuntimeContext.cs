@@ -1,11 +1,12 @@
-using RelogicLabs.JsonSchema.Exceptions;
-using RelogicLabs.JsonSchema.Functions;
-using RelogicLabs.JsonSchema.Message;
-using RelogicLabs.JsonSchema.Types;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
-using static RelogicLabs.JsonSchema.Message.MessageFormatter;
+using RelogicLabs.JSchema.Engine;
+using RelogicLabs.JSchema.Exceptions;
+using RelogicLabs.JSchema.Functions;
+using RelogicLabs.JSchema.Message;
+using RelogicLabs.JSchema.Nodes;
+using static RelogicLabs.JSchema.Message.ErrorCode;
+using static RelogicLabs.JSchema.Message.MessageFormatter;
 
-namespace RelogicLabs.JsonSchema.Tree;
+namespace RelogicLabs.JSchema.Tree;
 
 public sealed class RuntimeContext
 {
@@ -13,10 +14,11 @@ public sealed class RuntimeContext
     public PragmaRegistry Pragmas { get; }
     public Dictionary<JAlias, JValidator> Definitions { get; }
     public ExceptionRegistry Exceptions { get; }
-    public Dictionary<string, FutureValidator> Validators { get; }
+    public Dictionary<string, FutureFunction> Futures { get; }
     public ReceiverRegistry Receivers { get; }
     public Dictionary<string, object> Storage { get; }
-    internal MessageFormatter MessageFormatter { get; }
+    public MessageFormatter MessageFormatter { get; }
+    internal ScriptContext ScriptContext { get; }
 
     internal RuntimeContext(MessageFormatter messageFormatter, bool throwException)
     {
@@ -25,9 +27,10 @@ public sealed class RuntimeContext
         MessageFormatter = messageFormatter;
         Definitions = new Dictionary<JAlias, JValidator>();
         Exceptions = new ExceptionRegistry(throwException);
-        Validators = new Dictionary<string, FutureValidator>();
+        Futures = new Dictionary<string, FutureFunction>();
         Receivers = new ReceiverRegistry();
         Storage = new Dictionary<string, object>();
+        ScriptContext = new ScriptContext(this);
     }
 
     public JDefinition AddDefinition(JDefinition definition)
@@ -44,13 +47,13 @@ public sealed class RuntimeContext
     internal bool AreEqual(double value1, double value2)
         => Math.Abs(value1 - value2) < Pragmas.FloatingPointTolerance;
 
-    public bool AddValidator(FutureValidator validator)
-        => Validators.TryAdd(Guid.NewGuid().ToString(), validator);
+    public bool AddFuture(FutureFunction future)
+        => Futures.TryAdd(Guid.NewGuid().ToString(), future);
 
-    internal bool InvokeValidators()
+    internal bool InvokeFutures()
     {
         var result = true;
-        foreach(var v in Validators) result &= v.Value();
+        foreach(var f in Futures) result &= f.Value();
         return result;
     }
 

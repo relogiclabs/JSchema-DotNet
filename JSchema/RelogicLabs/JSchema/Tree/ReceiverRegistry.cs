@@ -1,9 +1,9 @@
 using System.Collections;
-using RelogicLabs.JsonSchema.Types;
+using RelogicLabs.JSchema.Nodes;
 
-namespace RelogicLabs.JsonSchema.Tree;
+namespace RelogicLabs.JSchema.Tree;
 
-public class ReceiverRegistry : IEnumerable<KeyValuePair<JReceiver, List<JNode>>>
+public sealed class ReceiverRegistry : IEnumerable<KeyValuePair<JReceiver, List<JNode>>>
 {
     private readonly Dictionary<JReceiver, List<JNode>> _receivers = new();
 
