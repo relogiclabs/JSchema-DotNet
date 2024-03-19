@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.ObjectModel;
+using static RelogicLabs.JSchema.Utilities.CommonUtilities;
 
 namespace RelogicLabs.JSchema.Collections;
 
@@ -12,7 +13,7 @@ internal sealed class IndexHashMap<TK, TV> : IIndexMap<TK, TV>
     public IndexHashMap(IEnumerable<TV> source)
     {
         _list = source.ToList();
-        _dictionary = _list.ToDictionary(static e => e.Key, static e => e);
+        _dictionary = _list.ToDictionary(static e => e.Key, Identity);
     }
 
     public IEnumerator<TV> GetEnumerator() => _list.GetEnumerator();

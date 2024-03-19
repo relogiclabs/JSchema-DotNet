@@ -1,7 +1,7 @@
-using RelogicLabs.JsonSchema.Tree;
-using RelogicLabs.JsonSchema.Types;
+using RelogicLabs.JSchema.Tree;
+using RelogicLabs.JSchema.Nodes;
 
-namespace RelogicLabs.JsonSchema.Message;
+namespace RelogicLabs.JSchema.Message;
 
 public abstract class ContextDetail
 {
@@ -28,7 +28,7 @@ public abstract class ContextDetail
 
     internal static string GetTypeName(Type type)
     {
-        var jsonType = JsonType.From(type);
-        return jsonType != null ? jsonType.Name : type.Name;
+        var t = JsonType.GetType(type);
+        return t?.Name ?? type.Name;
     }
 }

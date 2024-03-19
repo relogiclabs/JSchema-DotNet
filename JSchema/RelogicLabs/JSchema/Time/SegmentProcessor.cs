@@ -1,10 +1,10 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using Antlr4.Runtime;
-using RelogicLabs.JsonSchema.Exceptions;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
+using RelogicLabs.JSchema.Exceptions;
+using static RelogicLabs.JSchema.Message.ErrorCode;
 
-namespace RelogicLabs.JsonSchema.Time;
+namespace RelogicLabs.JSchema.Time;
 
 internal abstract class SegmentProcessor
 {
@@ -104,8 +104,8 @@ internal abstract class SegmentProcessor
         public override string Process(string input, IToken token, DateTimeContext context)
         {
             var _token = token.Text[1..^1].Replace("''", "'");
-            if(!input.StartsWith(_token)) throw new InvalidDateTimeException(DTXT01,
-                $"Invalid {context.Type} text mismatch or input format");
+            if(!input.StartsWith(_token)) throw FailOnInvalidDateTime(context, DTXT01,
+                "text mismatch or input format");
             return input[_token.Length..];
         }
     }
@@ -114,8 +114,8 @@ internal abstract class SegmentProcessor
     {
         public override string Process(string input, IToken token, DateTimeContext context)
         {
-            if(!input.StartsWith(token.Text)) throw new InvalidDateTimeException(DSYM01,
-                $"Invalid {context.Type} symbol mismatch or input format");
+            if(!input.StartsWith(token.Text)) throw FailOnInvalidDateTime(context, DSYM01,
+                "symbol mismatch or input format");
             return input[token.Text.Length..];
         }
     }
@@ -124,8 +124,8 @@ internal abstract class SegmentProcessor
     {
         public override string Process(string input, IToken token, DateTimeContext context)
         {
-            if(!input.StartsWith(token.Text)) throw new InvalidDateTimeException(DWTS01,
-                $"Invalid {context.Type} whitespace mismatch or input format");
+            if(!input.StartsWith(token.Text)) throw FailOnInvalidDateTime(context, DWTS01,
+                "whitespace mismatch or input format");
             return input[token.Text.Length..];
         }
     }
@@ -156,8 +156,7 @@ internal abstract class SegmentProcessor
         public EraProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
-            if(!match.Success) throw new InvalidDateTimeException(_code,
-                $"Invalid {context.Type} era input");
+            if(!match.Success) throw FailOnInvalidDateTime(context, _code, "era input");
             context.SetEra(match.Groups[1].Value);
         }
     }
@@ -167,8 +166,7 @@ internal abstract class SegmentProcessor
         public YearNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
-            if(!match.Success) throw new InvalidDateTimeException(_code,
-                $"Invalid {context.Type} year input");
+            if(!match.Success) throw FailOnInvalidDateTime(context, _code, "year input");
             var year = match.Groups[1].Value;
             context.SetYear(int.Parse(year, NumberStyles.Integer), year.Length);
         }
@@ -179,8 +177,7 @@ internal abstract class SegmentProcessor
         public MonthNameProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
-            if(!match.Success) throw new InvalidDateTimeException(_code,
-                $"Invalid {context.Type} month name input");
+            if(!match.Success) throw FailOnInvalidDateTime(context, _code, "month name input");
             context.SetMonth(match.Groups[1].Value);
         }
     }
@@ -190,8 +187,7 @@ internal abstract class SegmentProcessor
         public MonthNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
-            if(!match.Success) throw new InvalidDateTimeException(_code,
-                $"Invalid {context.Type} month number input");
+            if(!match.Success) throw FailOnInvalidDateTime(context, _code, "month number input");
             context.SetMonth(int.Parse(match.Groups[1].Value, NumberStyles.Integer));
         }
     }
@@ -201,8 +197,7 @@ internal abstract class SegmentProcessor
         public WeekdayProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
-            if(!match.Success) throw new InvalidDateTimeException(_code,
-                $"Invalid {context.Type} weekday input");
+            if(!match.Success) throw FailOnInvalidDateTime(context, _code, "weekday input");
             context.SetWeekday(match.Groups[1].Value);
         }
     }
@@ -212,8 +207,7 @@ internal abstract class SegmentProcessor
         public DayNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
-            if(!match.Success) throw new InvalidDateTimeException(_code,
-                $"Invalid {context.Type} day input");
+            if(!match.Success) throw FailOnInvalidDateTime(context, _code, "day input");
             context.SetDay(int.Parse(match.Groups[1].Value, NumberStyles.Integer));
         }
     }
@@ -223,8 +217,7 @@ internal abstract class SegmentProcessor
         public ClockAmPmProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
-            if(!match.Success) throw new InvalidDateTimeException(_code,
-                $"Invalid {context.Type} AM/PM input");
+            if(!match.Success) throw FailOnInvalidDateTime(context, _code, "AM/PM input");
             context.SetAmPm(match.Groups[1].Value);
         }
     }
@@ -234,8 +227,7 @@ internal abstract class SegmentProcessor
         public HourNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
-            if(!match.Success) throw new InvalidDateTimeException(_code,
-                $"Invalid {context.Type} hour input");
+            if(!match.Success) throw FailOnInvalidDateTime(context, _code, "hour input");
             context.SetHour(int.Parse(match.Groups[1].Value, NumberStyles.Integer));
         }
     }
@@ -245,8 +237,7 @@ internal abstract class SegmentProcessor
         public MinuteNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
-            if(!match.Success) throw new InvalidDateTimeException(_code,
-                $"Invalid {context.Type} minute input");
+            if(!match.Success) throw FailOnInvalidDateTime(context, _code, "minute input");
             context.SetMinute(int.Parse(match.Groups[1].Value, NumberStyles.Integer));
         }
     }
@@ -256,8 +247,7 @@ internal abstract class SegmentProcessor
         public SecondNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
-            if(!match.Success) throw new InvalidDateTimeException(_code,
-                $"Invalid {context.Type} second input");
+            if(!match.Success) throw FailOnInvalidDateTime(context, _code, "second input");
             context.SetSecond(int.Parse(match.Groups[1].Value, NumberStyles.Integer));
         }
     }
@@ -267,8 +257,7 @@ internal abstract class SegmentProcessor
         public FractionNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
-            if(!match.Success) throw new InvalidDateTimeException(_code,
-                $"Invalid {context.Type} second faction input");
+            if(!match.Success) throw FailOnInvalidDateTime(context, _code, "second faction input");
             context.SetFraction(int.Parse(match.Groups[1].Value, NumberStyles.Integer));
         }
     }
@@ -278,8 +267,7 @@ internal abstract class SegmentProcessor
         public UtcOffsetHourProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
-            if(!match.Success) throw new InvalidDateTimeException(_code,
-                $"Invalid {context.Type} UTC offset hour input");
+            if(!match.Success) throw FailOnInvalidDateTime(context, _code, "UTC offset hour input");
             context.SetUtcOffset(match.Value == "Z"? 0 : int.Parse(match.Groups[1].Value,
                 NumberStyles.Integer), 0);
         }
@@ -290,11 +278,14 @@ internal abstract class SegmentProcessor
         public UtcOffsetTimeProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
-            if(!match.Success) throw new InvalidDateTimeException(_code,
-                $"Invalid {context.Type} UTC offset input");
+            if(!match.Success) throw FailOnInvalidDateTime(context, _code, "UTC offset input");
             if(match.Value == "Z") context.SetUtcOffset(0, 0);
             else context.SetUtcOffset(int.Parse(match.Groups[1].Value, NumberStyles.Integer),
                 int.Parse(match.Groups[2].Value, NumberStyles.Integer));
         }
     }
+
+    private static InvalidDateTimeException FailOnInvalidDateTime(DateTimeContext context,
+                string code, string message)
+        => new(code, $"Invalid {context.Type} {message}");
 }

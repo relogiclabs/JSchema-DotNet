@@ -1,7 +1,7 @@
-using RelogicLabs.JsonSchema.Collections;
-using RelogicLabs.JsonSchema.Types;
+using RelogicLabs.JSchema.Collections;
+using RelogicLabs.JSchema.Nodes;
 
-namespace RelogicLabs.JsonSchema.Utilities;
+namespace RelogicLabs.JSchema.Utilities;
 
 internal static class CollectionExtensions
 {
@@ -12,7 +12,7 @@ internal static class CollectionExtensions
         return string.IsNullOrEmpty(result) ? result : $"{prefix}{result}{suffix}";
     }
 
-    public static string JoinWith(this IEnumerable<JNode> source, string separator,
+    public static string JoinWith(this IEnumerable<object> source, string separator,
         string prefix = "", string suffix = "") => $"{prefix}{string.Join(separator,
             source)}{suffix}";
 
@@ -21,27 +21,32 @@ internal static class CollectionExtensions
     {
         foreach(var pair in other)
         {
-            source.TryGetValue(pair.Key, out List<TValue>? values);
+            source.TryGetValue(pair.Key, out var values);
             if(values == default) source.Add(pair.Key, other[pair.Key]);
             else values.AddRange(other[pair.Key]);
         }
     }
 
-    public static IList<T> GetRange<T>(this IList<T> source, int index, int count)
-    {
-        if(source is List<T> asList) return asList.GetRange(index, count);
-        List<T> range = new(count);
-        int limit = index + count;
-        for(int i = index; i < limit; i++) range.Add(source[i]);
-        return range;
-    }
+    public static T? TryGetLast<T>(this IList<T> list)
+        => list.Count == 0 ? default : list[^1];
 
-    public static IList<T> ToReadOnlyList<T>(this IEnumerable<T> source)
-        => source.ToList().AsReadOnly();
+    public static IList<T> GetRange<T>(this IEnumerable<T> source, int start, int? end = null)
+    {
+        var asList = source.ToList();
+        try
+        {
+            var _end = end ?? asList.Count;
+            return asList.GetRange(start, _end - start);
+        }
+        catch(Exception e)
+        {
+            throw new IndexOutOfRangeException(e.Message, e);
+        }
+    }
 
     public static void ForEach<T>(this IEnumerable<T> enumeration, Action<T> action)
     {
-        foreach(T item in enumeration) action(item);
+        foreach(var item in enumeration) action(item);
     }
 
     public static bool ForEachTrue<T>(this IEnumerable<T> enumeration, Func<T, bool> predicate)
@@ -58,7 +63,7 @@ internal static class CollectionExtensions
     public static IEnumerable<string> ContainsKeys(
         this IEnumerable<JProperty> source, params JString[] keys)
     {
-        ISet<string> _keys = keys.Select(s => s.Value).ToHashSet();
+        ISet<string> _keys = keys.Select(static s => s.Value).ToHashSet();
         source.ForEach(p => _keys.Remove(p.Key));
         return _keys;
     }
@@ -87,5 +92,13 @@ internal static class CollectionExtensions
         return source;
     }
 
-    public static bool IsEmpty<T>(this IEnumerable<T> source) => !source.Any();
+    public static bool IsEmpty<T>(this IEnumerable<T> source)
+    {
+        return source switch
+        {
+            ICollection<T> c1 => c1.Count == 0,
+            IReadOnlyCollection<T> c2 => c2.Count == 0,
+            _ => !source.Any()
+        };
+    }
 }

@@ -1,18 +1,19 @@
 using System.Text;
-using RelogicLabs.JsonSchema.Tree;
-using RelogicLabs.JsonSchema.Types;
-using RelogicLabs.JsonSchema.Utilities;
+using Antlr4.Runtime;
+using RelogicLabs.JSchema.Tree;
+using RelogicLabs.JSchema.Nodes;
+using RelogicLabs.JSchema.Utilities;
 using static System.Environment;
 
-namespace RelogicLabs.JsonSchema.Message;
+namespace RelogicLabs.JSchema.Message;
 
 // Exception Message Formatter
 public abstract class MessageFormatter
 {
-    private const string SchemaBaseException = "Schema Input [{0}]: {1}";
-    private const string JsonBaseException = "Json Input [{0}]: {1}";
-    private const string SchemaParseException = "Schema (Line: {0}) [{1}]: {2}";
-    private const string JsonParseException = "Json (Line: {0}) [{1}]: {2}";
+    private const string SchemaBasicFormat = "Schema Input [{0}]: {1}";
+    private const string JsonBasicFormat = "Json Input [{0}]: {1}";
+    private const string SchemaDetailFormat = "Schema (Line: {0}) [{1}]: {2}";
+    private const string JsonDetailFormat = "Json (Line: {0}) [{1}]: {2}";
 
     public static readonly MessageFormatter SchemaValidation
         = new ValidationFormatter(
@@ -35,23 +36,12 @@ public abstract class MessageFormatter
     public string Summary { get; }
     public string Expected { get; }
     public string Actual { get; }
-    public int OutlineLength { get; set; } = 200;
 
     private MessageFormatter(string summary, string expected, string actual)
     {
         Summary = summary;
         Expected = expected;
         Actual = actual;
-    }
-
-    public string CreateOutline(string target)
-    {
-        int front = 2 * OutlineLength / 3;
-        int back = 1 * OutlineLength / 3;
-        if(front + back >= target.Length) return target;
-        StringBuilder builder = new();
-        return builder.Append(target[..front]).Append("...")
-            .Append(target[^back..]).ToString();
     }
 
     private sealed class ValidationFormatter : MessageFormatter
@@ -97,8 +87,14 @@ public abstract class MessageFormatter
         => FormatForSchema(code, message, context?.GetLocation());
 
     internal static ErrorDetail FormatForSchema(string code, string message, Location? location)
-        => location == null ? CreateDetail(code, SchemaBaseException, message)
-            : CreateDetail(code, SchemaParseException, message, (Location) location);
+        => location == null
+            ? CreateError(code, SchemaBasicFormat, message)
+            : CreateError(code, SchemaDetailFormat, message, (Location) location);
+
+    internal static ErrorDetail FormatForSchema(string code, string message, IToken? token)
+        => token == null
+            ? CreateError(code, SchemaBasicFormat, message)
+            : CreateError(code, SchemaDetailFormat, message, token);
 
     internal static ErrorDetail FormatForJson(string code, string message, JNode? node)
         => FormatForJson(code, message, node?.Context);
@@ -107,12 +103,17 @@ public abstract class MessageFormatter
         => FormatForJson(code, message, context?.GetLocation());
 
     internal static ErrorDetail FormatForJson(string code, string message, Location? location)
-        => location == null ? CreateDetail(code, JsonBaseException, message)
-            : CreateDetail(code, JsonParseException, message, (Location) location);
+        => location == null
+            ? CreateError(code, JsonBasicFormat, message)
+            : CreateError(code, JsonDetailFormat, message, (Location) location);
 
-    private static ErrorDetail CreateDetail(string code, string format, string message)
+    private static ErrorDetail CreateError(string code, string format, string message)
         => new(code, string.Format(format, code, message));
 
-    private static ErrorDetail CreateDetail(string code, string format, string message,
+    private static ErrorDetail CreateError(string code, string format, string message,
         Location location) => new(code, string.Format(format, location, code, message));
+
+    private static ErrorDetail CreateError(string code, string format, string message,
+        IToken token) => new(code, string.Format(format, $"{token.Line}:{token.Column}",
+        code, message));
 }

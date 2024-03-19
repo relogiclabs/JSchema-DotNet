@@ -92,7 +92,7 @@ internal static class ScriptTreeHelper
     {
         var group = identifiers.GroupBy(static i => i.GetText())
             .FirstOrDefault(static g => g.Count() > 1);
-        var duplicate = group?.First();
+        var duplicate = group?.Last();
         if(duplicate != null) throw FailOnDuplicateParameterName(duplicate);
         var parameters = identifiers.Select(static i => i.GetText()).ToList();
         if(ellipsis != null) UpdateLast(parameters, ellipsis.GetText());

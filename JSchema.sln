@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonSchema", "JsonSchema\JsonSchema.csproj", "{0876A8A3-F8F2-493D-AB6E-D854660B20D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSchema", "JSchema\JSchema.csproj", "{0876A8A3-F8F2-493D-AB6E-D854660B20D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonSchema.Tests", "JsonSchema.Tests\JsonSchema.Tests.csproj", "{D2AA1DBC-1E02-4711-98D1-FA6097A56FA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSchema.Tests", "JSchema.Tests\JSchema.Tests.csproj", "{D2AA1DBC-1E02-4711-98D1-FA6097A56FA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

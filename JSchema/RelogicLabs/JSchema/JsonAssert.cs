@@ -1,12 +1,12 @@
-using RelogicLabs.JsonSchema.Tree;
-using RelogicLabs.JsonSchema.Utilities;
-using static RelogicLabs.JsonSchema.Message.MessageFormatter;
-using static RelogicLabs.JsonSchema.Tree.TreeType;
+using RelogicLabs.JSchema.Tree;
+using RelogicLabs.JSchema.Utilities;
+using static RelogicLabs.JSchema.Message.MessageFormatter;
+using static RelogicLabs.JSchema.Tree.TreeType;
 
-namespace RelogicLabs.JsonSchema;
+namespace RelogicLabs.JSchema;
 
 /// <summary>
-/// Provides assertion functionalities to validate JSON document against a Schema or JSON.
+/// Provides assertion functionalities to validate JSON document against a JSchema or JSON document.
 /// </summary>
 public class JsonAssert
 {
@@ -15,18 +15,18 @@ public class JsonAssert
 
     /// <summary>
     /// Initializes a new instance of the <see cref="JsonAssert"/> class for the
-    /// specified Schema string.
+    /// specified JSchema string.
     /// </summary>
-    /// <param name="schema">A Schema string for validation or conformation.</param>
+    /// <param name="schema">A JSchema string for validation or conformation.</param>
     public JsonAssert(string schema) : this(schema, SCHEMA_TREE) { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="JsonAssert"/> class for the specified
-    /// <paramref name="expected"/> string which can be either a Schema or a JSON representation.
+    /// <paramref name="expected"/> string which can be either a JSchema or a JSON representation.
     /// </summary>
-    /// <param name="expected">An expected Schema or JSON string for validation or conformation.</param>
+    /// <param name="expected">An expected JSchema or JSON string for validation or conformation.</param>
     /// <param name="type">The type of string provided by <paramref name="expected"/>, indicating
-    /// whether it represents a Schema or JSON. Use <see cref="TreeType.SCHEMA_TREE"/> for Schema
+    /// whether it represents a JSchema or JSON. Use <see cref="TreeType.SCHEMA_TREE"/> for JSchema
     /// and <see cref="TreeType.JSON_TREE"/> for JSON.</param>
     public JsonAssert(string expected, TreeType type)
     {
@@ -43,7 +43,7 @@ public class JsonAssert
     }
 
     /// <summary>
-    /// Tests whether the input JSON string conforms to the expected Schema or JSON
+    /// Tests whether the input JSON string conforms to the expected JSchema or JSON
     /// specified in the <see cref="JsonAssert"/> constructor.
     /// </summary>
     /// <param name="json">The actual JSON to conform or validate.</param>
@@ -51,16 +51,16 @@ public class JsonAssert
     {
         Runtime.Clear();
         JsonTree jsonTree = new(Runtime, json);
-        DebugUtilities.Print(ExpectedTree, jsonTree);
+        LogHelper.Debug(ExpectedTree, jsonTree);
         if(!ExpectedTree.Match(jsonTree))
             throw new InvalidOperationException("Invalid runtime state");
     }
 
     /// <summary>
-    /// Tests whether the specified JSON string conforms to the given Schema string
-    /// and throws an exception if the JSON string does not conform to the Schema.
+    /// Tests whether the specified JSON string conforms to the given JSchema string
+    /// and throws an exception if the JSON string does not conform to the JSchema.
     /// </summary>
-    /// <param name="schema">The expected Schema to conform or validate.</param>
+    /// <param name="schema">The expected JSchema to conform or validate.</param>
     /// <param name="json">The actual JSON to conform or validate.</param>
     public static void IsValid(string schema, string json)
         => new JsonAssert(schema).IsValid(json);

@@ -1,17 +1,20 @@
 using System.Reflection;
 
-namespace RelogicLabs.JsonSchema.Utilities;
+namespace RelogicLabs.JSchema.Utilities;
 
 internal static class CommonExtensions
 {
-    public static string GetSignature(this MethodInfo methodInfo)
+    internal static bool IsParams(this ParameterInfo parameter)
+        => parameter.IsDefined(typeof(ParamArrayAttribute), false);
+
+    internal static string GetSignature(this MethodInfo methodInfo)
     {
-        string typeName = methodInfo.DeclaringType?.FullName!;
-        string methodName = methodInfo.Name;
-        string parameters = string.Join(", ", methodInfo.GetParameters()
-            .Select(p => p.ParameterType.Name));
-        string returnType = methodInfo.ReturnType.Name;
-        string signature = $"{returnType} {typeName}.{methodName}({parameters})";
-        return signature;
+        var typeName = methodInfo.DeclaringType?.FullName!;
+        var methodName = methodInfo.Name;
+        var parameters = methodInfo.GetParameters()
+            .Select(static p => $"{p.ParameterType.Name} {p.Name}")
+            .JoinWith(", ", "(", ")");
+        var returnType = methodInfo.ReturnType.Name;
+        return $"{returnType} {typeName}.{methodName}{parameters}";
     }
 }

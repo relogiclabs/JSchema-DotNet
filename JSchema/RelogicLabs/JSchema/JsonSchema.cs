@@ -1,11 +1,11 @@
-using RelogicLabs.JsonSchema.Tree;
-using RelogicLabs.JsonSchema.Utilities;
-using static RelogicLabs.JsonSchema.Message.MessageFormatter;
+using RelogicLabs.JSchema.Tree;
+using RelogicLabs.JSchema.Utilities;
+using static RelogicLabs.JSchema.Message.MessageFormatter;
 
-namespace RelogicLabs.JsonSchema;
+namespace RelogicLabs.JSchema;
 
 /// <summary>
-/// Provides Schema validation functionalities for JSON document.
+/// Provides JSchema validation functionalities for JSON document.
 /// </summary>
 public class JsonSchema
 {
@@ -15,9 +15,9 @@ public class JsonSchema
 
     /// <summary>
     /// Initializes a new instance of the <see cref="JsonSchema"/> class for the
-    /// specified Schema string.
+    /// specified JSchema string.
     /// </summary>
-    /// <param name="schema">A Schema string for validation or conformation.</param>
+    /// <param name="schema">A JSchema string for validation or conformation.</param>
     public JsonSchema(string schema)
     {
         Runtime = new(SchemaValidation, false);
@@ -26,37 +26,42 @@ public class JsonSchema
     }
 
     /// <summary>
-    /// Indicates whether the input JSON string conforms to the Schema specified
+    /// Indicates whether the input JSON string conforms to the JSchema specified
     /// in the <see cref="JsonSchema"/> constructor.
     /// </summary>
-    /// <param name="json">The JSON string to conform or validate with Schema.</param>
-    /// <returns><c>true</c> if the JSON string conforms to the Schema; otherwise,
+    /// <param name="json">The JSON string to conform or validate with JSchema.</param>
+    /// <returns><c>true</c> if the JSON string conforms to the JSchema; otherwise,
     /// <c>false</c>.</returns>
     public bool IsValid(string json)
     {
         Runtime.Clear();
         JsonTree jsonTree = new(Runtime, json);
-        DebugUtilities.Print(SchemaTree, jsonTree);
+        LogHelper.Debug(SchemaTree, jsonTree);
         var result = SchemaTree.Match(jsonTree);
         return result;
     }
 
     /// <summary>
-    /// Writes error messages that occur during Schema validation process, to the
+    /// Writes error messages that occur during JSchema validation process, to the
     /// standard error stream.
     /// </summary>
     public void WriteError()
     {
+        if(Exceptions.Count == 0)
+        {
+            Console.WriteLine("No error has occurred");
+            return;
+        }
         foreach(var exception in Exceptions)
             Console.Error.WriteLine(exception.Message);
     }
 
     /// <summary>
-    /// Indicates whether the input JSON string conforms to the given Schema string.
+    /// Indicates whether the input JSON string conforms to the given JSchema string.
     /// </summary>
-    /// <param name="schema">The Schema string to conform or validate.</param>
+    /// <param name="schema">The JSchema string to conform or validate.</param>
     /// <param name="json">The JSON string to conform or validate.</param>
-    /// <returns><c>true</c> if the JSON string conforms to the Schema; otherwise,
+    /// <returns><c>true</c> if the JSON string conforms to the JSchema; otherwise,
     /// <c>false</c>.</returns>
     public static bool IsValid(string schema, string json)
     {

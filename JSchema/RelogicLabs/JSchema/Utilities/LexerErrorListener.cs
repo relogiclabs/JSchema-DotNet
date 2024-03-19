@@ -1,55 +1,57 @@
+using System.Text;
 using Antlr4.Runtime;
-using RelogicLabs.JsonSchema.Exceptions;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
+using RelogicLabs.JSchema.Exceptions;
+using static RelogicLabs.JSchema.Message.ErrorCode;
 
-namespace RelogicLabs.JsonSchema.Utilities;
+namespace RelogicLabs.JSchema.Utilities;
 
 internal abstract class LexerErrorListener : IAntlrErrorListener<int>
 {
-    public static readonly LexerErrorListener Schema = new SchemaLexerErrorListener();
-    public static readonly LexerErrorListener Json = new JsonLexerErrorListener();
-    public static readonly LexerErrorListener DateTime = new DateTimeLexerErrorListener();
+    private static readonly string[] NewLines = { "\r\n", "\r", "\n" };
 
-    protected abstract CommonException CreateException(string message, Exception? innerException);
+    public static readonly LexerErrorListener Schema = new SchemaErrorListener();
+    public static readonly LexerErrorListener Json = new JsonErrorListener();
+    public static readonly LexerErrorListener DateTime = new DateTimeErrorListener();
+
+    protected abstract CommonException FailOnSyntaxError(string message, Exception? innerException);
     protected abstract string GetMessageFormat();
 
-    private sealed class SchemaLexerErrorListener : LexerErrorListener
+    private sealed class SchemaErrorListener : LexerErrorListener
     {
-        protected override CommonException CreateException(string message,
-            Exception? innerException) => new SchemaLexerException(SLEX01,
-            message, innerException);
+        protected override SchemaLexerException FailOnSyntaxError(string message,
+            Exception? innerException) => new(SLEX01, message, innerException);
 
         protected override string GetMessageFormat()
-            => $"Schema (Line {{0}}:{{1}}) [{SLEX01}]: {{2}} (error on '{{3}}')";
+            => $"Schema (Line {{0}}:{{1}}) [{SLEX01}]: {{2}} (Line: {{3}})";
     }
 
-    private sealed class JsonLexerErrorListener : LexerErrorListener
+    private sealed class JsonErrorListener : LexerErrorListener
     {
-        protected override CommonException CreateException(string message,
-            Exception? innerException) => new JsonLexerException(JLEX01,
-            message, innerException);
+        protected override JsonLexerException FailOnSyntaxError(string message,
+            Exception? innerException) => new(JLEX01, message, innerException);
 
         protected override string GetMessageFormat()
-            => $"Json (Line {{0}}:{{1}}) [{JLEX01}]: {{2}} (error on '{{3}}')";
+            => $"Json (Line {{0}}:{{1}}) [{JLEX01}]: {{2}} (Line: {{3}})";
     }
 
-    private sealed class DateTimeLexerErrorListener : LexerErrorListener
+    private sealed class DateTimeErrorListener : LexerErrorListener
     {
-        protected override CommonException CreateException(string message,
-            Exception? innerException) => new DateTimeLexerException(DLEX01, message,
-            innerException);
+        protected override DateTimeLexerException FailOnSyntaxError(string message,
+            Exception? innerException) => new(DLEX01, message, innerException);
 
         protected override string GetMessageFormat()
             => "Invalid date-time pattern ({0}, error on '{1}')";
     }
 
     public void SyntaxError(TextWriter output, IRecognizer recognizer, int offendingSymbol,
-        int line, int charPositionInLine, string msg, RecognitionException e)
+                int line, int charPositionInLine, string msg, RecognitionException e)
     {
-        var lexer = (Lexer) recognizer;
-        var message = this == DateTime ?
-            string.Format(GetMessageFormat(), msg, lexer.Text) :
-            string.Format(GetMessageFormat(), line, charPositionInLine, msg, lexer.Text);
-        throw CreateException(message, e);
+        if(this == DateTime) throw FailOnSyntaxError(string.Format(GetMessageFormat(),
+            msg, ((Lexer) recognizer).Text), e);
+        var errorLine = recognizer.InputStream.ToString()!
+            .Split(NewLines, StringSplitOptions.None)[line - 1]
+            .Insert(charPositionInLine, "<|>").Trim();
+        throw FailOnSyntaxError(string.Format(GetMessageFormat(), line, charPositionInLine,
+            msg, errorLine), e);
     }
 }

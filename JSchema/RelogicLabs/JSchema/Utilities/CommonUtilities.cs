@@ -16,4 +16,5 @@ internal static class CommonUtilities
     }
 
     internal static bool HasFlag(int flagSet, int flag) => (flagSet & flag) == flag;
+    internal static T Identity<T>(T value) => value;
 }

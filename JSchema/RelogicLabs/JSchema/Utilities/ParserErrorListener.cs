@@ -1,44 +1,48 @@
+using System.Text;
 using Antlr4.Runtime;
-using RelogicLabs.JsonSchema.Exceptions;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
+using RelogicLabs.JSchema.Exceptions;
+using static RelogicLabs.JSchema.Message.ErrorCode;
 
-namespace RelogicLabs.JsonSchema.Utilities;
+namespace RelogicLabs.JSchema.Utilities;
 
 internal abstract class ParserErrorListener : IAntlrErrorListener<IToken>
 {
+    private static readonly string[] NewLines = { "\r\n", "\r", "\n" };
 
-    public static readonly ParserErrorListener Schema = new SchemaParserErrorListener();
-    public static readonly ParserErrorListener Json = new JsonParserErrorListener();
+    public static readonly ParserErrorListener Schema = new SchemaErrorListener();
+    public static readonly ParserErrorListener Json = new JsonErrorListener();
 
-    protected abstract CommonException CreateException(string message, Exception? innerException);
+    protected abstract CommonException FailOnSyntaxError(string message, Exception? innerException);
     protected abstract string GetMessageFormat();
 
 
-    private sealed class SchemaParserErrorListener : ParserErrorListener
+    private sealed class SchemaErrorListener : ParserErrorListener
     {
-        protected override CommonException CreateException(string message,
-            Exception? innerException) => new SchemaParserException(SPRS01,
-            message, innerException);
+        protected override SchemaParserException FailOnSyntaxError(string message,
+            Exception? innerException) => new(SPRS01, message, innerException);
 
         protected override string GetMessageFormat()
-            => $"Schema (Line {{0}}:{{1}}) [{SPRS01}]: {{2}} (error on '{{3}}')";
+            => $"Schema (Line {{0}}:{{1}}) [{SPRS01}]: {{2}} (Line: {{3}})";
     }
 
-    private sealed class JsonParserErrorListener : ParserErrorListener
+    private sealed class JsonErrorListener : ParserErrorListener
     {
-        protected override CommonException CreateException(string message,
-            Exception? innerException) => new JsonParserException(JPRS01,
-            message, innerException);
+        protected override JsonParserException FailOnSyntaxError(string message,
+            Exception? innerException) => new(JPRS01, message, innerException);
 
         protected override string GetMessageFormat()
-            => $"Json (Line {{0}}:{{1}}) [{JPRS01}]: {{2}} (error on '{{3}}')";
+            => $"Json (Line {{0}}:{{1}}) [{JPRS01}]: {{2}} (Line: {{3}})";
     }
 
-    public void SyntaxError(TextWriter output, IRecognizer recognizer,
-        IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
+    public void SyntaxError(TextWriter output, IRecognizer recognizer, IToken offendingSymbol,
+                int line, int charPositionInLine, string msg, RecognitionException e)
     {
-        DebugUtilities.Print(recognizer);
-        var message = string.Format(GetMessageFormat(), line, charPositionInLine, msg, offendingSymbol);
-        throw CreateException(message, e);
+        LogHelper.Debug(recognizer);
+        var errorLine = ((CommonTokenStream) recognizer.InputStream)
+            .TokenSource.InputStream.ToString()!
+            .Split(NewLines, StringSplitOptions.None)[line - 1]
+            .Insert(charPositionInLine, "<|>").Trim();
+        throw FailOnSyntaxError(string.Format(GetMessageFormat(), line, charPositionInLine,
+            msg, errorLine), e);
     }
 }

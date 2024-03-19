@@ -29,17 +29,17 @@ public sealed class FunctionRegistry
         if(!_imports.Add(className)) throw new DuplicateImportException(FormatForSchema(
             CLAS01, $"Class already imported {className}", context));
 
-        var providerClass = Type.GetType(className) ?? throw new ClassNotFoundException(
+        var subClass = Type.GetType(className) ?? throw new ClassNotFoundException(
             FormatForSchema(CLAS02, $"Not found {className}", context));
 
         var baseClass = typeof(FunctionProvider);
         // if not FunctionProvider's subclass
-        if(!baseClass.IsAssignableFrom(providerClass)) throw new InvalidImportException(
-            FormatForSchema(CLAS03, $"{providerClass.FullName} needs to inherit {
+        if(!baseClass.IsAssignableFrom(subClass)) throw new InvalidImportException(
+            FormatForSchema(CLAS03, $"{subClass.FullName} needs to inherit {
                 baseClass.FullName}", context));
         try
         {
-            _functions.Merge(ExtractMethods(providerClass, CreateInstance(providerClass, context)));
+            _functions.Merge(ExtractMethods(subClass, CreateInstance(subClass, context)));
         }
         catch(InvalidFunctionException ex)
         {
@@ -47,12 +47,12 @@ public sealed class FunctionRegistry
         }
     }
 
-    private static Dictionary<FunctionKey, List<IEFunction>> ExtractMethods(Type providerClass,
+    private static Dictionary<FunctionKey, List<IEFunction>> ExtractMethods(Type subClass,
                 FunctionProvider instance)
     {
         var baseClass = typeof(FunctionProvider);
         var functions = new Dictionary<FunctionKey, List<IEFunction>>();
-        foreach(var m in providerClass.GetMethods())
+        foreach(var m in subClass.GetMethods())
         {
             // Methods in ancestor class or in base/super class
             if(!baseClass.IsAssignableFrom(m.DeclaringType)
@@ -165,9 +165,9 @@ public sealed class FunctionRegistry
     internal void AddFunction(ScriptFunction function) => AddFunctionTo(function, _functions);
     private bool Fail(Exception exception) => _runtime.Exceptions.Fail(exception);
 
-    internal static object GetDerived(object value)
-        => value is IDerived derived ? derived.Derived ?? value : value;
-
     internal static bool IsMatch(Type type, object value)
         => type.IsInstanceOfType(GetDerived(value));
+
+    internal static object GetDerived(object value)
+        => value is IDerived derived ? derived.Derived ?? value : value;
 }

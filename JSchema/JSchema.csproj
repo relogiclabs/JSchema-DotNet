@@ -1,16 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <PackageId>RelogicLabs.JsonSchema</PackageId>
-        <Description>New JSON Schema prioritizes simplicity, conciseness, readability, and efficiency.
-            It offers precise JSON document definition through ample functionalities and extensibility
-            to meet the diverse web service requirements.</Description>
-        <AssemblyName>RelogicLabs.JsonSchema</AssemblyName>
+        <PackageId>RelogicLabs.JSchema</PackageId>
+        <Description>JSchema, a new Json Schema, prioritizes simplicity, conciseness, readability,
+            and efficiency. It offers precise Json document definition through effective functionalities
+            and extensibility to meet diverse web service requirements.</Description>
+        <AssemblyName>RelogicLabs.JSchema</AssemblyName>
         <Authors>Relogic Labs</Authors>
         <Company>Relogic Labs</Company>
-        <Version>1.12.1</Version>
-        <PackageVersion>1.12.1</PackageVersion>
-        <AssemblyVersion>1.12.1</AssemblyVersion>
+        <Version>2.0.0</Version>
+        <PackageVersion>2.0.0</PackageVersion>
+        <AssemblyVersion>2.0.0</AssemblyVersion>
         <PackageTags>JSchema;JsonSchema;Schema;Json;Validation;Assert;Test</PackageTags>
         <Copyright>Copyright © Relogic Labs. All rights reserved.</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
@@ -20,7 +20,7 @@
         <RootNamespace>RelogicLabs</RootNamespace>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>icon.png</PackageIcon>
-        <PackageProjectUrl>https://www.relogiclabs.com/p/json-schema.html</PackageProjectUrl>
+        <PackageProjectUrl>https://www.relogiclabs.com/p/jschema.html</PackageProjectUrl>
         <RepositoryUrl>https://github.com/relogiclabs/JSchema-DotNet.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <RepositoryBranch>master</RepositoryBranch>
@@ -33,7 +33,7 @@
 
     <ItemGroup>
         <PackageReference Include="Antlr4.Runtime.Standard" Version="4.13.1"/>
-        <InternalsVisibleTo Include="RelogicLabs.JsonSchema.Tests"/>
+        <InternalsVisibleTo Include="RelogicLabs.JSchema.Tests"/>
         <AssemblyAttribute Include="System.CLSCompliantAttribute">
             <_Parameter1>true</_Parameter1>
         </AssemblyAttribute>
