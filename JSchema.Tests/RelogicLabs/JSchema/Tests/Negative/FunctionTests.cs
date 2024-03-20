@@ -1,7 +1,7 @@
-using RelogicLabs.JsonSchema.Exceptions;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
+using RelogicLabs.JSchema.Exceptions;
+using static RelogicLabs.JSchema.Message.ErrorCode;
 
-namespace RelogicLabs.JsonSchema.Tests.Negative;
+namespace RelogicLabs.JSchema.Tests.Negative;
 
 [TestClass]
 public class FunctionTests
@@ -27,30 +27,29 @@ public class FunctionTests
     }
 
     [TestMethod]
-    public void When_ExternalIncludeNotInheritBaseClass_ExceptionThrown()
+    public void When_ExternalImportNotInheritBaseClass_ExceptionThrown()
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions1,
-                      RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions1,
+                     RelogicLabs.JSchema.Tests
             %schema: @odd #integer
             """;
         var json = "10";
 
         //JsonSchema.IsValid(schema, json);
-        var exception = Assert.ThrowsException<InvalidIncludeException>(
+        var exception = Assert.ThrowsException<InvalidImportException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(CLAS03, exception.Code);
         Console.WriteLine(exception);
     }
 
     [TestMethod]
-    public void When_ExternalIncludeNotExisting_ExceptionThrown()
+    public void When_ExternalImportNotExisting_ExceptionThrown()
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.NotExisting,
-                    RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.NotExisting, RelogicLabs.JSchema.Tests
             %schema: @odd #integer
             """;
         var json = "10";
@@ -63,32 +62,32 @@ public class FunctionTests
     }
 
     [TestMethod]
-    public void When_ExternalIncludeDuplicationOccurred_ExceptionThrown()
+    public void When_ExternalImportDuplicationOccurred_ExceptionThrown()
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
-                    RelogicLabs.JsonSchema.Tests
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
-                    RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
+            RelogicLabs.JSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
+            RelogicLabs.JSchema.Tests
             %schema: @odd #integer
             """;
         var json = "10";
 
         //JsonSchema.IsValid(schema, json);
-        var exception = Assert.ThrowsException<DuplicateIncludeException>(
+        var exception = Assert.ThrowsException<DuplicateImportException>(
             () => JsonAssert.IsValid(schema, json));
         Assert.AreEqual(CLAS01, exception.Code);
         Console.WriteLine(exception);
     }
 
     [TestMethod]
-    public void When_ExternalIncludeInstantiationNotCompleted_ExceptionThrown()
+    public void When_ExternalImportInstantiationNotSuccessful_ExceptionThrown()
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions5,
-                    RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions5,
+                     RelogicLabs.JSchema.Tests
             %schema: @odd #integer
             """;
         var json = "10";
@@ -105,8 +104,8 @@ public class FunctionTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions2,
-                    RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions2,
+                     RelogicLabs.JSchema.Tests
             %schema: @odd #integer
             """;
         var json = "10";
@@ -123,8 +122,8 @@ public class FunctionTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions3,
-                    RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions3,
+                     RelogicLabs.JSchema.Tests
             %schema: @odd #integer
             """;
         var json = "10";
@@ -141,8 +140,8 @@ public class FunctionTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions4,
-                    RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions4,
+                     RelogicLabs.JSchema.Tests
             %schema: @notExist #integer
             """;
         var json = "10";
@@ -159,8 +158,8 @@ public class FunctionTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions4,
-                    RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions4,
+                     RelogicLabs.JSchema.Tests
             %schema: @canTest #integer
             """;
         var json = "10";
@@ -168,6 +167,24 @@ public class FunctionTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<Exception>(
             () => JsonAssert.IsValid(schema, json));
+        Console.WriteLine(exception);
+    }
+
+    [TestMethod]
+    public void When_IncompatibleTargetForExternalFunction_ExceptionThrown()
+    {
+        var schema =
+            """
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
+                     RelogicLabs.JSchema.Tests
+            %schema: @even #string
+            """;
+        var json = "\"test\"";
+
+        JsonSchema.IsValid(schema, json);
+        var exception = Assert.ThrowsException<JsonSchemaException>(
+            () => JsonAssert.IsValid(schema, json));
+        Assert.AreEqual(FUNC03, exception.Code);
         Console.WriteLine(exception);
     }
 }

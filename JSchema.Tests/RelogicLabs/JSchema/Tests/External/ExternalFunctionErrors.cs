@@ -1,9 +1,9 @@
-using RelogicLabs.JsonSchema.Functions;
-using RelogicLabs.JsonSchema.Tree;
-using RelogicLabs.JsonSchema.Types;
+using RelogicLabs.JSchema.Functions;
+using RelogicLabs.JSchema.Tree;
+using RelogicLabs.JSchema.Nodes;
 
 // Functions for negative (error) test cases
-namespace RelogicLabs.JsonSchema.Tests.External;
+namespace RelogicLabs.JSchema.Tests.External;
 
 public class ExternalFunctions1
 {
@@ -15,7 +15,7 @@ public class ExternalFunctions1
     }
 }
 
-public class ExternalFunctions2 : FunctionBase
+public class ExternalFunctions2 : FunctionProvider
 {
     public ExternalFunctions2(RuntimeContext runtime) : base(runtime) { }
 
@@ -26,25 +26,25 @@ public class ExternalFunctions2 : FunctionBase
     }
 }
 
-public class ExternalFunctions3 : FunctionBase
+public class ExternalFunctions3 : FunctionProvider
 {
     public ExternalFunctions3(RuntimeContext runtime) : base(runtime) { }
 
     public bool Odd() => throw new InvalidOperationException();
 }
 
-public class ExternalFunctions4 : FunctionBase
+public class ExternalFunctions4 : FunctionProvider
 {
     public ExternalFunctions4(RuntimeContext runtime) : base(runtime) { }
 
     public bool CanTest(JNumber target)
     {
         // If you just want to throw any exception without details
-        return FailWith(new Exception("something went wrong"));
+        return Fail(new Exception("something went wrong"));
     }
 }
 
-public class ExternalFunctions5 : FunctionBase
+public class ExternalFunctions5 : FunctionProvider
 {
     public ExternalFunctions5() : base(null!) { }
 }

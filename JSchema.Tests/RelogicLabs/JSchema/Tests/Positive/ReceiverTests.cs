@@ -1,4 +1,4 @@
-namespace RelogicLabs.JsonSchema.Tests.Positive;
+namespace RelogicLabs.JSchema.Tests.Positive;
 
 [TestClass]
 public class ReceiverTests
@@ -8,8 +8,8 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
-                      RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
+                     RelogicLabs.JSchema.Tests
             %schema:
             {
                 "key1": #integer &dependent,
@@ -40,8 +40,8 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
-                      RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
+                     RelogicLabs.JSchema.Tests
             %schema:
             {
                 "key1": #integer &receiver1 &receiver2 &receiver3,
@@ -63,8 +63,8 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
-                      RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
+                     RelogicLabs.JSchema.Tests
             
             %define $numbers: @range(1, 10) #integer &relatedValues
             %schema:
@@ -88,8 +88,8 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
-                      RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
+                     RelogicLabs.JSchema.Tests
 
             %schema:
             {
@@ -120,8 +120,8 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
-                      RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
+                     RelogicLabs.JSchema.Tests
 
             %schema:
             {

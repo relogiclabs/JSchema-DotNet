@@ -1,4 +1,4 @@
-namespace RelogicLabs.JsonSchema.Tests.Positive;
+namespace RelogicLabs.JSchema.Tests.Positive;
 
 [TestClass]
 public class DirectiveTests
@@ -20,16 +20,15 @@ public class DirectiveTests
                 "key1": 10
             }
             """;
-        
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_SchemaVersionGiven_ValidTrue()
     {
         var schema =
             """
-            %version: 1.0.0
+            %version: "1.0.0-alpha"
             %schema:
             {
                 "key1": #integer
@@ -41,17 +40,16 @@ public class DirectiveTests
                 "key1": 10
             }
             """;
-        
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_SchemaTitleAndVersionGiven_ValidTrue()
     {
         var schema =
             """
             %title: "This is a title for this schema"
-            %version: 1.0.0
+            %version: "1.0.0-beta"
             %schema:
             {
                 "key1": #integer
@@ -63,7 +61,6 @@ public class DirectiveTests
                 "key1": 10
             }
             """;
-        
         JsonAssert.IsValid(schema, json);
     }
 }

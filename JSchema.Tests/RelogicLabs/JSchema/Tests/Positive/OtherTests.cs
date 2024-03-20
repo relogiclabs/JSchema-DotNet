@@ -1,4 +1,4 @@
-namespace RelogicLabs.JsonSchema.Tests.Positive;
+namespace RelogicLabs.JSchema.Tests.Positive;
 
 [TestClass]
 public class OtherTests
@@ -36,12 +36,13 @@ public class OtherTests
     }
 
     [TestMethod]
-    public void When_NonStaticValidMethod_ValidTrue() {
+    public void When_JsonAssertNonStaticIsValidMethodUsed_ValidTrue()
+    {
         var schema =
             """
-            %version: 2023.09.11
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
-                      RelogicLabs.JsonSchema.Tests
+            %version: "October 09, 2010"
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
+                     RelogicLabs.JSchema.Tests
             %pragma IgnoreUndefinedProperties: true
             %define $element: @range(1, 100) #integer
             %schema: {

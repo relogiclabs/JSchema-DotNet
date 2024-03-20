@@ -1,4 +1,4 @@
-namespace RelogicLabs.JsonSchema.Tests.Positive;
+namespace RelogicLabs.JSchema.Tests.Positive;
 
 [TestClass]
 public class ComponentTests
@@ -23,19 +23,19 @@ public class ComponentTests
                     "id": 1,
                     "title": "Getting Started",
                     "preview": "This guide will show you through the essential steps to quickly...",
-                    "tags": ["JSON", "Json Schema", "Quick Start"]
+                    "tags": ["JSON", "JSchema", "Quick Start"]
                 },
                 {
                     "id": 2,
                     "title": "Validation Syntax",
                     "preview": "A JSON document is a structured data format used for the exchange...",
-                    "tags": ["JSON", "Json Schema", "Validation Syntax"]
+                    "tags": ["JSON", "JSchema", "Validation Syntax"]
                 },
                 {
                     "id": 3,
                     "title": "Constraint Functions",
                     "preview": "This document serves as a brief overview, providing key insights into...",
-                    "tags": ["JSON", "Json Schema", "Constraint Functions"]
+                    "tags": ["JSON", "JSchema", "Constraint Functions"]
                 }
             ]
             """;

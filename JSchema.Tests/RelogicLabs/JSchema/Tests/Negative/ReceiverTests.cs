@@ -1,8 +1,8 @@
-using RelogicLabs.JsonSchema.Exceptions;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
-using static RelogicLabs.JsonSchema.Tests.External.ExternalFunctions;
+using RelogicLabs.JSchema.Exceptions;
+using static RelogicLabs.JSchema.Message.ErrorCode;
+using static RelogicLabs.JSchema.Tests.External.ExternalFunctions;
 
-namespace RelogicLabs.JsonSchema.Tests.Negative;
+namespace RelogicLabs.JSchema.Tests.Negative;
 
 [TestClass]
 public class ReceiverTests
@@ -12,8 +12,8 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
-                      RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
+                     RelogicLabs.JSchema.Tests
             %schema:
             {
                 "key1": #integer &someName,
@@ -30,7 +30,7 @@ public class ReceiverTests
         //JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<ReceiverNotFoundException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(RECV02, exception.Code);
+        Assert.AreEqual(RECV01, exception.Code);
         Console.WriteLine(exception);
     }
 
@@ -39,8 +39,8 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
-                      RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
+                     RelogicLabs.JSchema.Tests
 
             %schema:
             {
@@ -55,10 +55,10 @@ public class ReceiverTests
             }
             """;
         //JsonSchema.IsValid(schema, json);
-        //This exception is avoidable inside @condition as needed
+        //This exception is avoidable inside @condition when needed
         var exception = Assert.ThrowsException<NoValueReceivedException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(RECV03, exception.Code);
+        Assert.AreEqual(RECV02, exception.Code);
         Console.WriteLine(exception);
     }
 
@@ -67,8 +67,8 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
-                      RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
+                     RelogicLabs.JSchema.Tests
 
             %schema:
             {
@@ -95,8 +95,8 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
-                      RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
+                     RelogicLabs.JSchema.Tests
 
             %define $numbers: @range(1, 10) #integer &relatedValues
             %schema:
@@ -124,8 +124,8 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
-                      RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
+            RelogicLabs.JSchema.Tests
 
             %schema:
             {
@@ -160,8 +160,7 @@ public class ReceiverTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
-                      RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions, RelogicLabs.JSchema.Tests
 
             %schema:
             {

@@ -1,4 +1,4 @@
-namespace RelogicLabs.JsonSchema.Tests.Positive;
+namespace RelogicLabs.JSchema.Tests.Positive;
 
 [TestClass]
 public class DataTypeTests
@@ -29,6 +29,25 @@ public class DataTypeTests
                 "key2": ["test", null, 10],
                 "key3": [10, 100, 200.5]
             }
+            """;
+        JsonAssert.IsValid(schema, json);
+    }
+
+    [TestMethod]
+    public void When_CheckMultiLevelNestedDataTypeInArray_ValidTrue()
+    {
+        var schema =
+            """
+            %define $inner: @range*(0, 100) #float*
+            %schema: @length*(3) @length(3) #array*($inner) #array
+            """;
+        var json =
+            """
+            [
+                [0.1, 1.2, 2.3],
+                [10.5, 11.6, 12.7],
+                [80.7, 90.8, 99.9]
+            ]
             """;
         JsonAssert.IsValid(schema, json);
     }

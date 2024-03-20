@@ -1,4 +1,4 @@
-namespace RelogicLabs.JsonSchema.Tests.Positive;
+namespace RelogicLabs.JSchema.Tests.Positive;
 
 [TestClass]
 public class FunctionTests
@@ -8,8 +8,8 @@ public class FunctionTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
-                    RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
+                     RelogicLabs.JSchema.Tests
             %schema: @even #integer
             """;
         var json = "10";
@@ -21,8 +21,8 @@ public class FunctionTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
-                    RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
+                     RelogicLabs.JSchema.Tests
             %schema: @canTest("test", true, 1, 2, 3) #integer
             """;
         var json = "10";
@@ -34,8 +34,8 @@ public class FunctionTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
-                    RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
+                     RelogicLabs.JSchema.Tests
             %schema: @even
             """;
         var json = "10";
@@ -47,8 +47,8 @@ public class FunctionTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions, 
-                    RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions, 
+                     RelogicLabs.JSchema.Tests
             %schema:
             {
                 "key1": @even #integer,
@@ -70,8 +70,8 @@ public class FunctionTests
     {
         var schema =
             """
-            %include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
-                    RelogicLabs.JsonSchema.Tests
+            %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
+            RelogicLabs.JSchema.Tests
             %schema: [
                 @even #integer,
                 @even #integer

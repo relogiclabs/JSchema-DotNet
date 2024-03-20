@@ -1,4 +1,4 @@
-namespace RelogicLabs.JsonSchema.Tests.Positive;
+namespace RelogicLabs.JSchema.Tests.Positive;
 
 [TestClass]
 public class ObjectTests
@@ -10,7 +10,7 @@ public class ObjectTests
         var json = """{"key": "value"}""";
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_DataTypeObjectInObject_ValidTrue()
     {
@@ -32,7 +32,7 @@ public class ObjectTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_DataTypeObjectInArray_ValidTrue()
     {
@@ -52,7 +52,7 @@ public class ObjectTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedDataTypeObjectInArray_ValidTrue()
     {
@@ -66,7 +66,7 @@ public class ObjectTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedDataTypeObjectInObject_ValidTrue()
     {
@@ -84,7 +84,7 @@ public class ObjectTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_KeysWithObject_ValidTrue()
     {
@@ -102,7 +102,7 @@ public class ObjectTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_ValuesWithObject_ValidTrue()
     {
@@ -120,7 +120,7 @@ public class ObjectTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedKeysWithObjectInObject_ValidTrue()
     {
@@ -138,7 +138,7 @@ public class ObjectTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedKeysAndValuesWithObjectInArray_ValidTrue()
     {
@@ -152,11 +152,11 @@ public class ObjectTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_EnumWithObject_ValidTrue()
     {
-        var schema = 
+        var schema =
             """
             {
             "key1": @enum(5, 10, 15),
@@ -164,7 +164,7 @@ public class ObjectTests
             "key3": @enum("abc", "pqr", "xyz")
             } #object
             """;
-        var json = 
+        var json =
             """
             {
             "key1": 10, 
@@ -174,7 +174,7 @@ public class ObjectTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NonEmptyObjectInArray_ValidTrue()
     {
@@ -194,7 +194,7 @@ public class ObjectTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_LengthOfObjectInArray_ValidTrue()
     {

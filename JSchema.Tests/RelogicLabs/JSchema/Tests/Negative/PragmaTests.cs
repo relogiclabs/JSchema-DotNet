@@ -1,7 +1,7 @@
-using RelogicLabs.JsonSchema.Exceptions;
-using static RelogicLabs.JsonSchema.Message.ErrorCode;
+using RelogicLabs.JSchema.Exceptions;
+using static RelogicLabs.JSchema.Message.ErrorCode;
 
-namespace RelogicLabs.JsonSchema.Tests.Negative;
+namespace RelogicLabs.JSchema.Tests.Negative;
 
 [TestClass]
 public class PragmaTests

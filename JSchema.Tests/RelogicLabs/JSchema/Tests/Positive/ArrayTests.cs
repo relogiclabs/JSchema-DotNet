@@ -1,4 +1,4 @@
-namespace RelogicLabs.JsonSchema.Tests.Positive;
+namespace RelogicLabs.JSchema.Tests.Positive;
 
 [TestClass]
 public class ArrayTests
@@ -10,7 +10,7 @@ public class ArrayTests
         var json = "[10, 20, 30]";
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_DataTypeArrayInObject_ValidTrue()
     {
@@ -32,7 +32,7 @@ public class ArrayTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_DataTypeArrayInArray_ValidTrue()
     {
@@ -46,7 +46,7 @@ public class ArrayTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedDataTypeArrayInArray_ValidTrue()
     {
@@ -60,7 +60,7 @@ public class ArrayTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedDataTypeArrayInObject_ValidTrue()
     {
@@ -78,7 +78,7 @@ public class ArrayTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_ElementsWithArray_ValidTrue()
     {
@@ -86,7 +86,7 @@ public class ArrayTests
         var json = "[5, 10, 15, 20, 25, 30]";
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedElementsWithArrayInArray_ValidTrue()
     {
@@ -94,11 +94,11 @@ public class ArrayTests
         var json = "[[5, 10], [5, 10, 15], [5, 10, 15, 20]]";
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_EnumInArray_ValidTrue()
     {
-        var schema = 
+        var schema =
             """
             [
                 @enum(5, 10, 15), 
@@ -109,7 +109,7 @@ public class ArrayTests
         var json = """[10, 100, "xyz"]""";
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_FixedLengthWithArray_ValidTrue()
     {
@@ -127,7 +127,7 @@ public class ArrayTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_RangeLengthWithArray_ValidTrue()
     {
@@ -145,7 +145,7 @@ public class ArrayTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedLengthWithUndefinedArrayInObject_ValidTrue()
     {
@@ -163,7 +163,7 @@ public class ArrayTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NestedLengthWithUndefinedArrayInArray_ValidTrue()
     {
@@ -177,7 +177,7 @@ public class ArrayTests
             """;
         JsonAssert.IsValid(schema, json);
     }
-    
+
     [TestMethod]
     public void When_NonEmptyArrayInObject_ValidTrue()
     {
