@@ -1,0 +1,368 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IIndexMap&lt;TK, TV&gt;
+ | JSchema </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IIndexMap&lt;TK, TV&gt;
+ | JSchema ">
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JSchema-DotNet/new/develop/apiSpec/new?filename=RelogicLabs_JSchema_Collections_IIndexMap_2.md&amp;value=---%0Auid%3A%20RelogicLabs.JSchema.Collections.IIndexMap%602%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="JSchema">
+            JSchema
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="RelogicLabs.JSchema.Collections.IIndexMap`2">
+
+
+
+  <h1 id="RelogicLabs_JSchema_Collections_IIndexMap_2" data-uid="RelogicLabs.JSchema.Collections.IIndexMap`2" class="text-break">
+    Interface IIndexMap&lt;TK, TV&gt;
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/RelogicLabs/JSchema/Collections/IIndexMap.cs/#L3"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="RelogicLabs.html">RelogicLabs</a>.<a class="xref" href="RelogicLabs.JSchema.html">JSchema</a>.<a class="xref" href="RelogicLabs.JSchema.Collections.html">Collections</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>RelogicLabs.JSchema.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IIndexMap&lt;TK, TV&gt; : IList&lt;TV&gt;, ICollection&lt;TV&gt;, IEnumerable&lt;TV&gt;, IEnumerable where TK : notnull where TV : IKeyed&lt;TK&gt;</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TK</code></dt>
+    <dd></dd>
+    <dt><code>TV</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1.indexof">IList&lt;TV&gt;.IndexOf(TV)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1.insert">IList&lt;TV&gt;.Insert(int, TV)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1.removeat">IList&lt;TV&gt;.RemoveAt(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">IList&lt;TV&gt;.this[int]</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.add">ICollection&lt;TV&gt;.Add(TV)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.clear">ICollection&lt;TV&gt;.Clear()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.contains">ICollection&lt;TV&gt;.Contains(TV)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.copyto">ICollection&lt;TV&gt;.CopyTo(TV[], int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.remove">ICollection&lt;TV&gt;.Remove(TV)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.count">ICollection&lt;TV&gt;.Count</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.isreadonly">ICollection&lt;TV&gt;.IsReadOnly</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator">IEnumerable&lt;TV&gt;.GetEnumerator()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="RelogicLabs_JSchema_Collections_IIndexMap_2_Item_" data-uid="RelogicLabs.JSchema.Collections.IIndexMap`2.Item*"></a>
+
+  <h3 id="RelogicLabs_JSchema_Collections_IIndexMap_2_Item__0_" data-uid="RelogicLabs.JSchema.Collections.IIndexMap`2.Item(`0)">
+  this[TK]
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/RelogicLabs/JSchema/Collections/IIndexMap.cs/#L6"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">TV this[TK key] { get; }</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <span class="xref">TK</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TV</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="RelogicLabs_JSchema_Collections_IIndexMap_2_Keys_" data-uid="RelogicLabs.JSchema.Collections.IIndexMap`2.Keys*"></a>
+
+  <h3 id="RelogicLabs_JSchema_Collections_IIndexMap_2_Keys" data-uid="RelogicLabs.JSchema.Collections.IIndexMap`2.Keys">
+  Keys
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/RelogicLabs/JSchema/Collections/IIndexMap.cs/#L7"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerable&lt;TK&gt; Keys { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TK&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="RelogicLabs_JSchema_Collections_IIndexMap_2_Values_" data-uid="RelogicLabs.JSchema.Collections.IIndexMap`2.Values*"></a>
+
+  <h3 id="RelogicLabs_JSchema_Collections_IIndexMap_2_Values" data-uid="RelogicLabs.JSchema.Collections.IIndexMap`2.Values">
+  Values
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/RelogicLabs/JSchema/Collections/IIndexMap.cs/#L8"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerable&lt;TV&gt; Values { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TV&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="RelogicLabs_JSchema_Collections_IIndexMap_2_AsReadOnly_" data-uid="RelogicLabs.JSchema.Collections.IIndexMap`2.AsReadOnly*"></a>
+
+  <h3 id="RelogicLabs_JSchema_Collections_IIndexMap_2_AsReadOnly" data-uid="RelogicLabs.JSchema.Collections.IIndexMap`2.AsReadOnly">
+  AsReadOnly()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/RelogicLabs/JSchema/Collections/IIndexMap.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IIndexMap&lt;TK, TV&gt; AsReadOnly()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="RelogicLabs.JSchema.Collections.IIndexMap-2.html">IIndexMap</a>&lt;TK, TV&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="RelogicLabs_JSchema_Collections_IIndexMap_2_TryGetValue_" data-uid="RelogicLabs.JSchema.Collections.IIndexMap`2.TryGetValue*"></a>
+
+  <h3 id="RelogicLabs_JSchema_Collections_IIndexMap_2_TryGetValue__0__1__" data-uid="RelogicLabs.JSchema.Collections.IIndexMap`2.TryGetValue(`0,`1@)">
+  TryGetValue(TK, out TV?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/RelogicLabs/JSchema/Collections/IIndexMap.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool TryGetValue(TK key, out TV? value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <span class="xref">TK</span></dt>
+    <dd></dd>
+    <dt><code>value</code> <span class="xref">TV</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/RelogicLabs/JSchema/Collections/IIndexMap.cs/#L3" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <div style="display:flex;justify-content:space-between"><span style="text-align:left"><a href="https://www.relogiclabs.com"><img src="/JSchema-DotNet/images/relogiclabs.svg" alt="Relogic Labs"></a></span><span style="text-align:right">&copy; Relogic Labs. All rights reserved.</span></div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

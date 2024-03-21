@@ -1,0 +1,333 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>CScript Domain-Specific Language | JSchema </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="CScript Domain-Specific Language | JSchema ">
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/doc/articles/cscript.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="JSchema">
+            JSchema
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="cscript-domain-specific-language">CScript Domain-Specific Language</h1>
+
+<p>CScript, a domain-specific scripting language, designed specifically for JSchema document. This lightweight, interpreted, and dynamically typed C-style language seamlessly integrates with the foundational principles of the existing JSchema architecture. With the use of dynamic typing and programming constructs similar to both JSON and JavaScript, streamlines the process of writing concise, user-friendly, and flexible logic for constraint or validation functions.</p>
+<p>Although CScript is similar to JavaScript in many aspects, the CScript interpreter is designed to quickly halt (fail-fast) and report errors instead of trying to continue with potentially corrupted or unexpected data. This ensures a seamless alignment with the validation requirements of modern web services, significantly enhancing readability and productivity in both documentation and implementation, as well as reducing the potential for bugs.</p>
+<h2 id="keywords--reserved-words">Keywords &amp; Reserved Words</h2>
+<p>Here is a list of keywords (reserved words) in the CScript language. You cannot use any of the following words as identifiers in your scripts. Some keywords are reserved for future extensions and are not currently in use.</p>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Current Keyword (Reserved Word)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Variable Declaration</td>
+<td><code>var</code>; (<code>const</code>)</td>
+</tr>
+<tr>
+<td>Conditional Flow Control</td>
+<td><code>if</code>; <code>else</code>; (<code>switch</code>; <code>case</code>; <code>default</code>)</td>
+</tr>
+<tr>
+<td>Iterative Flow Control</td>
+<td><code>for</code>; <code>foreach</code>; <code>while</code>; (<code>do</code>)</td>
+</tr>
+<tr>
+<td>Jump Control</td>
+<td><code>break</code>; (<code>continue</code>)</td>
+</tr>
+<tr>
+<td>Membership Management</td>
+<td><code>in</code></td>
+</tr>
+<tr>
+<td>Function Declaration</td>
+<td><code>function</code>; <code>constraint</code>; <code>future</code>; <code>subroutine</code></td>
+</tr>
+<tr>
+<td>Function Data &amp; Control</td>
+<td><code>return</code>; <code>target</code>; <code>caller</code></td>
+</tr>
+<tr>
+<td>Literals Value</td>
+<td><code>true</code>; <code>false</code>; <code>null</code>; <code>undefined</code></td>
+</tr>
+<tr>
+<td>Exception Management</td>
+<td><code>tryof</code>; <code>throw</code></td>
+</tr>
+<tr>
+<td>Class &amp; Object Management</td>
+<td>(<code>class</code>; <code>new</code>; <code>super</code>; <code>this</code>)</td>
+</tr>
+<tr>
+<td>Script Modularization</td>
+<td>(<code>import</code>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data-types">Data Types</h2>
+<p>Data types play a pivotal role in specifying the fundamental structure of values that serve as the foundational components for data manipulation within CScript. In the dynamically typed CScript language, data types are classified into two main categories: primitive immutable value types and composite reference types.</p>
+<p>Composite types include <code>#array</code> and <code>#object</code>, while the remaining types fall under the category of primitive types. Both primitive values and composite references of schema accessible from CScript are readonly and unmodifiable nodes. The following table lists CScript data types:</p>
+<table>
+<thead>
+<tr>
+<th>SN</th>
+<th>Type Name</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>#array</code></td>
+<td><code>[1, 2, 3]</code>; <code>[&quot;item1&quot;, [2.5, 5.8]]</code>; <code>[]</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>#boolean</code></td>
+<td><code>true</code>; <code>false</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>#double</code></td>
+<td><code>10.5</code>; <code>20E-5</code>; <code>5E+5</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>#integer</code></td>
+<td><code>10</code>; <code>20</code>; <code>100</code>; <code>500</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>#null</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>#object</code></td>
+<td><code>{ k1: &quot;text&quot;, k2: { &quot;k11&quot; : 10 } }</code>; <code>{}</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>#range</code></td>
+<td><code>1..10</code>; <code>-10..-5</code>; <code>-10..</code>; <code>..100</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>#string</code></td>
+<td><code>&quot;any text&quot;</code>; <code>&quot;&quot;</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>#undefined</code></td>
+<td><code>undefined</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>#void</code></td>
+<td>Used only for internal purposes</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>#void</code> type is reserved for internal operations, including initializing unassigned l-values (variables, properties, and array elements) to the default state, among other cases. To explicitly represent the absence of a value in your script, use the <code>undefined</code> or <code>null</code> literal.</p>
+<h2 id="operators--precedences">Operators &amp; Precedences</h2>
+<p>CScript operators are symbols that are used to perform operations on variables and values. The direct operation of any operator that requires a modifiable l-value including <code>++</code>, <code>--</code> or <code>=</code> will raise an exception for the readonly schema nodes. The following table lists the operators according to their precedences from the highest to the lowest:</p>
+<table>
+<thead>
+<tr>
+<th>SN</th>
+<th>Category</th>
+<th>Operator</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Property Access &amp; Parentheses</td>
+<td><code>.</code>; <code>[]</code>; <code>()</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Unary Minus &amp; Logical Not</td>
+<td><code>-</code>; <code>!</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Postfix Increment/Decrement</td>
+<td><code>i++</code>; <code>i--</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Prefix Increment/Decrement</td>
+<td><code>++i</code>; <code>--i</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Arithmetic Multiplicative</td>
+<td><code>*</code>; <code>/</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Arithmetic Additive</td>
+<td><code>+</code>; <code>-</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Sequence Range</td>
+<td><code>..</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td>Relational Comparison</td>
+<td><code>&gt;</code>; <code>&lt;</code>; <code>&gt;=</code>; <code>&lt;=</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td>Equality Comparison</td>
+<td><code>==</code>; <code>!=</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td>Logical And (Short-Circuit)</td>
+<td><code>&amp;&amp;</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td>Logical Or (Short-Circuit)</td>
+<td><code>||</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td>Assignment</td>
+<td><code>=</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="function-types">Function Types</h2>
+<p>Function types are essential for specifying the executable units that serve as the building-blocks of validation process within CScript. All function types can also accept variable number of arguments, specified by an ellipsis <code>...</code> after the last parameter name which is then bound to an array containing the remaining arguments.</p>
+<p>Additionally, all types of functions can be overloaded with varying numbers of fixed parameters, along with one that includes a variable argument parameter. A function name can be overloaded with only one variable argument definition, regardless of the number of required arguments preceding it. Fixed argument functions always take precedence or priority over variable argument functions when arguments match both definitions. Below are the various kinds of functions, each with distinct purposes, used in the CScript language:</p>
+<h3 id="constraint-function">Constraint Function</h3>
+<p>The constraint function defines conditions for the target JSON value. They assess whether the target JSON value satisfies the conditions specified by the functions. The function should return true if the conditions are met; otherwise, it should return false. Even if the function exits without returning any value, it is assumed that all conditions are met since any early return from the function usually implies that the conditions are not satisfied.</p>
+<p>Within the scope including nested scopes of a constraint function, the <code>target</code> keyword refers to the JSON value or node to which the constraint function is applied, and the <code>caller</code> keyword refers to the schema node that invokes this constraint function. The subsequent example illustrates various alternative forms of the definition of a constraint function named <code>example</code> with the main keyword <code>constraint</code>:</p>
+<pre><code class="lang-js">constraint example(param1, param2, param3) {  }
+constraint function example(param1, param2, params...) {  }
+</code></pre>
+<h3 id="future-constraint-function">Future Constraint Function</h3>
+<p>The future constraint function extends the utility of the constraint function by also considering receiver values. They ensure that the validations are deferred until the receivers of the schema have received their anticipated values, thus evaluating the specified conditions imposed by the functions at a delayed phase. The subsequent example illustrates various alternative forms of the definition of a future constraint function named <code>example</code> with the main keyword <code>future</code>:</p>
+<pre><code class="lang-js">future example(param1, param2, param3) {  }
+future constraint example(param1, param2, param3) {  }
+future function example(param1, param2, param3) {  }
+future constraint function example(param1, param2, params...) {  }
+</code></pre>
+<h3 id="subroutine-function">Subroutine Function</h3>
+<p>The subroutine function supports the constraint function by promoting code reusability, readability, and modularization. These functions serve as auxiliary units, enhancing the organization and maintainability of validation in CScript, and are not available in the schema context for invocation. Conversely, the constraint function, as well as the future function, are special functions available in the schema context, and are not invocable from the script context without the <code>target</code> and <code>caller</code> information, thereby preventing any potential overloading conflicts between subroutine and constraint functions. The subsequent example illustrates various alternative forms of the definition of a subroutine function named <code>example</code> with the main keyword <code>subroutine</code>:</p>
+<pre><code class="lang-js">subroutine example(param1, param2, param3) {  }
+subroutine function example(param1, param2, params...) {  }
+</code></pre>
+<p>The CScript language provides a wide range of functions, data types, and programming constructs that can be used to implement diverse validation logic. This allows for the handling of complex validation requirements, both at the level of individual JSON values and groups of values received across different parts of the JSON document, ultimately ensuring the structural integrity of the entire JSON document.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/doc/articles/cscript.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <div style="display:flex;justify-content:space-between"><span style="text-align:left"><a href="https://www.relogiclabs.com"><img src="/JSchema-DotNet/images/relogiclabs.svg" alt="Relogic Labs"></a></span><span style="text-align:right">&copy; Relogic Labs. All rights reserved.</span></div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
