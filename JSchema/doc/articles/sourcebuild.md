@@ -6,14 +6,14 @@ To get started, clone the project from the following URL using your preferred Gi
 ```shell
 git clone https://github.com/relogiclabs/JSchema-DotNet.git
 ```
-Next, use .NET build command `dotnet build` to build the project and Retrieve the DLL file, `RelogicLabs.JsonSchema.dll` from the `bin` folder.
+Next, use .NET build command `dotnet build` to build the project and Retrieve the DLL file, `RelogicLabs.JSchema.dll` from the `bin` folder.
 
 ## Add the Library to Your Project
-To integrate the library with your project, you can create a `libs` folder within your project directory and place the retrieved DLL file into the designated folder. Alternatively, if your IDE supports adding references, you can conveniently select the DLL from the `libs` folder. Alternatively, you can manually modify your project file `.csproj` using a text editor and include the following XML snippet:
+To integrate the library with your project, you can create a `libs` folder within your project directory and place the retrieved DLL file into the designated folder. Subsequently, if your IDE supports adding references, you can conveniently select the DLL from the `libs` folder. Alternatively, you can manually modify your project file `.csproj` using a text editor and include the following XML snippet:
 ```xml
 <ItemGroup>
-    <Reference Include="RelogicLabs.JsonSchema">
-    <HintPath>libs\RelogicLabs.JsonSchema.dll</HintPath>
+    <Reference Include="RelogicLabs.JSchema">
+    <HintPath>libs\RelogicLabs.JSchema.dll</HintPath>
     </Reference>
 </ItemGroup>
 ```
@@ -22,9 +22,9 @@ Additionally, this project has a dependency on ANTLR runtime, which you can inte
 dotnet add package Antlr4.Runtime.Standard --version 4.13.1
 ```
 ## Write a Sample to Test
-With all the necessary components in place, you are now ready to create a sample schema and validate a corresponding JSON against the schema. The subsequent example presents a C# class featuring a method designed for validating a sample JSON based on a provided schema. If you are working with C# 11 or above, you can enhance the code further by utilizing new C# language features like raw string literals, file scoped namespaces and others.
+With all the necessary components in place, you are now ready to create a sample schema and validate a corresponding JSON against the schema. The subsequent example presents a C# class featuring a method designed for validating a sample JSON based on a provided schema. If you are working with C# 10 or above, you can enhance the code further by utilizing new C# language features like raw string literals, file scoped namespaces and others.
 ```c#
-using RelogicLabs.JsonSchema;
+using RelogicLabs.JSchema;
 
 namespace CSharpApplication
 {
@@ -34,7 +34,7 @@ namespace CSharpApplication
         {
             var schema =
                 @"%title: ""User Profile Response""
-                %version: 1.0.0
+                %version: ""1.0.0-basic""
                 %schema:
                 {
                     ""user"": {
@@ -149,21 +149,22 @@ try {
 ```
 The following presents the printed stack trace for the preceding example. It's important to note that when using `JsonAssert`, it throws an exception upon encountering the first error, thus preventing the continuation of processing the rest of the schema:
 ```accesslog
-RelogicLabs.JsonSchema.Exceptions.JsonSchemaException: DTYP04: Data type mismatch
+RelogicLabs.JSchema.Exceptions.JsonSchemaException: DTYP04: Data type mismatch
 Expected (Schema Line: 6:47): data type #integer
 Actual (Json Line: 3:30): found #string inferred by "not number"
 
-   at RelogicLabs.JsonSchema.Tree.ExceptionRegistry.FailWith(Exception exception)
-   at RelogicLabs.JsonSchema.Types.JValidator.MatchDataType(JNode node)
-   at RelogicLabs.JsonSchema.Types.JValidator.Match(JNode node)
-   at RelogicLabs.JsonSchema.Types.JObject.Match(JNode node)
-   at RelogicLabs.JsonSchema.Types.JValidator.Match(JNode node)
-   at RelogicLabs.JsonSchema.Types.JObject.Match(JNode node)
-   at RelogicLabs.JsonSchema.Types.JValidator.Match(JNode node)
-   at RelogicLabs.JsonSchema.Types.JRoot.Match(JNode node)
-   at RelogicLabs.JsonSchema.Tree.SchemaTree.Match(IDataTree dataTree)
-   at RelogicLabs.JsonSchema.JsonAssert.IsValid(String json)
-   at RelogicLabs.JsonSchema.JsonAssert.IsValid(String schema, String json)
-   at CSharpApplication.SampleSchema.CheckIsValid() in /SampleSchema.cs:line 62
+   at RelogicLabs.JSchema.Nodes.JDataType.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JValidator.CheckDataType(JNode node)
+   at RelogicLabs.JSchema.Nodes.JValidator.MatchDataType(JNode node)
+   at RelogicLabs.JSchema.Nodes.JValidator.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JObject.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JValidator.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JObject.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JValidator.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JRoot.Match(JNode node)
+   at RelogicLabs.JSchema.Tree.SchemaTree.Match(IDataTree dataTree)
+   at RelogicLabs.JSchema.JsonAssert.IsValid(String json)
+   at RelogicLabs.JSchema.JsonAssert.IsValid(String schema, String json)
+   at CSharpApplication.SampleSchema.CheckIsValid() in /SampleSchema.cs:line 63
 ```
 For more information about the schema syntax format and library functionalities, please refer to the reference documentation [here](/JSchema-DotNet/api/index.html).

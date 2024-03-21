@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Validation Directives | Json Schema </title>
+      <title>Validation Directives | JSchema </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Validation Directives | Json Schema ">
+      <meta name="title" content="Validation Directives | JSchema ">
       
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
@@ -15,7 +15,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JsonSchema/doc/articles/directives.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/doc/articles/directives.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -43,8 +43,8 @@
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
           <a class="navbar-brand" href="../index.html">
-            <img id="logo" class="svg" src="../images/logo.svg" alt="Json Schema">
-            Json Schema
+            <img id="logo" class="svg" src="../images/logo.svg" alt="JSchema">
+            JSchema
           </a>
           <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
             <i class="bi bi-three-dots"></i>
@@ -89,20 +89,20 @@
 pre code { font-size: 1.1em; }
 </style>
 <h1 id="validation-directives">Validation Directives</h1>
-<p>Directives serve as special instructions or commands for the Schema and JSON parsers, interpreters, and validators. They are used to control various aspects of the validation process or to provide metadata for documentation. Additionally, they offer crucial information about Schema and JSON and provide custom validation functions to meet specific Schema validation requirements.</p>
+<p>Directives serve as special instructions or commands for the JSchema parsers, interpreters, and validators. They are used to control various aspects of the validation process or to provide metadata for documentation. Additionally, they offer crucial information about schema and JSON, as well as essential customization of the validation procedure to meet specific requirements.</p>
 <h2 id="title-directive">Title Directive</h2>
 <p>Within a schema, the title directive is used to provide a name, label, or a brief intent of the schema for which it is written. Besides, the title directive is optional and additional description can be supplied as multiple comments inside the schema document to provide more detail.</p>
 <p>However, this directive is only used for documentation purposes and does not have any impact in the validation process. To represent the title directive, the following example of notation can be used:</p>
 <pre><code class="lang-stylus">%title: &quot;Example name or brief description&quot;
 </code></pre>
 <h2 id="version-directive">Version Directive</h2>
-<p>In a schema, the version directive is used to provide a version number of the schema which helps to keep track of updates. Although optional, the version directive is useful for documentation purposes and does not affect the validation process. The version directive can be represented using the following notation example:</p>
-<pre><code class="lang-stylus">%version: 2023.09.11.01
+<p>In a schema, the version directive is used to provide a version label of the schema document which helps to keep track of updates. Although optional, the version directive is useful for documentation purposes and does not affect the validation process. The version directive can be represented using the following notation example:</p>
+<pre><code class="lang-stylus">%version: &quot;2.0.0-beta1&quot;
 </code></pre>
-<h2 id="include-directive">Include Directive</h2>
-<p>Include directive enables the addition or inclusion of a class, as defined by object-oriented programming, to a schema along with a set of methods that have specific signatures for performing custom validations. This feature extends the built-in validation capabilities of the schema. In the C# language, it is also necessary to specify the assembly name together with the class name. The example below illustrates how to utilize the include directive in C# language:</p>
-<pre><code class="lang-stylus">%include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
-                                     RelogicLabs.JsonSchema.Tests
+<h2 id="import-directive">Import Directive</h2>
+<p>Import directive enables the addition or inclusion of a class, as defined by object-oriented programming, to a schema along with a set of methods that have specific signatures for performing custom validations. This feature extends the built-in validation capabilities of the schema. In the C# language, it is also necessary to specify the assembly name together with the class name. The example below illustrates how to utilize the import directive in C# language:</p>
+<pre><code class="lang-stylus">%import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
+                                    RelogicLabs.JSchema.Tests
 </code></pre>
 <h2 id="pragma-directive">Pragma Directive</h2>
 <p>Pragma directives provide a mechanism to modify the default settings for certain predefined parameters of the validation process. This allows you to adjust the behaviours of schema validation process as per your requirements.</p>
@@ -128,7 +128,7 @@ pre code { font-size: 1.1em; }
 <pre><code class="lang-stylus">%pragma IgnoreObjectPropertyOrder: false
 </code></pre>
 <h2 id="definition--define-directive">Definition / Define Directive</h2>
-<p>This feature in JSON schemas allows you to define a name for a schema component or fragment, which can be referenced from various parts of your schema. This means that if you encounter similar validation requirements in different sections of your schema, you can conveniently refer to the named schema component instead of duplicating the same validation rules. For more information about the schema component syntax and format, please refer to the documentation <a href="/JSchema-DotNet/articles/components.html">here</a>. Here is a simple example of how to use this directive:</p>
+<p>This feature in JSchema allows you to define a name for a schema component or fragment, which can be referenced from various parts of your schema. This means that if you encounter similar validation requirements in different sections of your schema, you can conveniently refer to the named schema component instead of duplicating the same validation rules. For more information about the schema component syntax and format, please refer to the documentation <a href="/JSchema-DotNet/articles/components.html">here</a>. Here is a simple example of how to use this directive:</p>
 <pre><code class="lang-stylus">%define $product: {
     &quot;id&quot;: @length(2, 10) @regex(&quot;[a-z][a-z0-9]+&quot;) #string,
     &quot;name&quot;: @length(5, 100) #string,
@@ -152,11 +152,22 @@ pre code { font-size: 1.1em; }
     }
 }
 </code></pre>
+<h2 id="script-directive">Script Directive</h2>
+<p>The script directive enables the inclusion of CScript code into a JSchema document, providing the flexibility to define custom validation functions directly within the schema document. These validation functions can accept any number of nodes across the JSON tree as parameters, enabling comprehensive processing and validation to ensure the data integrity of the entire JSON tree. For more information about CScript syntax and format, please refer to the documentation <a href="/JSchema-DotNet/articles/cscript.html">here</a></p>
+<pre><code class="lang-stylus">%script: {
+    constraint function checkAccess(role) {
+        if(role[0] == &quot;user&quot; &amp;&amp; target &gt; 5) return fail(
+            &quot;ERRACCESS01&quot;, &quot;Data access incompatible with 'user' role&quot;,
+            expected(&quot;an access at most 5 for 'user' role&quot;),
+            actual(&quot;found access &quot; + target + &quot; which is greater than 5&quot;));
+    }
+}
+</code></pre>
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JsonSchema/doc/articles/directives.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/doc/articles/directives.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

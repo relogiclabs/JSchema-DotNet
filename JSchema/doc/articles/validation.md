@@ -10,7 +10,7 @@ Composite values in a JSON document act as containers. They can hold zero or mor
 Conversely, Non-composite values are the atomic data elements in a JSON document. They cannot contain other values within them. There are four types of primitive values supported by JSON specification: Strings, Numbers, Booleans, and Nulls.
 
 ## Validation Format
-A JSON Schema ensures the correctness and consistency of JSON documents, and it also defines the structure and constraints that a JSON document must conform to. It specifies how both composite and non-composite values should be organized and validated the input document based on the rules specified in the schema document. Thus, a key element of JSON Schema is the validation rule syntax, which provides the required instructions for the validation process. A validation rule is typically expressed using the following notations:
+JSchema provides essential utilities to ensure the correctness and consistency of JSON documents, while defining the structure and constraints that JSON documents must conform to. It specifies how both composite and non-composite values should be organized and validated the input document based on the rules specified in the schema document. Thus, a key element of JSchema is the validation rule syntax, which provides the required instructions for the validation process. A validation rule is typically expressed using the following notations:
 ```yaml
 1. [Value] [Function-Set] [DataType-Set] [Receiver-Set] [Optional]
 2. [Undefined] [Optional]
@@ -66,7 +66,7 @@ Validation of the `Datatype-Set` is deemed successful if validation is successfu
 | 2  | `#integer* #array`         | `[1, 3]`; `[2, 4, 6, 8, 10]` | `[10, 10.5, 1E-08]`; `10`; `null`   |
 | 3  | `#string`                  | `"lorem"`; `"lorem ipsum"`   | `100.5`; `["a", "b"]`; `null`       |
 | 4  | `#string* #array`          | `["lorem", "lorem ipsum"]`   | `[10, "lorem"]`; `"lorem"`; `null`  |
-| 5  | `#integer #float`          | `5`, `10.5`, `1000`          | `1E-08`; `"lorem"`; `false`; `null` |
+| 5  | `#integer #float`          | `5`; `10.5`; `1000`          | `1E-08`; `"lorem"`; `false`; `null` |
 | 6  | `#array #null`             | `[10, 20, 30]`; `null`       | `10`; `100.5`; `"lorem"`            |
 | 7  | `#integer* #float* #array` | `[10, 10.5, 100]`            | `[10, "lorem", false, null]`        |
 

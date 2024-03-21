@@ -12,6 +12,8 @@
   href: datatypes.md
 - name: Functions
   href: functions.md
+- name: CScript DSL
+  href: cscript.md
 - name: Date and Time
   href: datetime.md
 - name: Components

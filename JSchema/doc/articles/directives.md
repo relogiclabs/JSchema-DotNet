@@ -3,7 +3,7 @@ pre code { font-size: 1.1em; }
 </style>
 
 # Validation Directives
-Directives serve as special instructions or commands for the Schema and JSON parsers, interpreters, and validators. They are used to control various aspects of the validation process or to provide metadata for documentation. Additionally, they offer crucial information about Schema and JSON and provide custom validation functions to meet specific Schema validation requirements.
+Directives serve as special instructions or commands for the JSchema parsers, interpreters, and validators. They are used to control various aspects of the validation process or to provide metadata for documentation. Additionally, they offer crucial information about schema and JSON, as well as essential customization of the validation procedure to meet specific requirements.
 
 ## Title Directive
 Within a schema, the title directive is used to provide a name, label, or a brief intent of the schema for which it is written. Besides, the title directive is optional and additional description can be supplied as multiple comments inside the schema document to provide more detail.
@@ -14,16 +14,16 @@ However, this directive is only used for documentation purposes and does not hav
 ```
 
 ## Version Directive
-In a schema, the version directive is used to provide a version number of the schema which helps to keep track of updates. Although optional, the version directive is useful for documentation purposes and does not affect the validation process. The version directive can be represented using the following notation example:
+In a schema, the version directive is used to provide a version label of the schema document which helps to keep track of updates. Although optional, the version directive is useful for documentation purposes and does not affect the validation process. The version directive can be represented using the following notation example:
 ```stylus
-%version: 2023.09.11.01
+%version: "2.0.0-beta1"
 ```
 
-## Include Directive
-Include directive enables the addition or inclusion of a class, as defined by object-oriented programming, to a schema along with a set of methods that have specific signatures for performing custom validations. This feature extends the built-in validation capabilities of the schema. In the C# language, it is also necessary to specify the assembly name together with the class name. The example below illustrates how to utilize the include directive in C# language:
+## Import Directive
+Import directive enables the addition or inclusion of a class, as defined by object-oriented programming, to a schema along with a set of methods that have specific signatures for performing custom validations. This feature extends the built-in validation capabilities of the schema. In the C# language, it is also necessary to specify the assembly name together with the class name. The example below illustrates how to utilize the import directive in C# language:
 ```stylus
-%include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
-                                     RelogicLabs.JsonSchema.Tests
+%import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
+                                    RelogicLabs.JSchema.Tests
 ```
 
 ## Pragma Directive
@@ -62,7 +62,7 @@ The `IgnoreObjectPropertyOrder` pragma directive provides a means to enforce a s
 ```
 
 ## Definition / Define Directive
-This feature in JSON schemas allows you to define a name for a schema component or fragment, which can be referenced from various parts of your schema. This means that if you encounter similar validation requirements in different sections of your schema, you can conveniently refer to the named schema component instead of duplicating the same validation rules. For more information about the schema component syntax and format, please refer to the documentation [here](/JSchema-DotNet/articles/components.html). Here is a simple example of how to use this directive:
+This feature in JSchema allows you to define a name for a schema component or fragment, which can be referenced from various parts of your schema. This means that if you encounter similar validation requirements in different sections of your schema, you can conveniently refer to the named schema component instead of duplicating the same validation rules. For more information about the schema component syntax and format, please refer to the documentation [here](/JSchema-DotNet/articles/components.html). Here is a simple example of how to use this directive:
 ```stylus
 %define $product: {
     "id": @length(2, 10) @regex("[a-z][a-z0-9]+") #string,
@@ -87,6 +87,19 @@ However, if there are no other directives used in the document, the entire docum
         "role": "user" #string,
         "isActive": #boolean, //user account current status
         "registeredAt": #time
+    }
+}
+```
+
+## Script Directive
+The script directive enables the inclusion of CScript code into a JSchema document, providing the flexibility to define custom validation functions directly within the schema document. These validation functions can accept any number of nodes across the JSON tree as parameters, enabling comprehensive processing and validation to ensure the data integrity of the entire JSON tree. For more information about CScript syntax and format, please refer to the documentation [here](/JSchema-DotNet/articles/cscript.html)
+```stylus
+%script: {
+    constraint function checkAccess(role) {
+        if(role[0] == "user" && target > 5) return fail(
+            "ERRACCESS01", "Data access incompatible with 'user' role",
+            expected("an access at most 5 for 'user' role"),
+            actual("found access " + target + " which is greater than 5"));
     }
 }
 ```

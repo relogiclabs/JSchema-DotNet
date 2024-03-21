@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Specification | Json Schema </title>
+      <title>Specification | JSchema </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Specification | Json Schema ">
+      <meta name="title" content="Specification | JSchema ">
       
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
@@ -15,7 +15,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JsonSchema/doc/articles/specification.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/doc/articles/specification.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -43,8 +43,8 @@
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
           <a class="navbar-brand" href="../index.html">
-            <img id="logo" class="svg" src="../images/logo.svg" alt="Json Schema">
-            Json Schema
+            <img id="logo" class="svg" src="../images/logo.svg" alt="JSchema">
+            JSchema
           </a>
           <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
             <i class="bi bi-three-dots"></i>
@@ -89,9 +89,9 @@
 pre code { font-size: 1.1em; }
 </style>
 <h1 id="specification">Specification</h1>
-<p>New JSON Schema is a vocabulary that allows you to describe the structure and constraints of JSON documents. It provides a way to define rules for validating the data in a JSON document. With JSON Schema, you can ensure that your JSON data follows a specific format and adheres to certain rules.</p>
+<p>JSchema is a vocabulary that allows you to describe the structure and constraints of JSON documents. It provides a way to define rules for validating the data in a JSON document. With JSchema, you can ensure that your JSON data follows a specific format and adheres to certain rules.</p>
 <h2 id="grammar">Grammar</h2>
-<p>The New JSON Schema grammar is introduced through a notation similar to what is known as the McKeeman form grammar notation, which is a simplified version of the Backus-Naur form and Extended Backus–Naur form. This form minimizes the usage of complex structures of meta-characters, making the grammar highly readable and easy to understand without requiring extensive prior knowledge of grammar syntax. Moreover, inside the grammar whitespace defining rules are ignored to make it clear and concise.</p>
+<p>JSchema grammar is introduced through a notation similar to what is known as the McKeeman form grammar notation, which is a simplified version of the Backus-Naur form and Extended Backus–Naur form. This form minimizes the usage of complex structures of meta-characters, making the grammar highly readable and easy to understand without requiring extensive prior knowledge of grammar syntax. Moreover, inside the grammar whitespace defining rules are ignored to make it clear and concise.</p>
 <pre><code class="lang-html">schema
     schema-header-opt defines-opt schema-core defines-opt
     validator
@@ -105,11 +105,7 @@ title-opt
 
 version-opt
     ''
-    '%version' ':' version-digits
-
-version-digits
-    digits
-    digits '.' version-digits
+    '%version' ':' string
 
 includes-opt
     ''
@@ -353,12 +349,12 @@ one-to-nine
     '1' . '9'
 
 </code></pre>
-<p>To explore more about McKeeman form grammar notation and standard JSON document grammar in McKeeman form notation, please visit <a href="https://www.json.org">this page</a>. The resource offers valuable information regarding JSON specification and implementations in different programming languages.</p>
+<p>To explore more about McKeeman form grammar notation and standard JSON document grammar in McKeeman form notation, please visit <a href="https://www.json.org">this page</a>. The resource offers information regarding JSON specification and implementations in different programming languages.</p>
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JsonSchema/doc/articles/specification.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/doc/articles/specification.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

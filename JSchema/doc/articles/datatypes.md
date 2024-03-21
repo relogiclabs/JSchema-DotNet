@@ -116,7 +116,7 @@ The boolean data type is a binary or switch-based data type that only accepts tw
 ```
 
 ### The Null Data Type
-The null data type serves as a special constraint within JSON schemas, facilitating the controlled use of `null` in place of other JSON elements or values. Typically, it is combined with other data types to permit the use of `null` for specific JSON elements or values. This can set constraints for scenarios in which an array without any elements and an object without any properties can either have `null` or only be allowed to be empty. 
+The null data type serves as a special constraint within JSchema documents, facilitating the controlled use of `null` in place of other JSON elements or values. Typically, it is combined with other data types to permit the use of `null` for specific JSON elements or values. This can set constraints for scenarios in which an array without any elements and an object without any properties can either have `null` or only be allowed to be empty. 
 
 Additionally, the `@nonempty` constraint functions can be employed to further control the use of empty values within a JSON document. To specify the null type in the schema, use the following syntax:
 ```stylus

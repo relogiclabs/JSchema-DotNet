@@ -3,10 +3,10 @@ pre code { font-size: 1.1em; }
 </style>
 
 # Specification
-New JSON Schema is a vocabulary that allows you to describe the structure and constraints of JSON documents. It provides a way to define rules for validating the data in a JSON document. With JSON Schema, you can ensure that your JSON data follows a specific format and adheres to certain rules.
+JSchema is a vocabulary that allows you to describe the structure and constraints of JSON documents. It provides a way to define rules for validating the data in a JSON document. With JSchema, you can ensure that your JSON data follows a specific format and adheres to certain rules.
 
 ## Grammar
-The New JSON Schema grammar is introduced through a notation similar to what is known as the McKeeman form grammar notation, which is a simplified version of the Backus-Naur form and Extended Backus–Naur form. This form minimizes the usage of complex structures of meta-characters, making the grammar highly readable and easy to understand without requiring extensive prior knowledge of grammar syntax. Moreover, inside the grammar whitespace defining rules are ignored to make it clear and concise.
+JSchema grammar is introduced through a notation similar to what is known as the McKeeman form grammar notation, which is a simplified version of the Backus-Naur form and Extended Backus–Naur form. This form minimizes the usage of complex structures of meta-characters, making the grammar highly readable and easy to understand without requiring extensive prior knowledge of grammar syntax. Moreover, inside the grammar whitespace defining rules are ignored to make it clear and concise.
 
 ```html
 schema
@@ -22,11 +22,7 @@ title-opt
 
 version-opt
     ''
-    '%version' ':' version-digits
-
-version-digits
-    digits
-    digits '.' version-digits
+    '%version' ':' string
 
 includes-opt
     ''
@@ -270,4 +266,4 @@ one-to-nine
     '1' . '9'
 
 ```
-To explore more about McKeeman form grammar notation and standard JSON document grammar in McKeeman form notation, please visit [this page](https://www.json.org). The resource offers valuable information regarding JSON specification and implementations in different programming languages.
+To explore more about McKeeman form grammar notation and standard JSON document grammar in McKeeman form notation, please visit [this page](https://www.json.org). The resource offers information regarding JSON specification and implementations in different programming languages.

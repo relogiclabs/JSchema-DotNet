@@ -1,23 +1,23 @@
 # Getting Started
-This guide will walk you through the essential steps to quickly get up and running with the New JSON Schema library. It is also assumed a modest familiarity with the C# language, .NET SDK, and .NET CLI (command-line interface), including basic familiarity with NuGet packages.
+This guide will walk you through the essential steps to quickly get up and running with the JSchema library. It is also assumed a modest familiarity with the C# language, .NET SDK, and .NET CLI (command-line interface), including basic familiarity with NuGet packages.
 
 ## NuGet Library Package
-To get started, launch your preferred IDE (such as Visual Studio, JetBrains Rider, or VS Code) and open the C# project where you intend to include this library package. Within your IDE, navigate to the NuGet package manager and search for the package by the name 'RelogicLabs.JsonSchema'. Subsequently, proceed to add or install the package to your project. Alternatively, you can use the .NET CLI to add the package to your project. Simply run the following command, replacing `1.x.x` with either the latest version or your preferred version:
+To get started, launch your preferred IDE (such as Visual Studio, JetBrains Rider, or VS Code) and open the C# project where you intend to include this library package. Within your IDE, navigate to the NuGet package manager and search for the package by the name `RelogicLabs.JSchema`. Subsequently, proceed to add or install the package to your project. Alternatively, you can use the .NET CLI to add the package to your project. Simply run the following command, replacing `2.x.x` with either the latest version or your preferred version:
 ```shell
-dotnet add package RelogicLabs.JsonSchema --version 1.x.x
+dotnet add package RelogicLabs.JSchema --version 2.x.x
 ```
 To verify the successful integration of the library into your project, you may manually inspect your project file, typically named `.csproj`, using a text editor, and search for the following XML snippet within the file:
 ```xml
 <ItemGroup>
-    <PackageReference Include="RelogicLabs.JsonSchema" Version="1.x.x" />
+    <PackageReference Include="RelogicLabs.JSchema" Version="2.x.x" />
 </ItemGroup>
 ```
-For additional information regarding this library package, you can visit the NuGet package repository page of this library [here](https://www.nuget.org/packages/RelogicLabs.JsonSchema).
+For additional information regarding this library package, you can visit the NuGet package repository page of this library [here](https://www.nuget.org/packages/RelogicLabs.JSchema).
 
 ## Write a Sample to Test
-With all the necessary components in place, you are now ready to create a sample schema and validate a corresponding JSON against the schema. The subsequent example presents a C# class featuring a method designed for validating a sample JSON based on a provided schema. If you are working with C# 11 or above, you can enhance the code further by utilizing new language features like raw string literals, file scoped namespaces and others.
+With all the necessary components in place, you are now ready to create a sample schema and validate a corresponding JSON against the schema. The subsequent example presents a C# class featuring a method designed for validating a sample JSON based on a provided schema. If you are working with C# 10 or above, you can enhance the code further by utilizing new language features like raw string literals, file scoped namespaces and others.
 ```c#
-using RelogicLabs.JsonSchema;
+using RelogicLabs.JSchema;
 
 namespace CSharpApplication
 {
@@ -27,7 +27,7 @@ namespace CSharpApplication
         {
             var schema =
                 @"%title: ""User Profile Response""
-                %version: 1.0.0
+                %version: ""1.0.0-basic""
                 %schema:
                 {
                     ""user"": {
@@ -142,21 +142,22 @@ try {
 ```
 The following presents the printed stack trace for the preceding example. It's important to note that when using `JsonAssert`, it throws an exception upon encountering the first error, thus preventing the continuation of processing the rest of the schema:
 ```accesslog
-RelogicLabs.JsonSchema.Exceptions.JsonSchemaException: DTYP04: Data type mismatch
+RelogicLabs.JSchema.Exceptions.JsonSchemaException: DTYP04: Data type mismatch
 Expected (Schema Line: 6:47): data type #integer
 Actual (Json Line: 3:30): found #string inferred by "not number"
 
-   at RelogicLabs.JsonSchema.Tree.ExceptionRegistry.FailWith(Exception exception)
-   at RelogicLabs.JsonSchema.Types.JValidator.MatchDataType(JNode node)
-   at RelogicLabs.JsonSchema.Types.JValidator.Match(JNode node)
-   at RelogicLabs.JsonSchema.Types.JObject.Match(JNode node)
-   at RelogicLabs.JsonSchema.Types.JValidator.Match(JNode node)
-   at RelogicLabs.JsonSchema.Types.JObject.Match(JNode node)
-   at RelogicLabs.JsonSchema.Types.JValidator.Match(JNode node)
-   at RelogicLabs.JsonSchema.Types.JRoot.Match(JNode node)
-   at RelogicLabs.JsonSchema.Tree.SchemaTree.Match(IDataTree dataTree)
-   at RelogicLabs.JsonSchema.JsonAssert.IsValid(String json)
-   at RelogicLabs.JsonSchema.JsonAssert.IsValid(String schema, String json)
-   at CSharpApplication.SampleSchema.CheckIsValid() in /SampleSchema.cs:line 62
+   at RelogicLabs.JSchema.Nodes.JDataType.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JValidator.CheckDataType(JNode node)
+   at RelogicLabs.JSchema.Nodes.JValidator.MatchDataType(JNode node)
+   at RelogicLabs.JSchema.Nodes.JValidator.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JObject.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JValidator.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JObject.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JValidator.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JRoot.Match(JNode node)
+   at RelogicLabs.JSchema.Tree.SchemaTree.Match(IDataTree dataTree)
+   at RelogicLabs.JSchema.JsonAssert.IsValid(String json)
+   at RelogicLabs.JSchema.JsonAssert.IsValid(String schema, String json)
+   at CSharpApplication.SampleSchema.CheckIsValid() in /SampleSchema.cs:line 63
 ```
 For more information about the schema syntax format and library functionalities, please refer to the reference documentation [here](/JSchema-DotNet/api/index.html).

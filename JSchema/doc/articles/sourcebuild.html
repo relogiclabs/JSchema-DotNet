@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Build from Source Code | Json Schema </title>
+      <title>Build from Source Code | JSchema </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Build from Source Code | Json Schema ">
+      <meta name="title" content="Build from Source Code | JSchema ">
       
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
@@ -15,7 +15,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JsonSchema/doc/articles/sourcebuild.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/doc/articles/sourcebuild.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -43,8 +43,8 @@
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
           <a class="navbar-brand" href="../index.html">
-            <img id="logo" class="svg" src="../images/logo.svg" alt="Json Schema">
-            Json Schema
+            <img id="logo" class="svg" src="../images/logo.svg" alt="JSchema">
+            JSchema
           </a>
           <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
             <i class="bi bi-three-dots"></i>
@@ -91,12 +91,12 @@
 <p>To get started, clone the project from the following URL using your preferred Git client (command line or GUI). You can open a terminal and enter the following Git clone command as shown below:</p>
 <pre><code class="lang-shell">git clone https://github.com/relogiclabs/JSchema-DotNet.git
 </code></pre>
-<p>Next, use .NET build command <code>dotnet build</code> to build the project and Retrieve the DLL file, <code>RelogicLabs.JsonSchema.dll</code> from the <code>bin</code> folder.</p>
+<p>Next, use .NET build command <code>dotnet build</code> to build the project and Retrieve the DLL file, <code>RelogicLabs.JSchema.dll</code> from the <code>bin</code> folder.</p>
 <h2 id="add-the-library-to-your-project">Add the Library to Your Project</h2>
-<p>To integrate the library with your project, you can create a <code>libs</code> folder within your project directory and place the retrieved DLL file into the designated folder. Alternatively, if your IDE supports adding references, you can conveniently select the DLL from the <code>libs</code> folder. Alternatively, you can manually modify your project file <code>.csproj</code> using a text editor and include the following XML snippet:</p>
+<p>To integrate the library with your project, you can create a <code>libs</code> folder within your project directory and place the retrieved DLL file into the designated folder. Subsequently, if your IDE supports adding references, you can conveniently select the DLL from the <code>libs</code> folder. Alternatively, you can manually modify your project file <code>.csproj</code> using a text editor and include the following XML snippet:</p>
 <pre><code class="lang-xml">&lt;ItemGroup&gt;
-    &lt;Reference Include=&quot;RelogicLabs.JsonSchema&quot;&gt;
-    &lt;HintPath&gt;libs\RelogicLabs.JsonSchema.dll&lt;/HintPath&gt;
+    &lt;Reference Include=&quot;RelogicLabs.JSchema&quot;&gt;
+    &lt;HintPath&gt;libs\RelogicLabs.JSchema.dll&lt;/HintPath&gt;
     &lt;/Reference&gt;
 &lt;/ItemGroup&gt;
 </code></pre>
@@ -104,8 +104,8 @@
 <pre><code class="lang-shell">dotnet add package Antlr4.Runtime.Standard --version 4.13.1
 </code></pre>
 <h2 id="write-a-sample-to-test">Write a Sample to Test</h2>
-<p>With all the necessary components in place, you are now ready to create a sample schema and validate a corresponding JSON against the schema. The subsequent example presents a C# class featuring a method designed for validating a sample JSON based on a provided schema. If you are working with C# 11 or above, you can enhance the code further by utilizing new C# language features like raw string literals, file scoped namespaces and others.</p>
-<pre><code class="lang-c#">using RelogicLabs.JsonSchema;
+<p>With all the necessary components in place, you are now ready to create a sample schema and validate a corresponding JSON against the schema. The subsequent example presents a C# class featuring a method designed for validating a sample JSON based on a provided schema. If you are working with C# 10 or above, you can enhance the code further by utilizing new C# language features like raw string literals, file scoped namespaces and others.</p>
+<pre><code class="lang-c#">using RelogicLabs.JSchema;
 
 namespace CSharpApplication
 {
@@ -115,7 +115,7 @@ namespace CSharpApplication
         {
             var schema =
                 @&quot;%title: &quot;&quot;User Profile Response&quot;&quot;
-                %version: 1.0.0
+                %version: &quot;&quot;1.0.0-basic&quot;&quot;
                 %schema:
                 {
                     &quot;&quot;user&quot;&quot;: {
@@ -221,29 +221,30 @@ try {
 ...
 </code></pre>
 <p>The following presents the printed stack trace for the preceding example. It's important to note that when using <code>JsonAssert</code>, it throws an exception upon encountering the first error, thus preventing the continuation of processing the rest of the schema:</p>
-<pre><code class="lang-accesslog">RelogicLabs.JsonSchema.Exceptions.JsonSchemaException: DTYP04: Data type mismatch
+<pre><code class="lang-accesslog">RelogicLabs.JSchema.Exceptions.JsonSchemaException: DTYP04: Data type mismatch
 Expected (Schema Line: 6:47): data type #integer
 Actual (Json Line: 3:30): found #string inferred by &quot;not number&quot;
 
-   at RelogicLabs.JsonSchema.Tree.ExceptionRegistry.FailWith(Exception exception)
-   at RelogicLabs.JsonSchema.Types.JValidator.MatchDataType(JNode node)
-   at RelogicLabs.JsonSchema.Types.JValidator.Match(JNode node)
-   at RelogicLabs.JsonSchema.Types.JObject.Match(JNode node)
-   at RelogicLabs.JsonSchema.Types.JValidator.Match(JNode node)
-   at RelogicLabs.JsonSchema.Types.JObject.Match(JNode node)
-   at RelogicLabs.JsonSchema.Types.JValidator.Match(JNode node)
-   at RelogicLabs.JsonSchema.Types.JRoot.Match(JNode node)
-   at RelogicLabs.JsonSchema.Tree.SchemaTree.Match(IDataTree dataTree)
-   at RelogicLabs.JsonSchema.JsonAssert.IsValid(String json)
-   at RelogicLabs.JsonSchema.JsonAssert.IsValid(String schema, String json)
-   at CSharpApplication.SampleSchema.CheckIsValid() in /SampleSchema.cs:line 62
+   at RelogicLabs.JSchema.Nodes.JDataType.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JValidator.CheckDataType(JNode node)
+   at RelogicLabs.JSchema.Nodes.JValidator.MatchDataType(JNode node)
+   at RelogicLabs.JSchema.Nodes.JValidator.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JObject.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JValidator.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JObject.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JValidator.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JRoot.Match(JNode node)
+   at RelogicLabs.JSchema.Tree.SchemaTree.Match(IDataTree dataTree)
+   at RelogicLabs.JSchema.JsonAssert.IsValid(String json)
+   at RelogicLabs.JSchema.JsonAssert.IsValid(String schema, String json)
+   at CSharpApplication.SampleSchema.CheckIsValid() in /SampleSchema.cs:line 63
 </code></pre>
 <p>For more information about the schema syntax format and library functionalities, please refer to the reference documentation <a href="/JSchema-DotNet/api/index.html">here</a>.</p>
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JsonSchema/doc/articles/sourcebuild.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/doc/articles/sourcebuild.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

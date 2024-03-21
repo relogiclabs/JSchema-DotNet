@@ -1,5 +1,5 @@
 {
-  "source_base_path": "/home/zahid/Projects/JSchema-DotNet/JsonSchema/doc",
+  "source_base_path": "/home/zahid/Projects/JSchema-DotNet/JSchema/doc",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -12,940 +12,1180 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Collections.IIndexMap-2.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Collections.IIndexMap-2.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Collections.IIndexMap-2.html"
+          "relative_path": "api/RelogicLabs.JSchema.Collections.IIndexMap-2.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Collections.IKeyed-1.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Collections.IKeyed-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Collections.IKeyed-1.html"
+          "relative_path": "api/RelogicLabs.JSchema.Collections.IKeyed-1.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Collections.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Collections.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Collections.html"
+          "relative_path": "api/RelogicLabs.JSchema.Collections.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.ClassInstantiationException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.ClassInstantiationException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.ClassInstantiationException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.ClassInstantiationException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.ClassNotFoundException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.ClassNotFoundException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.ClassNotFoundException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.ClassNotFoundException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.CommonException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.CommonException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.CommonException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.CommonException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.DateTimeLexerException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.DateTimeLexerException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.DateTimeLexerException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.DefinitionNotFoundException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.DefinitionNotFoundException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.DefinitionNotFoundException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.DefinitionNotFoundException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.DuplicateDefinitionException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.DuplicateDefinitionException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.DuplicateDefinitionException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.DuplicateDefinitionException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.DuplicateIncludeException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.DuplicateImportException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.DuplicateIncludeException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.DuplicateImportException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.DuplicatePragmaException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.DuplicatePragmaException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.DuplicatePragmaException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.DuplicatePragmaException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.DuplicatePropertyKeyException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.DuplicatePropertyKeyException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.DuplicatePropertyKeyException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.DuplicatePropertyKeyException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.FunctionNotFoundException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.FunctionNotFoundException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.FunctionNotFoundException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.FunctionNotFoundException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.InvalidDataTypeException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.InvalidDataTypeException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.InvalidDataTypeException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.InvalidDataTypeException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.InvalidDateTimeException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.InvalidDateTimeException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.InvalidDateTimeException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.InvalidFunctionException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.InvalidFunctionException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.InvalidFunctionException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.InvalidFunctionException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.InvalidIncludeException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.InvalidImportException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.InvalidIncludeException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.InvalidImportException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.InvalidPragmaValueException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.InvalidPragmaValueException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.InvalidPragmaValueException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.InvalidPragmaValueException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.JsonLexerException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.JsonLexerException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.JsonLexerException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.JsonLexerException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.JsonParserException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.JsonParserException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.JsonParserException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.JsonParserException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.JsonSchemaException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.JsonSchemaException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.JsonSchemaException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.MisplacedOptionalException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.MisplacedOptionalException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.MisplacedOptionalException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.NoValueReceivedException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.NoValueReceivedException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.NoValueReceivedException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.NoValueReceivedException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.PragmaNotFoundException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.PragmaNotFoundException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.PragmaNotFoundException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.PragmaNotFoundException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.ReceiverNotFoundException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.ReceiverNotFoundException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.ReceiverNotFoundException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.ReceiverNotFoundException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.SchemaLexerException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.SchemaLexerException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.SchemaLexerException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.SchemaLexerException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.SchemaParserException.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.SchemaParserException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.SchemaParserException.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.SchemaParserException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Exceptions.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.ScriptArgumentException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Exceptions.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.ScriptArgumentException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Functions.CoreFunctions.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.ScriptCommonException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Functions.CoreFunctions.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.ScriptCommonException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Functions.FunctionBase.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.ScriptFunctionException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Functions.FunctionBase.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.ScriptFunctionException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Functions.FutureValidator.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.ScriptInitiatedException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Functions.FutureValidator.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.ScriptInitiatedException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Functions.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.ScriptInvocationException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Functions.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.ScriptInvocationException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.JsonAssert.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.ScriptOperationException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.JsonAssert.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.ScriptOperationException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.JsonSchema.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.ScriptRuntimeException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.JsonSchema.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.ScriptRuntimeException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Message.ActualDetail.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.ScriptTemplateException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Message.ActualDetail.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.ScriptTemplateException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Message.ContextDetail.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.ScriptVariableException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Message.ContextDetail.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.ScriptVariableException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Message.ErrorDetail.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.SystemOperationException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Message.ErrorDetail.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.SystemOperationException.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Message.ExpectedDetail.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Exceptions.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Message.ExpectedDetail.html"
+          "relative_path": "api/RelogicLabs.JSchema.Exceptions.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Message.MessageFormatter.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Functions.CoreFunctions.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Message.MessageFormatter.html"
+          "relative_path": "api/RelogicLabs.JSchema.Functions.CoreFunctions.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Message.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Functions.FunctionProvider.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Message.html"
+          "relative_path": "api/RelogicLabs.JSchema.Functions.FunctionProvider.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Time.DateTimeType.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Functions.FutureFunction.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Time.DateTimeType.html"
+          "relative_path": "api/RelogicLabs.JSchema.Functions.FutureFunction.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Time.JsonDateTime.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Functions.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Time.JsonDateTime.html"
+          "relative_path": "api/RelogicLabs.JSchema.Functions.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Time.JsonUtcOffset.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.JsonAssert.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Time.JsonUtcOffset.html"
+          "relative_path": "api/RelogicLabs.JSchema.JsonAssert.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Time.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.JsonSchema.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Time.html"
+          "relative_path": "api/RelogicLabs.JSchema.JsonSchema.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Tree.Context.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Message.ActualDetail.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Tree.Context.html"
+          "relative_path": "api/RelogicLabs.JSchema.Message.ActualDetail.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Tree.ExceptionRegistry.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Message.ContextDetail.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Tree.ExceptionRegistry.html"
+          "relative_path": "api/RelogicLabs.JSchema.Message.ContextDetail.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Tree.FunctionRegistry.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Message.ErrorDetail.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Tree.FunctionRegistry.html"
+          "relative_path": "api/RelogicLabs.JSchema.Message.ErrorDetail.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Tree.IDataTree.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Message.ExpectedDetail.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Tree.IDataTree.html"
+          "relative_path": "api/RelogicLabs.JSchema.Message.ExpectedDetail.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Tree.JsonTree.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Message.MessageFormatter.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Tree.JsonTree.html"
+          "relative_path": "api/RelogicLabs.JSchema.Message.MessageFormatter.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Tree.Location.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Message.OutlineFormatter.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Tree.Location.html"
+          "relative_path": "api/RelogicLabs.JSchema.Message.OutlineFormatter.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Tree.PragmaRegistry.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Message.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Tree.PragmaRegistry.html"
+          "relative_path": "api/RelogicLabs.JSchema.Message.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Tree.ReceiverRegistry.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.IDerived.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Tree.ReceiverRegistry.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.IDerived.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Tree.RuntimeContext.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.IJsonType.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Tree.RuntimeContext.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.IJsonType.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Tree.SchemaTree.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.INestedMode.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Tree.SchemaTree.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.INestedMode.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Tree.TreeType.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.IPragmaValue-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Tree.TreeType.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.IPragmaValue-1.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Tree.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JAlias.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Tree.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JAlias.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.IDerived.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JArray.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.IDerived.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JArray.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.IJsonType.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JBoolean.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.IJsonType.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JBoolean.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.INestedMode.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JBranch.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.INestedMode.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JBranch.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.IPragmaValue-1.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JComposite.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.IPragmaValue-1.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JComposite.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JAlias.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JDataType.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JAlias.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JDataType.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JArray.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JDate.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JArray.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JDate.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JBoolean.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JDateTime.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JBoolean.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JDateTime.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JBranch.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JDefinition.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JBranch.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JDefinition.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JComposite.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JDirective.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JComposite.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JDirective.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JDataType.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JDouble.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JDataType.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JDouble.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JDate.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JFloat.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JDate.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JFloat.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JDateTime.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JFunction.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JDateTime.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JFunction.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JDefinition.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JImport.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JDefinition.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JImport.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JDirective.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JInteger.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JDirective.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JInteger.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JDouble.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JLeaf.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JDouble.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JLeaf.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JFloat.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JNode.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JFloat.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JNode.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JFunction.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JNull.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JFunction.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JNull.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JInclude.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JNumber.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JInclude.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JNumber.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JInteger.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JObject.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JInteger.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JObject.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JLeaf.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JPragma.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JLeaf.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JPragma.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JNode.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JPrimitive.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JNode.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JPrimitive.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JNull.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JProperty.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JNull.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JProperty.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JNumber.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JReceiver.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JNumber.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JReceiver.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JObject.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JRoot.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JObject.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JRoot.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JPragma.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JScript.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JPragma.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JScript.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JPrimitive.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JString.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JPrimitive.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JString.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JProperty.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JTime.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JProperty.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JTime.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JReceiver.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JTitle.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JReceiver.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JTitle.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JRoot.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JUndefined.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JRoot.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JUndefined.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JString.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JValidator.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JString.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JValidator.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JTime.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JVersion.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JTime.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JVersion.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JTitle.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.JsonType.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JTitle.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.JsonType.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JUndefined.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Nodes.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JUndefined.html"
+          "relative_path": "api/RelogicLabs.JSchema.Nodes.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JValidator.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Time.DateTimeType.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JValidator.html"
+          "relative_path": "api/RelogicLabs.JSchema.Time.DateTimeType.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JVersion.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Time.JsonDateTime.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JVersion.html"
+          "relative_path": "api/RelogicLabs.JSchema.Time.JsonDateTime.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.JsonType.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Time.JsonUtcOffset.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.JsonType.html"
+          "relative_path": "api/RelogicLabs.JSchema.Time.JsonUtcOffset.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.Types.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Time.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.Types.html"
+          "relative_path": "api/RelogicLabs.JSchema.Time.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/RelogicLabs.JsonSchema.yml",
+      "source_relative_path": "api/RelogicLabs.JSchema.Tree.Context.yml",
       "output": {
         ".html": {
-          "relative_path": "api/RelogicLabs.JsonSchema.html"
+          "relative_path": "api/RelogicLabs.JSchema.Tree.Context.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Tree.ExceptionRegistry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Tree.ExceptionRegistry.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Tree.FunctionRegistry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Tree.FunctionRegistry.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Tree.IDataTree.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Tree.IDataTree.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Tree.JsonTree.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Tree.JsonTree.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Tree.Location.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Tree.Location.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Tree.PragmaRegistry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Tree.PragmaRegistry.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Tree.ReceiverRegistry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Tree.ReceiverRegistry.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Tree.RuntimeContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Tree.RuntimeContext.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Tree.SchemaTree.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Tree.SchemaTree.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Tree.TreeType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Tree.TreeType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Tree.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Tree.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Types.EType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Types.EType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Types.IEArray.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Types.IEArray.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Types.IEBoolean.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Types.IEBoolean.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Types.IEDouble.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Types.IEDouble.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Types.IEInteger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Types.IEInteger.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Types.IENull.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Types.IENull.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Types.IENumber.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Types.IENumber.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Types.IEObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Types.IEObject.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Types.IEString.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Types.IEString.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Types.IEUndefined.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Types.IEUndefined.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Types.IEValue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Types.IEValue.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.Types.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.Types.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/RelogicLabs.JSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RelogicLabs.JSchema.html"
         }
       },
       "version": ""
@@ -979,6 +1219,16 @@
       "output": {
         ".html": {
           "relative_path": "articles/components.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/cscript.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/cscript.html"
         }
       },
       "version": ""

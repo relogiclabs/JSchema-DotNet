@@ -48,8 +48,8 @@
         ],
         "output": "../doc",
         "globalMetadata": {
-            "_appTitle": "Json Schema",
-            "_appName": "Json Schema",
+            "_appTitle": "JSchema",
+            "_appName": "JSchema",
             "_enableSearch": "true",
             "_appLogoPath": "images/logo.svg",
             "_appFaviconPath": "images/favicon.ico",

@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Validation Syntax | Json Schema </title>
+      <title>Validation Syntax | JSchema </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Validation Syntax | Json Schema ">
+      <meta name="title" content="Validation Syntax | JSchema ">
       
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
@@ -15,7 +15,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JsonSchema/doc/articles/validation.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/doc/articles/validation.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -43,8 +43,8 @@
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
           <a class="navbar-brand" href="../index.html">
-            <img id="logo" class="svg" src="../images/logo.svg" alt="Json Schema">
-            Json Schema
+            <img id="logo" class="svg" src="../images/logo.svg" alt="JSchema">
+            JSchema
           </a>
           <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
             <i class="bi bi-three-dots"></i>
@@ -93,7 +93,7 @@ pre code { font-size: 1.1em; }
 <p>Composite values in a JSON document act as containers. They can hold zero or more composite or non-composite primitive values. These composite values provide the structural framework for organizing data hierarchically within JSON documents. There are two types of composite values allowed in JSON documents: Arrays and Objects.</p>
 <p>Conversely, Non-composite values are the atomic data elements in a JSON document. They cannot contain other values within them. There are four types of primitive values supported by JSON specification: Strings, Numbers, Booleans, and Nulls.</p>
 <h2 id="validation-format">Validation Format</h2>
-<p>A JSON Schema ensures the correctness and consistency of JSON documents, and it also defines the structure and constraints that a JSON document must conform to. It specifies how both composite and non-composite values should be organized and validated the input document based on the rules specified in the schema document. Thus, a key element of JSON Schema is the validation rule syntax, which provides the required instructions for the validation process. A validation rule is typically expressed using the following notations:</p>
+<p>JSchema provides essential utilities to ensure the correctness and consistency of JSON documents, while defining the structure and constraints that JSON documents must conform to. It specifies how both composite and non-composite values should be organized and validated the input document based on the rules specified in the schema document. Thus, a key element of JSchema is the validation rule syntax, which provides the required instructions for the validation process. A validation rule is typically expressed using the following notations:</p>
 <pre><code class="lang-yaml">1. [Value] [Function-Set] [DataType-Set] [Receiver-Set] [Optional]
 2. [Undefined] [Optional]
 </code></pre>
@@ -257,7 +257,7 @@ pre code { font-size: 1.1em; }
 <tr>
 <td>5</td>
 <td><code>#integer #float</code></td>
-<td><code>5</code>, <code>10.5</code>, <code>1000</code></td>
+<td><code>5</code>; <code>10.5</code>; <code>1000</code></td>
 <td><code>1E-08</code>; <code>&quot;lorem&quot;</code>; <code>false</code>; <code>null</code></td>
 </tr>
 <tr>
@@ -284,7 +284,7 @@ pre code { font-size: 1.1em; }
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JsonSchema/doc/articles/validation.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/doc/articles/validation.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

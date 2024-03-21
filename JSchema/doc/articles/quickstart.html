@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Getting Started | Json Schema </title>
+      <title>Getting Started | JSchema </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Getting Started | Json Schema ">
+      <meta name="title" content="Getting Started | JSchema ">
       
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
@@ -15,7 +15,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JsonSchema/doc/articles/quickstart.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/doc/articles/quickstart.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -43,8 +43,8 @@
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
           <a class="navbar-brand" href="../index.html">
-            <img id="logo" class="svg" src="../images/logo.svg" alt="Json Schema">
-            Json Schema
+            <img id="logo" class="svg" src="../images/logo.svg" alt="JSchema">
+            JSchema
           </a>
           <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
             <i class="bi bi-three-dots"></i>
@@ -86,20 +86,20 @@
         <article data-uid="">
 <h1 id="getting-started">Getting Started</h1>
 
-<p>This guide will walk you through the essential steps to quickly get up and running with the New JSON Schema library. It is also assumed a modest familiarity with the C# language, .NET SDK, and .NET CLI (command-line interface), including basic familiarity with NuGet packages.</p>
+<p>This guide will walk you through the essential steps to quickly get up and running with the JSchema library. It is also assumed a modest familiarity with the C# language, .NET SDK, and .NET CLI (command-line interface), including basic familiarity with NuGet packages.</p>
 <h2 id="nuget-library-package">NuGet Library Package</h2>
-<p>To get started, launch your preferred IDE (such as Visual Studio, JetBrains Rider, or VS Code) and open the C# project where you intend to include this library package. Within your IDE, navigate to the NuGet package manager and search for the package by the name 'RelogicLabs.JsonSchema'. Subsequently, proceed to add or install the package to your project. Alternatively, you can use the .NET CLI to add the package to your project. Simply run the following command, replacing <code>1.x.x</code> with either the latest version or your preferred version:</p>
-<pre><code class="lang-shell">dotnet add package RelogicLabs.JsonSchema --version 1.x.x
+<p>To get started, launch your preferred IDE (such as Visual Studio, JetBrains Rider, or VS Code) and open the C# project where you intend to include this library package. Within your IDE, navigate to the NuGet package manager and search for the package by the name <code>RelogicLabs.JSchema</code>. Subsequently, proceed to add or install the package to your project. Alternatively, you can use the .NET CLI to add the package to your project. Simply run the following command, replacing <code>2.x.x</code> with either the latest version or your preferred version:</p>
+<pre><code class="lang-shell">dotnet add package RelogicLabs.JSchema --version 2.x.x
 </code></pre>
 <p>To verify the successful integration of the library into your project, you may manually inspect your project file, typically named <code>.csproj</code>, using a text editor, and search for the following XML snippet within the file:</p>
 <pre><code class="lang-xml">&lt;ItemGroup&gt;
-    &lt;PackageReference Include=&quot;RelogicLabs.JsonSchema&quot; Version=&quot;1.x.x&quot; /&gt;
+    &lt;PackageReference Include=&quot;RelogicLabs.JSchema&quot; Version=&quot;2.x.x&quot; /&gt;
 &lt;/ItemGroup&gt;
 </code></pre>
-<p>For additional information regarding this library package, you can visit the NuGet package repository page of this library <a href="https://www.nuget.org/packages/RelogicLabs.JsonSchema">here</a>.</p>
+<p>For additional information regarding this library package, you can visit the NuGet package repository page of this library <a href="https://www.nuget.org/packages/RelogicLabs.JSchema">here</a>.</p>
 <h2 id="write-a-sample-to-test">Write a Sample to Test</h2>
-<p>With all the necessary components in place, you are now ready to create a sample schema and validate a corresponding JSON against the schema. The subsequent example presents a C# class featuring a method designed for validating a sample JSON based on a provided schema. If you are working with C# 11 or above, you can enhance the code further by utilizing new language features like raw string literals, file scoped namespaces and others.</p>
-<pre><code class="lang-c#">using RelogicLabs.JsonSchema;
+<p>With all the necessary components in place, you are now ready to create a sample schema and validate a corresponding JSON against the schema. The subsequent example presents a C# class featuring a method designed for validating a sample JSON based on a provided schema. If you are working with C# 10 or above, you can enhance the code further by utilizing new language features like raw string literals, file scoped namespaces and others.</p>
+<pre><code class="lang-c#">using RelogicLabs.JSchema;
 
 namespace CSharpApplication
 {
@@ -109,7 +109,7 @@ namespace CSharpApplication
         {
             var schema =
                 @&quot;%title: &quot;&quot;User Profile Response&quot;&quot;
-                %version: 1.0.0
+                %version: &quot;&quot;1.0.0-basic&quot;&quot;
                 %schema:
                 {
                     &quot;&quot;user&quot;&quot;: {
@@ -215,29 +215,30 @@ try {
 ...
 </code></pre>
 <p>The following presents the printed stack trace for the preceding example. It's important to note that when using <code>JsonAssert</code>, it throws an exception upon encountering the first error, thus preventing the continuation of processing the rest of the schema:</p>
-<pre><code class="lang-accesslog">RelogicLabs.JsonSchema.Exceptions.JsonSchemaException: DTYP04: Data type mismatch
+<pre><code class="lang-accesslog">RelogicLabs.JSchema.Exceptions.JsonSchemaException: DTYP04: Data type mismatch
 Expected (Schema Line: 6:47): data type #integer
 Actual (Json Line: 3:30): found #string inferred by &quot;not number&quot;
 
-   at RelogicLabs.JsonSchema.Tree.ExceptionRegistry.FailWith(Exception exception)
-   at RelogicLabs.JsonSchema.Types.JValidator.MatchDataType(JNode node)
-   at RelogicLabs.JsonSchema.Types.JValidator.Match(JNode node)
-   at RelogicLabs.JsonSchema.Types.JObject.Match(JNode node)
-   at RelogicLabs.JsonSchema.Types.JValidator.Match(JNode node)
-   at RelogicLabs.JsonSchema.Types.JObject.Match(JNode node)
-   at RelogicLabs.JsonSchema.Types.JValidator.Match(JNode node)
-   at RelogicLabs.JsonSchema.Types.JRoot.Match(JNode node)
-   at RelogicLabs.JsonSchema.Tree.SchemaTree.Match(IDataTree dataTree)
-   at RelogicLabs.JsonSchema.JsonAssert.IsValid(String json)
-   at RelogicLabs.JsonSchema.JsonAssert.IsValid(String schema, String json)
-   at CSharpApplication.SampleSchema.CheckIsValid() in /SampleSchema.cs:line 62
+   at RelogicLabs.JSchema.Nodes.JDataType.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JValidator.CheckDataType(JNode node)
+   at RelogicLabs.JSchema.Nodes.JValidator.MatchDataType(JNode node)
+   at RelogicLabs.JSchema.Nodes.JValidator.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JObject.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JValidator.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JObject.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JValidator.Match(JNode node)
+   at RelogicLabs.JSchema.Nodes.JRoot.Match(JNode node)
+   at RelogicLabs.JSchema.Tree.SchemaTree.Match(IDataTree dataTree)
+   at RelogicLabs.JSchema.JsonAssert.IsValid(String json)
+   at RelogicLabs.JSchema.JsonAssert.IsValid(String schema, String json)
+   at CSharpApplication.SampleSchema.CheckIsValid() in /SampleSchema.cs:line 63
 </code></pre>
 <p>For more information about the schema syntax format and library functionalities, please refer to the reference documentation <a href="/JSchema-DotNet/api/index.html">here</a>.</p>
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JsonSchema/doc/articles/quickstart.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/doc/articles/quickstart.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>
