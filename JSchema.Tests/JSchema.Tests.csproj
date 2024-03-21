@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <AssemblyName>RelogicLabs.JSchema.Tests</AssemblyName>
+        <Description>This project contains test cases for JSchema project.</Description>
+        <Authors>Relogic Labs</Authors>
+        <Company>Relogic Labs</Company>
+        <Version>2.0.0</Version>
+        <AssemblyVersion>2.0.0</AssemblyVersion>
+        <Copyright>Copyright © Relogic Labs. All rights reserved.</Copyright>
+        <NeutralLanguage>en</NeutralLanguage>
+        <TargetFrameworks>net5.0;net6.0;net7.0;net8.0</TargetFrameworks>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsPackable>false</IsPackable>
+        <RootNamespace>RelogicLabs</RootNamespace>
+        <LangVersion>preview</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+        <PackageReference Include="MSTest.TestAdapter" Version="3.2.2" />
+        <PackageReference Include="MSTest.TestFramework" Version="3.2.2" />
+        <PackageReference Include="coverlet.collector" Version="6.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\JSchema\JSchema.csproj" />
+    </ItemGroup>
+
+</Project>

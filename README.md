@@ -1,5 +1,5 @@
-# A New JSON Schema
-A JSON Schema is crucial for making communication, interoperability, validation, testing, documentation, and specification seamless. All of this combined contributes to better maintenance and evolution of data-driven applications and systems. For a comprehensive overview of the roles and uses of JSON Schema in modern web applications, we invite you to explore our dedicated post available [here](https://www.relogiclabs.com/2023/01/the-roles-of-json-schema.html).
+# JSchema - The New JSON Schema
+A JSON Schema is crucial for making communication, interoperability, validation, testing, documentation, and specification seamless. All of this combined contributes to better maintenance and evolution of data-driven applications and systems. If you are interested in a comprehensive overview of the roles and uses of JSON Schema in modern web applications, check out our in-depth post [here](https://www.relogiclabs.com/2023/01/the-roles-of-json-schema.html).
 
 ## Design Goals
 The traditional standard JSON Schema rigorously follows the conventional JSON structure, which unfortunately comes at the expense of simplicity, conciseness, and readability. Our goal is to develop a new JSON Schema that promotes these essential aspects that were previously missing.
@@ -10,7 +10,7 @@ This new schema is simple, lucid, easy to grasp, and doesn't require much prior 
 Let's explore an example of our schema for a typical JSON API response containing information about a user profile or account. The schema is very self-explanatory and thus almost no prior knowledge is required to understand the schema and the JSON responses specified by this schema.
 ```cpp
 %title: "User Profile Response"
-%version: 1.0.0
+%version: "1.0.0-basic"
 %schema:
 {
     "user": {
@@ -63,12 +63,10 @@ In the above example, two types of constraints are used: constraint functions (a
 }
 ```
 ## Extended Example
-The next example represents an expanded version of the previous one, which brings more complexity. To effectively construct such schemas with multiple layers of nested structures, it's beneficial to have a fundamental understanding of this schema format. While the syntax may seem difficult at first, it becomes straightforward once you have a basic understanding of it. For more detailed information, reference documentation is available [here](https://relogiclabs.github.io/JSchema-DotNet/).
+The next example represents an expanded version of the previous one, which brings more complexity. To effectively construct such schemas with multiple layers of nested structures, including custom validation functions, it's beneficial to have a fundamental understanding of this schema syntax. While the syntax may seem difficult at first, it becomes straightforward once you have a basic understanding of it. For more detailed information, reference documentation is available [here](https://relogiclabs.github.io/JSchema-DotNet/).
 ```cpp
 %title: "Extended User Profile Dashboard API Response"
-%version: 2.0.0
-%include: RelogicLabs.JsonSchema.Tests.External.ExternalFunctions,
-          RelogicLabs.JsonSchema.Tests
+%version: "2.0.0-extended"
 
 %pragma DateDataTypeFormat: "DD-MM-YYYY"
 %pragma TimeDataTypeFormat: "DD-MM-YYYY hh:mm:ss"
@@ -134,6 +132,17 @@ The next example represents an expanded version of the previous one, which bring
         "isCloudy": #boolean
     }
 }
+
+%script: {
+    constraint function checkAccess(role) {
+        // Receiver &role received only one value
+        // 'target' keyword refers to the target JSON value
+        if(role[0] == "user" && target > 5) return fail(
+            "ERRACCESS01", "Data access incompatible with 'user' role",
+            expected("an access at most 5 for 'user' role"),
+            actual("found access " + target + " which is greater than 5"));
+    }
+}
 ```
 The subsequent JSON sample is an illustrative example that successfully validates against the expanded schema mentioned earlier. Within this example, recurring JSON structures appear that can be validated by defining components or nested functions and data types. Besides, reusing simple component definitions, you can achieve a clear and concise schema when validating large JSON with repetitive structures instead of duplicating or referring to various structures across the schema. This improves the overall readability and maintainability of the schema.
 ```json
@@ -172,7 +181,7 @@ The subsequent JSON sample is an illustrative example that successfully validate
             {
                 "id": 2,
                 "title": "Working with JSON in C#",
-                "content": "C# provides built-in support for working with JSON...",
+                "content": "C# provides great support for working with JSON...",
                 "tags": [
                     "CSharp",
                     "JSON",
@@ -201,7 +210,7 @@ The subsequent JSON sample is an illustrative example that successfully validate
             "id": "p1",
             "name": "Smartphone",
             "brand": "TechGiant",
-            "price": 599.99,
+            "price": 1.99,
             "inStock": true,
             "specs": null
         },
