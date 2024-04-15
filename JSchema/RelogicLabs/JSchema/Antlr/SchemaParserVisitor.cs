@@ -44,11 +44,11 @@ internal interface ISchemaParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitShortSchema([NotNull] SchemaParser.ShortSchemaContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SchemaParser.schemaMain"/>.
+	/// Visit a parse tree produced by <see cref="SchemaParser.schemaCoreNode"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitSchemaMain([NotNull] SchemaParser.SchemaMainContext context);
+	Result VisitSchemaCoreNode([NotNull] SchemaParser.SchemaCoreNodeContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="SchemaParser.titleNode"/>.
 	/// </summary>
@@ -80,23 +80,23 @@ internal interface ISchemaParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitDefineNode([NotNull] SchemaParser.DefineNodeContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SchemaParser.aliasNode"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitAliasNode([NotNull] SchemaParser.AliasNodeContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="SchemaParser.validatorMain"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitValidatorMain([NotNull] SchemaParser.ValidatorMainContext context);
-	/// <summary>
 	/// Visit a parse tree produced by <see cref="SchemaParser.validatorNode"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitValidatorNode([NotNull] SchemaParser.ValidatorNodeContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="SchemaParser.validatorMainNode"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitValidatorMainNode([NotNull] SchemaParser.ValidatorMainNodeContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="SchemaParser.aliasNode"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAliasNode([NotNull] SchemaParser.AliasNodeContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="SchemaParser.valueNode"/>.
 	/// </summary>
@@ -146,61 +146,61 @@ internal interface ISchemaParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitArgumentNode([NotNull] SchemaParser.ArgumentNodeContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>PrimitiveTrue</c>
+	/// Visit a parse tree produced by the <c>TrueNode</c>
 	/// labeled alternative in <see cref="SchemaParser.primitiveNode"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitPrimitiveTrue([NotNull] SchemaParser.PrimitiveTrueContext context);
+	Result VisitTrueNode([NotNull] SchemaParser.TrueNodeContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>PrimitiveFalse</c>
+	/// Visit a parse tree produced by the <c>FalseNode</c>
 	/// labeled alternative in <see cref="SchemaParser.primitiveNode"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitPrimitiveFalse([NotNull] SchemaParser.PrimitiveFalseContext context);
+	Result VisitFalseNode([NotNull] SchemaParser.FalseNodeContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>PrimitiveString</c>
+	/// Visit a parse tree produced by the <c>StringNode</c>
 	/// labeled alternative in <see cref="SchemaParser.primitiveNode"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitPrimitiveString([NotNull] SchemaParser.PrimitiveStringContext context);
+	Result VisitStringNode([NotNull] SchemaParser.StringNodeContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>PrimitiveInteger</c>
+	/// Visit a parse tree produced by the <c>IntegerNode</c>
 	/// labeled alternative in <see cref="SchemaParser.primitiveNode"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitPrimitiveInteger([NotNull] SchemaParser.PrimitiveIntegerContext context);
+	Result VisitIntegerNode([NotNull] SchemaParser.IntegerNodeContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>PrimitiveFloat</c>
+	/// Visit a parse tree produced by the <c>FloatNode</c>
 	/// labeled alternative in <see cref="SchemaParser.primitiveNode"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitPrimitiveFloat([NotNull] SchemaParser.PrimitiveFloatContext context);
+	Result VisitFloatNode([NotNull] SchemaParser.FloatNodeContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>PrimitiveDouble</c>
+	/// Visit a parse tree produced by the <c>DoubleNode</c>
 	/// labeled alternative in <see cref="SchemaParser.primitiveNode"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitPrimitiveDouble([NotNull] SchemaParser.PrimitiveDoubleContext context);
+	Result VisitDoubleNode([NotNull] SchemaParser.DoubleNodeContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>PrimitiveNull</c>
+	/// Visit a parse tree produced by the <c>NullNode</c>
 	/// labeled alternative in <see cref="SchemaParser.primitiveNode"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitPrimitiveNull([NotNull] SchemaParser.PrimitiveNullContext context);
+	Result VisitNullNode([NotNull] SchemaParser.NullNodeContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>PrimitiveUndefined</c>
+	/// Visit a parse tree produced by the <c>UndefinedNode</c>
 	/// labeled alternative in <see cref="SchemaParser.primitiveNode"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitPrimitiveUndefined([NotNull] SchemaParser.PrimitiveUndefinedContext context);
+	Result VisitUndefinedNode([NotNull] SchemaParser.UndefinedNodeContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="SchemaParser.scriptNode"/>.
 	/// </summary>
@@ -232,11 +232,11 @@ internal interface ISchemaParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitVarStatement([NotNull] SchemaParser.VarStatementContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SchemaParser.varInitialization"/>.
+	/// Visit a parse tree produced by <see cref="SchemaParser.varDeclaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitVarInitialization([NotNull] SchemaParser.VarInitializationContext context);
+	Result VisitVarDeclaration([NotNull] SchemaParser.VarDeclarationContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="SchemaParser.expressionStatement"/>.
 	/// </summary>
@@ -292,40 +292,12 @@ internal interface ISchemaParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitBlockStatement([NotNull] SchemaParser.BlockStatementContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>RangeEndExpression</c>
+	/// Visit a parse tree produced by the <c>CallerExpression</c>
 	/// labeled alternative in <see cref="SchemaParser.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitRangeEndExpression([NotNull] SchemaParser.RangeEndExpressionContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ParenthesizedExpression</c>
-	/// labeled alternative in <see cref="SchemaParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitParenthesizedExpression([NotNull] SchemaParser.ParenthesizedExpressionContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>PostIncrementExpression</c>
-	/// labeled alternative in <see cref="SchemaParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitPostIncrementExpression([NotNull] SchemaParser.PostIncrementExpressionContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>AdditiveExpression</c>
-	/// labeled alternative in <see cref="SchemaParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitAdditiveExpression([NotNull] SchemaParser.AdditiveExpressionContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>RelationalExpression</c>
-	/// labeled alternative in <see cref="SchemaParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitRelationalExpression([NotNull] SchemaParser.RelationalExpressionContext context);
+	Result VisitCallerExpression([NotNull] SchemaParser.CallerExpressionContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>LogicalAndExpression</c>
 	/// labeled alternative in <see cref="SchemaParser.expression"/>.
@@ -334,26 +306,12 @@ internal interface ISchemaParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitLogicalAndExpression([NotNull] SchemaParser.LogicalAndExpressionContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>PreDecrementExpression</c>
+	/// Visit a parse tree produced by the <c>AssignmentBracketExpression</c>
 	/// labeled alternative in <see cref="SchemaParser.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitPreDecrementExpression([NotNull] SchemaParser.PreDecrementExpressionContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>PreIncrementExpression</c>
-	/// labeled alternative in <see cref="SchemaParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitPreIncrementExpression([NotNull] SchemaParser.PreIncrementExpressionContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>LiteralExpression</c>
-	/// labeled alternative in <see cref="SchemaParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLiteralExpression([NotNull] SchemaParser.LiteralExpressionContext context);
+	Result VisitAssignmentBracketExpression([NotNull] SchemaParser.AssignmentBracketExpressionContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>LogicalOrExpression</c>
 	/// labeled alternative in <see cref="SchemaParser.expression"/>.
@@ -362,33 +320,19 @@ internal interface ISchemaParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitLogicalOrExpression([NotNull] SchemaParser.LogicalOrExpressionContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>LogicalNotExpression</c>
-	/// labeled alternative in <see cref="SchemaParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLogicalNotExpression([NotNull] SchemaParser.LogicalNotExpressionContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ThrowExpression</c>
-	/// labeled alternative in <see cref="SchemaParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitThrowExpression([NotNull] SchemaParser.ThrowExpressionContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>AllRefExpression</c>
-	/// labeled alternative in <see cref="SchemaParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitAllRefExpression([NotNull] SchemaParser.AllRefExpressionContext context);
-	/// <summary>
 	/// Visit a parse tree produced by the <c>TryofExpression</c>
 	/// labeled alternative in <see cref="SchemaParser.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitTryofExpression([NotNull] SchemaParser.TryofExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>AssignmentAugExpression</c>
+	/// labeled alternative in <see cref="SchemaParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAssignmentAugExpression([NotNull] SchemaParser.AssignmentAugExpressionContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>UnaryMinusExpression</c>
 	/// labeled alternative in <see cref="SchemaParser.expression"/>.
@@ -397,19 +341,12 @@ internal interface ISchemaParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitUnaryMinusExpression([NotNull] SchemaParser.UnaryMinusExpressionContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>AssignmentExpression</c>
+	/// Visit a parse tree produced by the <c>UnaryPlusExpression</c>
 	/// labeled alternative in <see cref="SchemaParser.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAssignmentExpression([NotNull] SchemaParser.AssignmentExpressionContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>PostDecrementExpression</c>
-	/// labeled alternative in <see cref="SchemaParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitPostDecrementExpression([NotNull] SchemaParser.PostDecrementExpressionContext context);
+	Result VisitUnaryPlusExpression([NotNull] SchemaParser.UnaryPlusExpressionContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>EqualityExpression</c>
 	/// labeled alternative in <see cref="SchemaParser.expression"/>.
@@ -425,54 +362,131 @@ internal interface ISchemaParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitMultiplicativeExpression([NotNull] SchemaParser.MultiplicativeExpressionContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>PreIncDecExpression</c>
+	/// labeled alternative in <see cref="SchemaParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitPreIncDecExpression([NotNull] SchemaParser.PreIncDecExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>RangeEndExpression</c>
+	/// labeled alternative in <see cref="SchemaParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitRangeEndExpression([NotNull] SchemaParser.RangeEndExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>ParenthesizedExpression</c>
+	/// labeled alternative in <see cref="SchemaParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitParenthesizedExpression([NotNull] SchemaParser.ParenthesizedExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>AdditiveExpression</c>
+	/// labeled alternative in <see cref="SchemaParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAdditiveExpression([NotNull] SchemaParser.AdditiveExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>RelationalExpression</c>
+	/// labeled alternative in <see cref="SchemaParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitRelationalExpression([NotNull] SchemaParser.RelationalExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>MemberBracketExpression</c>
+	/// labeled alternative in <see cref="SchemaParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitMemberBracketExpression([NotNull] SchemaParser.MemberBracketExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>PostIncDecExpression</c>
+	/// labeled alternative in <see cref="SchemaParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitPostIncDecExpression([NotNull] SchemaParser.PostIncDecExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>LiteralExpression</c>
+	/// labeled alternative in <see cref="SchemaParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitLiteralExpression([NotNull] SchemaParser.LiteralExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>MemberDotExpression</c>
+	/// labeled alternative in <see cref="SchemaParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitMemberDotExpression([NotNull] SchemaParser.MemberDotExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>TargetExpression</c>
+	/// labeled alternative in <see cref="SchemaParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTargetExpression([NotNull] SchemaParser.TargetExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>LogicalNotExpression</c>
+	/// labeled alternative in <see cref="SchemaParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitLogicalNotExpression([NotNull] SchemaParser.LogicalNotExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>ThrowExpression</c>
+	/// labeled alternative in <see cref="SchemaParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitThrowExpression([NotNull] SchemaParser.ThrowExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>IdentifierExpression</c>
+	/// labeled alternative in <see cref="SchemaParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitIdentifierExpression([NotNull] SchemaParser.IdentifierExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>InvokeFunctionExpression</c>
+	/// labeled alternative in <see cref="SchemaParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitInvokeFunctionExpression([NotNull] SchemaParser.InvokeFunctionExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>AssignmentIdExpression</c>
+	/// labeled alternative in <see cref="SchemaParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAssignmentIdExpression([NotNull] SchemaParser.AssignmentIdExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>InvokeMethodExpression</c>
+	/// labeled alternative in <see cref="SchemaParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitInvokeMethodExpression([NotNull] SchemaParser.InvokeMethodExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>AssignmentDotExpression</c>
+	/// labeled alternative in <see cref="SchemaParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAssignmentDotExpression([NotNull] SchemaParser.AssignmentDotExpressionContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>RangeBothExpression</c>
 	/// labeled alternative in <see cref="SchemaParser.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitRangeBothExpression([NotNull] SchemaParser.RangeBothExpressionContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CallerExpression</c>
-	/// labeled alternative in <see cref="SchemaParser.refExpression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCallerExpression([NotNull] SchemaParser.CallerExpressionContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>InvokeExpression</c>
-	/// labeled alternative in <see cref="SchemaParser.refExpression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitInvokeExpression([NotNull] SchemaParser.InvokeExpressionContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>DotExpression</c>
-	/// labeled alternative in <see cref="SchemaParser.refExpression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDotExpression([NotNull] SchemaParser.DotExpressionContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TargetExpression</c>
-	/// labeled alternative in <see cref="SchemaParser.refExpression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTargetExpression([NotNull] SchemaParser.TargetExpressionContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>IndexExpression</c>
-	/// labeled alternative in <see cref="SchemaParser.refExpression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitIndexExpression([NotNull] SchemaParser.IndexExpressionContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>IdentifierExpression</c>
-	/// labeled alternative in <see cref="SchemaParser.refExpression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitIdentifierExpression([NotNull] SchemaParser.IdentifierExpressionContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>TrueLiteral</c>
 	/// labeled alternative in <see cref="SchemaParser.literal"/>.

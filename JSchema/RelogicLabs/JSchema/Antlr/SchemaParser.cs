@@ -34,43 +34,45 @@ internal partial class SchemaParser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
-		TITLE=1, VERSION=2, IMPORT=3, PRAGMA=4, DEFINE=5, SCHEMA=6, SCRIPT=7,
-		TRUE=8, FALSE=9, NULL=10, COLON=11, COMMA=12, STAR=13, LBRACE=14, RBRACE=15,
-		LBRACKET=16, RBRACKET=17, LPAREN=18, RPAREN=19, OPTIONAL=20, UNDEFINED=21,
-		FULL_IDENTIFIER=22, ALIAS=23, DATATYPE=24, FUNCTION=25, RECEIVER=26, STRING=27,
-		INTEGER=28, FLOAT=29, DOUBLE=30, WHITE_SPACE=31, BLOCK_COMMENT=32, LINE_COMMENT=33,
-		G_VAR=34, G_IF=35, G_ELSE=36, G_WHILE=37, G_FOR=38, G_FOREACH=39, G_IN=40,
-		G_BREAK=41, G_CONSTRAINT=42, G_TARGET=43, G_CALLER=44, G_SUBROUTINE=45,
-		G_TRYOF=46, G_THROW=47, G_FUNCTION=48, G_RETURN=49, G_FUTURE=50, G_TRUE=51,
-		G_FALSE=52, G_NULL=53, G_UNDEFINED=54, G_THIS=55, G_NEW=56, G_CONTINUE=57,
-		G_DO=58, G_CONST=59, G_SWITCH=60, G_CASE=61, G_IMPORT=62, G_CLASS=63,
-		G_SUPER=64, G_DEFAULT=65, G_INTEGER=66, G_DOUBLE=67, G_STRING=68, G_IDENTIFIER=69,
-		G_LBRACE=70, G_RBRACE=71, G_LBRACKET=72, G_RBRACKET=73, G_LPAREN=74, G_RPAREN=75,
-		G_SEMI=76, G_COMMA=77, G_DOT=78, G_COLON=79, G_RANGE=80, G_ELLIPSIS=81,
-		G_ASSIGN=82, G_INC=83, G_DEC=84, G_PLUS=85, G_MINUS=86, G_MUL=87, G_DIV=88,
-		G_GT=89, G_LT=90, G_LE=91, G_GE=92, G_EQ=93, G_NE=94, G_NOT=95, G_AND=96,
-		G_OR=97, WHITE_SPACE1=98, BLOCK_COMMENT1=99, LINE_COMMENT1=100;
+		S_TITLE=1, S_VERSION=2, S_IMPORT=3, S_PRAGMA=4, S_DEFINE=5, S_SCHEMA=6,
+		S_SCRIPT=7, S_TRUE=8, S_FALSE=9, S_NULL=10, S_COLON=11, S_COMMA=12, S_STAR=13,
+		S_LBRACE=14, S_RBRACE=15, S_LBRACKET=16, S_RBRACKET=17, S_LPAREN=18, S_RPAREN=19,
+		S_OPTIONAL=20, S_UNDEFINED=21, S_GENERAL_ID=22, S_ALIAS=23, S_DATATYPE=24,
+		S_FUNCTION=25, S_RECEIVER=26, S_STRING=27, S_INTEGER=28, S_FLOAT=29, S_DOUBLE=30,
+		S_WHITE_SPACE=31, S_BLOCK_COMMENT=32, S_LINE_COMMENT=33, G_VAR=34, G_IF=35,
+		G_ELSE=36, G_WHILE=37, G_FOR=38, G_FOREACH=39, G_IN=40, G_BREAK=41, G_CONSTRAINT=42,
+		G_TARGET=43, G_CALLER=44, G_SUBROUTINE=45, G_TRYOF=46, G_THROW=47, G_FUNCTION=48,
+		G_RETURN=49, G_FUTURE=50, G_TRUE=51, G_FALSE=52, G_NULL=53, G_UNDEFINED=54,
+		G_THIS=55, G_NEW=56, G_CONTINUE=57, G_DO=58, G_CONST=59, G_SWITCH=60,
+		G_CASE=61, G_IMPORT=62, G_CLASS=63, G_SUPER=64, G_DEFAULT=65, G_NOT=66,
+		G_INTEGER=67, G_DOUBLE=68, G_STRING=69, G_IDENTIFIER=70, G_LBRACE=71,
+		G_RBRACE=72, G_LBRACKET=73, G_RBRACKET=74, G_LPAREN=75, G_RPAREN=76, G_SEMI=77,
+		G_COMMA=78, G_DOT=79, G_COLON=80, G_RANGE=81, G_ELLIPSIS=82, G_ASSIGN=83,
+		G_INC=84, G_DEC=85, G_PLUS=86, G_MINUS=87, G_MUL=88, G_DIV=89, G_MOD=90,
+		G_GT=91, G_LT=92, G_LE=93, G_GE=94, G_EQ=95, G_NE=96, G_LNOT=97, G_LAND=98,
+		G_LOR=99, G_ADD_ASSIGN=100, G_SUB_ASSIGN=101, G_MUL_ASSIGN=102, G_DIV_ASSIGN=103,
+		G_MOD_ASSIGN=104, G_WHITE_SPACE=105, G_BLOCK_COMMENT=106, G_LINE_COMMENT=107;
 	public const int
-		RULE_schema = 0, RULE_schemaMain = 1, RULE_titleNode = 2, RULE_versionNode = 3,
-		RULE_importNode = 4, RULE_pragmaNode = 5, RULE_defineNode = 6, RULE_aliasNode = 7,
-		RULE_validatorMain = 8, RULE_validatorNode = 9, RULE_valueNode = 10, RULE_receiverNode = 11,
+		RULE_schema = 0, RULE_schemaCoreNode = 1, RULE_titleNode = 2, RULE_versionNode = 3,
+		RULE_importNode = 4, RULE_pragmaNode = 5, RULE_defineNode = 6, RULE_validatorNode = 7,
+		RULE_validatorMainNode = 8, RULE_aliasNode = 9, RULE_valueNode = 10, RULE_receiverNode = 11,
 		RULE_objectNode = 12, RULE_propertyNode = 13, RULE_arrayNode = 14, RULE_datatypeNode = 15,
 		RULE_functionNode = 16, RULE_argumentNode = 17, RULE_primitiveNode = 18,
 		RULE_scriptNode = 19, RULE_globalStatement = 20, RULE_statement = 21,
-		RULE_functionDeclaration = 22, RULE_varStatement = 23, RULE_varInitialization = 24,
+		RULE_functionDeclaration = 22, RULE_varStatement = 23, RULE_varDeclaration = 24,
 		RULE_expressionStatement = 25, RULE_ifStatement = 26, RULE_whileStatement = 27,
 		RULE_forStatement = 28, RULE_expressionList = 29, RULE_foreachStatement = 30,
 		RULE_returnStatement = 31, RULE_breakStatement = 32, RULE_blockStatement = 33,
-		RULE_expression = 34, RULE_refExpression = 35, RULE_literal = 36;
+		RULE_expression = 34, RULE_literal = 35;
 	public static readonly string[] ruleNames = {
-		"schema", "schemaMain", "titleNode", "versionNode", "importNode", "pragmaNode",
-		"defineNode", "aliasNode", "validatorMain", "validatorNode", "valueNode",
-		"receiverNode", "objectNode", "propertyNode", "arrayNode", "datatypeNode",
-		"functionNode", "argumentNode", "primitiveNode", "scriptNode", "globalStatement",
-		"statement", "functionDeclaration", "varStatement", "varInitialization",
-		"expressionStatement", "ifStatement", "whileStatement", "forStatement",
-		"expressionList", "foreachStatement", "returnStatement", "breakStatement",
-		"blockStatement", "expression", "refExpression", "literal"
+		"schema", "schemaCoreNode", "titleNode", "versionNode", "importNode",
+		"pragmaNode", "defineNode", "validatorNode", "validatorMainNode", "aliasNode",
+		"valueNode", "receiverNode", "objectNode", "propertyNode", "arrayNode",
+		"datatypeNode", "functionNode", "argumentNode", "primitiveNode", "scriptNode",
+		"globalStatement", "statement", "functionDeclaration", "varStatement",
+		"varDeclaration", "expressionStatement", "ifStatement", "whileStatement",
+		"forStatement", "expressionList", "foreachStatement", "returnStatement",
+		"breakStatement", "blockStatement", "expression", "literal"
 	};
 
 	private static readonly string[] _LiteralNames = {
@@ -81,27 +83,30 @@ internal partial class SchemaParser : Parser {
 		"'in'", "'break'", "'constraint'", "'target'", "'caller'", "'subroutine'",
 		"'tryof'", "'throw'", "'function'", "'return'", "'future'", null, null,
 		null, "'undefined'", "'this'", "'new'", "'continue'", "'do'", "'const'",
-		"'switch'", "'case'", "'import'", "'class'", "'super'", "'default'", null,
-		null, null, null, null, null, null, null, null, null, "';'", null, "'.'",
-		null, "'..'", "'...'", "'='", "'++'", "'--'", "'+'", "'-'", null, "'/'",
-		"'>'", "'<'", "'<='", "'>='", "'=='", "'!='", null, "'&&'", "'||'"
+		"'switch'", "'case'", "'import'", "'class'", "'super'", "'default'", "'not'",
+		null, null, null, null, null, null, null, null, null, null, "';'", null,
+		"'.'", null, "'..'", "'...'", "'='", "'++'", "'--'", "'+'", "'-'", null,
+		"'/'", "'%'", "'>'", "'<'", "'<='", "'>='", "'=='", "'!='", null, "'&&'",
+		"'||'", "'+='", "'-='", "'*='", "'/='", "'%='"
 	};
 	private static readonly string[] _SymbolicNames = {
-		null, "TITLE", "VERSION", "IMPORT", "PRAGMA", "DEFINE", "SCHEMA", "SCRIPT",
-		"TRUE", "FALSE", "NULL", "COLON", "COMMA", "STAR", "LBRACE", "RBRACE",
-		"LBRACKET", "RBRACKET", "LPAREN", "RPAREN", "OPTIONAL", "UNDEFINED", "FULL_IDENTIFIER",
-		"ALIAS", "DATATYPE", "FUNCTION", "RECEIVER", "STRING", "INTEGER", "FLOAT",
-		"DOUBLE", "WHITE_SPACE", "BLOCK_COMMENT", "LINE_COMMENT", "G_VAR", "G_IF",
+		null, "S_TITLE", "S_VERSION", "S_IMPORT", "S_PRAGMA", "S_DEFINE", "S_SCHEMA",
+		"S_SCRIPT", "S_TRUE", "S_FALSE", "S_NULL", "S_COLON", "S_COMMA", "S_STAR",
+		"S_LBRACE", "S_RBRACE", "S_LBRACKET", "S_RBRACKET", "S_LPAREN", "S_RPAREN",
+		"S_OPTIONAL", "S_UNDEFINED", "S_GENERAL_ID", "S_ALIAS", "S_DATATYPE",
+		"S_FUNCTION", "S_RECEIVER", "S_STRING", "S_INTEGER", "S_FLOAT", "S_DOUBLE",
+		"S_WHITE_SPACE", "S_BLOCK_COMMENT", "S_LINE_COMMENT", "G_VAR", "G_IF",
 		"G_ELSE", "G_WHILE", "G_FOR", "G_FOREACH", "G_IN", "G_BREAK", "G_CONSTRAINT",
 		"G_TARGET", "G_CALLER", "G_SUBROUTINE", "G_TRYOF", "G_THROW", "G_FUNCTION",
 		"G_RETURN", "G_FUTURE", "G_TRUE", "G_FALSE", "G_NULL", "G_UNDEFINED",
 		"G_THIS", "G_NEW", "G_CONTINUE", "G_DO", "G_CONST", "G_SWITCH", "G_CASE",
-		"G_IMPORT", "G_CLASS", "G_SUPER", "G_DEFAULT", "G_INTEGER", "G_DOUBLE",
+		"G_IMPORT", "G_CLASS", "G_SUPER", "G_DEFAULT", "G_NOT", "G_INTEGER", "G_DOUBLE",
 		"G_STRING", "G_IDENTIFIER", "G_LBRACE", "G_RBRACE", "G_LBRACKET", "G_RBRACKET",
 		"G_LPAREN", "G_RPAREN", "G_SEMI", "G_COMMA", "G_DOT", "G_COLON", "G_RANGE",
 		"G_ELLIPSIS", "G_ASSIGN", "G_INC", "G_DEC", "G_PLUS", "G_MINUS", "G_MUL",
-		"G_DIV", "G_GT", "G_LT", "G_LE", "G_GE", "G_EQ", "G_NE", "G_NOT", "G_AND",
-		"G_OR", "WHITE_SPACE1", "BLOCK_COMMENT1", "LINE_COMMENT1"
+		"G_DIV", "G_MOD", "G_GT", "G_LT", "G_LE", "G_GE", "G_EQ", "G_NE", "G_LNOT",
+		"G_LAND", "G_LOR", "G_ADD_ASSIGN", "G_SUB_ASSIGN", "G_MUL_ASSIGN", "G_DIV_ASSIGN",
+		"G_MOD_ASSIGN", "G_WHITE_SPACE", "G_BLOCK_COMMENT", "G_LINE_COMMENT"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -148,8 +153,8 @@ internal partial class SchemaParser : Parser {
 		}
 	}
 	public partial class CompleteSchemaContext : SchemaContext {
-		[System.Diagnostics.DebuggerNonUserCode] public SchemaMainContext schemaMain() {
-			return GetRuleContext<SchemaMainContext>(0);
+		[System.Diagnostics.DebuggerNonUserCode] public SchemaCoreNodeContext schemaCoreNode() {
+			return GetRuleContext<SchemaCoreNodeContext>(0);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(SchemaParser.Eof, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public TitleNodeContext titleNode() {
@@ -210,56 +215,56 @@ internal partial class SchemaParser : Parser {
 		EnterRule(_localctx, 0, RULE_schema);
 		int _la;
 		try {
-			State = 107;
+			State = 105;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
-			case TITLE:
-			case VERSION:
-			case IMPORT:
-			case PRAGMA:
-			case DEFINE:
-			case SCHEMA:
-			case SCRIPT:
+			case S_TITLE:
+			case S_VERSION:
+			case S_IMPORT:
+			case S_PRAGMA:
+			case S_DEFINE:
+			case S_SCHEMA:
+			case S_SCRIPT:
 				_localctx = new CompleteSchemaContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 75;
+				State = 73;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==TITLE) {
+				if (_la==S_TITLE) {
 					{
-					State = 74;
+					State = 72;
 					titleNode();
 					}
 				}
 
-				State = 78;
+				State = 76;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==VERSION) {
+				if (_la==S_VERSION) {
 					{
-					State = 77;
+					State = 75;
 					versionNode();
 					}
 				}
 
-				State = 84;
+				State = 82;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==IMPORT || _la==PRAGMA) {
+				while (_la==S_IMPORT || _la==S_PRAGMA) {
 					{
-					State = 82;
+					State = 80;
 					ErrorHandler.Sync(this);
 					switch (TokenStream.LA(1)) {
-					case IMPORT:
+					case S_IMPORT:
 						{
-						State = 80;
+						State = 78;
 						importNode();
 						}
 						break;
-					case PRAGMA:
+					case S_PRAGMA:
 						{
-						State = 81;
+						State = 79;
 						pragmaNode();
 						}
 						break;
@@ -267,27 +272,27 @@ internal partial class SchemaParser : Parser {
 						throw new NoViableAltException(this);
 					}
 					}
-					State = 86;
+					State = 84;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 91;
+				State = 89;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==DEFINE || _la==SCRIPT) {
+				while (_la==S_DEFINE || _la==S_SCRIPT) {
 					{
-					State = 89;
+					State = 87;
 					ErrorHandler.Sync(this);
 					switch (TokenStream.LA(1)) {
-					case DEFINE:
+					case S_DEFINE:
 						{
-						State = 87;
+						State = 85;
 						defineNode();
 						}
 						break;
-					case SCRIPT:
+					case S_SCRIPT:
 						{
-						State = 88;
+						State = 86;
 						scriptNode();
 						}
 						break;
@@ -295,29 +300,29 @@ internal partial class SchemaParser : Parser {
 						throw new NoViableAltException(this);
 					}
 					}
-					State = 93;
+					State = 91;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 94;
-				schemaMain();
-				State = 99;
+				State = 92;
+				schemaCoreNode();
+				State = 97;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==DEFINE || _la==SCRIPT) {
+				while (_la==S_DEFINE || _la==S_SCRIPT) {
 					{
-					State = 97;
+					State = 95;
 					ErrorHandler.Sync(this);
 					switch (TokenStream.LA(1)) {
-					case DEFINE:
+					case S_DEFINE:
 						{
-						State = 95;
+						State = 93;
 						defineNode();
 						}
 						break;
-					case SCRIPT:
+					case S_SCRIPT:
 						{
-						State = 96;
+						State = 94;
 						scriptNode();
 						}
 						break;
@@ -325,33 +330,33 @@ internal partial class SchemaParser : Parser {
 						throw new NoViableAltException(this);
 					}
 					}
-					State = 101;
+					State = 99;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 102;
+				State = 100;
 				Match(Eof);
 				}
 				break;
-			case TRUE:
-			case FALSE:
-			case NULL:
-			case LBRACE:
-			case LBRACKET:
-			case UNDEFINED:
-			case ALIAS:
-			case DATATYPE:
-			case FUNCTION:
-			case STRING:
-			case INTEGER:
-			case FLOAT:
-			case DOUBLE:
+			case S_TRUE:
+			case S_FALSE:
+			case S_NULL:
+			case S_LBRACE:
+			case S_LBRACKET:
+			case S_UNDEFINED:
+			case S_ALIAS:
+			case S_DATATYPE:
+			case S_FUNCTION:
+			case S_STRING:
+			case S_INTEGER:
+			case S_FLOAT:
+			case S_DOUBLE:
 				_localctx = new ShortSchemaContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 104;
+				State = 102;
 				validatorNode();
-				State = 105;
+				State = 103;
 				Match(Eof);
 				}
 				break;
@@ -370,37 +375,37 @@ internal partial class SchemaParser : Parser {
 		return _localctx;
 	}
 
-	public partial class SchemaMainContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SCHEMA() { return GetToken(SchemaParser.SCHEMA, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COLON() { return GetToken(SchemaParser.COLON, 0); }
+	public partial class SchemaCoreNodeContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_SCHEMA() { return GetToken(SchemaParser.S_SCHEMA, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_COLON() { return GetToken(SchemaParser.S_COLON, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ValidatorNodeContext validatorNode() {
 			return GetRuleContext<ValidatorNodeContext>(0);
 		}
-		public SchemaMainContext(ParserRuleContext parent, int invokingState)
+		public SchemaCoreNodeContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_schemaMain; } }
+		public override int RuleIndex { get { return RULE_schemaCoreNode; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSchemaMain(this);
+			if (typedVisitor != null) return typedVisitor.VisitSchemaCoreNode(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public SchemaMainContext schemaMain() {
-		SchemaMainContext _localctx = new SchemaMainContext(Context, State);
-		EnterRule(_localctx, 2, RULE_schemaMain);
+	public SchemaCoreNodeContext schemaCoreNode() {
+		SchemaCoreNodeContext _localctx = new SchemaCoreNodeContext(Context, State);
+		EnterRule(_localctx, 2, RULE_schemaCoreNode);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
+			State = 107;
+			Match(S_SCHEMA);
+			State = 108;
+			Match(S_COLON);
 			State = 109;
-			Match(SCHEMA);
-			State = 110;
-			Match(COLON);
-			State = 111;
 			validatorNode();
 			}
 		}
@@ -416,9 +421,9 @@ internal partial class SchemaParser : Parser {
 	}
 
 	public partial class TitleNodeContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TITLE() { return GetToken(SchemaParser.TITLE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COLON() { return GetToken(SchemaParser.COLON, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(SchemaParser.STRING, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_TITLE() { return GetToken(SchemaParser.S_TITLE, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_COLON() { return GetToken(SchemaParser.S_COLON, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_STRING() { return GetToken(SchemaParser.S_STRING, 0); }
 		public TitleNodeContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -439,12 +444,12 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
+			State = 111;
+			Match(S_TITLE);
+			State = 112;
+			Match(S_COLON);
 			State = 113;
-			Match(TITLE);
-			State = 114;
-			Match(COLON);
-			State = 115;
-			Match(STRING);
+			Match(S_STRING);
 			}
 		}
 		catch (RecognitionException re) {
@@ -459,9 +464,9 @@ internal partial class SchemaParser : Parser {
 	}
 
 	public partial class VersionNodeContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VERSION() { return GetToken(SchemaParser.VERSION, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COLON() { return GetToken(SchemaParser.COLON, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(SchemaParser.STRING, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_VERSION() { return GetToken(SchemaParser.S_VERSION, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_COLON() { return GetToken(SchemaParser.S_COLON, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_STRING() { return GetToken(SchemaParser.S_STRING, 0); }
 		public VersionNodeContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -482,12 +487,12 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
+			State = 115;
+			Match(S_VERSION);
+			State = 116;
+			Match(S_COLON);
 			State = 117;
-			Match(VERSION);
-			State = 118;
-			Match(COLON);
-			State = 119;
-			Match(STRING);
+			Match(S_STRING);
 			}
 		}
 		catch (RecognitionException re) {
@@ -502,13 +507,13 @@ internal partial class SchemaParser : Parser {
 	}
 
 	public partial class ImportNodeContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IMPORT() { return GetToken(SchemaParser.IMPORT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COLON() { return GetToken(SchemaParser.COLON, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] FULL_IDENTIFIER() { return GetTokens(SchemaParser.FULL_IDENTIFIER); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FULL_IDENTIFIER(int i) {
-			return GetToken(SchemaParser.FULL_IDENTIFIER, i);
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_IMPORT() { return GetToken(SchemaParser.S_IMPORT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_COLON() { return GetToken(SchemaParser.S_COLON, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] S_GENERAL_ID() { return GetTokens(SchemaParser.S_GENERAL_ID); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_GENERAL_ID(int i) {
+			return GetToken(SchemaParser.S_GENERAL_ID, i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMMA() { return GetToken(SchemaParser.COMMA, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_COMMA() { return GetToken(SchemaParser.S_COMMA, 0); }
 		public ImportNodeContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -530,21 +535,21 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
+			State = 119;
+			Match(S_IMPORT);
+			State = 120;
+			Match(S_COLON);
 			State = 121;
-			Match(IMPORT);
-			State = 122;
-			Match(COLON);
-			State = 123;
-			Match(FULL_IDENTIFIER);
-			State = 126;
+			Match(S_GENERAL_ID);
+			State = 124;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if (_la==COMMA) {
+			if (_la==S_COMMA) {
 				{
-				State = 124;
-				Match(COMMA);
-				State = 125;
-				Match(FULL_IDENTIFIER);
+				State = 122;
+				Match(S_COMMA);
+				State = 123;
+				Match(S_GENERAL_ID);
 				}
 			}
 
@@ -562,9 +567,9 @@ internal partial class SchemaParser : Parser {
 	}
 
 	public partial class PragmaNodeContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PRAGMA() { return GetToken(SchemaParser.PRAGMA, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FULL_IDENTIFIER() { return GetToken(SchemaParser.FULL_IDENTIFIER, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COLON() { return GetToken(SchemaParser.COLON, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_PRAGMA() { return GetToken(SchemaParser.S_PRAGMA, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_GENERAL_ID() { return GetToken(SchemaParser.S_GENERAL_ID, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_COLON() { return GetToken(SchemaParser.S_COLON, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public PrimitiveNodeContext primitiveNode() {
 			return GetRuleContext<PrimitiveNodeContext>(0);
 		}
@@ -588,13 +593,13 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
+			State = 126;
+			Match(S_PRAGMA);
+			State = 127;
+			Match(S_GENERAL_ID);
 			State = 128;
-			Match(PRAGMA);
+			Match(S_COLON);
 			State = 129;
-			Match(FULL_IDENTIFIER);
-			State = 130;
-			Match(COLON);
-			State = 131;
 			primitiveNode();
 			}
 		}
@@ -610,13 +615,13 @@ internal partial class SchemaParser : Parser {
 	}
 
 	public partial class DefineNodeContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEFINE() { return GetToken(SchemaParser.DEFINE, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_DEFINE() { return GetToken(SchemaParser.S_DEFINE, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public AliasNodeContext aliasNode() {
 			return GetRuleContext<AliasNodeContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COLON() { return GetToken(SchemaParser.COLON, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ValidatorMainContext validatorMain() {
-			return GetRuleContext<ValidatorMainContext>(0);
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_COLON() { return GetToken(SchemaParser.S_COLON, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ValidatorMainNodeContext validatorMainNode() {
+			return GetRuleContext<ValidatorMainNodeContext>(0);
 		}
 		public DefineNodeContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -638,14 +643,14 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 133;
-			Match(DEFINE);
-			State = 134;
+			State = 131;
+			Match(S_DEFINE);
+			State = 132;
 			aliasNode();
-			State = 135;
-			Match(COLON);
-			State = 136;
-			validatorMain();
+			State = 133;
+			Match(S_COLON);
+			State = 134;
+			validatorMainNode();
 			}
 		}
 		catch (RecognitionException re) {
@@ -659,30 +664,61 @@ internal partial class SchemaParser : Parser {
 		return _localctx;
 	}
 
-	public partial class AliasNodeContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ALIAS() { return GetToken(SchemaParser.ALIAS, 0); }
-		public AliasNodeContext(ParserRuleContext parent, int invokingState)
+	public partial class ValidatorNodeContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ValidatorMainNodeContext validatorMainNode() {
+			return GetRuleContext<ValidatorMainNodeContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public AliasNodeContext aliasNode() {
+			return GetRuleContext<AliasNodeContext>(0);
+		}
+		public ValidatorNodeContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_aliasNode; } }
+		public override int RuleIndex { get { return RULE_validatorNode; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAliasNode(this);
+			if (typedVisitor != null) return typedVisitor.VisitValidatorNode(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public AliasNodeContext aliasNode() {
-		AliasNodeContext _localctx = new AliasNodeContext(Context, State);
-		EnterRule(_localctx, 14, RULE_aliasNode);
+	public ValidatorNodeContext validatorNode() {
+		ValidatorNodeContext _localctx = new ValidatorNodeContext(Context, State);
+		EnterRule(_localctx, 14, RULE_validatorNode);
 		try {
-			EnterOuterAlt(_localctx, 1);
-			{
 			State = 138;
-			Match(ALIAS);
+			ErrorHandler.Sync(this);
+			switch (TokenStream.LA(1)) {
+			case S_TRUE:
+			case S_FALSE:
+			case S_NULL:
+			case S_LBRACE:
+			case S_LBRACKET:
+			case S_UNDEFINED:
+			case S_DATATYPE:
+			case S_FUNCTION:
+			case S_STRING:
+			case S_INTEGER:
+			case S_FLOAT:
+			case S_DOUBLE:
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 136;
+				validatorMainNode();
+				}
+				break;
+			case S_ALIAS:
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 137;
+				aliasNode();
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -696,7 +732,7 @@ internal partial class SchemaParser : Parser {
 		return _localctx;
 	}
 
-	public partial class ValidatorMainContext : ParserRuleContext {
+	public partial class ValidatorMainNodeContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ValueNodeContext valueNode() {
 			return GetRuleContext<ValueNodeContext>(0);
 		}
@@ -718,39 +754,39 @@ internal partial class SchemaParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public ReceiverNodeContext receiverNode(int i) {
 			return GetRuleContext<ReceiverNodeContext>(i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OPTIONAL() { return GetToken(SchemaParser.OPTIONAL, 0); }
-		public ValidatorMainContext(ParserRuleContext parent, int invokingState)
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_OPTIONAL() { return GetToken(SchemaParser.S_OPTIONAL, 0); }
+		public ValidatorMainNodeContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_validatorMain; } }
+		public override int RuleIndex { get { return RULE_validatorMainNode; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitValidatorMain(this);
+			if (typedVisitor != null) return typedVisitor.VisitValidatorMainNode(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public ValidatorMainContext validatorMain() {
-		ValidatorMainContext _localctx = new ValidatorMainContext(Context, State);
-		EnterRule(_localctx, 16, RULE_validatorMain);
+	public ValidatorMainNodeContext validatorMainNode() {
+		ValidatorMainNodeContext _localctx = new ValidatorMainNodeContext(Context, State);
+		EnterRule(_localctx, 16, RULE_validatorMainNode);
 		int _la;
 		try {
 			State = 196;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
-			case TRUE:
-			case FALSE:
-			case NULL:
-			case LBRACE:
-			case LBRACKET:
-			case UNDEFINED:
-			case STRING:
-			case INTEGER:
-			case FLOAT:
-			case DOUBLE:
+			case S_TRUE:
+			case S_FALSE:
+			case S_NULL:
+			case S_LBRACE:
+			case S_LBRACKET:
+			case S_UNDEFINED:
+			case S_STRING:
+			case S_INTEGER:
+			case S_FLOAT:
+			case S_DOUBLE:
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 140;
@@ -758,7 +794,7 @@ internal partial class SchemaParser : Parser {
 				State = 144;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==FUNCTION) {
+				while (_la==S_FUNCTION) {
 					{
 					{
 					State = 141;
@@ -772,7 +808,7 @@ internal partial class SchemaParser : Parser {
 				State = 150;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==DATATYPE) {
+				while (_la==S_DATATYPE) {
 					{
 					{
 					State = 147;
@@ -786,7 +822,7 @@ internal partial class SchemaParser : Parser {
 				State = 156;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==RECEIVER) {
+				while (_la==S_RECEIVER) {
 					{
 					{
 					State = 153;
@@ -800,16 +836,16 @@ internal partial class SchemaParser : Parser {
 				State = 160;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==OPTIONAL) {
+				if (_la==S_OPTIONAL) {
 					{
 					State = 159;
-					Match(OPTIONAL);
+					Match(S_OPTIONAL);
 					}
 				}
 
 				}
 				break;
-			case FUNCTION:
+			case S_FUNCTION:
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 163;
@@ -825,11 +861,11 @@ internal partial class SchemaParser : Parser {
 					State = 165;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
-				} while ( _la==FUNCTION );
+				} while ( _la==S_FUNCTION );
 				State = 170;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==DATATYPE) {
+				while (_la==S_DATATYPE) {
 					{
 					{
 					State = 167;
@@ -843,7 +879,7 @@ internal partial class SchemaParser : Parser {
 				State = 176;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==RECEIVER) {
+				while (_la==S_RECEIVER) {
 					{
 					{
 					State = 173;
@@ -857,16 +893,16 @@ internal partial class SchemaParser : Parser {
 				State = 180;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==OPTIONAL) {
+				if (_la==S_OPTIONAL) {
 					{
 					State = 179;
-					Match(OPTIONAL);
+					Match(S_OPTIONAL);
 					}
 				}
 
 				}
 				break;
-			case DATATYPE:
+			case S_DATATYPE:
 				EnterOuterAlt(_localctx, 3);
 				{
 				State = 183;
@@ -882,11 +918,11 @@ internal partial class SchemaParser : Parser {
 					State = 185;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
-				} while ( _la==DATATYPE );
+				} while ( _la==S_DATATYPE );
 				State = 190;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==RECEIVER) {
+				while (_la==S_RECEIVER) {
 					{
 					{
 					State = 187;
@@ -900,10 +936,10 @@ internal partial class SchemaParser : Parser {
 				State = 194;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==OPTIONAL) {
+				if (_la==S_OPTIONAL) {
 					{
 					State = 193;
-					Match(OPTIONAL);
+					Match(S_OPTIONAL);
 					}
 				}
 
@@ -924,61 +960,30 @@ internal partial class SchemaParser : Parser {
 		return _localctx;
 	}
 
-	public partial class ValidatorNodeContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ValidatorMainContext validatorMain() {
-			return GetRuleContext<ValidatorMainContext>(0);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public AliasNodeContext aliasNode() {
-			return GetRuleContext<AliasNodeContext>(0);
-		}
-		public ValidatorNodeContext(ParserRuleContext parent, int invokingState)
+	public partial class AliasNodeContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_ALIAS() { return GetToken(SchemaParser.S_ALIAS, 0); }
+		public AliasNodeContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_validatorNode; } }
+		public override int RuleIndex { get { return RULE_aliasNode; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitValidatorNode(this);
+			if (typedVisitor != null) return typedVisitor.VisitAliasNode(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public ValidatorNodeContext validatorNode() {
-		ValidatorNodeContext _localctx = new ValidatorNodeContext(Context, State);
-		EnterRule(_localctx, 18, RULE_validatorNode);
+	public AliasNodeContext aliasNode() {
+		AliasNodeContext _localctx = new AliasNodeContext(Context, State);
+		EnterRule(_localctx, 18, RULE_aliasNode);
 		try {
-			State = 200;
-			ErrorHandler.Sync(this);
-			switch (TokenStream.LA(1)) {
-			case TRUE:
-			case FALSE:
-			case NULL:
-			case LBRACE:
-			case LBRACKET:
-			case UNDEFINED:
-			case DATATYPE:
-			case FUNCTION:
-			case STRING:
-			case INTEGER:
-			case FLOAT:
-			case DOUBLE:
-				EnterOuterAlt(_localctx, 1);
-				{
-				State = 198;
-				validatorMain();
-				}
-				break;
-			case ALIAS:
-				EnterOuterAlt(_localctx, 2);
-				{
-				State = 199;
-				aliasNode();
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 198;
+			Match(S_ALIAS);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1020,34 +1025,34 @@ internal partial class SchemaParser : Parser {
 		ValueNodeContext _localctx = new ValueNodeContext(Context, State);
 		EnterRule(_localctx, 20, RULE_valueNode);
 		try {
-			State = 205;
+			State = 203;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
-			case TRUE:
-			case FALSE:
-			case NULL:
-			case UNDEFINED:
-			case STRING:
-			case INTEGER:
-			case FLOAT:
-			case DOUBLE:
+			case S_TRUE:
+			case S_FALSE:
+			case S_NULL:
+			case S_UNDEFINED:
+			case S_STRING:
+			case S_INTEGER:
+			case S_FLOAT:
+			case S_DOUBLE:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 202;
+				State = 200;
 				primitiveNode();
 				}
 				break;
-			case LBRACE:
+			case S_LBRACE:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 203;
+				State = 201;
 				objectNode();
 				}
 				break;
-			case LBRACKET:
+			case S_LBRACKET:
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 204;
+				State = 202;
 				arrayNode();
 				}
 				break;
@@ -1067,7 +1072,7 @@ internal partial class SchemaParser : Parser {
 	}
 
 	public partial class ReceiverNodeContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RECEIVER() { return GetToken(SchemaParser.RECEIVER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_RECEIVER() { return GetToken(SchemaParser.S_RECEIVER, 0); }
 		public ReceiverNodeContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -1088,8 +1093,8 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 207;
-			Match(RECEIVER);
+			State = 205;
+			Match(S_RECEIVER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1104,17 +1109,17 @@ internal partial class SchemaParser : Parser {
 	}
 
 	public partial class ObjectNodeContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LBRACE() { return GetToken(SchemaParser.LBRACE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RBRACE() { return GetToken(SchemaParser.RBRACE, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_LBRACE() { return GetToken(SchemaParser.S_LBRACE, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_RBRACE() { return GetToken(SchemaParser.S_RBRACE, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public PropertyNodeContext[] propertyNode() {
 			return GetRuleContexts<PropertyNodeContext>();
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public PropertyNodeContext propertyNode(int i) {
 			return GetRuleContext<PropertyNodeContext>(i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] COMMA() { return GetTokens(SchemaParser.COMMA); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMMA(int i) {
-			return GetToken(SchemaParser.COMMA, i);
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] S_COMMA() { return GetTokens(SchemaParser.S_COMMA); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_COMMA(int i) {
+			return GetToken(SchemaParser.S_COMMA, i);
 		}
 		public ObjectNodeContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -1137,36 +1142,36 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 209;
-			Match(LBRACE);
-			State = 218;
+			State = 207;
+			Match(S_LBRACE);
+			State = 216;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if (_la==STRING) {
+			if (_la==S_STRING) {
 				{
-				State = 210;
+				State = 208;
 				propertyNode();
-				State = 215;
+				State = 213;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==COMMA) {
+				while (_la==S_COMMA) {
 					{
 					{
-					State = 211;
-					Match(COMMA);
-					State = 212;
+					State = 209;
+					Match(S_COMMA);
+					State = 210;
 					propertyNode();
 					}
 					}
-					State = 217;
+					State = 215;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
 				}
 			}
 
-			State = 220;
-			Match(RBRACE);
+			State = 218;
+			Match(S_RBRACE);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1181,8 +1186,8 @@ internal partial class SchemaParser : Parser {
 	}
 
 	public partial class PropertyNodeContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(SchemaParser.STRING, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COLON() { return GetToken(SchemaParser.COLON, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_STRING() { return GetToken(SchemaParser.S_STRING, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_COLON() { return GetToken(SchemaParser.S_COLON, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ValidatorNodeContext validatorNode() {
 			return GetRuleContext<ValidatorNodeContext>(0);
 		}
@@ -1206,11 +1211,11 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
+			State = 220;
+			Match(S_STRING);
+			State = 221;
+			Match(S_COLON);
 			State = 222;
-			Match(STRING);
-			State = 223;
-			Match(COLON);
-			State = 224;
 			validatorNode();
 			}
 		}
@@ -1226,17 +1231,17 @@ internal partial class SchemaParser : Parser {
 	}
 
 	public partial class ArrayNodeContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LBRACKET() { return GetToken(SchemaParser.LBRACKET, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RBRACKET() { return GetToken(SchemaParser.RBRACKET, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_LBRACKET() { return GetToken(SchemaParser.S_LBRACKET, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_RBRACKET() { return GetToken(SchemaParser.S_RBRACKET, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ValidatorNodeContext[] validatorNode() {
 			return GetRuleContexts<ValidatorNodeContext>();
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public ValidatorNodeContext validatorNode(int i) {
 			return GetRuleContext<ValidatorNodeContext>(i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] COMMA() { return GetTokens(SchemaParser.COMMA); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMMA(int i) {
-			return GetToken(SchemaParser.COMMA, i);
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] S_COMMA() { return GetTokens(SchemaParser.S_COMMA); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_COMMA(int i) {
+			return GetToken(SchemaParser.S_COMMA, i);
 		}
 		public ArrayNodeContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -1259,36 +1264,36 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 226;
-			Match(LBRACKET);
-			State = 235;
+			State = 224;
+			Match(S_LBRACKET);
+			State = 233;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 2074167040L) != 0)) {
 				{
-				State = 227;
+				State = 225;
 				validatorNode();
-				State = 232;
+				State = 230;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==COMMA) {
+				while (_la==S_COMMA) {
 					{
 					{
-					State = 228;
-					Match(COMMA);
-					State = 229;
+					State = 226;
+					Match(S_COMMA);
+					State = 227;
 					validatorNode();
 					}
 					}
-					State = 234;
+					State = 232;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
 				}
 			}
 
-			State = 237;
-			Match(RBRACKET);
+			State = 235;
+			Match(S_RBRACKET);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1303,13 +1308,13 @@ internal partial class SchemaParser : Parser {
 	}
 
 	public partial class DatatypeNodeContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATATYPE() { return GetToken(SchemaParser.DATATYPE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STAR() { return GetToken(SchemaParser.STAR, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LPAREN() { return GetToken(SchemaParser.LPAREN, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_DATATYPE() { return GetToken(SchemaParser.S_DATATYPE, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_STAR() { return GetToken(SchemaParser.S_STAR, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_LPAREN() { return GetToken(SchemaParser.S_LPAREN, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public AliasNodeContext aliasNode() {
 			return GetRuleContext<AliasNodeContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RPAREN() { return GetToken(SchemaParser.RPAREN, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_RPAREN() { return GetToken(SchemaParser.S_RPAREN, 0); }
 		public DatatypeNodeContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -1331,29 +1336,29 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
+			State = 237;
+			Match(S_DATATYPE);
 			State = 239;
-			Match(DATATYPE);
-			State = 241;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if (_la==STAR) {
+			if (_la==S_STAR) {
 				{
-				State = 240;
-				Match(STAR);
+				State = 238;
+				Match(S_STAR);
 				}
 			}
 
-			State = 247;
+			State = 245;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if (_la==LPAREN) {
+			if (_la==S_LPAREN) {
 				{
-				State = 243;
-				Match(LPAREN);
-				State = 244;
+				State = 241;
+				Match(S_LPAREN);
+				State = 242;
 				aliasNode();
-				State = 245;
-				Match(RPAREN);
+				State = 243;
+				Match(S_RPAREN);
 				}
 			}
 
@@ -1371,19 +1376,19 @@ internal partial class SchemaParser : Parser {
 	}
 
 	public partial class FunctionNodeContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FUNCTION() { return GetToken(SchemaParser.FUNCTION, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STAR() { return GetToken(SchemaParser.STAR, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LPAREN() { return GetToken(SchemaParser.LPAREN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RPAREN() { return GetToken(SchemaParser.RPAREN, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_FUNCTION() { return GetToken(SchemaParser.S_FUNCTION, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_STAR() { return GetToken(SchemaParser.S_STAR, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_LPAREN() { return GetToken(SchemaParser.S_LPAREN, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_RPAREN() { return GetToken(SchemaParser.S_RPAREN, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ArgumentNodeContext[] argumentNode() {
 			return GetRuleContexts<ArgumentNodeContext>();
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public ArgumentNodeContext argumentNode(int i) {
 			return GetRuleContext<ArgumentNodeContext>(i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] COMMA() { return GetTokens(SchemaParser.COMMA); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMMA(int i) {
-			return GetToken(SchemaParser.COMMA, i);
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] S_COMMA() { return GetTokens(SchemaParser.S_COMMA); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_COMMA(int i) {
+			return GetToken(SchemaParser.S_COMMA, i);
 		}
 		public FunctionNodeContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -1406,53 +1411,53 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
+			State = 247;
+			Match(S_FUNCTION);
 			State = 249;
-			Match(FUNCTION);
-			State = 251;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if (_la==STAR) {
+			if (_la==S_STAR) {
 				{
-				State = 250;
-				Match(STAR);
+				State = 248;
+				Match(S_STAR);
 				}
 			}
 
-			State = 265;
+			State = 263;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if (_la==LPAREN) {
+			if (_la==S_LPAREN) {
 				{
-				State = 253;
-				Match(LPAREN);
-				State = 262;
+				State = 251;
+				Match(S_LPAREN);
+				State = 260;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 2082555648L) != 0)) {
 					{
-					State = 254;
+					State = 252;
 					argumentNode();
-					State = 259;
+					State = 257;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
-					while (_la==COMMA) {
+					while (_la==S_COMMA) {
 						{
 						{
-						State = 255;
-						Match(COMMA);
-						State = 256;
+						State = 253;
+						Match(S_COMMA);
+						State = 254;
 						argumentNode();
 						}
 						}
-						State = 261;
+						State = 259;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 					}
 					}
 				}
 
-				State = 264;
-				Match(RPAREN);
+				State = 262;
+				Match(S_RPAREN);
 				}
 			}
 
@@ -1494,29 +1499,29 @@ internal partial class SchemaParser : Parser {
 		ArgumentNodeContext _localctx = new ArgumentNodeContext(Context, State);
 		EnterRule(_localctx, 34, RULE_argumentNode);
 		try {
-			State = 269;
+			State = 267;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
-			case TRUE:
-			case FALSE:
-			case NULL:
-			case LBRACE:
-			case LBRACKET:
-			case UNDEFINED:
-			case STRING:
-			case INTEGER:
-			case FLOAT:
-			case DOUBLE:
+			case S_TRUE:
+			case S_FALSE:
+			case S_NULL:
+			case S_LBRACE:
+			case S_LBRACKET:
+			case S_UNDEFINED:
+			case S_STRING:
+			case S_INTEGER:
+			case S_FLOAT:
+			case S_DOUBLE:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 267;
+				State = 265;
 				valueNode();
 				}
 				break;
-			case RECEIVER:
+			case S_RECEIVER:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 268;
+				State = 266;
 				receiverNode();
 				}
 				break;
@@ -1547,83 +1552,83 @@ internal partial class SchemaParser : Parser {
 			base.CopyFrom(context);
 		}
 	}
-	public partial class PrimitiveDoubleContext : PrimitiveNodeContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DOUBLE() { return GetToken(SchemaParser.DOUBLE, 0); }
-		public PrimitiveDoubleContext(PrimitiveNodeContext context) { CopyFrom(context); }
+	public partial class UndefinedNodeContext : PrimitiveNodeContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_UNDEFINED() { return GetToken(SchemaParser.S_UNDEFINED, 0); }
+		public UndefinedNodeContext(PrimitiveNodeContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPrimitiveDouble(this);
+			if (typedVisitor != null) return typedVisitor.VisitUndefinedNode(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class PrimitiveFloatContext : PrimitiveNodeContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FLOAT() { return GetToken(SchemaParser.FLOAT, 0); }
-		public PrimitiveFloatContext(PrimitiveNodeContext context) { CopyFrom(context); }
+	public partial class TrueNodeContext : PrimitiveNodeContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_TRUE() { return GetToken(SchemaParser.S_TRUE, 0); }
+		public TrueNodeContext(PrimitiveNodeContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPrimitiveFloat(this);
+			if (typedVisitor != null) return typedVisitor.VisitTrueNode(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class PrimitiveNullContext : PrimitiveNodeContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NULL() { return GetToken(SchemaParser.NULL, 0); }
-		public PrimitiveNullContext(PrimitiveNodeContext context) { CopyFrom(context); }
+	public partial class IntegerNodeContext : PrimitiveNodeContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_INTEGER() { return GetToken(SchemaParser.S_INTEGER, 0); }
+		public IntegerNodeContext(PrimitiveNodeContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPrimitiveNull(this);
+			if (typedVisitor != null) return typedVisitor.VisitIntegerNode(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class PrimitiveUndefinedContext : PrimitiveNodeContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode UNDEFINED() { return GetToken(SchemaParser.UNDEFINED, 0); }
-		public PrimitiveUndefinedContext(PrimitiveNodeContext context) { CopyFrom(context); }
+	public partial class StringNodeContext : PrimitiveNodeContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_STRING() { return GetToken(SchemaParser.S_STRING, 0); }
+		public StringNodeContext(PrimitiveNodeContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPrimitiveUndefined(this);
+			if (typedVisitor != null) return typedVisitor.VisitStringNode(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class PrimitiveTrueContext : PrimitiveNodeContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRUE() { return GetToken(SchemaParser.TRUE, 0); }
-		public PrimitiveTrueContext(PrimitiveNodeContext context) { CopyFrom(context); }
+	public partial class FloatNodeContext : PrimitiveNodeContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_FLOAT() { return GetToken(SchemaParser.S_FLOAT, 0); }
+		public FloatNodeContext(PrimitiveNodeContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPrimitiveTrue(this);
+			if (typedVisitor != null) return typedVisitor.VisitFloatNode(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class PrimitiveFalseContext : PrimitiveNodeContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FALSE() { return GetToken(SchemaParser.FALSE, 0); }
-		public PrimitiveFalseContext(PrimitiveNodeContext context) { CopyFrom(context); }
+	public partial class DoubleNodeContext : PrimitiveNodeContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_DOUBLE() { return GetToken(SchemaParser.S_DOUBLE, 0); }
+		public DoubleNodeContext(PrimitiveNodeContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPrimitiveFalse(this);
+			if (typedVisitor != null) return typedVisitor.VisitDoubleNode(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class PrimitiveStringContext : PrimitiveNodeContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(SchemaParser.STRING, 0); }
-		public PrimitiveStringContext(PrimitiveNodeContext context) { CopyFrom(context); }
+	public partial class FalseNodeContext : PrimitiveNodeContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_FALSE() { return GetToken(SchemaParser.S_FALSE, 0); }
+		public FalseNodeContext(PrimitiveNodeContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPrimitiveString(this);
+			if (typedVisitor != null) return typedVisitor.VisitFalseNode(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class PrimitiveIntegerContext : PrimitiveNodeContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INTEGER() { return GetToken(SchemaParser.INTEGER, 0); }
-		public PrimitiveIntegerContext(PrimitiveNodeContext context) { CopyFrom(context); }
+	public partial class NullNodeContext : PrimitiveNodeContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_NULL() { return GetToken(SchemaParser.S_NULL, 0); }
+		public NullNodeContext(PrimitiveNodeContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPrimitiveInteger(this);
+			if (typedVisitor != null) return typedVisitor.VisitNullNode(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -1633,71 +1638,71 @@ internal partial class SchemaParser : Parser {
 		PrimitiveNodeContext _localctx = new PrimitiveNodeContext(Context, State);
 		EnterRule(_localctx, 36, RULE_primitiveNode);
 		try {
-			State = 279;
+			State = 277;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
-			case TRUE:
-				_localctx = new PrimitiveTrueContext(_localctx);
+			case S_TRUE:
+				_localctx = new TrueNodeContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 271;
-				Match(TRUE);
+				State = 269;
+				Match(S_TRUE);
 				}
 				break;
-			case FALSE:
-				_localctx = new PrimitiveFalseContext(_localctx);
+			case S_FALSE:
+				_localctx = new FalseNodeContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 272;
-				Match(FALSE);
+				State = 270;
+				Match(S_FALSE);
 				}
 				break;
-			case STRING:
-				_localctx = new PrimitiveStringContext(_localctx);
+			case S_STRING:
+				_localctx = new StringNodeContext(_localctx);
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 273;
-				Match(STRING);
+				State = 271;
+				Match(S_STRING);
 				}
 				break;
-			case INTEGER:
-				_localctx = new PrimitiveIntegerContext(_localctx);
+			case S_INTEGER:
+				_localctx = new IntegerNodeContext(_localctx);
 				EnterOuterAlt(_localctx, 4);
 				{
-				State = 274;
-				Match(INTEGER);
+				State = 272;
+				Match(S_INTEGER);
 				}
 				break;
-			case FLOAT:
-				_localctx = new PrimitiveFloatContext(_localctx);
+			case S_FLOAT:
+				_localctx = new FloatNodeContext(_localctx);
 				EnterOuterAlt(_localctx, 5);
 				{
-				State = 275;
-				Match(FLOAT);
+				State = 273;
+				Match(S_FLOAT);
 				}
 				break;
-			case DOUBLE:
-				_localctx = new PrimitiveDoubleContext(_localctx);
+			case S_DOUBLE:
+				_localctx = new DoubleNodeContext(_localctx);
 				EnterOuterAlt(_localctx, 6);
 				{
-				State = 276;
-				Match(DOUBLE);
+				State = 274;
+				Match(S_DOUBLE);
 				}
 				break;
-			case NULL:
-				_localctx = new PrimitiveNullContext(_localctx);
+			case S_NULL:
+				_localctx = new NullNodeContext(_localctx);
 				EnterOuterAlt(_localctx, 7);
 				{
-				State = 277;
-				Match(NULL);
+				State = 275;
+				Match(S_NULL);
 				}
 				break;
-			case UNDEFINED:
-				_localctx = new PrimitiveUndefinedContext(_localctx);
+			case S_UNDEFINED:
+				_localctx = new UndefinedNodeContext(_localctx);
 				EnterOuterAlt(_localctx, 8);
 				{
-				State = 278;
-				Match(UNDEFINED);
+				State = 276;
+				Match(S_UNDEFINED);
 				}
 				break;
 			default:
@@ -1716,7 +1721,7 @@ internal partial class SchemaParser : Parser {
 	}
 
 	public partial class ScriptNodeContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SCRIPT() { return GetToken(SchemaParser.SCRIPT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode S_SCRIPT() { return GetToken(SchemaParser.S_SCRIPT, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_COLON() { return GetToken(SchemaParser.G_COLON, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_LBRACE() { return GetToken(SchemaParser.G_LBRACE, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_RBRACE() { return GetToken(SchemaParser.G_RBRACE, 0); }
@@ -1747,27 +1752,27 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 281;
-			Match(SCRIPT);
-			State = 282;
+			State = 279;
+			Match(S_SCRIPT);
+			State = 280;
 			Match(G_COLON);
-			State = 283;
+			State = 281;
 			Match(G_LBRACE);
-			State = 285;
+			State = 283;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			do {
 				{
 				{
-				State = 284;
+				State = 282;
 				globalStatement();
 				}
 				}
-				State = 287;
+				State = 285;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 1165499505311744L) != 0) );
-			State = 289;
+			State = 287;
 			Match(G_RBRACE);
 			}
 		}
@@ -1807,7 +1812,7 @@ internal partial class SchemaParser : Parser {
 		GlobalStatementContext _localctx = new GlobalStatementContext(Context, State);
 		EnterRule(_localctx, 40, RULE_globalStatement);
 		try {
-			State = 293;
+			State = 291;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
 			case G_CONSTRAINT:
@@ -1815,14 +1820,14 @@ internal partial class SchemaParser : Parser {
 			case G_FUTURE:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 291;
+				State = 289;
 				functionDeclaration();
 				}
 				break;
 			case G_VAR:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 292;
+				State = 290;
 				varStatement();
 				}
 				break;
@@ -1887,69 +1892,69 @@ internal partial class SchemaParser : Parser {
 		StatementContext _localctx = new StatementContext(Context, State);
 		EnterRule(_localctx, 42, RULE_statement);
 		try {
-			State = 304;
+			State = 302;
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,38,Context) ) {
 			case 1:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 295;
+				State = 293;
 				varStatement();
 				}
 				break;
 			case 2:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 296;
+				State = 294;
 				expressionStatement();
 				}
 				break;
 			case 3:
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 297;
+				State = 295;
 				ifStatement();
 				}
 				break;
 			case 4:
 				EnterOuterAlt(_localctx, 4);
 				{
-				State = 298;
+				State = 296;
 				whileStatement();
 				}
 				break;
 			case 5:
 				EnterOuterAlt(_localctx, 5);
 				{
-				State = 299;
+				State = 297;
 				forStatement();
 				}
 				break;
 			case 6:
 				EnterOuterAlt(_localctx, 6);
 				{
-				State = 300;
+				State = 298;
 				foreachStatement();
 				}
 				break;
 			case 7:
 				EnterOuterAlt(_localctx, 7);
 				{
-				State = 301;
+				State = 299;
 				returnStatement();
 				}
 				break;
 			case 8:
 				EnterOuterAlt(_localctx, 8);
 				{
-				State = 302;
+				State = 300;
 				breakStatement();
 				}
 				break;
 			case 9:
 				EnterOuterAlt(_localctx, 9);
 				{
-				State = 303;
+				State = 301;
 				blockStatement();
 				}
 				break;
@@ -2007,19 +2012,19 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 321;
+			State = 319;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
 			case G_CONSTRAINT:
 				{
-				State = 306;
+				State = 304;
 				Match(G_CONSTRAINT);
-				State = 308;
+				State = 306;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==G_FUNCTION) {
 					{
-					State = 307;
+					State = 305;
 					Match(G_FUNCTION);
 					}
 				}
@@ -2028,24 +2033,24 @@ internal partial class SchemaParser : Parser {
 				break;
 			case G_FUTURE:
 				{
-				State = 310;
+				State = 308;
 				Match(G_FUTURE);
-				State = 312;
+				State = 310;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==G_CONSTRAINT) {
 					{
-					State = 311;
+					State = 309;
 					Match(G_CONSTRAINT);
 					}
 				}
 
-				State = 315;
+				State = 313;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==G_FUNCTION) {
 					{
-					State = 314;
+					State = 312;
 					Match(G_FUNCTION);
 					}
 				}
@@ -2054,14 +2059,14 @@ internal partial class SchemaParser : Parser {
 				break;
 			case G_SUBROUTINE:
 				{
-				State = 317;
+				State = 315;
 				Match(G_SUBROUTINE);
-				State = 319;
+				State = 317;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==G_FUNCTION) {
 					{
-					State = 318;
+					State = 316;
 					Match(G_FUNCTION);
 					}
 				}
@@ -2071,39 +2076,39 @@ internal partial class SchemaParser : Parser {
 			default:
 				throw new NoViableAltException(this);
 			}
-			State = 323;
+			State = 321;
 			_localctx.name = Match(G_IDENTIFIER);
-			State = 324;
+			State = 322;
 			Match(G_LPAREN);
-			State = 336;
+			State = 334;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==G_IDENTIFIER) {
 				{
-				State = 325;
+				State = 323;
 				Match(G_IDENTIFIER);
-				State = 330;
+				State = 328;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==G_COMMA) {
 					{
 					{
-					State = 326;
+					State = 324;
 					Match(G_COMMA);
-					State = 327;
+					State = 325;
 					Match(G_IDENTIFIER);
 					}
 					}
-					State = 332;
+					State = 330;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 334;
+				State = 332;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==G_ELLIPSIS) {
 					{
-					State = 333;
+					State = 331;
 					Match(G_ELLIPSIS);
 					}
 				}
@@ -2111,9 +2116,9 @@ internal partial class SchemaParser : Parser {
 				}
 			}
 
-			State = 338;
+			State = 336;
 			Match(G_RPAREN);
-			State = 339;
+			State = 337;
 			blockStatement();
 			}
 		}
@@ -2130,11 +2135,11 @@ internal partial class SchemaParser : Parser {
 
 	public partial class VarStatementContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_VAR() { return GetToken(SchemaParser.G_VAR, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public VarInitializationContext[] varInitialization() {
-			return GetRuleContexts<VarInitializationContext>();
+		[System.Diagnostics.DebuggerNonUserCode] public VarDeclarationContext[] varDeclaration() {
+			return GetRuleContexts<VarDeclarationContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public VarInitializationContext varInitialization(int i) {
-			return GetRuleContext<VarInitializationContext>(i);
+		[System.Diagnostics.DebuggerNonUserCode] public VarDeclarationContext varDeclaration(int i) {
+			return GetRuleContext<VarDeclarationContext>(i);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_SEMI() { return GetToken(SchemaParser.G_SEMI, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] G_COMMA() { return GetTokens(SchemaParser.G_COMMA); }
@@ -2162,27 +2167,27 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 341;
+			State = 339;
 			Match(G_VAR);
-			State = 342;
-			varInitialization();
-			State = 347;
+			State = 340;
+			varDeclaration();
+			State = 345;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			while (_la==G_COMMA) {
 				{
 				{
-				State = 343;
+				State = 341;
 				Match(G_COMMA);
-				State = 344;
-				varInitialization();
+				State = 342;
+				varDeclaration();
 				}
 				}
-				State = 349;
+				State = 347;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
-			State = 350;
+			State = 348;
 			Match(G_SEMI);
 			}
 		}
@@ -2197,43 +2202,43 @@ internal partial class SchemaParser : Parser {
 		return _localctx;
 	}
 
-	public partial class VarInitializationContext : ParserRuleContext {
+	public partial class VarDeclarationContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_IDENTIFIER() { return GetToken(SchemaParser.G_IDENTIFIER, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_ASSIGN() { return GetToken(SchemaParser.G_ASSIGN, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression() {
 			return GetRuleContext<ExpressionContext>(0);
 		}
-		public VarInitializationContext(ParserRuleContext parent, int invokingState)
+		public VarDeclarationContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_varInitialization; } }
+		public override int RuleIndex { get { return RULE_varDeclaration; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitVarInitialization(this);
+			if (typedVisitor != null) return typedVisitor.VisitVarDeclaration(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public VarInitializationContext varInitialization() {
-		VarInitializationContext _localctx = new VarInitializationContext(Context, State);
-		EnterRule(_localctx, 48, RULE_varInitialization);
+	public VarDeclarationContext varDeclaration() {
+		VarDeclarationContext _localctx = new VarDeclarationContext(Context, State);
+		EnterRule(_localctx, 48, RULE_varDeclaration);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 352;
+			State = 350;
 			Match(G_IDENTIFIER);
-			State = 355;
+			State = 353;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==G_ASSIGN) {
 				{
-				State = 353;
+				State = 351;
 				Match(G_ASSIGN);
-				State = 354;
+				State = 352;
 				expression(0);
 				}
 			}
@@ -2276,9 +2281,9 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 357;
+			State = 355;
 			expression(0);
-			State = 358;
+			State = 356;
 			Match(G_SEMI);
 			}
 		}
@@ -2327,24 +2332,24 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 360;
+			State = 358;
 			Match(G_IF);
-			State = 361;
+			State = 359;
 			Match(G_LPAREN);
-			State = 362;
+			State = 360;
 			expression(0);
-			State = 363;
+			State = 361;
 			Match(G_RPAREN);
-			State = 364;
+			State = 362;
 			statement();
-			State = 367;
+			State = 365;
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,49,Context) ) {
 			case 1:
 				{
-				State = 365;
+				State = 363;
 				Match(G_ELSE);
-				State = 366;
+				State = 364;
 				statement();
 				}
 				break;
@@ -2392,15 +2397,15 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 369;
+			State = 367;
 			Match(G_WHILE);
-			State = 370;
+			State = 368;
 			Match(G_LPAREN);
-			State = 371;
+			State = 369;
 			expression(0);
-			State = 372;
+			State = 370;
 			Match(G_RPAREN);
-			State = 373;
+			State = 371;
 			statement();
 			}
 		}
@@ -2462,16 +2467,16 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 375;
+			State = 373;
 			Match(G_FOR);
-			State = 376;
+			State = 374;
 			Match(G_LPAREN);
-			State = 382;
+			State = 380;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
 			case G_VAR:
 				{
-				State = 377;
+				State = 375;
 				varStatement();
 				}
 				break;
@@ -2493,49 +2498,50 @@ internal partial class SchemaParser : Parser {
 			case G_RANGE:
 			case G_INC:
 			case G_DEC:
+			case G_PLUS:
 			case G_MINUS:
-			case G_NOT:
+			case G_LNOT:
 				{
-				State = 378;
+				State = 376;
 				_localctx.initialization = expressionList();
-				State = 379;
+				State = 377;
 				Match(G_SEMI);
 				}
 				break;
 			case G_SEMI:
 				{
-				State = 381;
+				State = 379;
 				Match(G_SEMI);
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
-			State = 385;
+			State = 383;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if (((((_la - 43)) & ~0x3f) == 0 && ((1L << (_la - 43)) & 4515834638634779L) != 0)) {
+			if (((((_la - 43)) & ~0x3f) == 0 && ((1L << (_la - 43)) & 18047664625028891L) != 0)) {
 				{
-				State = 384;
+				State = 382;
 				_localctx.condition = expression(0);
 				}
 			}
 
-			State = 387;
+			State = 385;
 			Match(G_SEMI);
-			State = 389;
+			State = 387;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if (((((_la - 43)) & ~0x3f) == 0 && ((1L << (_la - 43)) & 4515834638634779L) != 0)) {
+			if (((((_la - 43)) & ~0x3f) == 0 && ((1L << (_la - 43)) & 18047664625028891L) != 0)) {
 				{
-				State = 388;
+				State = 386;
 				_localctx.updation = expressionList();
 				}
 			}
 
-			State = 391;
+			State = 389;
 			Match(G_RPAREN);
-			State = 392;
+			State = 390;
 			statement();
 			}
 		}
@@ -2582,21 +2588,21 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 394;
+			State = 392;
 			expression(0);
-			State = 399;
+			State = 397;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			while (_la==G_COMMA) {
 				{
 				{
-				State = 395;
+				State = 393;
 				Match(G_COMMA);
-				State = 396;
+				State = 394;
 				expression(0);
 				}
 				}
-				State = 401;
+				State = 399;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
@@ -2646,21 +2652,21 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 402;
+			State = 400;
 			Match(G_FOREACH);
-			State = 403;
+			State = 401;
 			Match(G_LPAREN);
-			State = 404;
+			State = 402;
 			Match(G_VAR);
-			State = 405;
+			State = 403;
 			Match(G_IDENTIFIER);
-			State = 406;
+			State = 404;
 			Match(G_IN);
-			State = 407;
+			State = 405;
 			expression(0);
-			State = 408;
+			State = 406;
 			Match(G_RPAREN);
-			State = 409;
+			State = 407;
 			statement();
 			}
 		}
@@ -2701,11 +2707,11 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 411;
+			State = 409;
 			Match(G_RETURN);
-			State = 412;
+			State = 410;
 			expression(0);
-			State = 413;
+			State = 411;
 			Match(G_SEMI);
 			}
 		}
@@ -2743,9 +2749,9 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 415;
+			State = 413;
 			Match(G_BREAK);
-			State = 416;
+			State = 414;
 			Match(G_SEMI);
 			}
 		}
@@ -2790,23 +2796,23 @@ internal partial class SchemaParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 418;
+			State = 416;
 			Match(G_LBRACE);
-			State = 422;
+			State = 420;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			while (((((_la - 34)) & ~0x3f) == 0 && ((1L << (_la - 34)) & 2312107334981039803L) != 0)) {
+			while (((((_la - 34)) & ~0x3f) == 0 && ((1L << (_la - 34)) & -9206339785694726469L) != 0)) {
 				{
 				{
-				State = 419;
+				State = 417;
 				statement();
 				}
 				}
-				State = 424;
+				State = 422;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
-			State = 425;
+			State = 423;
 			Match(G_RBRACE);
 			}
 		}
@@ -2833,6 +2839,187 @@ internal partial class SchemaParser : Parser {
 			base.CopyFrom(context);
 		}
 	}
+	public partial class CallerExpressionContext : ExpressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_CALLER() { return GetToken(SchemaParser.G_CALLER, 0); }
+		public CallerExpressionContext(ExpressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitCallerExpression(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class LogicalAndExpressionContext : ExpressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext[] expression() {
+			return GetRuleContexts<ExpressionContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression(int i) {
+			return GetRuleContext<ExpressionContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_LAND() { return GetToken(SchemaParser.G_LAND, 0); }
+		public LogicalAndExpressionContext(ExpressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitLogicalAndExpression(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class AssignmentBracketExpressionContext : ExpressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext[] expression() {
+			return GetRuleContexts<ExpressionContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression(int i) {
+			return GetRuleContext<ExpressionContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_LBRACKET() { return GetToken(SchemaParser.G_LBRACKET, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_RBRACKET() { return GetToken(SchemaParser.G_RBRACKET, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_ASSIGN() { return GetToken(SchemaParser.G_ASSIGN, 0); }
+		public AssignmentBracketExpressionContext(ExpressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAssignmentBracketExpression(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class LogicalOrExpressionContext : ExpressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext[] expression() {
+			return GetRuleContexts<ExpressionContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression(int i) {
+			return GetRuleContext<ExpressionContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_LOR() { return GetToken(SchemaParser.G_LOR, 0); }
+		public LogicalOrExpressionContext(ExpressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitLogicalOrExpression(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class TryofExpressionContext : ExpressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_TRYOF() { return GetToken(SchemaParser.G_TRYOF, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_LPAREN() { return GetToken(SchemaParser.G_LPAREN, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression() {
+			return GetRuleContext<ExpressionContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_RPAREN() { return GetToken(SchemaParser.G_RPAREN, 0); }
+		public TryofExpressionContext(ExpressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitTryofExpression(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class AssignmentAugExpressionContext : ExpressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_IDENTIFIER() { return GetToken(SchemaParser.G_IDENTIFIER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext[] expression() {
+			return GetRuleContexts<ExpressionContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression(int i) {
+			return GetRuleContext<ExpressionContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_ADD_ASSIGN() { return GetToken(SchemaParser.G_ADD_ASSIGN, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_SUB_ASSIGN() { return GetToken(SchemaParser.G_SUB_ASSIGN, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_MUL_ASSIGN() { return GetToken(SchemaParser.G_MUL_ASSIGN, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_DIV_ASSIGN() { return GetToken(SchemaParser.G_DIV_ASSIGN, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_MOD_ASSIGN() { return GetToken(SchemaParser.G_MOD_ASSIGN, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_LBRACKET() { return GetToken(SchemaParser.G_LBRACKET, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_RBRACKET() { return GetToken(SchemaParser.G_RBRACKET, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_DOT() { return GetToken(SchemaParser.G_DOT, 0); }
+		public AssignmentAugExpressionContext(ExpressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAssignmentAugExpression(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class UnaryMinusExpressionContext : ExpressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_MINUS() { return GetToken(SchemaParser.G_MINUS, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression() {
+			return GetRuleContext<ExpressionContext>(0);
+		}
+		public UnaryMinusExpressionContext(ExpressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitUnaryMinusExpression(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class UnaryPlusExpressionContext : ExpressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_PLUS() { return GetToken(SchemaParser.G_PLUS, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression() {
+			return GetRuleContext<ExpressionContext>(0);
+		}
+		public UnaryPlusExpressionContext(ExpressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitUnaryPlusExpression(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class EqualityExpressionContext : ExpressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext[] expression() {
+			return GetRuleContexts<ExpressionContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression(int i) {
+			return GetRuleContext<ExpressionContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_EQ() { return GetToken(SchemaParser.G_EQ, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_NE() { return GetToken(SchemaParser.G_NE, 0); }
+		public EqualityExpressionContext(ExpressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitEqualityExpression(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class MultiplicativeExpressionContext : ExpressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext[] expression() {
+			return GetRuleContexts<ExpressionContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression(int i) {
+			return GetRuleContext<ExpressionContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_MUL() { return GetToken(SchemaParser.G_MUL, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_DIV() { return GetToken(SchemaParser.G_DIV, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_MOD() { return GetToken(SchemaParser.G_MOD, 0); }
+		public MultiplicativeExpressionContext(ExpressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitMultiplicativeExpression(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class PreIncDecExpressionContext : ExpressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext[] expression() {
+			return GetRuleContexts<ExpressionContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression(int i) {
+			return GetRuleContext<ExpressionContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_LBRACKET() { return GetToken(SchemaParser.G_LBRACKET, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_RBRACKET() { return GetToken(SchemaParser.G_RBRACKET, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_INC() { return GetToken(SchemaParser.G_INC, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_DEC() { return GetToken(SchemaParser.G_DEC, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_DOT() { return GetToken(SchemaParser.G_DOT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_IDENTIFIER() { return GetToken(SchemaParser.G_IDENTIFIER, 0); }
+		public PreIncDecExpressionContext(ExpressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitPreIncDecExpression(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
 	public partial class RangeEndExpressionContext : ExpressionContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_RANGE() { return GetToken(SchemaParser.G_RANGE, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression() {
@@ -2857,19 +3044,6 @@ internal partial class SchemaParser : Parser {
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitParenthesizedExpression(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-	public partial class PostIncrementExpressionContext : ExpressionContext {
-		[System.Diagnostics.DebuggerNonUserCode] public RefExpressionContext refExpression() {
-			return GetRuleContext<RefExpressionContext>(0);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_INC() { return GetToken(SchemaParser.G_INC, 0); }
-		public PostIncrementExpressionContext(ExpressionContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPostIncrementExpression(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -2909,45 +3083,41 @@ internal partial class SchemaParser : Parser {
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class LogicalAndExpressionContext : ExpressionContext {
+	public partial class MemberBracketExpressionContext : ExpressionContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext[] expression() {
 			return GetRuleContexts<ExpressionContext>();
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression(int i) {
 			return GetRuleContext<ExpressionContext>(i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_AND() { return GetToken(SchemaParser.G_AND, 0); }
-		public LogicalAndExpressionContext(ExpressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_LBRACKET() { return GetToken(SchemaParser.G_LBRACKET, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_RBRACKET() { return GetToken(SchemaParser.G_RBRACKET, 0); }
+		public MemberBracketExpressionContext(ExpressionContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLogicalAndExpression(this);
+			if (typedVisitor != null) return typedVisitor.VisitMemberBracketExpression(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class PreDecrementExpressionContext : ExpressionContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_DEC() { return GetToken(SchemaParser.G_DEC, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public RefExpressionContext refExpression() {
-			return GetRuleContext<RefExpressionContext>(0);
-		}
-		public PreDecrementExpressionContext(ExpressionContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPreDecrementExpression(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-	public partial class PreIncrementExpressionContext : ExpressionContext {
+	public partial class PostIncDecExpressionContext : ExpressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_IDENTIFIER() { return GetToken(SchemaParser.G_IDENTIFIER, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_INC() { return GetToken(SchemaParser.G_INC, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public RefExpressionContext refExpression() {
-			return GetRuleContext<RefExpressionContext>(0);
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_DEC() { return GetToken(SchemaParser.G_DEC, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext[] expression() {
+			return GetRuleContexts<ExpressionContext>();
 		}
-		public PreIncrementExpressionContext(ExpressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression(int i) {
+			return GetRuleContext<ExpressionContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_LBRACKET() { return GetToken(SchemaParser.G_LBRACKET, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_RBRACKET() { return GetToken(SchemaParser.G_RBRACKET, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_DOT() { return GetToken(SchemaParser.G_DOT, 0); }
+		public PostIncDecExpressionContext(ExpressionContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPreIncrementExpression(this);
+			if (typedVisitor != null) return typedVisitor.VisitPostIncDecExpression(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -2963,24 +3133,32 @@ internal partial class SchemaParser : Parser {
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class LogicalOrExpressionContext : ExpressionContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext[] expression() {
-			return GetRuleContexts<ExpressionContext>();
+	public partial class MemberDotExpressionContext : ExpressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression() {
+			return GetRuleContext<ExpressionContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression(int i) {
-			return GetRuleContext<ExpressionContext>(i);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_OR() { return GetToken(SchemaParser.G_OR, 0); }
-		public LogicalOrExpressionContext(ExpressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_DOT() { return GetToken(SchemaParser.G_DOT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_IDENTIFIER() { return GetToken(SchemaParser.G_IDENTIFIER, 0); }
+		public MemberDotExpressionContext(ExpressionContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLogicalOrExpression(this);
+			if (typedVisitor != null) return typedVisitor.VisitMemberDotExpression(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class TargetExpressionContext : ExpressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_TARGET() { return GetToken(SchemaParser.G_TARGET, 0); }
+		public TargetExpressionContext(ExpressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitTargetExpression(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class LogicalNotExpressionContext : ExpressionContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_NOT() { return GetToken(SchemaParser.G_NOT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_LNOT() { return GetToken(SchemaParser.G_LNOT, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression() {
 			return GetRuleContext<ExpressionContext>(0);
 		}
@@ -3011,106 +3189,90 @@ internal partial class SchemaParser : Parser {
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class AllRefExpressionContext : ExpressionContext {
-		[System.Diagnostics.DebuggerNonUserCode] public RefExpressionContext refExpression() {
-			return GetRuleContext<RefExpressionContext>(0);
-		}
-		public AllRefExpressionContext(ExpressionContext context) { CopyFrom(context); }
+	public partial class IdentifierExpressionContext : ExpressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_IDENTIFIER() { return GetToken(SchemaParser.G_IDENTIFIER, 0); }
+		public IdentifierExpressionContext(ExpressionContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAllRefExpression(this);
+			if (typedVisitor != null) return typedVisitor.VisitIdentifierExpression(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class TryofExpressionContext : ExpressionContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_TRYOF() { return GetToken(SchemaParser.G_TRYOF, 0); }
+	public partial class InvokeFunctionExpressionContext : ExpressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_IDENTIFIER() { return GetToken(SchemaParser.G_IDENTIFIER, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_LPAREN() { return GetToken(SchemaParser.G_LPAREN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression() {
-			return GetRuleContext<ExpressionContext>(0);
-		}
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_RPAREN() { return GetToken(SchemaParser.G_RPAREN, 0); }
-		public TryofExpressionContext(ExpressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext[] expression() {
+			return GetRuleContexts<ExpressionContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression(int i) {
+			return GetRuleContext<ExpressionContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] G_COMMA() { return GetTokens(SchemaParser.G_COMMA); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_COMMA(int i) {
+			return GetToken(SchemaParser.G_COMMA, i);
+		}
+		public InvokeFunctionExpressionContext(ExpressionContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTryofExpression(this);
+			if (typedVisitor != null) return typedVisitor.VisitInvokeFunctionExpression(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class UnaryMinusExpressionContext : ExpressionContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_MINUS() { return GetToken(SchemaParser.G_MINUS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression() {
-			return GetRuleContext<ExpressionContext>(0);
-		}
-		public UnaryMinusExpressionContext(ExpressionContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitUnaryMinusExpression(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-	public partial class AssignmentExpressionContext : ExpressionContext {
-		[System.Diagnostics.DebuggerNonUserCode] public RefExpressionContext refExpression() {
-			return GetRuleContext<RefExpressionContext>(0);
-		}
+	public partial class AssignmentIdExpressionContext : ExpressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_IDENTIFIER() { return GetToken(SchemaParser.G_IDENTIFIER, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_ASSIGN() { return GetToken(SchemaParser.G_ASSIGN, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression() {
 			return GetRuleContext<ExpressionContext>(0);
 		}
-		public AssignmentExpressionContext(ExpressionContext context) { CopyFrom(context); }
+		public AssignmentIdExpressionContext(ExpressionContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAssignmentExpression(this);
+			if (typedVisitor != null) return typedVisitor.VisitAssignmentIdExpression(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class PostDecrementExpressionContext : ExpressionContext {
-		[System.Diagnostics.DebuggerNonUserCode] public RefExpressionContext refExpression() {
-			return GetRuleContext<RefExpressionContext>(0);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_DEC() { return GetToken(SchemaParser.G_DEC, 0); }
-		public PostDecrementExpressionContext(ExpressionContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPostDecrementExpression(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-	public partial class EqualityExpressionContext : ExpressionContext {
+	public partial class InvokeMethodExpressionContext : ExpressionContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext[] expression() {
 			return GetRuleContexts<ExpressionContext>();
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression(int i) {
 			return GetRuleContext<ExpressionContext>(i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_EQ() { return GetToken(SchemaParser.G_EQ, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_NE() { return GetToken(SchemaParser.G_NE, 0); }
-		public EqualityExpressionContext(ExpressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_DOT() { return GetToken(SchemaParser.G_DOT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_IDENTIFIER() { return GetToken(SchemaParser.G_IDENTIFIER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_LPAREN() { return GetToken(SchemaParser.G_LPAREN, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_RPAREN() { return GetToken(SchemaParser.G_RPAREN, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] G_COMMA() { return GetTokens(SchemaParser.G_COMMA); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_COMMA(int i) {
+			return GetToken(SchemaParser.G_COMMA, i);
+		}
+		public InvokeMethodExpressionContext(ExpressionContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitEqualityExpression(this);
+			if (typedVisitor != null) return typedVisitor.VisitInvokeMethodExpression(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class MultiplicativeExpressionContext : ExpressionContext {
+	public partial class AssignmentDotExpressionContext : ExpressionContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext[] expression() {
 			return GetRuleContexts<ExpressionContext>();
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression(int i) {
 			return GetRuleContext<ExpressionContext>(i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_MUL() { return GetToken(SchemaParser.G_MUL, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_DIV() { return GetToken(SchemaParser.G_DIV, 0); }
-		public MultiplicativeExpressionContext(ExpressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_DOT() { return GetToken(SchemaParser.G_DOT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_IDENTIFIER() { return GetToken(SchemaParser.G_IDENTIFIER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_ASSIGN() { return GetToken(SchemaParser.G_ASSIGN, 0); }
+		public AssignmentDotExpressionContext(ExpressionContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMultiplicativeExpression(this);
+			if (typedVisitor != null) return typedVisitor.VisitAssignmentDotExpression(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -3148,213 +3310,339 @@ internal partial class SchemaParser : Parser {
 			int _alt;
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 468;
+			State = 490;
 			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,56,Context) ) {
+			switch ( Interpreter.AdaptivePredict(TokenStream,58,Context) ) {
 			case 1:
 				{
-				_localctx = new AllRefExpressionContext(_localctx);
+				_localctx = new InvokeFunctionExpressionContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
 
-				State = 428;
-				refExpression(0);
+				State = 426;
+				Match(G_IDENTIFIER);
+				State = 427;
+				Match(G_LPAREN);
+				State = 436;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+				if (((((_la - 43)) & ~0x3f) == 0 && ((1L << (_la - 43)) & 18047664625028891L) != 0)) {
+					{
+					State = 428;
+					expression(0);
+					State = 433;
+					ErrorHandler.Sync(this);
+					_la = TokenStream.LA(1);
+					while (_la==G_COMMA) {
+						{
+						{
+						State = 429;
+						Match(G_COMMA);
+						State = 430;
+						expression(0);
+						}
+						}
+						State = 435;
+						ErrorHandler.Sync(this);
+						_la = TokenStream.LA(1);
+					}
+					}
+				}
+
+				State = 438;
+				Match(G_RPAREN);
 				}
 				break;
 			case 2:
 				{
-				_localctx = new UnaryMinusExpressionContext(_localctx);
+				_localctx = new UnaryPlusExpressionContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 429;
-				Match(G_MINUS);
-				State = 430;
-				expression(19);
+				State = 439;
+				Match(G_PLUS);
+				State = 440;
+				expression(30);
 				}
 				break;
 			case 3:
 				{
-				_localctx = new LogicalNotExpressionContext(_localctx);
+				_localctx = new UnaryMinusExpressionContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 431;
-				Match(G_NOT);
-				State = 432;
-				expression(18);
+				State = 441;
+				Match(G_MINUS);
+				State = 442;
+				expression(29);
 				}
 				break;
 			case 4:
 				{
-				_localctx = new PostIncrementExpressionContext(_localctx);
+				_localctx = new LogicalNotExpressionContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 433;
-				refExpression(0);
-				State = 434;
-				Match(G_INC);
+				State = 443;
+				Match(G_LNOT);
+				State = 444;
+				expression(28);
 				}
 				break;
 			case 5:
 				{
-				_localctx = new PostDecrementExpressionContext(_localctx);
+				_localctx = new PostIncDecExpressionContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 436;
-				refExpression(0);
-				State = 437;
-				Match(G_DEC);
+				State = 445;
+				Match(G_IDENTIFIER);
+				State = 446;
+				_la = TokenStream.LA(1);
+				if ( !(_la==G_INC || _la==G_DEC) ) {
+				ErrorHandler.RecoverInline(this);
+				}
+				else {
+					ErrorHandler.ReportMatch(this);
+				    Consume();
+				}
 				}
 				break;
 			case 6:
 				{
-				_localctx = new PreIncrementExpressionContext(_localctx);
+				_localctx = new PreIncDecExpressionContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 439;
-				Match(G_INC);
-				State = 440;
-				refExpression(0);
+				State = 447;
+				_la = TokenStream.LA(1);
+				if ( !(_la==G_INC || _la==G_DEC) ) {
+				ErrorHandler.RecoverInline(this);
+				}
+				else {
+					ErrorHandler.ReportMatch(this);
+				    Consume();
+				}
+				State = 448;
+				expression(0);
+				State = 449;
+				Match(G_LBRACKET);
+				State = 450;
+				expression(0);
+				State = 451;
+				Match(G_RBRACKET);
 				}
 				break;
 			case 7:
 				{
-				_localctx = new PreDecrementExpressionContext(_localctx);
+				_localctx = new PreIncDecExpressionContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 441;
-				Match(G_DEC);
-				State = 442;
-				refExpression(0);
+				State = 453;
+				_la = TokenStream.LA(1);
+				if ( !(_la==G_INC || _la==G_DEC) ) {
+				ErrorHandler.RecoverInline(this);
+				}
+				else {
+					ErrorHandler.ReportMatch(this);
+				    Consume();
+				}
+				State = 454;
+				expression(0);
+				State = 455;
+				Match(G_DOT);
+				State = 456;
+				Match(G_IDENTIFIER);
 				}
 				break;
 			case 8:
 				{
-				_localctx = new RangeEndExpressionContext(_localctx);
+				_localctx = new PreIncDecExpressionContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 443;
-				Match(G_RANGE);
-				State = 444;
-				expression(10);
+				State = 458;
+				_la = TokenStream.LA(1);
+				if ( !(_la==G_INC || _la==G_DEC) ) {
+				ErrorHandler.RecoverInline(this);
+				}
+				else {
+					ErrorHandler.ReportMatch(this);
+				    Consume();
+				}
+				State = 459;
+				Match(G_IDENTIFIER);
 				}
 				break;
 			case 9:
 				{
-				_localctx = new AssignmentExpressionContext(_localctx);
+				_localctx = new RangeEndExpressionContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 445;
-				refExpression(0);
-				State = 446;
-				Match(G_ASSIGN);
-				State = 447;
-				expression(5);
+				State = 460;
+				Match(G_RANGE);
+				State = 461;
+				expression(18);
 				}
 				break;
 			case 10:
 				{
-				_localctx = new LiteralExpressionContext(_localctx);
+				_localctx = new AssignmentIdExpressionContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 449;
-				literal();
+				State = 462;
+				Match(G_IDENTIFIER);
+				State = 463;
+				Match(G_ASSIGN);
+				State = 464;
+				expression(11);
 				}
 				break;
 			case 11:
 				{
-				_localctx = new ParenthesizedExpressionContext(_localctx);
+				_localctx = new AssignmentAugExpressionContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 450;
-				Match(G_LPAREN);
-				State = 451;
-				expression(0);
-				State = 452;
-				Match(G_RPAREN);
+				State = 465;
+				Match(G_IDENTIFIER);
+				State = 466;
+				_la = TokenStream.LA(1);
+				if ( !(((((_la - 100)) & ~0x3f) == 0 && ((1L << (_la - 100)) & 31L) != 0)) ) {
+				ErrorHandler.RecoverInline(this);
+				}
+				else {
+					ErrorHandler.ReportMatch(this);
+				    Consume();
+				}
+				State = 467;
+				expression(8);
 				}
 				break;
 			case 12:
 				{
-				_localctx = new TryofExpressionContext(_localctx);
+				_localctx = new TargetExpressionContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 454;
-				Match(G_TRYOF);
-				State = 455;
-				Match(G_LPAREN);
-				State = 456;
-				expression(0);
-				State = 457;
-				Match(G_RPAREN);
+				State = 468;
+				Match(G_TARGET);
 				}
 				break;
 			case 13:
 				{
+				_localctx = new CallerExpressionContext(_localctx);
+				Context = _localctx;
+				_prevctx = _localctx;
+				State = 469;
+				Match(G_CALLER);
+				}
+				break;
+			case 14:
+				{
+				_localctx = new IdentifierExpressionContext(_localctx);
+				Context = _localctx;
+				_prevctx = _localctx;
+				State = 470;
+				Match(G_IDENTIFIER);
+				}
+				break;
+			case 15:
+				{
+				_localctx = new LiteralExpressionContext(_localctx);
+				Context = _localctx;
+				_prevctx = _localctx;
+				State = 471;
+				literal();
+				}
+				break;
+			case 16:
+				{
+				_localctx = new ParenthesizedExpressionContext(_localctx);
+				Context = _localctx;
+				_prevctx = _localctx;
+				State = 472;
+				Match(G_LPAREN);
+				State = 473;
+				expression(0);
+				State = 474;
+				Match(G_RPAREN);
+				}
+				break;
+			case 17:
+				{
+				_localctx = new TryofExpressionContext(_localctx);
+				Context = _localctx;
+				_prevctx = _localctx;
+				State = 476;
+				Match(G_TRYOF);
+				State = 477;
+				Match(G_LPAREN);
+				State = 478;
+				expression(0);
+				State = 479;
+				Match(G_RPAREN);
+				}
+				break;
+			case 18:
+				{
 				_localctx = new ThrowExpressionContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 459;
+				State = 481;
 				Match(G_THROW);
-				State = 460;
+				State = 482;
 				Match(G_LPAREN);
-				State = 461;
+				State = 483;
 				expression(0);
-				State = 464;
+				State = 486;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==G_COMMA) {
 					{
-					State = 462;
+					State = 484;
 					Match(G_COMMA);
-					State = 463;
+					State = 485;
 					expression(0);
 					}
 				}
 
-				State = 466;
+				State = 488;
 				Match(G_RPAREN);
 				}
 				break;
 			}
 			Context.Stop = TokenStream.LT(-1);
-			State = 495;
+			State = 574;
 			ErrorHandler.Sync(this);
-			_alt = Interpreter.AdaptivePredict(TokenStream,59,Context);
+			_alt = Interpreter.AdaptivePredict(TokenStream,63,Context);
 			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( ParseListeners!=null )
 						TriggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					State = 493;
+					State = 572;
 					ErrorHandler.Sync(this);
-					switch ( Interpreter.AdaptivePredict(TokenStream,58,Context) ) {
+					switch ( Interpreter.AdaptivePredict(TokenStream,62,Context) ) {
 					case 1:
 						{
 						_localctx = new MultiplicativeExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 470;
-						if (!(Precpred(Context, 13))) throw new FailedPredicateException(this, "Precpred(Context, 13)");
-						State = 471;
+						State = 492;
+						if (!(Precpred(Context, 21))) throw new FailedPredicateException(this, "Precpred(Context, 21)");
+						State = 493;
 						_la = TokenStream.LA(1);
-						if ( !(_la==G_MUL || _la==G_DIV) ) {
+						if ( !(((((_la - 88)) & ~0x3f) == 0 && ((1L << (_la - 88)) & 7L) != 0)) ) {
 						ErrorHandler.RecoverInline(this);
 						}
 						else {
 							ErrorHandler.ReportMatch(this);
 						    Consume();
 						}
-						State = 472;
-						expression(14);
+						State = 494;
+						expression(22);
 						}
 						break;
 					case 2:
 						{
 						_localctx = new AdditiveExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 473;
-						if (!(Precpred(Context, 12))) throw new FailedPredicateException(this, "Precpred(Context, 12)");
-						State = 474;
+						State = 495;
+						if (!(Precpred(Context, 20))) throw new FailedPredicateException(this, "Precpred(Context, 20)");
+						State = 496;
 						_la = TokenStream.LA(1);
 						if ( !(_la==G_PLUS || _la==G_MINUS) ) {
 						ErrorHandler.RecoverInline(this);
@@ -3363,36 +3651,36 @@ internal partial class SchemaParser : Parser {
 							ErrorHandler.ReportMatch(this);
 						    Consume();
 						}
-						State = 475;
-						expression(13);
+						State = 497;
+						expression(21);
 						}
 						break;
 					case 3:
 						{
 						_localctx = new RelationalExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 476;
-						if (!(Precpred(Context, 9))) throw new FailedPredicateException(this, "Precpred(Context, 9)");
-						State = 477;
+						State = 498;
+						if (!(Precpred(Context, 17))) throw new FailedPredicateException(this, "Precpred(Context, 17)");
+						State = 499;
 						_la = TokenStream.LA(1);
-						if ( !(((((_la - 89)) & ~0x3f) == 0 && ((1L << (_la - 89)) & 15L) != 0)) ) {
+						if ( !(((((_la - 91)) & ~0x3f) == 0 && ((1L << (_la - 91)) & 15L) != 0)) ) {
 						ErrorHandler.RecoverInline(this);
 						}
 						else {
 							ErrorHandler.ReportMatch(this);
 						    Consume();
 						}
-						State = 478;
-						expression(10);
+						State = 500;
+						expression(18);
 						}
 						break;
 					case 4:
 						{
 						_localctx = new EqualityExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 479;
-						if (!(Precpred(Context, 8))) throw new FailedPredicateException(this, "Precpred(Context, 8)");
-						State = 480;
+						State = 501;
+						if (!(Precpred(Context, 16))) throw new FailedPredicateException(this, "Precpred(Context, 16)");
+						State = 502;
 						_la = TokenStream.LA(1);
 						if ( !(_la==G_EQ || _la==G_NE) ) {
 						ErrorHandler.RecoverInline(this);
@@ -3401,48 +3689,242 @@ internal partial class SchemaParser : Parser {
 							ErrorHandler.ReportMatch(this);
 						    Consume();
 						}
-						State = 481;
-						expression(9);
+						State = 503;
+						expression(17);
 						}
 						break;
 					case 5:
 						{
 						_localctx = new LogicalAndExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 482;
-						if (!(Precpred(Context, 7))) throw new FailedPredicateException(this, "Precpred(Context, 7)");
-						State = 483;
-						Match(G_AND);
-						State = 484;
-						expression(8);
+						State = 504;
+						if (!(Precpred(Context, 15))) throw new FailedPredicateException(this, "Precpred(Context, 15)");
+						State = 505;
+						Match(G_LAND);
+						State = 506;
+						expression(16);
 						}
 						break;
 					case 6:
 						{
 						_localctx = new LogicalOrExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 485;
-						if (!(Precpred(Context, 6))) throw new FailedPredicateException(this, "Precpred(Context, 6)");
-						State = 486;
-						Match(G_OR);
-						State = 487;
-						expression(7);
+						State = 507;
+						if (!(Precpred(Context, 14))) throw new FailedPredicateException(this, "Precpred(Context, 14)");
+						State = 508;
+						Match(G_LOR);
+						State = 509;
+						expression(15);
 						}
 						break;
 					case 7:
 						{
+						_localctx = new AssignmentBracketExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						PushNewRecursionContext(_localctx, _startState, RULE_expression);
+						State = 510;
+						if (!(Precpred(Context, 13))) throw new FailedPredicateException(this, "Precpred(Context, 13)");
+						State = 511;
+						Match(G_LBRACKET);
+						State = 512;
+						expression(0);
+						State = 513;
+						Match(G_RBRACKET);
+						State = 514;
+						Match(G_ASSIGN);
+						State = 515;
+						expression(14);
+						}
+						break;
+					case 8:
+						{
+						_localctx = new AssignmentDotExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						PushNewRecursionContext(_localctx, _startState, RULE_expression);
+						State = 517;
+						if (!(Precpred(Context, 12))) throw new FailedPredicateException(this, "Precpred(Context, 12)");
+						State = 518;
+						Match(G_DOT);
+						State = 519;
+						Match(G_IDENTIFIER);
+						State = 520;
+						Match(G_ASSIGN);
+						State = 521;
+						expression(13);
+						}
+						break;
+					case 9:
+						{
+						_localctx = new AssignmentAugExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						PushNewRecursionContext(_localctx, _startState, RULE_expression);
+						State = 522;
+						if (!(Precpred(Context, 10))) throw new FailedPredicateException(this, "Precpred(Context, 10)");
+						State = 523;
+						Match(G_LBRACKET);
+						State = 524;
+						expression(0);
+						State = 525;
+						Match(G_RBRACKET);
+						State = 526;
+						_la = TokenStream.LA(1);
+						if ( !(((((_la - 100)) & ~0x3f) == 0 && ((1L << (_la - 100)) & 31L) != 0)) ) {
+						ErrorHandler.RecoverInline(this);
+						}
+						else {
+							ErrorHandler.ReportMatch(this);
+						    Consume();
+						}
+						State = 527;
+						expression(11);
+						}
+						break;
+					case 10:
+						{
+						_localctx = new AssignmentAugExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						PushNewRecursionContext(_localctx, _startState, RULE_expression);
+						State = 529;
+						if (!(Precpred(Context, 9))) throw new FailedPredicateException(this, "Precpred(Context, 9)");
+						State = 530;
+						Match(G_DOT);
+						State = 531;
+						Match(G_IDENTIFIER);
+						State = 532;
+						_la = TokenStream.LA(1);
+						if ( !(((((_la - 100)) & ~0x3f) == 0 && ((1L << (_la - 100)) & 31L) != 0)) ) {
+						ErrorHandler.RecoverInline(this);
+						}
+						else {
+							ErrorHandler.ReportMatch(this);
+						    Consume();
+						}
+						State = 533;
+						expression(10);
+						}
+						break;
+					case 11:
+						{
+						_localctx = new MemberBracketExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						PushNewRecursionContext(_localctx, _startState, RULE_expression);
+						State = 534;
+						if (!(Precpred(Context, 34))) throw new FailedPredicateException(this, "Precpred(Context, 34)");
+						State = 535;
+						Match(G_LBRACKET);
+						State = 536;
+						expression(0);
+						State = 537;
+						Match(G_RBRACKET);
+						}
+						break;
+					case 12:
+						{
+						_localctx = new MemberDotExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						PushNewRecursionContext(_localctx, _startState, RULE_expression);
+						State = 539;
+						if (!(Precpred(Context, 33))) throw new FailedPredicateException(this, "Precpred(Context, 33)");
+						State = 540;
+						Match(G_DOT);
+						State = 541;
+						Match(G_IDENTIFIER);
+						}
+						break;
+					case 13:
+						{
+						_localctx = new InvokeMethodExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						PushNewRecursionContext(_localctx, _startState, RULE_expression);
+						State = 542;
+						if (!(Precpred(Context, 31))) throw new FailedPredicateException(this, "Precpred(Context, 31)");
+						State = 543;
+						Match(G_DOT);
+						State = 544;
+						Match(G_IDENTIFIER);
+						State = 545;
+						Match(G_LPAREN);
+						State = 554;
+						ErrorHandler.Sync(this);
+						_la = TokenStream.LA(1);
+						if (((((_la - 43)) & ~0x3f) == 0 && ((1L << (_la - 43)) & 18047664625028891L) != 0)) {
+							{
+							State = 546;
+							expression(0);
+							State = 551;
+							ErrorHandler.Sync(this);
+							_la = TokenStream.LA(1);
+							while (_la==G_COMMA) {
+								{
+								{
+								State = 547;
+								Match(G_COMMA);
+								State = 548;
+								expression(0);
+								}
+								}
+								State = 553;
+								ErrorHandler.Sync(this);
+								_la = TokenStream.LA(1);
+							}
+							}
+						}
+
+						State = 556;
+						Match(G_RPAREN);
+						}
+						break;
+					case 14:
+						{
+						_localctx = new PostIncDecExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						PushNewRecursionContext(_localctx, _startState, RULE_expression);
+						State = 557;
+						if (!(Precpred(Context, 27))) throw new FailedPredicateException(this, "Precpred(Context, 27)");
+						State = 558;
+						Match(G_LBRACKET);
+						State = 559;
+						expression(0);
+						State = 560;
+						Match(G_RBRACKET);
+						State = 561;
+						_la = TokenStream.LA(1);
+						if ( !(_la==G_INC || _la==G_DEC) ) {
+						ErrorHandler.RecoverInline(this);
+						}
+						else {
+							ErrorHandler.ReportMatch(this);
+						    Consume();
+						}
+						}
+						break;
+					case 15:
+						{
+						_localctx = new PostIncDecExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						PushNewRecursionContext(_localctx, _startState, RULE_expression);
+						State = 563;
+						if (!(Precpred(Context, 26))) throw new FailedPredicateException(this, "Precpred(Context, 26)");
+						State = 564;
+						Match(G_DOT);
+						State = 565;
+						Match(G_IDENTIFIER);
+						State = 566;
+						_la = TokenStream.LA(1);
+						if ( !(_la==G_INC || _la==G_DEC) ) {
+						ErrorHandler.RecoverInline(this);
+						}
+						else {
+							ErrorHandler.ReportMatch(this);
+						    Consume();
+						}
+						}
+						break;
+					case 16:
+						{
 						_localctx = new RangeBothExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 488;
-						if (!(Precpred(Context, 11))) throw new FailedPredicateException(this, "Precpred(Context, 11)");
-						State = 489;
+						State = 567;
+						if (!(Precpred(Context, 19))) throw new FailedPredicateException(this, "Precpred(Context, 19)");
+						State = 568;
 						Match(G_RANGE);
-						State = 491;
+						State = 570;
 						ErrorHandler.Sync(this);
-						switch ( Interpreter.AdaptivePredict(TokenStream,57,Context) ) {
+						switch ( Interpreter.AdaptivePredict(TokenStream,61,Context) ) {
 						case 1:
 							{
-							State = 490;
+							State = 569;
 							expression(0);
 							}
 							break;
@@ -3452,252 +3934,9 @@ internal partial class SchemaParser : Parser {
 					}
 					}
 				}
-				State = 497;
+				State = 576;
 				ErrorHandler.Sync(this);
-				_alt = Interpreter.AdaptivePredict(TokenStream,59,Context);
-			}
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			ErrorHandler.ReportError(this, re);
-			ErrorHandler.Recover(this, re);
-		}
-		finally {
-			UnrollRecursionContexts(_parentctx);
-		}
-		return _localctx;
-	}
-
-	public partial class RefExpressionContext : ParserRuleContext {
-		public RefExpressionContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return RULE_refExpression; } }
-
-		public RefExpressionContext() { }
-		public virtual void CopyFrom(RefExpressionContext context) {
-			base.CopyFrom(context);
-		}
-	}
-	public partial class CallerExpressionContext : RefExpressionContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_CALLER() { return GetToken(SchemaParser.G_CALLER, 0); }
-		public CallerExpressionContext(RefExpressionContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCallerExpression(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-	public partial class InvokeExpressionContext : RefExpressionContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_IDENTIFIER() { return GetToken(SchemaParser.G_IDENTIFIER, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_LPAREN() { return GetToken(SchemaParser.G_LPAREN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_RPAREN() { return GetToken(SchemaParser.G_RPAREN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext[] expression() {
-			return GetRuleContexts<ExpressionContext>();
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression(int i) {
-			return GetRuleContext<ExpressionContext>(i);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] G_COMMA() { return GetTokens(SchemaParser.G_COMMA); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_COMMA(int i) {
-			return GetToken(SchemaParser.G_COMMA, i);
-		}
-		public InvokeExpressionContext(RefExpressionContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitInvokeExpression(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-	public partial class DotExpressionContext : RefExpressionContext {
-		[System.Diagnostics.DebuggerNonUserCode] public RefExpressionContext refExpression() {
-			return GetRuleContext<RefExpressionContext>(0);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_DOT() { return GetToken(SchemaParser.G_DOT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_IDENTIFIER() { return GetToken(SchemaParser.G_IDENTIFIER, 0); }
-		public DotExpressionContext(RefExpressionContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDotExpression(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-	public partial class TargetExpressionContext : RefExpressionContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_TARGET() { return GetToken(SchemaParser.G_TARGET, 0); }
-		public TargetExpressionContext(RefExpressionContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTargetExpression(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-	public partial class IndexExpressionContext : RefExpressionContext {
-		[System.Diagnostics.DebuggerNonUserCode] public RefExpressionContext refExpression() {
-			return GetRuleContext<RefExpressionContext>(0);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_LBRACKET() { return GetToken(SchemaParser.G_LBRACKET, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression() {
-			return GetRuleContext<ExpressionContext>(0);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_RBRACKET() { return GetToken(SchemaParser.G_RBRACKET, 0); }
-		public IndexExpressionContext(RefExpressionContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitIndexExpression(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-	public partial class IdentifierExpressionContext : RefExpressionContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_IDENTIFIER() { return GetToken(SchemaParser.G_IDENTIFIER, 0); }
-		public IdentifierExpressionContext(RefExpressionContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ISchemaParserVisitor<TResult> typedVisitor = visitor as ISchemaParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitIdentifierExpression(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-
-	[RuleVersion(0)]
-	public RefExpressionContext refExpression() {
-		return refExpression(0);
-	}
-
-	private RefExpressionContext refExpression(int _p) {
-		ParserRuleContext _parentctx = Context;
-		int _parentState = State;
-		RefExpressionContext _localctx = new RefExpressionContext(Context, _parentState);
-		RefExpressionContext _prevctx = _localctx;
-		int _startState = 70;
-		EnterRecursionRule(_localctx, 70, RULE_refExpression, _p);
-		int _la;
-		try {
-			int _alt;
-			EnterOuterAlt(_localctx, 1);
-			{
-			State = 515;
-			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,62,Context) ) {
-			case 1:
-				{
-				_localctx = new InvokeExpressionContext(_localctx);
-				Context = _localctx;
-				_prevctx = _localctx;
-
-				State = 499;
-				Match(G_IDENTIFIER);
-				State = 500;
-				Match(G_LPAREN);
-				State = 509;
-				ErrorHandler.Sync(this);
-				_la = TokenStream.LA(1);
-				if (((((_la - 43)) & ~0x3f) == 0 && ((1L << (_la - 43)) & 4515834638634779L) != 0)) {
-					{
-					State = 501;
-					expression(0);
-					State = 506;
-					ErrorHandler.Sync(this);
-					_la = TokenStream.LA(1);
-					while (_la==G_COMMA) {
-						{
-						{
-						State = 502;
-						Match(G_COMMA);
-						State = 503;
-						expression(0);
-						}
-						}
-						State = 508;
-						ErrorHandler.Sync(this);
-						_la = TokenStream.LA(1);
-					}
-					}
-				}
-
-				State = 511;
-				Match(G_RPAREN);
-				}
-				break;
-			case 2:
-				{
-				_localctx = new TargetExpressionContext(_localctx);
-				Context = _localctx;
-				_prevctx = _localctx;
-				State = 512;
-				Match(G_TARGET);
-				}
-				break;
-			case 3:
-				{
-				_localctx = new CallerExpressionContext(_localctx);
-				Context = _localctx;
-				_prevctx = _localctx;
-				State = 513;
-				Match(G_CALLER);
-				}
-				break;
-			case 4:
-				{
-				_localctx = new IdentifierExpressionContext(_localctx);
-				Context = _localctx;
-				_prevctx = _localctx;
-				State = 514;
-				Match(G_IDENTIFIER);
-				}
-				break;
-			}
-			Context.Stop = TokenStream.LT(-1);
-			State = 527;
-			ErrorHandler.Sync(this);
-			_alt = Interpreter.AdaptivePredict(TokenStream,64,Context);
-			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1 ) {
-					if ( ParseListeners!=null )
-						TriggerExitRuleEvent();
-					_prevctx = _localctx;
-					{
-					State = 525;
-					ErrorHandler.Sync(this);
-					switch ( Interpreter.AdaptivePredict(TokenStream,63,Context) ) {
-					case 1:
-						{
-						_localctx = new DotExpressionContext(new RefExpressionContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_refExpression);
-						State = 517;
-						if (!(Precpred(Context, 6))) throw new FailedPredicateException(this, "Precpred(Context, 6)");
-						State = 518;
-						Match(G_DOT);
-						State = 519;
-						Match(G_IDENTIFIER);
-						}
-						break;
-					case 2:
-						{
-						_localctx = new IndexExpressionContext(new RefExpressionContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_refExpression);
-						State = 520;
-						if (!(Precpred(Context, 5))) throw new FailedPredicateException(this, "Precpred(Context, 5)");
-						State = 521;
-						Match(G_LBRACKET);
-						State = 522;
-						expression(0);
-						State = 523;
-						Match(G_RBRACKET);
-						}
-						break;
-					}
-					}
-				}
-				State = 529;
-				ErrorHandler.Sync(this);
-				_alt = Interpreter.AdaptivePredict(TokenStream,64,Context);
+				_alt = Interpreter.AdaptivePredict(TokenStream,63,Context);
 			}
 			}
 		}
@@ -3728,10 +3967,10 @@ internal partial class SchemaParser : Parser {
 		public IToken _G_IDENTIFIER;
 		public IList<IToken> _keys = new List<IToken>();
 		public IToken _G_STRING;
-		public IToken _tset1232;
+		public IToken _tset1494;
 		public ExpressionContext _expression;
 		public IList<ExpressionContext> _values = new List<ExpressionContext>();
-		public IToken _tset1254;
+		public IToken _tset1516;
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_LBRACE() { return GetToken(SchemaParser.G_LBRACE, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode G_RBRACE() { return GetToken(SchemaParser.G_RBRACE, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] G_COLON() { return GetTokens(SchemaParser.G_COLON); }
@@ -3859,17 +4098,17 @@ internal partial class SchemaParser : Parser {
 	[RuleVersion(0)]
 	public LiteralContext literal() {
 		LiteralContext _localctx = new LiteralContext(Context, State);
-		EnterRule(_localctx, 72, RULE_literal);
+		EnterRule(_localctx, 70, RULE_literal);
 		int _la;
 		try {
-			State = 565;
+			State = 612;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
 			case G_TRUE:
 				_localctx = new TrueLiteralContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 530;
+				State = 577;
 				Match(G_TRUE);
 				}
 				break;
@@ -3877,7 +4116,7 @@ internal partial class SchemaParser : Parser {
 				_localctx = new FalseLiteralContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 531;
+				State = 578;
 				Match(G_FALSE);
 				}
 				break;
@@ -3885,7 +4124,7 @@ internal partial class SchemaParser : Parser {
 				_localctx = new IntegerLiteralContext(_localctx);
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 532;
+				State = 579;
 				Match(G_INTEGER);
 				}
 				break;
@@ -3893,7 +4132,7 @@ internal partial class SchemaParser : Parser {
 				_localctx = new DoubleLiteralContext(_localctx);
 				EnterOuterAlt(_localctx, 4);
 				{
-				State = 533;
+				State = 580;
 				Match(G_DOUBLE);
 				}
 				break;
@@ -3901,7 +4140,7 @@ internal partial class SchemaParser : Parser {
 				_localctx = new StringLiteralContext(_localctx);
 				EnterOuterAlt(_localctx, 5);
 				{
-				State = 534;
+				State = 581;
 				Match(G_STRING);
 				}
 				break;
@@ -3909,35 +4148,35 @@ internal partial class SchemaParser : Parser {
 				_localctx = new ArrayLiteralContext(_localctx);
 				EnterOuterAlt(_localctx, 6);
 				{
-				State = 535;
+				State = 582;
 				Match(G_LBRACKET);
-				State = 544;
+				State = 591;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (((((_la - 43)) & ~0x3f) == 0 && ((1L << (_la - 43)) & 4515834638634779L) != 0)) {
+				if (((((_la - 43)) & ~0x3f) == 0 && ((1L << (_la - 43)) & 18047664625028891L) != 0)) {
 					{
-					State = 536;
+					State = 583;
 					expression(0);
-					State = 541;
+					State = 588;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 					while (_la==G_COMMA) {
 						{
 						{
-						State = 537;
+						State = 584;
 						Match(G_COMMA);
-						State = 538;
+						State = 585;
 						expression(0);
 						}
 						}
-						State = 543;
+						State = 590;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 					}
 					}
 				}
 
-				State = 546;
+				State = 593;
 				Match(G_RBRACKET);
 				}
 				break;
@@ -3945,63 +4184,63 @@ internal partial class SchemaParser : Parser {
 				_localctx = new ObjectLiteralContext(_localctx);
 				EnterOuterAlt(_localctx, 7);
 				{
-				State = 547;
+				State = 594;
 				Match(G_LBRACE);
-				State = 560;
+				State = 607;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==G_STRING || _la==G_IDENTIFIER) {
 					{
-					State = 548;
-					((ObjectLiteralContext)_localctx)._tset1232 = TokenStream.LT(1);
+					State = 595;
+					((ObjectLiteralContext)_localctx)._tset1494 = TokenStream.LT(1);
 					_la = TokenStream.LA(1);
 					if ( !(_la==G_STRING || _la==G_IDENTIFIER) ) {
-						((ObjectLiteralContext)_localctx)._tset1232 = ErrorHandler.RecoverInline(this);
+						((ObjectLiteralContext)_localctx)._tset1494 = ErrorHandler.RecoverInline(this);
 					}
 					else {
 						ErrorHandler.ReportMatch(this);
 					    Consume();
 					}
-					((ObjectLiteralContext)_localctx)._keys.Add(((ObjectLiteralContext)_localctx)._tset1232);
-					State = 549;
+					((ObjectLiteralContext)_localctx)._keys.Add(((ObjectLiteralContext)_localctx)._tset1494);
+					State = 596;
 					Match(G_COLON);
-					State = 550;
+					State = 597;
 					((ObjectLiteralContext)_localctx)._expression = expression(0);
 					((ObjectLiteralContext)_localctx)._values.Add(((ObjectLiteralContext)_localctx)._expression);
-					State = 557;
+					State = 604;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 					while (_la==G_COMMA) {
 						{
 						{
-						State = 551;
+						State = 598;
 						Match(G_COMMA);
-						State = 552;
-						((ObjectLiteralContext)_localctx)._tset1254 = TokenStream.LT(1);
+						State = 599;
+						((ObjectLiteralContext)_localctx)._tset1516 = TokenStream.LT(1);
 						_la = TokenStream.LA(1);
 						if ( !(_la==G_STRING || _la==G_IDENTIFIER) ) {
-							((ObjectLiteralContext)_localctx)._tset1254 = ErrorHandler.RecoverInline(this);
+							((ObjectLiteralContext)_localctx)._tset1516 = ErrorHandler.RecoverInline(this);
 						}
 						else {
 							ErrorHandler.ReportMatch(this);
 						    Consume();
 						}
-						((ObjectLiteralContext)_localctx)._keys.Add(((ObjectLiteralContext)_localctx)._tset1254);
-						State = 553;
+						((ObjectLiteralContext)_localctx)._keys.Add(((ObjectLiteralContext)_localctx)._tset1516);
+						State = 600;
 						Match(G_COLON);
-						State = 554;
+						State = 601;
 						((ObjectLiteralContext)_localctx)._expression = expression(0);
 						((ObjectLiteralContext)_localctx)._values.Add(((ObjectLiteralContext)_localctx)._expression);
 						}
 						}
-						State = 559;
+						State = 606;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 					}
 					}
 				}
 
-				State = 562;
+				State = 609;
 				Match(G_RBRACE);
 				}
 				break;
@@ -4009,7 +4248,7 @@ internal partial class SchemaParser : Parser {
 				_localctx = new NullLiteralContext(_localctx);
 				EnterOuterAlt(_localctx, 8);
 				{
-				State = 563;
+				State = 610;
 				Match(G_NULL);
 				}
 				break;
@@ -4017,7 +4256,7 @@ internal partial class SchemaParser : Parser {
 				_localctx = new UndefinedLiteralContext(_localctx);
 				EnterOuterAlt(_localctx, 9);
 				{
-				State = 564;
+				State = 611;
 				Match(G_UNDEFINED);
 				}
 				break;
@@ -4039,102 +4278,107 @@ internal partial class SchemaParser : Parser {
 	public override bool Sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
 		switch (ruleIndex) {
 		case 34: return expression_sempred((ExpressionContext)_localctx, predIndex);
-		case 35: return refExpression_sempred((RefExpressionContext)_localctx, predIndex);
 		}
 		return true;
 	}
 	private bool expression_sempred(ExpressionContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 0: return Precpred(Context, 13);
-		case 1: return Precpred(Context, 12);
-		case 2: return Precpred(Context, 9);
-		case 3: return Precpred(Context, 8);
-		case 4: return Precpred(Context, 7);
-		case 5: return Precpred(Context, 6);
-		case 6: return Precpred(Context, 11);
-		}
-		return true;
-	}
-	private bool refExpression_sempred(RefExpressionContext _localctx, int predIndex) {
-		switch (predIndex) {
-		case 7: return Precpred(Context, 6);
-		case 8: return Precpred(Context, 5);
+		case 0: return Precpred(Context, 21);
+		case 1: return Precpred(Context, 20);
+		case 2: return Precpred(Context, 17);
+		case 3: return Precpred(Context, 16);
+		case 4: return Precpred(Context, 15);
+		case 5: return Precpred(Context, 14);
+		case 6: return Precpred(Context, 13);
+		case 7: return Precpred(Context, 12);
+		case 8: return Precpred(Context, 10);
+		case 9: return Precpred(Context, 9);
+		case 10: return Precpred(Context, 34);
+		case 11: return Precpred(Context, 33);
+		case 12: return Precpred(Context, 31);
+		case 13: return Precpred(Context, 27);
+		case 14: return Precpred(Context, 26);
+		case 15: return Precpred(Context, 19);
 		}
 		return true;
 	}
 
 	private static int[] _serializedATN = {
-		4,1,100,568,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,
+		4,1,107,615,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,
 		7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,2,14,7,14,
 		2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,7,20,2,21,7,21,
 		2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,2,27,7,27,2,28,7,28,
 		2,29,7,29,2,30,7,30,2,31,7,31,2,32,7,32,2,33,7,33,2,34,7,34,2,35,7,35,
-		2,36,7,36,1,0,3,0,76,8,0,1,0,3,0,79,8,0,1,0,1,0,5,0,83,8,0,10,0,12,0,86,
-		9,0,1,0,1,0,5,0,90,8,0,10,0,12,0,93,9,0,1,0,1,0,1,0,5,0,98,8,0,10,0,12,
-		0,101,9,0,1,0,1,0,1,0,1,0,1,0,3,0,108,8,0,1,1,1,1,1,1,1,1,1,2,1,2,1,2,
-		1,2,1,3,1,3,1,3,1,3,1,4,1,4,1,4,1,4,1,4,3,4,127,8,4,1,5,1,5,1,5,1,5,1,
-		5,1,6,1,6,1,6,1,6,1,6,1,7,1,7,1,8,1,8,5,8,143,8,8,10,8,12,8,146,9,8,1,
-		8,5,8,149,8,8,10,8,12,8,152,9,8,1,8,5,8,155,8,8,10,8,12,8,158,9,8,1,8,
-		3,8,161,8,8,1,8,4,8,164,8,8,11,8,12,8,165,1,8,5,8,169,8,8,10,8,12,8,172,
-		9,8,1,8,5,8,175,8,8,10,8,12,8,178,9,8,1,8,3,8,181,8,8,1,8,4,8,184,8,8,
-		11,8,12,8,185,1,8,5,8,189,8,8,10,8,12,8,192,9,8,1,8,3,8,195,8,8,3,8,197,
-		8,8,1,9,1,9,3,9,201,8,9,1,10,1,10,1,10,3,10,206,8,10,1,11,1,11,1,12,1,
-		12,1,12,1,12,5,12,214,8,12,10,12,12,12,217,9,12,3,12,219,8,12,1,12,1,12,
-		1,13,1,13,1,13,1,13,1,14,1,14,1,14,1,14,5,14,231,8,14,10,14,12,14,234,
-		9,14,3,14,236,8,14,1,14,1,14,1,15,1,15,3,15,242,8,15,1,15,1,15,1,15,1,
-		15,3,15,248,8,15,1,16,1,16,3,16,252,8,16,1,16,1,16,1,16,1,16,5,16,258,
-		8,16,10,16,12,16,261,9,16,3,16,263,8,16,1,16,3,16,266,8,16,1,17,1,17,3,
-		17,270,8,17,1,18,1,18,1,18,1,18,1,18,1,18,1,18,1,18,3,18,280,8,18,1,19,
-		1,19,1,19,1,19,4,19,286,8,19,11,19,12,19,287,1,19,1,19,1,20,1,20,3,20,
-		294,8,20,1,21,1,21,1,21,1,21,1,21,1,21,1,21,1,21,1,21,3,21,305,8,21,1,
-		22,1,22,3,22,309,8,22,1,22,1,22,3,22,313,8,22,1,22,3,22,316,8,22,1,22,
-		1,22,3,22,320,8,22,3,22,322,8,22,1,22,1,22,1,22,1,22,1,22,5,22,329,8,22,
-		10,22,12,22,332,9,22,1,22,3,22,335,8,22,3,22,337,8,22,1,22,1,22,1,22,1,
-		23,1,23,1,23,1,23,5,23,346,8,23,10,23,12,23,349,9,23,1,23,1,23,1,24,1,
-		24,1,24,3,24,356,8,24,1,25,1,25,1,25,1,26,1,26,1,26,1,26,1,26,1,26,1,26,
-		3,26,368,8,26,1,27,1,27,1,27,1,27,1,27,1,27,1,28,1,28,1,28,1,28,1,28,1,
-		28,1,28,3,28,383,8,28,1,28,3,28,386,8,28,1,28,1,28,3,28,390,8,28,1,28,
-		1,28,1,28,1,29,1,29,1,29,5,29,398,8,29,10,29,12,29,401,9,29,1,30,1,30,
-		1,30,1,30,1,30,1,30,1,30,1,30,1,30,1,31,1,31,1,31,1,31,1,32,1,32,1,32,
-		1,33,1,33,5,33,421,8,33,10,33,12,33,424,9,33,1,33,1,33,1,34,1,34,1,34,
-		1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,
-		1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,
-		1,34,1,34,1,34,1,34,1,34,1,34,3,34,465,8,34,1,34,1,34,3,34,469,8,34,1,
+		1,0,3,0,74,8,0,1,0,3,0,77,8,0,1,0,1,0,5,0,81,8,0,10,0,12,0,84,9,0,1,0,
+		1,0,5,0,88,8,0,10,0,12,0,91,9,0,1,0,1,0,1,0,5,0,96,8,0,10,0,12,0,99,9,
+		0,1,0,1,0,1,0,1,0,1,0,3,0,106,8,0,1,1,1,1,1,1,1,1,1,2,1,2,1,2,1,2,1,3,
+		1,3,1,3,1,3,1,4,1,4,1,4,1,4,1,4,3,4,125,8,4,1,5,1,5,1,5,1,5,1,5,1,6,1,
+		6,1,6,1,6,1,6,1,7,1,7,3,7,139,8,7,1,8,1,8,5,8,143,8,8,10,8,12,8,146,9,
+		8,1,8,5,8,149,8,8,10,8,12,8,152,9,8,1,8,5,8,155,8,8,10,8,12,8,158,9,8,
+		1,8,3,8,161,8,8,1,8,4,8,164,8,8,11,8,12,8,165,1,8,5,8,169,8,8,10,8,12,
+		8,172,9,8,1,8,5,8,175,8,8,10,8,12,8,178,9,8,1,8,3,8,181,8,8,1,8,4,8,184,
+		8,8,11,8,12,8,185,1,8,5,8,189,8,8,10,8,12,8,192,9,8,1,8,3,8,195,8,8,3,
+		8,197,8,8,1,9,1,9,1,10,1,10,1,10,3,10,204,8,10,1,11,1,11,1,12,1,12,1,12,
+		1,12,5,12,212,8,12,10,12,12,12,215,9,12,3,12,217,8,12,1,12,1,12,1,13,1,
+		13,1,13,1,13,1,14,1,14,1,14,1,14,5,14,229,8,14,10,14,12,14,232,9,14,3,
+		14,234,8,14,1,14,1,14,1,15,1,15,3,15,240,8,15,1,15,1,15,1,15,1,15,3,15,
+		246,8,15,1,16,1,16,3,16,250,8,16,1,16,1,16,1,16,1,16,5,16,256,8,16,10,
+		16,12,16,259,9,16,3,16,261,8,16,1,16,3,16,264,8,16,1,17,1,17,3,17,268,
+		8,17,1,18,1,18,1,18,1,18,1,18,1,18,1,18,1,18,3,18,278,8,18,1,19,1,19,1,
+		19,1,19,4,19,284,8,19,11,19,12,19,285,1,19,1,19,1,20,1,20,3,20,292,8,20,
+		1,21,1,21,1,21,1,21,1,21,1,21,1,21,1,21,1,21,3,21,303,8,21,1,22,1,22,3,
+		22,307,8,22,1,22,1,22,3,22,311,8,22,1,22,3,22,314,8,22,1,22,1,22,3,22,
+		318,8,22,3,22,320,8,22,1,22,1,22,1,22,1,22,1,22,5,22,327,8,22,10,22,12,
+		22,330,9,22,1,22,3,22,333,8,22,3,22,335,8,22,1,22,1,22,1,22,1,23,1,23,
+		1,23,1,23,5,23,344,8,23,10,23,12,23,347,9,23,1,23,1,23,1,24,1,24,1,24,
+		3,24,354,8,24,1,25,1,25,1,25,1,26,1,26,1,26,1,26,1,26,1,26,1,26,3,26,366,
+		8,26,1,27,1,27,1,27,1,27,1,27,1,27,1,28,1,28,1,28,1,28,1,28,1,28,1,28,
+		3,28,381,8,28,1,28,3,28,384,8,28,1,28,1,28,3,28,388,8,28,1,28,1,28,1,28,
+		1,29,1,29,1,29,5,29,396,8,29,10,29,12,29,399,9,29,1,30,1,30,1,30,1,30,
+		1,30,1,30,1,30,1,30,1,30,1,31,1,31,1,31,1,31,1,32,1,32,1,32,1,33,1,33,
+		5,33,419,8,33,10,33,12,33,422,9,33,1,33,1,33,1,34,1,34,1,34,1,34,1,34,
+		1,34,5,34,432,8,34,10,34,12,34,435,9,34,3,34,437,8,34,1,34,1,34,1,34,1,
 		34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,
-		34,1,34,1,34,1,34,1,34,1,34,1,34,3,34,492,8,34,5,34,494,8,34,10,34,12,
-		34,497,9,34,1,35,1,35,1,35,1,35,1,35,1,35,5,35,505,8,35,10,35,12,35,508,
-		9,35,3,35,510,8,35,1,35,1,35,1,35,1,35,3,35,516,8,35,1,35,1,35,1,35,1,
-		35,1,35,1,35,1,35,1,35,5,35,526,8,35,10,35,12,35,529,9,35,1,36,1,36,1,
-		36,1,36,1,36,1,36,1,36,1,36,1,36,5,36,540,8,36,10,36,12,36,543,9,36,3,
-		36,545,8,36,1,36,1,36,1,36,1,36,1,36,1,36,1,36,1,36,1,36,5,36,556,8,36,
-		10,36,12,36,559,9,36,3,36,561,8,36,1,36,1,36,1,36,3,36,566,8,36,1,36,0,
-		2,68,70,37,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,
-		44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,0,5,1,0,87,88,1,0,85,86,1,
-		0,89,92,1,0,93,94,1,0,68,69,642,0,107,1,0,0,0,2,109,1,0,0,0,4,113,1,0,
-		0,0,6,117,1,0,0,0,8,121,1,0,0,0,10,128,1,0,0,0,12,133,1,0,0,0,14,138,1,
-		0,0,0,16,196,1,0,0,0,18,200,1,0,0,0,20,205,1,0,0,0,22,207,1,0,0,0,24,209,
-		1,0,0,0,26,222,1,0,0,0,28,226,1,0,0,0,30,239,1,0,0,0,32,249,1,0,0,0,34,
-		269,1,0,0,0,36,279,1,0,0,0,38,281,1,0,0,0,40,293,1,0,0,0,42,304,1,0,0,
-		0,44,321,1,0,0,0,46,341,1,0,0,0,48,352,1,0,0,0,50,357,1,0,0,0,52,360,1,
-		0,0,0,54,369,1,0,0,0,56,375,1,0,0,0,58,394,1,0,0,0,60,402,1,0,0,0,62,411,
-		1,0,0,0,64,415,1,0,0,0,66,418,1,0,0,0,68,468,1,0,0,0,70,515,1,0,0,0,72,
-		565,1,0,0,0,74,76,3,4,2,0,75,74,1,0,0,0,75,76,1,0,0,0,76,78,1,0,0,0,77,
-		79,3,6,3,0,78,77,1,0,0,0,78,79,1,0,0,0,79,84,1,0,0,0,80,83,3,8,4,0,81,
-		83,3,10,5,0,82,80,1,0,0,0,82,81,1,0,0,0,83,86,1,0,0,0,84,82,1,0,0,0,84,
-		85,1,0,0,0,85,91,1,0,0,0,86,84,1,0,0,0,87,90,3,12,6,0,88,90,3,38,19,0,
-		89,87,1,0,0,0,89,88,1,0,0,0,90,93,1,0,0,0,91,89,1,0,0,0,91,92,1,0,0,0,
-		92,94,1,0,0,0,93,91,1,0,0,0,94,99,3,2,1,0,95,98,3,12,6,0,96,98,3,38,19,
-		0,97,95,1,0,0,0,97,96,1,0,0,0,98,101,1,0,0,0,99,97,1,0,0,0,99,100,1,0,
-		0,0,100,102,1,0,0,0,101,99,1,0,0,0,102,103,5,0,0,1,103,108,1,0,0,0,104,
-		105,3,18,9,0,105,106,5,0,0,1,106,108,1,0,0,0,107,75,1,0,0,0,107,104,1,
-		0,0,0,108,1,1,0,0,0,109,110,5,6,0,0,110,111,5,11,0,0,111,112,3,18,9,0,
-		112,3,1,0,0,0,113,114,5,1,0,0,114,115,5,11,0,0,115,116,5,27,0,0,116,5,
-		1,0,0,0,117,118,5,2,0,0,118,119,5,11,0,0,119,120,5,27,0,0,120,7,1,0,0,
-		0,121,122,5,3,0,0,122,123,5,11,0,0,123,126,5,22,0,0,124,125,5,12,0,0,125,
-		127,5,22,0,0,126,124,1,0,0,0,126,127,1,0,0,0,127,9,1,0,0,0,128,129,5,4,
-		0,0,129,130,5,22,0,0,130,131,5,11,0,0,131,132,3,36,18,0,132,11,1,0,0,0,
-		133,134,5,5,0,0,134,135,3,14,7,0,135,136,5,11,0,0,136,137,3,16,8,0,137,
-		13,1,0,0,0,138,139,5,23,0,0,139,15,1,0,0,0,140,144,3,20,10,0,141,143,3,
+		34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,
+		34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,
+		34,1,34,1,34,3,34,487,8,34,1,34,1,34,3,34,491,8,34,1,34,1,34,1,34,1,34,
+		1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,
+		1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,
+		1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,
+		1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,5,34,550,8,34,10,
+		34,12,34,553,9,34,3,34,555,8,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,1,34,
+		1,34,1,34,1,34,1,34,1,34,1,34,3,34,571,8,34,5,34,573,8,34,10,34,12,34,
+		576,9,34,1,35,1,35,1,35,1,35,1,35,1,35,1,35,1,35,1,35,5,35,587,8,35,10,
+		35,12,35,590,9,35,3,35,592,8,35,1,35,1,35,1,35,1,35,1,35,1,35,1,35,1,35,
+		1,35,5,35,603,8,35,10,35,12,35,606,9,35,3,35,608,8,35,1,35,1,35,1,35,3,
+		35,613,8,35,1,35,0,1,68,36,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,
+		32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,0,7,1,0,84,
+		85,1,0,100,104,1,0,88,90,1,0,86,87,1,0,91,94,1,0,95,96,1,0,69,70,701,0,
+		105,1,0,0,0,2,107,1,0,0,0,4,111,1,0,0,0,6,115,1,0,0,0,8,119,1,0,0,0,10,
+		126,1,0,0,0,12,131,1,0,0,0,14,138,1,0,0,0,16,196,1,0,0,0,18,198,1,0,0,
+		0,20,203,1,0,0,0,22,205,1,0,0,0,24,207,1,0,0,0,26,220,1,0,0,0,28,224,1,
+		0,0,0,30,237,1,0,0,0,32,247,1,0,0,0,34,267,1,0,0,0,36,277,1,0,0,0,38,279,
+		1,0,0,0,40,291,1,0,0,0,42,302,1,0,0,0,44,319,1,0,0,0,46,339,1,0,0,0,48,
+		350,1,0,0,0,50,355,1,0,0,0,52,358,1,0,0,0,54,367,1,0,0,0,56,373,1,0,0,
+		0,58,392,1,0,0,0,60,400,1,0,0,0,62,409,1,0,0,0,64,413,1,0,0,0,66,416,1,
+		0,0,0,68,490,1,0,0,0,70,612,1,0,0,0,72,74,3,4,2,0,73,72,1,0,0,0,73,74,
+		1,0,0,0,74,76,1,0,0,0,75,77,3,6,3,0,76,75,1,0,0,0,76,77,1,0,0,0,77,82,
+		1,0,0,0,78,81,3,8,4,0,79,81,3,10,5,0,80,78,1,0,0,0,80,79,1,0,0,0,81,84,
+		1,0,0,0,82,80,1,0,0,0,82,83,1,0,0,0,83,89,1,0,0,0,84,82,1,0,0,0,85,88,
+		3,12,6,0,86,88,3,38,19,0,87,85,1,0,0,0,87,86,1,0,0,0,88,91,1,0,0,0,89,
+		87,1,0,0,0,89,90,1,0,0,0,90,92,1,0,0,0,91,89,1,0,0,0,92,97,3,2,1,0,93,
+		96,3,12,6,0,94,96,3,38,19,0,95,93,1,0,0,0,95,94,1,0,0,0,96,99,1,0,0,0,
+		97,95,1,0,0,0,97,98,1,0,0,0,98,100,1,0,0,0,99,97,1,0,0,0,100,101,5,0,0,
+		1,101,106,1,0,0,0,102,103,3,14,7,0,103,104,5,0,0,1,104,106,1,0,0,0,105,
+		73,1,0,0,0,105,102,1,0,0,0,106,1,1,0,0,0,107,108,5,6,0,0,108,109,5,11,
+		0,0,109,110,3,14,7,0,110,3,1,0,0,0,111,112,5,1,0,0,112,113,5,11,0,0,113,
+		114,5,27,0,0,114,5,1,0,0,0,115,116,5,2,0,0,116,117,5,11,0,0,117,118,5,
+		27,0,0,118,7,1,0,0,0,119,120,5,3,0,0,120,121,5,11,0,0,121,124,5,22,0,0,
+		122,123,5,12,0,0,123,125,5,22,0,0,124,122,1,0,0,0,124,125,1,0,0,0,125,
+		9,1,0,0,0,126,127,5,4,0,0,127,128,5,22,0,0,128,129,5,11,0,0,129,130,3,
+		36,18,0,130,11,1,0,0,0,131,132,5,5,0,0,132,133,3,18,9,0,133,134,5,11,0,
+		0,134,135,3,16,8,0,135,13,1,0,0,0,136,139,3,16,8,0,137,139,3,18,9,0,138,
+		136,1,0,0,0,138,137,1,0,0,0,139,15,1,0,0,0,140,144,3,20,10,0,141,143,3,
 		32,16,0,142,141,1,0,0,0,143,146,1,0,0,0,144,142,1,0,0,0,144,145,1,0,0,
 		0,145,150,1,0,0,0,146,144,1,0,0,0,147,149,3,30,15,0,148,147,1,0,0,0,149,
 		152,1,0,0,0,150,148,1,0,0,0,150,151,1,0,0,0,151,156,1,0,0,0,152,150,1,
@@ -4151,117 +4395,131 @@ internal partial class SchemaParser : Parser {
 		0,0,189,192,1,0,0,0,190,188,1,0,0,0,190,191,1,0,0,0,191,194,1,0,0,0,192,
 		190,1,0,0,0,193,195,5,20,0,0,194,193,1,0,0,0,194,195,1,0,0,0,195,197,1,
 		0,0,0,196,140,1,0,0,0,196,163,1,0,0,0,196,183,1,0,0,0,197,17,1,0,0,0,198,
-		201,3,16,8,0,199,201,3,14,7,0,200,198,1,0,0,0,200,199,1,0,0,0,201,19,1,
-		0,0,0,202,206,3,36,18,0,203,206,3,24,12,0,204,206,3,28,14,0,205,202,1,
-		0,0,0,205,203,1,0,0,0,205,204,1,0,0,0,206,21,1,0,0,0,207,208,5,26,0,0,
-		208,23,1,0,0,0,209,218,5,14,0,0,210,215,3,26,13,0,211,212,5,12,0,0,212,
-		214,3,26,13,0,213,211,1,0,0,0,214,217,1,0,0,0,215,213,1,0,0,0,215,216,
-		1,0,0,0,216,219,1,0,0,0,217,215,1,0,0,0,218,210,1,0,0,0,218,219,1,0,0,
-		0,219,220,1,0,0,0,220,221,5,15,0,0,221,25,1,0,0,0,222,223,5,27,0,0,223,
-		224,5,11,0,0,224,225,3,18,9,0,225,27,1,0,0,0,226,235,5,16,0,0,227,232,
-		3,18,9,0,228,229,5,12,0,0,229,231,3,18,9,0,230,228,1,0,0,0,231,234,1,0,
-		0,0,232,230,1,0,0,0,232,233,1,0,0,0,233,236,1,0,0,0,234,232,1,0,0,0,235,
-		227,1,0,0,0,235,236,1,0,0,0,236,237,1,0,0,0,237,238,5,17,0,0,238,29,1,
-		0,0,0,239,241,5,24,0,0,240,242,5,13,0,0,241,240,1,0,0,0,241,242,1,0,0,
-		0,242,247,1,0,0,0,243,244,5,18,0,0,244,245,3,14,7,0,245,246,5,19,0,0,246,
-		248,1,0,0,0,247,243,1,0,0,0,247,248,1,0,0,0,248,31,1,0,0,0,249,251,5,25,
-		0,0,250,252,5,13,0,0,251,250,1,0,0,0,251,252,1,0,0,0,252,265,1,0,0,0,253,
-		262,5,18,0,0,254,259,3,34,17,0,255,256,5,12,0,0,256,258,3,34,17,0,257,
-		255,1,0,0,0,258,261,1,0,0,0,259,257,1,0,0,0,259,260,1,0,0,0,260,263,1,
-		0,0,0,261,259,1,0,0,0,262,254,1,0,0,0,262,263,1,0,0,0,263,264,1,0,0,0,
-		264,266,5,19,0,0,265,253,1,0,0,0,265,266,1,0,0,0,266,33,1,0,0,0,267,270,
-		3,20,10,0,268,270,3,22,11,0,269,267,1,0,0,0,269,268,1,0,0,0,270,35,1,0,
-		0,0,271,280,5,8,0,0,272,280,5,9,0,0,273,280,5,27,0,0,274,280,5,28,0,0,
-		275,280,5,29,0,0,276,280,5,30,0,0,277,280,5,10,0,0,278,280,5,21,0,0,279,
-		271,1,0,0,0,279,272,1,0,0,0,279,273,1,0,0,0,279,274,1,0,0,0,279,275,1,
-		0,0,0,279,276,1,0,0,0,279,277,1,0,0,0,279,278,1,0,0,0,280,37,1,0,0,0,281,
-		282,5,7,0,0,282,283,5,79,0,0,283,285,5,70,0,0,284,286,3,40,20,0,285,284,
-		1,0,0,0,286,287,1,0,0,0,287,285,1,0,0,0,287,288,1,0,0,0,288,289,1,0,0,
-		0,289,290,5,71,0,0,290,39,1,0,0,0,291,294,3,44,22,0,292,294,3,46,23,0,
-		293,291,1,0,0,0,293,292,1,0,0,0,294,41,1,0,0,0,295,305,3,46,23,0,296,305,
-		3,50,25,0,297,305,3,52,26,0,298,305,3,54,27,0,299,305,3,56,28,0,300,305,
-		3,60,30,0,301,305,3,62,31,0,302,305,3,64,32,0,303,305,3,66,33,0,304,295,
-		1,0,0,0,304,296,1,0,0,0,304,297,1,0,0,0,304,298,1,0,0,0,304,299,1,0,0,
-		0,304,300,1,0,0,0,304,301,1,0,0,0,304,302,1,0,0,0,304,303,1,0,0,0,305,
-		43,1,0,0,0,306,308,5,42,0,0,307,309,5,48,0,0,308,307,1,0,0,0,308,309,1,
-		0,0,0,309,322,1,0,0,0,310,312,5,50,0,0,311,313,5,42,0,0,312,311,1,0,0,
-		0,312,313,1,0,0,0,313,315,1,0,0,0,314,316,5,48,0,0,315,314,1,0,0,0,315,
-		316,1,0,0,0,316,322,1,0,0,0,317,319,5,45,0,0,318,320,5,48,0,0,319,318,
-		1,0,0,0,319,320,1,0,0,0,320,322,1,0,0,0,321,306,1,0,0,0,321,310,1,0,0,
-		0,321,317,1,0,0,0,322,323,1,0,0,0,323,324,5,69,0,0,324,336,5,74,0,0,325,
-		330,5,69,0,0,326,327,5,77,0,0,327,329,5,69,0,0,328,326,1,0,0,0,329,332,
-		1,0,0,0,330,328,1,0,0,0,330,331,1,0,0,0,331,334,1,0,0,0,332,330,1,0,0,
-		0,333,335,5,81,0,0,334,333,1,0,0,0,334,335,1,0,0,0,335,337,1,0,0,0,336,
-		325,1,0,0,0,336,337,1,0,0,0,337,338,1,0,0,0,338,339,5,75,0,0,339,340,3,
-		66,33,0,340,45,1,0,0,0,341,342,5,34,0,0,342,347,3,48,24,0,343,344,5,77,
-		0,0,344,346,3,48,24,0,345,343,1,0,0,0,346,349,1,0,0,0,347,345,1,0,0,0,
-		347,348,1,0,0,0,348,350,1,0,0,0,349,347,1,0,0,0,350,351,5,76,0,0,351,47,
-		1,0,0,0,352,355,5,69,0,0,353,354,5,82,0,0,354,356,3,68,34,0,355,353,1,
-		0,0,0,355,356,1,0,0,0,356,49,1,0,0,0,357,358,3,68,34,0,358,359,5,76,0,
-		0,359,51,1,0,0,0,360,361,5,35,0,0,361,362,5,74,0,0,362,363,3,68,34,0,363,
-		364,5,75,0,0,364,367,3,42,21,0,365,366,5,36,0,0,366,368,3,42,21,0,367,
-		365,1,0,0,0,367,368,1,0,0,0,368,53,1,0,0,0,369,370,5,37,0,0,370,371,5,
-		74,0,0,371,372,3,68,34,0,372,373,5,75,0,0,373,374,3,42,21,0,374,55,1,0,
-		0,0,375,376,5,38,0,0,376,382,5,74,0,0,377,383,3,46,23,0,378,379,3,58,29,
-		0,379,380,5,76,0,0,380,383,1,0,0,0,381,383,5,76,0,0,382,377,1,0,0,0,382,
-		378,1,0,0,0,382,381,1,0,0,0,383,385,1,0,0,0,384,386,3,68,34,0,385,384,
-		1,0,0,0,385,386,1,0,0,0,386,387,1,0,0,0,387,389,5,76,0,0,388,390,3,58,
-		29,0,389,388,1,0,0,0,389,390,1,0,0,0,390,391,1,0,0,0,391,392,5,75,0,0,
-		392,393,3,42,21,0,393,57,1,0,0,0,394,399,3,68,34,0,395,396,5,77,0,0,396,
-		398,3,68,34,0,397,395,1,0,0,0,398,401,1,0,0,0,399,397,1,0,0,0,399,400,
-		1,0,0,0,400,59,1,0,0,0,401,399,1,0,0,0,402,403,5,39,0,0,403,404,5,74,0,
-		0,404,405,5,34,0,0,405,406,5,69,0,0,406,407,5,40,0,0,407,408,3,68,34,0,
-		408,409,5,75,0,0,409,410,3,42,21,0,410,61,1,0,0,0,411,412,5,49,0,0,412,
-		413,3,68,34,0,413,414,5,76,0,0,414,63,1,0,0,0,415,416,5,41,0,0,416,417,
-		5,76,0,0,417,65,1,0,0,0,418,422,5,70,0,0,419,421,3,42,21,0,420,419,1,0,
-		0,0,421,424,1,0,0,0,422,420,1,0,0,0,422,423,1,0,0,0,423,425,1,0,0,0,424,
-		422,1,0,0,0,425,426,5,71,0,0,426,67,1,0,0,0,427,428,6,34,-1,0,428,469,
-		3,70,35,0,429,430,5,86,0,0,430,469,3,68,34,19,431,432,5,95,0,0,432,469,
-		3,68,34,18,433,434,3,70,35,0,434,435,5,83,0,0,435,469,1,0,0,0,436,437,
-		3,70,35,0,437,438,5,84,0,0,438,469,1,0,0,0,439,440,5,83,0,0,440,469,3,
-		70,35,0,441,442,5,84,0,0,442,469,3,70,35,0,443,444,5,80,0,0,444,469,3,
-		68,34,10,445,446,3,70,35,0,446,447,5,82,0,0,447,448,3,68,34,5,448,469,
-		1,0,0,0,449,469,3,72,36,0,450,451,5,74,0,0,451,452,3,68,34,0,452,453,5,
-		75,0,0,453,469,1,0,0,0,454,455,5,46,0,0,455,456,5,74,0,0,456,457,3,68,
-		34,0,457,458,5,75,0,0,458,469,1,0,0,0,459,460,5,47,0,0,460,461,5,74,0,
-		0,461,464,3,68,34,0,462,463,5,77,0,0,463,465,3,68,34,0,464,462,1,0,0,0,
-		464,465,1,0,0,0,465,466,1,0,0,0,466,467,5,75,0,0,467,469,1,0,0,0,468,427,
-		1,0,0,0,468,429,1,0,0,0,468,431,1,0,0,0,468,433,1,0,0,0,468,436,1,0,0,
-		0,468,439,1,0,0,0,468,441,1,0,0,0,468,443,1,0,0,0,468,445,1,0,0,0,468,
-		449,1,0,0,0,468,450,1,0,0,0,468,454,1,0,0,0,468,459,1,0,0,0,469,495,1,
-		0,0,0,470,471,10,13,0,0,471,472,7,0,0,0,472,494,3,68,34,14,473,474,10,
-		12,0,0,474,475,7,1,0,0,475,494,3,68,34,13,476,477,10,9,0,0,477,478,7,2,
-		0,0,478,494,3,68,34,10,479,480,10,8,0,0,480,481,7,3,0,0,481,494,3,68,34,
-		9,482,483,10,7,0,0,483,484,5,96,0,0,484,494,3,68,34,8,485,486,10,6,0,0,
-		486,487,5,97,0,0,487,494,3,68,34,7,488,489,10,11,0,0,489,491,5,80,0,0,
-		490,492,3,68,34,0,491,490,1,0,0,0,491,492,1,0,0,0,492,494,1,0,0,0,493,
-		470,1,0,0,0,493,473,1,0,0,0,493,476,1,0,0,0,493,479,1,0,0,0,493,482,1,
-		0,0,0,493,485,1,0,0,0,493,488,1,0,0,0,494,497,1,0,0,0,495,493,1,0,0,0,
-		495,496,1,0,0,0,496,69,1,0,0,0,497,495,1,0,0,0,498,499,6,35,-1,0,499,500,
-		5,69,0,0,500,509,5,74,0,0,501,506,3,68,34,0,502,503,5,77,0,0,503,505,3,
-		68,34,0,504,502,1,0,0,0,505,508,1,0,0,0,506,504,1,0,0,0,506,507,1,0,0,
-		0,507,510,1,0,0,0,508,506,1,0,0,0,509,501,1,0,0,0,509,510,1,0,0,0,510,
-		511,1,0,0,0,511,516,5,75,0,0,512,516,5,43,0,0,513,516,5,44,0,0,514,516,
-		5,69,0,0,515,498,1,0,0,0,515,512,1,0,0,0,515,513,1,0,0,0,515,514,1,0,0,
-		0,516,527,1,0,0,0,517,518,10,6,0,0,518,519,5,78,0,0,519,526,5,69,0,0,520,
-		521,10,5,0,0,521,522,5,72,0,0,522,523,3,68,34,0,523,524,5,73,0,0,524,526,
-		1,0,0,0,525,517,1,0,0,0,525,520,1,0,0,0,526,529,1,0,0,0,527,525,1,0,0,
-		0,527,528,1,0,0,0,528,71,1,0,0,0,529,527,1,0,0,0,530,566,5,51,0,0,531,
-		566,5,52,0,0,532,566,5,66,0,0,533,566,5,67,0,0,534,566,5,68,0,0,535,544,
-		5,72,0,0,536,541,3,68,34,0,537,538,5,77,0,0,538,540,3,68,34,0,539,537,
-		1,0,0,0,540,543,1,0,0,0,541,539,1,0,0,0,541,542,1,0,0,0,542,545,1,0,0,
-		0,543,541,1,0,0,0,544,536,1,0,0,0,544,545,1,0,0,0,545,546,1,0,0,0,546,
-		566,5,73,0,0,547,560,5,70,0,0,548,549,7,4,0,0,549,550,5,79,0,0,550,557,
-		3,68,34,0,551,552,5,77,0,0,552,553,7,4,0,0,553,554,5,79,0,0,554,556,3,
-		68,34,0,555,551,1,0,0,0,556,559,1,0,0,0,557,555,1,0,0,0,557,558,1,0,0,
-		0,558,561,1,0,0,0,559,557,1,0,0,0,560,548,1,0,0,0,560,561,1,0,0,0,561,
-		562,1,0,0,0,562,566,5,71,0,0,563,566,5,53,0,0,564,566,5,54,0,0,565,530,
-		1,0,0,0,565,531,1,0,0,0,565,532,1,0,0,0,565,533,1,0,0,0,565,534,1,0,0,
-		0,565,535,1,0,0,0,565,547,1,0,0,0,565,563,1,0,0,0,565,564,1,0,0,0,566,
-		73,1,0,0,0,70,75,78,82,84,89,91,97,99,107,126,144,150,156,160,165,170,
-		176,180,185,190,194,196,200,205,215,218,232,235,241,247,251,259,262,265,
-		269,279,287,293,304,308,312,315,319,321,330,334,336,347,355,367,382,385,
-		389,399,422,464,468,491,493,495,506,509,515,525,527,541,544,557,560,565
+		199,5,23,0,0,199,19,1,0,0,0,200,204,3,36,18,0,201,204,3,24,12,0,202,204,
+		3,28,14,0,203,200,1,0,0,0,203,201,1,0,0,0,203,202,1,0,0,0,204,21,1,0,0,
+		0,205,206,5,26,0,0,206,23,1,0,0,0,207,216,5,14,0,0,208,213,3,26,13,0,209,
+		210,5,12,0,0,210,212,3,26,13,0,211,209,1,0,0,0,212,215,1,0,0,0,213,211,
+		1,0,0,0,213,214,1,0,0,0,214,217,1,0,0,0,215,213,1,0,0,0,216,208,1,0,0,
+		0,216,217,1,0,0,0,217,218,1,0,0,0,218,219,5,15,0,0,219,25,1,0,0,0,220,
+		221,5,27,0,0,221,222,5,11,0,0,222,223,3,14,7,0,223,27,1,0,0,0,224,233,
+		5,16,0,0,225,230,3,14,7,0,226,227,5,12,0,0,227,229,3,14,7,0,228,226,1,
+		0,0,0,229,232,1,0,0,0,230,228,1,0,0,0,230,231,1,0,0,0,231,234,1,0,0,0,
+		232,230,1,0,0,0,233,225,1,0,0,0,233,234,1,0,0,0,234,235,1,0,0,0,235,236,
+		5,17,0,0,236,29,1,0,0,0,237,239,5,24,0,0,238,240,5,13,0,0,239,238,1,0,
+		0,0,239,240,1,0,0,0,240,245,1,0,0,0,241,242,5,18,0,0,242,243,3,18,9,0,
+		243,244,5,19,0,0,244,246,1,0,0,0,245,241,1,0,0,0,245,246,1,0,0,0,246,31,
+		1,0,0,0,247,249,5,25,0,0,248,250,5,13,0,0,249,248,1,0,0,0,249,250,1,0,
+		0,0,250,263,1,0,0,0,251,260,5,18,0,0,252,257,3,34,17,0,253,254,5,12,0,
+		0,254,256,3,34,17,0,255,253,1,0,0,0,256,259,1,0,0,0,257,255,1,0,0,0,257,
+		258,1,0,0,0,258,261,1,0,0,0,259,257,1,0,0,0,260,252,1,0,0,0,260,261,1,
+		0,0,0,261,262,1,0,0,0,262,264,5,19,0,0,263,251,1,0,0,0,263,264,1,0,0,0,
+		264,33,1,0,0,0,265,268,3,20,10,0,266,268,3,22,11,0,267,265,1,0,0,0,267,
+		266,1,0,0,0,268,35,1,0,0,0,269,278,5,8,0,0,270,278,5,9,0,0,271,278,5,27,
+		0,0,272,278,5,28,0,0,273,278,5,29,0,0,274,278,5,30,0,0,275,278,5,10,0,
+		0,276,278,5,21,0,0,277,269,1,0,0,0,277,270,1,0,0,0,277,271,1,0,0,0,277,
+		272,1,0,0,0,277,273,1,0,0,0,277,274,1,0,0,0,277,275,1,0,0,0,277,276,1,
+		0,0,0,278,37,1,0,0,0,279,280,5,7,0,0,280,281,5,80,0,0,281,283,5,71,0,0,
+		282,284,3,40,20,0,283,282,1,0,0,0,284,285,1,0,0,0,285,283,1,0,0,0,285,
+		286,1,0,0,0,286,287,1,0,0,0,287,288,5,72,0,0,288,39,1,0,0,0,289,292,3,
+		44,22,0,290,292,3,46,23,0,291,289,1,0,0,0,291,290,1,0,0,0,292,41,1,0,0,
+		0,293,303,3,46,23,0,294,303,3,50,25,0,295,303,3,52,26,0,296,303,3,54,27,
+		0,297,303,3,56,28,0,298,303,3,60,30,0,299,303,3,62,31,0,300,303,3,64,32,
+		0,301,303,3,66,33,0,302,293,1,0,0,0,302,294,1,0,0,0,302,295,1,0,0,0,302,
+		296,1,0,0,0,302,297,1,0,0,0,302,298,1,0,0,0,302,299,1,0,0,0,302,300,1,
+		0,0,0,302,301,1,0,0,0,303,43,1,0,0,0,304,306,5,42,0,0,305,307,5,48,0,0,
+		306,305,1,0,0,0,306,307,1,0,0,0,307,320,1,0,0,0,308,310,5,50,0,0,309,311,
+		5,42,0,0,310,309,1,0,0,0,310,311,1,0,0,0,311,313,1,0,0,0,312,314,5,48,
+		0,0,313,312,1,0,0,0,313,314,1,0,0,0,314,320,1,0,0,0,315,317,5,45,0,0,316,
+		318,5,48,0,0,317,316,1,0,0,0,317,318,1,0,0,0,318,320,1,0,0,0,319,304,1,
+		0,0,0,319,308,1,0,0,0,319,315,1,0,0,0,320,321,1,0,0,0,321,322,5,70,0,0,
+		322,334,5,75,0,0,323,328,5,70,0,0,324,325,5,78,0,0,325,327,5,70,0,0,326,
+		324,1,0,0,0,327,330,1,0,0,0,328,326,1,0,0,0,328,329,1,0,0,0,329,332,1,
+		0,0,0,330,328,1,0,0,0,331,333,5,82,0,0,332,331,1,0,0,0,332,333,1,0,0,0,
+		333,335,1,0,0,0,334,323,1,0,0,0,334,335,1,0,0,0,335,336,1,0,0,0,336,337,
+		5,76,0,0,337,338,3,66,33,0,338,45,1,0,0,0,339,340,5,34,0,0,340,345,3,48,
+		24,0,341,342,5,78,0,0,342,344,3,48,24,0,343,341,1,0,0,0,344,347,1,0,0,
+		0,345,343,1,0,0,0,345,346,1,0,0,0,346,348,1,0,0,0,347,345,1,0,0,0,348,
+		349,5,77,0,0,349,47,1,0,0,0,350,353,5,70,0,0,351,352,5,83,0,0,352,354,
+		3,68,34,0,353,351,1,0,0,0,353,354,1,0,0,0,354,49,1,0,0,0,355,356,3,68,
+		34,0,356,357,5,77,0,0,357,51,1,0,0,0,358,359,5,35,0,0,359,360,5,75,0,0,
+		360,361,3,68,34,0,361,362,5,76,0,0,362,365,3,42,21,0,363,364,5,36,0,0,
+		364,366,3,42,21,0,365,363,1,0,0,0,365,366,1,0,0,0,366,53,1,0,0,0,367,368,
+		5,37,0,0,368,369,5,75,0,0,369,370,3,68,34,0,370,371,5,76,0,0,371,372,3,
+		42,21,0,372,55,1,0,0,0,373,374,5,38,0,0,374,380,5,75,0,0,375,381,3,46,
+		23,0,376,377,3,58,29,0,377,378,5,77,0,0,378,381,1,0,0,0,379,381,5,77,0,
+		0,380,375,1,0,0,0,380,376,1,0,0,0,380,379,1,0,0,0,381,383,1,0,0,0,382,
+		384,3,68,34,0,383,382,1,0,0,0,383,384,1,0,0,0,384,385,1,0,0,0,385,387,
+		5,77,0,0,386,388,3,58,29,0,387,386,1,0,0,0,387,388,1,0,0,0,388,389,1,0,
+		0,0,389,390,5,76,0,0,390,391,3,42,21,0,391,57,1,0,0,0,392,397,3,68,34,
+		0,393,394,5,78,0,0,394,396,3,68,34,0,395,393,1,0,0,0,396,399,1,0,0,0,397,
+		395,1,0,0,0,397,398,1,0,0,0,398,59,1,0,0,0,399,397,1,0,0,0,400,401,5,39,
+		0,0,401,402,5,75,0,0,402,403,5,34,0,0,403,404,5,70,0,0,404,405,5,40,0,
+		0,405,406,3,68,34,0,406,407,5,76,0,0,407,408,3,42,21,0,408,61,1,0,0,0,
+		409,410,5,49,0,0,410,411,3,68,34,0,411,412,5,77,0,0,412,63,1,0,0,0,413,
+		414,5,41,0,0,414,415,5,77,0,0,415,65,1,0,0,0,416,420,5,71,0,0,417,419,
+		3,42,21,0,418,417,1,0,0,0,419,422,1,0,0,0,420,418,1,0,0,0,420,421,1,0,
+		0,0,421,423,1,0,0,0,422,420,1,0,0,0,423,424,5,72,0,0,424,67,1,0,0,0,425,
+		426,6,34,-1,0,426,427,5,70,0,0,427,436,5,75,0,0,428,433,3,68,34,0,429,
+		430,5,78,0,0,430,432,3,68,34,0,431,429,1,0,0,0,432,435,1,0,0,0,433,431,
+		1,0,0,0,433,434,1,0,0,0,434,437,1,0,0,0,435,433,1,0,0,0,436,428,1,0,0,
+		0,436,437,1,0,0,0,437,438,1,0,0,0,438,491,5,76,0,0,439,440,5,86,0,0,440,
+		491,3,68,34,30,441,442,5,87,0,0,442,491,3,68,34,29,443,444,5,97,0,0,444,
+		491,3,68,34,28,445,446,5,70,0,0,446,491,7,0,0,0,447,448,7,0,0,0,448,449,
+		3,68,34,0,449,450,5,73,0,0,450,451,3,68,34,0,451,452,5,74,0,0,452,491,
+		1,0,0,0,453,454,7,0,0,0,454,455,3,68,34,0,455,456,5,79,0,0,456,457,5,70,
+		0,0,457,491,1,0,0,0,458,459,7,0,0,0,459,491,5,70,0,0,460,461,5,81,0,0,
+		461,491,3,68,34,18,462,463,5,70,0,0,463,464,5,83,0,0,464,491,3,68,34,11,
+		465,466,5,70,0,0,466,467,7,1,0,0,467,491,3,68,34,8,468,491,5,43,0,0,469,
+		491,5,44,0,0,470,491,5,70,0,0,471,491,3,70,35,0,472,473,5,75,0,0,473,474,
+		3,68,34,0,474,475,5,76,0,0,475,491,1,0,0,0,476,477,5,46,0,0,477,478,5,
+		75,0,0,478,479,3,68,34,0,479,480,5,76,0,0,480,491,1,0,0,0,481,482,5,47,
+		0,0,482,483,5,75,0,0,483,486,3,68,34,0,484,485,5,78,0,0,485,487,3,68,34,
+		0,486,484,1,0,0,0,486,487,1,0,0,0,487,488,1,0,0,0,488,489,5,76,0,0,489,
+		491,1,0,0,0,490,425,1,0,0,0,490,439,1,0,0,0,490,441,1,0,0,0,490,443,1,
+		0,0,0,490,445,1,0,0,0,490,447,1,0,0,0,490,453,1,0,0,0,490,458,1,0,0,0,
+		490,460,1,0,0,0,490,462,1,0,0,0,490,465,1,0,0,0,490,468,1,0,0,0,490,469,
+		1,0,0,0,490,470,1,0,0,0,490,471,1,0,0,0,490,472,1,0,0,0,490,476,1,0,0,
+		0,490,481,1,0,0,0,491,574,1,0,0,0,492,493,10,21,0,0,493,494,7,2,0,0,494,
+		573,3,68,34,22,495,496,10,20,0,0,496,497,7,3,0,0,497,573,3,68,34,21,498,
+		499,10,17,0,0,499,500,7,4,0,0,500,573,3,68,34,18,501,502,10,16,0,0,502,
+		503,7,5,0,0,503,573,3,68,34,17,504,505,10,15,0,0,505,506,5,98,0,0,506,
+		573,3,68,34,16,507,508,10,14,0,0,508,509,5,99,0,0,509,573,3,68,34,15,510,
+		511,10,13,0,0,511,512,5,73,0,0,512,513,3,68,34,0,513,514,5,74,0,0,514,
+		515,5,83,0,0,515,516,3,68,34,14,516,573,1,0,0,0,517,518,10,12,0,0,518,
+		519,5,79,0,0,519,520,5,70,0,0,520,521,5,83,0,0,521,573,3,68,34,13,522,
+		523,10,10,0,0,523,524,5,73,0,0,524,525,3,68,34,0,525,526,5,74,0,0,526,
+		527,7,1,0,0,527,528,3,68,34,11,528,573,1,0,0,0,529,530,10,9,0,0,530,531,
+		5,79,0,0,531,532,5,70,0,0,532,533,7,1,0,0,533,573,3,68,34,10,534,535,10,
+		34,0,0,535,536,5,73,0,0,536,537,3,68,34,0,537,538,5,74,0,0,538,573,1,0,
+		0,0,539,540,10,33,0,0,540,541,5,79,0,0,541,573,5,70,0,0,542,543,10,31,
+		0,0,543,544,5,79,0,0,544,545,5,70,0,0,545,554,5,75,0,0,546,551,3,68,34,
+		0,547,548,5,78,0,0,548,550,3,68,34,0,549,547,1,0,0,0,550,553,1,0,0,0,551,
+		549,1,0,0,0,551,552,1,0,0,0,552,555,1,0,0,0,553,551,1,0,0,0,554,546,1,
+		0,0,0,554,555,1,0,0,0,555,556,1,0,0,0,556,573,5,76,0,0,557,558,10,27,0,
+		0,558,559,5,73,0,0,559,560,3,68,34,0,560,561,5,74,0,0,561,562,7,0,0,0,
+		562,573,1,0,0,0,563,564,10,26,0,0,564,565,5,79,0,0,565,566,5,70,0,0,566,
+		573,7,0,0,0,567,568,10,19,0,0,568,570,5,81,0,0,569,571,3,68,34,0,570,569,
+		1,0,0,0,570,571,1,0,0,0,571,573,1,0,0,0,572,492,1,0,0,0,572,495,1,0,0,
+		0,572,498,1,0,0,0,572,501,1,0,0,0,572,504,1,0,0,0,572,507,1,0,0,0,572,
+		510,1,0,0,0,572,517,1,0,0,0,572,522,1,0,0,0,572,529,1,0,0,0,572,534,1,
+		0,0,0,572,539,1,0,0,0,572,542,1,0,0,0,572,557,1,0,0,0,572,563,1,0,0,0,
+		572,567,1,0,0,0,573,576,1,0,0,0,574,572,1,0,0,0,574,575,1,0,0,0,575,69,
+		1,0,0,0,576,574,1,0,0,0,577,613,5,51,0,0,578,613,5,52,0,0,579,613,5,67,
+		0,0,580,613,5,68,0,0,581,613,5,69,0,0,582,591,5,73,0,0,583,588,3,68,34,
+		0,584,585,5,78,0,0,585,587,3,68,34,0,586,584,1,0,0,0,587,590,1,0,0,0,588,
+		586,1,0,0,0,588,589,1,0,0,0,589,592,1,0,0,0,590,588,1,0,0,0,591,583,1,
+		0,0,0,591,592,1,0,0,0,592,593,1,0,0,0,593,613,5,74,0,0,594,607,5,71,0,
+		0,595,596,7,6,0,0,596,597,5,80,0,0,597,604,3,68,34,0,598,599,5,78,0,0,
+		599,600,7,6,0,0,600,601,5,80,0,0,601,603,3,68,34,0,602,598,1,0,0,0,603,
+		606,1,0,0,0,604,602,1,0,0,0,604,605,1,0,0,0,605,608,1,0,0,0,606,604,1,
+		0,0,0,607,595,1,0,0,0,607,608,1,0,0,0,608,609,1,0,0,0,609,613,5,72,0,0,
+		610,613,5,53,0,0,611,613,5,54,0,0,612,577,1,0,0,0,612,578,1,0,0,0,612,
+		579,1,0,0,0,612,580,1,0,0,0,612,581,1,0,0,0,612,582,1,0,0,0,612,594,1,
+		0,0,0,612,610,1,0,0,0,612,611,1,0,0,0,613,71,1,0,0,0,69,73,76,80,82,87,
+		89,95,97,105,124,138,144,150,156,160,165,170,176,180,185,190,194,196,203,
+		213,216,230,233,239,245,249,257,260,263,267,277,285,291,302,306,310,313,
+		317,319,328,332,334,345,353,365,380,383,387,397,420,433,436,486,490,551,
+		554,570,572,574,588,591,604,607,612
 	};
 
 	public static readonly ATN _ATN =
