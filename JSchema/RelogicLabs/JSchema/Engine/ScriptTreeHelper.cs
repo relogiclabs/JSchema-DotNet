@@ -4,7 +4,6 @@ using RelogicLabs.JSchema.Script;
 using RelogicLabs.JSchema.Tree;
 using RelogicLabs.JSchema.Types;
 using static RelogicLabs.JSchema.Engine.ScriptErrorHelper;
-using static RelogicLabs.JSchema.Script.IRFunction;
 using static RelogicLabs.JSchema.Script.GFunction;
 using static RelogicLabs.JSchema.Utilities.CommonUtilities;
 
@@ -55,15 +54,15 @@ internal static class ScriptTreeHelper
         var paramCount = function.Parameters.Length;
         if(function.Variadic)
         {
-            if(arguments.Count < paramCount - 1) throw FailOnVariadicArgument(code);
+            if(arguments.Count < paramCount - 1) throw FailOnVariadicArity(code);
             return;
         }
-        if(arguments.Count != paramCount) throw FailOnFixedArgument(code);
+        if(arguments.Count != paramCount) throw FailOnFixedArity(code);
     }
 
     public static string Stringify(object value)
         => value is IEString s ? s.Value : value.ToString()
-                ?? throw new InvalidOperationException("Invalid runtime state");
+            ?? throw new InvalidOperationException("Invalid runtime state");
 
     public static int GetFunctionMode(ITerminalNode constraint, ITerminalNode future,
         ITerminalNode subroutine) => GetFunctionMode(constraint)
@@ -75,18 +74,14 @@ internal static class ScriptTreeHelper
         if(node == null) return 0;
         return node.Symbol.Type switch
         {
-            SchemaLexer.G_CONSTRAINT => ConstraintMode,
-            SchemaLexer.G_FUTURE => FutureMode,
-            SchemaLexer.G_SUBROUTINE => SubroutineMode,
+            SchemaParser.G_CONSTRAINT => ConstraintMode,
+            SchemaParser.G_FUTURE => FutureMode,
+            SchemaParser.G_SUBROUTINE => SubroutineMode,
             _ => 0
         };
     }
 
     public static bool IsConstraint(int mode) => HasFlag(mode, ConstraintMode);
-    public static string ToConstraintName(string functionName) => ConstraintPrefix + functionName;
-
-    public static string FormatFunctionName(string baseName, GParameter[] parameters)
-        => HasVariadic(parameters) ? baseName + "#..." : baseName + "#" + parameters.Length;
 
     public static GParameter[] ToParameters(IList<ITerminalNode> identifiers, ITerminalNode? ellipsis)
     {
@@ -100,16 +95,16 @@ internal static class ScriptTreeHelper
     }
 
     public static IENumber Increment(IENumber number)
-        => number is IEInteger i ? GInteger.Of(i.Value + 1) : GDouble.Of(number.ToDouble() + 1);
+        => number is IEInteger i ? GInteger.From(i.Value + 1) : GDouble.From(number.ToDouble() + 1);
 
     public static IENumber Decrement(IENumber number)
-        => number is IEInteger i ? GInteger.Of(i.Value - 1) : GDouble.Of(number.ToDouble() - 1);
+        => number is IEInteger i ? GInteger.From(i.Value - 1) : GDouble.From(number.ToDouble() - 1);
 
     public static GObject CreateTryofMonad(IEValue value, IEValue error)
     {
         var result = new GObject(2);
-        result.Set(TryofValue, value);
-        result.Set(TryofError, error);
+        result.Put(TryofValue, value);
+        result.Put(TryofError, error);
         return result;
     }
 

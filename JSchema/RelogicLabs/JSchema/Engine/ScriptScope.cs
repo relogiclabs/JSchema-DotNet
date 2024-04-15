@@ -5,22 +5,22 @@ using RelogicLabs.JSchema.Types;
 using RelogicLabs.JSchema.Utilities;
 using static RelogicLabs.JSchema.Library.ScriptLibrary;
 using static RelogicLabs.JSchema.Message.ErrorCode;
-using static RelogicLabs.JSchema.Script.GFunction;
+using static RelogicLabs.JSchema.Tree.IEFunction;
 
 namespace RelogicLabs.JSchema.Engine;
 
-internal class ScopeContext
+internal class ScriptScope
 {
-    public ScopeContext? Parent { get; }
+    private readonly ScriptScope? _parent;
     private readonly Dictionary<string, IEValue> _symbols;
 
-    public ScopeContext(ScopeContext? parent)
+    public ScriptScope(ScriptScope? parent)
     {
-        Parent = parent;
+        _parent = parent;
         _symbols = new Dictionary<string, IEValue>();
     }
 
-    public GReference AddVariable(string name, IEValue value)
+    public virtual GReference AddVariable(string name, IEValue value)
     {
         var reference = new GReference(value);
         var result = _symbols.TryAdd(name, reference);
@@ -34,22 +34,22 @@ internal class ScopeContext
         var result = _symbols.TryAdd(name, function);
         if(result) return;
         if(name.StartsWith(ConstraintPrefix))
-            throw FailOnDuplicateDefinition(FUNS02, "Constraint", name);
-        throw FailOnDuplicateDefinition(FUNS03, "Subroutine", name);
+            throw FailOnDuplicateDefinition(FUND01, "Constraint", name);
+        throw FailOnDuplicateDefinition(FUND02, "Subroutine", name);
     }
 
     private static ScriptFunctionException FailOnDuplicateDefinition(string code,
         string functionType, string name) => new(code, $"{functionType} function '{
             name.SubstringBefore('#')}' with matching parameter(s) already defined");
 
-    public IEValue Resolve(string name)
+    public IEValue? Resolve(string name)
     {
         var current = this;
         do
         {
             current._symbols.TryGetValue(name, out var value);
             if(value != null) return value;
-            current = current.Parent;
+            current = current._parent;
         } while(current != null);
         return ResolveStatic(name);
     }
@@ -57,7 +57,7 @@ internal class ScopeContext
     public virtual RuntimeContext GetRuntime()
     {
         var current = this;
-        while(current.Parent != null) current = current.Parent;
+        while(current._parent != null) current = current._parent;
         return current.GetRuntime();
     }
 

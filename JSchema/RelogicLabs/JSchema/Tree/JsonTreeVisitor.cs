@@ -2,6 +2,7 @@ using RelogicLabs.JSchema.Antlr;
 using RelogicLabs.JSchema.Collections;
 using RelogicLabs.JSchema.Nodes;
 using RelogicLabs.JSchema.Utilities;
+using static RelogicLabs.JSchema.Antlr.JsonParser;
 using static RelogicLabs.JSchema.Tree.TreeType;
 using static RelogicLabs.JSchema.Tree.TreeHelper;
 
@@ -15,7 +16,7 @@ internal sealed class JsonTreeVisitor : JsonParserBaseVisitor<JNode>
     public JsonTreeVisitor(RuntimeContext runtime)
         => _runtime = runtime;
 
-    public override JNode VisitJson(JsonParser.JsonContext context)
+    public override JNode VisitJson(JsonContext context)
         => new JRoot.Builder
         {
             Relations = _relations,
@@ -23,7 +24,7 @@ internal sealed class JsonTreeVisitor : JsonParserBaseVisitor<JNode>
             Value = Visit(context.valueNode())
         }.Build();
 
-    public override JNode VisitObjectNode(JsonParser.ObjectNodeContext context)
+    public override JNode VisitObjectNode(ObjectNodeContext context)
         => new JObject.Builder
         {
             Relations = _relations,
@@ -31,13 +32,13 @@ internal sealed class JsonTreeVisitor : JsonParserBaseVisitor<JNode>
             Properties = ProcessProperties(context.propertyNode())
         }.Build();
 
-    private IIndexMap<string,JProperty> ProcessProperties(JsonParser.PropertyNodeContext[] contexts)
+    private IIndexMap<string,JProperty> ProcessProperties(PropertyNodeContext[] contexts)
     {
         var properties = contexts.Select(p => (JProperty) Visit(p)).ToList();
         return RequireUniqueness(properties, JSON_TREE).ToIndexMap().AsReadOnly();
     }
 
-    public override JNode VisitPropertyNode(JsonParser.PropertyNodeContext context)
+    public override JNode VisitPropertyNode(PropertyNodeContext context)
         => new JProperty.Builder
         {
             Relations = _relations,
@@ -46,7 +47,7 @@ internal sealed class JsonTreeVisitor : JsonParserBaseVisitor<JNode>
             Value = Visit(context.valueNode())
         }.Build();
 
-    public override JNode VisitArrayNode(JsonParser.ArrayNodeContext context)
+    public override JNode VisitArrayNode(ArrayNodeContext context)
         => new JArray.Builder
         {
             Relations = _relations,
@@ -54,7 +55,7 @@ internal sealed class JsonTreeVisitor : JsonParserBaseVisitor<JNode>
             Elements = context.valueNode().Select(Visit).ToList().AsReadOnly()
         }.Build();
 
-    public override JNode VisitPrimitiveTrue(JsonParser.PrimitiveTrueContext context)
+    public override JNode VisitPrimitiveTrue(PrimitiveTrueContext context)
         => new JBoolean.Builder
         {
             Relations = _relations,
@@ -62,7 +63,7 @@ internal sealed class JsonTreeVisitor : JsonParserBaseVisitor<JNode>
             Value = true
         }.Build();
 
-    public override JNode VisitPrimitiveFalse(JsonParser.PrimitiveFalseContext context)
+    public override JNode VisitPrimitiveFalse(PrimitiveFalseContext context)
         => new JBoolean.Builder
         {
             Relations = _relations,
@@ -70,7 +71,7 @@ internal sealed class JsonTreeVisitor : JsonParserBaseVisitor<JNode>
             Value = false
         }.Build();
 
-    public override JNode VisitPrimitiveString(JsonParser.PrimitiveStringContext context)
+    public override JNode VisitPrimitiveString(PrimitiveStringContext context)
         => new JString.Builder
         {
             Relations = _relations,
@@ -78,7 +79,7 @@ internal sealed class JsonTreeVisitor : JsonParserBaseVisitor<JNode>
             Value = context.STRING().GetText().ToEncoded()
         }.Build();
 
-    public override JNode VisitPrimitiveInteger(JsonParser.PrimitiveIntegerContext context)
+    public override JNode VisitPrimitiveInteger(PrimitiveIntegerContext context)
         => new JInteger.Builder
         {
             Relations = _relations,
@@ -86,7 +87,7 @@ internal sealed class JsonTreeVisitor : JsonParserBaseVisitor<JNode>
             Value = Convert.ToInt64(context.INTEGER().GetText())
         }.Build();
 
-    public override JNode VisitPrimitiveFloat(JsonParser.PrimitiveFloatContext context)
+    public override JNode VisitPrimitiveFloat(PrimitiveFloatContext context)
         => new JFloat.Builder
         {
             Relations = _relations,
@@ -94,7 +95,7 @@ internal sealed class JsonTreeVisitor : JsonParserBaseVisitor<JNode>
             Value = Convert.ToDouble(context.FLOAT().GetText())
         }.Build();
 
-    public override JNode VisitPrimitiveDouble(JsonParser.PrimitiveDoubleContext context)
+    public override JNode VisitPrimitiveDouble(PrimitiveDoubleContext context)
         => new JDouble.Builder
         {
             Relations = _relations,
@@ -102,7 +103,7 @@ internal sealed class JsonTreeVisitor : JsonParserBaseVisitor<JNode>
             Value = Convert.ToDouble(context.DOUBLE().GetText())
         }.Build();
 
-    public override JNode VisitPrimitiveNull(JsonParser.PrimitiveNullContext context)
+    public override JNode VisitPrimitiveNull(PrimitiveNullContext context)
         => new JNull.Builder
         {
             Relations = _relations,

@@ -6,6 +6,7 @@ using RelogicLabs.JSchema.Types;
 using RelogicLabs.JSchema.Utilities;
 using static RelogicLabs.JSchema.Message.ErrorCode;
 using static RelogicLabs.JSchema.Tree.FunctionRegistry;
+using static RelogicLabs.JSchema.Tree.IEFunction;
 
 namespace RelogicLabs.JSchema.Tree;
 
@@ -24,14 +25,14 @@ internal sealed class NativeFunction : IEFunction
         Method = method;
         Parameters = parameters;
         Instance = instance;
-        Arity = parameters[^1].IsParams() ? -1 : parameters.Length;
-        TargetType = Parameters[0].ParameterType;
+        Arity = parameters[^1].IsParams() ? VariadicArity : parameters.Length;
+        TargetType = parameters[0].ParameterType;
     }
 
     public IList<object>? Prebind<T>(IList<T> arguments) where T : IEValue
     {
         var count = Parameters.Length;
-        if(Arity == -1 && arguments.Count < count - 2) return null;
+        if(Arity == VariadicArity && arguments.Count < count - 2) return null;
         var result = new List<object>(count);
         for(var i = 1; i < count; i++)
         {
@@ -50,9 +51,10 @@ internal sealed class NativeFunction : IEFunction
 
     public object Invoke(JFunction caller, object[] arguments)
     {
+        Instance.Runtime = caller.Runtime;
         Instance.Caller = caller;
         var result = Method.Invoke(Instance, arguments);
-        if(result == null) throw new InvalidFunctionException(FUNC09,
+        if(result == null) throw new InvalidFunctionException(FUNC07,
             $"Function {Method.Name} must not return null");
         return result;
     }
