@@ -7,13 +7,13 @@ using static RelogicLabs.JSchema.Message.ErrorCode;
 
 namespace RelogicLabs.JSchema.Library;
 
-internal sealed class NFunction : IRFunction
+internal sealed class LibraryFunction : IRFunction
 {
     public GParameter[] Parameters { get; }
     public bool Variadic { get; }
-    public NEvaluator Body { get; }
+    public FunctionEvaluator Body { get; }
 
-    public NFunction(NEvaluator body, params string[] parameters)
+    public LibraryFunction(FunctionEvaluator body, params string[] parameters)
     {
         Parameters = ToParameters(parameters);
         Variadic = HasVariadic(Parameters);
@@ -23,12 +23,12 @@ internal sealed class NFunction : IRFunction
     private static GParameter[] ToParameters(params string[] names)
         => names.Select(static n => new GParameter(n)).ToArray();
 
-    public ScopeContext Bind(ScopeContext parentScope, List<IEValue> arguments)
+    public ScriptScope Bind(ScriptScope parentScope, List<IEValue> arguments)
     {
-        AreCompatible(this, arguments, FUNS06);
+        AreCompatible(this, arguments, FNVK03);
         return parentScope;
     }
 
-    public IEValue Invoke(ScopeContext functionScope, List<IEValue> arguments)
+    public IEValue Invoke(ScriptScope functionScope, List<IEValue> arguments)
         => Body(functionScope, arguments);
 }

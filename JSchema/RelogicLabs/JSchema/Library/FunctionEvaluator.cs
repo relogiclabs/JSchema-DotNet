@@ -3,4 +3,4 @@ using RelogicLabs.JSchema.Types;
 
 namespace RelogicLabs.JSchema.Library;
 
-internal delegate IEValue NEvaluator(ScopeContext scope, List<IEValue> arguments);
+internal delegate IEValue FunctionEvaluator(ScriptScope scope, List<IEValue> arguments);

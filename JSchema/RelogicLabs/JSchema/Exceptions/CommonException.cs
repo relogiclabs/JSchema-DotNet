@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using RelogicLabs.JSchema.Message;
 using RelogicLabs.JSchema.Utilities;
 using static System.Environment;
@@ -37,7 +38,7 @@ public class CommonException : Exception
 
     private static string CaptureStackTrace()
     {
-        var stackTrace = new System.Diagnostics.StackTrace(3, true);
+        var stackTrace = new StackTrace(3, true);
         var frames = stackTrace.GetFrames();
         var start = 0;
         for(var i = start; i < frames.Length; i++)
