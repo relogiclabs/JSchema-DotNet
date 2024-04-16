@@ -23,18 +23,11 @@ internal sealed class GIterator : IEnumerable<IEValue>
     }
 
     private static IEnumerator<IEValue> GetEnumerator(IEObject source)
-        => source.Keys.Select(GString.Of).GetEnumerator();
+        => source.Keys.Select(GString.From).GetEnumerator();
 
     private static IEnumerator<IEValue> GetEnumerator(IEString source)
-        => source.Value.Select(GString.Of).GetEnumerator();
+        => source.Value.Select(GString.From).GetEnumerator();
 
     private static IEnumerator<IEValue> GetEnumerator(IEArray source)
-    {
-        while(source.Count == 1)
-        {
-            if(source.Get(0) is IEArray) source = (IEArray) source.Get(0);
-            else break;
-        }
-        return source.Values.GetEnumerator();
-    }
+        => source.Values.GetEnumerator();
 }
