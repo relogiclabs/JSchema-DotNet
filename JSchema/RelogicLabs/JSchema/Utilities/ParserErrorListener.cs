@@ -1,7 +1,7 @@
-using System.Text;
 using Antlr4.Runtime;
 using RelogicLabs.JSchema.Exceptions;
 using static RelogicLabs.JSchema.Message.ErrorCode;
+using static RelogicLabs.JSchema.Message.MessageFormatter;
 
 namespace RelogicLabs.JSchema.Utilities;
 
@@ -41,7 +41,7 @@ internal abstract class ParserErrorListener : IAntlrErrorListener<IToken>
         var errorLine = ((CommonTokenStream) recognizer.InputStream)
             .TokenSource.InputStream.ToString()!
             .Split(NewLines, StringSplitOptions.None)[line - 1]
-            .Insert(charPositionInLine, "<|>").Trim();
+            .Insert(charPositionInLine, ErrorPointer).Trim();
         throw FailOnSyntaxError(string.Format(GetMessageFormat(), line, charPositionInLine,
             msg, errorLine), e);
     }

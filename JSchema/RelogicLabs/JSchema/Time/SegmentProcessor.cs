@@ -257,7 +257,7 @@ internal abstract class SegmentProcessor
         public FractionNumberProcessor(Regex regex, string code) : base(regex, code) { }
         protected override void Process(Match match, DateTimeContext context)
         {
-            if(!match.Success) throw FailOnInvalidDateTime(context, _code, "second faction input");
+            if(!match.Success) throw FailOnInvalidDateTime(context, _code, "second fraction input");
             context.SetFraction(int.Parse(match.Groups[1].Value, NumberStyles.Integer));
         }
     }

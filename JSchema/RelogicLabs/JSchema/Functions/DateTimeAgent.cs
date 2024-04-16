@@ -1,7 +1,7 @@
 using RelogicLabs.JSchema.Exceptions;
 using RelogicLabs.JSchema.Message;
-using RelogicLabs.JSchema.Time;
 using RelogicLabs.JSchema.Nodes;
+using RelogicLabs.JSchema.Time;
 
 namespace RelogicLabs.JSchema.Functions;
 

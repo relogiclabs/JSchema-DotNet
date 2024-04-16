@@ -1,7 +1,7 @@
 using System.Text;
 using Antlr4.Runtime;
-using RelogicLabs.JSchema.Tree;
 using RelogicLabs.JSchema.Nodes;
+using RelogicLabs.JSchema.Tree;
 using RelogicLabs.JSchema.Utilities;
 using static System.Environment;
 
@@ -10,6 +10,8 @@ namespace RelogicLabs.JSchema.Message;
 // Exception Message Formatter
 public abstract class MessageFormatter
 {
+    internal const string ErrorPointer = "<|>";
+
     private const string SchemaBasicFormat = "Schema Input [{0}]: {1}";
     private const string JsonBasicFormat = "Json Input [{0}]: {1}";
     private const string SchemaDetailFormat = "Schema (Line: {0}) [{1}]: {2}";
