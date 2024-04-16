@@ -17,7 +17,7 @@ public class ScriptGeneralTests
             }
             %script: {
                 future constraint checkAccess(role) {
-                    if(role[0] == "user" && target > 5) return fail(
+                    if(role == "user" && target > 5) return fail(
                         "ERRACCESS01", "Data access incompatible with 'user' role",
                         // 'caller' is the default node added automatically
                         expected("an access at most 5 for 'user' role"),
@@ -52,7 +52,7 @@ public class ScriptGeneralTests
             }
             %script: {
                 future constraint checkAccess(role) {
-                    if(role[0] == "user" && target > 5) return fail(
+                    if(role == "user" && target > 5) return fail(
                         "ERRACCESS01", "Data access incompatible with 'user' role",
                         // Pass any node explicitly to the expected function
                         expected(caller, "an access at most 5 for 'user' role"),
@@ -87,7 +87,7 @@ public class ScriptGeneralTests
             }
             %script: {
                 constraint checkAccess(role) {
-                    if(role[0] == "user" && target > 5) return fail(
+                    if(role == "user" && target > 5) return fail(
                         "ERRACCESS01", "Data access incompatible with 'user' role",
                         // Create an expected object explicitly without any function
                         { node: caller, message: "an access at most 5 for 'user' role" },
@@ -124,7 +124,7 @@ public class ScriptGeneralTests
             %script: {
                 future constraint checkAccess(role) {
                     // Fail with simple message and a code
-                    if(role[0] == "user" && target > 5) return fail(
+                    if(role == "user" && target > 5) return fail(
                         "ERRACCESS01", "Data access incompatible with 'user' role");
                 }
             }
@@ -156,7 +156,7 @@ public class ScriptGeneralTests
             %script: {
                 future constraint checkAccess(role) {
                     // Fail with just a message
-                    if(role[0] == "user" && target > 5) return fail(
+                    if(role == "user" && target > 5) return fail(
                         "Data access incompatible with 'user' role");
                 }
             }
@@ -177,7 +177,7 @@ public class ScriptGeneralTests
     }
 
     [TestMethod]
-    public void When_ThrowExceptionFromScriptV1_ExceptionThrown()
+    public void When_ThrowFromScriptWithCode_ExceptionThrown()
     {
         var schema =
             """
@@ -187,8 +187,8 @@ public class ScriptGeneralTests
             }
             %script: {
                 future constraint throwTest() {
-                    if(type(target) != "#array") return fail("Invalid: " + target);
-                    if(find(target, 45.5) < 0) return fail("Invalid: " + target);
+                    if(target.type() != "#array") return fail("Invalid: " + target);
+                    if(!target.find(45.5)) return fail("Invalid: " + target);
                     if(target[1] == 20) throw("ERROR01", "Throw test with code");
                     return fail("NOTTHRO01", "Exception not thrown");
                 }
@@ -208,7 +208,7 @@ public class ScriptGeneralTests
     }
 
     [TestMethod]
-    public void When_ThrowExceptionFromScriptV2_ExceptionThrown()
+    public void When_ThrowFromScriptWithoutCode_ExceptionThrown()
     {
         var schema =
             """
@@ -218,8 +218,8 @@ public class ScriptGeneralTests
             }
             %script: {
                 future constraint throwTest() {
-                    var c1 = copy(target[0]);
-                    var c2 = copy(target[3]);
+                    var c1 = target[0].copy();
+                    var c2 = target[3].copy();
                     if(c1 != 10) return fail("Invalid: " + target);
                     if(c2 != 45.5) return fail("Invalid: " + target);
                     if(target[2] == 30) throw("Throw test without code");

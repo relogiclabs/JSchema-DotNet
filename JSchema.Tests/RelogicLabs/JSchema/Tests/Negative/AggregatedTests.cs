@@ -80,9 +80,9 @@ public class AggregatedTests
         %version: "2.0.0-extended"
         %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
                  RelogicLabs.JSchema.Tests
-        
+
         %pragma IgnoreUndefinedProperties: true
-        
+
         %define $post: {
             "id": @range(1, 1000) #integer,
             "title": @length(10, 100) #string,
@@ -103,7 +103,7 @@ public class AggregatedTests
         }
         %define $tags: @length(1, 10) #string*($tag) #array
         %define $tag: @length(3, 20) @regex("[A-Za-z_]+") #string
-        %schema: 
+        %schema:
         {
             "user": {
                 "id": @range(1, 10000) #integer,
@@ -243,7 +243,7 @@ public class AggregatedTests
         var schema = """
         %title: "Extended User Profile Dashboard API Response"
         %version: "2.0.0-extended"
-        
+
         %pragma DateDataTypeFormat: "DD-MM-YYYY"
         %pragma TimeDataTypeFormat: "DD-MM-YYYY hh:mm:ss"
         %pragma IgnoreUndefinedProperties: true
@@ -254,7 +254,7 @@ public class AggregatedTests
             "content": @length(30, 1000) #string,
             "tags": $tags
         } #object
-        
+
         %define $product: {
             "id": @length(2, 10) @regex("[a-z][a-z0-9]+") #string,
             "name": @length(5, 30) #string,
@@ -267,11 +267,11 @@ public class AggregatedTests
                 "storage": @regex("[0-9]{1,4}GB (SSD|HDD)") #string
             } #object #null
         }
-        
+
         %define $tags: @length(1, 10) #string*($tag) #array
         %define $tag: @length(3, 20) @regex("[A-Za-z_]+") #string
-        
-        %schema: 
+
+        %schema:
         {
             "user": {
                 "id": @range(1, 10000) #integer,
@@ -308,10 +308,12 @@ public class AggregatedTests
                 "isCloudy": #boolean
             }
         }
-        
+
         %script: {
             future constraint checkAccess(role) {
-                if(role[0] == "user" && target > 5) return fail(
+                // Auto-unpacking turns the single-value '&role' array into the value itself
+                // 'target' keyword refers to the target JSON value
+                if(role == "user" && target > 5) return fail(
                     "ERRACCESS01", "Data access incompatible with 'user' role",
                     expected("an access at most 5 for 'user' role"),
                     actual("found access " + target + " which is greater than 5"));

@@ -15,7 +15,7 @@ public class ScriptGeneralTests
             }
             %script: {
                 future constraint checkAccess(role) {
-                    if(role[0] == "user" && target > 5) return fail(
+                    if(role == "user" && target > 5) return fail(
                         "ERRACCESS01", "Data access incompatible with 'user' role",
                         // 'caller' is the default node added automatically
                         expected("an access at most 5 for 'user' role"),
@@ -46,7 +46,7 @@ public class ScriptGeneralTests
             }
             %script: {
                 future checkAccess(role) {
-                    if(role[0] == "user" && target > 5) return fail(
+                    if(role == "user" && target > 5) return fail(
                         "ERRACCESS01", "Data access incompatible with 'user' role",
                         // Pass any node explicitly to the expected function
                         expected(caller, "an access at most 5 for 'user' role"),
@@ -77,12 +77,12 @@ public class ScriptGeneralTests
             }
             %script: {
                 constraint checkAccess(role) {
-                    if(role[0] == "user" && target > 5) return fail(
+                    if(role == "user" && target > 5) return fail(
                         "ERRACCESS01", "Data access incompatible with 'user' role",
                         // Create an expected object explicitly without any function
                         { node: caller, message: "an access at most 5 for 'user' role" },
                         // Create an actual object explicitly without any function
-                        { node: target, message: "found access " + target 
+                        { node: target, message: "found access " + target
                                 + " which is greater than 5" });
                 }
             }
@@ -109,14 +109,10 @@ public class ScriptGeneralTests
             }
             %script: {
                 future sumTest(array) {
-                    var sum1 = 0;
-                    // &array received an array value stored at 0
-                    foreach(var e in array[0]) sum1 = sum1 + e;
-                    var sum2 = 0;
-                    // auto unbox inside foreach iterator for special case
-                    foreach(var e in array) sum2 = sum2 + e;
-                    if(sum1 != sum2) return fail("Invalid: " + sum1 + "!=" + sum2);
-                    if(sum1 != target) return fail("Invalid: " + target);
+                    // Auto-unpacking unwraps the single array received
+                    var sum = 0;
+                    foreach(var e in array) sum += e;
+                    if(sum != target) return fail("Invalid: " + target);
                 }
             }
             """;
@@ -146,8 +142,9 @@ public class ScriptGeneralTests
             }
             %script: {
                 future constraint function sumTest(values) {
+                    // No auto-unpacking for multiple received in '&values'
                     var sum = 0;
-                    foreach(var e in values) sum = sum + e;
+                    foreach(var e in values) sum += e;
                     if(sum != target) return fail("Invalid: " + target);
                 }
             }
@@ -178,7 +175,7 @@ public class ScriptGeneralTests
             }
             %script: {
                 constraint arithmeticTest(number) {
-                    if(target / 2 - 43.78 + 88.56 != number[0] * 2 + 78.9 - 21.07)
+                    if(target / 2 - 43.78 + 88.56 != number * 2 + 78.9 - 21.07)
                         return fail("Invalid: " + target);
                 }
             }
@@ -206,9 +203,9 @@ public class ScriptGeneralTests
             }
             %script: {
                 future constraint checkRange(min, max) {
-                    if(target < min[0] || target > max[0]) return fail(
+                    if(target < min || target > max) return fail(
                         "RANGEERR01", "The target value is out of range",
-                        expected("a value in range " + [min[0], max[0]]),
+                        expected("a value in range " + [min, max]),
                         actual("but found " + target + " which is out of range"));
                 }
             }
@@ -235,10 +232,10 @@ public class ScriptGeneralTests
                 "key2": #string,
                 "key3": #string
             } @checkObject
-            
+
             %script: {
                 constraint checkObject() {
-                    if(type(target) != "#object") return fail("Invalid: " + target);
+                    if(target.type() != "#object") return fail("Invalid: " + target);
                     var hasKey = false;
                     foreach(var k in target) {
                         if(k == "key2") hasKey = true;
