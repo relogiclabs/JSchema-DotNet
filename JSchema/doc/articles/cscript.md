@@ -12,7 +12,7 @@ Here is a list of keywords (reserved words) in the CScript language. You cannot 
 | Conditional Flow Control  | `if`; `else`; (`switch`; `case`; `default`)      |
 | Iterative Flow Control    | `for`; `foreach`; `while`; (`do`)                |
 | Jump Control              | `break`; (`continue`)                            |
-| Membership Management     | `in`                                             |
+| Membership Management     | `in`; (`not`)                                    |
 | Function Declaration      | `function`; `constraint`; `future`; `subroutine` |
 | Function Data & Control   | `return`; `target`; `caller`                     |
 | Literals Value            | `true`; `false`; `null`; `undefined`             |
@@ -32,7 +32,7 @@ Composite types include `#array` and `#object`, while the remaining types fall u
 | 3  | `#double`    | `10.5`; `20E-5`; `5E+5`                    |
 | 4  | `#integer`   | `10`; `20`; `100`; `500`                   |
 | 5  | `#null`      | `null`                                     |
-| 6  | `#object`    | `{ k1: "text", k2: { "k11" : 10 } }`; `{}` |             
+| 6  | `#object`    | `{ k1: "text", k2: { "k11" : 10 } }`; `{}` |
 | 7  | `#range`     | `1..10`; `-10..-5`; `-10..`; `..100`       |
 | 8  | `#string`    | `"any text"`; `""`                         |
 | 9  | `#undefined` | `undefined`                                |
@@ -43,20 +43,20 @@ The `#void` type is reserved for internal operations, including initializing una
 ## Operators & Precedences
 CScript operators are symbols that are used to perform operations on variables and values. The direct operation of any operator that requires a modifiable l-value including `++`, `--` or `=` will raise an exception for the readonly schema nodes. The following table lists the operators according to their precedences from the highest to the lowest:
 
-| SN | Category                      | Operator             |
-|----|-------------------------------|----------------------|
-| 1  | Property Access & Parentheses | `.`; `[]`; `()`      |
-| 2  | Unary Minus & Logical Not     | `-`; `!`             |
-| 3  | Postfix Increment/Decrement   | `i++`; `i--`         |
-| 4  | Prefix Increment/Decrement    | `++i`; `--i`         |
-| 5  | Arithmetic Multiplicative     | `*`; `/`             |
-| 6  | Arithmetic Additive           | `+`; `-`             |
-| 7  | Sequence Range                | `..`                 |
-| 8  | Relational Comparison         | `>`; `<`; `>=`; `<=` |
-| 9  | Equality Comparison           | `==`; `!=`           |
-| 10 | Logical And (Short-Circuit)   | `&&`                 |
-| 11 | Logical Or (Short-Circuit)    | `||`                 |
-| 12 | Assignment                    | `=`                  |
+| SN | Category                      | Operator                          |
+|----|-------------------------------|-----------------------------------|
+| 1  | Property Access & Parentheses | `.`; `[]`; `()`                   |
+| 2  | Unary Minus & Logical Not     | `-`; `!`                          |
+| 3  | Postfix Increment/Decrement   | `i++`; `i--`                      |
+| 4  | Prefix Increment/Decrement    | `++i`; `--i`                      |
+| 5  | Arithmetic Multiplicative     | `*`; `/`; `%`                     |
+| 6  | Arithmetic Additive           | `+`; `-`                          |
+| 7  | Sequence Range                | `..`                              |
+| 8  | Relational Comparison         | `>`; `<`; `>=`; `<=`              |
+| 9  | Equality Comparison           | `==`; `!=`                        |
+| 10 | Logical And (Short-Circuit)   | `&&`                              |
+| 11 | Logical Or (Short-Circuit)    | `||`                              |
+| 12 | Assignment                    | `=`; `+=`; `-=`; `*=`; `/=`; `%=` |
 
 ## Function Types
 Function types are essential for specifying the executable units that serve as the building-blocks of validation process within CScript. All function types can also accept variable number of arguments, specified by an ellipsis `...` after the last parameter name which is then bound to an array containing the remaining arguments.

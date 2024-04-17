@@ -95,7 +95,7 @@ The next example represents an expanded version of the previous one, which bring
 %define $tags: @length(1, 10) #string*($tag) #array
 %define $tag: @length(3, 20) @regex("[A-Za-z_]+") #string
 
-%schema: 
+%schema:
 {
     "user": {
         "id": @range(1, 10000) #integer,
@@ -135,16 +135,16 @@ The next example represents an expanded version of the previous one, which bring
 
 %script: {
     constraint function checkAccess(role) {
-        // Receiver &role received only one value
+        // Auto-unpacking unwraps single-value '&role' array into its value
         // 'target' keyword refers to the target JSON value
-        if(role[0] == "user" && target > 5) return fail(
+        if(role == "user" && target > 5) return fail(
             "ERRACCESS01", "Data access incompatible with 'user' role",
             expected("an access at most 5 for 'user' role"),
             actual("found access " + target + " which is greater than 5"));
     }
 }
 ```
-The subsequent JSON sample is an illustrative example that successfully validates against the expanded schema mentioned earlier. Within this example, recurring JSON structures appear that can be validated by defining components or nested functions and data types. Besides, reusing simple component definitions, you can achieve a clear and concise schema when validating large JSON with repetitive structures instead of duplicating or referring to various structures across the schema. This improves the overall readability and maintainability of the schema.
+The subsequent JSON sample is an illustrative example that successfully validates against the expanded schema mentioned earlier. Within this example, recurring JSON structures appear that can be validated by defining components or nested functions and data types. Besides, reusing simple component definitions, you can achieve a clear and concise schema when validating large JSON with repetitive structures. This improves the overall readability and maintainability of the schema.
 ```json
 {
     "user": {

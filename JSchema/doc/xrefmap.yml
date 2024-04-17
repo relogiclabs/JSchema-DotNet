@@ -821,6 +821,40 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JSchema.Exceptions.JsonSchemaException.Expected
   nameWithType: JsonSchemaException.Expected
+- uid: RelogicLabs.JSchema.Exceptions.MethodNotFoundException
+  name: MethodNotFoundException
+  href: api/RelogicLabs.JSchema.Exceptions.MethodNotFoundException.html
+  commentId: T:RelogicLabs.JSchema.Exceptions.MethodNotFoundException
+  fullName: RelogicLabs.JSchema.Exceptions.MethodNotFoundException
+  nameWithType: MethodNotFoundException
+- uid: RelogicLabs.JSchema.Exceptions.MethodNotFoundException.#ctor(RelogicLabs.JSchema.Message.ErrorDetail,System.Exception)
+  name: MethodNotFoundException(ErrorDetail, Exception?)
+  href: api/RelogicLabs.JSchema.Exceptions.MethodNotFoundException.html#RelogicLabs_JSchema_Exceptions_MethodNotFoundException__ctor_RelogicLabs_JSchema_Message_ErrorDetail_System_Exception_
+  commentId: M:RelogicLabs.JSchema.Exceptions.MethodNotFoundException.#ctor(RelogicLabs.JSchema.Message.ErrorDetail,System.Exception)
+  name.vb: New(ErrorDetail, Exception)
+  fullName: RelogicLabs.JSchema.Exceptions.MethodNotFoundException.MethodNotFoundException(RelogicLabs.JSchema.Message.ErrorDetail, System.Exception?)
+  fullName.vb: RelogicLabs.JSchema.Exceptions.MethodNotFoundException.New(RelogicLabs.JSchema.Message.ErrorDetail, System.Exception)
+  nameWithType: MethodNotFoundException.MethodNotFoundException(ErrorDetail, Exception?)
+  nameWithType.vb: MethodNotFoundException.New(ErrorDetail, Exception)
+- uid: RelogicLabs.JSchema.Exceptions.MethodNotFoundException.#ctor(System.String,System.String,System.Exception)
+  name: MethodNotFoundException(string, string, Exception?)
+  href: api/RelogicLabs.JSchema.Exceptions.MethodNotFoundException.html#RelogicLabs_JSchema_Exceptions_MethodNotFoundException__ctor_System_String_System_String_System_Exception_
+  commentId: M:RelogicLabs.JSchema.Exceptions.MethodNotFoundException.#ctor(System.String,System.String,System.Exception)
+  name.vb: New(String, String, Exception)
+  fullName: RelogicLabs.JSchema.Exceptions.MethodNotFoundException.MethodNotFoundException(string, string, System.Exception?)
+  fullName.vb: RelogicLabs.JSchema.Exceptions.MethodNotFoundException.New(String, String, System.Exception)
+  nameWithType: MethodNotFoundException.MethodNotFoundException(string, string, Exception?)
+  nameWithType.vb: MethodNotFoundException.New(String, String, Exception)
+- uid: RelogicLabs.JSchema.Exceptions.MethodNotFoundException.#ctor*
+  name: MethodNotFoundException
+  href: api/RelogicLabs.JSchema.Exceptions.MethodNotFoundException.html#RelogicLabs_JSchema_Exceptions_MethodNotFoundException__ctor_
+  commentId: Overload:RelogicLabs.JSchema.Exceptions.MethodNotFoundException.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: RelogicLabs.JSchema.Exceptions.MethodNotFoundException.MethodNotFoundException
+  fullName.vb: RelogicLabs.JSchema.Exceptions.MethodNotFoundException.New
+  nameWithType: MethodNotFoundException.MethodNotFoundException
+  nameWithType.vb: MethodNotFoundException.New
 - uid: RelogicLabs.JSchema.Exceptions.MisplacedOptionalException
   name: MisplacedOptionalException
   href: api/RelogicLabs.JSchema.Exceptions.MisplacedOptionalException.html
@@ -1375,6 +1409,40 @@ references:
   fullName.vb: RelogicLabs.JSchema.Exceptions.SystemOperationException.New
   nameWithType: SystemOperationException.SystemOperationException
   nameWithType.vb: SystemOperationException.New
+- uid: RelogicLabs.JSchema.Exceptions.UpdateNotSupportedException
+  name: UpdateNotSupportedException
+  href: api/RelogicLabs.JSchema.Exceptions.UpdateNotSupportedException.html
+  commentId: T:RelogicLabs.JSchema.Exceptions.UpdateNotSupportedException
+  fullName: RelogicLabs.JSchema.Exceptions.UpdateNotSupportedException
+  nameWithType: UpdateNotSupportedException
+- uid: RelogicLabs.JSchema.Exceptions.UpdateNotSupportedException.#ctor(RelogicLabs.JSchema.Message.ErrorDetail,System.Exception)
+  name: UpdateNotSupportedException(ErrorDetail, Exception?)
+  href: api/RelogicLabs.JSchema.Exceptions.UpdateNotSupportedException.html#RelogicLabs_JSchema_Exceptions_UpdateNotSupportedException__ctor_RelogicLabs_JSchema_Message_ErrorDetail_System_Exception_
+  commentId: M:RelogicLabs.JSchema.Exceptions.UpdateNotSupportedException.#ctor(RelogicLabs.JSchema.Message.ErrorDetail,System.Exception)
+  name.vb: New(ErrorDetail, Exception)
+  fullName: RelogicLabs.JSchema.Exceptions.UpdateNotSupportedException.UpdateNotSupportedException(RelogicLabs.JSchema.Message.ErrorDetail, System.Exception?)
+  fullName.vb: RelogicLabs.JSchema.Exceptions.UpdateNotSupportedException.New(RelogicLabs.JSchema.Message.ErrorDetail, System.Exception)
+  nameWithType: UpdateNotSupportedException.UpdateNotSupportedException(ErrorDetail, Exception?)
+  nameWithType.vb: UpdateNotSupportedException.New(ErrorDetail, Exception)
+- uid: RelogicLabs.JSchema.Exceptions.UpdateNotSupportedException.#ctor(System.String,System.String,System.Exception)
+  name: UpdateNotSupportedException(string, string, Exception?)
+  href: api/RelogicLabs.JSchema.Exceptions.UpdateNotSupportedException.html#RelogicLabs_JSchema_Exceptions_UpdateNotSupportedException__ctor_System_String_System_String_System_Exception_
+  commentId: M:RelogicLabs.JSchema.Exceptions.UpdateNotSupportedException.#ctor(System.String,System.String,System.Exception)
+  name.vb: New(String, String, Exception)
+  fullName: RelogicLabs.JSchema.Exceptions.UpdateNotSupportedException.UpdateNotSupportedException(string, string, System.Exception?)
+  fullName.vb: RelogicLabs.JSchema.Exceptions.UpdateNotSupportedException.New(String, String, System.Exception)
+  nameWithType: UpdateNotSupportedException.UpdateNotSupportedException(string, string, Exception?)
+  nameWithType.vb: UpdateNotSupportedException.New(String, String, Exception)
+- uid: RelogicLabs.JSchema.Exceptions.UpdateNotSupportedException.#ctor*
+  name: UpdateNotSupportedException
+  href: api/RelogicLabs.JSchema.Exceptions.UpdateNotSupportedException.html#RelogicLabs_JSchema_Exceptions_UpdateNotSupportedException__ctor_
+  commentId: Overload:RelogicLabs.JSchema.Exceptions.UpdateNotSupportedException.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: RelogicLabs.JSchema.Exceptions.UpdateNotSupportedException.UpdateNotSupportedException
+  fullName.vb: RelogicLabs.JSchema.Exceptions.UpdateNotSupportedException.New
+  nameWithType: UpdateNotSupportedException.UpdateNotSupportedException
+  nameWithType.vb: UpdateNotSupportedException.New
 - uid: RelogicLabs.JSchema.Functions
   name: RelogicLabs.JSchema.Functions
   href: api/RelogicLabs.JSchema.Functions.html
@@ -1387,25 +1455,6 @@ references:
   commentId: T:RelogicLabs.JSchema.Functions.CoreFunctions
   fullName: RelogicLabs.JSchema.Functions.CoreFunctions
   nameWithType: CoreFunctions
-- uid: RelogicLabs.JSchema.Functions.CoreFunctions.#ctor(RelogicLabs.JSchema.Tree.RuntimeContext)
-  name: CoreFunctions(RuntimeContext)
-  href: api/RelogicLabs.JSchema.Functions.CoreFunctions.html#RelogicLabs_JSchema_Functions_CoreFunctions__ctor_RelogicLabs_JSchema_Tree_RuntimeContext_
-  commentId: M:RelogicLabs.JSchema.Functions.CoreFunctions.#ctor(RelogicLabs.JSchema.Tree.RuntimeContext)
-  name.vb: New(RuntimeContext)
-  fullName: RelogicLabs.JSchema.Functions.CoreFunctions.CoreFunctions(RelogicLabs.JSchema.Tree.RuntimeContext)
-  fullName.vb: RelogicLabs.JSchema.Functions.CoreFunctions.New(RelogicLabs.JSchema.Tree.RuntimeContext)
-  nameWithType: CoreFunctions.CoreFunctions(RuntimeContext)
-  nameWithType.vb: CoreFunctions.New(RuntimeContext)
-- uid: RelogicLabs.JSchema.Functions.CoreFunctions.#ctor*
-  name: CoreFunctions
-  href: api/RelogicLabs.JSchema.Functions.CoreFunctions.html#RelogicLabs_JSchema_Functions_CoreFunctions__ctor_
-  commentId: Overload:RelogicLabs.JSchema.Functions.CoreFunctions.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: RelogicLabs.JSchema.Functions.CoreFunctions.CoreFunctions
-  fullName.vb: RelogicLabs.JSchema.Functions.CoreFunctions.New
-  nameWithType: CoreFunctions.CoreFunctions
-  nameWithType.vb: CoreFunctions.New
 - uid: RelogicLabs.JSchema.Functions.CoreFunctions.After(RelogicLabs.JSchema.Nodes.JDateTime,RelogicLabs.JSchema.Nodes.JString)
   name: After(JDateTime, JString)
   href: api/RelogicLabs.JSchema.Functions.CoreFunctions.html#RelogicLabs_JSchema_Functions_CoreFunctions_After_RelogicLabs_JSchema_Nodes_JDateTime_RelogicLabs_JSchema_Nodes_JString_
@@ -1844,25 +1893,6 @@ references:
   commentId: T:RelogicLabs.JSchema.Functions.FunctionProvider
   fullName: RelogicLabs.JSchema.Functions.FunctionProvider
   nameWithType: FunctionProvider
-- uid: RelogicLabs.JSchema.Functions.FunctionProvider.#ctor(RelogicLabs.JSchema.Tree.RuntimeContext)
-  name: FunctionProvider(RuntimeContext)
-  href: api/RelogicLabs.JSchema.Functions.FunctionProvider.html#RelogicLabs_JSchema_Functions_FunctionProvider__ctor_RelogicLabs_JSchema_Tree_RuntimeContext_
-  commentId: M:RelogicLabs.JSchema.Functions.FunctionProvider.#ctor(RelogicLabs.JSchema.Tree.RuntimeContext)
-  name.vb: New(RuntimeContext)
-  fullName: RelogicLabs.JSchema.Functions.FunctionProvider.FunctionProvider(RelogicLabs.JSchema.Tree.RuntimeContext)
-  fullName.vb: RelogicLabs.JSchema.Functions.FunctionProvider.New(RelogicLabs.JSchema.Tree.RuntimeContext)
-  nameWithType: FunctionProvider.FunctionProvider(RuntimeContext)
-  nameWithType.vb: FunctionProvider.New(RuntimeContext)
-- uid: RelogicLabs.JSchema.Functions.FunctionProvider.#ctor*
-  name: FunctionProvider
-  href: api/RelogicLabs.JSchema.Functions.FunctionProvider.html#RelogicLabs_JSchema_Functions_FunctionProvider__ctor_
-  commentId: Overload:RelogicLabs.JSchema.Functions.FunctionProvider.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: RelogicLabs.JSchema.Functions.FunctionProvider.FunctionProvider
-  fullName.vb: RelogicLabs.JSchema.Functions.FunctionProvider.New
-  nameWithType: FunctionProvider.FunctionProvider
-  nameWithType.vb: FunctionProvider.New
 - uid: RelogicLabs.JSchema.Functions.FunctionProvider.Caller
   name: Caller
   href: api/RelogicLabs.JSchema.Functions.FunctionProvider.html#RelogicLabs_JSchema_Functions_FunctionProvider_Caller
@@ -2631,6 +2661,22 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JSchema.Nodes.JArray.Match
   nameWithType: JArray.Match
+- uid: RelogicLabs.JSchema.Nodes.JArray.Set(System.Int32,RelogicLabs.JSchema.Types.IEValue)
+  name: Set(int, IEValue)
+  href: api/RelogicLabs.JSchema.Nodes.JArray.html#RelogicLabs_JSchema_Nodes_JArray_Set_System_Int32_RelogicLabs_JSchema_Types_IEValue_
+  commentId: M:RelogicLabs.JSchema.Nodes.JArray.Set(System.Int32,RelogicLabs.JSchema.Types.IEValue)
+  name.vb: Set(Integer, IEValue)
+  fullName: RelogicLabs.JSchema.Nodes.JArray.Set(int, RelogicLabs.JSchema.Types.IEValue)
+  fullName.vb: RelogicLabs.JSchema.Nodes.JArray.Set(Integer, RelogicLabs.JSchema.Types.IEValue)
+  nameWithType: JArray.Set(int, IEValue)
+  nameWithType.vb: JArray.Set(Integer, IEValue)
+- uid: RelogicLabs.JSchema.Nodes.JArray.Set*
+  name: Set
+  href: api/RelogicLabs.JSchema.Nodes.JArray.html#RelogicLabs_JSchema_Nodes_JArray_Set_
+  commentId: Overload:RelogicLabs.JSchema.Nodes.JArray.Set
+  isSpec: "True"
+  fullName: RelogicLabs.JSchema.Nodes.JArray.Set
+  nameWithType: JArray.Set
 - uid: RelogicLabs.JSchema.Nodes.JArray.ToString
   name: ToString()
   href: api/RelogicLabs.JSchema.Nodes.JArray.html#RelogicLabs_JSchema_Nodes_JArray_ToString
@@ -3843,6 +3889,22 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JSchema.Nodes.JObject.Properties
   nameWithType: JObject.Properties
+- uid: RelogicLabs.JSchema.Nodes.JObject.Set(System.String,RelogicLabs.JSchema.Types.IEValue)
+  name: Set(string, IEValue)
+  href: api/RelogicLabs.JSchema.Nodes.JObject.html#RelogicLabs_JSchema_Nodes_JObject_Set_System_String_RelogicLabs_JSchema_Types_IEValue_
+  commentId: M:RelogicLabs.JSchema.Nodes.JObject.Set(System.String,RelogicLabs.JSchema.Types.IEValue)
+  name.vb: Set(String, IEValue)
+  fullName: RelogicLabs.JSchema.Nodes.JObject.Set(string, RelogicLabs.JSchema.Types.IEValue)
+  fullName.vb: RelogicLabs.JSchema.Nodes.JObject.Set(String, RelogicLabs.JSchema.Types.IEValue)
+  nameWithType: JObject.Set(string, IEValue)
+  nameWithType.vb: JObject.Set(String, IEValue)
+- uid: RelogicLabs.JSchema.Nodes.JObject.Set*
+  name: Set
+  href: api/RelogicLabs.JSchema.Nodes.JObject.html#RelogicLabs_JSchema_Nodes_JObject_Set_
+  commentId: Overload:RelogicLabs.JSchema.Nodes.JObject.Set
+  isSpec: "True"
+  fullName: RelogicLabs.JSchema.Nodes.JObject.Set
+  nameWithType: JObject.Set
 - uid: RelogicLabs.JSchema.Nodes.JObject.ToString
   name: ToString()
   href: api/RelogicLabs.JSchema.Nodes.JObject.html#RelogicLabs_JSchema_Nodes_JObject_ToString
@@ -4158,6 +4220,22 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JSchema.Nodes.JReceiver.Name
   nameWithType: JReceiver.Name
+- uid: RelogicLabs.JSchema.Nodes.JReceiver.Set(System.Int32,RelogicLabs.JSchema.Types.IEValue)
+  name: Set(int, IEValue)
+  href: api/RelogicLabs.JSchema.Nodes.JReceiver.html#RelogicLabs_JSchema_Nodes_JReceiver_Set_System_Int32_RelogicLabs_JSchema_Types_IEValue_
+  commentId: M:RelogicLabs.JSchema.Nodes.JReceiver.Set(System.Int32,RelogicLabs.JSchema.Types.IEValue)
+  name.vb: Set(Integer, IEValue)
+  fullName: RelogicLabs.JSchema.Nodes.JReceiver.Set(int, RelogicLabs.JSchema.Types.IEValue)
+  fullName.vb: RelogicLabs.JSchema.Nodes.JReceiver.Set(Integer, RelogicLabs.JSchema.Types.IEValue)
+  nameWithType: JReceiver.Set(int, IEValue)
+  nameWithType.vb: JReceiver.Set(Integer, IEValue)
+- uid: RelogicLabs.JSchema.Nodes.JReceiver.Set*
+  name: Set
+  href: api/RelogicLabs.JSchema.Nodes.JReceiver.html#RelogicLabs_JSchema_Nodes_JReceiver_Set_
+  commentId: Overload:RelogicLabs.JSchema.Nodes.JReceiver.Set
+  isSpec: "True"
+  fullName: RelogicLabs.JSchema.Nodes.JReceiver.Set
+  nameWithType: JReceiver.Set
 - uid: RelogicLabs.JSchema.Nodes.JReceiver.ToString
   name: ToString()
   href: api/RelogicLabs.JSchema.Nodes.JReceiver.html#RelogicLabs_JSchema_Nodes_JReceiver_ToString
@@ -5211,28 +5289,19 @@ references:
   commentId: T:RelogicLabs.JSchema.Tree.FunctionRegistry
   fullName: RelogicLabs.JSchema.Tree.FunctionRegistry
   nameWithType: FunctionRegistry
-- uid: RelogicLabs.JSchema.Tree.FunctionRegistry.AddClass(RelogicLabs.JSchema.Nodes.JImport)
-  name: AddClass(JImport)
-  href: api/RelogicLabs.JSchema.Tree.FunctionRegistry.html#RelogicLabs_JSchema_Tree_FunctionRegistry_AddClass_RelogicLabs_JSchema_Nodes_JImport_
-  commentId: M:RelogicLabs.JSchema.Tree.FunctionRegistry.AddClass(RelogicLabs.JSchema.Nodes.JImport)
-  fullName: RelogicLabs.JSchema.Tree.FunctionRegistry.AddClass(RelogicLabs.JSchema.Nodes.JImport)
-  nameWithType: FunctionRegistry.AddClass(JImport)
-- uid: RelogicLabs.JSchema.Tree.FunctionRegistry.AddClass(System.String,RelogicLabs.JSchema.Tree.Context)
-  name: AddClass(string, Context?)
-  href: api/RelogicLabs.JSchema.Tree.FunctionRegistry.html#RelogicLabs_JSchema_Tree_FunctionRegistry_AddClass_System_String_RelogicLabs_JSchema_Tree_Context_
-  commentId: M:RelogicLabs.JSchema.Tree.FunctionRegistry.AddClass(System.String,RelogicLabs.JSchema.Tree.Context)
-  name.vb: AddClass(String, Context)
-  fullName: RelogicLabs.JSchema.Tree.FunctionRegistry.AddClass(string, RelogicLabs.JSchema.Tree.Context?)
-  fullName.vb: RelogicLabs.JSchema.Tree.FunctionRegistry.AddClass(String, RelogicLabs.JSchema.Tree.Context)
-  nameWithType: FunctionRegistry.AddClass(string, Context?)
-  nameWithType.vb: FunctionRegistry.AddClass(String, Context)
-- uid: RelogicLabs.JSchema.Tree.FunctionRegistry.AddClass*
-  name: AddClass
-  href: api/RelogicLabs.JSchema.Tree.FunctionRegistry.html#RelogicLabs_JSchema_Tree_FunctionRegistry_AddClass_
-  commentId: Overload:RelogicLabs.JSchema.Tree.FunctionRegistry.AddClass
+- uid: RelogicLabs.JSchema.Tree.FunctionRegistry.AddImport(RelogicLabs.JSchema.Nodes.JImport)
+  name: AddImport(JImport)
+  href: api/RelogicLabs.JSchema.Tree.FunctionRegistry.html#RelogicLabs_JSchema_Tree_FunctionRegistry_AddImport_RelogicLabs_JSchema_Nodes_JImport_
+  commentId: M:RelogicLabs.JSchema.Tree.FunctionRegistry.AddImport(RelogicLabs.JSchema.Nodes.JImport)
+  fullName: RelogicLabs.JSchema.Tree.FunctionRegistry.AddImport(RelogicLabs.JSchema.Nodes.JImport)
+  nameWithType: FunctionRegistry.AddImport(JImport)
+- uid: RelogicLabs.JSchema.Tree.FunctionRegistry.AddImport*
+  name: AddImport
+  href: api/RelogicLabs.JSchema.Tree.FunctionRegistry.html#RelogicLabs_JSchema_Tree_FunctionRegistry_AddImport_
+  commentId: Overload:RelogicLabs.JSchema.Tree.FunctionRegistry.AddImport
   isSpec: "True"
-  fullName: RelogicLabs.JSchema.Tree.FunctionRegistry.AddClass
-  nameWithType: FunctionRegistry.AddClass
+  fullName: RelogicLabs.JSchema.Tree.FunctionRegistry.AddImport
+  nameWithType: FunctionRegistry.AddImport
 - uid: RelogicLabs.JSchema.Tree.FunctionRegistry.InvokeFunction(RelogicLabs.JSchema.Nodes.JFunction,RelogicLabs.JSchema.Nodes.JNode)
   name: InvokeFunction(JFunction, JNode)
   href: api/RelogicLabs.JSchema.Tree.FunctionRegistry.html#RelogicLabs_JSchema_Tree_FunctionRegistry_InvokeFunction_RelogicLabs_JSchema_Nodes_JFunction_RelogicLabs_JSchema_Nodes_JNode_
@@ -6115,6 +6184,22 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JSchema.Types.IEArray.Get
   nameWithType: IEArray.Get
+- uid: RelogicLabs.JSchema.Types.IEArray.Set(System.Int32,RelogicLabs.JSchema.Types.IEValue)
+  name: Set(int, IEValue)
+  href: api/RelogicLabs.JSchema.Types.IEArray.html#RelogicLabs_JSchema_Types_IEArray_Set_System_Int32_RelogicLabs_JSchema_Types_IEValue_
+  commentId: M:RelogicLabs.JSchema.Types.IEArray.Set(System.Int32,RelogicLabs.JSchema.Types.IEValue)
+  name.vb: Set(Integer, IEValue)
+  fullName: RelogicLabs.JSchema.Types.IEArray.Set(int, RelogicLabs.JSchema.Types.IEValue)
+  fullName.vb: RelogicLabs.JSchema.Types.IEArray.Set(Integer, RelogicLabs.JSchema.Types.IEValue)
+  nameWithType: IEArray.Set(int, IEValue)
+  nameWithType.vb: IEArray.Set(Integer, IEValue)
+- uid: RelogicLabs.JSchema.Types.IEArray.Set*
+  name: Set
+  href: api/RelogicLabs.JSchema.Types.IEArray.html#RelogicLabs_JSchema_Types_IEArray_Set_
+  commentId: Overload:RelogicLabs.JSchema.Types.IEArray.Set
+  isSpec: "True"
+  fullName: RelogicLabs.JSchema.Types.IEArray.Set
+  nameWithType: IEArray.Set
 - uid: RelogicLabs.JSchema.Types.IEArray.Values
   name: Values
   href: api/RelogicLabs.JSchema.Types.IEArray.html#RelogicLabs_JSchema_Types_IEArray_Values
@@ -6270,6 +6355,22 @@ references:
   isSpec: "True"
   fullName: RelogicLabs.JSchema.Types.IEObject.Keys
   nameWithType: IEObject.Keys
+- uid: RelogicLabs.JSchema.Types.IEObject.Set(System.String,RelogicLabs.JSchema.Types.IEValue)
+  name: Set(string, IEValue)
+  href: api/RelogicLabs.JSchema.Types.IEObject.html#RelogicLabs_JSchema_Types_IEObject_Set_System_String_RelogicLabs_JSchema_Types_IEValue_
+  commentId: M:RelogicLabs.JSchema.Types.IEObject.Set(System.String,RelogicLabs.JSchema.Types.IEValue)
+  name.vb: Set(String, IEValue)
+  fullName: RelogicLabs.JSchema.Types.IEObject.Set(string, RelogicLabs.JSchema.Types.IEValue)
+  fullName.vb: RelogicLabs.JSchema.Types.IEObject.Set(String, RelogicLabs.JSchema.Types.IEValue)
+  nameWithType: IEObject.Set(string, IEValue)
+  nameWithType.vb: IEObject.Set(String, IEValue)
+- uid: RelogicLabs.JSchema.Types.IEObject.Set*
+  name: Set
+  href: api/RelogicLabs.JSchema.Types.IEObject.html#RelogicLabs_JSchema_Types_IEObject_Set_
+  commentId: Overload:RelogicLabs.JSchema.Types.IEObject.Set
+  isSpec: "True"
+  fullName: RelogicLabs.JSchema.Types.IEObject.Set
+  nameWithType: IEObject.Set
 - uid: RelogicLabs.JSchema.Types.IEString
   name: IEString
   href: api/RelogicLabs.JSchema.Types.IEString.html
@@ -6364,3 +6465,9 @@ references:
   commentId: F:RelogicLabs.JSchema.Types.IEValue.VOID
   fullName: RelogicLabs.JSchema.Types.IEValue.VOID
   nameWithType: IEValue.VOID
+- uid: RelogicLabs.JSchema.Types.IScriptable
+  name: IScriptable
+  href: api/RelogicLabs.JSchema.Types.IScriptable.html
+  commentId: T:RelogicLabs.JSchema.Types.IScriptable
+  fullName: RelogicLabs.JSchema.Types.IScriptable
+  nameWithType: IScriptable
