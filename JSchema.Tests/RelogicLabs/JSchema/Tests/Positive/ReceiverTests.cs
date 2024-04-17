@@ -107,9 +107,9 @@ public class ReceiverTests
                 "key1": 10,
                 "key2": 5,
                 "key3": 13,
-                "key10": 100,
                 "key4": 60,
-                "key5": 12
+                "key5": 12,
+                "key10": 100
             }
             """;
         JsonAssert.IsValid(schema, json);

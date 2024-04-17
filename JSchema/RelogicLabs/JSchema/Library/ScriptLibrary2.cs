@@ -1,83 +1,89 @@
 using RelogicLabs.JSchema.Engine;
 using RelogicLabs.JSchema.Exceptions;
+using RelogicLabs.JSchema.Message;
 using RelogicLabs.JSchema.Nodes;
+using RelogicLabs.JSchema.Script;
 using RelogicLabs.JSchema.Types;
 using static RelogicLabs.JSchema.Engine.ScriptTreeHelper;
-using static RelogicLabs.JSchema.Message.OutlineFormatter;
+using static RelogicLabs.JSchema.Message.ErrorCode;
+using static RelogicLabs.JSchema.Message.MessageFormatter;
+using static RelogicLabs.JSchema.Script.GBoolean;
+using static RelogicLabs.JSchema.Tree.ScriptFunction;
 using static RelogicLabs.JSchema.Types.IEValue;
 
 namespace RelogicLabs.JSchema.Library;
 
 internal sealed partial class ScriptLibrary
 {
-    private static readonly ScriptLibrary Library = new();
-    private readonly Dictionary<string, IEValue> _symbols;
-
-    private ScriptLibrary()
+    private static IEValue PrintFunction(ScriptScope scope, List<IEValue> arguments)
     {
-        _symbols = new Dictionary<string, IEValue>(30);
-        ScriptPrintFunction();
-        ScriptTypeFunction();
-        ScriptSizeFunction();
-        ScriptStringifyFunction();
-        ScriptFindFunction1();
-        ScriptFindFunction2();
-        ScriptRegularFunction();
-        ScriptFailFunction1();
-        ScriptFailFunction2();
-        ScriptFailFunction3();
-        ScriptExpectedFunction1();
-        ScriptExpectedFunction2();
-        ScriptActualFunction1();
-        ScriptActualFunction2();
-        ScriptCopyFunction();
-        ScriptFillFunction();
-        ScriptCeilFunction();
-        ScriptFloorFunction();
-        ScriptModFunction();
-        ScriptPowFunction();
-        ScriptLogFunction();
-        ScriptTicksFunction();
+        Console.WriteLine(Stringify(arguments[0]));
+        return VOID;
     }
 
-    public static IEValue ResolveStatic(string name)
+    private static IEValue FailFunction1(ScriptScope scope, List<IEValue> arguments)
     {
-        Library._symbols.TryGetValue(name, out var value);
-        return value ?? VOID;
+        var caller = scope.Resolve(CALLER_HVAR);
+        Fail(scope, new ScriptInitiatedException(FormatForSchema(FAIL01,
+            ToString(arguments[0], Message_Id, FAIL02), (JNode?) caller)));
+        return FALSE;
     }
 
-    private static long GetInteger(IEValue value, string parameter, string code)
-        => value is not IEInteger i ? throw FailOnInvalidArgumentType(code,
-            parameter, value) : i.Value;
-
-    private static double GetNumber(IEValue value, string parameter, string code)
-        => value is not IENumber n ? throw FailOnInvalidArgumentType(code,
-            parameter, value) : n.ToDouble();
-
-    private static string GetString(IEValue value, string parameter, string code)
-        => value is not IEString s ? throw FailOnInvalidArgumentType(code,
-            parameter, value) : s.Value;
-
-    private static T Cast<T>(IEValue value, string parameter, string code) where T : class
-        => value as T ?? throw FailOnInvalidArgumentType(code, parameter, value);
-
-    private static ScriptArgumentException FailOnInvalidArgumentType(string code,
-                string parameter, IEValue value)
-        => new(code, $"Invalid argument type {value.Type} for parameter '{
-            parameter}' of function '~%0'");
-
-    private static T GetValue<T>(IEObject source, string key, string parameter, string code)
+    private static IEValue FailFunction2(ScriptScope scope, List<IEValue> arguments)
     {
-        var value = Dereference(source.Get(key)!);
-        if(value is not T t) throw FailOnInvalidArgumentValue(code, parameter, source);
-        return t;
+        var caller = scope.Resolve(CALLER_HVAR);
+        Fail(scope, new ScriptInitiatedException(FormatForSchema(
+            ToString(arguments[0], Code_Id, FAIL03),
+            ToString(arguments[1], Message_Id, FAIL04), (JNode?) caller)));
+        return FALSE;
     }
 
-    private static ScriptArgumentException FailOnInvalidArgumentValue(string code,
-                string parameter, IEValue value)
-        => new(code, $"Invalid argument value {
-            CreateOutline(value)} for parameter '{parameter}' of function '~%0'");
+    private static IEValue FailFunction4(ScriptScope scope, List<IEValue> arguments)
+    {
+        var expected = Cast<IEObject>(arguments[2], Expected_Id, FAIL05);
+        var actual = Cast<IEObject>(arguments[3], Actual_Id, FAIL06);
+        Fail(scope, new JsonSchemaException(new ErrorDetail(
+                ToString(arguments[0], Code_Id, FAIL07),
+                ToString(arguments[1], Message_Id, FAIL08)),
+            new ExpectedDetail(GetMember<JNode>(expected, Node_Id, Expected_Id, FAIL09),
+                GetMember<IEString>(expected, Message_Id, Expected_Id, FAIL10).Value),
+            new ActualDetail(GetMember<JNode>(actual, Node_Id, Actual_Id, FAIL11),
+                GetMember<IEString>(actual, Message_Id, Actual_Id, FAIL12).Value)));
+        return FALSE;
+    }
 
-    private static void Fail(ScopeContext scope, Exception exception)
-        => scope.GetRuntime().Exceptions.Fail(exception);
+    private static IEValue ExpectedFunction1(ScriptScope scope, List<IEValue> arguments)
+    {
+        var result = new GObject(2);
+        result.Put(Node_Id, scope.Resolve(CALLER_HVAR) ?? VOID);
+        result.Put(Message_Id, Cast<IEString>(arguments[0], Message_Id, EXPC01));
+        return result;
+    }
+
+    private static IEValue ExpectedFunction2(ScriptScope scope, List<IEValue> arguments)
+    {
+        var result = new GObject(2);
+        result.Put(Node_Id, Cast<JNode>(arguments[0], Node_Id, EXPC02));
+        result.Put(Message_Id, Cast<IEString>(arguments[1], Message_Id, EXPC03));
+        return result;
+    }
+
+    private static IEValue ActualFunction1(ScriptScope scope, List<IEValue> arguments)
+    {
+        var result = new GObject(2);
+        result.Put(Node_Id, scope.Resolve(TARGET_HVAR) ?? VOID);
+        result.Put(Message_Id, Cast<IEString>(arguments[0], Message_Id, ACTL01));
+        return result;
+    }
+
+    private static IEValue ActualFunction2(ScriptScope scope, List<IEValue> arguments)
+    {
+        var result = new GObject(2);
+        result.Put(Node_Id, Cast<JNode>(arguments[0], Node_Id, ACTL02));
+        result.Put(Message_Id, Cast<IEString>(arguments[1], Message_Id, ACTL03));
+        return result;
+    }
+
+    private static IEValue TicksFunction(ScriptScope scope, List<IEValue> arguments)
+        => GInteger.From(Environment.TickCount64);
 }

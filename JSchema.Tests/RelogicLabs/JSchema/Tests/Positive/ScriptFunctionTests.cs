@@ -20,8 +20,8 @@ public class ScriptFunctionTests
                 // variable parameter functions when arguments match both
                 constraint funcTest(params...) {
                     if(!(target == 10 || target == 40)) return fail("Invalid: " + target);
-                    var n = size(params);
-                    print("Params size: " + n);
+                    var n = params.length();
+                    print("Params length: " + n);
                     if(!(n == 0 || n == 4)) return fail("Invalid: " + target);
                     foreach(var p in params) print("Received param: " + p);
                     return true;
@@ -70,7 +70,7 @@ public class ScriptFunctionTests
                 // 'target' and 'caller' are available from the call stack of the schema
                 subroutine funcTest() {
                     if(target != 10) return fail("Invalid: " + target);
-                    if(stringify(caller) != "@funcTest") return fail("Invalid: " + caller);
+                    if(caller.string() != "@funcTest") return fail("Invalid: " + caller);
                     return true;
                 }
             }
@@ -142,7 +142,7 @@ public class ScriptFunctionTests
                 }
                 
                 subroutine funcVar(params...) {
-                    return size(params);
+                    return params.length();
                 }
             }
             """;

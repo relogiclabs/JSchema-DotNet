@@ -129,8 +129,8 @@ public class ReceiverTests
 
             %schema:
             {
-                "key1": #integer &relatedData,
                 "key10": @sumEqual(&relatedData) #integer,
+                "key1": #integer &relatedData,
                 "key2": #integer &relatedData,
                 "key3": #integer &relatedData,
                 "key4": #integer &relatedData,
@@ -142,10 +142,10 @@ public class ReceiverTests
             {
                 "key1": 9,
                 "key2": 5,
-                "key10": 100,
                 "key3": 13,
                 "key4": 60,
-                "key5": 12
+                "key5": 12,
+                "key10": 100
             }
             """;
         JsonSchema.IsValid(schema, json);

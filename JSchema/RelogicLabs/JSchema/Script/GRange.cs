@@ -15,7 +15,7 @@ internal sealed class GRange : IEValue
         _end = end;
     }
 
-    internal static GRange Of(IEInteger? start, IEInteger? end)
+    internal static GRange From(IEInteger? start, IEInteger? end)
     {
         var _start = start?.Value ?? int.MinValue;
         var _end = end?.Value ?? int.MinValue;

@@ -2,4 +2,4 @@ using RelogicLabs.JSchema.Types;
 
 namespace RelogicLabs.JSchema.Engine;
 
-internal delegate IEValue Evaluator(ScopeContext scope);
+internal delegate IEValue Evaluator(ScriptScope scope);

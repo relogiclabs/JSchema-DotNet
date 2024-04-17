@@ -2,7 +2,6 @@ using RelogicLabs.JSchema.Exceptions;
 using RelogicLabs.JSchema.Types;
 using RelogicLabs.JSchema.Utilities;
 using static RelogicLabs.JSchema.Message.ErrorCode;
-using static RelogicLabs.JSchema.Types.IEValue;
 
 namespace RelogicLabs.JSchema.Script;
 
@@ -31,16 +30,23 @@ internal sealed class GArray : IEArray
         return array;
     }
 
-    public IEValue Get(int index)
+    public IEValue Get(int index) => Elements[index];
+
+    public void Set(int index, IEValue value)
     {
         var count = Elements.Count;
-        if(index < count) return Elements[index];
-        if(index > MaxLimit) throw new ScriptCommonException(INDX01,
+        if(index < count)
+        {
+            if(Elements[index] is not GReference r) throw new UpdateNotSupportedException(AUPD03,
+                $"Readonly array index {index} cannot be updated");
+            r.Value = value;
+            return;
+        }
+        if(index > count) throw new ScriptCommonException(AWRT01,
+            $"Index {index} is out of bounds for writing to array length {count}");
+        if(index > MaxLimit) throw new ScriptCommonException(AWRT02,
             $"Array index {index} exceeds maximum size limit");
-        if(index > count) throw new IndexOutOfRangeException($"Array index out of range: {index}");
-        var reference = new GReference(VOID);
-        Elements.Add(reference);
-        return reference;
+        Elements.Add(new GReference(value));
     }
 
     public override string ToString() => Elements.JoinWith(", ", "[", "]");

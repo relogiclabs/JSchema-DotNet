@@ -45,6 +45,8 @@ public sealed class JArray : JComposite, IEArray
     public override IList<JNode> Components => Elements;
     public IReadOnlyList<IEValue> Values => (IReadOnlyList<IEValue>) Elements;
     public IEValue Get(int index) => Elements[index];
+    public void Set(int index, IEValue value)
+        => throw new UpdateNotSupportedException(AUPD01, "Readonly array cannot be updated");
     private static bool IsOptional(JNode node) => node is JValidator { Optional: true };
     public override string ToString() => Elements.JoinWith(", ", "[", "]");
 

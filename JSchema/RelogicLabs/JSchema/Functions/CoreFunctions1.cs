@@ -1,6 +1,5 @@
 using RelogicLabs.JSchema.Exceptions;
 using RelogicLabs.JSchema.Message;
-using RelogicLabs.JSchema.Tree;
 using RelogicLabs.JSchema.Nodes;
 using static RelogicLabs.JSchema.Message.ErrorCode;
 
@@ -8,8 +7,6 @@ namespace RelogicLabs.JSchema.Functions;
 
 public sealed partial class CoreFunctions : FunctionProvider
 {
-    public CoreFunctions(RuntimeContext runtime) : base(runtime) { }
-
     public bool Length(JString target, JInteger length)
     {
         var _length = target.Value.Length;

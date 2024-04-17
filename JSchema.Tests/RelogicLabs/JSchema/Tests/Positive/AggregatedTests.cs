@@ -11,9 +11,9 @@ public class AggregatedTests
         %version: "February 11, 2023"
         %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
                  RelogicLabs.JSchema.Tests
-        
+
         %pragma IgnoreUndefinedProperties: true
-        
+
         %define $component1: {
             "key11": @regex("[a-z]+") #string,
             "key12": @email #string,
@@ -24,7 +24,7 @@ public class AggregatedTests
         /* if it is null do not check for nested function or data type*/
         %define $component3: @range*(1, 100) #integer* #array #null
         %define $component4: @regex*("[A-Z]{3}") #string* ?
-        
+
         %schema: {
             "key1": @range(1, 10) #integer,
             "key2": @enum("val1", "val2", "val3") #string,
@@ -142,7 +142,7 @@ public class AggregatedTests
         var schema = """
         %title: "User Profile Response"
         %version: "1.0.0-basic"
-        %schema: 
+        %schema:
         {
             "user": {
                 "id": @range(1, 10000) #integer,
@@ -203,11 +203,11 @@ public class AggregatedTests
         %version: "2.0.0-extended"
         %import: RelogicLabs.JSchema.Tests.External.ExternalFunctions,
                  RelogicLabs.JSchema.Tests
-        
+
         %pragma DateDataTypeFormat: "DD-MM-YYYY"
         %pragma TimeDataTypeFormat: "DD-MM-YYYY hh:mm:ss"
         %pragma IgnoreUndefinedProperties: true
-        
+
         %define $post: {
             "id": @range(1, 1000) #integer,
             "title": @length(10, 100) #string,
@@ -228,7 +228,7 @@ public class AggregatedTests
         }
         %define $tags: @length(1, 10) #string*($tag) #array
         %define $tag: @length(3, 20) @regex("[A-Za-z_]+") #string
-        %schema: 
+        %schema:
         {
             "user": {
                 "id": @range(1, 10000) #integer,
@@ -364,7 +364,7 @@ public class AggregatedTests
         var schema = """
         %title: "Extended User Profile Dashboard API Response"
         %version: "2.0.0-extended"
-        
+
         %pragma DateDataTypeFormat: "DD-MM-YYYY"
         %pragma TimeDataTypeFormat: "DD-MM-YYYY hh:mm:ss"
         %pragma IgnoreUndefinedProperties: true
@@ -375,7 +375,7 @@ public class AggregatedTests
             "content": @length(30, 1000) #string,
             "tags": $tags
         } #object
-        
+
         %define $product: {
             "id": @length(2, 10) @regex("[a-z][a-z0-9]+") #string,
             "name": @length(5, 30) #string,
@@ -388,11 +388,11 @@ public class AggregatedTests
                 "storage": @regex("[0-9]{1,4}GB (SSD|HDD)") #string
             } #object #null
         }
-        
+
         %define $tags: @length(1, 10) #string*($tag) #array
         %define $tag: @length(3, 20) @regex("[A-Za-z_]+") #string
-        
-        %schema: 
+
+        %schema:
         {
             "user": {
                 "id": @range(1, 10000) #integer,
@@ -429,10 +429,12 @@ public class AggregatedTests
                 "isCloudy": #boolean
             }
         }
-        
+
         %script: {
             future checkAccess(role) {
-                if(role[0] == "user" && target > 5) return fail(
+                // Auto-unpacking unwraps single-value '&role' array into its value
+                // 'target' keyword refers to the target JSON value
+                if(role == "user" && target > 5) return fail(
                     "ERRACCESS", "Data access incompatible with 'user' role",
                     expected("an access at most 5 for 'user' role"),
                     actual("found access " + target + " which is greater than 5"));

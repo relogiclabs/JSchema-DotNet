@@ -174,7 +174,7 @@ internal sealed class DateTimeContext
     }
 
     private static bool IsAllSet(params int[] values)
-        => values.All(value => value != UNSET);
+        => values.All(static value => value != UNSET);
 
     public JsonDateTime Validate()
     {

@@ -1,6 +1,7 @@
+using RelogicLabs.JSchema.Exceptions;
 using RelogicLabs.JSchema.Types;
 using RelogicLabs.JSchema.Utilities;
-using static RelogicLabs.JSchema.Types.IEValue;
+using static RelogicLabs.JSchema.Message.ErrorCode;
 
 namespace RelogicLabs.JSchema.Script;
 
@@ -22,14 +23,26 @@ internal sealed class GObject : IEObject
             Properties.Add(keys[i], new GReference(values[i]));
     }
 
-    public IEValue Get(string key)
+    public IEValue? Get(string key)
     {
         Properties.TryGetValue(key, out var value);
-        if(value == default) Properties[key] = value = new GReference(VOID);
         return value;
     }
 
-    public void Set(string key, IEValue value) => Properties[key] = value;
+    public void Set(string key, IEValue value)
+    {
+        var result = Properties.TryGetValue(key, out var oldValue);
+        if(!result)
+        {
+            Properties[key] = new GReference(value);
+            return;
+        }
+        if(oldValue is not GReference reference) throw new UpdateNotSupportedException(OUPD02,
+            $"Readonly object property '{key}' cannot be updated");
+        reference.Value = value;
+    }
+
+    public void Put(string key, IEValue value) => Properties[key] = value;
     public override string ToString() => Properties.Select(static p
         => $"{p.Key.Quote()}: {p.Value}").JoinWith(", ", "{", "}");
 }

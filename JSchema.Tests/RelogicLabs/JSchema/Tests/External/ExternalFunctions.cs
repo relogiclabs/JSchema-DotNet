@@ -1,7 +1,6 @@
 using RelogicLabs.JSchema.Exceptions;
 using RelogicLabs.JSchema.Functions;
 using RelogicLabs.JSchema.Message;
-using RelogicLabs.JSchema.Tree;
 using RelogicLabs.JSchema.Nodes;
 using RelogicLabs.JSchema.Utilities;
 
@@ -16,8 +15,6 @@ public class ExternalFunctions : FunctionProvider
     public const string CONDFUNC02 = "CONDFUNC02";
     public const string SUMEQUAL01 = "SUMEQUAL01";
     public const string MINMAX01 = "MINMAX01";
-
-    public ExternalFunctions(RuntimeContext runtime) : base(runtime) { }
 
     public bool Even(JNumber target)
     {
@@ -84,7 +81,7 @@ public class ExternalFunctions : FunctionProvider
             var expression = values.Join("+");
             Console.WriteLine("Target: " + target);
             Console.WriteLine("Received values: " + expression);
-            int result = values.Sum(i => (int) i);
+            int result = values.Sum(static i => (int) i);
             if(result != target)
                 return Fail(new JsonSchemaException(
                     new ErrorDetail(SUMEQUAL01, $"Number != sum of {expression} = {result}"),

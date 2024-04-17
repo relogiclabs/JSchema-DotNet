@@ -14,7 +14,7 @@ schema
     validator
 
 schema-header-opt
-    title-opt version-opt includes-opt pragmas-opt
+    title-opt version-opt imports-opt pragmas-opt
 
 title-opt
     ''
@@ -24,15 +24,15 @@ version-opt
     ''
     '%version' ':' string
 
-includes-opt
+imports-opt
     ''
-    includes
+    imports
 
-includes
-    include includes
+imports
+    import imports
 
-include
-    '%include' ':' class-identifier
+import
+    '%import' ':' class-identifier
 
 class-identifier
     identifier

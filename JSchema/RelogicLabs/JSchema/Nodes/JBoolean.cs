@@ -35,7 +35,7 @@ public sealed class JBoolean : JPrimitive, IEBoolean, IPragmaValue<bool>
     }
 
     public override int GetHashCode() => Value.GetHashCode();
-    public static implicit operator bool(JBoolean @bool) => @bool.Value;
+    public static implicit operator bool(JBoolean node) => node.Value;
     public override string ToString() => Value.ToString().ToLower();
 
     internal new sealed class Builder : JPrimitive.Builder<bool>

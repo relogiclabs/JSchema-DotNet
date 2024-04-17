@@ -1,6 +1,8 @@
+using RelogicLabs.JSchema.Library;
+
 namespace RelogicLabs.JSchema.Types;
 
-public interface IEValue
+public interface IEValue : IScriptable
 {
     private class EVoid : IEValue
     {
@@ -11,4 +13,6 @@ public interface IEValue
     static readonly IEValue VOID = new EVoid();
     EType Type => EType.ANY;
     bool ToBoolean() => true;
+    MethodEvaluator IScriptable.GetMethod(string name, int argCount)
+        => CommonLibrary.Instance.GetMethod(name, argCount);
 }

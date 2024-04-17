@@ -15,9 +15,9 @@ public class ScriptLiteralTests
             %script: {
                 constraint objectTest() {
                     var test = null;
-                    var obj = { "k1": 1, k3: { 
-                        k2: 20.5 + 4.2 * 3.5 + 8.7 - 5.0, 
-                        k3: test 
+                    var obj = { "k1": 1, k3: {
+                        k2: 20.5 + 4.2 * 3.5 + 8.7 - 5.0,
+                        k3: test
                     } };
                     obj["k2"] = "test";
                     obj.k4 = 100.5;
@@ -31,9 +31,9 @@ public class ScriptLiteralTests
         var json =
             """
             {
-                "value": { 
-                    "k1": 100, 
-                    "k2": "test", 
+                "value": {
+                    "k1": 100,
+                    "k2": "test",
                     "k3": {
                         "k1": 10,
                         "k2": 38.9,
@@ -58,7 +58,7 @@ public class ScriptLiteralTests
             %script: {
                 constraint arrayTest() {
                     var val = 30;
-                    var obj = { k1: 1, k2: 20, "k3": { 
+                    var obj = { k1: 1, k2: 20, "k3": {
                         k2: [ 10, 30.9, 20.5 + 4.2 * 3.5 + 8.7 - 5.0,
                             { k4 : val }
                         ]
@@ -222,14 +222,14 @@ public class ScriptLiteralTests
             }
             %script: {
                 constraint stringTest() {
-                    if(target[-4..] != "text") return fail("Invalid: " + target);
-                    if(target[0..] != "This is a text") return fail("Invalid: " + target);
-                    if(target[2..7] != "is is") return fail("Invalid: " + target);
-                    if(target[5..-5] != "is a") return fail("Invalid: " + target);
-                    if(target[..-5] != "This is a") return fail("Invalid: " + target);
+                    if(target[-4..] != "text") throw("Invalid: " + target);
+                    if(target[0..] != "This is a text") throw("Invalid: " + target);
+                    if(target[2..7] != "is is") throw("Invalid: " + target);
+                    if(target[5..-5] != "is a") throw("Invalid: " + target);
+                    if(target[..-5] != "This is a") throw("Invalid: " + target);
                     var string = "";
-                    foreach(var c in target) string = string + c;
-                    if(target != string) return fail("Invalid: " + target);
+                    foreach(var c in target) string += c;
+                    if(target != string) throw("Invalid: " + target);
                 }
             }
             """;
@@ -253,13 +253,13 @@ public class ScriptLiteralTests
             }
             %script: {
                 constraint arrayTest() {
-                    if(target[3..] != [4, 5, 6, 7]) return fail("Invalid: " + target);
-                    if(target[3..6] != [4, 5, 6]) return fail("Invalid: " + target);
-                    if(target[-5..-2] != [3, 4, 5]) return fail("Invalid: " + target);
-                    if(target[..4] != [1, 2, 3, 4]) return fail("Invalid: " + target);
+                    if(target[3..] != [4, 5, 6, 7]) throw("Invalid: " + target);
+                    if(target[3..6] != [4, 5, 6]) throw("Invalid: " + target);
+                    if(target[-5..-2] != [3, 4, 5]) throw("Invalid: " + target);
+                    if(target[..4] != [1, 2, 3, 4]) throw("Invalid: " + target);
                     var array = [], index = 0;
                     foreach(var e in target) array[index++] = e;
-                    if(target != array) return fail("Invalid: " + target);
+                    if(target != array) throw("Invalid: " + target);
                 }
             }
             """;

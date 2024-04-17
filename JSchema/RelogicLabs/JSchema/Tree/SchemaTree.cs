@@ -26,7 +26,7 @@ public sealed class SchemaTree : IDataTree
         var scriptVisitor = new ScriptTreeVisitor(runtime);
         var evaluator = scriptVisitor.Visit(schemaParseTree);
         Root = (JRoot) new SchemaTreeVisitor(scriptVisitor).Visit(schemaParseTree);
-        evaluator(runtime.ScriptContext);
+        evaluator(runtime.ScriptGlobalScope);
     }
 
     public bool Match(IDataTree dataTree)

@@ -1,5 +1,5 @@
-using RelogicLabs.JSchema.Tree;
 using RelogicLabs.JSchema.Nodes;
+using RelogicLabs.JSchema.Tree;
 
 namespace RelogicLabs.JSchema.Message;
 

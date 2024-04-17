@@ -5,100 +5,109 @@ using RelogicLabs.JSchema.Script;
 using RelogicLabs.JSchema.Types;
 using static RelogicLabs.JSchema.Message.ErrorCode;
 using static RelogicLabs.JSchema.Message.MessageFormatter;
-using static RelogicLabs.JSchema.Message.OutlineFormatter;
 
 namespace RelogicLabs.JSchema.Engine;
 
 internal static class ScriptErrorHelper
 {
-    internal const string ADDITION = "addition";
-    internal const string SUBTRACTION = "subtraction";
-    internal const string MULTIPLICATION = "multiplication";
-    internal const string DIVISION = "division";
-    internal const string INDEX = "index";
-    internal const string RANGE = "range";
-    internal const string COMPARISON = "comparison";
-    internal const string PROPERTY = "property access";
-    internal const string INCREMENT = "increment";
-    internal const string DECREMENT = "decrement";
-    internal const string NEGATION = "negation";
+    internal const string OpAddition = "addition";
+    internal const string OpSubtraction = "subtraction";
+    internal const string OpMultiplication = "multiplication";
+    internal const string OpDivision = "division";
+    internal const string OpModulus = "modulus";
+    internal const string OpUnaryPlus = "unary plus";
+    internal const string OpUnaryMinus = "unary minus";
+    internal const string OpBracket = "bracket";
+    internal const string OpIndex = "index";
+    internal const string OpRange = "range";
+    internal const string OpRangeSetup = "range setup";
+    internal const string OpComparison = "comparison";
+    internal const string OpProperty = "property access";
+    internal const string OpIncrement = "increment";
+    internal const string OpDecrement = "decrement";
+    internal const string OpBracketedAssignment = "bracketed assignment";
+    internal const string OpPropertyAssignment = "property assignment";
+    internal const string OpAdditionAssignment = "addition assignment";
+    internal const string OpSubtractionAssignment = "subtraction assignment";
+    internal const string OpMultiplicationAssignment = "multiplication assignment";
+    internal const string OpDivisionAssignment = "division assignment";
+    internal const string OpModulusAssignment = "modulus assignment";
 
     internal static InvalidFunctionException FailOnDuplicateParameterName(ITerminalNode node)
-        => new(FormatForSchema(FUNS01, $"Duplicate parameter name '{node.GetText()}'", node.Symbol));
+        => new(FormatForSchema(FPRM01, $"Duplicate parameter name '{node.GetText()}'", node.Symbol));
 
     internal static ScriptRuntimeException FailOnInvalidReturnType(IEValue value, IToken token)
-        => new(FormatForSchema(RETN01, $"Invalid return type {
-            value.Type} for constraint function", token));
+        => new(FormatForSchema(RETN01, $"Invalid return type {value.Type} for constraint function",
+            token));
 
-    internal static ScriptRuntimeException FailOnPropertyNotExist(IEObject source, string property,
-                IToken token)
-        => new(FormatForSchema(PRPS02, $"Property '{property}' not exist in readonly {
-            source.Type}", token));
+    internal static ScriptRuntimeException FailOnPropertyNotExist(string code, IEObject instance,
+                string property, IToken token)
+        => new(FormatForSchema(code, $"Property '{property}' not exist in {instance.Type}", token));
 
-    internal static Exception FailOnIndexOutOfBounds(IEString source, IEInteger index, IToken token,
+    internal static Exception FailOnIndexOutOfBounds(IEString value, IEInteger index, IToken token,
                 Exception innerException)
     {
         var indexValue = index.Value;
-        if(indexValue < 0) return new ScriptRuntimeException(FormatForSchema(INDX03,
+        if(indexValue < 0) return new ScriptRuntimeException(FormatForSchema(SIDX02,
                 $"Invalid negative index {index} for string starts at 0", token), innerException);
-        var length = source.Length;
-        if(indexValue >= length) return new ScriptRuntimeException(FormatForSchema(INDX02,
+        var length = value.Length;
+        if(indexValue >= length) return new ScriptRuntimeException(FormatForSchema(SIDX01,
                 $"Index {index} out of bounds for string length {length}", token), innerException);
         return innerException;
     }
 
-    internal static Exception FailOnIndexOutOfBounds(IEArray array, IEInteger index, IToken token,
+    internal static Exception FailOnIndexOutOfBounds(IEArray value, IEInteger index, IToken token,
                 Exception innerException)
     {
         var indexValue = index.Value;
-        if(indexValue < 0) return new ScriptRuntimeException(FormatForSchema(INDX05,
+        if(indexValue < 0) return new ScriptRuntimeException(FormatForSchema(AIDX02,
                 $"Invalid negative index {index} for array starts at 0", token), innerException);
-        var count = array.Count;
-        if(indexValue >= count) return new ScriptRuntimeException(FormatForSchema(INDX04,
+        var count = value.Count;
+        if(indexValue >= count) return new ScriptRuntimeException(FormatForSchema(AIDX01,
                 $"Index {index} out of bounds for array length {count}", token), innerException);
         return innerException;
     }
 
-    internal static Exception FailOnInvalidRangeIndex(IEString source, GRange range, IToken token,
+    internal static Exception FailOnInvalidRangeIndex(IEString value, GRange range, IToken token,
                 Exception innerException)
     {
-        int length = source.Length, start = range.GetStart(length), end = range.GetEnd(length);
-        if(start < 0 || start > length) throw new ScriptRuntimeException(FormatForSchema(RNGS04,
+        int length = value.Length, start = range.GetStart(length), end = range.GetEnd(length);
+        if(start < 0 || start > length) throw new ScriptRuntimeException(FormatForSchema(SRNG01,
                 $"Range start index {start} out of bounds for string length {length}",
                 token), innerException);
-        if(end < 0 || end > length) return new ScriptRuntimeException(FormatForSchema(RNGS05,
+        if(end < 0 || end > length) return new ScriptRuntimeException(FormatForSchema(SRNG02,
                 $"Range end index {end} out of bounds for string length {length}",
                 token), innerException);
-        if(start > end) return new ScriptRuntimeException(FormatForSchema(RNGS06,
-                $"Range start index {start} > end index {end} for string {CreateOutline(source)}",
+        if(start > end) return new ScriptRuntimeException(FormatForSchema(SRNG03,
+                $"Range start index {start} > end index {end} for string length {length}",
                 token), innerException);
         return innerException;
     }
 
-    internal static Exception FailOnInvalidRangeIndex(IEArray array, GRange range, IToken token,
+    internal static Exception FailOnInvalidRangeIndex(IEArray value, GRange range, IToken token,
                 Exception innerException)
     {
-        int count = array.Count, start = range.GetStart(count), end = range.GetEnd(count);
-        if(start < 0 || start > count) throw new ScriptRuntimeException(FormatForSchema(RNGS07,
+        int count = value.Count, start = range.GetStart(count), end = range.GetEnd(count);
+        if(start < 0 || start > count) throw new ScriptRuntimeException(FormatForSchema(ARNG01,
                 $"Range start index {start} out of bounds for array length {count}",
                 token), innerException);
-        if(end < 0 || end > count) return new ScriptRuntimeException(FormatForSchema(RNGS08,
+        if(end < 0 || end > count) return new ScriptRuntimeException(FormatForSchema(ARNG02,
                 $"Range end index {end} out of bounds for array length {count}",
                 token), innerException);
-        if(start > end) return new ScriptRuntimeException(FormatForSchema(RNGS09,
-                $"Range start index {start} > end index {end} for array {CreateOutline(array)}",
+        if(start > end) return new ScriptRuntimeException(FormatForSchema(ARNG03,
+                $"Range start index {start} > end index {end} for array length {count}",
                 token), innerException);
         return innerException;
     }
 
     internal static ScriptRuntimeException FailOnInvalidLValueIncrement(string code, IToken token)
-        => new(FormatForSchema(code, "Invalid l-value for increment", token));
+        => new(FormatForSchema(code, "Invalid l-value for increment (readonly)", token));
 
     internal static ScriptRuntimeException FailOnInvalidLValueDecrement(string code, IToken token)
-        => new(FormatForSchema(code, "Invalid l-value for decrement", token));
+        => new(FormatForSchema(code, "Invalid l-value for decrement (readonly)", token));
 
-    internal static ScriptRuntimeException FailOnInvalidLValueAssignment(IToken token)
-        => new(FormatForSchema(ASIN01, "Invalid l-value for assignment", token));
+    internal static ScriptRuntimeException FailOnInvalidLValueAssignment(string code, IToken token)
+        => new(FormatForSchema(code, "Invalid l-value for assignment (readonly)", token));
 
     internal static ScriptInvocationException FailOnTargetNotFound(IToken token)
         => new(TRGT01, "Target not found for function '~%0'", token);
@@ -106,43 +115,50 @@ internal static class ScriptErrorHelper
     internal static ScriptInvocationException FailOnCallerNotFound(IToken token)
         => new(CALR01, "Caller not found for function '~%0'", token);
 
-    internal static ScriptRuntimeException FailOnIdentifierNotFound(IToken identifier)
-        => new(FormatForSchema(VARD02, $"Identifier '{identifier.Text}' not found", identifier));
+    internal static ScriptRuntimeException FailOnIdentifierNotFound(string code, IToken identifier)
+        => new(FormatForSchema(code, $"Identifier '{identifier.Text}' not found", identifier));
 
-    internal static ScriptRuntimeException FailOnFunctionNotFound(string name, int arity,
+    internal static ScriptRuntimeException FailOnFunctionNotFound(string name, int argCount,
                 IToken token)
-        => new(FormatForSchema(FUNS04, $"Function '{name}' with {arity} parameter(s) not found",
+        => new(FormatForSchema(FNVK01, $"Function '{name}' with {argCount} parameter(s) not found",
             token));
 
     internal static ScriptRuntimeException FailOnRuntime(string code, string message, IToken token,
                 Exception innerException)
         => new(FormatForSchema(code, message, token), innerException);
 
-    internal static ScriptInvocationException FailOnVariadicArgument(string code)
+    internal static ScriptInvocationException FailOnVariadicArity(string code)
         => new(code, "Too few arguments for invocation of variadic function '~%0'");
 
-    internal static ScriptInvocationException FailOnFixedArgument(string code)
+    internal static ScriptInvocationException FailOnFixedArity(string code)
         => new(code, "Invalid number of arguments for function '~%0'");
 
     internal static SystemOperationException FailOnSystemException(string code,
                 Exception exception, IToken token)
         => new(FormatForSchema(code, exception.Message, token), exception);
 
-    internal static ScriptOperationException FailOnOperation(string code, string operationName,
+    internal static ScriptOperationException FailOnOperation(string code, string operation,
                 IEValue value, IToken token, Exception? innerException = null)
-        => new(FormatForSchema(code, $"Invalid {operationName} operation on type {
+        => new(FormatForSchema(code, $"Invalid {operation} operation on type {
             value.Type}", token), innerException);
 
-    internal static ScriptRuntimeException FailOnOperation(string code, string operationName,
+    internal static ScriptRuntimeException FailOnOperation(string code, string operation,
                 IEValue value, ITerminalNode node)
-        => FailOnOperation(code, operationName, value, node.Symbol);
+        => FailOnOperation(code, operation, value, node.Symbol);
 
-    internal static ScriptOperationException FailOnOperation(string code, string operationName,
+    internal static ScriptOperationException FailOnOperation(string code, string operation,
                 IEValue value1, IEValue value2, IToken token, Exception? innerException = null)
-        => new(FormatForSchema(code, $"Invalid {operationName} operation on types {
+        => new(FormatForSchema(code, $"Invalid {operation} operation on types {
             value1.Type} and {value2.Type}", token), innerException);
 
-    internal static ScriptRuntimeException FailOnOperation(string code, string operationName,
+    internal static ScriptRuntimeException FailOnOperation(string code, string operation,
                 IEValue value1, IEValue value2, ITerminalNode node)
-        => FailOnOperation(code, operationName, value1, value2, node.Symbol);
+        => FailOnOperation(code, operation, value1, value2, node.Symbol);
+
+    internal static ScriptRuntimeException FailOnStringUpdate(string code, ITerminalNode node)
+        => new(FormatForSchema(code, "Immutable string characters cannot be updated", node.Symbol));
+
+    internal static ScriptRuntimeException FailOnArrayRangeUpdate(string code, ITerminalNode node)
+        => new(FormatForSchema(code, "Update a range of elements in array is not supported",
+            node.Symbol));
 }

@@ -95,7 +95,7 @@ public class FunctionTests
         //JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<ClassInstantiationException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(CLAS05, exception.Code);
+        Assert.AreEqual(INST01, exception.Code);
         Console.WriteLine(exception);
     }
 

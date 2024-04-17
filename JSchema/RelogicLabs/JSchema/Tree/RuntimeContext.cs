@@ -18,7 +18,7 @@ public sealed class RuntimeContext
     public ReceiverRegistry Receivers { get; }
     public Dictionary<string, object> Storage { get; }
     public MessageFormatter MessageFormatter { get; }
-    internal ScriptContext ScriptContext { get; }
+    internal ScriptGlobalScope ScriptGlobalScope { get; }
 
     internal RuntimeContext(MessageFormatter messageFormatter, bool throwException)
     {
@@ -30,7 +30,7 @@ public sealed class RuntimeContext
         Futures = new Dictionary<string, FutureFunction>();
         Receivers = new ReceiverRegistry();
         Storage = new Dictionary<string, object>();
-        ScriptContext = new ScriptContext(this);
+        ScriptGlobalScope = new ScriptGlobalScope(this);
     }
 
     public JDefinition AddDefinition(JDefinition definition)

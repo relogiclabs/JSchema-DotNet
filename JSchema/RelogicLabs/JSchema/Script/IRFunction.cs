@@ -7,8 +7,8 @@ internal interface IRFunction : IEValue
 {
     GParameter[] Parameters { get; }
     bool Variadic { get; }
-    ScopeContext Bind(ScopeContext parentScope, List<IEValue> arguments);
-    IEValue Invoke(ScopeContext functionScope, List<IEValue> arguments);
+    ScriptScope Bind(ScriptScope parentScope, List<IEValue> arguments);
+    IEValue Invoke(ScriptScope functionScope, List<IEValue> arguments);
 
     static bool HasVariadic(GParameter[] parameters)
         => parameters.Length != 0 && parameters[^1].Variadic;
