@@ -116,6 +116,8 @@ public sealed class JObject : JComposite, IEObject
         return property?.Value;
     }
 
+    public void Set(string key, IEValue value)
+        => throw new UpdateNotSupportedException(OUPD01, "Readonly object cannot be updated");
     public override int GetHashCode() => Properties.GetHashCode();
     public override string ToString() => Properties.JoinWith(", ", "{", "}");
 

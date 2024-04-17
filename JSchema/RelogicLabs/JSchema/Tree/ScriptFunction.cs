@@ -1,5 +1,4 @@
 using System.Text;
-using RelogicLabs.JSchema.Engine;
 using RelogicLabs.JSchema.Exceptions;
 using RelogicLabs.JSchema.Functions;
 using RelogicLabs.JSchema.Nodes;
@@ -7,6 +6,7 @@ using RelogicLabs.JSchema.Script;
 using RelogicLabs.JSchema.Types;
 using RelogicLabs.JSchema.Utilities;
 using static RelogicLabs.JSchema.Message.ErrorCode;
+using static RelogicLabs.JSchema.Tree.IEFunction;
 using static RelogicLabs.JSchema.Types.IEValue;
 
 namespace RelogicLabs.JSchema.Tree;
@@ -25,7 +25,7 @@ internal sealed class ScriptFunction : IEFunction
     {
         Name = name;
         Function = function;
-        Arity = Function.Variadic ? -1 : Function.Parameters.Length + 1;
+        Arity = function.Variadic ? VariadicArity : function.Parameters.Length + 1;
         TargetType = typeof(JNode);
     }
 
@@ -33,7 +33,7 @@ internal sealed class ScriptFunction : IEFunction
     {
         var parameters = Function.Parameters;
         var count = parameters.Length;
-        if(Arity == -1 && arguments.Count < count - 1) return null;
+        if(Arity == VariadicArity && arguments.Count < count - 1) return null;
         var result = new List<object>(count + 1);
         for(var i = 0; i < count; i++)
         {
@@ -47,25 +47,23 @@ internal sealed class ScriptFunction : IEFunction
     public object Invoke(JFunction caller, object[] arguments)
     {
         var parameters = Function.Parameters;
-        var scope = new ScopeContext(caller.Runtime.ScriptContext);
+        var scope = new ConstraintScope(caller.Runtime.ScriptGlobalScope);
         scope.Update(CALLER_HVAR, caller);
         scope.Update(TARGET_HVAR, (IEValue) arguments[0]);
         var i = 1;
         foreach(var p in parameters) scope.AddVariable(p.Name, (IEValue) arguments[i++]);
-        return Function.IsFuture
-            ?  new FutureFunction(() => Invoke(scope))
-            : Invoke(scope);
+        return Function.IsFuture ? new FutureFunction(() => Invoke(scope)) : Invoke(scope);
     }
 
-    private bool Invoke(ScopeContext scope)
+    private bool Invoke(ConstraintScope scope)
     {
         try
         {
+            scope.UnpackReceivers();
             var result = Function.Invoke(scope);
             if(ReferenceEquals(result, VOID)) return true;
-            if(result is not IEBoolean b)
-                throw new InvalidFunctionException(FUNC10,
-                    $"Function '{Name}' must return a boolean value");
+            if(result is not IEBoolean b) throw new InvalidFunctionException(FUNC08,
+                $"Function '{Name}' must return a boolean value");
             return b.Value;
         }
         catch(Exception e) when(e is JsonSchemaException or ScriptInitiatedException)

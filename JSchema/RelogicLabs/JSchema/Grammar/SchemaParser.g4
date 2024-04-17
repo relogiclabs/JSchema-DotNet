@@ -6,48 +6,48 @@ options { tokenVocab = SchemaLexer; }
 schema
     : titleNode? versionNode? ( importNode | pragmaNode )*
             ( defineNode | scriptNode )*
-            schemaMain
+            schemaCoreNode
             ( defineNode | scriptNode )* EOF                      # CompleteSchema
     | validatorNode EOF                                           # ShortSchema
     ;
 
-schemaMain
-    : SCHEMA COLON validatorNode
+schemaCoreNode
+    : S_SCHEMA S_COLON validatorNode
     ;
 
 titleNode
-    : TITLE COLON STRING
+    : S_TITLE S_COLON S_STRING
     ;
 
 versionNode
-    : VERSION COLON STRING
+    : S_VERSION S_COLON S_STRING
     ;
 
 importNode
-    : IMPORT COLON FULL_IDENTIFIER ( COMMA FULL_IDENTIFIER )?
+    : S_IMPORT S_COLON S_GENERAL_ID ( S_COMMA S_GENERAL_ID )?
     ;
 
 pragmaNode
-    : PRAGMA FULL_IDENTIFIER COLON primitiveNode
+    : S_PRAGMA S_GENERAL_ID S_COLON primitiveNode
     ;
 
 defineNode
-    : DEFINE aliasNode COLON validatorMain
-    ;
-
-aliasNode
-    : ALIAS
-    ;
-
-validatorMain
-    : valueNode functionNode* datatypeNode* receiverNode* OPTIONAL?
-    | functionNode+ datatypeNode* receiverNode* OPTIONAL?
-    | datatypeNode+ receiverNode* OPTIONAL?
+    : S_DEFINE aliasNode S_COLON validatorMainNode
     ;
 
 validatorNode
-    : validatorMain
+    : validatorMainNode
     | aliasNode
+    ;
+
+validatorMainNode
+    : valueNode functionNode* datatypeNode* receiverNode* S_OPTIONAL?
+    | functionNode+ datatypeNode* receiverNode* S_OPTIONAL?
+    | datatypeNode+ receiverNode* S_OPTIONAL?
+    ;
+
+aliasNode
+    : S_ALIAS
     ;
 
 valueNode
@@ -57,27 +57,27 @@ valueNode
     ;
 
 receiverNode
-    : RECEIVER
+    : S_RECEIVER
     ;
 
 objectNode
-    : LBRACE ( propertyNode ( COMMA propertyNode )* )? RBRACE
+    : S_LBRACE ( propertyNode ( S_COMMA propertyNode )* )? S_RBRACE
     ;
 
 propertyNode
-    : STRING COLON validatorNode
+    : S_STRING S_COLON validatorNode
     ;
 
 arrayNode
-    : LBRACKET ( validatorNode ( COMMA validatorNode )* )? RBRACKET
+    : S_LBRACKET ( validatorNode ( S_COMMA validatorNode )* )? S_RBRACKET
     ;
 
 datatypeNode
-    : DATATYPE STAR? ( LPAREN aliasNode RPAREN )?
+    : S_DATATYPE S_STAR? ( S_LPAREN aliasNode S_RPAREN )?
     ;
 
 functionNode
-    : FUNCTION STAR? ( LPAREN ( argumentNode ( COMMA argumentNode )* )? RPAREN )?
+    : S_FUNCTION S_STAR? ( S_LPAREN ( argumentNode ( S_COMMA argumentNode )* )? S_RPAREN )?
     ;
 
 argumentNode
@@ -86,20 +86,20 @@ argumentNode
     ;
 
 primitiveNode
-    : TRUE                # PrimitiveTrue
-    | FALSE               # PrimitiveFalse
-    | STRING              # PrimitiveString
-    | INTEGER             # PrimitiveInteger
-    | FLOAT               # PrimitiveFloat
-    | DOUBLE              # PrimitiveDouble
-    | NULL                # PrimitiveNull
-    | UNDEFINED           # PrimitiveUndefined
+    : S_TRUE                # TrueNode
+    | S_FALSE               # FalseNode
+    | S_STRING              # StringNode
+    | S_INTEGER             # IntegerNode
+    | S_FLOAT               # FloatNode
+    | S_DOUBLE              # DoubleNode
+    | S_NULL                # NullNode
+    | S_UNDEFINED           # UndefinedNode
     ;
 
 
 //---------------Script Rules---------------
 scriptNode
-    : SCRIPT G_COLON G_LBRACE globalStatement+ G_RBRACE
+    : S_SCRIPT G_COLON G_LBRACE globalStatement+ G_RBRACE
     ;
 
 globalStatement
@@ -127,10 +127,10 @@ functionDeclaration
     ;
 
 varStatement
-    : G_VAR varInitialization ( G_COMMA varInitialization )* G_SEMI
+    : G_VAR varDeclaration ( G_COMMA varDeclaration )* G_SEMI
     ;
 
-varInitialization
+varDeclaration
     : G_IDENTIFIER ( G_ASSIGN expression )?
     ;
 
@@ -173,35 +173,46 @@ blockStatement
     ;
 
 expression
-    : refExpression                                                             # AllRefExpression
+    : expression G_LBRACKET expression G_RBRACKET                               # MemberBracketExpression
+    | expression G_DOT G_IDENTIFIER                                             # MemberDotExpression
+    | G_IDENTIFIER G_LPAREN ( expression ( G_COMMA expression )* )? G_RPAREN    # InvokeFunctionExpression
+    | expression G_DOT G_IDENTIFIER
+            G_LPAREN ( expression ( G_COMMA expression )* )? G_RPAREN           # InvokeMethodExpression
+    | G_PLUS expression                                                         # UnaryPlusExpression
     | G_MINUS expression                                                        # UnaryMinusExpression
-    | G_NOT expression                                                          # LogicalNotExpression
-    | refExpression G_INC                                                       # PostIncrementExpression
-    | refExpression G_DEC                                                       # PostDecrementExpression
-    | G_INC refExpression                                                       # PreIncrementExpression
-    | G_DEC refExpression                                                       # PreDecrementExpression
-    | expression ( G_MUL | G_DIV ) expression                                   # MultiplicativeExpression
+    | G_LNOT expression                                                         # LogicalNotExpression
+    | expression G_LBRACKET expression G_RBRACKET ( G_INC | G_DEC )             # PostIncDecExpression
+    | expression G_DOT G_IDENTIFIER ( G_INC | G_DEC )                           # PostIncDecExpression
+    | G_IDENTIFIER ( G_INC | G_DEC )                                            # PostIncDecExpression
+    | ( G_INC | G_DEC ) expression G_LBRACKET expression G_RBRACKET             # PreIncDecExpression
+    | ( G_INC | G_DEC ) expression G_DOT G_IDENTIFIER                           # PreIncDecExpression
+    | ( G_INC | G_DEC ) G_IDENTIFIER                                            # PreIncDecExpression
+    | expression ( G_MUL | G_DIV | G_MOD ) expression                           # MultiplicativeExpression
     | expression ( G_PLUS | G_MINUS ) expression                                # AdditiveExpression
     | expression G_RANGE expression?                                            # RangeBothExpression
     | G_RANGE expression                                                        # RangeEndExpression
     | expression ( G_GE | G_LE | G_GT | G_LT ) expression                       # RelationalExpression
     | expression ( G_EQ | G_NE ) expression                                     # EqualityExpression
-    | expression G_AND expression                                               # LogicalAndExpression
-    | expression G_OR expression                                                # LogicalOrExpression
-    | refExpression G_ASSIGN expression                                         # AssignmentExpression
+    | expression G_LAND expression                                              # LogicalAndExpression
+    | expression G_LOR expression                                               # LogicalOrExpression
+    | expression G_LBRACKET expression G_RBRACKET G_ASSIGN expression           # AssignmentBracketExpression
+    | expression G_DOT G_IDENTIFIER G_ASSIGN expression                         # AssignmentDotExpression
+    | G_IDENTIFIER G_ASSIGN expression                                          # AssignmentIdExpression
+    | expression G_LBRACKET expression G_RBRACKET
+            ( G_ADD_ASSIGN | G_SUB_ASSIGN | G_MUL_ASSIGN
+            | G_DIV_ASSIGN | G_MOD_ASSIGN ) expression                          # AssignmentAugExpression
+    | expression G_DOT G_IDENTIFIER
+            ( G_ADD_ASSIGN | G_SUB_ASSIGN | G_MUL_ASSIGN
+            | G_DIV_ASSIGN | G_MOD_ASSIGN ) expression                          # AssignmentAugExpression
+    | G_IDENTIFIER ( G_ADD_ASSIGN | G_SUB_ASSIGN | G_MUL_ASSIGN
+            | G_DIV_ASSIGN | G_MOD_ASSIGN ) expression                          # AssignmentAugExpression
+    | G_TARGET                                                                  # TargetExpression
+    | G_CALLER                                                                  # CallerExpression
+    | G_IDENTIFIER                                                              # IdentifierExpression
     | literal                                                                   # LiteralExpression
     | G_LPAREN expression G_RPAREN                                              # ParenthesizedExpression
     | G_TRYOF G_LPAREN expression G_RPAREN                                      # TryofExpression
     | G_THROW G_LPAREN expression ( G_COMMA expression )? G_RPAREN              # ThrowExpression
-    ;
-
-refExpression
-    : refExpression G_DOT G_IDENTIFIER                                          # DotExpression
-    | refExpression G_LBRACKET expression G_RBRACKET                            # IndexExpression
-    | G_IDENTIFIER G_LPAREN ( expression ( G_COMMA expression )* )? G_RPAREN    # InvokeExpression
-    | G_TARGET                                                                  # TargetExpression
-    | G_CALLER                                                                  # CallerExpression
-    | G_IDENTIFIER                                                              # IdentifierExpression
     ;
 
 literal

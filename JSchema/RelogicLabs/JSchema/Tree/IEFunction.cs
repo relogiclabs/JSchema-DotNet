@@ -5,6 +5,9 @@ namespace RelogicLabs.JSchema.Tree;
 
 internal interface IEFunction
 {
+    const char ConstraintPrefix = '@';
+    const int VariadicArity = -1;
+
     string Name { get; }
     int Arity { get; }
     Type TargetType { get; }

@@ -38,7 +38,7 @@ public class ScriptFunctionTests
             {
                 "funcTest": @funcTest #integer
             }
-            
+
             %script: {
                 constraint funcTest() {
                     subroutineFunction(target);
@@ -54,7 +54,7 @@ public class ScriptFunctionTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<ScriptRuntimeException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(FUNS04, exception.Code);
+        Assert.AreEqual(FNVK01, exception.Code);
         Console.WriteLine(exception);
     }
 
@@ -67,12 +67,12 @@ public class ScriptFunctionTests
             {
                 "funcTest": @funcTest #integer
             }
-            
+
             %script: {
                 constraint funcTest() {
                     testFunction(10);
                 }
-                
+
                 subroutine function testFunction(p1, p2, p3...) {
                     return false;
                 }
@@ -87,7 +87,7 @@ public class ScriptFunctionTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<ScriptRuntimeException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(FUNS05, exception.Code);
+        Assert.AreEqual(FNVK02, exception.Code);
         Console.WriteLine(exception);
     }
 
@@ -134,14 +134,14 @@ public class ScriptFunctionTests
                 constraint funcTest() {
                     return true;
                 }
-                
+
                 // Regardless of required params only one variadic subroutine
                 // can be overloaded with the same name but any number of
                 // fixed params subroutine can be overload with the same name
                 subroutine testFunction(p1, p2, p3...) {
                     return false;
                 }
-                
+
                 subroutine testFunction(p1, p2...) {
                     return false;
                 }
@@ -156,12 +156,12 @@ public class ScriptFunctionTests
         //JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<ScriptRuntimeException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(FUNS03, exception.Code);
+        Assert.AreEqual(FUND02, exception.Code);
         Console.WriteLine(exception);
     }
 
     [TestMethod]
-    public void When_InvalidArgumentTypeWithNativeSubroutine_ExceptionThrown()
+    public void When_InvalidBuiltinMethodCallOnWrongType_ExceptionThrown()
     {
         var schema =
             """
@@ -171,9 +171,9 @@ public class ScriptFunctionTests
             }
             %script: {
                 constraint funcTest() {
-                    // type can be checked using the type function
-                    if(!regular(target)) return fail("Invalid: " + target);
-                    var result = find(target, 10);
+                    // type can be checked using the type method
+                    if(!target) return fail("Invalid: " + target);
+                    var result = target.find(10);
                 }
             }
             """;
@@ -186,12 +186,12 @@ public class ScriptFunctionTests
         JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<ScriptRuntimeException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(FIND02, exception.Code);
+        Assert.AreEqual(MNVK01, exception.Code);
         Console.WriteLine(exception);
     }
 
     [TestMethod]
-    public void When_InvalidArgumentValueWithNativeSubroutine_ExceptionThrown()
+    public void When_InvalidArgumentValueWithBuiltinSubroutine_ExceptionThrown()
     {
         var schema =
             """
@@ -295,7 +295,7 @@ public class ScriptFunctionTests
                 constraint funcTest(param1) {
                     return true;
                 }
-                
+
                 constraint funcTest(param1) {
                     return true;
                 }
@@ -310,7 +310,7 @@ public class ScriptFunctionTests
         //JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<ScriptRuntimeException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(FUNS02, exception.Code);
+        Assert.AreEqual(FUND01, exception.Code);
         Console.WriteLine(exception);
     }
 
@@ -327,7 +327,7 @@ public class ScriptFunctionTests
                 constraint funcTest(param1) {
                     return true;
                 }
-                
+
                 // future functions are also constraint functions
                 future constraint funcTest(param1) {
                     return true;
@@ -343,7 +343,7 @@ public class ScriptFunctionTests
         //JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<ScriptRuntimeException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(FUNS02, exception.Code);
+        Assert.AreEqual(FUND01, exception.Code);
         Console.WriteLine(exception);
     }
 
@@ -360,13 +360,13 @@ public class ScriptFunctionTests
                 constraint funcTest(param1) {
                     return true;
                 }
-                
+
                 // Constraint functions are special functions and are not callable
                 // from script thus preventing any conflict with subroutines
                 subroutine funcTest(param1) {
                     return true;
                 }
-                
+
                 subroutine funcTest(param1) {
                     return true;
                 }
@@ -381,7 +381,7 @@ public class ScriptFunctionTests
         //JsonSchema.IsValid(schema, json);
         var exception = Assert.ThrowsException<ScriptRuntimeException>(
             () => JsonAssert.IsValid(schema, json));
-        Assert.AreEqual(FUNS03, exception.Code);
+        Assert.AreEqual(FUND02, exception.Code);
         Console.WriteLine(exception);
     }
 }

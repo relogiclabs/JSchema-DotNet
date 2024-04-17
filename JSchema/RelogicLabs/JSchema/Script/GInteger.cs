@@ -11,7 +11,7 @@ internal sealed class GInteger : IEInteger
 
     private GInteger(long value) => Value = value;
 
-    public static GInteger Of(long value)
+    public static GInteger From(long value)
         => value is >= CacheStart and <= CacheEnd
             ? Cache[(int) value - CacheStart] : new GInteger(value);
 

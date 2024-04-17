@@ -1,4 +1,6 @@
 using System.Reflection;
+using Antlr4.Runtime;
+using Antlr4.Runtime.Tree;
 
 namespace RelogicLabs.JSchema.Utilities;
 
@@ -17,4 +19,10 @@ internal static class CommonExtensions
         var returnType = methodInfo.ReturnType.Name;
         return $"{returnType} {typeName}.{methodName}{parameters}";
     }
+
+    internal static ITerminalNode GetToken(this ParserRuleContext context, int type)
+        => context.GetToken(type, 0);
+
+    internal static bool HasToken(this ParserRuleContext context, int type)
+        => context.GetToken(type, 0) != null;
 }

@@ -2,11 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class JString
- | JSchema </title>
+      <title>Class JString | JSchema </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class JString
- | JSchema ">
+      <meta name="title" content="Class JString | JSchema ">
+      
       
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
@@ -30,15 +29,15 @@
       <meta name="loc:changeTheme" content="Change theme">
       <meta name="loc:copy" content="Copy">
       <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
   </head>
-
-  <script type="module" src="./../public/docfx.min.js"></script>
-
-  <script>
-    const theme = localStorage.getItem('theme') || 'auto'
-    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
-  </script>
-
 
   <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
     <header class="bg-body border-bottom">
@@ -90,8 +89,7 @@
 
 
   <h1 id="RelogicLabs_JSchema_Nodes_JString" data-uid="RelogicLabs.JSchema.Nodes.JString" class="text-break">
-    Class JString
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/RelogicLabs/JSchema/Nodes/JString.cs/#L11"><i class="bi bi-code-slash"></i></a>
+Class JString  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/RelogicLabs/JSchema/Nodes/JString.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -103,7 +101,7 @@
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class JString : JPrimitive, IJsonType, IEString, IEValue, IDerived, IPragmaValue&lt;string&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class JString : JPrimitive, IJsonType, IEString, IEValue, IScriptable, IDerived, IPragmaValue&lt;string&gt;</code></pre>
   </div>
 
 
@@ -126,6 +124,7 @@
       <div><a class="xref" href="RelogicLabs.JSchema.Nodes.IJsonType.html">IJsonType</a></div>
       <div><a class="xref" href="RelogicLabs.JSchema.Types.IEString.html">IEString</a></div>
       <div><a class="xref" href="RelogicLabs.JSchema.Types.IEValue.html">IEValue</a></div>
+      <div><a class="xref" href="RelogicLabs.JSchema.Types.IScriptable.html">IScriptable</a></div>
       <div><a class="xref" href="RelogicLabs.JSchema.Nodes.IDerived.html">IDerived</a></div>
       <div><a class="xref" href="RelogicLabs.JSchema.Nodes.IPragmaValue-1.html">IPragmaValue</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</div>
     </dd>
@@ -138,7 +137,7 @@
     </dd>
   </dl>
 
-  <dl class="typelist derived">
+  <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
     <div>

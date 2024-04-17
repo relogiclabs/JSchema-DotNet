@@ -26,7 +26,7 @@ public class JString : JPrimitive, IEString, IDerived, IPragmaValue<string>
         if(other == null) return false;
         if(Value.Equals(other.Value)) return true;
         return Fail(new JsonSchemaException(
-            new ErrorDetail(STRN01, ValueMismatch),
+            new ErrorDetail(STRV01, ValueMismatch),
             ExpectedDetail.AsValueMismatch(this),
             ActualDetail.AsValueMismatch(other)));
     }

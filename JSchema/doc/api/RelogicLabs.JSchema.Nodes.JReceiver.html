@@ -2,11 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class JReceiver
- | JSchema </title>
+      <title>Class JReceiver | JSchema </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class JReceiver
- | JSchema ">
+      <meta name="title" content="Class JReceiver | JSchema ">
+      
       
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
@@ -30,15 +29,15 @@
       <meta name="loc:changeTheme" content="Change theme">
       <meta name="loc:copy" content="Copy">
       <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
   </head>
-
-  <script type="module" src="./../public/docfx.min.js"></script>
-
-  <script>
-    const theme = localStorage.getItem('theme') || 'auto'
-    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
-  </script>
-
 
   <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
     <header class="bg-body border-bottom">
@@ -90,8 +89,7 @@
 
 
   <h1 id="RelogicLabs_JSchema_Nodes_JReceiver" data-uid="RelogicLabs.JSchema.Nodes.JReceiver" class="text-break">
-    Class JReceiver
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/RelogicLabs/JSchema/Nodes/JReceiver.cs/#L10"><i class="bi bi-code-slash"></i></a>
+Class JReceiver  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/RelogicLabs/JSchema/Nodes/JReceiver.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -103,7 +101,7 @@
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class JReceiver : JLeaf, IEArray, IEValue</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class JReceiver : JLeaf, IEArray, IEValue, IScriptable</code></pre>
   </div>
 
 
@@ -124,11 +122,12 @@
     <dd>
       <div><a class="xref" href="RelogicLabs.JSchema.Types.IEArray.html">IEArray</a></div>
       <div><a class="xref" href="RelogicLabs.JSchema.Types.IEValue.html">IEValue</a></div>
+      <div><a class="xref" href="RelogicLabs.JSchema.Types.IScriptable.html">IScriptable</a></div>
     </dd>
   </dl>
 
 
-  <dl class="typelist derived">
+  <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
     <div>
@@ -236,7 +235,7 @@
 
   <h3 id="RelogicLabs_JSchema_Nodes_JReceiver_Equals_System_Object_" data-uid="RelogicLabs.JSchema.Nodes.JReceiver.Equals(System.Object)">
   Equals(object?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/RelogicLabs/JSchema/Nodes/JReceiver.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/RelogicLabs/JSchema/Nodes/JReceiver.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Determines whether the specified object is equal to the current object.</p>
@@ -311,7 +310,7 @@
 
   <h3 id="RelogicLabs_JSchema_Nodes_JReceiver_GetHashCode" data-uid="RelogicLabs.JSchema.Nodes.JReceiver.GetHashCode">
   GetHashCode()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/RelogicLabs/JSchema/Nodes/JReceiver.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/RelogicLabs/JSchema/Nodes/JReceiver.cs/#L56"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Serves as the default hash function.</p>
@@ -483,11 +482,44 @@ otherwise, <code>false</code>.</p>
 
 
 
+  <a id="RelogicLabs_JSchema_Nodes_JReceiver_Set_" data-uid="RelogicLabs.JSchema.Nodes.JReceiver.Set*"></a>
+
+  <h3 id="RelogicLabs_JSchema_Nodes_JReceiver_Set_System_Int32_RelogicLabs_JSchema_Types_IEValue_" data-uid="RelogicLabs.JSchema.Nodes.JReceiver.Set(System.Int32,RelogicLabs.JSchema.Types.IEValue)">
+  Set(int, IEValue)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/RelogicLabs/JSchema/Nodes/JReceiver.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Set(int index, IEValue value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <a class="xref" href="RelogicLabs.JSchema.Types.IEValue.html">IEValue</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="RelogicLabs_JSchema_Nodes_JReceiver_ToString_" data-uid="RelogicLabs.JSchema.Nodes.JReceiver.ToString*"></a>
 
   <h3 id="RelogicLabs_JSchema_Nodes_JReceiver_ToString" data-uid="RelogicLabs.JSchema.Nodes.JReceiver.ToString">
   ToString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/RelogicLabs/JSchema/Nodes/JReceiver.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/relogiclabs/JSchema-DotNet/blob/develop/JSchema/RelogicLabs/JSchema/Nodes/JReceiver.cs/#L57"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Returns a JSON string that represents the current object.</p>

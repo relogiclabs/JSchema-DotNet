@@ -11,7 +11,6 @@ namespace RelogicLabs.JSchema.Script;
 
 internal sealed class GFunction : IRFunction
 {
-    public const string ConstraintPrefix = "@";
     public const int ConstraintMode = 1;
     public const int FutureMode = 3;
     public const int SubroutineMode = 4;
@@ -32,20 +31,20 @@ internal sealed class GFunction : IRFunction
         Mode = mode;
     }
 
-    public ScopeContext Bind(ScopeContext parentScope, List<IEValue> arguments)
+    public ScriptScope Bind(ScriptScope parentScope, List<IEValue> arguments)
     {
-        AreCompatible(this, arguments, FUNS05);
-        var scope = new ScopeContext(parentScope);
+        AreCompatible(this, arguments, FNVK02);
+        var scope = new ScriptScope(parentScope);
         var i = 0;
         foreach(var p in Parameters) scope.AddVariable(p.Name, p.Variadic
                 ? new GArray(arguments.GetRange(i)) : arguments[i++]);
         return scope;
     }
 
-    public IEValue Invoke(ScopeContext functionScope, List<IEValue> arguments)
+    public IEValue Invoke(ScriptScope functionScope, List<IEValue> arguments)
         => Invoke(functionScope);
 
-    public IEValue Invoke(ScopeContext functionScope)
+    public IEValue Invoke(ScriptScope functionScope)
     {
         var result = Body(functionScope);
         if(result is GControl ctrl) return ctrl.Value;

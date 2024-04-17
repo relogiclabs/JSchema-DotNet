@@ -3,9 +3,9 @@ using Antlr4.Runtime.Tree;
 using RelogicLabs.JSchema.Antlr;
 using RelogicLabs.JSchema.Collections;
 using RelogicLabs.JSchema.Engine;
-using RelogicLabs.JSchema.Functions;
 using RelogicLabs.JSchema.Nodes;
 using RelogicLabs.JSchema.Utilities;
+using static RelogicLabs.JSchema.Antlr.SchemaParser;
 using static RelogicLabs.JSchema.Tree.TreeType;
 using static RelogicLabs.JSchema.Tree.TreeHelper;
 
@@ -23,90 +23,81 @@ internal sealed class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
         _scripts = scriptVisitor.Scripts;
     }
 
-    public override JNode VisitCompleteSchema(SchemaParser.CompleteSchemaContext context)
+    public override JNode VisitCompleteSchema(CompleteSchemaContext context)
         => new JRoot.Builder
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
             Title = (JTitle) Visit(context.titleNode()),
             Version = (JVersion) Visit(context.versionNode()),
-            Imports = ProcessImports(context.importNode()).AsReadOnly(),
+            Imports = context.importNode().Select(i => (JImport) Visit(i)).ToList().AsReadOnly(),
             Pragmas = context.pragmaNode().Select(p => (JPragma) Visit(p)).ToList().AsReadOnly(),
             Definitions = context.defineNode().Select(d => (JDefinition) Visit(d)).ToList().AsReadOnly(),
             Scripts = context.scriptNode().Select(s => (JScript) Visit(s)).ToList().AsReadOnly(),
-            Value = Visit(context.schemaMain())
+            Value = Visit(context.schemaCoreNode())
         }.Build();
 
-    public override JNode VisitShortSchema(SchemaParser.ShortSchemaContext context)
+    public override JNode VisitShortSchema(ShortSchemaContext context)
         => new JRoot.Builder
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
-            Imports = ProcessImports(Array.Empty<SchemaParser.ImportNodeContext>()),
+            Imports = Array.Empty<JImport>(),
             Value = Visit(context.validatorNode())
         }.Build();
 
-    private List<JImport> ProcessImports(SchemaParser.ImportNodeContext[] contexts)
-    {
-        _runtime.Functions.AddClass(typeof(CoreFunctions).FullName!);
-        return contexts.Select(i => (JImport) Visit(i)).ToList();
-    }
-
-    public override JNode VisitSchemaMain(SchemaParser.SchemaMainContext context)
-        => Visit(context.validatorNode());
-
-    public override JNode VisitTitleNode(SchemaParser.TitleNodeContext context)
+    public override JNode VisitTitleNode(TitleNodeContext context)
         => new JTitle.Builder
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
-            Title = context.STRING().GetText()
+            Title = context.S_STRING().GetText()
         }.Build();
 
-    public override JNode VisitVersionNode(SchemaParser.VersionNodeContext context)
+    public override JNode VisitVersionNode(VersionNodeContext context)
         => new JVersion.Builder
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
-            Version = context.STRING().GetText()
+            Version = context.S_STRING().GetText()
         }.Build();
 
-    public override JNode VisitImportNode(SchemaParser.ImportNodeContext context)
+    public override JNode VisitImportNode(ImportNodeContext context)
     {
         var import = new JImport.Builder
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
-            ClassName = context.FULL_IDENTIFIER().Select(static n => n.GetText()).Join(",")
+            ClassName = context.S_GENERAL_ID().Select(static n => n.GetText()).Join(",")
         }.Build();
-        return _runtime.Functions.AddClass(import);
+        return _runtime.Functions.AddImport(import);
     }
 
-    public override JNode VisitPragmaNode(SchemaParser.PragmaNodeContext context)
+    public override JNode VisitPragmaNode(PragmaNodeContext context)
     {
         var pragma = new JPragma.Builder
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
-            Name = context.FULL_IDENTIFIER().GetText(),
+            Name = context.S_GENERAL_ID().GetText(),
             Value = (JPrimitive) Visit(context.primitiveNode())
         }.Build();
         return _runtime.Pragmas.AddPragma(pragma);
     }
 
-    public override JNode VisitDefineNode(SchemaParser.DefineNodeContext context)
+    public override JNode VisitDefineNode(DefineNodeContext context)
     {
         var definition = new JDefinition.Builder
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
             Alias = (JAlias) Visit(context.aliasNode()),
-            Validator = (JValidator) Visit(context.validatorMain())
+            Validator = (JValidator) Visit(context.validatorMainNode())
         }.Build();
         return _runtime.AddDefinition(definition);
     }
 
-    public override JNode VisitScriptNode(SchemaParser.ScriptNodeContext context)
+    public override JNode VisitScriptNode(ScriptNodeContext context)
     {
         var source = context.Start.InputStream.GetText(new Interval(
             context.Start.StartIndex,
@@ -120,15 +111,15 @@ internal sealed class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
         }.Build();
     }
 
-    public override JNode VisitAliasNode(SchemaParser.AliasNodeContext context)
+    public override JNode VisitAliasNode(AliasNodeContext context)
         => new JAlias.Builder
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
-            Name = context.ALIAS().GetText()
+            Name = context.S_ALIAS().GetText()
         }.Build();
 
-    public override JNode VisitValidatorMain(SchemaParser.ValidatorMainContext context)
+    public override JNode VisitValidatorMainNode(ValidatorMainNodeContext context)
         => new JValidator.Builder
         {
             Relations = _relations,
@@ -140,10 +131,10 @@ internal sealed class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
                 .ToList().AsReadOnly(),
             Receivers = context.receiverNode().Select(ctx => (JReceiver) Visit(ctx))
                 .ToList().AsReadOnly(),
-            Optional = context.OPTIONAL() != null
+            Optional = context.S_OPTIONAL() != null
         }.Build();
 
-    public override JNode VisitObjectNode(SchemaParser.ObjectNodeContext context)
+    public override JNode VisitObjectNode(ObjectNodeContext context)
         => new JObject.Builder
         {
             Relations = _relations,
@@ -151,22 +142,22 @@ internal sealed class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
             Properties = ProcessProperties(context.propertyNode())
         }.Build();
 
-    private  IIndexMap<string,JProperty> ProcessProperties(SchemaParser.PropertyNodeContext[] contexts)
+    private  IIndexMap<string,JProperty> ProcessProperties(PropertyNodeContext[] contexts)
     {
-        List<JProperty> properties = contexts.Select(p => (JProperty) Visit(p)).ToList();
+        var properties = contexts.Select(p => (JProperty) Visit(p)).ToList();
         return RequireUniqueness(properties, SCHEMA_TREE).ToIndexMap().AsReadOnly();
     }
 
-    public override JNode VisitPropertyNode(SchemaParser.PropertyNodeContext context)
+    public override JNode VisitPropertyNode(PropertyNodeContext context)
         => new JProperty.Builder
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
-            Key = context.STRING().GetText()[1..^1],
+            Key = context.S_STRING().GetText()[1..^1],
             Value = Visit(context.validatorNode())
         }.Build();
 
-    public override JNode VisitArrayNode(SchemaParser.ArrayNodeContext context)
+    public override JNode VisitArrayNode(ArrayNodeContext context)
         => new JArray.Builder
         {
             Relations = _relations,
@@ -174,35 +165,35 @@ internal sealed class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
             Elements = context.validatorNode().Select(Visit).ToList().AsReadOnly()
         }.Build();
 
-    public override JNode VisitDatatypeNode(SchemaParser.DatatypeNodeContext context)
+    public override JNode VisitDatatypeNode(DatatypeNodeContext context)
         => new JDataType.Builder
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
-            JsonType = JsonType.From(context.DATATYPE()),
-            Nested = context.STAR() != null,
+            JsonType = JsonType.From(context.S_DATATYPE()),
+            Nested = context.S_STAR() != null,
             Alias = (JAlias) Visit(context.aliasNode())
         }.Build();
 
-    public override JNode VisitFunctionNode(SchemaParser.FunctionNodeContext context)
+    public override JNode VisitFunctionNode(FunctionNodeContext context)
         => new JFunction.Builder
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
-            Name = context.FUNCTION().GetText(),
-            Nested = context.STAR() != null,
+            Name = context.S_FUNCTION().GetText(),
+            Nested = context.S_STAR() != null,
             Arguments = context.argumentNode().Select(Visit).ToList().AsReadOnly()
         }.Build();
 
-    public override JNode VisitReceiverNode(SchemaParser.ReceiverNodeContext context)
+    public override JNode VisitReceiverNode(ReceiverNodeContext context)
         => new JReceiver.Builder
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
-            Name = context.RECEIVER().GetText()
+            Name = context.S_RECEIVER().GetText()
         }.Build();
 
-    public override JNode VisitPrimitiveTrue(SchemaParser.PrimitiveTrueContext context)
+    public override JNode VisitTrueNode(TrueNodeContext context)
         => new JBoolean.Builder
         {
             Relations = _relations,
@@ -210,7 +201,7 @@ internal sealed class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
             Value = true
         }.Build();
 
-    public override JNode VisitPrimitiveFalse(SchemaParser.PrimitiveFalseContext context)
+    public override JNode VisitFalseNode(FalseNodeContext context)
         => new JBoolean.Builder
         {
             Relations = _relations,
@@ -218,46 +209,46 @@ internal sealed class SchemaTreeVisitor : SchemaParserBaseVisitor<JNode>
             Value = false
         }.Build();
 
-    public override JNode VisitPrimitiveString(SchemaParser.PrimitiveStringContext context)
+    public override JNode VisitStringNode(StringNodeContext context)
         => new JString.Builder
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
-            Value = context.STRING().GetText().ToEncoded()
+            Value = context.S_STRING().GetText().ToEncoded()
         }.Build();
 
-    public override JNode VisitPrimitiveInteger(SchemaParser.PrimitiveIntegerContext context)
+    public override JNode VisitIntegerNode(IntegerNodeContext context)
         => new JInteger.Builder
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
-            Value = Convert.ToInt64(context.INTEGER().GetText())
+            Value = Convert.ToInt64(context.S_INTEGER().GetText())
         }.Build();
 
-    public override JNode VisitPrimitiveFloat(SchemaParser.PrimitiveFloatContext context)
+    public override JNode VisitFloatNode(FloatNodeContext context)
         => new JFloat.Builder
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
-            Value = Convert.ToDouble(context.FLOAT().GetText())
+            Value = Convert.ToDouble(context.S_FLOAT().GetText())
         }.Build();
 
-    public override JNode VisitPrimitiveDouble(SchemaParser.PrimitiveDoubleContext context)
+    public override JNode VisitDoubleNode(DoubleNodeContext context)
         => new JDouble.Builder
         {
             Relations = _relations,
             Context = new Context(context, _runtime),
-            Value = Convert.ToDouble(context.DOUBLE().GetText())
+            Value = Convert.ToDouble(context.S_DOUBLE().GetText())
         }.Build();
 
-    public override JNode VisitPrimitiveNull(SchemaParser.PrimitiveNullContext context)
+    public override JNode VisitNullNode(NullNodeContext context)
         => new JNull.Builder
         {
             Relations = _relations,
             Context = new Context(context, _runtime)
         }.Build();
 
-    public override JNode VisitPrimitiveUndefined(SchemaParser.PrimitiveUndefinedContext context)
+    public override JNode VisitUndefinedNode(UndefinedNodeContext context)
         => new JUndefined.Builder
         {
             Relations = _relations,

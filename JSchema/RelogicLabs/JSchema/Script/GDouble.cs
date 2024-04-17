@@ -6,7 +6,7 @@ internal sealed class GDouble : IEDouble
 {
     public double Value { get; }
     private GDouble(double value) => Value = value;
-    public static GDouble Of(double value) => new(value);
+    public static GDouble From(double value) => new(value);
 
     public override string ToString() => Value.ToString();
 }

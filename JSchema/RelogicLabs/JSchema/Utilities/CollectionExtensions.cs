@@ -16,17 +16,6 @@ internal static class CollectionExtensions
         string prefix = "", string suffix = "") => $"{prefix}{string.Join(separator,
             source)}{suffix}";
 
-    public static void Merge<TKey, TValue>(this IDictionary<TKey, List<TValue>> source,
-        IDictionary<TKey, List<TValue>> other)
-    {
-        foreach(var pair in other)
-        {
-            source.TryGetValue(pair.Key, out var values);
-            if(values == default) source.Add(pair.Key, other[pair.Key]);
-            else values.AddRange(other[pair.Key]);
-        }
-    }
-
     public static T? TryGetLast<T>(this IList<T> list)
         => list.Count == 0 ? default : list[^1];
 
@@ -40,7 +29,7 @@ internal static class CollectionExtensions
         }
         catch(Exception e)
         {
-            throw new IndexOutOfRangeException(e.Message, e);
+            throw new ArgumentOutOfRangeException(e.Message, e);
         }
     }
 

@@ -41,6 +41,8 @@ public sealed class JReceiver : JLeaf, IEArray
         => FetchValueNodes().Cast<T>().ToList().AsReadOnly();
 
     public IEValue Get(int index) => FetchValueNodes()[index];
+    public void Set(int index, IEValue value)
+        => throw new UpdateNotSupportedException(AUPD02, "Readonly array cannot be updated");
 
     public override bool Equals(object? obj)
     {
